@@ -1,0 +1,298 @@
+{
+ "Barrel_01": {
+  "file": "/models/Barrel_01/Barrel_01.glb",
+  "res": "1k",
+  "bytes": 351224,
+  "license": "CC0",
+  "source": "https://polyhaven.com/a/Barrel_01",
+  "raw": 692947,
+  "encoding": "meshopt+webp"
+ },
+ "barrel_03": {
+  "file": "/models/barrel_03/barrel_03.glb",
+  "res": "1k",
+  "bytes": 271796,
+  "license": "CC0",
+  "source": "https://polyhaven.com/a/barrel_03",
+  "raw": 574136,
+  "encoding": "meshopt+webp"
+ },
+ "Barrel_02": {
+  "file": "/models/Barrel_02/Barrel_02.glb",
+  "res": "1k",
+  "bytes": 168216,
+  "license": "CC0",
+  "source": "https://polyhaven.com/a/Barrel_02",
+  "raw": 421518,
+  "encoding": "meshopt+webp"
+ },
+ "cardboard_box_01": {
+  "file": "/models/cardboard_box_01/cardboard_box_01.glb",
+  "res": "1k",
+  "bytes": 317348,
+  "license": "CC0",
+  "source": "https://polyhaven.com/a/cardboard_box_01",
+  "raw": 2168437,
+  "encoding": "meshopt+webp"
+ },
+ "plastic_crate_02": {
+  "file": "/models/plastic_crate_02/plastic_crate_02.glb",
+  "res": "1k",
+  "bytes": 242888,
+  "license": "CC0",
+  "source": "https://polyhaven.com/a/plastic_crate_02",
+  "raw": 1838779,
+  "encoding": "meshopt+webp"
+ },
+ "wooden_crate_02": {
+  "file": "/models/wooden_crate_02/wooden_crate_02.glb",
+  "res": "1k",
+  "bytes": 318740,
+  "license": "CC0",
+  "source": "https://polyhaven.com/a/wooden_crate_02",
+  "raw": 2236220,
+  "encoding": "meshopt+webp"
+ },
+ "wooden_military_crate": {
+  "file": "/models/wooden_military_crate/wooden_military_crate.glb",
+  "res": "1k",
+  "bytes": 479144,
+  "license": "CC0",
+  "source": "https://polyhaven.com/a/wooden_military_crate",
+  "raw": 3045519,
+  "encoding": "meshopt+webp"
+ },
+ "old_tyre": {
+  "file": "/models/old_tyre/old_tyre.glb",
+  "res": "1k",
+  "bytes": 365512,
+  "license": "CC0",
+  "source": "https://polyhaven.com/a/old_tyre",
+  "raw": 2237203,
+  "encoding": "meshopt+webp"
+ },
+ "concrete_road_barrier_02": {
+  "file": "/models/concrete_road_barrier_02/concrete_road_barrier_02.glb",
+  "res": "1k",
+  "bytes": 576664,
+  "license": "CC0",
+  "source": "https://polyhaven.com/a/concrete_road_barrier_02",
+  "raw": 2928100,
+  "encoding": "meshopt+webp"
+ },
+ "portable_generator": {
+  "file": "/models/portable_generator/portable_generator.glb",
+  "res": "1k",
+  "bytes": 637176,
+  "license": "CC0",
+  "source": "https://polyhaven.com/a/portable_generator",
+  "raw": 3434440,
+  "encoding": "meshopt+webp"
+ },
+ "propane_tank": {
+  "file": "/models/propane_tank/propane_tank.glb",
+  "res": "1k",
+  "bytes": 273848,
+  "license": "CC0",
+  "source": "https://polyhaven.com/a/propane_tank",
+  "raw": 2214101,
+  "encoding": "meshopt+webp"
+ },
+ "hand_truck": {
+  "file": "/models/hand_truck/hand_truck.glb",
+  "res": "1k",
+  "bytes": 616008,
+  "license": "CC0",
+  "source": "https://polyhaven.com/a/hand_truck",
+  "raw": 3179347,
+  "encoding": "meshopt+webp"
+ },
+ "industrial_pastic_container": {
+  "file": "/models/industrial_pastic_container/industrial_pastic_container.glb",
+  "res": "1k",
+  "bytes": 284916,
+  "license": "CC0",
+  "source": "https://polyhaven.com/a/industrial_pastic_container",
+  "raw": 1567997,
+  "encoding": "meshopt+webp"
+ },
+ "metal_jerrycan": {
+  "file": "/models/metal_jerrycan/metal_jerrycan.glb",
+  "res": "1k",
+  "bytes": 519148,
+  "license": "CC0",
+  "source": "https://polyhaven.com/a/metal_jerrycan",
+  "raw": 3034558,
+  "encoding": "meshopt+webp"
+ },
+ "tree_stump_01": {
+  "file": "/models/tree_stump_01/tree_stump_01.glb",
+  "res": "1k",
+  "bytes": 907348,
+  "license": "CC0",
+  "source": "https://polyhaven.com/a/tree_stump_01",
+  "raw": 3939674,
+  "encoding": "meshopt+webp"
+ },
+ "rock_moss_set_01": {
+  "file": "/models/rock_moss_set_01/rock_moss_set_01.glb",
+  "res": "1k",
+  "bytes": 718340,
+  "license": "CC0",
+  "source": "https://polyhaven.com/a/rock_moss_set_01",
+  "raw": 1937065,
+  "encoding": "meshopt+webp"
+ },
+ "rock_07": {
+  "file": "/models/rock_07/rock_07.glb",
+  "res": "1k",
+  "bytes": 386732,
+  "license": "CC0",
+  "source": "https://polyhaven.com/a/rock_07",
+  "raw": 2184088,
+  "encoding": "meshopt+webp"
+ },
+ "shrub_02": {
+  "file": "/models/shrub_02/shrub_02.glb",
+  "res": "1k",
+  "bytes": 305376,
+  "license": "CC0",
+  "source": "https://polyhaven.com/a/shrub_02",
+  "raw": 1966425,
+  "encoding": "meshopt+webp"
+ },
+ "fern_02": {
+  "file": "/models/fern_02/fern_02.glb",
+  "res": "1k",
+  "bytes": 180988,
+  "license": "CC0",
+  "source": "https://polyhaven.com/a/fern_02",
+  "raw": 1146361,
+  "encoding": "meshopt+webp"
+ },
+ "street_lamp_01": {
+  "file": "/models/street_lamp_01/street_lamp_01.glb",
+  "res": "1k",
+  "bytes": 282600,
+  "license": "CC0",
+  "source": "https://polyhaven.com/a/street_lamp_01",
+  "raw": 2166163,
+  "encoding": "meshopt+webp"
+ },
+ "fire_hydrant": {
+  "file": "/models/fire_hydrant/fire_hydrant.glb",
+  "res": "1k",
+  "bytes": 778792,
+  "license": "CC0",
+  "source": "https://polyhaven.com/a/fire_hydrant",
+  "raw": 5521480,
+  "encoding": "meshopt+webp"
+ },
+ "trashbag": {
+  "file": "/models/trashbag/trashbag.glb",
+  "res": "1k",
+  "bytes": 260760,
+  "license": "CC0",
+  "source": "https://polyhaven.com/a/trashbag",
+  "raw": 1699464,
+  "encoding": "meshopt+webp"
+ },
+ "water_manhole_cover": {
+  "file": "/models/water_manhole_cover/water_manhole_cover.glb",
+  "res": "1k",
+  "bytes": 376688,
+  "license": "CC0",
+  "source": "https://polyhaven.com/a/water_manhole_cover",
+  "raw": 2333492,
+  "encoding": "meshopt+webp"
+ },
+ "gate_latch_01": {
+  "file": "/models/gate_latch_01/gate_latch_01.glb",
+  "res": "1k",
+  "bytes": 320440,
+  "license": "CC0",
+  "source": "https://polyhaven.com/a/gate_latch_01",
+  "raw": 2079695,
+  "encoding": "meshopt+webp"
+ },
+ "metal_trash_can": {
+  "file": "/models/metal_trash_can/metal_trash_can.glb",
+  "res": "1k",
+  "bytes": 858408,
+  "license": "CC0",
+  "source": "https://polyhaven.com/a/metal_trash_can",
+  "raw": 4994983,
+  "encoding": "meshopt+webp"
+ },
+ "ladder_sectioned_01": {
+  "file": "/models/ladder_sectioned_01/ladder_sectioned_01.glb",
+  "res": "1k",
+  "bytes": 353976,
+  "license": "CC0",
+  "source": "https://polyhaven.com/a/ladder_sectioned_01",
+  "raw": 2572183,
+  "encoding": "meshopt+webp"
+ },
+ "industrial_caged_sconce": {
+  "file": "/models/industrial_caged_sconce/industrial_caged_sconce.glb",
+  "res": "1k",
+  "bytes": 535664,
+  "license": "CC0",
+  "source": "https://polyhaven.com/a/industrial_caged_sconce",
+  "raw": 3084199,
+  "encoding": "meshopt+webp"
+ },
+ "pine_sapling_small": {
+  "file": "/models/pine_sapling_small/pine_sapling_small.glb",
+  "res": "1k",
+  "bytes": 2441200,
+  "license": "CC0",
+  "source": "https://polyhaven.com/a/pine_sapling_small",
+  "raw": 21891339,
+  "encoding": "meshopt+webp",
+  "lod": "/models/pine_sapling_small/pine_sapling_small-lod.glb",
+  "lodBytes": 1539536
+ },
+ "island_tree_02": {
+  "file": "/models/island_tree_02/island_tree_02.glb",
+  "res": "1k",
+  "bytes": 2411604,
+  "license": "CC0",
+  "source": "https://polyhaven.com/a/island_tree_02",
+  "raw": 46172406,
+  "encoding": "meshopt+webp",
+  "lod": "/models/island_tree_02/island_tree_02-lod.glb",
+  "lodBytes": 1658044
+ },
+ "island_tree_01": {
+  "file": "/models/island_tree_01/island_tree_01.glb",
+  "res": "1k",
+  "bytes": 3102788,
+  "license": "CC0",
+  "source": "https://polyhaven.com/a/island_tree_01",
+  "raw": 66337268,
+  "encoding": "meshopt+webp",
+  "lod": "/models/island_tree_01/island_tree_01-lod.glb",
+  "lodBytes": 2018440
+ },
+ "modular_chainlink_fence": {
+  "file": "/models/modular_chainlink_fence/modular_chainlink_fence.glb",
+  "res": "1k",
+  "bytes": 1195700,
+  "license": "CC0",
+  "source": "https://polyhaven.com/a/modular_chainlink_fence",
+  "raw": 7292015,
+  "encoding": "meshopt+webp"
+ },
+ "pine_sapling_medium": {
+  "file": "/models/pine_sapling_medium/pine_sapling_medium.glb",
+  "res": "1k",
+  "bytes": 5292920,
+  "license": "CC0",
+  "source": "https://polyhaven.com/a/pine_sapling_medium",
+  "raw": 267824443,
+  "encoding": "meshopt+webp",
+  "lod": "/models/pine_sapling_medium/pine_sapling_medium-lod.glb",
+  "lodBytes": 3320228
+ }
+}

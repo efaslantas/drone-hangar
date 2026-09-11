@@ -1,0 +1,71 @@
+/* EFA Hangar: graphite instrument panels, navigation cyan, launch amber. */
+:root {
+  --bg: #081118;
+  --panel: #111f29;
+  --line: #304450;
+  --text: #edf3f5;
+  --dim: #a4b6c0;
+  --accent: #efb366;
+  --warn: #efb366;
+  --osd: #9bd5b3;
+  --bad: #ed7276;
+  --nav: #83c5d5;
+}
+html, body { background-color: var(--bg); color: var(--text); }
+body { background-image: radial-gradient(ellipse at 85% 0%, #153241 0%, transparent 60%); }
+button, a, input, select, summary { transition: border-color .15s, background-color .15s, color .15s; }
+button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, summary:focus-visible {
+  outline: 2px solid var(--nav); outline-offset: 4px;
+}
+::selection { background: #efb366; color: #081118; }
+* { scrollbar-color: #46616e #0c1821; scrollbar-width: thin; }
+#hangar { color: var(--text); background: var(--bg); }
+#hangar.live .hangar-sky {
+  background: linear-gradient(90deg, #07121ad9, #10273485 65%, #09131b9c);
+}
+#hangar .hangar-grid { opacity: .08; }
+#hangar .hangar-vignette { background: linear-gradient(0deg, #07121abb, transparent 65%); }
+#hangar .topbar { border-color: #49606b66; }
+#hangar .brand strong, header strong { color: #eef4f6; letter-spacing: .16em; }
+#hangar .kicker, header .kicker { color: var(--nav); }
+#hangar .rank-link, header .back { color: var(--nav); }
+#hangar .bay-label, #hangar .card .cls { color: var(--nav); border-color: #36505c; }
+#hangar .home-hero p, #hangar .why, #hangar .field-why, #hangar .card p { color: var(--dim); }
+#hangar .briefing, #hangar.live .briefing, #hangar.live .ops-strip,
+#hangar .session-panel, #hangar .join, #hangar.live .join {
+  background: #101e28ed; border: 1px solid var(--line); box-shadow: none;
+}
+#hangar .ops-strip { border-radius: 10px; border-top: 2px solid #527e8e; }
+#hangar .ops-strip span { color: var(--nav); }
+#hangar .ops-strip strong { color: var(--text); }
+#hangar .ops-strip em { color: var(--dim); }
+#hangar .card, #hangar.live .card, #home-hero .showcase-card, #hangar.live .showcase-card {
+  background: linear-gradient(145deg, #192b36, #101d27); border-color: #344c59; box-shadow: none;
+}
+#hangar .card:hover { background: #203844; border-color: var(--nav); }
+#hangar .card.on { background: linear-gradient(120deg, #354036, #192932); border-color: var(--accent); box-shadow: inset 3px 0 var(--accent); }
+#hangar .hangar-tabs button { background: #10202bcc; color: var(--dim); border: 1px solid #344b57; border-radius: 7px; }
+#hangar .hangar-tabs button.on { background: #23404d; color: #c1eaf2; border-color: #79b8c9; box-shadow: none; }
+#hangar button.fly { background: var(--accent); color: #20170d; border: 1px solid #f3ca94; border-radius: 8px; box-shadow: 0 5px 20px #0005; animation: none; }
+#hangar button.fly:hover { background: #facb8e; }
+#hangar button.fly small { color: #51402b; }
+#hangar button.ghost, #hangar .home-options button { background: #142632; color: var(--text); border-color: #3b5665; }
+#hangar .home-options small { color: var(--dim); }
+#hangar .start-dock { background: linear-gradient(transparent, #081118 45%); }
+#hangar .preparation-layout > .model-stage { background: radial-gradient(ellipse at 50% 38%, #263d49, #0b1721 72%); border-color: #46616e; }
+#hangar .model-meta { background: linear-gradient(transparent, #09151ff2); }
+#hangar #model-caption { color: var(--text); }
+#hangar .hero-meta dt { color: var(--nav); }
+#hangar input, #hangar select, #flight-menu select { background: #091620; border-color: #42606f; color: var(--text); border-radius: 6px; }
+#flight-menu, #help { background: #101f2bf5; color: var(--text); border-color: #527585; box-shadow: 0 24px 80px #0009; }
+#flight-menu .bay-label { color: var(--nav); }
+#flight-menu button { background: #1b303e; color: var(--text); border: 1px solid #42606f; border-radius: 8px; }
+#flight-menu button.fly { background: var(--accent); color: #21190f; }
+#flight-bar button { background: #0c1d29e8; border-color: #486675; }
+#flight-bar #btn-fire { background: #783e43; border-color: #c47479; }
+.wrap header { border-color: #3a5665; }
+.wrap .op, .wrap .panel { background: linear-gradient(145deg, #172b37, #101c26); border-color: #385361; border-radius: 12px; }
+.wrap th { color: var(--nav); }
+.wrap tbody tr:hover { background: #203846; }
+@media(prefers-reduced-motion: reduce) { button, a, input, select, summary { transition: none; } }
+#hangar .flight-briefing { background: #101e28ed; border: 1px solid var(--line); border-top: 2px solid #527e8e; }

@@ -1,0 +1,122 @@
+[
+  {
+    "asset": "asphalt_02",
+    "channel": "color",
+    "source": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/asphalt_02/asphalt_02_diff_1k.jpg",
+    "md5": "fa19772d4817754c3efab708c651f5a8",
+    "license": "CC0",
+    "page": "https://polyhaven.com/a/asphalt_02"
+  },
+  {
+    "asset": "asphalt_02",
+    "channel": "normal",
+    "source": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/asphalt_02/asphalt_02_nor_gl_1k.jpg",
+    "md5": "338da8de636ea36133170578cac82e8e",
+    "license": "CC0",
+    "page": "https://polyhaven.com/a/asphalt_02"
+  },
+  {
+    "asset": "asphalt_02",
+    "channel": "roughness",
+    "source": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/asphalt_02/asphalt_02_rough_1k.jpg",
+    "md5": "ec80a2929797c1b3ffc121c4f665585a",
+    "license": "CC0",
+    "page": "https://polyhaven.com/a/asphalt_02"
+  },
+  {
+    "asset": "concrete_floor_02",
+    "channel": "color",
+    "source": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/concrete_floor_02/concrete_floor_02_diff_1k.jpg",
+    "md5": "1cfee53d2f82fa59726ab7ae6a2e8c09",
+    "license": "CC0",
+    "page": "https://polyhaven.com/a/concrete_floor_02"
+  },
+  {
+    "asset": "concrete_floor_02",
+    "channel": "normal",
+    "source": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/concrete_floor_02/concrete_floor_02_nor_gl_1k.jpg",
+    "md5": "c2065fd81f571f4e39163ea5661128fb",
+    "license": "CC0",
+    "page": "https://polyhaven.com/a/concrete_floor_02"
+  },
+  {
+    "asset": "concrete_floor_02",
+    "channel": "roughness",
+    "source": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/concrete_floor_02/concrete_floor_02_rough_1k.jpg",
+    "md5": "653d60d0db1872a49138455cf31c8326",
+    "license": "CC0",
+    "page": "https://polyhaven.com/a/concrete_floor_02"
+  },
+  {
+    "asset": "forest_floor",
+    "channel": "color",
+    "source": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/forest_floor/forest_floor_diff_1k.jpg",
+    "md5": "d67f308e4b8be6a65989e8dc76ec40fe",
+    "license": "CC0",
+    "page": "https://polyhaven.com/a/forest_floor"
+  },
+  {
+    "asset": "forest_floor",
+    "channel": "normal",
+    "source": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/forest_floor/forest_floor_nor_gl_1k.jpg",
+    "md5": "7cb480d082527766acdf3b6c8cba50f4",
+    "license": "CC0",
+    "page": "https://polyhaven.com/a/forest_floor"
+  },
+  {
+    "asset": "forest_floor",
+    "channel": "roughness",
+    "source": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/forest_floor/forest_floor_rough_1k.jpg",
+    "md5": "446092b42424c7bcf15994d651949546",
+    "license": "CC0",
+    "page": "https://polyhaven.com/a/forest_floor"
+  },
+  {
+    "asset": "gravel_floor",
+    "channel": "color",
+    "source": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/gravel_floor/gravel_floor_diff_1k.jpg",
+    "md5": "4f055e1545dcf41f347600fbb01d9ac2",
+    "license": "CC0",
+    "page": "https://polyhaven.com/a/gravel_floor"
+  },
+  {
+    "asset": "gravel_floor",
+    "channel": "normal",
+    "source": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/gravel_floor/gravel_floor_nor_gl_1k.jpg",
+    "md5": "2377939c71250cf32f8b842bc4f3fe82",
+    "license": "CC0",
+    "page": "https://polyhaven.com/a/gravel_floor"
+  },
+  {
+    "asset": "gravel_floor",
+    "channel": "roughness",
+    "source": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/gravel_floor/gravel_floor_rough_1k.jpg",
+    "md5": "06a97bcb5cfaaa17456282237f9446eb",
+    "license": "CC0",
+    "page": "https://polyhaven.com/a/gravel_floor"
+  },
+  {
+    "asset": "sandy_gravel",
+    "channel": "color",
+    "source": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/sandy_gravel/sandy_gravel_diff_1k.jpg",
+    "md5": "9808ac7c155cff11314a4fe200255c50",
+    "license": "CC0",
+    "page": "https://polyhaven.com/a/sandy_gravel"
+  },
+  {
+    "asset": "sandy_gravel",
+    "channel": "normal",
+    "source": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/sandy_gravel/sandy_gravel_nor_gl_1k.jpg",
+    "md5": "df94f818fdfab5afdaf11add554f51e7",
+    "license": "CC0",
+    "page": "https://polyhaven.com/a/sandy_gravel"
+  },
+  {
+    "asset": "sandy_gravel",
+    "channel": "roughness",
+    "source": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/sandy_gravel/sandy_gravel_rough_1k.jpg",
+    "md5": "8e87e04dcb2c15ac65dd3f2996f55452",
+    "license": "CC0",
+    "page": "https://polyhaven.com/a/sandy_gravel"
+  }
+]

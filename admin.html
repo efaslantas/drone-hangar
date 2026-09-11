@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#07090d" />
+    <title>Hangar · Admin</title>
+    <style>
+      :root {
+        --bg: #07090d;
+        --panel: #10141c;
+        --line: #2a3344;
+        --text: #e8edf5;
+        --dim: #8b97a8;
+        --osd: #9dff7a;
+        --warn: #ffb020;
+        --bad: #ff4d4d;
+        --accent: #ff8a3d;
+      }
+      * { box-sizing: border-box; }
+      html, body {
+        margin: 0; min-height: 100%;
+        background: var(--bg); color: var(--text);
+        font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
+      }
+      body { padding: 20px max(16px, env(safe-area-inset-right)) 40px max(16px, env(safe-area-inset-left)); }
+      .wrap { max-width: 1100px; margin: 0 auto; }
+      header {
+        display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+        flex-wrap: wrap; padding-bottom: 14px; margin-bottom: 18px;
+        border-bottom: 1px solid rgba(255,176,32,.25);
+      }
+      header .brand { display: flex; align-items: baseline; gap: 10px; }
+      header .kicker { font: 11px/1 ui-monospace, monospace; letter-spacing: .2em; text-transform: uppercase; color: var(--warn); }
+      header strong { font: 800 20px/1 system-ui; letter-spacing: .1em; }
+      #status { font: 12px/1 ui-monospace, monospace; color: var(--dim); }
+      #status.live { color: var(--osd); }
+      #status.err { color: var(--bad); }
+      .gate {
+        max-width: 360px; margin: 80px auto; background: var(--panel);
+        border: 1px solid var(--line); padding: 20px; border-radius: 4px;
+      }
+      .gate label { display: block; font: 11px/1 ui-monospace, monospace; letter-spacing: .1em; text-transform: uppercase; color: var(--warn); margin-bottom: 8px; }
+      .gate input {
+        width: 100%; background: rgba(0,0,0,.4); border: 1px solid var(--line); color: var(--text);
+        padding: 10px; font: 14px/1 inherit; border-radius: 2px; margin-bottom: 10px;
+      }
+      .gate button, .refresh button {
+        background: var(--warn); color: #1a1208; border: 0; font: 700 13px/1 system-ui;
+        padding: 10px 14px; border-radius: 2px; cursor: pointer; letter-spacing: .04em;
+      }
+      .gate p.err { color: var(--bad); font-size: 12px; min-height: 16px; margin: 0 0 8px; }
+      [hidden] { display: none !important; }
+      .cards {
+        display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px;
+        margin-bottom: 20px;
+      }
+      .card {
+        background: var(--panel); border: 1px solid var(--line); padding: 12px 14px; border-radius: 4px;
+      }
+      .card span { display: block; font: 10px/1 ui-monospace, monospace; letter-spacing: .12em; text-transform: uppercase; color: var(--dim); }
+      .card strong { display: block; font-size: 24px; margin-top: 6px; }
+      section { margin-bottom: 26px; }
+      section h2 {
+        font: 11px/1 ui-monospace, monospace; letter-spacing: .16em; text-transform: uppercase;
+        color: var(--warn); margin: 0 0 10px; border-bottom: 1px solid rgba(255,176,32,.2); padding-bottom: 8px;
+      }
+      table { width: 100%; border-collapse: collapse; font-size: 13px; }
+      th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+      th { color: var(--dim); font-weight: 600; font-size: 11px; letter-spacing: .06em; text-transform: uppercase; }
+      td.room { color: var(--accent); }
+      .table-wrap { overflow-x: auto; }
+      .empty { color: var(--dim); font-size: 13px; padding: 12px 0; }
+      .ev-join { color: var(--osd); }
+      .ev-leave { color: var(--dim); }
+      .ev-win { color: var(--warn); font-weight: 700; }
+      .ev-lost { color: var(--bad); }
+      .ev-connect { color: #6aa0b8; }
+      td.type { text-transform: uppercase; font: 11px/1 ui-monospace, monospace; letter-spacing: .06em; }
+      .why { margin: -8px 0 20px; color: var(--dim); font-size: 13px; max-width: 70ch; }
+      td.ip { font: 12px/1 ui-monospace, monospace; color: var(--dim); }
+      td.geo { color: #7ec8ff; }
+      .legend { display: flex; flex-wrap: wrap; gap: 4px 14px; margin: 0 0 12px; font: 11px/1 ui-monospace, monospace; }
+      .legend span { display: flex; align-items: center; gap: 5px; }
+      .legend i { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+      .note { margin: -4px 0 10px; color: var(--dim); font: 12px/1.5 ui-monospace, monospace; }
+      .chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 12px; padding: 0; }
+      .chips b {
+        font: 11px/1 ui-monospace, monospace; letter-spacing: .06em;
+        background: rgba(255,176,32,.12); border: 1px solid rgba(255,176,32,.3);
+        color: var(--warn); padding: 5px 8px; border-radius: 2px; font-weight: 600;
+      }
+      .chips b i { font-style: normal; color: var(--dim); margin-left: 5px; }
+      td.names { white-space: normal; }
+      td.num { text-align: right; font: 12px/1 ui-monospace, monospace; }
+    </style>
+    <link rel="stylesheet" href="/src/theme.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <header>
+        <div class="brand">
+          <span class="kicker">EFA HANGAR</span>
+          <strong>ADMIN</strong>
+        </div>
+        <span id="status">bağlanıyor…</span>
+      </header>
+      <p class="why">Kim ne zaman girdi/çıktı, hangi görevi kazandı/kaybetti — IP ve tahmini konumla (GeoIP, kesin değil). 3 sn'de bir güncellenir.</p>
+
+      <div class="gate" id="gate" hidden>
+        <label for="user-input">Kullanıcı</label>
+        <input id="user-input" type="text" autocomplete="username" placeholder="admin" />
+        <label for="key-input">Parola</label>
+        <input id="key-input" type="password" autocomplete="current-password" placeholder="sunucu konsolunda: [admin] anahtar: ..." />
+        <p class="err" id="gate-err"></p>
+        <button type="button" id="gate-go">Gir</button>
+      </div>
+
+      <div id="app" hidden>
+        <div class="cards">
+          <div class="card"><span>Şu an bağlı</span><strong id="c-online">0</strong></div>
+          <div class="card"><span>Aktif oda</span><strong id="c-rooms">0</strong></div>
+          <div class="card"><span>Son 5 dk giriş</span><strong id="c-joins">0</strong></div>
+          <div class="card"><span>Son 5 dk galibiyet</span><strong id="c-wins">0</strong></div>
+        </div>
+
+        <section>
+          <h2>Şu an bağlı olanlar</h2>
+          <div class="table-wrap">
+            <table id="t-online">
+              <thead><tr><th>İsim</th><th>Drone</th><th>Oda</th><th>IP</th><th>Konum</th></tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          <p class="empty" id="online-empty" hidden>Kimse bağlı değil.</p>
+        </section>
+
+        <section>
+          <h2>IP raporu · kim nereden girdi</h2>
+          <div class="cards">
+            <div class="card"><span>Farklı IP</span><strong id="r-ips">0</strong></div>
+            <div class="card"><span>Farklı pilot adı</span><strong id="r-pilots">0</strong></div>
+            <div class="card"><span>Toplam bağlantı</span><strong id="r-visits">0</strong></div>
+            <div class="card"><span>Görev girişi</span><strong id="r-joins">0</strong></div>
+            <div class="card"><span>Galibiyet</span><strong id="r-wins">0</strong></div>
+          </div>
+          <p class="note" id="r-scope"></p>
+          <p class="chips" id="r-countries"></p>
+          <div class="table-wrap">
+            <table id="t-report">
+              <thead><tr><th>IP</th><th>Konum</th><th>Pilot adları</th><th>Bağlantı</th><th>Görev</th><th>Galibiyet</th><th>İlk</th><th>Son</th></tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          <p class="empty" id="report-empty" hidden>Kayıtlı ziyaret yok.</p>
+        </section>
+
+        <section>
+          <h2>Canlı olay akışı</h2>
+          <div class="legend">
+            <span><i style="background:#6aa0b8"></i>bağlandı</span>
+            <span><i style="background:var(--osd)"></i>girdi</span>
+            <span><i style="background:var(--dim)"></i>çıktı</span>
+            <span><i style="background:var(--warn)"></i>kazandı</span>
+            <span><i style="background:var(--bad)"></i>kayıp</span>
+          </div>
+          <div class="table-wrap">
+            <table id="t-events">
+              <thead><tr><th>Saat</th><th>Olay</th><th>İsim</th><th>Oda / Görev</th><th>Detay</th><th>IP</th><th>Konum</th></tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          <p class="empty" id="events-empty" hidden>Henüz olay yok.</p>
+        </section>
+      </div>
+    </div>
+    <script type="module" src="/src/admin.js"></script>
+  </body>
+</html>

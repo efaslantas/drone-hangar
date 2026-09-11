@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1, user-scalable=no, interactive-widget=resizes-visual" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="theme-color" content="#07090d" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Hangar" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <title>Drone Hangar</title>
+    <link rel="stylesheet" href="/src/style.css" />
+    <link rel="stylesheet" href="/src/theme.css" />
+  </head>
+  <body>
+    <div id="app">
+      <section id="hangar" data-screen="home">
+        <canvas id="hangar-live" aria-hidden="true"></canvas>
+        <div class="hangar-sky" aria-hidden="true"></div>
+        <div class="hangar-grid" aria-hidden="true"></div>
+        <div class="hangar-vignette" aria-hidden="true"></div>
+        <div class="hangar-inner">
+          <nav class="topbar">
+            <div class="brand">
+              <span class="kicker">EFA</span>
+              <strong>HANGAR</strong>
+            </div>
+            <div class="topbar-actions">
+              <button type="button" class="ghost" id="fullscreen-btn">Tam Ekran</button>
+              <a class="rank-link" href="/leaderboard.html">Sıralama</a>
+              <button type="button" class="ghost" id="home-back" hidden>Ana ekran</button>
+              <button type="button" class="fly" id="go" data-start>KALKIŞ YAP</button>
+            </div>
+          </nav>
+          <section class="home-hero" id="home-hero">
+            <span class="bay-label">EFA HANGAR · UÇUŞ SİMÜLATÖRÜ</span>
+            <h1>Bir drone seç.<br>Gökyüzü senin.</h1>
+            <p>Hangarda hazırlan, rotanı seç ve uçuşa geç.</p>
+            <button type="button" class="fly" id="home-fly">Uçuşa Başla →</button>
+            <div class="home-options">
+              <button type="button" id="home-school">Uçuş Okulu <small>İlk kalkıştan kontrollü uçuşa</small></button>
+              <button type="button" id="home-daily">Günün Görevi <small id="home-daily-sub">Herkes aynı rota, sıralama günlük</small></button>
+              <button type="button" id="home-friends">Arkadaşlarla Oyna <small>Aynı odaya katıl, birlikte uç</small></button>
+            </div>
+          </section>
+          <div class="ops-strip" id="ops-strip">
+            <div>
+              <span>Drone</span>
+              <strong id="ops-drone">Tiny Whoop</strong>
+              <em id="ops-pace">Çok yavaş</em>
+            </div>
+            <div>
+              <span>Oyun modu</span>
+              <strong id="ops-op">Uçuş okulu</strong>
+            </div>
+            <div>
+              <span>Harita</span>
+              <strong id="ops-map">Kapalı hangar</strong>
+            </div>
+            <div>
+              <span>Oda</span>
+              <strong id="ops-room">Genel</strong>
+              <em id="ops-room-n">0 kişi</em>
+            </div>
+          </div>
+          <nav class="hangar-tabs" id="hangar-tabs">
+            <button type="button" class="on" data-tab="platform">Uçuş hazırlığı</button>
+            <button type="button" data-tab="ayarlar">Ayarlar</button>
+            <button type="button" data-tab="kontrol">Kontroller</button>
+          </nav>
+          <div class="hangar-tabpanels">
+          <section class="showcase" data-tab="ozellikler" hidden>
+            <div class="showcase-head">
+              <span class="bay-label">EFA Hangar — canlı briefing</span>
+              <h2>Hangarda seni neler bekliyor?</h2>
+              <p class="why">Kur yok, indirme yok — link aç, PS kolunu bağla, ARM'a bas ve uç. 10 platform, varsayılan gerçekçi acro, eğitim profili ve gerçek zamanlı çok oyunculu tek sekmede.</p>
+            </div>
+            <div class="showcase-grid">
+              <div class="showcase-card">
+                <span class="cls">10 platform</span>
+                <h2>Micro'dan Heavy Lift'e</h2>
+                <p>Küçük indoor drone'lardan uzun menzilli ve ağır yük modellerine kadar farklı hız, boyut ve uçuş karakterleri.</p>
+              </div>
+              <div class="showcase-card">
+                <span class="cls">Gerçekçi Acro</span>
+                <h2>Varsayılan gerçek uçuş fiziği</h2>
+                <p>Acro’da motor gecikmesi, rölanti, batarya sag, kütleye bağlı atalet ve hava hızına göre rüzgâr sürüklemesi çalışır. Ders modu görev boyunca kilitlenir.</p>
+              </div>
+              <div class="showcase-card">
+                <span class="cls">Akademi + 6 operasyon</span>
+                <h2>Temelden saha görevine</h2>
+                <p>Beş bölümde 30 ders: temel, manuel gaz, Acro, çevre ve ileri parkur. Ardından altı operasyonda keşif, arama kurtarma, menzil, yük, iniş ve denetim uygula.</p>
+              </div>
+              <div class="showcase-card">
+                <span class="cls">Çok oyunculu</span>
+                <h2>6 oda, 16 kişiye kadar</h2>
+                <p>Canlı oyuncu listesi ve tek linkle davet. Görevlerdeki en hızlı sürelerini sıralamada karşılaştır.</p>
+              </div>
+              <div class="showcase-card">
+                <span class="cls">Her kontrol</span>
+                <h2>Klavye, kol, dokunmatik</h2>
+                <p>Klavye, DualSense/DualShock veya mobil çift çubukla uç. Kontroller ekranından tuşları öğren.</p>
+              </div>
+              <div class="showcase-card">
+                <span class="cls">Bodycam görünüm</span>
+                <h2>Doğal FPV kamera</h2>
+                <p>Doğal renkler, ölçülü lens etkisi ve gövdeye yaylı kamera. Temiz veya FPV görünümü, gece/gündüz ve kamera açısı seçilebilir.</p>
+              </div>
+            </div>
+          </section>
+          <div class="session-panel" data-tab="ayarlar" hidden>
+            <div class="field">
+              <label for="pilot">Görünen ad</label>
+              <input id="pilot" maxlength="18" value="pilot" autocomplete="nickname" />
+              <p class="field-why">Haritada ve lobi listesinde bu isimle görünürsün. Uçuşu değiştirmez.</p>
+            </div>
+            <input type="hidden" id="room" value="hangar" />
+            <div class="tods">
+              <label class="tod"><input type="checkbox" id="night" /> Gece</label>
+              <label class="tod"><input type="checkbox" id="real" checked /> Gerçekçi acro</label>
+              <label class="tod"><input type="checkbox" id="mute" /> Ses kapalı</label>
+              <label class="tod"><input type="checkbox" id="gpu" /> WebGPU (deneysel) <small id="gpu-status"></small></label>
+              <p class="field-why">Acro’da otomatik gaz yok. Motor gecikir, rölantide durmaz, boş pakette punch düşer, hava durgun değil (rüzgâr varsa daha da). Okul/angle aynı.</p>
+            </div>
+            <div class="loadout">
+              <label>PS tepkisi
+                <select id="control-profile">
+                  <option value="training" selected>Eğitim</option>
+                  <option value="standard">Standart</option>
+                  <option value="race">Yarış</option>
+                </select>
+              </label>
+              <button type="button" id="calibrate-pad">PS kolu kalibre et</button>
+              <small id="calibrate-status">Stick merkezini ve tam hareketini ölçer</small>
+              <label>Kamera
+                <select id="cam-tilt">
+                  <option value="15">15°</option>
+                  <option value="30" selected>30°</option>
+                  <option value="45">45°</option>
+                </select>
+              </label>
+              <label>Görüntü
+                <select id="camera-look">
+                  <option value="0" selected>Net / doğal</option>
+                  <option value="0.65">Doğal FPV</option>
+                  <option value="1">Belirgin FPV</option>
+                </select>
+              </label>
+              <label>Ateş
+                <select id="gun">
+                  <option value="std" selected>Standart</option>
+                  <option value="rapid">Hızlı</option>
+                </select>
+              </label>
+            </div>
+            <p class="field-why">Eğitim profili küçük stick hareketlerini hassaslaştırır, dönüş hızını sınırlar ve R2 punch yardımını kapatır. Sol stick merkezi hover, üst uç tam motor gücüdür.</p>
+          </div>
+
+          <section class="how briefing" data-tab="kontrol" hidden>
+            <div class="bay-label">Nasıl oynanır — Mode 2</div>
+            <p class="why">Sol el: yaw + gaz (orta = hover). Sağ el: roll + pitch. İlk uçuş: <b>Uçuş okulu</b> → BAŞLAT. Sarı üçgen sıradaki kapı. H pad’e in, ARM kapat.</p>
+            <div class="how-cols">
+              <div>
+                <h3>Klavye</h3>
+                <ul>
+                  <li><b>W / S</b> tırman / in</li>
+                  <li><b>A / D</b> yaw (sapma)</li>
+                  <li><b>Oklar</b> veya <b>IJKL</b> pitch / roll</li>
+                  <li><b>Space</b> ARM · <b>F</b> veya tık ateş</li>
+                  <li><b>T</b> açı/acro · <b>C</b> kamera · <b>R</b> reset</li>
+                  <li><b>H</b> bu liste · <b>M</b> ses · <b>Esc</b> (2x) hangar</li>
+                </ul>
+              </div>
+              <div>
+                <h3>Mobil tarayıcı</h3>
+                <ul>
+                  <li>Telefonu <b>yatay</b> tut</li>
+                  <li><b>Sol başparmak</b> gaz + yaw</li>
+                  <li><b>Sağ başparmak</b> pitch + roll</li>
+                  <li><b>ATEŞ</b> basılı tut (üçüncü parmak)</li>
+                  <li><b>ARM</b> daire · <b>☰</b> CAM / MOD / ÇIKIŞ</li>
+                  <li>Safari veya Chrome aynı. iPhone’da Chrome da WebKit — fark yok</li>
+                <li>Sayfayı kaydırma; parmağı ekranda tut</li>
+                </ul>
+              </div>
+              <div>
+                <h3>PS kol (DualSense / DualShock)</h3>
+                <ul>
+                  <li>USB veya Bluetooth bağla, sayfaya tıkla, <b>herhangi bir tuşa bas</b></li>
+                  <li><b>Sol stick</b> yaw + irtifa (orta = hover)</li>
+                  <li><b>Sağ stick</b> roll / pitch</li>
+                  <li><b>Eğitim</b>: hassas merkez, kontrollü rate · <b>R2</b> gazı değiştirmez</li>
+                  <li><b>Standart/Yarış</b>: <b>R2</b> punch · <b>R1</b> ateş</li>
+                  <li><b>✕</b> ARM · <b>○</b> reset · <b>△</b> açı/acro · <b>□</b> kamera</li>
+                  <li><b>Options</b> kontrol paneli</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <section class="ops briefing" data-tab="operasyon" hidden>
+            <div class="bay-label">2 · Oyun modu</div>
+            <p class="why">Beş bölümde 30 ders temel kumandadan manuel gaz ve Acro'ya, rüzgâr/gece yönetiminden ileri parkura ilerler. Altı saha operasyonu becerileri gerçek senaryolarda birleştirir. Her eğitim pistte DISARM başlar, uçuş modu sabittir ve sonunda rota, kontrol, stabilite ile iniş puanı verir. Serbest çalışma ve Günün Görevi her zaman açıktır.</p>
+            <div class="grid ops-grid" id="ops"></div>
+          </section>
+
+          <section class="pick briefing" data-tab="platform">
+            <div class="bay-label">1 · Drone</div>
+            <div class="pick-stage">
+              <div class="model-stage">
+                <canvas id="hangar-preview"></canvas>
+                <div class="model-meta">
+                  <p id="model-caption">Tiny Whoop</p>
+                  <dl class="hero-meta" id="spec-sheet">
+                    <div><dt>Sınıf</dt><dd id="spec-class">Indoor</dd></div>
+                    <div><dt>Açıklık</dt><dd id="spec-span">65 mm</dd></div>
+                    <div><dt>Mod</dt><dd id="spec-mode">angle</dd></div>
+                    <div><dt>Hız</dt><dd id="spec-pace">Çok yavaş</dd></div>
+                  </dl>
+                </div>
+              </div>
+              <section class="briefing flight-briefing" id="flight-briefing" aria-live="polite">
+                <div class="bay-label" id="briefing-title">Uçuş brifingi</div>
+                <p class="briefing-kicker" id="briefing-kicker">Uçuş Okulu 2/6 · Kapılar</p>
+                <dl class="briefing-rows" id="briefing-rows"></dl>
+                <p class="briefing-note" id="briefing-note" hidden></p>
+              </section>
+              <div class="grid pick-grid" id="cards"></div>
+            </div>
+          </section>
+
+          <div data-tab="arena" hidden>
+            <div class="arena-row">
+              <section class="maps briefing">
+                <div class="bay-label">3 · Harita</div>
+                <div class="grid maps-grid" id="maps"></div>
+              </section>
+              <section class="rooms briefing">
+                <div class="bay-label">3 · Oda</div>
+                <div class="grid" id="room-cards"></div>
+              </section>
+            </div>
+
+            <section class="join">
+              <div class="bay-label">Davet adresi</div>
+              <p class="why">Seçili oda için paylaşılacak adres. Arkadaşın bunu açınca aynı lobiye düşer.</p>
+              <div class="share-row">
+                <input id="share-url" readonly />
+                <button type="button" id="copy-share">Kopyala</button>
+              </div>
+              <p class="status-line"><span id="netstat">bağlanıyor…</span> · <span id="pilots">odada kimse yok</span></p>
+            </section>
+          </div>
+          </div>
+        </div>
+        <div class="start-dock">
+          <button type="button" class="fly" id="go-dock" data-start>
+            KALKIŞ YAP
+            <small id="go-where">Uçuş okulu · Kapalı hangar</small>
+          </button>
+        </div>
+      </section>
+
+      <section id="flight" hidden>
+        <canvas id="view"></canvas>
+        <div id="hud">
+          <div class="hud-left">
+            <div class="hp-wrap"><b>CAN</b><div class="hp-bar"><i id="hp-fill"></i></div><span id="hp-n">6</span></div>
+            <div id="hud-speed">0 km/h</div>
+            <div id="hud-alt">8 m</div>
+            <div class="batt-wrap"><b>BAT</b><div class="batt-bar"><i id="batt-fill"></i></div></div>
+          </div>
+          <div id="op-hud">
+            <div id="op-title">Uçuş okulu</div>
+            <div id="op-hint">1. kapı — içinden geç</div>
+            <div id="op-prog"></div>
+            <div id="op-time"></div>
+            <div id="op-lap" hidden></div>
+          </div>
+          <div id="nav">
+            <div id="compass"><b id="compass-n"></b></div>
+            <div id="nav-dist"></div>
+          </div>
+          <div class="hud-right">
+            <div id="hud-arm">ARM</div>
+            <div id="hud-score">SKOR 0</div>
+            <div id="hud-bots">BOT 5</div>
+            <div id="hud-mode">ACRO</div>
+            <div id="hud-wind" hidden></div>
+            <div id="hud-fps"></div>
+          </div>
+          <div class="reticle"></div>
+          <div id="hitmark"></div>
+          <div id="dmgflash"></div>
+          <div class="crash" id="osd-crash" hidden></div>
+          <div id="countdown" hidden><b id="countdown-n">3</b><span id="countdown-l">HAZIR OL</span></div>
+        </div>
+        <section id="result-card" data-ui hidden>
+          <span class="bay-label" id="result-kicker">GÖREV TAMAM</span>
+          <h2 id="result-title">Yarış</h2>
+          <div class="result-time" id="result-time">0.0 s</div>
+          <dl class="result-rows" id="result-rows"></dl>
+          <div class="result-laps" id="result-laps" hidden></div>
+          <div class="result-actions">
+            <button type="button" class="fly" id="result-retry">Tekrar</button>
+            <button type="button" id="result-replay" hidden>Tekrarı izle</button>
+            <button type="button" id="result-share" hidden>Uçuşu paylaş</button>
+            <button type="button" id="result-home">Hangara dön</button>
+          </div>
+          <p class="result-hint" id="result-hint"></p>
+        </section>
+        <div id="osd" class="bodycam">
+          <div class="bc-top">
+            <div id="rec" class="rec">STBY</div>
+            <div id="tc">00:00:00:00</div>
+            <div id="clip">CAM-07</div>
+          </div>
+          <div class="bc-mid">
+            <div id="gps"></div>
+            <div id="tele"></div>
+          </div>
+          <div class="bc-bot" id="cam-meta"></div>
+        </div>
+        <button type="button" id="menu-fab" data-ui aria-label="Menü">☰</button>
+        <div id="flight-bar">
+          <button type="button" id="btn-fire" data-fire>ATEŞ</button>
+          <button type="button" id="btn-arm" data-ui>ARM / RESET</button>
+          <button type="button" id="btn-cam" data-ui>CAM</button>
+          <button type="button" id="btn-mode" data-ui>MOD</button>
+          <button type="button" id="btn-help" data-ui>KONTROL</button>
+          <button type="button" class="ghost" id="btn-back" data-ui>MENÜ</button>
+        </div>
+        <dialog id="flight-menu" data-ui>
+          <span class="bay-label">UÇUŞ MENÜSÜ</span><h2>Uçuş kontrolü</h2>
+          <p>Çevrimiçi uçuş menü açıkken devam eder.</p>
+          <button type="button" class="fly" id="flight-resume">Devam Et</button>
+          <button type="button" id="flight-retry">Yeniden Başlat</button>
+          <details><summary>Ayarlar</summary><label>Görüntü <select id="flight-look"><option value="0">Net / doğal</option><option value="0.65">Doğal FPV</option><option value="1">Belirgin FPV</option></select></label></details>
+          <button type="button" id="flight-home">Hangara Dön</button>
+        </dialog>
+        <aside id="help" data-ui>
+          <header>
+            <strong>Kontrol</strong>
+            <button type="button" id="help-close" data-ui>Kapat</button>
+          </header>
+          <p class="help-lead">Operasyon sırası: okul → devriye → dalga → yarış → keşif → final. Görev bitince ARM hangar. Racer acro: sağ stick rate, sol yaw+gaz. R2 punch. Hangarda Gerçekçi acro: otomatik gaz yok, motor gecikmesi, batarya sag. Okul/angle aynı. Mobilde ☰ menü.</p>
+          <div class="help-cols">
+            <div>
+              <h3>DualSense / PS kol</h3>
+              <ul>
+                <li><b>Sol stick</b> — sol/sağ yaw, yukarı/aşağı irtifa (orta = hover)</li>
+                <li><b>Sağ stick</b> — roll / pitch</li>
+                <li><b>R2</b> — Standart/Yarış profilinde punch · <b>R1</b> ateş</li>
+                <li><b>✕</b> arm · <b>○</b> reset · <b>△</b> açı/acro · <b>□</b> kamera</li>
+                <li><b>Options</b> bu paneli aç/kapa</li>
+              </ul>
+            </div>
+            <div>
+              <h3>Telefon</h3>
+              <ul>
+                <li><b>Sol yarı</b> başparmak: gaz + yaw</li>
+                <li><b>Sağ yarı</b> başparmak: pitch + roll</li>
+                <li><b>ATEŞ</b> basılı tut (üçüncü parmak) — stick varken de ateş eder</li>
+                <li>Yatay tut. İki el + ATEŞ aynı anda çalışır</li>
+              </ul>
+            </div>
+            <div>
+              <h3>Klavye</h3>
+              <ul>
+                <li><b>W/S</b> irtifa · <b>A/D</b> yaw</li>
+                <li><b>Oklar</b> veya <b>IJKL</b> pitch / roll</li>
+                <li><b>F / tık</b> ateş · <b>Space</b> arm · <b>T</b> mod · <b>R</b> reset</li>
+                <li><b>M</b> ses · <b>Esc</b> (2x) hangar · <b>H</b> bu panel</li>
+              </ul>
+            </div>
+          </div>
+          <div class="pad-meters">
+            <div class="meter"><span>L</span><div class="ring" id="m-l"><i></i></div></div>
+            <div class="thr"><span>R2</span><div class="bar"><i id="m-r2"></i></div></div>
+            <div class="meter"><span>R</span><div class="ring" id="m-r"><i></i></div></div>
+            <div class="pad-stat" id="pad-stat">kol yok</div>
+          </div>
+        </aside>
+        <div id="sticks">
+          <div class="stick" id="st-l"><div class="knob"></div><div class="lbl">YAW · GAZ</div></div>
+          <div class="stick" id="st-r"><div class="knob"></div><div class="lbl">ROLL · PITCH</div></div>
+          <button type="button" id="btn-fire-touch" data-fire>ATEŞ</button>
+          <button type="button" id="btn-arm-touch" data-ui>ARM</button>
+        </div>
+        <button type="button" id="rotate-hint" aria-label="İpucu">
+          <span class="rh-icon">↻</span>
+          <span class="rh-text">Yan tut — stick’ler daha rahat</span>
+        </button>
+      </section>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

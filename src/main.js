@@ -1055,10 +1055,17 @@ function updateAutonomyScene(dt) {
     boat.mesh.rotation.y = -boat.state.heading;
     boat.mesh.userData.rudder.rotation.y = -boat.state.turnRate * 0.45;
     if (autonomy.trailAcc >= 0.5) {
-      if (boat.state.id === autonomy.task.selectedSeaId && ["SEA_DISPATCH", "JOINT_VERIFY"].includes(autonomy.task.phase)) {
+      const distanceToTarget = Math.hypot(boat.state.x - autonomy.task.target.x, boat.state.z - autonomy.task.target.z);
+      const shouldTrackProgress =
+        !autonomy.task.paused &&
+        autonomy.task.controlledByVehicle !== boat.state.id &&
+        boat.state.id === autonomy.task.selectedSeaId &&
+        ["SEA_DISPATCH", "JOINT_VERIFY"].includes(autonomy.task.phase) &&
+        distanceToTarget > autonomy.task.op.verifyRadius;
+      if (shouldTrackProgress) {
         boat.progress = routeProgress(boat.state, autonomy.task.target, boat.progress, autonomy.trailAcc);
         if (boat.progress.stuck) boat.state.available = false;
-      }
+      } else boat.progress = null;
       boat.points.push({ x: boat.state.x, z: boat.state.z });
       const cap = touchUi ? 80 : 240;
       if (boat.points.length > cap) boat.points.shift();

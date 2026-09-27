@@ -97,6 +97,9 @@ test("runtime wires vehicle camera selection, terminal hold, and mobile manual c
   assert.match(main, /closest\?\.\(\s*["']\[data-vehicle\]/);
   assert.match(main, /cameraVehicleId/);
   assert.match(main, /\["COMPLETE", "FAILED", "ABORTED"\]\.includes\(autonomy\.task\.phase\)\) return/);
+  assert.match(main, /!autonomy\.task\.paused/);
+  assert.match(main, /autonomy\.task\.controlledByVehicle !== boat\.state\.id/);
+  assert.match(main, /distanceToTarget > autonomy\.task\.op\.verifyRadius/);
   assert.match(css, /autonomy-active:not\(\.autonomy-manual\)/);
   assert.match(css, /#flight-bar #autonomy-panel/);
 });

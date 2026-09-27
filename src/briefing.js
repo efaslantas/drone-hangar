@@ -11,6 +11,19 @@ const LEVELS = ["Sakin", "Hafif", "Orta", "Kuvvetli"];
 // Free flight has no op wind; the map still tells the pilot what to expect.
 const MAP_DRONE = { indoor: "whoop", yard: "freestyle", airfield: "racer", coast: "seven", city: "cinewhoop", forest: "toothpick" };
 
+export function modeGuide(selectedId, dailyId, schoolId = "hover") {
+  return {
+    quickLabel: "Hızlı başlangıç",
+    trainingLabel: "Eğitim programı",
+    quick: [
+      { id: schoolId, intent: "İlk kez uçuyorum", detail: "Adım adım öğren" },
+      { id: "free", intent: "Serbest uçuş", detail: "Kural yok, hemen uç" },
+      { id: "autonomy-coast-response", intent: "İHA + İDA görevi", detail: "Ortak kıyı operasyonu" },
+      { id: dailyId, intent: "Günün görevi", detail: "Bugünün rotasına katıl" },
+    ].map((choice) => ({ ...choice, selected: choice.id === selectedId })),
+  };
+}
+
 export function fmtTime(s) {
   if (s == null || !Number.isFinite(s)) return "—";
   const m = Math.floor(s / 60);

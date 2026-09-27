@@ -37,8 +37,13 @@ test("coast exposes navigable water, two safe sea spawns, and reachable incident
   const scene = new THREE.Scene();
   const play = buildWorld(scene, "coast");
   assert.equal(typeof play.water?.contains, "function");
+  assert.ok(play.water.surfaceY > 0, "the visible sea surface sits above the sand plane");
+  assert.equal(play.water.shorelineZ, -40);
   assert.equal(play.seaSpawns.length, 2);
-  for (const spawn of play.seaSpawns) assert.equal(play.water.contains(spawn.x, spawn.z), true, spawn.id);
+  for (const spawn of play.seaSpawns) {
+    assert.equal(play.water.contains(spawn.x, spawn.z), true, spawn.id);
+    assert.ok(spawn.z <= play.water.shorelineZ - 4, `${spawn.id} starts visibly offshore`);
+  }
   assert.equal(play.water.contains(0, 0), false, "helipad is land");
   for (const incident of AUTONOMY_COAST_RESPONSE.incidentCandidates) {
     assert.equal(play.water.contains(incident.x, incident.z), true, incident.id);

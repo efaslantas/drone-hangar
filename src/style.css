@@ -9,9 +9,12 @@
 .home-hero h1 { font-size: clamp(38px, 6vw, 76px); line-height: 1.05; letter-spacing: -.045em; margin: 24px 0; }
 .home-hero p { color: #bcc5cb; font-size: 18px; margin-bottom: 30px; }
 .home-hero > .fly { padding: 20px 36px; font-size: 18px; }
-.home-options { display: flex; gap: 16px; margin-top: 30px; }
-.home-options button { text-align: left; padding: 20px; background: #101820de; border: 1px solid #ffffff26; color: #eee; border-radius: 12px; font-size: 16px; flex: 1; }
+.home-options { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 12px; margin-top: 30px; }
+.home-options button { text-align: left; padding: 18px; background: #101820de; border: 1px solid #ffffff26; color: #eee; border-radius: 12px; font-size: 16px; min-height: 112px; }
+.home-options button b { display: block; font-size: 16px; }
 .home-options small { display: block; color: #a9b4be; margin-top: 8px; font-size: 12px; }
+.home-options .recommended { border-color: #c69a60; background: linear-gradient(145deg,rgba(198,154,96,.2),#101820de); }
+.home-options .secondary { grid-column: 1 / -1; min-height: 0; padding: 14px 18px; }
 #hangar:not(.with-friends) .rooms,
 #hangar:not(.with-friends) .join,
 #hangar:not(.with-friends) #ops-strip > div:last-child { display: none; }
@@ -25,7 +28,8 @@
 #flight-menu button, #flight-menu details { display: block; width: 100%; margin-top: 12px; padding: 14px; }
 #flight-menu p { color: #adb8c3; font-size: 13px; }
 #flight-menu label { display: grid; gap: 10px; margin-top: 12px; }
-@media(max-width: 600px) { .home-options { flex-direction: column; gap: 10px; } .home-hero { padding: 24px 0; } .home-hero h1 { margin: 16px 0; } }
+@media(max-width: 700px) { .home-options { grid-template-columns: 1fr 1fr; gap: 10px; } .home-options .secondary { grid-column: 1 / -1; } .home-hero { padding: 24px 0; } .home-hero h1 { margin: 16px 0; } }
+@media(max-width: 430px) { .home-options { grid-template-columns: 1fr; } .home-options .secondary { grid-column: auto; } }
 @media(max-width: 600px) {
   #hangar .model-stage { display: block; min-height: 220px; }
   #hangar #hangar-preview { height: 200px; min-height: 200px; }
@@ -280,6 +284,12 @@ button, a, label, select, summary { touch-action: manipulation; cursor: pointer;
 #cards.locked, #maps.locked { opacity: .5; pointer-events: none; }
 .ops-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)) !important; }
 #hangar .ops-grid .card { min-height: 0; padding: 10px; }
+#hangar .ops-grid .card.quick { min-height: 142px; padding: 14px; }
+#hangar .ops-grid .card.quick h2 { font-size: 16px; }
+#hangar .ops-section-title { grid-column: 1 / -1; display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding: 2px 0 8px; }
+#hangar .ops-section-title span { font-size: 16px; font-weight: 800; }
+#hangar .ops-section-title small { color: var(--dim); }
+#hangar .ops-section-title.training { margin-top: 12px; padding-top: 16px; border-top: 1px solid rgba(198,154,96,.28); }
 #hangar .ops-grid .card.lock { opacity: .42; cursor: not-allowed; }
 #hangar .ops-grid .card .best { font: 11px/1.3 ui-monospace, monospace; color: #9dff7a; margin-top: 6px; }
 #hangar .ops-grid .card.daily { border-color: rgba(131,197,213,.55); }
@@ -287,16 +297,17 @@ button, a, label, select, summary { touch-action: manipulation; cursor: pointer;
 #hangar .ops-grid .card.team { border-image: linear-gradient(90deg, #ff5a4a, #4aa8ff) 1; }
 #hangar .ops-grid .card.team .cls { color: #ff8a7a; }
 /* Track header spans the ops grid; the rungs follow as ordinary cards. */
-#hangar .ops-track { grid-column: 1 / -1; margin-top: 8px; padding-top: 8px; border-top: 1px solid rgba(198,154,96,.22); }
+#hangar .ops-track { grid-column: 1 / -1; border: 1px solid rgba(198,154,96,.22); border-radius: 8px; background: rgba(10,12,16,.5); }
 #hangar .ops-track:first-of-type { margin-top: 0; }
-#hangar .ops-track-head { display: flex; align-items: baseline; gap: 10px; }
-#hangar .ops-track-head .cls { font: 10px/1 ui-monospace, monospace; letter-spacing: .14em; text-transform: uppercase; color: #c69a60; }
-#hangar .ops-track-head h3 { margin: 0; font-size: 15px; letter-spacing: .04em; }
-#hangar .ops-track-head em { margin-left: auto; font: 11px/1.3 ui-monospace, monospace; font-style: normal; color: #9dff7a; }
-#hangar .ops-track p { margin: 4px 0 0; color: #9aa09a; font-size: 12px; }
+#hangar .ops-track summary { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 10px; padding: 14px; cursor: pointer; list-style-position: inside; }
+#hangar .ops-track summary .cls { font: 10px/1 ui-monospace, monospace; letter-spacing: .14em; text-transform: uppercase; color: #c69a60; }
+#hangar .ops-track summary strong { font-size: 15px; letter-spacing: .04em; }
+#hangar .ops-track summary em { margin-left: auto; font: 11px/1.3 ui-monospace, monospace; font-style: normal; color: #9dff7a; }
+#hangar .ops-track > p { margin: -4px 14px 12px; color: #9aa09a; font-size: 12px; }
 #hangar .ops-track p b { color: #e0b070; font-weight: 600; }
-#hangar .ops-track.locked .ops-track-head em { color: #9aa09a; }
-#hangar .ops-track.complete .ops-track-head em { color: #ffd166; }
+#hangar .ops-track.locked summary em { color: #9aa09a; }
+#hangar .ops-track.complete summary em { color: #ffd166; }
+#hangar .ops-track-cards { display: grid; grid-template-columns: repeat(auto-fill,minmax(160px,1fr)); gap: 8px; padding: 0 12px 12px; }
 #op-hud {
   position: absolute; left: 50%; top: max(52px, calc(var(--sat) + 44px));
   transform: translateX(-50%); z-index: 5; pointer-events: none;

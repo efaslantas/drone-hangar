@@ -603,8 +603,8 @@ export const AUTONOMY_COAST_RESPONSE = {
     { id: "olay-dogu", x: 18, y: 0, z: -43 },
   ],
   seaVehicles: [
-    { id: "ida-1", name: "Kıyı-1", x: -34, z: -43, heading: Math.PI / 2, battery: 100 },
-    { id: "ida-2", name: "Kıyı-2", x: 34, z: -43, heading: -Math.PI / 2, battery: 100 },
+    { id: "ida-1", name: "Kıyı-1", x: -34, z: -44, heading: Math.PI / 2, battery: 100 },
+    { id: "ida-2", name: "Kıyı-2", x: 34, z: -44, heading: -Math.PI / 2, battery: 100 },
   ],
   phaseTimeouts: { AIR_SEARCH: 120, SEA_DISPATCH: 120, JOINT_VERIFY: 30 },
   steps: [],

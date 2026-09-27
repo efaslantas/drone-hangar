@@ -15,7 +15,7 @@ import { TEAM_CSS, TEAM_SPAWN, scoreLine, matchStatus, enemyTargets, resultModel
 import { loadProgress, saveWin, saveLap, saveAssessment } from "./progress.js";
 import { createRun, tickRun, canSwapBattery, nextGoal } from "./goals.js";
 import { sfx } from "./sfx.js";
-import { briefingModel, fmtTime } from "./briefing.js";
+import { briefingModel, fmtTime, modeGuide } from "./briefing.js";
 import { createCountdown, tickCountdown } from "./countdown.js";
 import { dailyId, dailyOp, pruneDailyGhosts } from "./daily.js";
 import { ambience } from "./ambience.js";
@@ -418,7 +418,7 @@ function paintOpsCards() {
   if (!el) return;
   progress = loadProgress();
   el.innerHTML = "";
-  const card = (op, cls, extra = "") => {
+  const card = (op, cls, extra = "", parent = el, intent = "") => {
     const open = isOpOpen(op, progress);
     const b = document.createElement("button");
     b.className = "card" + extra + (op.id === selectedOp ? " on" : "") + (open ? "" : " lock");
@@ -426,7 +426,7 @@ function paintOpsCards() {
     const best = progress.best[op.id];
     const done = progress.done[op.id];
     const tag = done ? `bitti · ${Math.round(best ?? done.t)}s` : open ? "açık" : "kilit";
-    b.innerHTML = `<div class="cls">${esc(cls)}</div><h2>${esc(op.name)}</h2><p>${esc(op.blurb)}</p><div class="best">${tag}</div>`;
+    b.innerHTML = `<div class="cls">${esc(cls)}</div><h2>${esc(intent || op.name)}</h2><p>${esc(intent ? `${op.name} · ${op.blurb}` : op.blurb)}</p><div class="best">${tag}</div>`;
     b.onclick = () => {
       if (!open) return;
       selectedOp = op.id;
@@ -434,24 +434,46 @@ function paintOpsCards() {
       paintOpsCards();
       paintOps();
     };
-    el.appendChild(b);
+    parent.appendChild(b);
   };
-  card(FREE, "Serbest");
   const daily = dailyOp(dailyId());
-  card(daily, `Günün görevi · ${daily.dateLabel}`, " daily");
-  card(AUTONOMY_COAST_RESPONSE, "Otonom Operasyon", " autonomy");
+  const schoolId = firstOpenOp("school", progress)?.id || "hover";
+  const guide = modeGuide(selectedOp, daily.id, schoolId);
+  const title = document.createElement("div");
+  title.className = "ops-section-title";
+  title.innerHTML = `<span>${esc(guide.quickLabel)}</span><small>Amacına göre seç</small>`;
+  el.appendChild(title);
+  const quickOps = new Map([
+    [schoolId, opById(schoolId)],
+    [FREE.id, FREE],
+    [AUTONOMY_COAST_RESPONSE.id, AUTONOMY_COAST_RESPONSE],
+    [daily.id, daily],
+  ]);
+  for (const choice of guide.quick) {
+    const quickOp = quickOps.get(choice.id);
+    const extra = quickOp.daily ? " daily" : quickOp.kind === "autonomy" ? " autonomy" : "";
+    card(quickOp, choice.detail, extra + " quick", el, choice.intent);
+  }
+  const trainingTitle = document.createElement("div");
+  trainingTitle.className = "ops-section-title training";
+  trainingTitle.innerHTML = `<span>${esc(guide.trainingLabel)}</span><small>Bölümü aç, dersini seç</small>`;
+  el.appendChild(trainingTitle);
   for (const track of TRACKS) {
     const done = trackDone(track, progress);
     const complete = done === track.ops.length;
     const gate = trackGate(track, progress);
-    const head = document.createElement("div");
-    head.className = "ops-track" + (complete ? " complete" : "") + (gate ? " locked" : "");
-    head.innerHTML =
-      `<div class="ops-track-head"><span class="cls">${esc(track.kicker)}</span><h3>${esc(track.name)}</h3>` +
-      `<em>${done}/${track.ops.length}${complete ? " · DİPLOMA" : ""}</em></div>` +
+    const group = document.createElement("details");
+    group.className = "ops-track" + (complete ? " complete" : "") + (gate ? " locked" : "");
+    group.open = track.ops.some((op) => op.id === selectedOp);
+    group.innerHTML =
+      `<summary><span class="cls">${esc(track.kicker)}</span><strong>${esc(track.name)}</strong>` +
+      `<em>${done}/${track.ops.length}${complete ? " · DİPLOMA" : ""}</em></summary>` +
       `<p>${esc(track.blurb)}${gate ? ` <b>Kilit: önce ${esc(gate.name)}.</b>` : ""}</p>`;
-    el.appendChild(head);
-    track.ops.forEach((op, i) => card(op, `${track.short} ${i + 1}/${track.ops.length}`));
+    const cards = document.createElement("div");
+    cards.className = "ops-track-cards";
+    group.appendChild(cards);
+    el.appendChild(group);
+    track.ops.forEach((op, i) => card(op, `${track.short} ${i + 1}/${track.ops.length}`, "", cards));
   }
 }
 paintOpsCards();
@@ -575,6 +597,7 @@ function prepareFlight(op, friends = false) {
 bindTap(document.getElementById("home-fly"), () => prepareFlight("free"));
 bindTap(document.getElementById("home-school"), () => prepareFlight(firstOpenOp("school", loadProgress())?.id || "hover"));
 bindTap(document.getElementById("home-daily"), () => prepareFlight(dailyId()));
+bindTap(document.getElementById("home-autonomy"), () => prepareFlight(AUTONOMY_COAST_RESPONSE.id));
 {
   const d = dailyOp(dailyId());
   const sub = document.getElementById("home-daily-sub");

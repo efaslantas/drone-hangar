@@ -573,6 +573,43 @@ for (const t of TRACKS) {
 export const OPS = TRACKS.flatMap((t) => t.ops);
 export const LEGACY_OPS = COMBAT;
 
+export const AUTONOMY_COAST_RESPONSE = {
+  id: "autonomy-coast-response",
+  kind: "autonomy",
+  name: "Kıyı Gözetleme ve Müdahale",
+  blurb: "İHA kıyıyı tarar; tespitte en yakın uygun İDA olaya sevk edilir.",
+  map: "coast",
+  drone: "camera",
+  lockMap: true,
+  lockDrone: true,
+  fire: false,
+  bots: 0,
+  optional: true,
+  ranked: false,
+  limit: 300,
+  drain: 0.45,
+  detectRadius: 7,
+  verifyRadius: 5,
+  minSeaBattery: 30,
+  spawn: { x: 0, y: 8, z: -28 },
+  airRoute: [
+    { x: -18, y: 8, z: -43 },
+    { x: 0, y: 9, z: -36 },
+    { x: 18, y: 8, z: -43 },
+    { x: 0, y: 8, z: -32 },
+  ],
+  incidentCandidates: [
+    { id: "olay-bati", x: -18, y: 0, z: -43 },
+    { id: "olay-dogu", x: 18, y: 0, z: -43 },
+  ],
+  seaVehicles: [
+    { id: "ida-1", name: "Kıyı-1", x: -34, z: -43, heading: Math.PI / 2, battery: 100 },
+    { id: "ida-2", name: "Kıyı-2", x: 34, z: -43, heading: -Math.PI / 2, battery: 100 },
+  ],
+  phaseTimeouts: { AIR_SEARCH: 120, SEA_DISPATCH: 120, JOINT_VERIFY: 30 },
+  steps: [],
+};
+
 export const FREE = {
   id: "free",
   kind: "free",
@@ -623,6 +660,7 @@ export const ROOM_OP = {
 export function opById(id) {
   if (id === "free") return FREE;
   if (id === "team") return TEAM;
+  if (id === AUTONOMY_COAST_RESPONSE.id) return AUTONOMY_COAST_RESPONSE;
   // `daily-YYYY-MM-DD` is synthesised from the date; it lives outside the tracks.
   if (isDailyId(id)) return dailyOp(id);
   return OPS.find((o) => o.id === id) || LEGACY_OPS.find((o) => o.id === id) || FREE;

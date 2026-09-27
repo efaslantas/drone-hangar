@@ -120,3 +120,16 @@ test('the gun pod is aimed where the rounds go, at every hangar tilt', async () 
   setCamPodTilt(craft,0.5);
   assert.equal(craft.getObjectByName(CAM_POD).rotation.x,0.5);
 });
+
+test('surface vehicle is a finite steerable Three.js model with a camera target', async () => {
+  const { makeSurfaceVehicle } = await import('../src/models.js');
+  const boat = makeSurfaceVehicle({ id: 'ida-1', color: 0x284f68, accent: 0xffb020 });
+  assert.equal(boat.isGroup, true);
+  assert.equal(boat.userData.vehicleType, 'surface');
+  assert.ok(boat.userData.rudder?.isObject3D);
+  assert.ok(boat.userData.cameraTarget?.isObject3D);
+  boat.traverse((o) => {
+    const positions = o.geometry?.attributes.position?.array;
+    if (positions) assert.ok(positions.every(Number.isFinite));
+  });
+});

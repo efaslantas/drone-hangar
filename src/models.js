@@ -442,6 +442,50 @@ export function makeDrone(spec, camTilt = DEFAULT_CAM_TILT) {
   return root;
 }
 
+export function makeSurfaceVehicle(spec = {}) {
+  const root = new THREE.Group();
+  const body = Number.isFinite(spec.color) ? spec.color : 0x284f68;
+  const accent = Number.isFinite(spec.accent) ? spec.accent : 0xffb020;
+  const hullMat = new THREE.MeshStandardMaterial({ color: body, roughness: 0.55, metalness: 0.25 });
+  const deckMat = new THREE.MeshStandardMaterial({ color: 0xc8d2d6, roughness: 0.72, metalness: 0.1 });
+  const accentMat = new THREE.MeshStandardMaterial({ color: accent, roughness: 0.45, metalness: 0.2 });
+
+  const hull = new THREE.Mesh(new THREE.BoxGeometry(1.8, 0.45, 4.2), hullMat);
+  hull.position.y = 0.28;
+  hull.castShadow = true;
+  root.add(hull);
+
+  const bow = new THREE.Mesh(new THREE.ConeGeometry(0.9, 1.5, 4), hullMat);
+  bow.rotation.x = -Math.PI / 2;
+  bow.rotation.z = Math.PI / 4;
+  bow.position.set(0, 0.28, -2.75);
+  bow.castShadow = true;
+  root.add(bow);
+
+  const cabin = new THREE.Mesh(new THREE.BoxGeometry(1.2, 0.75, 1.25), deckMat);
+  cabin.position.set(0, 0.85, 0.2);
+  cabin.castShadow = true;
+  root.add(cabin);
+
+  const mast = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.06, 1.1, 8), accentMat);
+  mast.position.set(0, 1.65, 0.15);
+  root.add(mast);
+
+  const rudder = new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.5, 0.65), accentMat);
+  rudder.position.set(0, 0.05, 2.25);
+  root.add(rudder);
+
+  const cameraTarget = new THREE.Object3D();
+  cameraTarget.position.set(0, 0.75, -0.5);
+  root.add(cameraTarget);
+
+  root.userData.vehicleType = "surface";
+  root.userData.spec = spec;
+  root.userData.rudder = rudder;
+  root.userData.cameraTarget = cameraTarget;
+  return root;
+}
+
 function hexCol(n) {
   return `#${n.toString(16).padStart(6, "0")}`;
 }

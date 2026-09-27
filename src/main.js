@@ -1,7 +1,7 @@
 import * as THREE from "three";
 import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
 import { CATALOG, droneById, paceInfo } from "./catalog.js";
-import { createState, step, rotateVec, hoverThrottle, yawErrTo, withPayload } from "./physics.js";
+import { createState, step, rotateVec, hoverThrottle, yawErrTo, yawFromQ, withPayload } from "./physics.js";
 import { poll, consume, bindStick, bindHold, setHoldFire, bindFlightTouches, bindTap, setControlProfile, setGamepadCalibration, captureGamepadCalibration } from "./input.js";
 import { makeDrone, makeSurfaceVehicle, spinProps, makeNametag, droneSvg, setCamPodTilt } from "./models.js";
 import { buildWorld, clearWorld, MAPS, bakeEnv, tickWorld, windFor } from "./world.js";
@@ -27,8 +27,8 @@ import { airCommand, routeProgress, surfaceCommand } from "./autopilot.js";
 import { createSurfaceState, stepSurface } from "./surface.js";
 import { autonomyViewModel, clearAutonomyPanel, renderAutonomyPanel } from "./autonomy-view.js";
 import { VEHICLE_MODES, cycleVehicle, selectVehicle, setVehicleMode } from "./operations-console.js";
-import { clearRoute, appendWaypoint, createRoute } from "./route-editor.js";
-import { createOperationsRuntime, handleOperationsControlLoss, rebuildOperationsRuntime, setOperationsEmergency, stepOperationsRuntime } from "./operations-runtime.js";
+import { clearRoute, appendWaypoint, createRoute, removeWaypoint } from "./route-editor.js";
+import { createOperationsRuntime, handleOperationsControlLoss, projectOperationsPoint, rebuildOperationsRuntime, resetOperationsVehicle, setOperationsEmergency, stepOperationsRuntime, toggleOperationsPower, toggleOperationsProfile } from "./operations-runtime.js";
 import { clearOperationsConsole, operationsViewModel, renderOperationsConsole } from "./operations-view.js";
 import { deleteScenario, listScenarios, loadScenario, saveScenario, scenarioFromSession } from "./scenarios.js";
 
@@ -1015,7 +1015,7 @@ function operationsTelemetry() {
 
 function paintOperations() {
   if (!operations) return;
-  if (operations.trailRevision !== operations.mapRevision) {
+  if (operations.trailRevision !== operations.routeRevision) {
     for (const line of operations.routeLines.values()) {
       operations.root.remove(line);
       disposeObject(line);
@@ -1028,9 +1028,28 @@ function paintOperations() {
       operations.root.add(line);
       operations.routeLines.set(vehicle.id, line);
     }
-    operations.trailRevision = operations.mapRevision;
+    operations.trailRevision = operations.routeRevision;
   }
-  const listed = listScenarios(localStorage);
+  const listed = operations.scenariosResult;
+  const tacticalBounds = { minx: -42, maxx: 42, minz: -140, maxz: 20 };
+  const tactical = {
+    shorelineY: projectOperationsPoint({ x: 0, z: play.water.shorelineZ }, tacticalBounds).y,
+    vehicles: operations.runtime.vehicles.map((vehicle) => ({
+      id: vehicle.id,
+      kind: vehicle.kind,
+      selected: vehicle.id === operations.runtime.session.selectedId,
+      ...projectOperationsPoint(vehicle.state, tacticalBounds),
+    })),
+    routes: Object.entries(operations.drafts).map(([id, route]) => ({
+      id,
+      selected: id === operations.runtime.session.selectedId,
+      points: route.points.map((point) => projectOperationsPoint(point, tacticalBounds)),
+    })),
+    trails: Object.entries(operations.tracks).map(([id, points]) => ({
+      id,
+      points: points.map((point) => projectOperationsPoint(point, tacticalBounds)),
+    })),
+  };
   renderOperationsConsole(document.getElementById("operations-console"), operationsViewModel({
     session: operations.runtime.session,
     telemetry: operationsTelemetry(),
@@ -1039,6 +1058,7 @@ function paintOperations() {
     routeError: operations.runtime.routeError || (!listed.ok ? listed.error : ""),
     scenarios: listed.ok ? listed.scenarios : [],
     mapRevision: operations.mapRevision,
+    tactical,
   }), operations.actions);
 }
 
@@ -1049,7 +1069,7 @@ function operationsScenarioSession() {
       id: vehicle.id,
       kind: vehicle.kind,
       start: vehicle.kind === "air"
-        ? { x: vehicle.state.x, y: vehicle.state.y, z: vehicle.state.z, heading: 0 }
+        ? { x: vehicle.state.x, y: vehicle.state.y, z: vehicle.state.z, heading: yawFromQ(vehicle.state.qw, vehicle.state.qx, vehicle.state.qy, vehicle.state.qz) }
         : { x: vehicle.state.x, z: vehicle.state.z, heading: vehicle.state.heading },
     })),
     routes: operations.runtime.routes,
@@ -1090,8 +1110,12 @@ function setupOperations() {
     root,
     controller: { connected: null, name: "" },
     mapRevision: 1,
+    routeRevision: 1,
     trailRevision: -1,
     routeLines: new Map(),
+    scenariosResult: listScenarios(localStorage),
+    drafts: Object.fromEntries(Object.entries(runtime.routes).map(([id, route]) => [id, structuredClone(route)])),
+    tracks: Object.fromEntries(runtime.vehicles.map((vehicle) => [vehicle.id, [{ x: vehicle.state.x, z: vehicle.state.z }]])),
     mapElement,
     actions: {},
   };
@@ -1099,22 +1123,33 @@ function setupOperations() {
     selectVehicle(id) {
       operations.runtime.session = selectVehicle(operations.runtime.session, id);
       operations.mapRevision += 1;
+      operations.routeRevision += 1;
       paintOperations();
     },
     applyRoute() {
       const id = operations.runtime.session.selectedId;
-      if (!operations.runtime.routes[id]?.points.length) {
+      if (!operations.drafts[id]?.points.length) {
         operations.runtime.routeError = "Önce haritaya rota noktası ekle";
       } else {
         operations.runtime.routeError = "";
+        operations.runtime.routes[id] = { ...structuredClone(operations.drafts[id]), currentIndex: 0, mode: "ROUTE" };
         operations.runtime.session = setVehicleMode(operations.runtime.session, id, VEHICLE_MODES.ROUTE);
+        operations.routeRevision += 1;
       }
       paintOperations();
     },
     clearRoute() {
       const id = operations.runtime.session.selectedId;
       operations.runtime.routes[id] = clearRoute(operations.runtime.routes[id]);
+      operations.drafts[id] = clearRoute(operations.drafts[id]);
       operations.runtime.session = setVehicleMode(operations.runtime.session, id, VEHICLE_MODES.HOLD);
+      operations.mapRevision += 1;
+      operations.routeRevision += 1;
+      paintOperations();
+    },
+    removeWaypoint(index) {
+      const id = operations.runtime.session.selectedId;
+      operations.drafts[id] = removeWaypoint(operations.drafts[id], Number(index));
       operations.mapRevision += 1;
       paintOperations();
     },
@@ -1122,6 +1157,7 @@ function setupOperations() {
       const name = document.getElementById("operations-scenario-name")?.value?.trim();
       if (!name) return;
       const result = saveScenario(localStorage, scenarioFromSession(name, operationsScenarioSession()));
+      operations.scenariosResult = listScenarios(localStorage);
       operations.runtime.routeError = result.ok ? "" : result.error;
       paintOperations();
     },
@@ -1129,16 +1165,32 @@ function setupOperations() {
       const result = loadScenario(localStorage, id);
       if (!result.ok) operations.runtime.routeError = result.error;
       else {
+        const wantsNight = result.scenario.map.time === "night";
+        if (scene.userData.night !== wantsNight) {
+          clearWorld(scene);
+          play = buildWorld(scene, "coast", { lite: touchUi, night: wantsNight, gpu: gfx.node, sky: gfx.createSky, props: !touchUi });
+          if (!touchUi) bakeEnv(renderer, scene, gfx.PMREMGenerator);
+          loadedMap = "coast";
+          renderer.toneMappingExposure = wantsNight ? 1.04 : .93;
+          const nightControl = document.getElementById("night");
+          if (nightControl) nightControl.checked = wantsNight;
+        }
+        operations.runtime.water = play.water;
         operations.runtime = rebuildOperationsRuntime(operations.runtime, result.scenario);
         state = operations.runtime.vehicles.find((vehicle) => vehicle.kind === "air").state;
+        operations.drafts = Object.fromEntries(Object.entries(operations.runtime.routes).map(([routeId, route]) => [routeId, structuredClone(route)]));
+        operations.tracks = Object.fromEntries(operations.runtime.vehicles.map((vehicle) => [vehicle.id, [{ x: vehicle.state.x, z: vehicle.state.z }]]));
         operations.runtime.session = selectVehicle(operations.runtime.session, result.scenario.camera.vehicleId);
         chase = result.scenario.camera.view === "follow";
         operations.mapRevision += 1;
+        operations.routeRevision += 1;
+        if (!operations.controller.connected) handleOperationsControlLoss(operations.runtime);
       }
       paintOperations();
     },
     deleteScenario(id) {
       const result = deleteScenario(localStorage, id);
+      operations.scenariosResult = listScenarios(localStorage);
       operations.runtime.routeError = result.ok ? "" : result.error;
       paintOperations();
     },
@@ -1146,20 +1198,22 @@ function setupOperations() {
     exit() { backHangar(); },
   };
   operations.mapClick = (event) => {
+    if (event.target.closest?.("[data-waypoint-index]")) return;
     const rect = mapElement.getBoundingClientRect();
     const nx = THREE.MathUtils.clamp((event.clientX - rect.left) / rect.width, 0, 1);
     const nz = THREE.MathUtils.clamp((event.clientY - rect.top) / rect.height, 0, 1);
     const id = operations.runtime.session.selectedId;
     const vehicle = operations.runtime.vehicles.find((item) => item.id === id);
-    const point = { x: -42 + nx * 84, z: -140 + nz * 100 };
+    const point = { x: -42 + nx * 84, z: -140 + nz * 160 };
     const context = vehicle.kind === "air"
-      ? { kind: "air", bounds: { ...play.bounds, minz: -140, ceiling: play.ceil } }
+      ? { kind: "air", bounds: { ...play.bounds, ceiling: play.ceil } }
       : { kind: "sea", water: play.water };
-    const result = appendWaypoint(operations.runtime.routes[id], point, context);
+    const result = appendWaypoint(operations.drafts[id], point, context);
     if (result.ok) {
-      operations.runtime.routes[id] = result.route;
+      operations.drafts[id] = result.route;
       operations.runtime.routeError = "";
       operations.mapRevision += 1;
+      operations.routeRevision += 1;
     } else operations.runtime.routeError = result.error;
     paintOperations();
   };
@@ -2180,14 +2234,18 @@ function loop(now) {
       consume("mode");
     }
     if (operations) {
-      consume("arm");
-      consume("mode");
       if (consume("vehiclePrev")) operations.runtime.session = cycleVehicle(operations.runtime.session, -1);
       if (consume("vehicleNext")) operations.runtime.session = cycleVehicle(operations.runtime.session, 1);
       if (consume("emergencyStop")) setOperationsEmergency(operations.runtime, true);
       if (consume("controlLost")) handleOperationsControlLoss(operations.runtime);
-      if (consume("reset")) setupOperations();
+      if (consume("reset")) resetOperationsVehicle(operations.runtime);
       if (consume("cam")) chase = !chase;
+      if (consume("arm")) toggleOperationsPower(operations.runtime);
+      if (consume("mode")) {
+        const selectedVehicle = operations.runtime.vehicles.find((vehicle) => vehicle.id === operations.runtime.session.selectedId);
+        if (selectedVehicle?.kind === "air") angleOverride = !angleOverride;
+        else toggleOperationsProfile(operations.runtime);
+      }
       const consoleHelp = consume("consoleHelp");
       const generalHelp = consume("help");
       if (consoleHelp || generalHelp) setHelp(!helpOpen);
@@ -2265,10 +2323,23 @@ function loop(now) {
       operations.controller = { connected: input.connected, name: input.gpName };
       for (const vehicle of operations.runtime.vehicles.filter((item) => item.kind === "sea")) {
         vehicle.mesh.position.set(vehicle.state.x, play.water.surfaceY, vehicle.state.z);
-        vehicle.mesh.rotation.y = vehicle.state.heading;
+        vehicle.mesh.rotation.y = -vehicle.state.heading;
         vehicle.mesh.userData.rudder.rotation.y = -vehicle.state.turnRate * 0.45;
       }
-      paintOperations();
+      operations.uiElapsed = (operations.uiElapsed || 0) + dt;
+      if (operations.uiElapsed >= 0.2) {
+        operations.uiElapsed = 0;
+        for (const vehicle of operations.runtime.vehicles) {
+          const track = operations.tracks[vehicle.id];
+          const lastPoint = track.at(-1);
+          if (!lastPoint || Math.hypot(vehicle.state.x - lastPoint.x, vehicle.state.z - lastPoint.z) >= 0.5) {
+            track.push({ x: vehicle.state.x, z: vehicle.state.z });
+            if (track.length > 240) track.shift();
+          }
+        }
+        operations.mapRevision += 1;
+        paintOperations();
+      }
     }
     if (autonomy) {
       tickAutonomyFrame(dt);

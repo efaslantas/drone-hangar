@@ -38,7 +38,25 @@ export function operationsViewModel(state) {
     emergency: Boolean(session.emergency),
     emergencyLabel: session.emergency ? "Acil durdurma etkin — yeniden etkinleştirme gerekli" : "",
     mapRevision: Number(state.mapRevision) || 0,
+    tactical: state.tactical || { shorelineY: 0, vehicles: [], routes: [] },
   };
+}
+
+function tacticalMarkup(tactical) {
+  const shoreline = Math.max(0, Math.min(1, Number(tactical.shorelineY) || 0)) * 100;
+  const routes = (tactical.routes || []).map((route) => {
+    const points = route.points.map((point) => `${(point.x * 100).toFixed(2)},${(point.y * 100).toFixed(2)}`).join(" ");
+    return `<polyline class="operations-map-route" data-route="${escapeHtml(route.id)}" points="${points}" />`;
+  }).join("");
+  const trails = (tactical.trails || []).map((trail) => {
+    const points = trail.points.map((point) => `${(point.x * 100).toFixed(2)},${(point.y * 100).toFixed(2)}`).join(" ");
+    return `<polyline class="operations-map-trail" data-trail="${escapeHtml(trail.id)}" points="${points}" />`;
+  }).join("");
+  const waypoints = (tactical.routes || []).filter((route) => route.selected).flatMap((route) => route.points.map((point, index) => `
+    <button type="button" class="operations-map-waypoint" data-operation-action="route-remove" data-waypoint-index="${index}" style="left:${(point.x * 100).toFixed(2)}%;top:${(point.y * 100).toFixed(2)}%" aria-label="${index + 1}. rota noktasını sil">${index + 1}</button>`)).join("");
+  const vehicles = (tactical.vehicles || []).map((vehicle) => `
+    <span class="operations-map-vehicle ${vehicle.kind}${vehicle.selected ? " selected" : ""}" data-map-vehicle="${escapeHtml(vehicle.id)}" style="left:${(vehicle.x * 100).toFixed(2)}%;top:${(vehicle.y * 100).toFixed(2)}%">${vehicle.kind === "air" ? "▲" : "◆"}</span>`).join("");
+  return `<svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><line class="operations-shoreline" x1="0" x2="100" y1="${shoreline}" y2="${shoreline}" />${trails}${routes}</svg>${vehicles}${waypoints}`;
 }
 
 function fleetMarkup(vehicles) {
@@ -77,13 +95,14 @@ function installActions(root, actions) {
     const handlers = {
       "route-apply": "applyRoute",
       "route-clear": "clearRoute",
+      "route-remove": "removeWaypoint",
       "scenario-save": "saveScenario",
       load: "loadScenario",
       delete: "deleteScenario",
       reenable: "reenable",
       exit: "exit",
     };
-    root.__operationsActions?.[handlers[name]]?.(action.dataset.scenarioId);
+    root.__operationsActions?.[handlers[name]]?.(action.dataset.waypointIndex ?? action.dataset.scenarioId);
   };
   root.addEventListener("click", root.__operationsClick);
 }
@@ -122,7 +141,8 @@ export function renderOperationsConsole(root, model, actions = {}) {
   }
   if (map && map.dataset.revision !== String(model.mapRevision)) {
     map.dataset.revision = String(model.mapRevision);
-    map.textContent = `${model.selectedId || "—"} · ${(model.routes[model.selectedId]?.points || []).length} nokta`;
+    map.innerHTML = tacticalMarkup(model.tactical);
+    map.setAttribute?.("aria-label", `${model.selectedId || "—"} · ${(model.routes[model.selectedId]?.points || []).length} nokta`);
   }
   installActions(root, actions);
 }

@@ -93,6 +93,7 @@ function edge(name, down) {
 }
 
 globalThis.window?.addEventListener("keydown", (e) => {
+  if (e.target?.matches?.("input, textarea, select, [contenteditable='true']") && e.code !== "Escape") return;
   keys.add(e.code);
   if (e.code === "Escape" && !e.repeat) { flags.hangar = true; e.preventDefault(); }
   if (["Space", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].includes(e.code)) {

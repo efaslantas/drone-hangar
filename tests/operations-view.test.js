@@ -22,6 +22,11 @@ const state = {
   routeError: "Nokta su alanı dışında",
   scenarios: [{ id: "kiyi-1", name: "Kıyı 1" }],
   mapRevision: 3,
+  tactical: {
+    shorelineY: 1,
+    vehicles: [{ id: "ida-1", kind: "sea", x: 0.4, y: 0.7, selected: true }],
+    routes: [{ id: "ida-1", points: [{ x: 0.4, y: 0.7 }, { x: 0.5, y: 0.9 }] }],
+  },
 };
 
 test("view model has exactly three fleet cards and operational warnings", () => {
@@ -73,6 +78,8 @@ test("renderer exposes fleet and scenario actions then cleanup removes state and
   assert.equal(root.classList.contains("active"), true);
   assert.match(root.nodes.get("#operations-fleet").innerHTML, /data-vehicle="ida-1"/);
   assert.match(root.nodes.get("#operations-scenarios").innerHTML, /data-scenario-action="load"/);
+  assert.match(root.nodes.get("#operations-map-overlay").innerHTML, /operations-map-vehicle/);
+  assert.match(root.nodes.get("#operations-map-overlay").innerHTML, /polyline/);
   root.listeners.get("click")({ target: { closest: () => ({ dataset: { vehicle: "ida-2" } }) } });
   assert.equal(selected, "ida-2");
   clearOperationsConsole(root);

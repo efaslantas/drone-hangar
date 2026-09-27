@@ -86,7 +86,7 @@ export function reenableConsole(session) {
 export function handleControlLoss(session) {
   if (session.emergency) return session;
   return updateVehicles(session, (vehicle) => (
-    vehicle.id === session.selectedId && vehicle.mode === VEHICLE_MODES.MANUAL
+    vehicle.id === session.selectedId && [VEHICLE_MODES.MANUAL, VEHICLE_MODES.ROUTE].includes(vehicle.mode)
       ? { ...vehicle, mode: VEHICLE_MODES.HOLD }
       : vehicle
   ));

@@ -476,12 +476,12 @@ export function makeSurfaceVehicle(spec = {}) {
   root.add(rudder);
 
   const cameraTarget = new THREE.Object3D();
-  cameraTarget.position.set(0, 0.75, -0.5);
+  cameraTarget.position.set(0, 0.75, -1.5);
   root.add(cameraTarget);
 
   const deckCamera = new THREE.Object3D();
   deckCamera.name = "surface-deck-camera";
-  deckCamera.position.set(0, 1.3, -0.9);
+  deckCamera.position.set(0, 1.3, 0.5);
   root.add(deckCamera);
 
   const followCamera = new THREE.Object3D();

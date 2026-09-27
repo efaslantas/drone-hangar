@@ -28,7 +28,12 @@ function validRoutes(routes, vehicles) {
     if (!route || route.vehicleId !== vehicle.id || !Array.isArray(route.points)) return false;
     return route.points.every((point) => {
       const common = Number.isFinite(Number(point?.x)) && Number.isFinite(Number(point?.z));
-      return common && (vehicle.kind !== "air" || Number.isFinite(Number(point?.y)));
+      if (!common) return false;
+      const x = Number(point.x);
+      const z = Number(point.z);
+      if (vehicle.kind === "sea") return x >= -42 && x <= 42 && z >= -140 && z <= -40;
+      const y = Number(point.y);
+      return Number.isFinite(y) && x >= -44 && x <= 44 && z >= -46 && z <= 20 && y >= 2 && y <= 39;
     });
   });
 }
@@ -58,7 +63,9 @@ export function validateScenario(value) {
   if (!Number.isFinite(value.createdAt) || !Number.isFinite(value.updatedAt)) {
     return { ok: false, error: "Senaryo tarihi geçersiz" };
   }
-  if (!value.map || typeof value.map.id !== "string" || !value.map.id) return { ok: false, error: "Harita eksik" };
+  if (!value.map || value.map.id !== "coast" || !["day", "night"].includes(value.map.time)) {
+    return { ok: false, error: "Harita ayarı desteklenmiyor" };
+  }
   if (!Array.isArray(value.vehicles) || value.vehicles.length === 0) return { ok: false, error: "Araç listesi eksik" };
   const ids = new Set();
   for (const vehicle of value.vehicles) {
@@ -67,9 +74,19 @@ export function validateScenario(value) {
       return { ok: false, error: "Araç başlangıcı geçersiz" };
     }
     ids.add(vehicle.id);
+    const { x, y, z } = vehicle.start;
+    const safe = vehicle.kind === "sea"
+      ? Number(x) >= -42 && Number(x) <= 42 && Number(z) >= -140 && Number(z) <= -40
+      : Number(x) >= -44 && Number(x) <= 44 && Number(z) >= -46 && Number(z) <= 20 && Number(y) >= 2 && Number(y) <= 39;
+    if (!safe) return { ok: false, error: "Araç başlangıcı alan dışında" };
+  }
+  const expected = new Map([["iha-1", "air"], ["ida-1", "sea"], ["ida-2", "sea"]]);
+  if (value.vehicles.length !== expected.size
+    || value.vehicles.some((vehicle) => expected.get(vehicle.id) !== vehicle.kind)) {
+    return { ok: false, error: "Filo yapısı geçersiz" };
   }
   if (!validRoutes(value.routes, value.vehicles)) return { ok: false, error: "Rota noktası geçersiz" };
-  if (!value.camera || typeof value.camera.vehicleId !== "string" || typeof value.camera.view !== "string") {
+  if (!value.camera || !expected.has(value.camera.vehicleId) || !["deck", "follow", "chase"].includes(value.camera.view)) {
     return { ok: false, error: "Kamera tercihi geçersiz" };
   }
   return { ok: true, scenario: clone(value) };
@@ -79,6 +96,9 @@ function readAll(storage) {
   try {
     const raw = storage?.getItem(SCENARIO_STORAGE_KEY);
     if (raw == null || raw === "") return { ok: true, scenarios: [] };
+    if (new TextEncoder().encode(raw).byteLength > MAX_SCENARIO_BYTES * MAX_SCENARIOS) {
+      return { ok: false, error: "Senaryo arşivi çok büyük", scenarios: [] };
+    }
     const parsed = JSON.parse(raw);
     if (!Array.isArray(parsed)) return { ok: false, error: "Senaryo arşivi bozuk", scenarios: [] };
     const scenarios = [];

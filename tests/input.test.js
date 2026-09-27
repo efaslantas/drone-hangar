@@ -57,3 +57,9 @@ test("emergency stop requires both triggers at 0.9 for 700 ms", () => {
   poll(23_000);
   assert.equal(consume("emergencyStop"), false);
 });
+
+test("typing in an editable field never becomes a flight command", () => {
+  resetButtons();
+  listeners.get("keydown")({ code: "KeyW", target: { matches: () => true }, preventDefault() {} });
+  assert.equal(Math.abs(poll(30_000).lift), 0);
+});

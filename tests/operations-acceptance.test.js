@@ -9,8 +9,11 @@ import {
   handleOperationsControlLoss,
   rebuildOperationsRuntime,
   projectOperationsPoint,
+  resetOperationsVehicle,
   setOperationsEmergency,
   stepOperationsRuntime,
+  toggleOperationsPower,
+  toggleOperationsProfile,
 } from "../src/operations-runtime.js";
 
 const airSpec = droneById("camera");
@@ -83,4 +86,61 @@ test("tactical projection maps shoreline and offshore corners consistently", () 
   assert.deepEqual(projectOperationsPoint({ x: -42, z: -140 }, bounds), { x: 0, y: 0 });
   assert.deepEqual(projectOperationsPoint({ x: 42, z: -40 }, bounds), { x: 1, y: 1 });
   assert.deepEqual(projectOperationsPoint({ x: 0, z: -90 }, bounds), { x: 0.5, y: 0.5 });
+});
+
+test("a stuck route holds only that vehicle and reports a short error", () => {
+  const rt = runtime();
+  rt.water = { contains: () => false };
+  rt.session = { ...rt.session, selectedId: "ida-1", vehicles: rt.session.vehicles.map((vehicle) => ({ ...vehicle, mode: vehicle.id === "ida-1" ? "ROUTE" : "HOLD" })) };
+  rt.routes["ida-1"] = { ...createRoute("ida-1"), points: [{ x: -8, z: -90 }], mode: "ROUTE" };
+  for (let i = 0; i < 7; i++) stepOperationsRuntime(rt, { viz: { ly: 0, rx: 0 } }, 1);
+  assert.equal(rt.session.vehicles.find((vehicle) => vehicle.id === "ida-1").mode, "HOLD");
+  assert.match(rt.routeError, /İDA-1.*sıkıştı/i);
+  assert.equal(rt.session.vehicles.find((vehicle) => vehicle.id === "ida-2").mode, "HOLD");
+});
+
+test("selected reset preserves the other vehicles and cannot bypass emergency", () => {
+  const rt = runtime();
+  rt.session = { ...rt.session, selectedId: "ida-1", vehicles: rt.session.vehicles.map((vehicle) => ({ ...vehicle, mode: vehicle.id === "ida-1" ? "MANUAL" : "HOLD" })) };
+  rt.vehicles[1].state.x = 12;
+  rt.vehicles[2].state.x = 19;
+  resetOperationsVehicle(rt);
+  assert.equal(rt.vehicles[1].state.x, -8);
+  assert.equal(rt.vehicles[2].state.x, 19);
+  setOperationsEmergency(rt, true);
+  rt.vehicles[1].state.x = 5;
+  resetOperationsVehicle(rt);
+  assert.equal(rt.vehicles[1].state.x, 5);
+  assert.equal(rt.session.emergency, true);
+});
+
+test("vehicle-specific power and profile controls remain isolated", () => {
+  const rt = runtime();
+  toggleOperationsPower(rt);
+  assert.equal(rt.vehicles[0].state.armed, false);
+  rt.session = { ...rt.session, selectedId: "ida-1", vehicles: rt.session.vehicles.map((vehicle) => ({ ...vehicle, mode: vehicle.id === "ida-1" ? "MANUAL" : "HOLD" })) };
+  toggleOperationsPower(rt);
+  assert.equal(rt.vehicles[1].enabled, false);
+  toggleOperationsProfile(rt);
+  assert.equal(rt.vehicles[1].speedProfile, "precision");
+});
+
+test("fresh scenario rebuild restarts route cursors and restores UAV heading", () => {
+  const rt = runtime();
+  const scenario = {
+    vehicles: [{ id: "iha-1", kind: "air", start: { x: 0, y: 8, z: -20, heading: 1 } }, { id: "ida-1", kind: "sea", start: { x: -8, z: -66, heading: 0 } }, { id: "ida-2", kind: "sea", start: { x: 8, z: -68, heading: 0 } }],
+    routes: { "iha-1": { ...createRoute("iha-1"), points: [{ x: 0, y: 8, z: -30 }], currentIndex: 1, mode: "HOLD" }, "ida-1": createRoute("ida-1"), "ida-2": createRoute("ida-2") },
+  };
+  const rebuilt = rebuildOperationsRuntime(rt, scenario);
+  assert.equal(rebuilt.routes["iha-1"].currentIndex, 0);
+  assert.ok(Math.abs(rebuilt.vehicles[0].state.qy - Math.sin(0.5)) < 1e-9);
+});
+
+test("UAV hold actively resists wind drift", () => {
+  const rt = runtime();
+  handleOperationsControlLoss(rt);
+  const start = { x: rt.vehicles[0].state.x, z: rt.vehicles[0].state.z };
+  const play = { wind: { x: 2, z: 0 }, bounds: { minx: -44, maxx: 44, minz: -46, maxz: 20 }, ceil: 40 };
+  for (let i = 0; i < 60 * 60; i++) stepOperationsRuntime(rt, { lift: 0, yaw: 0, pitch: 0, roll: 0, viz: {} }, 1 / 60, play);
+  assert.ok(Math.hypot(rt.vehicles[0].state.x - start.x, rt.vehicles[0].state.z - start.z) < 5);
 });

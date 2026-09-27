@@ -38,6 +38,8 @@ test("emergency stop stays latched until explicit re-enable", () => {
 test("control loss holds selected vehicle and invalid operations are ignored", () => {
   const a = api.createConsoleSession(fleet, "ida-1");
   assert.equal(api.vehicleMode(api.handleControlLoss(a), "ida-1"), "HOLD");
+  const route = api.setVehicleMode(a, "ida-1", "ROUTE");
+  assert.equal(api.vehicleMode(api.handleControlLoss(route), "ida-1"), "HOLD");
   assert.equal(api.selectVehicle(a, "missing"), a);
   assert.equal(api.setVehicleMode(a, "ida-1", "BOGUS"), a);
 });

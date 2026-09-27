@@ -26,10 +26,12 @@ function sample(name = "Kıyı Devriyesi") {
     vehicles: [
       { id: "iha-1", kind: "air", start: { x: 0, y: 2, z: -20, heading: 0 } },
       { id: "ida-1", kind: "sea", start: { x: -8, z: -66, heading: 0 } },
+      { id: "ida-2", kind: "sea", start: { x: 8, z: -68, heading: 0 } },
     ],
     routes: {
-      "iha-1": { vehicleId: "iha-1", points: [{ x: 4, y: 8, z: -50 }] },
+      "iha-1": { vehicleId: "iha-1", points: [{ x: 4, y: 8, z: -40 }] },
       "ida-1": { vehicleId: "ida-1", points: [{ x: -4, z: -80 }] },
+      "ida-2": { vehicleId: "ida-2", points: [] },
     },
     camera: { vehicleId: "iha-1", view: "chase" },
   });
@@ -78,4 +80,23 @@ test("malformed storage and load failure return errors without touching active s
   assert.equal(result.ok, false);
   assert.equal(active.selectedId, "ida-1");
   assert.equal(listScenarios(storage).ok, false);
+});
+
+test("scenario schema requires the exact fleet and coast-safe starts and routes", () => {
+  const base = sample();
+  const wrongFleet = structuredClone(base);
+  wrongFleet.vehicles[1].id = "ida-9";
+  assert.equal(validateScenario(wrongFleet).ok, false);
+
+  const dryStart = structuredClone(base);
+  dryStart.vehicles[1].start.z = -20;
+  assert.equal(validateScenario(dryStart).ok, false);
+
+  const dryRoute = structuredClone(base);
+  dryRoute.routes["ida-1"].points[0].z = -20;
+  assert.equal(validateScenario(dryRoute).ok, false);
+
+  const airOutside = structuredClone(base);
+  airOutside.routes["iha-1"].points[0].z = -100;
+  assert.equal(validateScenario(airOutside).ok, false);
 });

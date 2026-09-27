@@ -79,6 +79,14 @@ export function resetOperationsVehicle(runtime, vehicleId = runtime.session.sele
   return runtime;
 }
 
+export function applyOperationsRoute(runtime, vehicleId, route) {
+  if (!runtime.routes[vehicleId] || !route?.points?.length) return runtime;
+  runtime.routes[vehicleId] = { ...structuredClone(route), currentIndex: 0, mode: VEHICLE_MODES.ROUTE };
+  delete runtime.routeProgress[vehicleId];
+  runtime.session = setVehicleMode(runtime.session, vehicleId, VEHICLE_MODES.ROUTE);
+  return runtime;
+}
+
 export function toggleOperationsPower(runtime) {
   if (runtime.session.emergency) return runtime;
   const vehicle = runtime.vehicles.find((item) => item.id === runtime.session.selectedId);

@@ -5,6 +5,7 @@ import { createSurfaceState } from "../src/surface.js";
 import { createRoute } from "../src/route-editor.js";
 import { droneById } from "../src/catalog.js";
 import {
+  applyOperationsRoute,
   createOperationsRuntime,
   handleOperationsControlLoss,
   rebuildOperationsRuntime,
@@ -167,6 +168,19 @@ test("route progress restarts when the active waypoint advances", () => {
   for (let i = 0; i < 15 * 60; i++) stepOperationsRuntime(rt, { viz: { ly: 0, rx: 0 } }, 1 / 60);
   assert.equal(rt.session.vehicles.find((vehicle) => vehicle.id === "ida-1").mode, "ROUTE");
   assert.ok(rt.vehicles[1].state.z < -100);
+});
+
+test("reapplying a route restarts progress tracking for its new target", () => {
+  const rt = runtime();
+  rt.vehicles[1].state.x = 0;
+  rt.vehicles[1].state.z = -67;
+  rt.session = { ...rt.session, selectedId: "ida-1", vehicles: rt.session.vehicles.map((vehicle) => ({ ...vehicle, mode: vehicle.id === "ida-1" ? "ROUTE" : "HOLD" })) };
+  applyOperationsRoute(rt, "ida-1", { ...createRoute("ida-1"), points: [{ x: 0, z: -77 }] });
+  for (let i = 0; i < 3 * 60; i++) stepOperationsRuntime(rt, { viz: { ly: 0, rx: 0 } }, 1 / 60);
+  applyOperationsRoute(rt, "ida-1", { ...createRoute("ida-1"), points: [{ x: 0, z: -130 }] });
+  for (let i = 0; i < 12 * 60; i++) stepOperationsRuntime(rt, { viz: { ly: 0, rx: 0 } }, 1 / 60);
+  assert.equal(rt.session.vehicles.find((vehicle) => vehicle.id === "ida-1").mode, "ROUTE");
+  assert.ok(rt.vehicles[1].state.z < -105);
 });
 
 test("fresh scenario rebuild re-enables sea vehicles", () => {

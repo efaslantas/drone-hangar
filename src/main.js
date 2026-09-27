@@ -28,7 +28,7 @@ import { createSurfaceState, stepSurface } from "./surface.js";
 import { autonomyViewModel, clearAutonomyPanel, renderAutonomyPanel } from "./autonomy-view.js";
 import { VEHICLE_MODES, cycleVehicle, selectVehicle, setVehicleMode } from "./operations-console.js";
 import { clearRoute, appendWaypoint, createRoute, removeWaypoint } from "./route-editor.js";
-import { createOperationsRuntime, handleOperationsControlLoss, projectOperationsPoint, rebuildOperationsRuntime, resetOperationsVehicle, setOperationsEmergency, stepOperationsRuntime, toggleOperationsPower, toggleOperationsProfile } from "./operations-runtime.js";
+import { applyOperationsRoute, createOperationsRuntime, handleOperationsControlLoss, projectOperationsPoint, rebuildOperationsRuntime, resetOperationsVehicle, setOperationsEmergency, stepOperationsRuntime, toggleOperationsPower, toggleOperationsProfile } from "./operations-runtime.js";
 import { clearOperationsConsole, operationsViewModel, renderOperationsConsole } from "./operations-view.js";
 import { deleteScenario, listScenarios, loadScenario, saveScenario, scenarioFromSession } from "./scenarios.js";
 
@@ -1132,8 +1132,7 @@ function setupOperations() {
         operations.runtime.routeError = "Önce haritaya rota noktası ekle";
       } else {
         operations.runtime.routeError = "";
-        operations.runtime.routes[id] = { ...structuredClone(operations.drafts[id]), currentIndex: 0, mode: "ROUTE" };
-        operations.runtime.session = setVehicleMode(operations.runtime.session, id, VEHICLE_MODES.ROUTE);
+        applyOperationsRoute(operations.runtime, id, operations.drafts[id]);
         operations.routeRevision += 1;
       }
       paintOperations();

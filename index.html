@@ -44,6 +44,7 @@
               <button type="button" class="recommended" id="home-school"><b>İlk kez uçuyorum</b><small>Önerilen · Adım adım Uçuş Okulu</small></button>
               <button type="button" id="home-fly"><b>Serbest uçuş</b><small>Kural yok; drone ve haritayı sen seç</small></button>
               <button type="button" id="home-autonomy"><b>İHA + İDA görevi</b><small>Kıyıyı tara, deniz aracını olaya yönlendir</small></button>
+              <button type="button" id="home-operations"><b>Operasyon Masası</b><small>1 İHA + 2 İDA · PS koluyla serbest kontrol ve rota</small></button>
               <button type="button" id="home-daily"><b>Günün görevi</b><small id="home-daily-sub">Herkes aynı rota, sıralama günlük</small></button>
               <button type="button" class="secondary" id="home-friends"><b>Arkadaşlarla oyna</b><small>Aynı odaya katıl, birlikte uç</small></button>
             </div>
@@ -268,6 +269,43 @@
 
       <section id="flight" hidden>
         <canvas id="view"></canvas>
+        <section id="operations-console" data-ui hidden aria-label="Operasyon Masası">
+          <header class="operations-head">
+            <div><span class="bay-label">KİŞİSEL KOMUTA ALANI</span><h2>Operasyon Masası</h2></div>
+            <button type="button" data-operation-action="exit">Hangara dön</button>
+          </header>
+          <div class="operations-workspace">
+            <aside class="operations-panel operations-fleet-panel">
+              <h3>Filo</h3>
+              <div id="operations-controller" class="operations-warning" hidden></div>
+              <div id="operations-fleet"></div>
+            </aside>
+            <main id="operations-main-view" aria-label="Seçili araç görüntüsü">
+              <div class="operations-view-label">CANLI ARAÇ GÖRÜNTÜSÜ</div>
+            </main>
+            <aside id="operations-map" class="operations-panel">
+              <h3>Taktik Harita</h3>
+              <div id="operations-map-overlay" role="img" aria-label="Rota ve araç haritası"></div>
+              <div id="operations-route-error" class="operations-error" hidden></div>
+              <div class="operations-route-actions">
+                <button type="button" data-operation-action="route-apply">Rotayı uygula</button>
+                <button type="button" data-operation-action="route-clear">Temizle</button>
+              </div>
+              <h3>Senaryolar</h3>
+              <button type="button" data-operation-action="scenario-save">Mevcut düzeni kaydet</button>
+              <div id="operations-scenarios"></div>
+            </aside>
+          </div>
+          <footer id="operations-status">
+            <span><b>L1 / R1</b> araç değiştir</span>
+            <span><b>□</b> kamera</span>
+            <span><b>○</b> sıfırla</span>
+            <span><b>Options</b> yardım</span>
+            <span class="danger"><b>L2 + R2</b> 700 ms acil durdur</span>
+          </footer>
+          <div id="operations-emergency" hidden></div>
+          <button type="button" class="operations-reenable" data-operation-action="reenable">Sistemi yeniden etkinleştir</button>
+        </section>
         <div id="hud">
           <div class="hud-left">
             <div class="hp-wrap"><b>CAN</b><div class="hp-bar"><i id="hp-fill"></i></div><span id="hp-n">6</span></div>

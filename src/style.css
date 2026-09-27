@@ -900,6 +900,46 @@ button:focus-visible, a:focus-visible, select:focus-visible, input:focus-visible
   background: rgba(10,24,30,.9); border: 1px solid rgba(131,197,213,.48); border-radius: 10px;
   box-shadow: 0 12px 36px #0007; pointer-events: auto;
 }
+
+/* Desktop-first UAV + USV operations workspace. The WebGL canvas remains the
+   flight surface underneath; these panels never replace or reparent it. */
+#operations-console { position: absolute; inset: 0; z-index: 9; display: grid; grid-template-rows: auto 1fr auto; padding: max(12px, var(--sat)) max(14px, var(--sar)) max(12px, var(--sab)) max(14px, var(--sal)); gap: 10px; color: var(--text); pointer-events: none; background: linear-gradient(180deg, rgba(4,12,18,.8), transparent 23%, transparent 70%, rgba(4,12,18,.78)); }
+#operations-console[hidden] { display: none; }
+#operations-console button, #operations-console .operations-panel, .operations-head, #operations-status, #operations-emergency { pointer-events: auto; }
+.operations-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 10px 12px; background: rgba(7,19,27,.88); border: 1px solid #36505c; border-radius: 10px; }
+.operations-head h2 { margin: 2px 0 0; font-size: 18px; }
+.operations-workspace { min-height: 0; display: grid; grid-template-columns: minmax(190px, 240px) minmax(360px, 1fr) minmax(240px, 320px); gap: 10px; }
+.operations-panel { min-height: 0; overflow: auto; padding: 12px; background: rgba(10,24,30,.9); border: 1px solid rgba(131,197,213,.42); border-radius: 10px; box-shadow: 0 12px 36px #0006; }
+.operations-panel h3 { margin: 0 0 9px; font: 700 11px/1 ui-monospace, monospace; letter-spacing: .14em; text-transform: uppercase; color: var(--nav, #83c5d5); }
+#operations-main-view { min-height: 260px; position: relative; pointer-events: none; border: 1px solid rgba(131,197,213,.18); border-radius: 10px; }
+.operations-view-label { position: absolute; top: 10px; left: 10px; padding: 5px 7px; background: #07131bd9; border-radius: 4px; font: 700 9px/1 ui-monospace, monospace; letter-spacing: .14em; color: var(--nav, #83c5d5); }
+#operations-fleet { display: grid; gap: 8px; }
+.operations-vehicle { display: grid; gap: 7px; width: 100%; padding: 10px; text-align: left; color: var(--text); background: #132631e8; border: 1px solid #36505c; border-radius: 8px; }
+.operations-vehicle.selected { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+.operations-vehicle span { display: flex; justify-content: space-between; gap: 8px; }
+.operations-vehicle em, .operations-vehicle small { color: var(--dim); font: 10px/1.2 ui-monospace, monospace; }
+.operations-vehicle strong { color: var(--accent); font-size: 11px; }
+#operations-map-overlay { min-height: 210px; display: grid; place-items: center; margin-bottom: 8px; color: var(--nav, #83c5d5); background: linear-gradient(90deg, transparent 49%, #83c5d519 50%, transparent 51%), linear-gradient(transparent 49%, #83c5d519 50%, transparent 51%), #091923; background-size: 32px 32px; border: 1px solid #36505c; border-radius: 8px; font: 700 11px/1.3 ui-monospace, monospace; }
+.operations-warning, .operations-error { margin-bottom: 8px; padding: 8px; color: #ffd7a4; background: #4b301e; border-radius: 6px; font-size: 11px; }
+.operations-route-actions { display: flex; gap: 7px; margin-bottom: 16px; }
+.operations-route-actions button { flex: 1; }
+#operations-scenarios { display: grid; gap: 6px; margin-top: 8px; }
+.operations-scenario { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding-top: 7px; border-top: 1px solid #36505c; font-size: 11px; }
+.operations-scenario span { display: flex; gap: 4px; }
+.operations-empty { color: var(--dim); font-size: 11px; }
+#operations-status { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 18px; padding: 9px 12px; background: rgba(7,19,27,.92); border: 1px solid #36505c; border-radius: 8px; font: 10px/1.3 ui-monospace, monospace; }
+#operations-status .danger { color: #ffc2b6; }
+#operations-emergency { position: absolute; inset: 0; z-index: 3; display: grid; place-items: center; padding: 28px; text-align: center; color: #fff; background: #6c1717e8; font: 800 clamp(24px, 5vw, 58px)/1.1 system-ui, sans-serif; pointer-events: auto; }
+#operations-emergency[hidden], #operations-emergency[hidden] + .operations-reenable { display: none; }
+.operations-reenable { position: absolute; z-index: 4; left: 50%; top: 62%; transform: translate(-50%, -50%); min-width: 240px; }
+@media (max-width: 800px) {
+  #operations-console { overflow: auto; display: block; }
+  .operations-head, .operations-workspace, #operations-status { margin-bottom: 8px; }
+  .operations-workspace { display: grid; grid-template-columns: 1fr; }
+  .operations-fleet-panel { max-height: 180px; }
+  #operations-main-view { min-height: 42vh; order: -1; }
+  #operations-map { max-height: 42vh; }
+}
 .autonomy-head { display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; align-items: center; }
 .autonomy-head .bay-label { grid-column: 1 / -1; color: var(--nav, #83c5d5); }
 .autonomy-head time { font: 700 13px/1 ui-monospace, monospace; color: var(--accent); }

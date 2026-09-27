@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import * as THREE from 'three';
 import { buildWorld, clearWorld, MAPS } from '../src/world.js';
+import fs from 'node:fs';
 
 // Canvas pixels are tested in the browser; this shim exercises world ownership and geometry.
 const context = new Proxy({
@@ -132,4 +133,13 @@ test('surface vehicle is a finite steerable Three.js model with a camera target'
     const positions = o.geometry?.attributes.position?.array;
     if (positions) assert.ok(positions.every(Number.isFinite));
   });
+});
+
+test('home page exposes one operations console entry and every console region', () => {
+  const html = fs.readFileSync(new URL('../index.html', import.meta.url), 'utf8');
+  assert.equal((html.match(/id=["']home-operations["']/g) || []).length, 1);
+  assert.match(html, />Operasyon Masası</);
+  for (const id of ['operations-console', 'operations-fleet', 'operations-main-view', 'operations-map', 'operations-status', 'operations-scenarios', 'operations-emergency']) {
+    assert.match(html, new RegExp(`id=["']${id}["']`));
+  }
 });

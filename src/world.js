@@ -917,19 +917,20 @@ function buildCoast(scene) {
   const play = makePlay(-44, 44, -46, 20, 40);
   play.water = {
     shorelineZ: -40,
+    visualShorelineZ: -40,
     surfaceY: 0.04,
-    contains: (x, z) => Number.isFinite(x) && Number.isFinite(z) && x >= -42 && x <= 42 && z >= -46 && z <= -40,
+    contains: (x, z) => Number.isFinite(x) && Number.isFinite(z) && x >= -42 && x <= 42 && z >= -140 && z <= -40,
   };
   play.seaSpawns = [
-    { id: "ida-1", x: -34, z: -44, heading: Math.PI / 2 },
-    { id: "ida-2", x: 34, z: -44, heading: -Math.PI / 2 },
+    { id: "ida-1", x: -22, z: -67, heading: Math.PI / 2 },
+    { id: "ida-2", x: 22, z: -67, heading: -Math.PI / 2 },
   ];
   sky(scene, "coast");
   groundFit(scene, play, new THREE.MeshStandardMaterial({ color: 0xd9c8a4, map: surfaceTexture("sand", 32), roughness: 0.95 }));
   fence(scene, play, .75);
-  const water = new THREE.Mesh(new THREE.PlaneGeometry(160, 90, 24, 12), waterMat());
+  const water = new THREE.Mesh(new THREE.PlaneGeometry(160, 100, 24, 16), waterMat());
   water.rotation.x = -Math.PI / 2;
-  water.position.set(0, play.water.surfaceY, play.bounds.minz - 40);
+  water.position.set(0, play.water.surfaceY, -90);
   live(scene, water, { type: "water", ...(scene.userData.gpu ? { base: Float32Array.from(water.geometry.attributes.position.array) } : {}) });
   scene.add(water);
   padAt(scene);

@@ -26,6 +26,11 @@ import { abortAutonomy, autonomyReport, createAutonomyRun, pauseAutonomy, return
 import { airCommand, routeProgress, surfaceCommand } from "./autopilot.js";
 import { createSurfaceState, stepSurface } from "./surface.js";
 import { autonomyViewModel, clearAutonomyPanel, renderAutonomyPanel } from "./autonomy-view.js";
+import { VEHICLE_MODES, cycleVehicle, selectVehicle, setVehicleMode } from "./operations-console.js";
+import { clearRoute, appendWaypoint, createRoute } from "./route-editor.js";
+import { createOperationsRuntime, handleOperationsControlLoss, rebuildOperationsRuntime, setOperationsEmergency, stepOperationsRuntime } from "./operations-runtime.js";
+import { clearOperationsConsole, operationsViewModel, renderOperationsConsole } from "./operations-view.js";
+import { deleteScenario, listScenarios, loadScenario, saveScenario, scenarioFromSession } from "./scenarios.js";
 
 const HOME_LAT = 41.1758;
 const HOME_LON = 29.6113;
@@ -109,6 +114,7 @@ let swapChirp = false;
 let lowChirp = false;
 let deadPackTimer = 0;
 let autonomy = null;
+let operations = null;
 const simClock = createSimulationClock(120, 0.1, 16);
 const goalRoot = new THREE.Group();
 let myId = "";
@@ -130,6 +136,7 @@ const _chaseToCraft = new THREE.Vector3();
 const _chaseToAim = new THREE.Vector3();
 const _chaseLook = new THREE.Vector3();
 const AUTONOMY_SEA_SPEC = { maxSpeed: 8, acceleration: 3.6, drag: 0.62, turnRate: 1.05, batteryDrain: 0.018 };
+const OPERATIONS_SEA_SPEC = { maxSpeed: 9, maxReverseSpeed: 3, acceleration: 3.8, drag: 0.62, turnRate: 1.05, batteryDrain: 0.018 };
 
 function createTrainingRun(op) {
   const next = createRun(op);
@@ -598,6 +605,7 @@ bindTap(document.getElementById("home-fly"), () => prepareFlight("free"));
 bindTap(document.getElementById("home-school"), () => prepareFlight(firstOpenOp("school", loadProgress())?.id || "hover"));
 bindTap(document.getElementById("home-daily"), () => prepareFlight(dailyId()));
 bindTap(document.getElementById("home-autonomy"), () => prepareFlight(AUTONOMY_COAST_RESPONSE.id));
+bindTap(document.getElementById("home-operations"), startOperations);
 {
   const d = dailyOp(dailyId());
   const sub = document.getElementById("home-daily-sub");
@@ -993,6 +1001,179 @@ function clearAutonomy() {
   autonomy = null;
   flightEl.classList.remove("autonomy-active", "autonomy-manual");
   clearAutonomyPanel(document.getElementById("autonomy-panel"));
+}
+
+function operationsTelemetry() {
+  if (!operations) return {};
+  return Object.fromEntries(operations.runtime.vehicles.map((vehicle) => [vehicle.id, {
+    battery: vehicle.kind === "air" ? vehicle.state.battery : vehicle.state.battery / 100,
+    speed: vehicle.kind === "air"
+      ? Math.hypot(vehicle.state.vx, vehicle.state.vy, vehicle.state.vz)
+      : Math.abs(vehicle.state.speed),
+  }]));
+}
+
+function paintOperations() {
+  if (!operations) return;
+  if (operations.trailRevision !== operations.mapRevision) {
+    for (const line of operations.routeLines.values()) {
+      operations.root.remove(line);
+      disposeObject(line);
+    }
+    operations.routeLines.clear();
+    for (const [index, vehicle] of operations.runtime.vehicles.entries()) {
+      const points = operations.runtime.routes[vehicle.id]?.points || [];
+      if (!points.length) continue;
+      const line = routeLine([vehicle.state, ...points], [0x8ee7ff, 0xffb020, 0x65d6ff][index], vehicle.kind === "air" ? 0.3 : 0.14);
+      operations.root.add(line);
+      operations.routeLines.set(vehicle.id, line);
+    }
+    operations.trailRevision = operations.mapRevision;
+  }
+  const listed = listScenarios(localStorage);
+  renderOperationsConsole(document.getElementById("operations-console"), operationsViewModel({
+    session: operations.runtime.session,
+    telemetry: operationsTelemetry(),
+    controller: operations.controller,
+    routes: operations.runtime.routes,
+    routeError: operations.runtime.routeError || (!listed.ok ? listed.error : ""),
+    scenarios: listed.ok ? listed.scenarios : [],
+    mapRevision: operations.mapRevision,
+  }), operations.actions);
+}
+
+function operationsScenarioSession() {
+  return {
+    map: { id: "coast", wind: "calm", time: scene.userData.night ? "night" : "day" },
+    vehicles: operations.runtime.vehicles.map((vehicle) => ({
+      id: vehicle.id,
+      kind: vehicle.kind,
+      start: vehicle.kind === "air"
+        ? { x: vehicle.state.x, y: vehicle.state.y, z: vehicle.state.z, heading: 0 }
+        : { x: vehicle.state.x, z: vehicle.state.z, heading: vehicle.state.heading },
+    })),
+    routes: operations.runtime.routes,
+    camera: { vehicleId: operations.runtime.session.selectedId, view: chase ? "follow" : "deck" },
+  };
+}
+
+function clearOperationsRuntime() {
+  if (!operations) return;
+  operations.mapElement?.removeEventListener("click", operations.mapClick);
+  scene.remove(operations.root);
+  disposeObject(operations.root);
+  operations = null;
+  flightEl.classList.remove("operations-active");
+  clearOperationsConsole(document.getElementById("operations-console"));
+}
+
+function setupOperations() {
+  clearOperationsRuntime();
+  const root = new THREE.Group();
+  root.name = "operations-fleet";
+  const boats = play.seaSpawns.map((spawn, index) => {
+    const boatState = createSurfaceState(spawn.id, spawn.x, spawn.z, spawn.heading);
+    const mesh = makeSurfaceVehicle({ ...spawn, color: index ? 0x4a6475 : 0x284f68, accent: index ? 0x65d6ff : 0xffb020 });
+    mesh.position.set(spawn.x, play.water.surfaceY, spawn.z);
+    root.add(mesh);
+    return { id: spawn.id, kind: "sea", state: boatState, spec: OPERATIONS_SEA_SPEC, mesh };
+  });
+  scene.add(root);
+  const runtime = createOperationsRuntime({
+    air: { id: "iha-1", kind: "air", state, spec, mesh: craft },
+    sea: boats,
+    water: play.water,
+  });
+  const mapElement = document.getElementById("operations-map-overlay");
+  operations = {
+    runtime,
+    root,
+    controller: { connected: null, name: "" },
+    mapRevision: 1,
+    trailRevision: -1,
+    routeLines: new Map(),
+    mapElement,
+    actions: {},
+  };
+  operations.actions = {
+    selectVehicle(id) {
+      operations.runtime.session = selectVehicle(operations.runtime.session, id);
+      operations.mapRevision += 1;
+      paintOperations();
+    },
+    applyRoute() {
+      const id = operations.runtime.session.selectedId;
+      if (!operations.runtime.routes[id]?.points.length) {
+        operations.runtime.routeError = "Önce haritaya rota noktası ekle";
+      } else {
+        operations.runtime.routeError = "";
+        operations.runtime.session = setVehicleMode(operations.runtime.session, id, VEHICLE_MODES.ROUTE);
+      }
+      paintOperations();
+    },
+    clearRoute() {
+      const id = operations.runtime.session.selectedId;
+      operations.runtime.routes[id] = clearRoute(operations.runtime.routes[id]);
+      operations.runtime.session = setVehicleMode(operations.runtime.session, id, VEHICLE_MODES.HOLD);
+      operations.mapRevision += 1;
+      paintOperations();
+    },
+    saveScenario() {
+      const name = document.getElementById("operations-scenario-name")?.value?.trim();
+      if (!name) return;
+      const result = saveScenario(localStorage, scenarioFromSession(name, operationsScenarioSession()));
+      operations.runtime.routeError = result.ok ? "" : result.error;
+      paintOperations();
+    },
+    loadScenario(id) {
+      const result = loadScenario(localStorage, id);
+      if (!result.ok) operations.runtime.routeError = result.error;
+      else {
+        operations.runtime = rebuildOperationsRuntime(operations.runtime, result.scenario);
+        state = operations.runtime.vehicles.find((vehicle) => vehicle.kind === "air").state;
+        operations.runtime.session = selectVehicle(operations.runtime.session, result.scenario.camera.vehicleId);
+        chase = result.scenario.camera.view === "follow";
+        operations.mapRevision += 1;
+      }
+      paintOperations();
+    },
+    deleteScenario(id) {
+      const result = deleteScenario(localStorage, id);
+      operations.runtime.routeError = result.ok ? "" : result.error;
+      paintOperations();
+    },
+    reenable() { setOperationsEmergency(operations.runtime, false); paintOperations(); },
+    exit() { backHangar(); },
+  };
+  operations.mapClick = (event) => {
+    const rect = mapElement.getBoundingClientRect();
+    const nx = THREE.MathUtils.clamp((event.clientX - rect.left) / rect.width, 0, 1);
+    const nz = THREE.MathUtils.clamp((event.clientY - rect.top) / rect.height, 0, 1);
+    const id = operations.runtime.session.selectedId;
+    const vehicle = operations.runtime.vehicles.find((item) => item.id === id);
+    const point = { x: -42 + nx * 84, z: -140 + nz * 100 };
+    const context = vehicle.kind === "air"
+      ? { kind: "air", bounds: { ...play.bounds, minz: -140, ceiling: play.ceil } }
+      : { kind: "sea", water: play.water };
+    const result = appendWaypoint(operations.runtime.routes[id], point, context);
+    if (result.ok) {
+      operations.runtime.routes[id] = result.route;
+      operations.runtime.routeError = "";
+      operations.mapRevision += 1;
+    } else operations.runtime.routeError = result.error;
+    paintOperations();
+  };
+  mapElement.addEventListener("click", operations.mapClick);
+  flightEl.classList.add("operations-active");
+  paintOperations();
+}
+
+function startOperations() {
+  selectedOp = "free";
+  selectedMap = "coast";
+  selected = "camera";
+  startFlight();
+  setupOperations();
 }
 
 function routeLine(points, color, y = 0.2) {
@@ -1746,6 +1927,7 @@ function backHangar() {
   clearShots();
   clearGoals();
   clearAutonomy();
+  clearOperationsRuntime();
   run = null;
   for (const b of bots) if (b.mesh) scene.remove(b.mesh);
   bots = [];
@@ -1973,7 +2155,7 @@ function loop(now) {
     if (consume("hangar")) requestExit();
     if (document.getElementById("flight-menu").open) {
       Object.assign(input, { lift: 0, r2: 0, yaw: 0, pitch: 0, roll: 0, fire: false });
-      for (const action of ["arm", "reset", "cam", "mode", "help", "mute"]) consume(action);
+      for (const action of ["arm", "reset", "cam", "mode", "help", "mute", "vehiclePrev", "vehicleNext", "emergencyStop", "consoleHelp", "controlLost"]) consume(action);
     }
     if (exitArmed && now - exitArmedAt >= EXIT_CONFIRM_MS) setExitArmed(false);
     let holding = false;
@@ -1997,11 +2179,25 @@ function loop(now) {
       consume("arm");
       consume("mode");
     }
-    if (consume("arm")) toggleArm();
-    if (consume("reset")) (run ? retryOp() : spawn());
-    if (consume("cam")) chase = !chase;
-    if (consume("mode") && !opById(selectedOp).requiredFlightMode) angleOverride = !angleOverride;
-    if (consume("help")) setHelp(!helpOpen);
+    if (operations) {
+      consume("arm");
+      consume("mode");
+      if (consume("vehiclePrev")) operations.runtime.session = cycleVehicle(operations.runtime.session, -1);
+      if (consume("vehicleNext")) operations.runtime.session = cycleVehicle(operations.runtime.session, 1);
+      if (consume("emergencyStop")) setOperationsEmergency(operations.runtime, true);
+      if (consume("controlLost")) handleOperationsControlLoss(operations.runtime);
+      if (consume("reset")) setupOperations();
+      if (consume("cam")) chase = !chase;
+      const consoleHelp = consume("consoleHelp");
+      const generalHelp = consume("help");
+      if (consoleHelp || generalHelp) setHelp(!helpOpen);
+    } else {
+      if (consume("arm")) toggleArm();
+      if (consume("reset")) (run ? retryOp() : spawn());
+      if (consume("cam")) chase = !chase;
+      if (consume("mode") && !opById(selectedOp).requiredFlightMode) angleOverride = !angleOverride;
+      if (consume("help")) setHelp(!helpOpen);
+    }
     if (consume("mute")) toggleMute();
 
     if (autonomy?.task.paused) holding = true;
@@ -2014,7 +2210,8 @@ function loop(now) {
     if (!holding) {
       const activeSpec = loadedSpec && run?.carrying != null ? loadedSpec : spec;
       advanceSimulationClock(simClock, dt, (simDt) => {
-        if (autonomy) stepAutonomyPhysics(simDt, input, activeSpec);
+        if (operations) stepOperationsRuntime(operations.runtime, input, simDt, play);
+        else if (autonomy) stepAutonomyPhysics(simDt, input, activeSpec);
         else step(state, input, activeSpec, simDt, play);
       });
     } else {
@@ -2063,6 +2260,16 @@ function loop(now) {
     } else if (state.battery > 0.28) lowChirp = false;
     tickWorld(scene, now * 0.001, dt, state);
     applyPose(craft, state);
+    if (operations) {
+      if (!input.connected && operations.controller.connected !== false) handleOperationsControlLoss(operations.runtime);
+      operations.controller = { connected: input.connected, name: input.gpName };
+      for (const vehicle of operations.runtime.vehicles.filter((item) => item.kind === "sea")) {
+        vehicle.mesh.position.set(vehicle.state.x, play.water.surfaceY, vehicle.state.z);
+        vehicle.mesh.rotation.y = vehicle.state.heading;
+        vehicle.mesh.userData.rudder.rotation.y = -vehicle.state.turnRate * 0.45;
+      }
+      paintOperations();
+    }
     if (autonomy) {
       tickAutonomyFrame(dt);
       updateAutonomyScene(dt);
@@ -2071,6 +2278,19 @@ function loop(now) {
     spinProps(craft, state.armed ? state.throttleOut : 0.04, dt);
     craft.visible = chase;
     followCam(dt, now);
+    if (operations) {
+      const selectedVehicle = operations.runtime.vehicles.find((vehicle) => vehicle.id === operations.runtime.session.selectedId);
+      if (selectedVehicle?.kind === "sea") {
+        const anchor = selectedVehicle.mesh.userData[chase ? "followCamera" : "deckCamera"];
+        const target = selectedVehicle.mesh.userData.cameraTarget;
+        anchor.getWorldPosition(fpvCam.position);
+        target.getWorldPosition(_targetPos);
+        fpvCam.lookAt(_targetPos);
+        chaseCam.position.copy(fpvCam.position);
+        chaseCam.quaternion.copy(fpvCam.quaternion);
+      }
+      craft.visible = selectedVehicle?.kind === "air" && chase;
+    }
 
     fireCd -= dt;
     muzzle.intensity = THREE.MathUtils.lerp(muzzle.intensity, 0, 1 - Math.exp(-18 * dt));
@@ -2079,7 +2299,7 @@ function loop(now) {
     camKick = Math.max(0, camKick - dt * 8);
     if (camKick) fpvCam.rotateX(-camKick * 0.04);
 
-    const allowFire = !run || run.op.fire !== false;
+    const allowFire = !operations && (!run || run.op.fire !== false);
     if (allowFire && input.fire && state.armed && !state.crashed && canFire(fireCd)) {
       const [fx, fy, fz] = aimDir(state.qw, state.qx, state.qy, state.qz, camTiltRad());
       const shot = createShot(state.x + fx * 0.55, state.y + fy * 0.55, state.z + fz * 0.55, fx, fy, fz, "player", 160);
@@ -2344,7 +2564,7 @@ function loop(now) {
     netAcc += dt;
     if (netAcc > 0.05) {
       netAcc = 0;
-      net.sendState(state, allowFire && input.fire && state.armed && !state.crashed ? 1 : 0);
+      if (!operations) net.sendState(state, allowFire && input.fire && state.armed && !state.crashed ? 1 : 0);
     }
   } else {
     consume("arm");

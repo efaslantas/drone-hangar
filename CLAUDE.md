@@ -39,6 +39,8 @@ Ayrıca iki kilitsiz oda: **Serbest** (hangar) ve **Bot Antrenmanı** (training)
 **Takım savaşı** (`team` ve `team-*` odaları, op `TEAM`, kind `team`, `run` null): sunucu otoritesi `server/team.mjs` — taraf dağıtımı (dengeli, eşitlikte kırmızı), HP 6, `hit` iddiası menzil ≤190 m + 60 ms kadans + taraf + canlılık kontrolünden geçerse sayılır, düşen 4 sn sonra `respawn`, 2 pilotla 3 dk maç / 20 sayı / 8 sn ara (500 ms `tickTeams`). İstemci (`src/team.js` saf yardımcılar): rakip pilotlar yerel atış testinde hedef, `net.sendHit`; `state`'e `fire` bayrağı → rakiplerin izleri görsel (`visShots`, vuruş testine girmez); HUD skor satırı/saat, `#flight.has-result` maç kartı; taraflar `TEAM_SPAWN`'dan kalkar; isim etiketi takım rengi (`makeNametag(text, color)`).
 **Otonom Operasyon** (`AUTONOMY_COAST_RESPONSE`, kind `autonomy`): tek operatörlü arcade İHA–İDA görevi. İHA kıyı devriyesi ve tespit yapar; uygun en yakın İDA olay noktasına gider; operatör herhangi bir aracı devralıp tekrar otonomiye verebilir. Sonuç olay defterine yazılır fakat yerel ilerleme, hayalet ve sıralamaya girmez. Gerçek ArduPilot SITL/MAVLink entegrasyonu bu akışa gömülmeyecek; ileride ayrı ve açık bir adaptör kapısı olacak.
 
+**Operasyon Masası** ana ekrandan bağımsız başlar; otonom görev durum makinesini kullanmaz. Filo sabit olarak `iha-1`, `ida-1`, `ida-2`; modlar `MANUAL/HOLD/ROUTE/STOPPED`. Durum, rota, yerel senaryo ve görünüm sınırları sırasıyla `operations-console.js`, `route-editor.js`, `scenarios.js`, `operations-view.js`; fizik orkestrasyonu `operations-runtime.js`, Three.js entegrasyonu `main.js`. Senaryo anahtarı `efa-hangar-operations-v1` (v1, en çok 20 kayıt, kayıt başına 128 KB). Masaüstü tam editör; telefon yalnız temel yığılmış görünüm. PS: L1/R1 araç, □ kamera, ○ reset, Options yardım, L2+R2 700 ms kilitli acil duruş. İDA sol dikey ileri/geri, sağ yatay dümen kullanır.
+
 ## Mimari
 
 | Dosya | Ne |
@@ -48,6 +50,11 @@ Ayrıca iki kilitsiz oda: **Serbest** (hangar) ve **Bot Antrenmanı** (training)
 | `src/autopilot.js` | İHA waypoint ve İDA hedef takip komutları; ilerleme/sıkışma takibi. |
 | `src/surface.js` | Saf İDA hareketi, dümen/hız/batarya ve su sınırı fiziği. |
 | `src/autonomy-view.js` | Otonom operasyon panelinin saf görünüm modeli ve ince DOM render/temizleme katmanı. |
+| `src/operations-runtime.js` | Operasyon Masası'nın İHA/İDA fizik orkestrasyonu; manuel/bekleme/rota/acil duruş komut seçimi. |
+| `src/operations-console.js` | Seçim, kontrol sahipliği ve kilitli acil duruş durum modeli. |
+| `src/route-editor.js` | Hava/su waypoint doğrulama, immutable rota düzenleme ve ilerletme. |
+| `src/scenarios.js` | Sürümlü, sınırlı ve bozuk veriye dayanıklı yerel senaryo deposu. |
+| `src/operations-view.js` | Masaüstü komuta alanının görünüm modeli ve artımlı DOM katmanı. |
 | `src/input.js` | Klavye + gamepad + touch |
 | `src/catalog.js` | 10 platform, her biri `endurance` (hover saniyesi) + simule edilmis gercek hiza dayali `paceInfo` bandi |
 | `src/world.js` MAPS | Her haritanin serbest ucus esintisi `wind` (indoor null); `windFor(op, mapId)`: gorev kendi `op.wind`'ini getirir, serbest ucus harita esintisini alir. Brifing/tulum/HUD/ambience hepsi bunu okur |

@@ -143,3 +143,10 @@ test('home page exposes one operations console entry and every console region', 
     assert.match(html, new RegExp(`id=["']${id}["']`));
   }
 });
+
+test('surface vehicle exposes deck and follow camera anchors', async () => {
+  const { makeSurfaceVehicle } = await import('../src/models.js');
+  const boat = makeSurfaceVehicle({ id: 'ida-1' });
+  assert.ok(boat.getObjectByName('surface-deck-camera'));
+  assert.ok(boat.getObjectByName('surface-follow-camera'));
+});

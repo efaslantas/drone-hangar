@@ -92,41 +92,41 @@ function edge(name, down) {
   held[name] = down;
 }
 
-window.addEventListener("keydown", (e) => {
+globalThis.window?.addEventListener("keydown", (e) => {
   keys.add(e.code);
   if (e.code === "Escape" && !e.repeat) { flags.hangar = true; e.preventDefault(); }
   if (["Space", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].includes(e.code)) {
     e.preventDefault();
   }
 });
-window.addEventListener("keyup", (e) => keys.delete(e.code));
-window.addEventListener("blur", () => keys.clear());
+globalThis.window?.addEventListener("keyup", (e) => keys.delete(e.code));
+globalThis.window?.addEventListener("blur", () => keys.clear());
 
-window.addEventListener("gamepadconnected", (e) => {
+globalThis.window?.addEventListener("gamepadconnected", (e) => {
   gpIndex = e.gamepad.index;
 });
-window.addEventListener("gamepaddisconnected", (e) => {
+globalThis.window?.addEventListener("gamepaddisconnected", (e) => {
   if (gpIndex === e.gamepad.index) {
     gpIndex = null;
     flags.controlLost = true;
   }
 });
 let lastTouchAt = 0;
-window.addEventListener(
+globalThis.window?.addEventListener(
   "touchstart",
   () => {
     lastTouchAt = Date.now();
   },
   { passive: true },
 );
-window.addEventListener("mousedown", (e) => {
+globalThis.window?.addEventListener("mousedown", (e) => {
   if (Date.now() - lastTouchAt < 900) return;
   if (e.button === 0) mouseFire = true;
 });
-window.addEventListener("mouseup", (e) => {
+globalThis.window?.addEventListener("mouseup", (e) => {
   if (e.button === 0) mouseFire = false;
 });
-window.addEventListener("blur", () => {
+globalThis.window?.addEventListener("blur", () => {
   mouseFire = false;
   holdFire = false;
 });
@@ -402,7 +402,7 @@ export function bindFlightTouches(root) {
     if (target?.closest?.("[data-fire]")) return "fire";
     if (target?.closest?.("[data-ui]")) return "ui";
     if (stickTouch.left != null && stickTouch.right != null) return "fire";
-    return touch.clientX < window.innerWidth * 0.5 ? "left" : "right";
+    return touch.clientX < (globalThis.window?.innerWidth || 0) * 0.5 ? "left" : "right";
   }
 
   function onStart(e) {

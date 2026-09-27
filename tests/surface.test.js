@@ -47,3 +47,12 @@ test("large dt is substepped and remains finite and bounded", () => {
   assert.ok(Math.hypot(s.x, s.z) <= SPEC.maxSpeed * 5);
   assert.ok(s.z < 0);
 });
+
+test("surface craft supports bounded reverse without changing forward limits", () => {
+  const spec = { ...SPEC, maxReverseSpeed: 2.5 };
+  const state = createSurfaceState("ida-1", 0, 0, 0);
+  for (let i = 0; i < 600; i++) stepSurface(state, { throttle: -1, steer: 0 }, spec, 1 / 60, WATER);
+  assert.ok(state.speed < 0);
+  assert.ok(state.speed >= -2.5);
+  assert.ok(state.z > 0, "reverse moves astern");
+});

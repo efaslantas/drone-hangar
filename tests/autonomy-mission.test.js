@@ -52,3 +52,19 @@ test("coast exposes navigable water, two safe sea spawns, and reachable incident
   }
   clearWorld(scene);
 });
+
+test("coast operations water reaches offshore and console spawns sit 25–30m from shore", () => {
+  const scene = new THREE.Scene();
+  const play = buildWorld(scene, "coast");
+  assert.equal(play.water.shorelineZ, -40);
+  assert.equal(play.water.contains(0, play.water.shorelineZ - 80), true);
+  assert.equal(play.seaSpawns.length, 2);
+  for (const spawn of play.seaSpawns) {
+    const offshore = play.water.shorelineZ - spawn.z;
+    assert.ok(offshore >= 25 && offshore <= 30, `${spawn.id}: ${offshore}m offshore`);
+    assert.equal(play.water.contains(spawn.x, spawn.z), true);
+  }
+  assert.equal(play.seaSpawns[0].z, play.seaSpawns[1].z);
+  assert.equal(play.water.visualShorelineZ, play.water.shorelineZ);
+  clearWorld(scene);
+});

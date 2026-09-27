@@ -479,10 +479,22 @@ export function makeSurfaceVehicle(spec = {}) {
   cameraTarget.position.set(0, 0.75, -0.5);
   root.add(cameraTarget);
 
+  const deckCamera = new THREE.Object3D();
+  deckCamera.name = "surface-deck-camera";
+  deckCamera.position.set(0, 1.3, -0.9);
+  root.add(deckCamera);
+
+  const followCamera = new THREE.Object3D();
+  followCamera.name = "surface-follow-camera";
+  followCamera.position.set(0, 3.4, 7.5);
+  root.add(followCamera);
+
   root.userData.vehicleType = "surface";
   root.userData.spec = spec;
   root.userData.rudder = rudder;
   root.userData.cameraTarget = cameraTarget;
+  root.userData.deckCamera = deckCamera;
+  root.userData.followCamera = followCamera;
   return root;
 }
 

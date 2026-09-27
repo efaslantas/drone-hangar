@@ -24,6 +24,7 @@ Hangar → **2 · Oyun modu**. Dört bağımsız pist; pist içinde kilit bir ö
 - **Takım savaşı** (`team` odası, her zaman açık): sunucu Kırmızı–Mavi dağıtır (dengeli), can/düşme/skor/saat sunucuda. İki pilot girince 3 dakikalık maç başlar, 20 sayı biter, 8 sn ara, yeniden. Rakibi vurunca istemci "isabet" der, sunucu menzil (≤190 m), sıra, taraf ve canlılık kontrolüyle sayar; düşen 4 sn sonra yeniden doğar. Pist haritası, taraflar apronun iki ucundan kalkar; rakip isim etiketi kırmızı/mavi, izleri görünür. `team-<ad>` odaları da takım odasıdır (özel maç).
 - **Günün görevi** (her zaman açık): rota tarihten türer (`daily-YYYY-MM-DD`, UTC gün; 03:00 TR'de yenilenir). Harita, gövde (kilitli), 7-9 kapı, bazen bir hover küresi, rüzgâr ve gece seed'den gelir; herkes aynı rotayı aynı gövdeyle uçar, sıralama o güne özel. Ana ekranda "Günün Görevi" düğmesi.
 - **Otonom Operasyon** (her zaman açık, sıralamasız): "Kıyı Gözetleme ve Müdahale" kartını başlat. İHA kıyıyı tarar, olayı bulunca en yakın yeterli bataryalı İDA otomatik sevk edilir ve iki araç olay noktasını birlikte doğrular. Panelden görevi duraklatabilir, İHA'yı veya seçili İDA'yı devralabilir, kontrolü tekrar otonomiye verebilir ya da görevi iptal edebilirsin. İlk sürüm tek operatörlü arcade simülasyondur; gerçek SITL/MAVLink bağlantısı içermez.
+- **Operasyon Masası** (ana ekrandan doğrudan): bir İHA ile iki İDA'yı tek PS koluyla serbestçe yönet. Filo kartı veya L1/R1 araç seçer; seçilen araç manuel, önceki araç güvenli beklemededir. Taktik haritada rota çizip uygulayabilir, düzeni yerel senaryo olarak kaydedip yükleyebilirsin. Senaryolar `efa-hangar-operations-v1` anahtarında, yalnız bu tarayıcıda saklanır. Tam editör masaüstü odaklıdır; dar ekranda temel görünüm ve eylemler korunur.
 
 **Serbest** = eski deathmatch. **Bot Antrenmanı** aynı deathmatch, ayrı oda — kalabalık genel lobiden bağımsız pratik için. **Gece**, **Gerçekçi acro**, kamera açısı, ateş hızı hangarda. Gerçekçi acro kapalıyken okul/angle aynı. Açıkken acro’da otomatik gaz yok.
 
@@ -44,3 +45,5 @@ Mode 2. Sol yaw+gaz (orta = hover), sağ pitch/roll.
 - **Mobil tarayıcı:** yatay tut. Sol başparmak gaz+yaw, sağ pitch+roll, ATEŞ basılı, ☰ menü
 
 Otonom operasyonda devralınan araç aynı klavye/gamepad/mobil girdilerini kullanır. İDA için gaz ileri hareketi, yaw ise dümeni kontrol eder; "Otonomiye ver" seçildiğinde rota takibi kaldığı yerden sürer.
+
+Operasyon Masası'nda İHA Mode 2 kullanır; İDA'da sol stick dikeyi ileri/geri, sağ stick yatayı dümendir. L1/R1 araç değiştirir, □ kamera değiştirir, ○ çalışma alanını sıfırlar, Options yardımı açar. L2+R2 en az 700 ms tutulunca tüm filo kilitli acil duruşa geçer; ekrandaki yeniden etkinleştirme düğmesi olmadan hareket başlamaz.

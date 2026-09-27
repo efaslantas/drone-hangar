@@ -924,6 +924,7 @@ button:focus-visible, a:focus-visible, select:focus-visible, input:focus-visible
 .operations-route-actions { display: flex; gap: 7px; margin-bottom: 16px; }
 .operations-route-actions button { flex: 1; }
 #operations-scenarios { display: grid; gap: 6px; margin-top: 8px; }
+#operations-scenario-name { width: 100%; margin-bottom: 7px; }
 .operations-scenario { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding-top: 7px; border-top: 1px solid #36505c; font-size: 11px; }
 .operations-scenario span { display: flex; gap: 4px; }
 .operations-empty { color: var(--dim); font-size: 11px; }

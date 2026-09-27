@@ -17,16 +17,17 @@ export function createSurfaceState(id, x = 0, z = 0, heading = 0) {
 }
 
 function integrate(state, command, spec, dt, water) {
-  const throttle = state.battery > 0 ? clamp(Number(command?.throttle) || 0, 0, 1) : 0;
+  const throttle = state.battery > 0 ? clamp(Number(command?.throttle) || 0, -1, 1) : 0;
   const steer = clamp(Number(command?.steer) || 0, -1, 1);
   const maxSpeed = Math.max(0, Number(spec?.maxSpeed) || 0);
+  const maxReverseSpeed = Math.max(0, Number(spec?.maxReverseSpeed) || 0);
   const acceleration = Math.max(0, Number(spec?.acceleration) || 0);
   const drag = Math.max(0, Number(spec?.drag) || 0);
   const maxTurn = Math.max(0, Number(spec?.turnRate) || 0);
 
   state.turnRate = steer * maxTurn;
   state.heading += state.turnRate * dt;
-  state.speed = clamp(state.speed + (throttle * acceleration - drag * state.speed) * dt, 0, maxSpeed);
+  state.speed = clamp(state.speed + (throttle * acceleration - drag * state.speed) * dt, -maxReverseSpeed, maxSpeed);
 
   const nextX = state.x + Math.sin(state.heading) * state.speed * dt;
   const nextZ = state.z - Math.cos(state.heading) * state.speed * dt;
@@ -39,7 +40,7 @@ function integrate(state, command, spec, dt, water) {
     state.blockedFor += dt;
   }
 
-  state.battery = clamp(state.battery - throttle * Math.max(0, Number(spec?.batteryDrain) || 0) * dt, 0, 100);
+  state.battery = clamp(state.battery - Math.abs(throttle) * Math.max(0, Number(spec?.batteryDrain) || 0) * dt, 0, 100);
 }
 
 export function stepSurface(state, command, spec, dt, water) {

@@ -18,7 +18,7 @@ function slug(value) {
 
 function finitePose(pose, kind) {
   const keys = kind === "air" ? ["x", "y", "z", "heading"] : ["x", "z", "heading"];
-  return pose && keys.every((key) => Number.isFinite(Number(pose[key])));
+  return pose && keys.every((key) => typeof pose[key] === "number" && Number.isFinite(pose[key]));
 }
 
 function validRoutes(routes, vehicles) {
@@ -27,13 +27,14 @@ function validRoutes(routes, vehicles) {
     const route = routes[vehicle.id];
     if (!route || route.vehicleId !== vehicle.id || !Array.isArray(route.points)) return false;
     return route.points.every((point) => {
-      const common = Number.isFinite(Number(point?.x)) && Number.isFinite(Number(point?.z));
+      const common = typeof point?.x === "number" && Number.isFinite(point.x)
+        && typeof point?.z === "number" && Number.isFinite(point.z);
       if (!common) return false;
       const x = Number(point.x);
       const z = Number(point.z);
       if (vehicle.kind === "sea") return x >= -42 && x <= 42 && z >= -140 && z <= -40;
-      const y = Number(point.y);
-      return Number.isFinite(y) && x >= -44 && x <= 44 && z >= -46 && z <= 20 && y >= 2 && y <= 39;
+      const y = point.y;
+      return typeof y === "number" && Number.isFinite(y) && x >= -44 && x <= 44 && z >= -46 && z <= 20 && y >= 2 && y <= 39;
     });
   });
 }

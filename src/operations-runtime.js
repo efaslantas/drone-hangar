@@ -34,8 +34,8 @@ function airHoldCommand(state, target) {
     lift: clamp((target.y - state.y) * 0.24 - state.vy * 0.12, -0.4, 0.55),
     r2: 0,
     yaw: clamp(-wrapPi(target.heading - yaw) * 1.2),
-    pitch: clamp(ax * Math.sin(yaw) - az * Math.cos(yaw), -0.5, 0.5),
-    roll: clamp(ax * Math.cos(yaw) + az * Math.sin(yaw), -0.5, 0.5),
+    pitch: clamp(-ax * Math.sin(yaw) - az * Math.cos(yaw), -0.5, 0.5),
+    roll: clamp(ax * Math.cos(yaw) - az * Math.sin(yaw), -0.5, 0.5),
     angleMode: true,
   };
 }
@@ -150,10 +150,13 @@ export function stepOperationsRuntime(runtime, rawInput, dt, play = {}) {
     else stepSurface(vehicle.state, command, vehicle.spec, dt, runtime.water);
     const mode = runtime.session.vehicles.find((item) => item.id === vehicle.id)?.mode;
     if (mode === VEHICLE_MODES.ROUTE) {
-      const target = runtime.routes[vehicle.id]?.points?.[runtime.routes[vehicle.id]?.currentIndex || 0];
+      const route = runtime.routes[vehicle.id];
+      const targetIndex = route?.currentIndex || 0;
+      const target = route?.points?.[targetIndex];
       if (target) {
-        const progress = routeProgress(vehicle.state, target, runtime.routeProgress[vehicle.id], dt);
-        runtime.routeProgress[vehicle.id] = progress;
+        const prior = runtime.routeProgress[vehicle.id];
+        const progress = routeProgress(vehicle.state, target, prior?.targetIndex === targetIndex ? prior : undefined, dt);
+        runtime.routeProgress[vehicle.id] = { ...progress, targetIndex };
         if (progress.stuck) {
           runtime.session = setVehicleMode(runtime.session, vehicle.id, VEHICLE_MODES.HOLD);
           runtime.routeError = `${vehicle.id.toLocaleUpperCase("tr-TR")} rota üzerinde sıkıştı`;
@@ -161,6 +164,7 @@ export function stepOperationsRuntime(runtime, rawInput, dt, play = {}) {
         }
       }
       const next = advanceRoute(runtime.routes[vehicle.id], vehicle.state, vehicle.kind === "air" ? 2.5 : 1.5);
+      if (next.currentIndex !== targetIndex) delete runtime.routeProgress[vehicle.id];
       runtime.routes[vehicle.id] = next;
       if (next.mode === VEHICLE_MODES.HOLD) {
         delete runtime.routeProgress[vehicle.id];
@@ -185,7 +189,13 @@ export function rebuildOperationsRuntime(runtime, scenario) {
       state.qw = Math.cos(saved.start.heading / 2);
       state.qy = Math.sin(saved.start.heading / 2);
     }
-    return { ...template, id: saved.id, kind: saved.kind, state };
+    return {
+      ...template,
+      id: saved.id,
+      kind: saved.kind,
+      state,
+      ...(saved.kind === "sea" ? { enabled: true, speedProfile: "cruise" } : {}),
+    };
   });
   const routes = Object.fromEntries(Object.entries(scenario.routes).map(([id, route]) => [id, {
     ...route,

@@ -144,3 +144,38 @@ test("UAV hold actively resists wind drift", () => {
   for (let i = 0; i < 60 * 60; i++) stepOperationsRuntime(rt, { lift: 0, yaw: 0, pitch: 0, roll: 0, viz: {} }, 1 / 60, play);
   assert.ok(Math.hypot(rt.vehicles[0].state.x - start.x, rt.vehicles[0].state.z - start.z) < 5);
 });
+
+test("UAV hold resists world-axis wind at quarter-turn headings", () => {
+  for (const heading of [Math.PI / 2, -Math.PI / 2]) {
+    const rt = runtime();
+    rt.vehicles[0].state.qw = Math.cos(heading / 2);
+    rt.vehicles[0].state.qy = Math.sin(heading / 2);
+    handleOperationsControlLoss(rt);
+    const startX = rt.vehicles[0].state.x;
+    const play = { wind: { x: 2, z: 0 }, bounds: { minx: -200, maxx: 200, minz: -200, maxz: 200 }, ceil: 40 };
+    for (let i = 0; i < 30 * 60; i++) stepOperationsRuntime(rt, { lift: 0, yaw: 0, pitch: 0, roll: 0, viz: {} }, 1 / 60, play);
+    assert.ok(Math.abs(rt.vehicles[0].state.x - startX) < 5, `heading ${heading} drifted to ${rt.vehicles[0].state.x}`);
+  }
+});
+
+test("route progress restarts when the active waypoint advances", () => {
+  const rt = runtime();
+  rt.session = { ...rt.session, selectedId: "ida-1", vehicles: rt.session.vehicles.map((vehicle) => ({ ...vehicle, mode: vehicle.id === "ida-1" ? "ROUTE" : "HOLD" })) };
+  rt.vehicles[1].state.x = 0;
+  rt.vehicles[1].state.z = -67;
+  rt.routes["ida-1"] = { ...createRoute("ida-1"), points: [{ x: 0, z: -77 }, { x: 0, z: -115 }], mode: "ROUTE" };
+  for (let i = 0; i < 15 * 60; i++) stepOperationsRuntime(rt, { viz: { ly: 0, rx: 0 } }, 1 / 60);
+  assert.equal(rt.session.vehicles.find((vehicle) => vehicle.id === "ida-1").mode, "ROUTE");
+  assert.ok(rt.vehicles[1].state.z < -100);
+});
+
+test("fresh scenario rebuild re-enables sea vehicles", () => {
+  const rt = runtime();
+  rt.vehicles[1].enabled = false;
+  const scenario = {
+    vehicles: [{ id: "iha-1", kind: "air", start: { x: 0, y: 8, z: -20, heading: 0 } }, { id: "ida-1", kind: "sea", start: { x: -8, z: -66, heading: 0 } }, { id: "ida-2", kind: "sea", start: { x: 8, z: -68, heading: 0 } }],
+    routes: { "iha-1": createRoute("iha-1"), "ida-1": createRoute("ida-1"), "ida-2": createRoute("ida-2") },
+  };
+  const rebuilt = rebuildOperationsRuntime(rt, scenario);
+  assert.equal(rebuilt.vehicles.find((vehicle) => vehicle.id === "ida-1").enabled, true);
+});

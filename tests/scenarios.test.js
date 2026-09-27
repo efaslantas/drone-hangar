@@ -99,4 +99,12 @@ test("scenario schema requires the exact fleet and coast-safe starts and routes"
   const airOutside = structuredClone(base);
   airOutside.routes["iha-1"].points[0].z = -100;
   assert.equal(validateScenario(airOutside).ok, false);
+
+  const numericText = structuredClone(base);
+  numericText.vehicles[0].start.x = "0";
+  assert.equal(validateScenario(numericText).ok, false);
+
+  const numericRouteText = structuredClone(base);
+  numericRouteText.routes["ida-1"].points[0].z = "-80";
+  assert.equal(validateScenario(numericRouteText).ok, false);
 });

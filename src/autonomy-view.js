@@ -64,10 +64,21 @@ export function renderAutonomyPanel(root, model) {
   setText("#autonomy-reason", model.reason);
   const vehicles = root.querySelector?.("#autonomy-vehicles");
   if (vehicles) {
-    vehicles.innerHTML = model.vehicles.map((v) =>
-      `<button type="button" class="autonomy-vehicle ${v.mode === "MANUEL" ? "manual" : ""}" data-vehicle="${escapeHtml(v.id)}">` +
-      `<b>${escapeHtml(v.role)} · ${escapeHtml(v.id)}</b><span>${escapeHtml(v.mode)} · ${escapeHtml(v.speed)} · BAT ${escapeHtml(v.battery)}</span></button>`
-    ).join("");
+    const existing = vehicles.querySelectorAll ? [...vehicles.querySelectorAll("[data-vehicle]")] : [];
+    const sameVehicles = existing.length === model.vehicles.length && existing.every((node, i) => node.dataset.vehicle === model.vehicles[i].id);
+    if (!sameVehicles) {
+      vehicles.innerHTML = model.vehicles.map((v) =>
+        `<button type="button" class="autonomy-vehicle ${v.mode === "MANUEL" ? "manual" : ""}" data-vehicle="${escapeHtml(v.id)}">` +
+        `<b>${escapeHtml(v.role)} · ${escapeHtml(v.id)}</b><span>${escapeHtml(v.mode)} · ${escapeHtml(v.speed)} · BAT ${escapeHtml(v.battery)}</span></button>`
+      ).join("");
+    } else {
+      existing.forEach((node, i) => {
+        const vehicle = model.vehicles[i];
+        node.classList.toggle("manual", vehicle.mode === "MANUEL");
+        node.querySelector("b").textContent = `${vehicle.role} · ${vehicle.id}`;
+        node.querySelector("span").textContent = `${vehicle.mode} · ${vehicle.speed} · BAT ${vehicle.battery}`;
+      });
+    }
   }
   const actionMap = {
     pause: "pause",

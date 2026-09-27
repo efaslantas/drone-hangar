@@ -23,7 +23,7 @@ import { createTrace, recordTrace, sampleTrace, traceCount, traceDuration, saveG
 import { createSimulationClock, advanceSimulationClock, resetSimulationClock } from "./simulation-clock.js";
 import { createAssessment, sampleAssessment, finalizeAssessment } from "./assessment.js";
 import { abortAutonomy, autonomyReport, createAutonomyRun, pauseAutonomy, returnToAutonomy, takeControl, tickAutonomy } from "./autonomy.js";
-import { airCommand, surfaceCommand } from "./autopilot.js";
+import { airCommand, routeProgress, surfaceCommand } from "./autopilot.js";
 import { createSurfaceState, stepSurface } from "./surface.js";
 import { autonomyViewModel, clearAutonomyPanel, renderAutonomyPanel } from "./autonomy-view.js";
 
@@ -150,6 +150,7 @@ function camTiltRad() {
 const touchUi =
   window.matchMedia("(pointer: coarse)").matches ||
   window.matchMedia("(hover: none)").matches ||
+  window.matchMedia("(max-width: 600px)").matches ||
   ("ontouchstart" in window && window.matchMedia("(max-width: 1366px)").matches);
 // WebGPU when the browser has it (desktop by default, `?gpu=1|0` / Ayarlar
 // toggle override); the classic WebGL renderer otherwise. Resolved before the
@@ -967,6 +968,7 @@ function clearAutonomy() {
     disposeObject(autonomy.root);
   }
   autonomy = null;
+  flightEl.classList.remove("autonomy-active", "autonomy-manual");
   clearAutonomyPanel(document.getElementById("autonomy-panel"));
 }
 
@@ -989,9 +991,11 @@ function setupAutonomy(op) {
     root.add(mesh);
     const trail = routeLine([{ x: surface.x, z: surface.z }, { x: surface.x, z: surface.z }], cfg.id === "ida-1" ? 0x65d6ff : 0xffb020, 0.12);
     root.add(trail);
-    return { cfg, state: surface, mesh, trail, points: [{ x: surface.x, z: surface.z }] };
+    return { cfg, state: surface, mesh, trail, points: [{ x: surface.x, z: surface.z }], progress: null };
   });
   root.add(routeLine(op.airRoute, 0x8ee7ff, 0.32));
+  const airTrail = routeLine([{ x: state.x, y: state.y, z: state.z }, { x: state.x, y: state.y, z: state.z }], 0xffffff, 0.3);
+  root.add(airTrail);
   for (const boat of boats) root.add(routeLine([boat.state, task.target], 0xffb020, 0.14));
   const incident = new THREE.Mesh(
     new THREE.TorusGeometry(op.verifyRadius, 0.16, 8, 36),
@@ -1001,7 +1005,9 @@ function setupAutonomy(op) {
   incident.position.set(task.target.x, 0.18, task.target.z);
   root.add(incident);
   scene.add(root);
-  autonomy = { task, root, boats, routeIndex: 0, now: 0, trailAcc: 0, incident };
+  autonomy = { task, root, boats, routeIndex: 0, now: 0, trailAcc: 0, incident, airTrail, airPoints: [{ x: state.x, y: state.y, z: state.z }], cameraVehicleId: "iha-1" };
+  flightEl.classList.add("autonomy-active");
+  if (touchUi) document.getElementById("flight-bar")?.append(document.getElementById("autonomy-panel"));
   renderAutonomyPanel(document.getElementById("autonomy-panel"), autonomyViewModel(task, autonomyVehicles()));
 }
 
@@ -1025,13 +1031,16 @@ function autonomyAirTarget() {
 }
 
 function stepAutonomyPhysics(simDt, input, activeSpec) {
+  if (["COMPLETE", "FAILED", "ABORTED"].includes(autonomy.task.phase)) return;
   const controlled = autonomy.task.controlledByVehicle;
   const flightInput = controlled === "iha-1" ? input : airCommand(state, autonomyAirTarget(), activeSpec);
   step(state, flightInput, activeSpec, simDt, play);
   for (const boat of autonomy.boats) {
     let command = { throttle: 0, steer: 0 };
     if (controlled === boat.state.id) command = { throttle: Math.max(0, input.lift || 0), steer: input.yaw || 0 };
-    else if (boat.state.id === autonomy.task.selectedSeaId && ["SEA_DISPATCH", "JOINT_VERIFY"].includes(autonomy.task.phase)) {
+    else if (autonomy.task.returningSeaIds.includes(boat.state.id)) {
+      command = surfaceCommand(boat.state, boat.cfg, AUTONOMY_SEA_SPEC);
+    } else if (boat.state.id === autonomy.task.selectedSeaId && ["SEA_DISPATCH", "JOINT_VERIFY"].includes(autonomy.task.phase)) {
       command = surfaceCommand(boat.state, autonomy.task.target, AUTONOMY_SEA_SPEC);
     }
     stepSurface(boat.state, command, AUTONOMY_SEA_SPEC, simDt, play.water);
@@ -1043,9 +1052,13 @@ function updateAutonomyScene(dt) {
   autonomy.trailAcc += dt;
   for (const boat of autonomy.boats) {
     boat.mesh.position.set(boat.state.x, 0, boat.state.z);
-    boat.mesh.rotation.y = boat.state.heading;
+    boat.mesh.rotation.y = -boat.state.heading;
     boat.mesh.userData.rudder.rotation.y = -boat.state.turnRate * 0.45;
     if (autonomy.trailAcc >= 0.5) {
+      if (boat.state.id === autonomy.task.selectedSeaId && ["SEA_DISPATCH", "JOINT_VERIFY"].includes(autonomy.task.phase)) {
+        boat.progress = routeProgress(boat.state, autonomy.task.target, boat.progress, autonomy.trailAcc);
+        if (boat.progress.stuck) boat.state.available = false;
+      }
       boat.points.push({ x: boat.state.x, z: boat.state.z });
       const cap = touchUi ? 80 : 240;
       if (boat.points.length > cap) boat.points.shift();
@@ -1053,7 +1066,14 @@ function updateAutonomyScene(dt) {
       boat.trail.geometry = new THREE.BufferGeometry().setFromPoints(boat.points.map((p) => new THREE.Vector3(p.x, 0.12, p.z)));
     }
   }
-  if (autonomy.trailAcc >= 0.5) autonomy.trailAcc = 0;
+  if (autonomy.trailAcc >= 0.5) {
+    autonomy.airPoints.push({ x: state.x, y: state.y, z: state.z });
+    const cap = touchUi ? 80 : 240;
+    if (autonomy.airPoints.length > cap) autonomy.airPoints.shift();
+    autonomy.airTrail.geometry.dispose();
+    autonomy.airTrail.geometry = new THREE.BufferGeometry().setFromPoints(autonomy.airPoints.map((p) => new THREE.Vector3(p.x, p.y, p.z)));
+    autonomy.trailAcc = 0;
+  }
   const pulse = 1 + Math.sin(autonomy.now * 4) * 0.08;
   autonomy.incident.scale.setScalar(pulse);
 }
@@ -1077,6 +1097,10 @@ function tickAutonomyFrame(dt) {
   run.autonomyReport = autonomyReport(autonomy.task);
   if (!autonomy.reported) {
     renderAutonomyPanel(document.getElementById("autonomy-panel"), autonomyViewModel(autonomy.task, autonomyVehicles()));
+    document.querySelectorAll("#autonomy-vehicles [data-vehicle]").forEach((button) => {
+      button.classList.toggle("active", button.dataset.vehicle === autonomy.cameraVehicleId);
+    });
+    flightEl.classList.toggle("autonomy-manual", !!autonomy.task.controlledByVehicle);
   }
 }
 
@@ -1090,6 +1114,8 @@ function finishAutonomyResult() {
   run.reason = autonomy.task.reason;
   run.t = autonomy.task.elapsed;
   run.autonomyReport = autonomyReport(autonomy.task);
+  autonomy.task.controlledByVehicle = null;
+  flightEl.classList.remove("autonomy-manual");
   net.sendResult(run.op.id, run.op.name, won, run.t, undefined, { ranked: false });
   if (won) sfx.win();
   else sfx.fail();
@@ -1736,15 +1762,31 @@ bindTap(document.getElementById("rotate-hint"), (e) => e.currentTarget.classList
 const autonomyPanel = document.getElementById("autonomy-panel");
 bindTap(autonomyPanel?.querySelector('[data-action="pause"]'), () => autonomy && pauseAutonomy(autonomy.task, true));
 bindTap(autonomyPanel?.querySelector('[data-action="resume"]'), () => autonomy && pauseAutonomy(autonomy.task, false));
-bindTap(autonomyPanel?.querySelector('[data-action="take-air"]'), () => autonomy && takeControl(autonomy.task, "iha-1"));
+bindTap(autonomyPanel?.querySelector('[data-action="take-air"]'), () => {
+  if (!autonomy) return;
+  takeControl(autonomy.task, "iha-1");
+  autonomy.cameraVehicleId = "iha-1";
+  if (touchUi) setPlayMenu(false);
+});
 bindTap(autonomyPanel?.querySelector('[data-action="take-sea"]'), () => {
   if (!autonomy) return;
-  takeControl(autonomy.task, autonomy.task.selectedSeaId || autonomy.boats[0]?.state.id);
+  const observedSea = autonomy.cameraVehicleId !== "iha-1" ? autonomy.cameraVehicleId : null;
+  takeControl(autonomy.task, observedSea || autonomy.task.selectedSeaId || autonomy.boats[0]?.state.id);
+  autonomy.cameraVehicleId = autonomy.task.controlledByVehicle;
+  if (touchUi) setPlayMenu(false);
 });
 bindTap(autonomyPanel?.querySelector('[data-action="return"]'), () => {
-  if (autonomy?.task.controlledByVehicle) returnToAutonomy(autonomy.task, autonomy.task.controlledByVehicle);
+  if (autonomy?.task.controlledByVehicle) {
+    returnToAutonomy(autonomy.task, autonomy.task.controlledByVehicle);
+    flightEl.classList.remove("autonomy-manual");
+  }
 });
 bindTap(autonomyPanel?.querySelector('[data-action="abort"]'), () => autonomy && abortAutonomy(autonomy.task));
+autonomyPanel?.addEventListener("click", (event) => {
+  const button = event.target.closest?.("[data-vehicle]");
+  if (!button || !autonomy) return;
+  autonomy.cameraVehicleId = button.dataset.vehicle;
+});
 
 const flightBar = document.getElementById("flight-bar");
 const menuFab = document.getElementById("menu-fab");
@@ -1811,9 +1853,9 @@ function applyPose(obj, s) {
 }
 
 function followCam(dt, now) {
-  const controlledBoat = autonomy?.boats.find((boat) => boat.state.id === autonomy.task.controlledByVehicle);
-  if (controlledBoat) {
-    const boat = controlledBoat.state;
+  const cameraBoat = autonomy?.boats.find((boat) => boat.state.id === autonomy.cameraVehicleId);
+  if (cameraBoat) {
+    const boat = cameraBoat.state;
     const fx = Math.sin(boat.heading);
     const fz = -Math.cos(boat.heading);
     fpvCam.position.set(boat.x - fx * 1.8, 1.35, boat.z - fz * 1.8);

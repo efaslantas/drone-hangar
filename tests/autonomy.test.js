@@ -108,3 +108,32 @@ test("phase timeout fails instead of waiting forever", () => {
   assert.equal(run.phase, "FAILED");
   assert.equal(run.reason, "AIR_SEARCH zaman aşımı");
 });
+
+test("a dead UAV cannot verify a successful operation", () => {
+  const run = createAutonomyRun(OP, 0);
+  tickAutonomy(run, { now: 1, air: { x: 30, z: -40 }, sea: SEA });
+  tickAutonomy(run, { now: 2, air: { x: 30, z: -40 }, sea: SEA });
+  tickAutonomy(run, { now: 3, air: { x: 30, z: -40 }, sea: SEA });
+  const arrived = SEA.map((v) => v.id === run.selectedSeaId ? { ...v, x: 30, z: -40 } : v);
+  tickAutonomy(run, { now: 4, air: { x: 30, z: -40 }, sea: arrived });
+  tickAutonomy(run, { now: 5, air: { x: 30, z: -40, crashed: true, battery: 0 }, sea: arrived });
+  assert.equal(run.phase, "FAILED");
+  assert.match(run.reason, /İHA/);
+});
+
+test("an unhealthy dispatched USV is reassigned once", () => {
+  const run = createAutonomyRun(OP, 0);
+  tickAutonomy(run, { now: 1, air: { x: 30, z: -40 }, sea: SEA });
+  tickAutonomy(run, { now: 2, air: { x: 30, z: -40 }, sea: SEA });
+  tickAutonomy(run, { now: 3, air: { x: 30, z: -40 }, sea: SEA });
+  assert.equal(run.selectedSeaId, "ida-1");
+  const degraded = SEA.map((v) => v.id === "ida-1" ? { ...v, battery: 0, available: false } : v);
+  const out = tickAutonomy(run, { now: 4, air: { x: 30, z: -40 }, sea: degraded });
+  assert.equal(run.selectedSeaId, "ida-2");
+  assert.deepEqual(out.events, ["return:ida-1", "dispatch:ida-2"]);
+
+  const none = degraded.map((v) => ({ ...v, battery: 0, available: false }));
+  tickAutonomy(run, { now: 5, air: { x: 30, z: -40 }, sea: none });
+  assert.equal(run.phase, "FAILED");
+  assert.match(run.reason, /yeniden atama/);
+});

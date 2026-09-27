@@ -90,3 +90,13 @@ test("flight page exposes the complete autonomous operation control contract", (
     assert.match(html, new RegExp(`data-action=["']${action}["']`));
   }
 });
+
+test("runtime wires vehicle camera selection, terminal hold, and mobile manual controls", () => {
+  const main = fs.readFileSync(new URL("../src/main.js", import.meta.url), "utf8");
+  const css = fs.readFileSync(new URL("../src/style.css", import.meta.url), "utf8");
+  assert.match(main, /closest\?\.\(\s*["']\[data-vehicle\]/);
+  assert.match(main, /cameraVehicleId/);
+  assert.match(main, /\["COMPLETE", "FAILED", "ABORTED"\]\.includes\(autonomy\.task\.phase\)\) return/);
+  assert.match(css, /autonomy-active:not\(\.autonomy-manual\)/);
+  assert.match(css, /#flight-bar #autonomy-panel/);
+});

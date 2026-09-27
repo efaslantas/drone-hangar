@@ -35,7 +35,8 @@ test("coastal UAV-USV operation survives manual takeover and completes end to en
 
     for (const vehicle of sea) {
       const dispatched = vehicle.id === run.selectedSeaId && ["SEA_DISPATCH", "JOINT_VERIFY"].includes(run.phase);
-      const command = dispatched ? surfaceCommand(vehicle, run.target, SEA_SPEC) : { throttle: 0, steer: 0 };
+      const manual = vehicle.id === run.controlledByVehicle;
+      const command = manual ? { throttle: 0.55, steer: 0 } : dispatched ? surfaceCommand(vehicle, run.target, SEA_SPEC) : { throttle: 0, steer: 0 };
       stepSurface(vehicle, command, SEA_SPEC, dt, WATER);
     }
 

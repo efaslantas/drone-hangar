@@ -36,6 +36,8 @@ export function createAutonomyRun(op, now = 0) {
     paused: false,
     controlledByVehicle: null,
     selectedSeaId: null,
+    reassignedSea: false,
+    returningSeaIds: [],
     detectedAt: null,
     dispatchedAt: null,
     verifyAt: null,
@@ -89,6 +91,11 @@ export function tickAutonomy(run, input) {
   run.elapsed += dt;
   run.phaseElapsed += dt;
 
+  if (input.air?.crashed || (input.air?.battery != null && Number(input.air.battery) <= 0)) {
+    fail(run, "İHA görev dışı", events);
+    return { events };
+  }
+
   const timeout = Number(run.op?.phaseTimeouts?.[run.phase]);
   if (Number.isFinite(timeout) && run.phaseElapsed > timeout) {
     fail(run, `${run.phase} zaman aşımı`, events);
@@ -124,7 +131,31 @@ export function tickAutonomy(run, input) {
     return { events };
   }
 
-  const selected = (input.sea || []).find((v) => v.id === run.selectedSeaId);
+  let selected = (input.sea || []).find((v) => v.id === run.selectedSeaId);
+  const seaHealthy = (vehicle) => vehicle && vehicle.available !== false && Number(vehicle.battery) >= Number(run.op.minSeaBattery || 0);
+  if (["SEA_DISPATCH", "JOINT_VERIFY"].includes(run.phase) && !seaHealthy(selected)) {
+    const previousId = run.selectedSeaId;
+    if (!run.returningSeaIds.includes(previousId)) run.returningSeaIds.push(previousId);
+    emit(run, events, `return:${previousId}`);
+    if (run.reassignedSea) {
+      fail(run, "İDA yeniden atama başarısız", events);
+      return { events };
+    }
+    const replacement = selectNearestSeaVehicle((input.sea || []).filter((v) => v.id !== previousId), {
+      ...run.target,
+      minBattery: run.op.minSeaBattery,
+    });
+    if (!replacement) {
+      fail(run, "İDA yeniden atama başarısız", events);
+      return { events };
+    }
+    run.reassignedSea = true;
+    run.selectedSeaId = replacement.id;
+    run.dispatchedAt = run.elapsed;
+    transition(run, "SEA_DISPATCH");
+    emit(run, events, `dispatch:${replacement.id}`);
+    selected = replacement;
+  }
   if (run.phase === "SEA_DISPATCH" && selected && distance(selected, run.target) <= run.op.verifyRadius) {
     run.verifyAt = run.elapsed;
     transition(run, "JOINT_VERIFY");

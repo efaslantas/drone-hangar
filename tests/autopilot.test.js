@@ -45,3 +45,15 @@ test("route progress reports a vehicle stuck after five seconds without improvem
   assert.equal(tracker.stuck, false);
   assert.equal(tracker.stuckFor, 0);
 });
+
+test("route progress does not call steady sub-threshold movement stuck", () => {
+  const state = { x: 0, z: 0 };
+  const target = { x: 20, z: 0 };
+  let tracker = null;
+  for (let i = 0; i < 60 * 6; i++) {
+    state.x += 2 / 60;
+    tracker = routeProgress(state, target, tracker, 1 / 60);
+  }
+  assert.equal(tracker.stuck, false);
+  assert.ok(tracker.distance < 9);
+});

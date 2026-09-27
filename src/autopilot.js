@@ -46,13 +46,14 @@ export function airCommand(state, target) {
 
 export function routeProgress(state, target, previous, dt, stuckLimit = 5) {
   const distance = Math.hypot(Number(state?.x) - Number(target?.x), Number(state?.z) - Number(target?.z));
-  const priorDistance = typeof previous === "number" ? previous : previous?.distance;
+  const priorDistance = typeof previous === "number" ? previous : previous?.referenceDistance ?? previous?.distance;
   const priorStuck = typeof previous === "object" && previous ? Number(previous.stuckFor) || 0 : 0;
   const improved = !Number.isFinite(priorDistance) || distance < priorDistance - 0.25;
   const stuckFor = improved ? 0 : priorStuck + Math.max(0, Number(dt) || 0);
   return {
     distance,
     previousDistance: distance,
+    referenceDistance: improved ? distance : priorDistance,
     stuckFor,
     stuck: stuckFor >= stuckLimit,
   };

@@ -898,9 +898,13 @@ button:focus-visible, a:focus-visible, select:focus-visible, input:focus-visible
 .autonomy-vehicle b, .autonomy-vehicle span { display: block; }
 .autonomy-vehicle span { margin-top: 4px; color: var(--dim); font: 10px/1.2 ui-monospace, monospace; }
 .autonomy-vehicle.manual { border-color: var(--accent); }
+.autonomy-vehicle.active { outline: 2px solid var(--nav, #83c5d5); outline-offset: 1px; }
 .autonomy-actions { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
 .autonomy-actions button { min-height: 36px; flex: 1 1 96px; background: #1b303e; color: var(--text); border: 1px solid #42606f; border-radius: 6px; }
 .autonomy-actions button.danger { color: #ffc2b6; border-color: #8b453b; }
+body.touch #flight.autonomy-active:not(.autonomy-manual) :is(#sticks, #btn-fire-touch, #btn-arm-touch),
+body.touch #flight.menu-open :is(#sticks, #btn-fire-touch, #btn-arm-touch, #nav, #rotate-hint) { visibility: hidden; }
+body.touch #flight-bar #autonomy-panel { position: static; width: 100%; max-height: 48vh; margin-top: 10px; overflow: auto; }
 
 #result-card {
   position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 7;
@@ -951,7 +955,8 @@ button:focus-visible, a:focus-visible, select:focus-visible, input:focus-visible
   .stick .lbl { bottom: auto; top: -16px; }
   #flight.menu-open :is(#sticks, #btn-fire-touch, #btn-arm-touch, #nav, #rotate-hint),
   #flight.has-result :is(#sticks, #btn-fire-touch, #btn-arm-touch, #nav, #rotate-hint, #op-hud) { visibility: hidden; }
-  #autonomy-panel { left: max(8px, var(--sal)); bottom: max(8px, var(--sab)); width: min(330px, calc(100% - 16px)); max-height: 48vh; overflow: auto; }
+  #flight.autonomy-active:not(.autonomy-manual) :is(#sticks, #btn-fire-touch, #btn-arm-touch) { visibility: hidden; }
+  #flight-bar #autonomy-panel { position: static; width: 100%; max-height: 48vh; margin-top: 10px; overflow: auto; }
 }
 @media (max-width: 480px) and (orientation: portrait) {
   /* Narrow portrait: the 150 px compass no longer fits between the two corner boxes. */

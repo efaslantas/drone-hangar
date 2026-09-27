@@ -3,14 +3,14 @@ import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
 import { CATALOG, droneById, paceInfo } from "./catalog.js";
 import { createState, step, rotateVec, hoverThrottle, yawErrTo, withPayload } from "./physics.js";
 import { poll, consume, bindStick, bindHold, setHoldFire, bindFlightTouches, bindTap, setControlProfile, setGamepadCalibration, captureGamepadCalibration } from "./input.js";
-import { makeDrone, spinProps, makeNametag, droneSvg, setCamPodTilt } from "./models.js";
+import { makeDrone, makeSurfaceVehicle, spinProps, makeNametag, droneSvg, setCamPodTilt } from "./models.js";
 import { buildWorld, clearWorld, MAPS, bakeEnv, tickWorld, windFor } from "./world.js";
 import { ROOMS } from "./rooms.js";
 import { connect } from "./net.js";
 import { createGfx, wantsWebGPU, setGpuPreference, hasWebGPU, gfxLabel } from "./gfx.js";
 import { createShot, stepShots, applyHits, makeBot, stepBot, canFire, aimDir, PLAYER_HP, BOT_HP } from "./combat.js";
 import { startBillboard } from "./billboard.js";
-import { TRACKS, FREE, TEAM, opById, ROOM_OP, wantsBots, playerCanBeHit, trackOf, trackDone, trackGate, isOpOpen, nextInTrack, firstOpenOp } from "./missions.js";
+import { TRACKS, FREE, TEAM, AUTONOMY_COAST_RESPONSE, opById, ROOM_OP, wantsBots, playerCanBeHit, trackOf, trackDone, trackGate, isOpOpen, nextInTrack, firstOpenOp } from "./missions.js";
 import { TEAM_CSS, TEAM_SPAWN, scoreLine, matchStatus, enemyTargets, resultModel } from "./team.js";
 import { loadProgress, saveWin, saveLap, saveAssessment } from "./progress.js";
 import { createRun, tickRun, canSwapBattery, nextGoal } from "./goals.js";
@@ -22,6 +22,10 @@ import { ambience } from "./ambience.js";
 import { createTrace, recordTrace, sampleTrace, traceCount, traceDuration, saveGhost, loadGhost, encodeTrace, decodeTrace } from "./ghost.js";
 import { createSimulationClock, advanceSimulationClock, resetSimulationClock } from "./simulation-clock.js";
 import { createAssessment, sampleAssessment, finalizeAssessment } from "./assessment.js";
+import { abortAutonomy, autonomyReport, createAutonomyRun, pauseAutonomy, returnToAutonomy, takeControl, tickAutonomy } from "./autonomy.js";
+import { airCommand, surfaceCommand } from "./autopilot.js";
+import { createSurfaceState, stepSurface } from "./surface.js";
+import { autonomyViewModel, clearAutonomyPanel, renderAutonomyPanel } from "./autonomy-view.js";
 
 const HOME_LAT = 41.1758;
 const HOME_LON = 29.6113;
@@ -104,6 +108,7 @@ const replayPose = {};
 let swapChirp = false;
 let lowChirp = false;
 let deadPackTimer = 0;
+let autonomy = null;
 const simClock = createSimulationClock(120, 0.1, 16);
 const goalRoot = new THREE.Group();
 let myId = "";
@@ -124,6 +129,7 @@ const _aimScreen = new THREE.Vector3();
 const _chaseToCraft = new THREE.Vector3();
 const _chaseToAim = new THREE.Vector3();
 const _chaseLook = new THREE.Vector3();
+const AUTONOMY_SEA_SPEC = { maxSpeed: 8, acceleration: 3.6, drag: 0.62, turnRate: 1.05, batteryDrain: 0.018 };
 
 function createTrainingRun(op) {
   const next = createRun(op);
@@ -432,6 +438,7 @@ function paintOpsCards() {
   card(FREE, "Serbest");
   const daily = dailyOp(dailyId());
   card(daily, `Günün görevi · ${daily.dateLabel}`, " daily");
+  card(AUTONOMY_COAST_RESPONSE, "Otonom Operasyon", " autonomy");
   for (const track of TRACKS) {
     const done = trackDone(track, progress);
     const complete = done === track.ops.length;
@@ -946,6 +953,146 @@ function clearGoals() {
   cargo = [];
 }
 
+function disposeObject(root) {
+  root?.traverse?.((obj) => {
+    obj.geometry?.dispose?.();
+    const materials = Array.isArray(obj.material) ? obj.material : [obj.material];
+    for (const material of materials) material?.dispose?.();
+  });
+}
+
+function clearAutonomy() {
+  if (autonomy?.root) {
+    scene.remove(autonomy.root);
+    disposeObject(autonomy.root);
+  }
+  autonomy = null;
+  clearAutonomyPanel(document.getElementById("autonomy-panel"));
+}
+
+function routeLine(points, color, y = 0.2) {
+  const geometry = new THREE.BufferGeometry().setFromPoints(points.map((p) => new THREE.Vector3(p.x, p.y ?? y, p.z)));
+  return new THREE.Line(geometry, new THREE.LineBasicMaterial({ color, transparent: true, opacity: 0.78 }));
+}
+
+function setupAutonomy(op) {
+  clearAutonomy();
+  if (op.kind !== "autonomy") return;
+  const root = new THREE.Group();
+  root.name = "autonomy-operation";
+  const task = createAutonomyRun(op, 0);
+  const boats = op.seaVehicles.map((cfg) => {
+    const surface = createSurfaceState(cfg.id, cfg.x, cfg.z, cfg.heading);
+    surface.battery = cfg.battery;
+    const mesh = makeSurfaceVehicle(cfg);
+    mesh.position.set(surface.x, 0, surface.z);
+    root.add(mesh);
+    const trail = routeLine([{ x: surface.x, z: surface.z }, { x: surface.x, z: surface.z }], cfg.id === "ida-1" ? 0x65d6ff : 0xffb020, 0.12);
+    root.add(trail);
+    return { cfg, state: surface, mesh, trail, points: [{ x: surface.x, z: surface.z }] };
+  });
+  root.add(routeLine(op.airRoute, 0x8ee7ff, 0.32));
+  for (const boat of boats) root.add(routeLine([boat.state, task.target], 0xffb020, 0.14));
+  const incident = new THREE.Mesh(
+    new THREE.TorusGeometry(op.verifyRadius, 0.16, 8, 36),
+    new THREE.MeshBasicMaterial({ color: 0xff553d, transparent: true, opacity: 0.82 }),
+  );
+  incident.rotation.x = -Math.PI / 2;
+  incident.position.set(task.target.x, 0.18, task.target.z);
+  root.add(incident);
+  scene.add(root);
+  autonomy = { task, root, boats, routeIndex: 0, now: 0, trailAcc: 0, incident };
+  renderAutonomyPanel(document.getElementById("autonomy-panel"), autonomyViewModel(task, autonomyVehicles()));
+}
+
+function autonomyVehicles() {
+  if (!autonomy) return [];
+  return [
+    { id: "iha-1", role: "İHA", speed: Math.hypot(state.vx, state.vy, state.vz), battery: state.battery * 100 },
+    ...autonomy.boats.map((boat) => ({ id: boat.state.id, role: "İDA", speed: boat.state.speed, battery: boat.state.battery })),
+  ];
+}
+
+function autonomyAirTarget() {
+  if (!autonomy) return null;
+  if (["DETECTED", "SEA_DISPATCH", "JOINT_VERIFY", "COMPLETE"].includes(autonomy.task.phase)) return autonomy.task.target;
+  const route = autonomy.task.op.airRoute;
+  const target = route[autonomy.routeIndex % route.length];
+  if (Math.hypot(state.x - target.x, state.y - target.y, state.z - target.z) < 3) autonomy.routeIndex = (autonomy.routeIndex + 1) % route.length;
+  return target;
+}
+
+function stepAutonomyPhysics(simDt, input, activeSpec) {
+  const controlled = autonomy.task.controlledByVehicle;
+  const flightInput = controlled === "iha-1" ? input : airCommand(state, autonomyAirTarget(), activeSpec);
+  step(state, flightInput, activeSpec, simDt, play);
+  for (const boat of autonomy.boats) {
+    let command = { throttle: 0, steer: 0 };
+    if (controlled === boat.state.id) command = { throttle: Math.max(0, input.lift || 0), steer: input.yaw || 0 };
+    else if (boat.state.id === autonomy.task.selectedSeaId && ["SEA_DISPATCH", "JOINT_VERIFY"].includes(autonomy.task.phase)) {
+      command = surfaceCommand(boat.state, autonomy.task.target, AUTONOMY_SEA_SPEC);
+    }
+    stepSurface(boat.state, command, AUTONOMY_SEA_SPEC, simDt, play.water);
+  }
+}
+
+function updateAutonomyScene(dt) {
+  if (!autonomy) return;
+  autonomy.trailAcc += dt;
+  for (const boat of autonomy.boats) {
+    boat.mesh.position.set(boat.state.x, 0, boat.state.z);
+    boat.mesh.rotation.y = boat.state.heading;
+    boat.mesh.userData.rudder.rotation.y = -boat.state.turnRate * 0.45;
+    if (autonomy.trailAcc >= 0.5) {
+      boat.points.push({ x: boat.state.x, z: boat.state.z });
+      const cap = touchUi ? 80 : 240;
+      if (boat.points.length > cap) boat.points.shift();
+      boat.trail.geometry.dispose();
+      boat.trail.geometry = new THREE.BufferGeometry().setFromPoints(boat.points.map((p) => new THREE.Vector3(p.x, 0.12, p.z)));
+    }
+  }
+  if (autonomy.trailAcc >= 0.5) autonomy.trailAcc = 0;
+  const pulse = 1 + Math.sin(autonomy.now * 4) * 0.08;
+  autonomy.incident.scale.setScalar(pulse);
+}
+
+function tickAutonomyFrame(dt) {
+  if (!autonomy || !run) return;
+  autonomy.now += dt;
+  tickAutonomy(autonomy.task, {
+    now: autonomy.now,
+    air: state,
+    sea: autonomy.boats.map((boat) => boat.state),
+  });
+  run.t = autonomy.task.elapsed;
+  if (autonomy.task.phase === "COMPLETE") {
+    run.won = true;
+    run.reason = autonomy.task.reason;
+  } else if (["FAILED", "ABORTED"].includes(autonomy.task.phase)) {
+    run.lost = true;
+    run.reason = autonomy.task.reason;
+  }
+  run.autonomyReport = autonomyReport(autonomy.task);
+  renderAutonomyPanel(document.getElementById("autonomy-panel"), autonomyViewModel(autonomy.task, autonomyVehicles()));
+}
+
+function finishAutonomyResult() {
+  if (!autonomy || !run || autonomy.reported) return;
+  if (!["COMPLETE", "FAILED", "ABORTED"].includes(autonomy.task.phase)) return;
+  autonomy.reported = true;
+  const won = autonomy.task.phase === "COMPLETE";
+  run.won = won;
+  run.lost = !won;
+  run.reason = autonomy.task.reason;
+  run.t = autonomy.task.elapsed;
+  run.autonomyReport = autonomyReport(autonomy.task);
+  net.sendResult(run.op.id, run.op.name, won, run.t, undefined, { ranked: false });
+  if (won) sfx.win();
+  else sfx.fail();
+  if (ghost) ghost.mesh.visible = false;
+  showResult(run, null);
+}
+
 function ringMesh(g, color, { from = null, stepIndex = -1 } = {}) {
   const m = new THREE.Mesh(
     new THREE.TorusGeometry(g.r || 2.4, 0.1, 8, 22),
@@ -1128,6 +1275,7 @@ function spawn() {
     spawnBots(op.waves[0]);
   } else if (wantsBots(op)) spawnBots(op.bots || (touchUi ? 3 : 5));
   else spawnBots(0);
+  setupAutonomy(op);
   snapCam();
 }
 
@@ -1199,7 +1347,7 @@ function startFlight() {
   if (run && !countdown) net.sendStart(op.id, op.name);
   replay = null;
   lastResult = null;
-  trace = run && !countdown ? createTrace() : null;
+  trace = run && !countdown && op.kind !== "autonomy" ? createTrace() : null;
   loadGhostFor(run ? op : null);
   score = 0;
   buildGoals(op);
@@ -1441,20 +1589,29 @@ function showResult(r, prevBest) {
   if (!card || !r) return;
   const won = !!r.won;
   const opId = r.op.id;
-  const record = won && (prevBest == null || r.t < prevBest);
+  const autonomous = r.op.kind === "autonomy";
+  const record = !autonomous && won && (prevBest == null || r.t < prevBest);
   card.classList.toggle("lost", !won);
   document.getElementById("result-kicker").textContent = won ? "GÖREV TAMAM" : "BAŞARISIZ";
   document.getElementById("result-title").textContent = r.op.name;
   document.getElementById("result-time").innerHTML = `${esc(fmtTime(r.t))}${record ? "<small>KİŞİSEL REKOR</small>" : ""}`;
   const rows = [];
   rows.push({ k: "Sonuç", v: won ? "Tamamlandı" : r.reason || "başarısız" });
-  const best = progress.best?.[opId];
-  rows.push({ k: "En iyi süre", v: best != null ? fmtTime(best) : "—", cls: record ? "record" : "" });
-  if (won && prevBest != null) {
+  const best = autonomous ? null : progress.best?.[opId];
+  if (!autonomous) rows.push({ k: "En iyi süre", v: best != null ? fmtTime(best) : "—", cls: record ? "record" : "" });
+  if (!autonomous && won && prevBest != null) {
     const d = r.t - prevBest;
     rows.push({ k: "Rekora fark", v: `${d >= 0 ? "+" : "−"}${fmtTime(Math.abs(d))}` });
   }
-  if (r.op.kind === "race") {
+  if (autonomous && r.autonomyReport) {
+    const report = r.autonomyReport;
+    const time = (value) => value == null ? "—" : fmtTime(value);
+    rows.push({ k: "Toplam", v: time(report.totalSeconds) });
+    rows.push({ k: "Tespit", v: time(report.detectionSeconds) });
+    rows.push({ k: "İDA sevk", v: time(report.dispatchSeconds) });
+    rows.push({ k: "Müdahale", v: time(report.interventionSeconds) });
+    rows.push({ k: "Görev İDA'sı", v: report.selectedSeaId || "—" });
+  } else if (r.op.kind === "race") {
     rows.push({ k: "Kapı", v: `${r.gatesDone}/${(r.op.gates?.length || 0) * (r.op.laps || 3)}` });
     const bl = progress.bestLap?.[opId];
     rows.push({ k: "En iyi tur", v: bl != null ? fmtTime(bl) : "—", cls: r.bestLap != null && bl != null && r.bestLap <= bl ? "record" : "" });
@@ -1467,7 +1624,7 @@ function showResult(r, prevBest) {
     rows.push({ k: "Koli", v: `${r.delivered}/${r.parcels.length}` });
     if (r.dropped) rows.push({ k: "Düşen", v: String(r.dropped) });
   }
-  if (r.report) {
+  if (r.report && !autonomous) {
     rows.push({ k: "Eğitim puanı", v: `${r.report.total}/100`, cls: r.report.total >= 80 ? "record" : "" });
     rows.push({ k: "Rota / kontrol", v: `${r.report.route} / ${r.report.control}` });
     rows.push({ k: "Stabilite / iniş", v: `${r.report.stability} / ${r.report.landing}` });
@@ -1527,6 +1684,7 @@ function backHangar() {
   flightEl.style.top = "";
   clearShots();
   clearGoals();
+  clearAutonomy();
   run = null;
   for (const b of bots) if (b.mesh) scene.remove(b.mesh);
   bots = [];
@@ -1570,6 +1728,19 @@ bindTap(document.getElementById("btn-help"), () => {
 bindTap(document.getElementById("help-close"), () => setHelp(false));
 bindTap(document.getElementById("rotate-hint"), (e) => e.currentTarget.classList.toggle("open"));
 
+const autonomyPanel = document.getElementById("autonomy-panel");
+bindTap(autonomyPanel?.querySelector('[data-action="pause"]'), () => autonomy && pauseAutonomy(autonomy.task, true));
+bindTap(autonomyPanel?.querySelector('[data-action="resume"]'), () => autonomy && pauseAutonomy(autonomy.task, false));
+bindTap(autonomyPanel?.querySelector('[data-action="take-air"]'), () => autonomy && takeControl(autonomy.task, "iha-1"));
+bindTap(autonomyPanel?.querySelector('[data-action="take-sea"]'), () => {
+  if (!autonomy) return;
+  takeControl(autonomy.task, autonomy.task.selectedSeaId || autonomy.boats[0]?.state.id);
+});
+bindTap(autonomyPanel?.querySelector('[data-action="return"]'), () => {
+  if (autonomy?.task.controlledByVehicle) returnToAutonomy(autonomy.task, autonomy.task.controlledByVehicle);
+});
+bindTap(autonomyPanel?.querySelector('[data-action="abort"]'), () => autonomy && abortAutonomy(autonomy.task));
+
 const flightBar = document.getElementById("flight-bar");
 const menuFab = document.getElementById("menu-fab");
 function setPlayMenu(on) {
@@ -1590,7 +1761,7 @@ function retryOp() {
   if (run && !countdown) net.sendStart(op.id, op.name);
   replay = null;
   lastResult = null;
-  trace = run && !countdown ? createTrace() : null;
+  trace = run && !countdown && op.kind !== "autonomy" ? createTrace() : null;
   loadGhostFor(run ? op : null);
   prevStep = -1;
   prevGates = 0;
@@ -1635,6 +1806,18 @@ function applyPose(obj, s) {
 }
 
 function followCam(dt, now) {
+  const controlledBoat = autonomy?.boats.find((boat) => boat.state.id === autonomy.task.controlledByVehicle);
+  if (controlledBoat) {
+    const boat = controlledBoat.state;
+    const fx = Math.sin(boat.heading);
+    const fz = -Math.cos(boat.heading);
+    fpvCam.position.set(boat.x - fx * 1.8, 1.35, boat.z - fz * 1.8);
+    fpvCam.lookAt(boat.x + fx * 16, 0.7, boat.z + fz * 16);
+    chaseCam.position.set(boat.x - fx * 7, 4.2, boat.z - fz * 7);
+    chaseCam.lookAt(boat.x + fx * 4, 0.5, boat.z + fz * 4);
+    _aimTarget.set(boat.x + fx * 80, 0.7, boat.z + fz * 80);
+    return;
+  }
   const [ox, oy, oz] = rotateVec(state.qw, state.qx, state.qy, state.qz, 0, spec.size * 0.55, spec.size * 0.12);
   _targetPos.set(state.x + ox, state.y + oy, state.z + oz);
   _targetQuat.set(state.qx, state.qy, state.qz, state.qw);
@@ -1744,6 +1927,7 @@ function loop(now) {
     if (consume("help")) setHelp(!helpOpen);
     if (consume("mute")) toggleMute();
 
+    if (autonomy?.task.paused) holding = true;
     input.angleMode = angleOverride;
     if (!state.armed && state.y <= spec.size * 0.5) {
       input.lift = -1;
@@ -1752,7 +1936,10 @@ function loop(now) {
     // With a parcel slung underneath the airframe flies its loaded profile.
     if (!holding) {
       const activeSpec = loadedSpec && run?.carrying != null ? loadedSpec : spec;
-      advanceSimulationClock(simClock, dt, (simDt) => step(state, input, activeSpec, simDt, play));
+      advanceSimulationClock(simClock, dt, (simDt) => {
+        if (autonomy) stepAutonomyPhysics(simDt, input, activeSpec);
+        else step(state, input, activeSpec, simDt, play);
+      });
     } else {
       resetSimulationClock(simClock);
     }
@@ -1799,6 +1986,11 @@ function loop(now) {
     } else if (state.battery > 0.28) lowChirp = false;
     tickWorld(scene, now * 0.001, dt, state);
     applyPose(craft, state);
+    if (autonomy) {
+      tickAutonomyFrame(dt);
+      updateAutonomyScene(dt);
+      finishAutonomyResult();
+    }
     spinProps(craft, state.armed ? state.throttleOut : 0.04, dt);
     craft.visible = chase;
     followCam(dt, now);
@@ -1954,7 +2146,7 @@ function loop(now) {
     ambience.tick(dt, ambienceEnv());
     if (run && !run.won && !run.lost) poseGhost(run.t, dt);
 
-    if (run && !run.won && !run.lost && !holding) {
+    if (run && run.op.kind !== "autonomy" && !run.won && !run.lost && !holding) {
       if (trace) recordTrace(trace, run.t, state);
       sampleAssessment(run.assessment, state, input, dt);
       tickRun(run, {

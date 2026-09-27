@@ -883,6 +883,25 @@ button:focus-visible, a:focus-visible, select:focus-visible, input:focus-visible
 #countdown.go b { color: #9bd5b3; text-shadow: 0 0 34px rgba(155,213,179,.45), 0 2px 6px #000; }
 
 /* Post-flight result card */
+#autonomy-panel {
+  position: absolute; left: max(12px, var(--sal)); bottom: max(18px, var(--sab)); z-index: 5;
+  width: min(360px, calc(100% - 24px)); padding: 12px; color: var(--text);
+  background: rgba(10,24,30,.9); border: 1px solid rgba(131,197,213,.48); border-radius: 10px;
+  box-shadow: 0 12px 36px #0007; pointer-events: auto;
+}
+.autonomy-head { display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; align-items: center; }
+.autonomy-head .bay-label { grid-column: 1 / -1; color: var(--nav, #83c5d5); }
+.autonomy-head time { font: 700 13px/1 ui-monospace, monospace; color: var(--accent); }
+#autonomy-reason { margin: 6px 0; color: var(--warn); font-size: 12px; }
+#autonomy-vehicles { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.autonomy-vehicle { min-height: 48px; padding: 7px; text-align: left; background: #152832; color: var(--text); border: 1px solid #36505c; border-radius: 6px; }
+.autonomy-vehicle b, .autonomy-vehicle span { display: block; }
+.autonomy-vehicle span { margin-top: 4px; color: var(--dim); font: 10px/1.2 ui-monospace, monospace; }
+.autonomy-vehicle.manual { border-color: var(--accent); }
+.autonomy-actions { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.autonomy-actions button { min-height: 36px; flex: 1 1 96px; background: #1b303e; color: var(--text); border: 1px solid #42606f; border-radius: 6px; }
+.autonomy-actions button.danger { color: #ffc2b6; border-color: #8b453b; }
+
 #result-card {
   position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 7;
   width: min(400px, calc(100% - 32px)); max-height: calc(100% - 24px); overflow: auto;
@@ -932,6 +951,7 @@ button:focus-visible, a:focus-visible, select:focus-visible, input:focus-visible
   .stick .lbl { bottom: auto; top: -16px; }
   #flight.menu-open :is(#sticks, #btn-fire-touch, #btn-arm-touch, #nav, #rotate-hint),
   #flight.has-result :is(#sticks, #btn-fire-touch, #btn-arm-touch, #nav, #rotate-hint, #op-hud) { visibility: hidden; }
+  #autonomy-panel { left: max(8px, var(--sal)); bottom: max(8px, var(--sab)); width: min(330px, calc(100% - 16px)); max-height: 48vh; overflow: auto; }
 }
 @media (max-width: 480px) and (orientation: portrait) {
   /* Narrow portrait: the 150 px compass no longer fits between the two corner boxes. */

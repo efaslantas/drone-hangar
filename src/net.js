@@ -71,9 +71,9 @@ export function connect({ onHello, onJoin, onLeave, onState, onStatus, onRooms, 
       if (!alive || !ws || ws.readyState !== 1) return;
       ws.send(JSON.stringify({ t: "start", opId, opName }));
     },
-    sendResult(opId, opName, won, seconds, laps) {
+    sendResult(opId, opName, won, seconds, laps, { ranked = true } = {}) {
       if (!alive || !ws || ws.readyState !== 1) return;
-      const msg = { t: "result", opId, opName, won: !!won, seconds };
+      const msg = { t: "result", opId, opName, won: !!won, seconds, ranked: ranked !== false };
       if (Array.isArray(laps) && laps.length) msg.laps = laps.map((v) => Math.round(v * 100) / 100);
       ws.send(JSON.stringify(msg));
     },

@@ -299,6 +299,23 @@
           <div class="crash" id="osd-crash" hidden></div>
           <div id="countdown" hidden><b id="countdown-n">3</b><span id="countdown-l">HAZIR OL</span></div>
         </div>
+        <section id="autonomy-panel" data-ui hidden>
+          <div class="autonomy-head">
+            <span class="bay-label">OTONOM OPERASYON</span>
+            <b id="autonomy-status">Hazır</b>
+            <time id="autonomy-time">00:00</time>
+          </div>
+          <p id="autonomy-reason"></p>
+          <div id="autonomy-vehicles"></div>
+          <div class="autonomy-actions">
+            <button type="button" data-action="pause">Duraklat</button>
+            <button type="button" data-action="resume" hidden>Devam</button>
+            <button type="button" data-action="take-air">İHA'yı devral</button>
+            <button type="button" data-action="take-sea">İDA'yı devral</button>
+            <button type="button" data-action="return" hidden>Otonomiye ver</button>
+            <button type="button" class="danger" data-action="abort">Görevi iptal et</button>
+          </div>
+        </section>
         <section id="result-card" data-ui hidden>
           <span class="bay-label" id="result-kicker">GÖREV TAMAM</span>
           <h2 id="result-title">Yarış</h2>

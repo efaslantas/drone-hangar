@@ -149,6 +149,18 @@ test("lost result logs 'lost' and does not touch the leaderboard", () => {
   assert.equal(getLeaderboard().find((o) => o.opId === "op4"), undefined);
 });
 
+test("unranked autonomous result is logged but never enters the leaderboard", () => {
+  const hub = openRoom();
+  const a = hub.connect();
+  const opId = `autonomy-unranked-${Date.now()}`;
+  a.send(JSON.stringify({ t: "join", room: "hangar", name: "Ada", drone: "camera" }));
+  a.send(JSON.stringify({ t: "start", opId, opName: "Kıyı" }));
+  a.send(JSON.stringify({ t: "result", opId, opName: "Kıyı", won: true, ranked: false }));
+  assert.equal(getEvents(1)[0].type, "win");
+  assert.equal(getEvents(1)[0].ranked, false);
+  assert.equal(getLeaderboard().find((o) => o.opId === opId), undefined);
+});
+
 test("team room: hello carries the side and the match, a hit flows server → both pilots, other rooms ignore hits", () => {
   const hub = openRoom();
   const a = hub.connect();

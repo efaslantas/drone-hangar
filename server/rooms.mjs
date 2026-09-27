@@ -259,12 +259,13 @@ export function attachRooms(wss) {
         if (!started) return;
         const seconds = Math.max(0, (now - started) / 1000);
         const won = !!msg.won;
+        const ranked = msg.ranked !== false;
         // Lap splits are the client's own stopwatch. They only get stored when
         // they add up to the server-timed run (start→result), so a bogus
         // "0.1 s lap" can't ride in on an otherwise honest finish.
         const bestLap = plausibleBestLap(msg.laps, seconds);
-        logEvent({ type: won ? "win" : "lost", id, room, name: meta.name, opId, opName, seconds, bestLap, ip, geo });
-        if (won) recordScore({ name: meta.name, opId, opName, seconds, ...(bestLap != null ? { bestLap } : {}) });
+        logEvent({ type: won ? "win" : "lost", id, room, name: meta.name, opId, opName, seconds, bestLap, ranked, ip, geo });
+        if (won && ranked) recordScore({ name: meta.name, opId, opName, seconds, ...(bestLap != null ? { bestLap } : {}) });
       }
     });
 

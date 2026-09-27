@@ -1,4 +1,4 @@
-import { yawErrTo } from "./physics.js";
+import { yawFromQ } from "./physics.js";
 
 function clamp(value, low, high) {
   return Math.max(low, Math.min(high, value));
@@ -30,11 +30,15 @@ export function airCommand(state, target) {
   const dz = Number(target?.z) - Number(state?.z);
   const horizontal = Math.hypot(dx, dz);
   const altitudeError = Number(target?.y ?? state?.y) - Number(state?.y);
+  const desiredYaw = Math.atan2(-dx, -dz);
+  const yawError = wrapPi(desiredYaw - yawFromQ(state.qw, state.qx, state.qy, state.qz));
+  const alignment = clamp(1 - Math.abs(yawError) / 0.7, 0, 1);
+  const pitch = horizontal < 1 ? 0 : clamp(horizontal * 0.025, 0, 0.5) * alignment;
   return {
-    lift: clamp(altitudeError * 0.18, -0.45, 0.45),
+    lift: clamp(altitudeError * 0.24 + pitch * 0.28, -0.45, 0.65),
     r2: 0,
-    yaw: clamp(yawErrTo(state, target.x, target.z) * 1.4, -1, 1),
-    pitch: horizontal < 1 ? 0 : clamp(horizontal * 0.025, 0, 0.5),
+    yaw: clamp(-yawError * 1.4, -1, 1),
+    pitch,
     roll: 0,
     angleMode: true,
   };

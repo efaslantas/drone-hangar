@@ -23,6 +23,7 @@ Hangar → **2 · Oyun modu**. Dört bağımsız pist; pist içinde kilit bir ö
 - **Görev:** Keşif (kent, 4 işaret) → Arama-kurtarma (gece orman, 5 nokta) → Menzil (7", uzak kapılar, ortada pade inip pil değiştir) → Kargo (heavy lift, 3 koli: alçal-al, çatı/kule/pade bırak; yük gazı ve pili yer, çarpınca koli düşer)
 - **Takım savaşı** (`team` odası, her zaman açık): sunucu Kırmızı–Mavi dağıtır (dengeli), can/düşme/skor/saat sunucuda. İki pilot girince 3 dakikalık maç başlar, 20 sayı biter, 8 sn ara, yeniden. Rakibi vurunca istemci "isabet" der, sunucu menzil (≤190 m), sıra, taraf ve canlılık kontrolüyle sayar; düşen 4 sn sonra yeniden doğar. Pist haritası, taraflar apronun iki ucundan kalkar; rakip isim etiketi kırmızı/mavi, izleri görünür. `team-<ad>` odaları da takım odasıdır (özel maç).
 - **Günün görevi** (her zaman açık): rota tarihten türer (`daily-YYYY-MM-DD`, UTC gün; 03:00 TR'de yenilenir). Harita, gövde (kilitli), 7-9 kapı, bazen bir hover küresi, rüzgâr ve gece seed'den gelir; herkes aynı rotayı aynı gövdeyle uçar, sıralama o güne özel. Ana ekranda "Günün Görevi" düğmesi.
+- **Otonom Operasyon** (her zaman açık, sıralamasız): "Kıyı Gözetleme ve Müdahale" kartını başlat. İHA kıyıyı tarar, olayı bulunca en yakın yeterli bataryalı İDA otomatik sevk edilir ve iki araç olay noktasını birlikte doğrular. Panelden görevi duraklatabilir, İHA'yı veya seçili İDA'yı devralabilir, kontrolü tekrar otonomiye verebilir ya da görevi iptal edebilirsin. İlk sürüm tek operatörlü arcade simülasyondur; gerçek SITL/MAVLink bağlantısı içermez.
 
 **Serbest** = eski deathmatch. **Bot Antrenmanı** aynı deathmatch, ayrı oda — kalabalık genel lobiden bağımsız pratik için. **Gece**, **Gerçekçi acro**, kamera açısı, ateş hızı hangarda. Gerçekçi acro kapalıyken okul/angle aynı. Açıkken acro’da otomatik gaz yok.
 
@@ -41,3 +42,5 @@ Mode 2. Sol yaw+gaz (orta = hover), sağ pitch/roll.
 - **Klavye:** W/S irtifa, A/D yaw, oklar veya IJKL pitch/roll, F ateş, Space ARM, T mod, C kamera, R reset, H yardım, M ses, Esc (2x) hangar
 - **PS kol:** USB/BT, sayfaya tıkla + bir tuşa bas. Sol stick yaw+gaz, sağ pitch/roll, R2 punch, R1 ateş, ✕ ARM, ○ reset, △ mod, □ kamera
 - **Mobil tarayıcı:** yatay tut. Sol başparmak gaz+yaw, sağ pitch+roll, ATEŞ basılı, ☰ menü
+
+Otonom operasyonda devralınan araç aynı klavye/gamepad/mobil girdilerini kullanır. İDA için gaz ileri hareketi, yaw ise dümeni kontrol eder; "Otonomiye ver" seçildiğinde rota takibi kaldığı yerden sürer.

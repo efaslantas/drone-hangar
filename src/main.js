@@ -1015,7 +1015,9 @@ function autonomyVehicles() {
 
 function autonomyAirTarget() {
   if (!autonomy) return null;
-  if (["DETECTED", "SEA_DISPATCH", "JOINT_VERIFY", "COMPLETE"].includes(autonomy.task.phase)) return autonomy.task.target;
+  if (["DETECTED", "SEA_DISPATCH", "JOINT_VERIFY", "COMPLETE"].includes(autonomy.task.phase)) {
+    return { ...autonomy.task.target, y: autonomy.task.op.spawn.y };
+  }
   const route = autonomy.task.op.airRoute;
   const target = route[autonomy.routeIndex % route.length];
   if (Math.hypot(state.x - target.x, state.y - target.y, state.z - target.z) < 3) autonomy.routeIndex = (autonomy.routeIndex + 1) % route.length;
@@ -1073,7 +1075,9 @@ function tickAutonomyFrame(dt) {
     run.reason = autonomy.task.reason;
   }
   run.autonomyReport = autonomyReport(autonomy.task);
-  renderAutonomyPanel(document.getElementById("autonomy-panel"), autonomyViewModel(autonomy.task, autonomyVehicles()));
+  if (!autonomy.reported) {
+    renderAutonomyPanel(document.getElementById("autonomy-panel"), autonomyViewModel(autonomy.task, autonomyVehicles()));
+  }
 }
 
 function finishAutonomyResult() {
@@ -1090,6 +1094,7 @@ function finishAutonomyResult() {
   if (won) sfx.win();
   else sfx.fail();
   if (ghost) ghost.mesh.visible = false;
+  document.getElementById("autonomy-panel").hidden = true;
   showResult(run, null);
 }
 

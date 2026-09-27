@@ -58,3 +58,16 @@ export function routeProgress(state, target, previous, dt, stuckLimit = 5) {
     stuck: stuckFor >= stuckLimit,
   };
 }
+
+export function routeCommand(vehicle, route, specs = {}) {
+  const state = vehicle?.state || vehicle;
+  const target = route?.points?.[route?.currentIndex || 0];
+  if (!target) {
+    return vehicle?.kind === "sea"
+      ? { throttle: 0, steer: 0 }
+      : { lift: 0, r2: 0, yaw: 0, pitch: 0, roll: 0, angleMode: true };
+  }
+  return vehicle?.kind === "sea"
+    ? surfaceCommand(state, target, specs)
+    : airCommand(state, target, specs);
+}

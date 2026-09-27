@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { airCommand, routeProgress, surfaceCommand } from "../src/autopilot.js";
+import { airCommand, routeCommand, routeProgress, surfaceCommand } from "../src/autopilot.js";
 import { createSurfaceState, stepSurface } from "../src/surface.js";
 import { createState, step } from "../src/physics.js";
 import { droneById } from "../src/catalog.js";
@@ -56,4 +56,13 @@ test("route progress does not call steady sub-threshold movement stuck", () => {
   }
   assert.equal(tracker.stuck, false);
   assert.ok(tracker.distance < 9);
+});
+
+test("route command delegates by vehicle kind and holds without a current point", () => {
+  const empty = { points: [], currentIndex: 0 };
+  assert.deepEqual(routeCommand({ kind: "sea", state: { x: 0, z: 0 } }, empty, SEA_SPEC), { throttle: 0, steer: 0 });
+  const seaRoute = { points: [{ x: 0, z: -20 }], currentIndex: 0 };
+  assert.deepEqual(routeCommand({ kind: "sea", state: { x: 0, z: 0 } }, seaRoute, SEA_SPEC), surfaceCommand({ x: 0, z: 0 }, seaRoute.points[0], SEA_SPEC));
+  const airRoute = { points: [{ x: 0, y: 8, z: -20 }], currentIndex: 0 };
+  assert.deepEqual(routeCommand({ kind: "air", state: createState(0, 8, 0) }, airRoute, droneById("camera")), airCommand(createState(0, 8, 0), airRoute.points[0], droneById("camera")));
 });

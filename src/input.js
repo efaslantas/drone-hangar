@@ -61,6 +61,11 @@ export const flags = {
   hangar: false,
   help: false,
   mute: false,
+  vehiclePrev: false,
+  vehicleNext: false,
+  emergencyStop: false,
+  consoleHelp: false,
+  controlLost: false,
 };
 
 const held = {
@@ -71,11 +76,16 @@ const held = {
   hangar: false,
   help: false,
   mute: false,
+  vehiclePrev: false,
+  vehicleNext: false,
+  consoleHelp: false,
 };
 
 let gpIndex = null;
 let mouseFire = false;
 let holdFire = false;
+let emergencyChordAt = null;
+let emergencyChordFired = false;
 
 function edge(name, down) {
   if (down && !held[name]) flags[name] = true;
@@ -96,7 +106,10 @@ window.addEventListener("gamepadconnected", (e) => {
   gpIndex = e.gamepad.index;
 });
 window.addEventListener("gamepaddisconnected", (e) => {
-  if (gpIndex === e.gamepad.index) gpIndex = null;
+  if (gpIndex === e.gamepad.index) {
+    gpIndex = null;
+    flags.controlLost = true;
+  }
 });
 let lastTouchAt = 0;
 window.addEventListener(
@@ -125,7 +138,38 @@ function kaxis(pos, neg) {
   return v;
 }
 
-export function poll() {
+function rawTrigger(gp, buttonIndex) {
+  const button = gp?.buttons?.[buttonIndex];
+  const value = typeof button === "object" ? Number(button.value) || 0 : Number(button) || 0;
+  if (value > 0.02) return Math.min(1, value);
+  return button?.pressed ? 1 : 0;
+}
+
+export function consoleInput(rawInput, vehicleKind, profile = {}) {
+  const threshold = Number(profile.manualIntentThreshold) || 0.22;
+  if (vehicleKind === "sea") {
+    const command = {
+      throttle: clamp(-Number(rawInput?.viz?.ly || 0)),
+      steer: clamp(Number(rawInput?.viz?.rx || 0)),
+    };
+    return {
+      command,
+      manualIntent: Math.max(Math.abs(command.throttle), Math.abs(command.steer)) >= threshold,
+    };
+  }
+  const command = {
+    lift: clamp(Number(rawInput?.lift || 0)),
+    yaw: clamp(Number(rawInput?.yaw || 0)),
+    pitch: clamp(Number(rawInput?.pitch || 0)),
+    roll: clamp(Number(rawInput?.roll || 0)),
+  };
+  return {
+    command,
+    manualIntent: Object.values(command).some((value) => Math.abs(value) >= threshold),
+  };
+}
+
+export function poll(now = performance.now()) {
   let lift = 0;
   if (keys.has("KeyW")) lift += KEY_CLIMB;
   if (keys.has("KeyS")) lift -= KEY_DESCEND;
@@ -133,6 +177,8 @@ export function poll() {
   let pitch = expo(kaxis("ArrowUp", "ArrowDown") + kaxis("KeyI", "KeyK"), 0.2);
   let roll = expo(kaxis("ArrowRight", "ArrowLeft") + kaxis("KeyL", "KeyJ"), 0.2);
   let r2 = 0;
+  let l2 = 0;
+  let rawR2 = 0;
   let gpName = "";
   let viz = { lx: 0, ly: 0, rx: 0, ry: 0, r2: 0 };
 
@@ -145,6 +191,8 @@ export function poll() {
     const [rax, ray] = rightStickAxes(calibrated);
     const [rx, ry] = radialDeadzone(rax, ray, controlProfile.dead);
     const trig = triggerValue(gp);
+    l2 = rawTrigger(gp, 6);
+    rawR2 = trig;
     r2 = controlProfile.punch && trig > R2_ENGAGE ? trig : 0;
     yaw = expo(lx, controlProfile.expo) * controlProfile.rate;
     lift = -ly;
@@ -173,6 +221,20 @@ export function poll() {
   edge("mode", keys.has("KeyT") || (gp && gp.buttons[3]?.pressed));
   edge("help", keys.has("KeyH") || (gp && (gp.buttons[9]?.pressed || gp.buttons[8]?.pressed)));
   edge("mute", keys.has("KeyM"));
+  edge("vehiclePrev", Boolean(gp?.buttons[4]?.pressed));
+  edge("vehicleNext", Boolean(gp?.buttons[5]?.pressed));
+  edge("consoleHelp", Boolean(gp?.buttons[9]?.pressed));
+
+  if (l2 >= 0.9 && rawR2 >= 0.9) {
+    if (emergencyChordAt == null) emergencyChordAt = now;
+    if (!emergencyChordFired && now - emergencyChordAt >= 700) {
+      flags.emergencyStop = true;
+      emergencyChordFired = true;
+    }
+  } else {
+    emergencyChordAt = null;
+    emergencyChordFired = false;
+  }
 
   const fire =
     keys.has("KeyF") ||
@@ -183,6 +245,8 @@ export function poll() {
   return {
     lift: clamp(lift),
     r2: clamp(r2, 0, 1),
+    l2,
+    rawR2,
     yaw: clamp(yaw),
     pitch: clamp(pitch),
     roll: clamp(roll),

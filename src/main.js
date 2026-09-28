@@ -31,6 +31,7 @@ import { clearRoute, appendWaypoint, createRoute, removeWaypoint } from "./route
 import { applyOperationsRoute, createOperationsRuntime, handleOperationsControlLoss, projectOperationsPoint, rebuildOperationsRuntime, resetOperationsVehicle, setOperationsEmergency, stepOperationsRuntime, toggleOperationsPower, toggleOperationsProfile } from "./operations-runtime.js";
 import { clearOperationsConsole, operationsViewModel, renderOperationsConsole } from "./operations-view.js";
 import { deleteScenario, listScenarios, loadScenario, saveScenario, scenarioFromSession } from "./scenarios.js";
+import { resolveOperationLoadout } from "./loadout-selection.js";
 
 const HOME_LAT = 41.1758;
 const HOME_LON = 29.6113;
@@ -77,6 +78,7 @@ const osdCrash = document.getElementById("osd-crash");
 
 let selected = "whoop";
 let selectedMap = "indoor";
+let preferredLoadout = { drone: selected, map: selectedMap };
 let progress = loadProgress();
 try {
   // Each daily keeps its own ghost (~100 KB); only today's and yesterday's are worth keeping.
@@ -261,6 +263,7 @@ CATALOG.forEach((d) => {
   b.onclick = () => {
     if (opById(selectedOp).lockDrone) return;
     selected = d.id;
+    preferredLoadout = { ...preferredLoadout, drone: selected };
     for (const c of cardsEl.children) c.classList.toggle("on", c.dataset.id === selected);
     hangarPreview?.show(d.id);
     if (typeof hangarJoin === "function") hangarJoin();
@@ -278,6 +281,7 @@ MAPS.forEach((m) => {
   b.onclick = () => {
     if (opById(selectedOp).lockMap) return;
     selectedMap = m.id;
+    preferredLoadout = { ...preferredLoadout, map: selectedMap };
     for (const c of mapsEl.children) c.classList.toggle("on", c.dataset.id === selectedMap);
     billboard.setMap(m.id);
     paintOps();
@@ -416,13 +420,14 @@ const hangarPreview = createHangarPreview();
 const billboard = startBillboard(document.getElementById("hangar-live"), { reduced: touchUi });
 
 function applyOp(op) {
-  if (op.map) {
-    selectedMap = op.map;
+  const loadout = resolveOperationLoadout(preferredLoadout, op);
+  if (selectedMap !== loadout.map) {
+    selectedMap = loadout.map;
     for (const c of mapsEl.children) c.classList.toggle("on", c.dataset.id === selectedMap);
     billboard.setMap(selectedMap);
   }
-  if (op.drone) {
-    selected = op.drone;
+  if (selected !== loadout.drone) {
+    selected = loadout.drone;
     for (const c of cardsEl.children) c.classList.toggle("on", c.dataset.id === selected);
     hangarPreview?.show(selected);
   }

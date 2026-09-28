@@ -1,5 +1,7 @@
 # İHA–İDA Otonom Operasyon — Tasarım
 
+> Historical design record. The described first version has shipped; consult `docs/URUN-ANALIZI.md` and the source code for the current behavior.
+
 ## Amaç
 
 Drone Hangar'ın mevcut tarayıcı tabanlı arcade simülasyonuna, tek operatörün

@@ -1,6 +1,6 @@
 export const ROOMS = [
   { id: "hangar", name: "Genel", blurb: "Varsayılan lobi. Herkes." },
-  { id: "training", name: "Bot Antrenmanı", blurb: "Botlara karşı serbest pratik. Amaç yok, harita/drone serbest." },
+  { id: "training", name: "Serbest Antrenman", blurb: "Amaç yok; harita, drone ve uçuş ayarları serbest." },
   { id: "team", name: "Takım Savaşı", blurb: "Kırmızı–Mavi takım maçı, pist. 3 dk, 20 sayı. En az 2 oyuncu." },
   { id: "race", name: "FPV Race", blurb: "Hızlı uçuş, racer." },
   { id: "cine", name: "Cine", blurb: "Sakin kamera uçuşu." },

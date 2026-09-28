@@ -657,6 +657,14 @@ export const ROOM_OP = {
   indoor: "school",
 };
 
+/** Return the room's playable operation without bypassing campaign locks. */
+export function roomOperation(room, fallbackId, progress) {
+  const id = ROOM_OP[room];
+  if (!id) return opById(fallbackId);
+  const op = opById(id);
+  return isOpOpen(op, progress) ? op : opById(fallbackId);
+}
+
 export function opById(id) {
   if (id === "free") return FREE;
   if (id === "team") return TEAM;

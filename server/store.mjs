@@ -65,7 +65,6 @@ const scores = readJson(scoresFile, []);
 const ghosts = readJson(ghostsFile, []);
 export const ADMIN_KEY = loadOrCreateAdminKey();
 export const ADMIN_USER = process.env.ADMIN_USER || "admin";
-if (!IS_TEST) console.log(`[admin] kullanici: ${ADMIN_USER}  anahtar: ${ADMIN_KEY}  (bkz /admin.html)`);
 
 export function logEvent(evt) {
   events.push({ ...evt, ts: Date.now() });

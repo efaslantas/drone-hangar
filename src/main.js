@@ -10,7 +10,7 @@ import { connect } from "./net.js";
 import { createGfx, wantsWebGPU, setGpuPreference, hasWebGPU, gfxLabel } from "./gfx.js";
 import { createShot, stepShots, applyHits, makeBot, stepBot, canFire, aimDir, PLAYER_HP, BOT_HP } from "./combat.js";
 import { startBillboard } from "./billboard.js";
-import { TRACKS, FREE, TEAM, AUTONOMY_COAST_RESPONSE, opById, ROOM_OP, wantsBots, playerCanBeHit, trackOf, trackDone, trackGate, isOpOpen, nextInTrack, firstOpenOp } from "./missions.js";
+import { TRACKS, FREE, TEAM, AUTONOMY_COAST_RESPONSE, opById, roomOperation, wantsBots, playerCanBeHit, trackOf, trackDone, trackGate, isOpOpen, nextInTrack, firstOpenOp } from "./missions.js";
 import { TEAM_CSS, TEAM_SPAWN, scoreLine, matchStatus, enemyTargets, resultModel } from "./team.js";
 import { loadProgress, saveWin, saveLap, saveAssessment } from "./progress.js";
 import { createRun, tickRun, canSwapBattery, nextGoal } from "./goals.js";
@@ -86,8 +86,9 @@ try {
 } catch {
   /* storage unavailable */
 }
-// Start on the first lesson still to be won, never on a locked rung.
-let selectedOp = firstOpenOp("school", progress)?.id || "hover";
+// A room link may select an activity, but it cannot bypass campaign gates.
+const defaultOp = firstOpenOp("school", progress)?.id || "hover";
+let selectedOp = roomOperation(q0.get("room"), defaultOp, progress).id;
 let run = null;
 let targets = [];
 let cargo = []; // per parcel: { crate, ring, zone, beam } meshes (cargo op)
@@ -301,10 +302,10 @@ function paintRooms(counts = []) {
       b.onclick = () => {
         document.getElementById("room").value = r.id;
         for (const c of roomCardsEl.children) c.classList.toggle("on", c.dataset.id === r.id);
-        const oid = ROOM_OP[r.id];
-        if (oid && isOpOpen(opById(oid), progress)) {
-          selectedOp = oid;
-          applyOp(opById(oid));
+        const op = roomOperation(r.id, selectedOp, progress);
+        if (op.id !== selectedOp) {
+          selectedOp = op.id;
+          applyOp(op);
           paintOpsCards();
         }
         hangarJoin();
@@ -1629,8 +1630,11 @@ gfx.canvas.addEventListener("webglcontextrestored", resize);
 
 function startFlight() {
   const op = opById(selectedOp);
-  if (op.map) selectedMap = op.map;
-  if (op.drone) selected = op.drone;
+  // Use the same lock-aware rule as the preparation screen. A suggested
+  // airframe must not replace the pilot's choice unless the op locks it.
+  const loadout = resolveOperationLoadout(preferredLoadout, op);
+  selectedMap = loadout.map;
+  selected = loadout.drone;
   // An op can pin night / realistic physics (night nav lesson, acro lesson).
   const nightOn = op.night ?? !!document.getElementById("night")?.checked;
   renderer.toneMappingExposure = nightOn ? 1.04 : selectedMap === "indoor" ? .88 : .93;
@@ -2394,7 +2398,7 @@ function loop(now) {
     camKick = Math.max(0, camKick - dt * 8);
     if (camKick) fpvCam.rotateX(-camKick * 0.04);
 
-    const allowFire = !operations && (!run || run.op.fire !== false);
+    const allowFire = !operations && opById(selectedOp).fire === true;
     if (allowFire && input.fire && state.armed && !state.crashed && canFire(fireCd)) {
       const [fx, fy, fz] = aimDir(state.qw, state.qx, state.qy, state.qz, camTiltRad());
       const shot = createShot(state.x + fx * 0.55, state.y + fy * 0.55, state.z + fz * 0.55, fx, fy, fz, "player", 160);
@@ -2718,7 +2722,7 @@ function drawOsd(input, spd) {
   if (hsc) hsc.textContent = `SKOR ${score}`;
   if (hb) hb.textContent = `BOT ${aliveBots}`;
   if (hm) hm.textContent = mode;
-  const shoot = !run || run.op.fire !== false;
+  const shoot = !operations && opById(selectedOp).fire === true;
   const fireButton = document.getElementById("btn-fire");
   if (fireButton) fireButton.hidden = !shoot;
   const haArm = document.getElementById("hud-arm");

@@ -1,5 +1,7 @@
 # EFA Hangar — Drone Akademisi uygulama ve teslim planı
 
+> Historical product and implementation plan. Some proposals have since shipped or changed. Current behavior is documented in `docs/URUN-ANALIZI.md`, `README.md`, and the source code.
+
 Tarih: 12 Eylül 2026. İncelenen temel: `2dbb476`.
 Durum: analiz ve uygulama sözleşmesi. Bu dosya geliştirmelerin yapılmış olduğunu göstermez.
 

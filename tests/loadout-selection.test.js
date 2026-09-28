@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { resolveOperationLoadout } from "../src/loadout-selection.js";
-import { AUTONOMY_COAST_RESPONSE, FREE, TEAM, opById } from "../src/missions.js";
+import { AUTONOMY_COAST_RESPONSE, FREE, TEAM, opById, roomOperation } from "../src/missions.js";
 
 test("unlocked drone selection survives switching school operations", () => {
   const preferred = { drone: "racer", map: "forest" };
@@ -26,4 +26,10 @@ test("map-only operation keeps the pilot's selected drone", () => {
     drone: "cinewhoop",
     map: "airfield",
   });
+});
+
+test("room links select their activity without bypassing locks", () => {
+  assert.equal(roomOperation("team", "hover", { done: {} }).id, "team");
+  assert.equal(roomOperation("cine", "hover", { done: {} }).id, "hover");
+  assert.equal(roomOperation("cine", "hover", { done: { "manual-check": { t: 1 } } }).id, "recon");
 });

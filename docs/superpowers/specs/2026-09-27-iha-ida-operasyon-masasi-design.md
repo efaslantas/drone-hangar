@@ -1,5 +1,7 @@
 # İHA–İDA Operasyon Masası Tasarımı
 
+> Historical design record. The described first version has shipped; consult `docs/URUN-ANALIZI.md` and the source code for the current behavior.
+
 **Tarih:** 2026-09-27  
 **Durum:** Kullanıcı tarafından konuşma içinde onaylanan tasarımın yazılı sürümü
 

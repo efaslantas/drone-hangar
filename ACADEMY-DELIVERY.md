@@ -2,6 +2,8 @@
 
 Date: 2026-09-12
 
+> Historical delivery snapshot. It records the evidence available on its date; it is not the current feature inventory or test count. See `docs/URUN-ANALIZI.md` and `README.md` for the current product state.
+
 ## Delivered
 
 - **P0 — regression baseline:** pitch direction, false landing, volume-only gate and diagonal stick overflow are covered by behavior tests.

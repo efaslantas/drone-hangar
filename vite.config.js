@@ -1,8 +1,5 @@
 import { defineConfig } from "vite";
-import { WebSocketServer } from "ws";
 import { fileURLToPath } from "node:url";
-import { attachRooms } from "./server/rooms.mjs";
-import { handleApi } from "./server/api.mjs";
 
 export default defineConfig({
   build: {
@@ -38,7 +35,13 @@ export default defineConfig({
   plugins: [
     {
       name: "drone-hangar-rooms",
-      configureServer(server) {
+      async configureServer(server) {
+        // Keep server state and credentials out of production builds.
+        const [{ WebSocketServer }, { attachRooms }, { handleApi }] = await Promise.all([
+          import("ws"),
+          import("./server/rooms.mjs"),
+          import("./server/api.mjs"),
+        ]);
         const wss = new WebSocketServer({ noServer: true });
         attachRooms(wss);
         server.middlewares.use((req, res, next) => {

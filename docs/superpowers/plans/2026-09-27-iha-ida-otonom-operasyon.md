@@ -1,5 +1,7 @@
 # İHA–İDA Otonom Operasyon Implementation Plan
 
+> Historical implementation plan. Do not treat its task list as pending work; consult `docs/URUN-ANALIZI.md` and the source code for the current state.
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** Drone Hangar'a tek operatörün tarayıcıdan hemen kullanabileceği, İHA'nın keşif yaptığı ve seçilen İDA'nın olaya otonom müdahale ettiği ilk ortak görev akışını eklemek.

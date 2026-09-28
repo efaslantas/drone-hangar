@@ -49,7 +49,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 #hangar button.fly { background: var(--accent); color: #20170d; border: 1px solid #f3ca94; border-radius: 8px; box-shadow: 0 5px 20px #0005; animation: none; }
 #hangar button.fly:hover { background: #facb8e; }
 #hangar button.fly small { color: #51402b; }
-#hangar button.ghost, #hangar .home-options button { background: #142632; color: var(--text); border-color: #3b5665; }
+#hangar button.ghost { background: #142632; color: var(--text); border-color: #3b5665; }
 #hangar .home-options small { color: var(--dim); }
 #hangar .start-dock { background: linear-gradient(transparent, #081118 45%); }
 #hangar .preparation-layout > .model-stage { background: radial-gradient(ellipse at 50% 38%, #263d49, #0b1721 72%); border-color: #46616e; }
@@ -67,5 +67,120 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 .wrap .op, .wrap .panel { background: linear-gradient(145deg, #172b37, #101c26); border-color: #385361; border-radius: 12px; }
 .wrap th { color: var(--nav); }
 .wrap tbody tr:hover { background: #203846; }
-@media(prefers-reduced-motion: reduce) { button, a, input, select, summary { transition: none; } }
+#hangar[data-screen="home"] .topbar { position: relative; border-bottom-color: transparent; }
+#hangar[data-screen="home"] .topbar::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px;
+  background: linear-gradient(90deg, var(--nav), var(--accent) 42%, transparent 82%);
+}
+#hangar[data-screen="home"] .brand::before {
+  content: ""; width: 7px; height: 7px; align-self: center; background: var(--accent);
+  transform: rotate(45deg); box-shadow: 0 0 10px var(--accent);
+}
+#hangar[data-screen="home"] .hangar-grid { opacity: .16; }
+#hangar .home-copy .bay-label::before {
+  content: ""; display: inline-block; width: 7px; height: 7px; margin-right: 8px;
+  border-radius: 50%; background: var(--osd); box-shadow: 0 0 8px var(--osd); vertical-align: 1px;
+}
+#hangar .home-copy h1 { color: var(--text); }
+#hangar .home-copy > p { color: var(--dim); }
+#hangar .home-meters b { color: var(--nav); }
+#hangar .home-meters span { color: var(--dim); }
+#hangar .home-meters li { border-top-color: #527e8e; }
+#hangar .home-options {
+  position: relative; padding: 12px;
+  background: linear-gradient(180deg, #0c1a24b8, #081118e6);
+  border: 1px solid #36505c; backdrop-filter: blur(12px);
+}
+#hangar .home-options::before, #hangar .home-options::after {
+  content: ""; position: absolute; width: 12px; height: 12px; pointer-events: none;
+}
+#hangar .home-options::before { top: -1px; left: -1px; border-top: 2px solid var(--nav); border-left: 2px solid var(--nav); }
+#hangar .home-options::after { right: -1px; bottom: -1px; border-right: 2px solid var(--accent); border-bottom: 2px solid var(--accent); }
+#hangar .home-options button {
+  background: linear-gradient(165deg, #18303c, #0d1b24 70%);
+  color: var(--text); border-color: #3d5968; border-radius: 4px;
+  box-shadow: inset 3px 0 #527e8e;
+  transition: transform .16s, border-color .16s, box-shadow .16s, background-color .16s;
+}
+#hangar .home-options button:hover {
+  transform: translateY(-2px); border-color: var(--nav); background: #1d3a48;
+  box-shadow: inset 3px 0 var(--nav), 0 14px 28px #0007;
+}
+#hangar .home-options button:active { transform: translateY(0); }
+#hangar .home-options .recommended {
+  border-color: #e2b56d;
+  background: linear-gradient(115deg, #efb36633, #142832 52%);
+  box-shadow: inset 3px 0 var(--accent), 0 0 0 1px #efb36622;
+}
+#hangar .home-options .recommended::after {
+  content: "ÖNERİLEN"; position: absolute; top: 10px; right: 12px;
+  font: 700 10px/1 ui-monospace, monospace; letter-spacing: .14em;
+  color: #20170d; background: var(--accent); padding: 4px 6px;
+}
+#hangar .home-options .secondary { background: #10202acc; box-shadow: inset 3px 0 #3d5968; }
+#hangar[data-screen="home"] .topbar-actions .ghost,
+#hangar[data-screen="home"] .rank-link {
+  border: 1px solid #3d5968; background: #10202acc; color: var(--text);
+  padding: 8px 12px; border-radius: 2px;
+  font: 700 11px/1 ui-monospace, monospace; letter-spacing: .12em; text-transform: uppercase;
+}
+#hangar[data-screen="home"] .topbar-actions .ghost:hover,
+#hangar[data-screen="home"] .rank-link:hover { border-color: var(--nav); color: var(--nav); }
+#hangar .home-sys { color: var(--osd); }
+#hangar .home-copy::after {
+  content: ""; position: absolute; z-index: 0; width: 460px; height: 460px; left: -170px; top: -90px;
+  border-radius: 50%; pointer-events: none;
+  background:
+    radial-gradient(circle, transparent 58%, rgba(131,197,213,.16) 59% 60%, transparent 61%),
+    repeating-conic-gradient(from 0deg, transparent 0 16deg, rgba(131,197,213,.07) 16deg 17deg);
+  mask-image: radial-gradient(circle, transparent 12%, #000 28% 64%, transparent 74%);
+  animation: home-sweep 18s linear infinite;
+}
+#hangar .home-copy > * { position: relative; z-index: 1; }
+#hangar .home-copy .bay-label::before { animation: home-live 1.8s ease-in-out infinite; }
+#hangar .home-options button b::after {
+  content: "→"; position: absolute; right: 12px; bottom: 12px;
+  color: var(--nav); font-weight: 500; opacity: 0;
+}
+#hangar .home-options button:hover b::after,
+#hangar .home-options button:focus-visible b::after { opacity: 1; }
+#home-hero .showcase-grid { counter-reset: feat; }
+#home-hero .showcase-card {
+  counter-increment: feat; position: relative; overflow: hidden; border-radius: 4px;
+  background: linear-gradient(165deg, #18303ce6, #0d1b24f2);
+  border-color: #344c59; border-top: 2px solid #527e8e;
+  transition: transform .16s, border-color .16s;
+}
+#home-hero .showcase-card:nth-child(-n+2) {
+  background: linear-gradient(155deg, #1c3c4c, #0e1c26 70%);
+}
+#home-hero .showcase-card:hover { transform: translateY(-3px); border-color: var(--nav); }
+#home-hero .showcase-card::after {
+  content: counter(feat, decimal-leading-zero);
+  position: absolute; right: 8px; bottom: -4px; pointer-events: none;
+  font: 800 46px/1 ui-monospace, monospace; color: #83c5d514;
+}
+#hangar .preparation-layout > .model-stage::before,
+#hangar .preparation-layout > .model-stage::after {
+  content: ""; position: absolute; width: 14px; height: 14px; z-index: 2; pointer-events: none;
+}
+#hangar .preparation-layout > .model-stage::before { top: 10px; left: 10px; border-top: 2px solid var(--nav); border-left: 2px solid var(--nav); }
+#hangar .preparation-layout > .model-stage::after { right: 10px; bottom: 10px; border-right: 2px solid var(--accent); border-bottom: 2px solid var(--accent); }
+#hangar[data-screen="prepare"] .ops-strip { box-shadow: inset 3px 0 var(--nav); }
+@keyframes home-sweep { to { transform: rotate(360deg); } }
+@keyframes home-live { 50% { opacity: .35; } }
+@media (max-width: 900px) {
+  #home-hero .showcase-grid { grid-template-columns: 1fr 1fr; }
+  #home-hero .showcase-card:nth-child(-n+2) { grid-column: auto; }
+}
+@media (max-width: 700px) {
+  #home-hero .showcase-head { grid-template-columns: 1fr; }
+  #home-hero .showcase-grid { grid-template-columns: 1fr; }
+}
+@media(prefers-reduced-motion: reduce) {
+  button, a, input, select, summary { transition: none; }
+  #hangar .home-options button, #home-hero .showcase-card { transition: none; }
+  #hangar .home-options button:hover, #home-hero .showcase-card:hover { transform: none; }
+  #hangar .home-copy::after, #hangar .home-copy .bay-label::before { animation: none; }
+}
 #hangar .flight-briefing { background: #101e28ed; border: 1px solid var(--line); border-top: 2px solid #527e8e; }

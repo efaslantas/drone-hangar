@@ -28,6 +28,7 @@
             <div class="brand">
               <span class="kicker">EFA</span>
               <strong>HANGAR</strong>
+              <span class="home-sys">SYS · ONLINE</span>
             </div>
             <div class="topbar-actions">
               <button type="button" class="ghost" id="fullscreen-btn">Tam Ekran</button>
@@ -37,16 +38,26 @@
             </div>
           </nav>
           <section class="home-hero" id="home-hero">
-            <span class="bay-label">EFA HANGAR · UÇUŞ SİMÜLATÖRÜ</span>
-            <h1>Ne yapmak<br>istiyorsun?</h1>
-            <p>Amacını seç; drone ve haritayı sonraki ekranda hazırlayabilirsin.</p>
-            <div class="home-options">
-              <button type="button" class="recommended" id="home-school"><b>İlk kez uçuyorum</b><small>Önerilen · Adım adım Uçuş Okulu</small></button>
-              <button type="button" id="home-fly"><b>Serbest uçuş</b><small>Kural yok; drone ve haritayı sen seç</small></button>
-              <button type="button" id="home-autonomy"><b>İHA + İDA görevi</b><small>Kıyıyı tara, deniz aracını olaya yönlendir</small></button>
-              <button type="button" id="home-operations"><b>Operasyon Masası</b><small>1 İHA + 2 İDA · PS koluyla serbest kontrol ve rota</small></button>
-              <button type="button" id="home-daily"><b>Günün görevi</b><small id="home-daily-sub">Herkes aynı rota, sıralama günlük</small></button>
-              <button type="button" class="secondary" id="home-friends"><b>Arkadaşlarla oyna</b><small>Aynı odaya katıl, birlikte uç</small></button>
+            <div class="home-stage">
+              <div class="home-copy">
+                <span class="bay-label">EFA HANGAR · UÇUŞ SİMÜLATÖRÜ</span>
+                <h1>Ne yapmak<br>istiyorsun?</h1>
+                <p>Amacını seç; drone ve haritayı sonraki ekranda hazırlayabilirsin.</p>
+                <ul class="home-meters" aria-hidden="true">
+                  <li><b>10</b><span>platform</span></li>
+                  <li><b>FPV</b><span>bodycam</span></li>
+                  <li><b>16</b><span>kişi / oda</span></li>
+                  <li><b>M2</b><span>kontrol</span></li>
+                </ul>
+              </div>
+              <div class="home-options">
+                <button type="button" class="recommended" id="home-school" data-code="01"><b>İlk kez uçuyorum</b><small>Önerilen · Adım adım Uçuş Okulu</small></button>
+                <button type="button" id="home-fly" data-code="02"><b>Serbest uçuş</b><small>Kural yok; drone ve haritayı sen seç</small></button>
+                <button type="button" id="home-autonomy" data-code="03"><b>İHA + İDA görevi</b><small>Kıyıyı tara, deniz aracını olaya yönlendir</small></button>
+                <button type="button" id="home-operations" data-code="04"><b>Operasyon Masası</b><small>1 İHA + 2 İDA · PS koluyla serbest kontrol ve rota</small></button>
+                <button type="button" id="home-daily" data-code="05"><b>Günün görevi</b><small id="home-daily-sub">Herkes aynı rota, sıralama günlük</small></button>
+                <button type="button" class="secondary" id="home-friends" data-code="06"><b>Arkadaşlarla oyna</b><small>Aynı odaya katıl, birlikte uç</small></button>
+              </div>
             </div>
           </section>
           <div class="ops-strip" id="ops-strip">

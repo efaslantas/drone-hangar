@@ -69,7 +69,10 @@
 #hangar .preparation-choices .pick-stage { display: block; }
 #hangar .preparation-choices .pick-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
 #hangar .preparation-choices .pick-grid .card { min-width: 0; border-radius: 8px; padding: 12px; }
-#hangar .preparation-choices .pick-grid .drone-svg { display: none; }
+#hangar .preparation-choices .pick-grid .drone-svg { display: block; height: 64px; background: radial-gradient(ellipse at 50% 60%, #83c5d522, transparent 70%); }
+#hangar .preparation-choices #cards.locked { grid-template-columns: 1fr !important; }
+#hangar .preparation-choices #cards.locked .drone-svg { height: 108px; }
+#hangar .preparation-choices #maps.locked { grid-template-columns: 1fr !important; }
 #hangar .preparation-choices .pick-grid .card h2 { font-size: 14px; }
 #hangar .preparation-choices .arena-row { grid-template-columns: 1fr; margin: 0; }
 #hangar .preparation-choices .maps-grid .card { min-height: 105px; border-radius: 8px; }
@@ -300,7 +303,14 @@ button, a, label, select, summary { touch-action: manipulation; cursor: pointer;
   background: rgba(8,10,12,.75); color: #f3efe6; border: 1px solid rgba(198,154,96,.3);
   padding: 6px 8px; border-radius: 2px;
 }
-#cards.locked, #maps.locked { opacity: .5; pointer-events: none; }
+#cards.locked, #maps.locked { opacity: 1; pointer-events: none; }
+#cards.locked .card:not(.on), #maps.locked .card:not(.on) { display: none; }
+#cards.locked .card.on, #maps.locked .card.on { position: relative; }
+#cards.locked .card.on::after, #maps.locked .card.on::after {
+  content: "SABİT"; position: absolute; top: 8px; right: 8px;
+  font: 700 10px/1 ui-monospace, monospace; letter-spacing: .14em;
+  color: #20170d; background: #efb366; padding: 3px 6px;
+}
 .ops-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)) !important; }
 #hangar .ops-grid .card { min-height: 0; padding: 10px; }
 #hangar .ops-grid .card.quick { min-height: 142px; padding: 14px; }
@@ -389,10 +399,23 @@ button, a, label, select, summary { touch-action: manipulation; cursor: pointer;
 .hero-meta dd { margin: 0; font-size: 13px; font-weight: 600; }
 .fleet, .maps { margin: 0; }
 .map-card .thumb {
-  height: 64px; margin-bottom: 8px;
-  background: var(--tint, #4a5a48);
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,.08);
+  height: 78px; margin-bottom: 8px; position: relative; overflow: hidden;
+  background: #102028;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.14);
 }
+.map-card .thumb::before, .map-card .thumb::after { content: ""; position: absolute; pointer-events: none; }
+.map-card[data-id="coast"] .thumb { background: linear-gradient(#e4d2b0 0 36%, #0e7494 36% 100%); }
+.map-card[data-id="coast"] .thumb::after { left: 16%; right: 16%; top: 52%; height: 10px; background: #f7f1e6; clip-path: polygon(6% 35%, 94% 35%, 100% 70%, 0 70%); }
+.map-card[data-id="airfield"] .thumb { background: #6e8a58; }
+.map-card[data-id="airfield"] .thumb::before { left: 46%; top: 8%; bottom: 8%; width: 8%; background: repeating-linear-gradient(#f4f1ea 0 7px, #6e8a58 7px 12px); }
+.map-card[data-id="indoor"] .thumb { background: #241f1b; }
+.map-card[data-id="indoor"] .thumb::before { left: 20%; right: 20%; top: 16%; bottom: 14%; border: 2px solid #efb366; background: linear-gradient(#4a4036, #161310); }
+.map-card[data-id="forest"] .thumb { background: linear-gradient(#8fbe6e 0 28%, #1d4a28 28% 100%); }
+.map-card[data-id="forest"] .thumb::before { left: 8%; right: 8%; bottom: 10%; height: 52%; background: radial-gradient(circle at 18% 80%, #d7f0c4 0 14%, transparent 15%), radial-gradient(circle at 48% 55%, #9ed48a 0 18%, transparent 19%), radial-gradient(circle at 78% 78%, #6fbf6a 0 13%, transparent 14%); }
+.map-card[data-id="city"] .thumb { background: #5a6268; }
+.map-card[data-id="city"] .thumb::before { left: 8%; right: 8%; bottom: 10%; height: 68%; background: linear-gradient(#f2f4f5, #f2f4f5) 6% 100% / 18% 62% no-repeat, linear-gradient(#b7c0c6, #b7c0c6) 32% 100% / 24% 92% no-repeat, linear-gradient(#e7ebed, #e7ebed) 64% 100% / 16% 48% no-repeat; }
+.map-card[data-id="yard"] .thumb { background: #64724e; }
+.map-card[data-id="yard"] .thumb::before { left: 10%; right: 10%; top: 18%; bottom: 16%; background: linear-gradient(#d65a32, #d65a32) 0 12% / 44% 26% no-repeat, linear-gradient(#2d6d98, #2d6d98) 56% 12% / 44% 26% no-repeat, linear-gradient(#e0b03a, #e0b03a) 0 62% / 72% 20% no-repeat; }
 #hangar .map-card, #hangar .room-card { min-height: 0; }
 .join {
   background: rgba(8,10,12,.55); border: 1px solid rgba(198,154,96,.18);
@@ -922,7 +945,7 @@ button:focus-visible, a:focus-visible, select:focus-visible, input:focus-visible
 
 /* Desktop-first UAV + USV operations workspace. The WebGL canvas remains the
    flight surface underneath; these panels never replace or reparent it. */
-#operations-console { position: absolute; inset: 0; z-index: 9; display: grid; grid-template-rows: auto 1fr auto; padding: max(12px, var(--sat)) max(14px, var(--sar)) max(12px, var(--sab)) max(14px, var(--sal)); gap: 10px; color: var(--text); pointer-events: none; background: linear-gradient(180deg, rgba(4,12,18,.8), transparent 23%, transparent 70%, rgba(4,12,18,.78)); }
+#operations-console { position: absolute; inset: 0; z-index: 9; display: grid; grid-template-rows: auto 1fr auto; padding: max(12px, var(--sat)) max(14px, var(--sar)) max(12px, var(--sab)) max(14px, var(--sal)); gap: 10px; color: var(--text); pointer-events: none; background: linear-gradient(180deg, rgba(4,12,18,.42), transparent 12%, transparent 86%, rgba(4,12,18,.4)); }
 #operations-console[hidden] { display: none; }
 #operations-console button, #operations-console .operations-panel, .operations-head, #operations-status, #operations-emergency { pointer-events: auto; }
 .operations-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 10px 12px; background: rgba(7,19,27,.88); border: 1px solid #36505c; border-radius: 10px; }
@@ -930,7 +953,7 @@ button:focus-visible, a:focus-visible, select:focus-visible, input:focus-visible
 .operations-workspace { min-height: 0; display: grid; grid-template-columns: minmax(190px, 240px) minmax(360px, 1fr) minmax(240px, 320px); gap: 10px; }
 .operations-panel { min-height: 0; overflow: auto; padding: 12px; background: rgba(10,24,30,.9); border: 1px solid rgba(131,197,213,.42); border-radius: 10px; box-shadow: 0 12px 36px #0006; }
 .operations-panel h3 { margin: 0 0 9px; font: 700 11px/1 ui-monospace, monospace; letter-spacing: .14em; text-transform: uppercase; color: var(--nav, #83c5d5); }
-#operations-main-view { min-height: 260px; position: relative; pointer-events: none; border: 1px solid rgba(131,197,213,.18); border-radius: 10px; }
+#operations-main-view { min-height: 260px; position: relative; pointer-events: none; border: 1px solid rgba(131,197,213,.55); border-radius: 4px; background: transparent; }
 .operations-view-label { position: absolute; top: 10px; left: 10px; padding: 5px 7px; background: #07131bd9; border-radius: 4px; font: 700 9px/1 ui-monospace, monospace; letter-spacing: .14em; color: var(--nav, #83c5d5); }
 #operations-fleet { display: grid; gap: 8px; }
 .operations-vehicle { display: grid; gap: 7px; width: 100%; padding: 10px; text-align: left; color: var(--text); background: #132631e8; border: 1px solid #36505c; border-radius: 8px; }

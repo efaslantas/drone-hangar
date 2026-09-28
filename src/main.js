@@ -330,17 +330,31 @@ function createHangarPreview() {
     return { show() {} };
   }
   prev.toneMapping = THREE.ACESFilmicToneMapping;
-  prev.toneMappingExposure = 1.0;
+  prev.toneMappingExposure = 1.22;
   prev.outputColorSpace = THREE.SRGBColorSpace;
-  prev.setPixelRatio(Math.min(devicePixelRatio, touchUi ? 1 : 1.5));
+  prev.setPixelRatio(Math.min(devicePixelRatio, touchUi ? 1.25 : 2));
   const sc = new THREE.Scene();
   const studio = new RoomEnvironment();
   const pmrem = new THREE.PMREMGenerator(prev);
   sc.environment = pmrem.fromScene(studio, .04).texture;
   sc.environmentIntensity = .8;
   studio.dispose(); pmrem.dispose();
-  sc.add(new THREE.HemisphereLight(0xfff4e8, 0x3a3a38, 1.15));
-  const sun = new THREE.DirectionalLight(0xfff4e5, 2.6);
+  const deck = new THREE.Mesh(
+    new THREE.CircleGeometry(0.42, 48),
+    new THREE.MeshBasicMaterial({ color: 0x16303c, transparent: true, opacity: 0.72 }),
+  );
+  deck.rotation.x = -Math.PI / 2;
+  deck.position.y = -0.01;
+  sc.add(deck);
+  const ring = new THREE.Mesh(
+    new THREE.RingGeometry(0.86, 0.9, 48),
+    new THREE.MeshBasicMaterial({ color: 0x83c5d5, side: THREE.DoubleSide }),
+  );
+  ring.rotation.x = -Math.PI / 2;
+  ring.position.y = 0.001;
+  sc.add(ring);
+  sc.add(new THREE.HemisphereLight(0xfff8f0, 0x6a8ea0, 1.45));
+  const sun = new THREE.DirectionalLight(0xfff4e5, 3.1);
   sun.position.set(0.8, 1.4, 1.1);
   sc.add(sun);
   const rimLight = new THREE.DirectionalLight(0xc3d9ee, 2.1);
@@ -359,7 +373,13 @@ function createHangarPreview() {
     const s = 0.22 / d.size;
     mesh.scale.setScalar(s);
     mesh.updateMatrixWorld(true);
-    previewRadius = new THREE.Box3().setFromObject(mesh).getBoundingSphere(new THREE.Sphere()).radius;
+    const bounds = new THREE.Box3().setFromObject(mesh);
+    previewRadius = bounds.getBoundingSphere(new THREE.Sphere()).radius;
+    const pad = previewRadius * 1.45;
+    deck.scale.setScalar(pad / 0.42);
+    ring.scale.setScalar(pad);
+    deck.position.y = bounds.min.y - 0.008;
+    ring.position.y = deck.position.y + 0.004;
     mesh.rotation.y = Math.PI * .8;
     sc.add(mesh);
     if (cap) cap.textContent = d.name;

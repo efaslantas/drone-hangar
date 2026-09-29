@@ -242,6 +242,23 @@
                 <dl class="briefing-rows" id="briefing-rows"></dl>
                 <p class="briefing-note" id="briefing-note" hidden></p>
               </section>
+              <section class="briefing workshop" id="fpv-workshop" hidden>
+                 <div class="bay-label">FPV Atölyesi</div>
+                 <p class="why">Parçalar itişi, çevikliği, sürüklenmeyi ve pack süresini değiştirir.</p>
+                 <div class="workshop-grid">
+                   <label>Çerçeve <select id="build-frame"></select></label>
+                   <label>Motor <select id="build-motors"></select></label>
+                   <label>Batarya <select id="build-battery"></select></label>
+                   <label>Pervane <select id="build-props"></select></label>
+                 </div>
+                 <dl class="build-stats" id="build-stats">
+                   <div><dt>İtiş / ağırlık</dt><dd id="build-thrust"></dd></div>
+                   <div><dt>Uçuş süresi</dt><dd id="build-endurance"></dd></div>
+                   <div><dt>Maks. rate</dt><dd id="build-rate"></dd></div>
+                   <div><dt>Uçuş ağırlığı</dt><dd id="build-mass"></dd></div>
+                 </dl>
+                 <footer class="workshop-foot"><small id="build-summary"></small><button type="button" id="build-reset">Bu gövdeyi sıfırla</button></footer>
+               </section>
               <div class="grid pick-grid" id="cards"></div>
             </div>
           </section>

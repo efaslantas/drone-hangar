@@ -298,6 +298,21 @@ button, a, label, select, summary { touch-action: manipulation; cursor: pointer;
   grid-column: 1 / -1; display: flex; gap: 14px; flex-wrap: wrap;
   font: 12px/1.3 ui-monospace, monospace; color: #c8c0b0;
 }
+.workshop { margin: 0; }
+.workshop .why { margin: 7px 0 13px; }
+.workshop-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+.workshop label { display: grid; gap: 6px; color: #c8c0b0; font: 11px/1.2 ui-monospace, monospace; letter-spacing: .06em; text-transform: uppercase; }
+.workshop select { width: 100%; background: #111922; color: #f3efe6; border: 1px solid rgba(198,154,96,.38); padding: 8px; }
+.workshop small { display: block; margin-top: 11px; color: #9dff7a; font: 11px/1.35 ui-monospace, monospace; }
+.build-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 13px 0 0; }
+.build-stats div { border-top: 1px solid rgba(198,154,96,.28); padding-top: 7px; }
+.build-stats dt { color: #9aa09a; font: 10px/1.2 ui-monospace, monospace; letter-spacing: .05em; text-transform: uppercase; }
+.build-stats dd { margin: 4px 0 0; color: #f3efe6; font: 700 14px/1.1 ui-monospace, monospace; }
+.workshop-foot { display: flex; justify-content: space-between; gap: 12px; align-items: center; }
+.workshop-foot small { margin: 11px 0 0; }
+.workshop-foot button { margin-top: 11px; padding: 7px 9px; color: #c8c0b0; background: transparent; border: 1px solid rgba(198,154,96,.35); font: 10px/1 ui-monospace, monospace; text-transform: uppercase; }
+@media (max-width: 700px) { .build-stats { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 700px) { .workshop-grid { grid-template-columns: 1fr 1fr; } }
 .loadout label { display: flex; align-items: center; gap: 8px; }
 .loadout select {
   background: rgba(8,10,12,.75); color: #f3efe6; border: 1px solid rgba(198,154,96,.3);

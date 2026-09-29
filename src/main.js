@@ -32,6 +32,7 @@ import { applyOperationsRoute, createOperationsRuntime, handleOperationsControlL
 import { clearOperationsConsole, operationsViewModel, renderOperationsConsole } from "./operations-view.js";
 import { deleteScenario, listScenarios, loadScenario, saveScenario, scenarioFromSession } from "./scenarios.js";
 import { resolveOperationLoadout } from "./loadout-selection.js";
+import { BUILD_PARTS, DEFAULT_BUILD, applyFpvBuild, buildFor, buildMetrics, buildSummary, normalizeBuilds, setBuildFor } from "./fpv-build.js";
 
 const HOME_LAT = 41.1758;
 const HOME_LON = 29.6113;
@@ -79,6 +80,8 @@ const osdCrash = document.getElementById("osd-crash");
 let selected = "whoop";
 let selectedMap = "indoor";
 let preferredLoadout = { drone: selected, map: selectedMap };
+const BUILD_KEY = "efa-hangar-fpv-build-v2";
+let fpvBuilds = {};
 let progress = loadProgress();
 try {
   // Each daily keeps its own ghost (~100 KB); only today's and yesterday's are worth keeping.
@@ -267,6 +270,7 @@ CATALOG.forEach((d) => {
     preferredLoadout = { ...preferredLoadout, drone: selected };
     for (const c of cardsEl.children) c.classList.toggle("on", c.dataset.id === selected);
     hangarPreview?.show(d.id);
+    paintFpvWorkshop();
     if (typeof hangarJoin === "function") hangarJoin();
     paintOps();
   };
@@ -431,6 +435,7 @@ function applyOp(op) {
     selected = loadout.drone;
     for (const c of cardsEl.children) c.classList.toggle("on", c.dataset.id === selected);
     hangarPreview?.show(selected);
+    paintFpvWorkshop();
   }
   cardsEl.classList.toggle("locked", !!op.lockDrone);
   mapsEl.classList.toggle("locked", !!op.lockMap);
@@ -513,6 +518,52 @@ paintOpsCards();
 applyOp(opById(selectedOp));
 
 const LOAD_KEY = "efa-hangar-loadout-v1";
+(function restoreFpvBuild() {
+  try {
+    const stored = JSON.parse(localStorage.getItem(BUILD_KEY) || localStorage.getItem("efa-hangar-fpv-build-v1") || "null");
+    fpvBuilds = normalizeBuilds(stored, CATALOG.filter((drone) => drone.fpv).map((drone) => drone.id));
+  } catch {
+    fpvBuilds = {};
+  }
+})();
+function persistFpvBuild() {
+  try {
+    localStorage.setItem(BUILD_KEY, JSON.stringify(fpvBuilds));
+  } catch {
+    /* storage unavailable */
+  }
+}
+function paintFpvWorkshop() {
+  const workshop = document.getElementById("fpv-workshop");
+  const isFpv = !!droneById(selected).fpv;
+  workshop.hidden = !isFpv;
+  if (!isFpv) return;
+  for (const [type, choices] of Object.entries(BUILD_PARTS)) {
+    const select = document.getElementById(`build-${type}`);
+    if (!select) continue;
+    select.innerHTML = choices.map((choice) => `<option value="${choice.id}">${choice.name}</option>`).join("");
+    select.value = buildFor(fpvBuilds, selected)[type];
+  }
+  const build = buildFor(fpvBuilds, selected);
+  const metrics = buildMetrics(droneById(selected), build);
+  document.getElementById("build-summary").textContent = buildSummary(build);
+  document.getElementById("build-thrust").textContent = `${metrics.thrust}:1`;
+  document.getElementById("build-endurance").textContent = `${metrics.endurance} sn`;
+  document.getElementById("build-rate").textContent = `${metrics.rate}°/sn`;
+  document.getElementById("build-mass").textContent = `${metrics.mass} g`;
+}
+for (const type of Object.keys(BUILD_PARTS)) {
+  document.getElementById(`build-${type}`)?.addEventListener("change", (event) => {
+    fpvBuilds = setBuildFor(fpvBuilds, selected, { ...buildFor(fpvBuilds, selected), [type]: event.target.value });
+    persistFpvBuild();
+    paintFpvWorkshop();
+  });
+}
+document.getElementById("build-reset")?.addEventListener("click", () => {
+  fpvBuilds = setBuildFor(fpvBuilds, selected, DEFAULT_BUILD);
+  persistFpvBuild();
+  paintFpvWorkshop();
+});
 (function restoreLoadout() {
   try {
     const o = JSON.parse(localStorage.getItem(LOAD_KEY) || "null");
@@ -539,6 +590,7 @@ const LOAD_KEY = "efa-hangar-loadout-v1";
     /* ignore */
   }
 })();
+paintFpvWorkshop();
 setControlProfile(document.getElementById("control-profile")?.value || "training");
 function persistLoadout() {
   try {
@@ -1557,7 +1609,7 @@ function addShotMesh(shot) {
 
 function spawn() {
   const op = opById(selectedOp);
-  spec = droneById(selected);
+  spec = applyFpvBuild(droneById(selected), buildFor(fpvBuilds, selected));
   loadedSpec = op.kind === "cargo" ? withPayload(spec, op.payload) : null;
   sfx.setVoice(spec);
   hideResult();

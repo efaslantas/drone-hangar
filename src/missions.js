@@ -5,6 +5,7 @@
 // kept verbatim: `progress.done` and the server leaderboard key on them.
 import { dailyOp, isDailyId } from "./daily.js";
 import { MANUAL_LESSONS, ACRO_LESSONS, ENVIRONMENT_LESSONS, ADVANCED_RACES } from "./curriculum.js";
+import { STORY_MISSIONS } from "./pilot-story.js";
 
 const SCHOOL = [
   {
@@ -669,6 +670,8 @@ export function opById(id) {
   if (id === "free") return FREE;
   if (id === "team") return TEAM;
   if (id === AUTONOMY_COAST_RESPONSE.id) return AUTONOMY_COAST_RESPONSE;
+  const story = STORY_MISSIONS.find((op) => op.id === id);
+  if (story) return story;
   // `daily-YYYY-MM-DD` is synthesised from the date; it lives outside the tracks.
   if (isDailyId(id)) return dailyOp(id);
   return OPS.find((o) => o.id === id) || LEGACY_OPS.find((o) => o.id === id) || FREE;

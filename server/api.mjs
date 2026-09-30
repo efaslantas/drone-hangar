@@ -1,7 +1,13 @@
-import { ADMIN_KEY, ADMIN_USER, getEvents, getLeaderboard, getVisitorReport, saveGhostShare, getGhostShare } from "./store.mjs";
+import { ADMIN_KEY, ADMIN_USER, getEvents, getLeaderboard, getVisitorReport, logEvent, saveGhostShare, getGhostShare } from "./store.mjs";
+import { createAdminSessions, parseCookies } from "./auth.mjs";
+import { clientIp } from "./geo.mjs";
+import { createRateLimiter } from "./rate-limit.mjs";
 
-function sendJson(res, status, body) {
-  res.writeHead(status, { "content-type": "application/json; charset=utf-8" });
+const adminSessions = createAdminSessions();
+const rateLimit = createRateLimiter();
+
+function sendJson(res, status, body, headers = {}) {
+  res.writeHead(status, { "content-type": "application/json; charset=utf-8", ...headers });
   res.end(JSON.stringify(body));
 }
 
@@ -29,14 +35,45 @@ function readBody(req, cb) {
 export function handleApi(req, res, wss) {
   const url = new URL(req.url, "http://localhost");
   const p = url.pathname;
+  const ip = clientIp(req);
+  const limited = (scope, max, windowMs) => {
+    if (rateLimit.allow(scope, ip, max, windowMs)) return false;
+    logEvent({ type: "rate-limit", scope, ip });
+    sendJson(res, 429, { error: "cok fazla istek" });
+    return true;
+  };
+
+  if (p === "/api/health" && req.method === "GET") {
+    sendJson(res, 200, { ok: true, version: process.env.RELEASE_SHA || "dev" });
+    return true;
+  }
+
+  if (p === "/api/admin/login" && req.method === "POST") {
+    readBody(req, (raw) => {
+      try {
+        const body = JSON.parse(raw || "null");
+        const cookie = adminSessions.login(body?.user, body?.key, ADMIN_USER, ADMIN_KEY);
+        if (!cookie) return sendJson(res, 401, { error: "yetkisiz" });
+        sendJson(res, 200, { ok: true }, { "set-cookie": cookie });
+      } catch { sendJson(res, 400, { error: "gecersiz istek" }); }
+    });
+    return true;
+  }
+
+  if (p === "/api/admin/logout" && req.method === "POST") {
+    const cookie = adminSessions.logout(parseCookies(req.headers.cookie).dh_admin);
+    sendJson(res, 200, { ok: true }, { "set-cookie": cookie });
+    return true;
+  }
 
   if (p === "/api/leaderboard" && req.method === "GET") {
+    if (limited("leaderboard", 120, 60_000)) return true;
     sendJson(res, 200, { ops: getLeaderboard() });
     return true;
   }
 
   if (p === "/api/admin/state" && req.method === "GET") {
-    if (url.searchParams.get("user") !== ADMIN_USER || url.searchParams.get("key") !== ADMIN_KEY) {
+    if (!adminSessions.authorize(parseCookies(req.headers.cookie).dh_admin)) {
       sendJson(res, 401, { error: "yetkisiz" });
       return true;
     }
@@ -51,6 +88,7 @@ export function handleApi(req, res, wss) {
   // "Race my run" links: POST the flight once to get a short id, GET it back
   // to fetch the trace for playback. Same client-trust level as WS results.
   if (p === "/api/ghost" && req.method === "POST") {
+    if (limited("ghost-write", 10, 60_000)) return true;
     readBody(req, (raw) => {
       if (raw == null) {
         sendJson(res, 400, { error: "istek cok buyuk" });
@@ -74,6 +112,7 @@ export function handleApi(req, res, wss) {
   }
 
   if (p.startsWith("/api/ghost/") && req.method === "GET") {
+    if (limited("ghost-read", 60, 60_000)) return true;
     const g = getGhostShare(p.slice("/api/ghost/".length));
     if (!g) {
       sendJson(res, 404, { error: "bulunamadi" });

@@ -19,7 +19,7 @@ export function plausibleBestLap(laps, seconds) {
   return Math.round(Math.min(...vals) * 100) / 100;
 }
 
-export function attachRooms(wss) {
+export function attachRooms(wss, { allowMessage } = {}) {
   const rooms = new Map();
   const sockets = new Set();
   // Team rooms (`team`, `team-*`) carry a server-owned match: sides, HP, scores, clock.
@@ -191,6 +191,14 @@ export function attachRooms(wss) {
     send(ws, { t: "rooms", list: roomList() });
 
     ws.on("message", (raw) => {
+      // State frames can legitimately arrive many times per second during a
+      // flight. Keep the ceiling comfortably above that traffic, but close a
+      // connection that is clearly being used as a broadcast amplifier.
+      if (allowMessage && !allowMessage(ip)) {
+        logEvent({ type: "rate-limit", scope: "ws-message", id, ip, geo });
+        ws.close(1008, "message rate limit");
+        return;
+      }
       let msg;
       try {
         msg = JSON.parse(raw);

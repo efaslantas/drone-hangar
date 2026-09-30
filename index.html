@@ -51,6 +51,7 @@
                 </ul>
               </div>
               <div class="home-options">
+                <button type="button" class="recommended" id="home-rebuild" data-code="01" hidden><b>Drone’u yeniden topla</b><small id="home-rebuild-sub">Kayıp çekime dönmek için gövdeyi hazırla.</small></button>
                 <button type="button" class="recommended" id="home-school" data-code="01"><b>İlk kez uçuyorum</b><small>Önerilen · Adım adım Uçuş Okulu</small></button>
                 <button type="button" id="home-fly" data-code="02"><b>Serbest uçuş</b><small>Kural yok; drone ve haritayı sen seç</small></button>
                 <button type="button" id="home-autonomy" data-code="03"><b>İHA + İDA görevi</b><small>Kıyıyı tara, deniz aracını olaya yönlendir</small></button>
@@ -60,6 +61,7 @@
               </div>
             </div>
           </section>
+          <footer class="public-links"><a href="/privacy.html">Gizlilik</a><a href="/help.html">Yardım</a><a href="/credits.html">Credits</a></footer>
           <div class="ops-strip" id="ops-strip">
             <div>
               <span>Drone</span>
@@ -242,8 +244,9 @@
                 <dl class="briefing-rows" id="briefing-rows"></dl>
                 <p class="briefing-note" id="briefing-note" hidden></p>
               </section>
-              <section class="briefing workshop" id="fpv-workshop" hidden>
+               <section class="briefing workshop" id="fpv-workshop" hidden>
                  <div class="bay-label">FPV Atölyesi</div>
+                 <p class="why" id="story-workshop-note" hidden></p>
                  <p class="why">Parçalar itişi, çevikliği, sürüklenmeyi ve pack süresini değiştirir.</p>
                  <div class="workshop-grid">
                    <label>Çerçeve <select id="build-frame"></select></label>

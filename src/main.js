@@ -33,6 +33,7 @@ import { clearOperationsConsole, operationsViewModel, renderOperationsConsole } 
 import { deleteScenario, listScenarios, loadScenario, saveScenario, scenarioFromSession } from "./scenarios.js";
 import { resolveOperationLoadout } from "./loadout-selection.js";
 import { BUILD_PARTS, DEFAULT_BUILD, applyFpvBuild, buildFor, buildMetrics, buildSummary, normalizeBuilds, setBuildFor } from "./fpv-build.js";
+import { STARTER_BUILD, availableParts, completeStoryFlight, loadPilotStory, savePilotStory, storyMission } from "./pilot-story.js";
 
 const HOME_LAT = 41.1758;
 const HOME_LON = 29.6113;
@@ -82,6 +83,7 @@ let selectedMap = "indoor";
 let preferredLoadout = { drone: selected, map: selectedMap };
 const BUILD_KEY = "efa-hangar-fpv-build-v2";
 let fpvBuilds = {};
+let pilotStory = null;
 let progress = loadProgress();
 try {
   // Each daily keeps its own ghost (~100 KB); only today's and yesterday's are worth keeping.
@@ -526,6 +528,8 @@ const LOAD_KEY = "efa-hangar-loadout-v1";
     fpvBuilds = {};
   }
 })();
+pilotStory = loadPilotStory(localStorage, { progress, fpvBuilds });
+if (!pilotStory.complete) fpvBuilds = setBuildFor(fpvBuilds, "freestyle", pilotStory.build || STARTER_BUILD);
 function persistFpvBuild() {
   try {
     localStorage.setItem(BUILD_KEY, JSON.stringify(fpvBuilds));
@@ -538,10 +542,12 @@ function paintFpvWorkshop() {
   const isFpv = !!droneById(selected).fpv;
   workshop.hidden = !isFpv;
   if (!isFpv) return;
+  const allowed = pilotStory?.complete ? null : availableParts(pilotStory);
   for (const [type, choices] of Object.entries(BUILD_PARTS)) {
     const select = document.getElementById(`build-${type}`);
     if (!select) continue;
-    select.innerHTML = choices.map((choice) => `<option value="${choice.id}">${choice.name}</option>`).join("");
+    const usable = allowed ? choices.filter((choice) => allowed[type].includes(choice.id)) : choices;
+    select.innerHTML = usable.map((choice) => `<option value="${choice.id}">${choice.name}</option>`).join("");
     select.value = buildFor(fpvBuilds, selected)[type];
   }
   const build = buildFor(fpvBuilds, selected);
@@ -551,16 +557,23 @@ function paintFpvWorkshop() {
   document.getElementById("build-endurance").textContent = `${metrics.endurance} sn`;
   document.getElementById("build-rate").textContent = `${metrics.rate}°/sn`;
   document.getElementById("build-mass").textContent = `${metrics.mass} g`;
+  const note = document.getElementById("story-workshop-note");
+  if (note) {
+    const mission = storyMission(pilotStory);
+    note.hidden = !mission || selected !== "freestyle";
+    note.textContent = mission ? `Kayıp çekim · sıradaki uçuş: ${mission.name}` : "";
+  }
 }
 for (const type of Object.keys(BUILD_PARTS)) {
   document.getElementById(`build-${type}`)?.addEventListener("change", (event) => {
     fpvBuilds = setBuildFor(fpvBuilds, selected, { ...buildFor(fpvBuilds, selected), [type]: event.target.value });
+    if (!pilotStory?.complete && selected === "freestyle") pilotStory = savePilotStory({ ...pilotStory, build: buildFor(fpvBuilds, selected) }, localStorage);
     persistFpvBuild();
     paintFpvWorkshop();
   });
 }
 document.getElementById("build-reset")?.addEventListener("click", () => {
-  fpvBuilds = setBuildFor(fpvBuilds, selected, DEFAULT_BUILD);
+  fpvBuilds = setBuildFor(fpvBuilds, selected, !pilotStory?.complete && selected === "freestyle" ? STARTER_BUILD : DEFAULT_BUILD);
   persistFpvBuild();
   paintFpvWorkshop();
 });
@@ -673,12 +686,31 @@ function showPreparationTab(tab) {
   }
 }
 function prepareFlight(op, friends = false) {
+  // A shared ghost/old deep link must not let a new pilot bypass the rebuild
+  // story. Established pilots retain their existing direct-link behaviour.
+  if (!pilotStory?.complete) op = storyMission(pilotStory)?.id || "story-power-test";
   hangarEl.dataset.screen = "prepare";
   hangarEl.classList.toggle("with-friends", friends);
   document.getElementById("home-back").hidden = false;
   selectedOp = op; applyOp(opById(op)); paintOpsCards(); paintOps();
   document.querySelector('#hangar-tabs [data-tab="platform"]').click();
 }
+function paintStoryHome() {
+  const rebuilding = !!pilotStory && !pilotStory.complete;
+  const rebuild = document.getElementById("home-rebuild");
+  if (rebuild) rebuild.hidden = !rebuilding;
+  for (const id of ["home-school", "home-fly", "home-autonomy", "home-operations", "home-daily", "home-friends"]) {
+    const button = document.getElementById(id);
+    if (button) button.hidden = rebuilding;
+  }
+  const mission = storyMission(pilotStory);
+  const sub = document.getElementById("home-rebuild-sub");
+  if (sub && mission) sub.textContent = `${mission.name} · ${mission.blurb}`;
+}
+bindTap(document.getElementById("home-rebuild"), () => {
+  const mission = storyMission(pilotStory);
+  if (mission) prepareFlight(mission.id);
+});
 bindTap(document.getElementById("home-fly"), () => prepareFlight("free"));
 bindTap(document.getElementById("home-school"), () => prepareFlight(firstOpenOp("school", loadProgress())?.id || "hover"));
 bindTap(document.getElementById("home-daily"), () => prepareFlight(dailyId()));
@@ -694,6 +726,7 @@ bindTap(document.getElementById("home-back"), () => {
   hangarEl.dataset.screen = "home";
   document.getElementById("home-back").hidden = true;
 });
+paintStoryHome();
 showPreparationTab("platform");
 document.querySelectorAll("#hangar-tabs button[data-tab]").forEach((btn) => {
   bindTap(btn, () => {
@@ -2613,7 +2646,7 @@ function loop(now) {
           run.reason = `yeterlilik puanı ${run.report.total}/100 · gereken 70`;
           run.report.passed = false;
         }
-        progress = saveAssessment(run.op.id, run.report);
+        if (!run.op.story) progress = saveAssessment(run.op.id, run.report);
       }
       if (run.recall) {
         run.recall = false;
@@ -2676,18 +2709,22 @@ function loop(now) {
       if (run.won) {
         lastWonId = run.op.id;
         const prevBest = progress.best?.[run.op.id];
-        progress = saveWin(run.op.id, run.t, undefined, run.bestLap);
-        net.sendResult(run.op.id, run.op.name, true, run.t, run.lapTimes);
+        if (run.op.story) {
+          pilotStory = savePilotStory(completeStoryFlight(pilotStory, run.op.id), localStorage);
+          persistFpvBuild();
+          paintStoryHome();
+        } else progress = saveWin(run.op.id, run.t, undefined, run.bestLap);
+        net.sendResult(run.op.id, run.op.name, true, run.t, run.lapTimes, { ranked: run.op.ranked !== false });
         paintOpsCards();
         sfx.win();
         // A new personal best (or the first finish) becomes the ghost to chase next time.
-        if (trace && (prevBest == null || run.t < prevBest)) saveGhost(run.op.id, trace, { drone: selected, t: run.t, at: Date.now() });
+        if (!run.op.story && trace && (prevBest == null || run.t < prevBest)) saveGhost(run.op.id, trace, { drone: selected, t: run.t, at: Date.now() });
         if (ghost) ghost.mesh.visible = false;
         showResult(run, prevBest);
       }
       if (run.lost) {
-        if (run.bestLap != null) progress = saveLap(run.op.id, run.bestLap).progress;
-        net.sendResult(run.op.id, run.op.name, false, run.t, run.lapTimes);
+        if (!run.op.story && run.bestLap != null) progress = saveLap(run.op.id, run.bestLap).progress;
+        net.sendResult(run.op.id, run.op.name, false, run.t, run.lapTimes, { ranked: run.op.ranked !== false });
         sfx.fail();
         if (ghost) ghost.mesh.visible = false;
         showResult(run, progress.best?.[run.op.id]);

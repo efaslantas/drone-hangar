@@ -26,10 +26,10 @@ class Sock {
   }
 }
 
-function openRoom() {
+function openRoom(options) {
   let onconn;
   const wss = { on(ev, fn) { if (ev === "connection") onconn = fn; } };
-  attachRooms(wss);
+  attachRooms(wss, options);
   return {
     wss,
     connect() {
@@ -43,6 +43,19 @@ function openRoom() {
     },
   };
 }
+
+test("a message-rate rejection closes the socket and records the visible reason", () => {
+  const hub = openRoom({ allowMessage: () => false });
+  const pilot = hub.connect();
+  pilot.send(JSON.stringify({ t: "state", x: 1 }));
+  assert.equal(pilot.readyState, 3);
+  // close() also emits a normal leave event after the rejection; assert the
+  // logged rejection itself rather than relying on the last-event ordering.
+  const event = getEvents(10).find((entry) => entry.type === "rate-limit" && entry.scope === "ws-message");
+  assert.ok(event);
+  assert.equal(event.type, "rate-limit");
+  assert.equal(event.scope, "ws-message");
+});
 
 test("second client sees first in the same room", () => {
   const hub = openRoom();

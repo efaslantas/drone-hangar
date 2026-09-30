@@ -1,5 +1,3 @@
-const LS_USER = "dh-admin-user";
-const LS_KEY = "dh-admin-key";
 const POLL_MS = 3000;
 const RECENT_MS = 5 * 60 * 1000;
 
@@ -9,14 +7,9 @@ const userInput = document.getElementById("user-input");
 const keyInput = document.getElementById("key-input");
 const app = document.getElementById("app");
 const statusEl = document.getElementById("status");
+const logoutButton = document.getElementById("logout");
 
-const q = new URLSearchParams(location.search);
-// The server's default ADMIN_USER is "admin"; a key-only link (?key=...) has
-// to keep working, so fall back to that instead of sending an empty user.
-let user = q.get("user") || localStorage.getItem(LS_USER) || "admin";
-let key = q.get("key") || localStorage.getItem(LS_KEY) || "";
-if (q.get("user")) localStorage.setItem(LS_USER, q.get("user"));
-if (q.get("key")) localStorage.setItem(LS_KEY, q.get("key"));
+history.replaceState(null, "", location.pathname);
 
 let timer = 0;
 
@@ -48,6 +41,7 @@ const EVENT_LABEL = {
 function showGate(err) {
   clearTimeout(timer);
   app.hidden = true;
+  logoutButton.hidden = true;
   gate.hidden = false;
   gateErr.textContent = err || "";
   statusEl.textContent = err ? "anahtar gerekli" : "bağlanıyor…";
@@ -143,16 +137,15 @@ function escapeHtml(s) {
 
 async function poll() {
   try {
-    const res = await fetch(`/api/admin/state?user=${encodeURIComponent(user)}&key=${encodeURIComponent(key)}`);
+    const res = await fetch("/api/admin/state", { credentials: "same-origin" });
     if (res.status === 401) {
-      localStorage.removeItem(LS_USER);
-      localStorage.removeItem(LS_KEY);
       showGate("Kullanıcı adı veya parola yanlış.");
       return;
     }
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data = await res.json();
     app.hidden = false;
+    logoutButton.hidden = false;
     gate.hidden = true;
     statusEl.textContent = `canlı · ${new Date().toLocaleTimeString("tr-TR", { hour12: false })}`;
     statusEl.className = "live";
@@ -167,23 +160,34 @@ async function poll() {
   }
 }
 
-document.getElementById("gate-go").addEventListener("click", () => {
+document.getElementById("gate-go").addEventListener("click", async () => {
   const u = userInput.value.trim() || "admin";
   const v = keyInput.value.trim();
   if (!v) {
     gateErr.textContent = "Parola gerekli.";
     return;
   }
-  user = u;
-  key = v;
-  localStorage.setItem(LS_USER, user);
-  localStorage.setItem(LS_KEY, key);
+  const response = await fetch("/api/admin/login", {
+    method: "POST",
+    credentials: "same-origin",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({ user: u, key: v }),
+  });
+  if (!response.ok) {
+    showGate("Kullanıcı adı veya parola yanlış.");
+    return;
+  }
   // A poll() from before this click may still have a retry timer pending
   // (poll() always reschedules itself, even on a 401) — without clearing it
   // first, that stale timer fires later and runs alongside this fresh one,
   // doubling the polling rate for the rest of the session.
   clearTimeout(timer);
   poll();
+});
+
+logoutButton.addEventListener("click", async () => {
+  await fetch("/api/admin/logout", { method: "POST", credentials: "same-origin" });
+  showGate("");
 });
 userInput.addEventListener("keydown", (ev) => {
   if (ev.key === "Enter") keyInput.focus();
@@ -192,5 +196,4 @@ keyInput.addEventListener("keydown", (ev) => {
   if (ev.key === "Enter") document.getElementById("gate-go").click();
 });
 
-if (user && key) poll();
-else showGate("");
+showGate("");

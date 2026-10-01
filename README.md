@@ -25,6 +25,7 @@ npm start
 
 ## Neler Var?
 
+- **Pilot hikâyesi:** Yeni pilot önce kendi 5 inç freestyle drone'unu toplar; üç kısa uçuşla yarım kalmış çekimi tamamladıktan sonra tüm modlar açılır. Mevcut ilerlemesi olan oyuncular bu açılışı otomatik tamamlanmış görür.
 - **Drone Akademisi:** Ucus Okulu, Manuel Gaz, Acro Kontrol, Cevre Yonetimi, Ileri Parkur ve Gorev pistlerinde 36 adim.
 - **Serbest ucus:** Drone ve haritayi secip ruzgarli/ruzgar siz ucus pratigi yapin.
 - **Gunluk gorev:** Her UTC gunu ayni rota ve drone ile olusan zamanli rota.

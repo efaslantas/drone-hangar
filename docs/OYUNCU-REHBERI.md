@@ -4,12 +4,11 @@ Drone Hangar, tarayicida drone kontrolu denemek, rotalari tamamlamak ve sinirli 
 
 ## Ilk Ucus
 
-1. Ana ekranda **Ilk kez ucuyorum** secin.
-2. Hazirlik ekraninda drone, harita ve brifingi kontrol edin.
-3. Gamepad kullaniyorsaniz Ayarlar'da profil ve kalibrasyonu yapin.
-4. **Kalkis** sonrasi geri sayimi bekleyin; ucus baslangicta padde disarmed durumdadir.
-5. Space veya gamepadda X ile ARM edin.
-6. Hedefleri takip edip pade inin ve ARM'i kapatin.
+1. Yeni pilotsaniz ana ekranda **Drone'u yeniden topla** secin. Baslangic kiti 5 inç freestyle çerçeve, 1900 KV motor, 4S 1500 mAh pack ve iki pal pervanedir.
+2. Atölyeden sonra sırasıyla güvenli güç testi, kısa takip çekimi ve kayıp plan uçuşunu tamamlayın. Her uçuşun sonunda pade inip ARM'i kapatın.
+3. Üçüncü uçuşla akademi, serbest uçuş, günlük görev, çok oyunculu, otonom görev ve Operasyon Masası açılır. Hikâye uçuşları sıralamaya veya ghost paylaşımına yazılmaz.
+4. Mevcut kampanya ilerlemesi veya FPV build'i olan oyuncular açılışı otomatik tamamlanmış görür; hangardan hikâyeyi yeniden oynayabilir.
+5. Gamepad kullaniyorsaniz Ayarlar'da profil ve kalibrasyonu yapin. **Kalkis** sonrasi geri sayimi bekleyin; uçuş padde disarmed başlar. Space veya gamepadda X ile ARM edin.
 
 ## Modlar
 

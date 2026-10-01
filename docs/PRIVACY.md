@@ -24,10 +24,10 @@ Sunucu baglanti, ayrilma ve sonuc olaylarini sinirli bir olay kaydinda tutar. Is
 - Siralama sonuclari kamuya acik olabilir.
 - Oda katilimcilari ayni odadaki pilot adini ve canli drone konumunu gorebilir.
 - Paylasilan hayalet baglantisini bilen kisiler ilgili izi alabilir.
-- Sunucu kayitlari sinirli sayida tutulur; kesin saklama suresi ve silme takvimi henuz yayin politikasi olarak tanimlanmamistir.
+- Olay gunlugu en cok 2.000 kayit, siralama en cok 5.000 sonuc ve paylasilan hayaletler en cok 300 kayit tutar; kapasite doldugunda en eski kayit sirayla silinir. Bu sayisal sinirlar zaman-temelli bir saklama suresi taahhudu degildir.
 
 ## Guvenlik ve Secim
 
 Gorunen adinizda kisisel bilgi kullanmayin. URL'yi paylasirken oda ve gorunen adinizin baglantiya yazilabilecegini dikkate alin. Hassas bir guvenlik bulgusu icin [SECURITY.md](../SECURITY.md) yolunu izleyin.
 
-Uygulama hizmete sunulmadan once yayin sahibi, veri saklama suresi, erisim/silme talepleri ve iletisim noktasini uygulanabilir hukuk kapsaminda tamamlamalidir.
+Uygulama hizmete sunulmadan once yayin sahibi, veri sorumlusu adi, erisim/silme talepleri icin gercek iletisim noktasi ve uygulanabilir hukuk kapsamindaki saklama politikasini tamamlamalidir.

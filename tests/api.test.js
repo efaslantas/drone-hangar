@@ -43,6 +43,7 @@ test("admin state requires a short-lived HttpOnly login session and logout revok
 
   const state = await request({ url: "/api/admin/state", headers: { cookie } });
   assert.equal(state.status, 200);
+  assert.deepEqual(Object.keys(state.body).sort(), ["events", "online"]);
 
   const logout = await request({ method: "POST", url: "/api/admin/logout", headers: { cookie } });
   assert.equal(logout.status, 200);

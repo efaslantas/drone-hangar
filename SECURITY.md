@@ -7,7 +7,7 @@ Guvenlik acigi, yetkisiz erisim, veri sizintisi veya abuse riski bulursaniz ayri
 - Admin ve siralama API'leri.
 - WebSocket oda ve takim maci protokolu.
 - Ghost yukleme/indirme API'si.
-- IP/GeoIP olay kayitlari ve `server/data/` kaliciligi.
+- Olay kayitlari ve `server/data/` kaliciligi.
 - Dagitim/proxy yapilandirmasi ve gizli anahtarlar.
 
 ## Katkici Notu

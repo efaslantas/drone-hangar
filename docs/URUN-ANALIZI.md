@@ -44,7 +44,7 @@ Bu sinir `README.md`, `CLAUDE.md` ve oyuncuya gorunen yardim metinlerinde ayni s
 | Otonom panel | IHA-IDA gorevi icinde | Duraklat, devral, otonomiye ver, iptal | `src/autonomy.js`, `src/autonomy-view.js` |
 | Operasyon Masasi | Ana ekrandan dogrudan | IHA + iki IDA ile manuel/hold/rota/acil durus ve senaryo | `src/operations-*.js`, `src/route-editor.js`, `src/scenarios.js` |
 | Siralama | `/leaderboard.html` | Sunucudaki bitirme surelerini ve tur derecelerini gorur | `leaderboard.html`, `src/leaderboard.js` |
-| Admin | `/admin.html` | Yetkili kullanici icin canli oda, olay ve IP/GeoIP raporu | `admin.html`, `src/admin.js`, `server/api.mjs` |
+| Admin | `/admin.html` | Yetkili kullanici icin canli oda ve oyun olaylari | `admin.html`, `src/admin.js`, `server/api.mjs` |
 
 Uygulama klasik cok sayfali bir oyun degildir: ana ekran, hazirlik ve ucus ayni `index.html` icinde durum degistirir. Siralama ve admin ayri HTML kabuklaridir.
 
@@ -164,7 +164,6 @@ Node HTTP + `ws` sunucusu su sorumluluklari tasir:
 | Takim maci | `server/team.mjs` | Vurus/saglik/skor/respawn sunucu otoriteli |
 | Skor, olay, paylasilan tekrar | `server/store.mjs` | JSON veri; sinirli gecmis |
 | API | `server/api.mjs` | Siralama, admin, ghost paylasimi |
-| IP/GeoIP | `server/geo.mjs` | X-Forwarded-For oncelikli |
 
 Fizik istemci otoritelidir. Sunucu, normal serbest/campaign pozlarini anti-cheat fizigiyle dogrulamaz. Ranked sonuc icin istemcinin gonderdigi sure yerine eslesen start/result zamanini kullanir; bu daha dar bir guven siniridir.
 
@@ -178,7 +177,7 @@ Fizik istemci otoritelidir. Sunucu, normal serbest/campaign pozlarini anti-cheat
 | Operasyon senaryolari | `localStorage`, `efa-hangar-operations-v1` | En cok 20 yerel kayit |
 | Skor, olay, ghost paylasimi | Sunucu `server/data/` | Bind mount ile kalici olmali |
 
-Bu tablo oyuncu gizlilik metni icin temel olmalidir: gorunen ad, oda, drone, IP/GeoIP, olay ve kamuya acik paylasilan tekrar verisinin ne oldugu aciklanmalidir.
+Bu tablo oyuncu gizlilik metni icin temel olmalidir: gorunen ad, oda, drone, olay ve kamuya acik paylasilan tekrar verisinin ne oldugu aciklanmalidir. IP adresi veya yaklasik konum tutulmaz.
 
 ## 8. Dogrulama Durumu
 

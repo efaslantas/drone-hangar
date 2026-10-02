@@ -70,6 +70,15 @@ test("second client sees first in the same room", () => {
   assert.equal(helloB.peers[0].meta.name, "ada");
 });
 
+test("online peers expose game data without an IP address or approximate location", () => {
+  const hub = openRoom();
+  hub.connect();
+  const online = hub.wss.getOnline();
+  assert.equal(online.length, 1);
+  assert.equal(Object.hasOwn(online[0], "ip"), false);
+  assert.equal(Object.hasOwn(online[0], "geo"), false);
+});
+
 test("state broadcasts to the other pilot only", () => {
   const hub = openRoom();
   const a = hub.connect();

@@ -1,5 +1,4 @@
 import { logEvent, recordScore } from "./store.mjs";
-import { clientIp, geoFor } from "./geo.mjs";
 import { isTeamRoom, createMatch, addPlayer, removePlayer, applyHit, tick as tickMatch, snapshot } from "./team.mjs";
 
 const MAX_PEERS = 16;
@@ -35,8 +34,6 @@ export function attachRooms(wss, { allowMessage } = {}) {
           name: p.meta?.name || "pilot",
           drone: p.meta?.drone || "?",
           team: matches.get(roomId)?.players.get(pid)?.team || null,
-          ip: p.ip || "",
-          geo: p.geo || null,
         });
       }
     }
@@ -111,17 +108,15 @@ export function attachRooms(wss, { allowMessage } = {}) {
     let meta = { name: "pilot", drone: "whoop" };
     let activeOp = null;
     let lastResultAt = 0;
-    const ip = clientIp(req);
-    const geo = geoFor(ip);
     sockets.add(ws);
-    logEvent({ type: "connect", id, ip, geo });
+    logEvent({ type: "connect", id });
 
     function leave() {
       const peers = rooms.get(room);
       if (!peers) return;
       peers.delete(id);
       broadcast(room, { t: "leave", id });
-      logEvent({ type: "leave", id, room, name: meta.name, ip, geo });
+      logEvent({ type: "leave", id, room, name: meta.name });
       const m = matches.get(room);
       if (m) {
         removePlayer(m, id);
@@ -155,7 +150,7 @@ export function attachRooms(wss, { allowMessage } = {}) {
         already.meta = meta;
         hello();
         broadcast(room, { t: "join", id, meta: metaOf(room, id, already) }, id);
-        logEvent({ type: "join", id, room, name: meta.name, drone: meta.drone, ip, geo });
+        logEvent({ type: "join", id, room, name: meta.name, drone: meta.drone });
         return;
       }
       // Check capacity BEFORE leaving the current room / reassigning `room` —
@@ -173,7 +168,7 @@ export function attachRooms(wss, { allowMessage } = {}) {
       leave();
       room = target;
       const peers = roomMap(room);
-      const peer = { ws, meta, state: null, ip, geo };
+      const peer = { ws, meta, state: null };
       peers.set(id, peer);
       if (isTeamRoom(room)) {
         const m = matchFor(room);
@@ -184,7 +179,7 @@ export function attachRooms(wss, { allowMessage } = {}) {
       hello();
       broadcast(room, { t: "join", id, meta: metaOf(room, id, peer) }, id);
       broadcastRooms();
-      if (!silent) logEvent({ type: "join", id, room, name: meta.name, drone: meta.drone, ip, geo });
+      if (!silent) logEvent({ type: "join", id, room, name: meta.name, drone: meta.drone });
     }
 
     join("hangar", meta, true);
@@ -194,8 +189,8 @@ export function attachRooms(wss, { allowMessage } = {}) {
       // State frames can legitimately arrive many times per second during a
       // flight. Keep the ceiling comfortably above that traffic, but close a
       // connection that is clearly being used as a broadcast amplifier.
-      if (allowMessage && !allowMessage(ip)) {
-        logEvent({ type: "rate-limit", scope: "ws-message", id, ip, geo });
+      if (allowMessage && !allowMessage()) {
+        logEvent({ type: "rate-limit", scope: "ws-message", id });
         ws.close(1008, "message rate limit");
         return;
       }
@@ -272,7 +267,7 @@ export function attachRooms(wss, { allowMessage } = {}) {
         // they add up to the server-timed run (start→result), so a bogus
         // "0.1 s lap" can't ride in on an otherwise honest finish.
         const bestLap = plausibleBestLap(msg.laps, seconds);
-        logEvent({ type: won ? "win" : "lost", id, room, name: meta.name, opId, opName, seconds, bestLap, ranked, ip, geo });
+        logEvent({ type: won ? "win" : "lost", id, room, name: meta.name, opId, opName, seconds, bestLap, ranked });
         if (won && ranked) recordScore({ name: meta.name, opId, opName, seconds, ...(bestLap != null ? { bestLap } : {}) });
       }
     });

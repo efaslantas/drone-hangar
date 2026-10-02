@@ -12,7 +12,7 @@ SITL native process + MAVLink + 20-40 s EKF settle. Telefonda "gir uç çık" ve
 
 Public: `https://efa-hangar.germanywestcentral.cloudapp.azure.com/?room=hangar&name=pilot`
 Sıralama: `/leaderboard.html` (görev bitince süre; 1. = en hızlı).
-Admin: `/admin.html` — kullanıcı adı/parola ile kısa ömürlü `HttpOnly`, `Secure`, `SameSite=Strict` oturum cookie’si alır; eski `?key=` bağlantıları yetki vermez. Canlı giriş/çıkış + kazanç/kayıp akışı, IP + GeoIP konum (offline, `geoip-lite`; Caddy arkasında `X-Forwarded-For` okunuyor) ve IP raporu gösterilir. Anahtar yalniz korumali `server/data/admin.key` dosyasindan veya `ADMIN_KEY` ortam degiskeninden okunur; asla build ya da sunucu loguna yazilmaz.
+Admin: `/admin.html` — kullanıcı adı/parola ile kısa ömürlü `HttpOnly`, `Secure`, `SameSite=Strict` oturum cookie’si alır; eski `?key=` bağlantıları yetki vermez. Canlı giriş/çıkış ve kazanç/kayıp akışı gösterilir; IP adresi veya konum kaydı tutulmaz. Anahtar yalniz korumali `server/data/admin.key` dosyasindan veya `ADMIN_KEY` ortam degiskeninden okunur; asla build ya da sunucu loguna yazilmaz.
 Azure `zenth-lens-vm` 24/7, Caddy LE, auto-shutdown KAPALI. Detay: `~/notes/infra-reference.md` Hangar maddesi.
 
 ## Çalıştır
@@ -79,7 +79,6 @@ Op alanlari `night`/`real`, `lockDrone`/`lockMap`, `botDrone`/`botHp`, `countdow
 | `src/team.js` | Takım modu istemci yardımcıları (saf): `scoreLine/matchStatus/enemyTargets/resultModel`, `TEAM_SPAWN` |
 | `server/store.mjs` | Olay/skor JSON dosyası (`server/data/`, gitignore) + admin anahtarı. events 2000, scores 5000 ile sinirli |
 | `server/api.mjs` | `/api/health`, `/api/leaderboard`, ghost API'si ve cookie oturumlu admin API'si; halka açık uç noktalar IP rate limitlidir |
-| `server/geo.mjs` | İstemci IP'si (X-Forwarded-For öncelikli) + `geoip-lite` ile ülke/şehir |
 
 Fizik istemcide. Sunucu oda + pose yayını, artık giriş/çıkış/görev sonucu da (`t:"result"`) kaydediyor.
 

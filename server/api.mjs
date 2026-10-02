@@ -1,6 +1,5 @@
-import { ADMIN_KEY, ADMIN_USER, getEvents, getLeaderboard, getVisitorReport, logEvent, saveGhostShare, getGhostShare } from "./store.mjs";
+import { ADMIN_KEY, ADMIN_USER, getEvents, getLeaderboard, logEvent, saveGhostShare, getGhostShare } from "./store.mjs";
 import { createAdminSessions, parseCookies } from "./auth.mjs";
-import { clientIp } from "./geo.mjs";
 import { createRateLimiter } from "./rate-limit.mjs";
 
 const adminSessions = createAdminSessions();
@@ -35,10 +34,11 @@ function readBody(req, cb) {
 export function handleApi(req, res, wss) {
   const url = new URL(req.url, "http://localhost");
   const p = url.pathname;
-  const ip = clientIp(req);
   const limited = (scope, max, windowMs) => {
-    if (rateLimit.allow(scope, ip, max, windowMs)) return false;
-    logEvent({ type: "rate-limit", scope, ip });
+    // The public API has a process-wide burst cap. It deliberately does not
+    // identify, retain, or log client network addresses.
+    if (rateLimit.allow(scope, "public", max, windowMs)) return false;
+    logEvent({ type: "rate-limit", scope });
     sendJson(res, 429, { error: "cok fazla istek" });
     return true;
   };
@@ -80,7 +80,6 @@ export function handleApi(req, res, wss) {
     sendJson(res, 200, {
       online: wss?.getOnline ? wss.getOnline() : [],
       events: getEvents(300),
-      report: getVisitorReport(),
     });
     return true;
   }

@@ -79,21 +79,9 @@
       .ev-connect { color: #6aa0b8; }
       td.type { text-transform: uppercase; font: 11px/1 ui-monospace, monospace; letter-spacing: .06em; }
       .why { margin: -8px 0 20px; color: var(--dim); font-size: 13px; max-width: 70ch; }
-      td.ip { font: 12px/1 ui-monospace, monospace; color: var(--dim); }
-      td.geo { color: #7ec8ff; }
       .legend { display: flex; flex-wrap: wrap; gap: 4px 14px; margin: 0 0 12px; font: 11px/1 ui-monospace, monospace; }
       .legend span { display: flex; align-items: center; gap: 5px; }
       .legend i { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
-      .note { margin: -4px 0 10px; color: var(--dim); font: 12px/1.5 ui-monospace, monospace; }
-      .chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 12px; padding: 0; }
-      .chips b {
-        font: 11px/1 ui-monospace, monospace; letter-spacing: .06em;
-        background: rgba(255,176,32,.12); border: 1px solid rgba(255,176,32,.3);
-        color: var(--warn); padding: 5px 8px; border-radius: 2px; font-weight: 600;
-      }
-      .chips b i { font-style: normal; color: var(--dim); margin-left: 5px; }
-      td.names { white-space: normal; }
-      td.num { text-align: right; font: 12px/1 ui-monospace, monospace; }
     </style>
     <link rel="stylesheet" href="/src/theme.css" />
   </head>
@@ -107,7 +95,7 @@
         <span id="status">bağlanıyor…</span>
         <button type="button" class="refresh" id="logout" hidden>Çıkış</button>
       </header>
-      <p class="why">Kim ne zaman girdi/çıktı, hangi görevi kazandı/kaybetti — IP ve tahmini konumla (GeoIP, kesin değil). 3 sn'de bir güncellenir.</p>
+      <p class="why">Kim ne zaman girdi/çıktı, hangi görevi kazandı/kaybetti. 3 sn'de bir güncellenir; IP veya konum kaydı tutulmaz.</p>
 
       <div class="gate" id="gate" hidden>
         <label for="user-input">Kullanıcı</label>
@@ -130,31 +118,11 @@
           <h2>Şu an bağlı olanlar</h2>
           <div class="table-wrap">
             <table id="t-online">
-              <thead><tr><th>İsim</th><th>Drone</th><th>Oda</th><th>IP</th><th>Konum</th></tr></thead>
+              <thead><tr><th>İsim</th><th>Drone</th><th>Oda</th></tr></thead>
               <tbody></tbody>
             </table>
           </div>
           <p class="empty" id="online-empty" hidden>Kimse bağlı değil.</p>
-        </section>
-
-        <section>
-          <h2>IP raporu · kim nereden girdi</h2>
-          <div class="cards">
-            <div class="card"><span>Farklı IP</span><strong id="r-ips">0</strong></div>
-            <div class="card"><span>Farklı pilot adı</span><strong id="r-pilots">0</strong></div>
-            <div class="card"><span>Toplam bağlantı</span><strong id="r-visits">0</strong></div>
-            <div class="card"><span>Görev girişi</span><strong id="r-joins">0</strong></div>
-            <div class="card"><span>Galibiyet</span><strong id="r-wins">0</strong></div>
-          </div>
-          <p class="note" id="r-scope"></p>
-          <p class="chips" id="r-countries"></p>
-          <div class="table-wrap">
-            <table id="t-report">
-              <thead><tr><th>IP</th><th>Konum</th><th>Pilot adları</th><th>Bağlantı</th><th>Görev</th><th>Galibiyet</th><th>İlk</th><th>Son</th></tr></thead>
-              <tbody></tbody>
-            </table>
-          </div>
-          <p class="empty" id="report-empty" hidden>Kayıtlı ziyaret yok.</p>
         </section>
 
         <section>
@@ -168,7 +136,7 @@
           </div>
           <div class="table-wrap">
             <table id="t-events">
-              <thead><tr><th>Saat</th><th>Olay</th><th>İsim</th><th>Oda / Görev</th><th>Detay</th><th>IP</th><th>Konum</th></tr></thead>
+              <thead><tr><th>Saat</th><th>Olay</th><th>İsim</th><th>Oda / Görev</th><th>Detay</th></tr></thead>
               <tbody></tbody>
             </table>
           </div>

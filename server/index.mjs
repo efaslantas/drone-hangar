@@ -5,7 +5,6 @@ import { fileURLToPath } from "node:url";
 import { WebSocketServer } from "ws";
 import { attachRooms } from "./rooms.mjs";
 import { handleApi } from "./api.mjs";
-import { clientIp } from "./geo.mjs";
 import { createRateLimiter } from "./rate-limit.mjs";
 import { logEvent } from "./store.mjs";
 
@@ -32,7 +31,7 @@ const wsRateLimit = createRateLimiter();
 attachRooms(wss, {
   // 360 messages/sec leaves room for high-frequency state frames while
   // preventing a single IP from flooding every peer in a room.
-  allowMessage: (ip) => wsRateLimit.allow("ws-message", ip, 360, 1_000),
+  allowMessage: () => wsRateLimit.allow("ws-message", "public", 360, 1_000),
 });
 
 const server = http.createServer((req, res) => {
@@ -77,9 +76,8 @@ server.on("upgrade", (req, socket, head) => {
     socket.destroy();
     return;
   }
-  const ip = clientIp(req);
-  if (!wsRateLimit.allow("ws-connect", ip, 12, 60_000)) {
-    logEvent({ type: "rate-limit", scope: "ws-connect", ip });
+  if (!wsRateLimit.allow("ws-connect", "public", 120, 60_000)) {
+    logEvent({ type: "rate-limit", scope: "ws-connect" });
     socket.write("HTTP/1.1 429 Too Many Requests\r\nConnection: close\r\n\r\n");
     socket.destroy();
     return;

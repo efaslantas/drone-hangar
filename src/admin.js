@@ -48,18 +48,13 @@ function showGate(err) {
   statusEl.className = err ? "err" : "";
 }
 
-function fmtGeo(geo) {
-  if (!geo) return "-";
-  return [geo.city, geo.country].filter(Boolean).join(", ") || "-";
-}
-
 function renderOnline(online) {
   const tbody = document.querySelector("#t-online tbody");
   tbody.innerHTML = "";
   document.getElementById("online-empty").hidden = online.length > 0;
   for (const p of online) {
     const tr = document.createElement("tr");
-    tr.innerHTML = `<td>${escapeHtml(p.name)}</td><td>${escapeHtml(p.drone)}</td><td class="room">${escapeHtml(p.room)}</td><td class="ip">${escapeHtml(p.ip || "-")}</td><td class="geo">${escapeHtml(fmtGeo(p.geo))}</td>`;
+    tr.innerHTML = `<td>${escapeHtml(p.name)}</td><td>${escapeHtml(p.drone)}</td><td class="room">${escapeHtml(p.room)}</td>`;
     tbody.appendChild(tr);
   }
   document.getElementById("c-online").textContent = String(online.length);
@@ -88,45 +83,7 @@ function renderEvents(events) {
     let detail = "-";
     if (e.type === "win" || e.type === "lost") detail = fmtSeconds(e.seconds);
     else if (e.type === "join") detail = e.drone || "-";
-    tr.innerHTML = `<td>${fmtTime(e.ts)}</td><td class="type ev-${e.type}">${EVENT_LABEL[e.type] || e.type}</td><td>${escapeHtml(e.name || "-")}</td><td class="room">${escapeHtml(roomOrOp)}</td><td>${escapeHtml(detail)}</td><td class="ip">${escapeHtml(e.ip || "-")}</td><td class="geo">${escapeHtml(fmtGeo(e.geo))}</td>`;
-    tbody.appendChild(tr);
-  }
-}
-
-function fmtDate(ts) {
-  if (!ts) return "-";
-  return new Date(ts).toLocaleString("tr-TR", { hour12: false, day: "2-digit", month: "2-digit", hour: "2-digit", minute: "2-digit" });
-}
-
-function renderReport(report) {
-  const ips = report?.ips || [];
-  const totals = report?.totals || {};
-  const tbody = document.querySelector("#t-report tbody");
-  tbody.innerHTML = "";
-  document.getElementById("report-empty").hidden = ips.length > 0;
-
-  document.getElementById("r-ips").textContent = String(totals.ips || 0);
-  document.getElementById("r-pilots").textContent = String(totals.pilots || 0);
-  document.getElementById("r-visits").textContent = String(totals.visits || 0);
-  document.getElementById("r-joins").textContent = String(totals.joins || 0);
-  document.getElementById("r-wins").textContent = String(totals.wins || 0);
-  document.getElementById("r-scope").textContent = totals.since
-    ? `Kayıtlı olay defterinin tamamı — ${fmtDate(totals.since)} tarihinden bu yana. Defter son 2000 olayla sınırlı, daha eskisi düşer.`
-    : "";
-
-  const chips = document.getElementById("r-countries");
-  chips.innerHTML = (report?.countries || [])
-    .map((c) => `<b>${escapeHtml(c.country)}<i>${c.ips} IP · ${c.visits} bağlantı</i></b>`)
-    .join("");
-
-  for (const r of ips) {
-    const tr = document.createElement("tr");
-    tr.innerHTML =
-      `<td class="ip">${escapeHtml(r.ip)}</td>` +
-      `<td class="geo">${escapeHtml(fmtGeo(r.geo))}</td>` +
-      `<td class="names">${escapeHtml(r.names.join(", ") || "-")}</td>` +
-      `<td class="num">${r.visits}</td><td class="num">${r.joins}</td><td class="num">${r.wins}</td>` +
-      `<td>${fmtDate(r.first)}</td><td>${fmtDate(r.last)}</td>`;
+    tr.innerHTML = `<td>${fmtTime(e.ts)}</td><td class="type ev-${e.type}">${EVENT_LABEL[e.type] || e.type}</td><td>${escapeHtml(e.name || "-")}</td><td class="room">${escapeHtml(roomOrOp)}</td><td>${escapeHtml(detail)}</td>`;
     tbody.appendChild(tr);
   }
 }
@@ -151,7 +108,6 @@ async function poll() {
     statusEl.className = "live";
     renderOnline(data.online || []);
     renderEvents(data.events || []);
-    renderReport(data.report);
   } catch (err) {
     statusEl.textContent = `bağlantı hatası: ${err.message}`;
     statusEl.className = "err";

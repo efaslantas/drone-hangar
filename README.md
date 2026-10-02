@@ -51,7 +51,7 @@ Gamepad davranisi tarayici ve cihaz baglantisina baglidir. Fiziksel cihazla kont
 
 ## Veri ve Cok Oyunculu
 
-Kampanya ilerlemesi, kalibrasyon, hayalet kayitlari ve Operasyon Masasi senaryolari tarayicinin localStorage alaninda tutulur. Oda durumu, siralama sonuclari ve paylasilan tekrarlar sunucuya gider. Ayrintilar: [Gizlilik ve Veri](docs/PRIVACY.md).
+Kampanya ilerlemesi, kalibrasyon, hayalet kayitlari ve Operasyon Masasi senaryolari tarayicinin localStorage alaninda tutulur. Oda durumu, siralama sonuclari ve paylasilan tekrarlar sunucuya gider. Oyun IP adresi veya yaklasik konum kaydetmez. Ayrintilar: [Gizlilik ve Veri](docs/PRIVACY.md).
 
 ## Belgeler
 

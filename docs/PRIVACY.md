@@ -15,9 +15,9 @@ Tarayici site verisini silmek bu verileri silebilir. Bu yerel veriler sunucu hes
 
 ## Sunucuya Giden Veriler
 
-Bir odaya katildiginizda gorunen pilot adi, oda, secili drone ve konum/ucus olaylari WebSocket ile islenir. Gorev sonucu gonderildiginde sunucu, baslangic ve bitis zamanini kullanarak siralama kaydi olusturur. Paylasilan hayalet baglantilari, yuklenen ucus izini ve iliskili meta veriyi sunucuda saklar.
+Bir odaya katildiginizda gorunen pilot adi, oda, secili drone ve ucus olaylari WebSocket ile islenir. Gorev sonucu gonderildiginde sunucu, baslangic ve bitis zamanini kullanarak siralama kaydi olusturur. Paylasilan hayalet baglantilari, yuklenen ucus izini ve iliskili meta veriyi sunucuda saklar.
 
-Sunucu baglanti, ayrilma ve sonuc olaylarini sinirli bir olay kaydinda tutar. Istemci IP adresi ile Caddy veya benzeri reverse proxy'nin ilettigi IP bilgisi, ziyaretci raporu icin ulke/sehir tahminine donusturulebilir. Yonetici ekraninda cevrimici kullanicilar, olaylar ve toplu ziyaretci raporu goruntulenebilir.
+Sunucu baglanti, ayrilma ve sonuc olaylarini sinirli bir olay kaydinda tutar. IP adresi, reverse proxy istemci IP bilgisi veya yaklasik konum (GeoIP) uygulama tarafindan kaydedilmez, gosterilmez ya da olay kayitlaryna eklenmez. Yonetici ekrani yalniz cevrimici kullanicilari ve oyun olaylarini goruntuler.
 
 ## Gorunurluk ve Saklama
 

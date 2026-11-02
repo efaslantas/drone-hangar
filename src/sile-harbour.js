@@ -6,7 +6,7 @@ import {surfaceTexture} from './surfaces.js';
 const random=(n,s=0)=>{let h=(Math.imul(n|0,374761393)^Math.imul(s,668265263))>>>0;h=Math.imul(h^(h>>>13),1274126177);return ((h^(h>>>16))>>>0)/4294967295;};
 function distance(x,z,a,b){const dx=b[0]-a[0],dz=b[1]-a[1],l=dx*dx+dz*dz,t=l?Math.max(0,Math.min(1,((x-a[0])*dx+(z-a[1])*dz)/l)):0;return Math.hypot(x-a[0]-dx*t,z-a[1]-dz*t);}
 function boundaryDistance(x,z,rings){let d=Infinity;for(const ring of rings)for(let i=0;i<ring.length;i++)d=Math.min(d,distance(x,z,ring[i],ring[(i+1)%ring.length]));return d;}
-function harbourLayout(data){
+export function harbourLayout(data){
  if(data?.id!=='sile'||!Object.entries(source.projection).every(([k,v])=>data.projection?.[k]===v)||data.buildings.length!==source.counts.buildings||data.roads.length!==source.counts.roads||data.structures.length!==source.counts.structures)return null;
  const ring=data.terrain.land[0]?.[0],start=ring?.findIndex(p=>p[0]===-84.4&&p[1]===-657.63),end=ring?.findIndex(p=>p[0]===-119.31&&p[1]===-686.03);
  if(!ring||start<0||end<=start)return null;
@@ -21,7 +21,7 @@ function harbourLayout(data){
   if(surfaceAt(play,x+nx*.8,z+nz*.8).water){nx=-nx;nz=-nz;}
   if(surfaceAt(play,x+nx*.8,z+nz*.8).water)continue;
   if(nearHarbour)masks.push([[a,b,[b[0]+nx*10,b[1]+nz*10],[a[0]+nx*10,a[1]+nz*10]]]);
-  edges.push({a,b,nx,nz,len});
+  edges.push({a,b,nx,nz,len,nearHarbour});
  }
  return {masks,edges};
 }

@@ -1,3 +1,4 @@
+import {addMooringLinks} from './sile-mooring.js';
 import {finishSileFoliage} from './sile-foliage.js';
 import {addFacadeDepth} from './sile-architectural.js';
 import {applyBuildingPads} from './sile-pads.js';
@@ -136,6 +137,7 @@ export function buildSile(scene,data){
  addNeighbourhood(scene,data,play,coastal);
  addBuildingFoundations(scene,play,coastal);
  applyBuildingPads(scene,data,play,coastal,streets);
+ addMooringLinks(scene,data,play);
  addFacadeDepth(scene,data,play,coastal);
  finishSileFoliage(scene);
  return play;

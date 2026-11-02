@@ -1,0 +1,44 @@
+{
+  "version": "2.38",
+  "authored": true,
+  "sourceMapUnchanged": true,
+  "sourcePierIds": [
+    1485112033,
+    1485112035,
+    1485112037
+  ],
+  "reference": {
+    "url": "https://commons.wikimedia.org/wiki/File:%C5%9Eile_Liman%C4%B1_A%C4%9Fustos_2024.jpg",
+    "author": "Vikimedyahesap",
+    "license": "CC0-1.0",
+    "purpose": "Visual evidence of shore-to-pier sloping access; image not redistributed"
+  },
+  "links": {
+    "widthM": 2.4,
+    "deckThicknessM": 0.22,
+    "shoreInsetM": [
+      2,
+      10
+    ],
+    "pierOverlapM": 0.7,
+    "maxSpanM": 55,
+    "placement": "Nearest source-coast edge to the shore end of selected existing source pier; both shore corners on land and both deck corners inside original pier",
+    "dimensionsMeasured": false
+  },
+  "quay": {
+    "selection": "Existing harbourLayout nearHarbour source coast edges (within 8m of mapped harbour boundary)",
+    "watersideOffsetM": 0.025,
+    "bottomBelowSeaM": 0.4,
+    "sourceTerrainHeightsChanged": false
+  },
+  "physics": {
+    "method": "Actual uploaded Float32 triangles for deck, rails and quay; existing swept sphere contact owner",
+    "invisibleUnderBridgeSolid": false,
+    "sourceCoastlineChanged": false
+  },
+  "limits": [
+    "Authored reconstruction, not a surveyed marina or civil engineering model",
+    "No coastline landfill or bathymetry change",
+    "Existing source 30m DSM and representative buildings remain"
+  ]
+}

@@ -75,8 +75,8 @@
   ],
   "git": "no commit/push/merge",
   "latestUpdate": {
-    "release": "v2.37.0-89734fb23807",
-    "validation": "docs/pad-bounds-validation.json",
+    "release": "v2.38.0-44f8624aaa0d",
+    "validation": "docs/sile-mooring-validation.json",
     "status": "published",
     "date": "2026-11-02"
   }

@@ -1,0 +1,140 @@
+{
+  "date": "2026-11-02",
+  "status": "published",
+  "release": "v2.38.0-44f8624aaa0d",
+  "scope": "Connect the three disconnected Şile source piers to the existing shore and finish harbour-facing coast as quay",
+  "sourceReference": "https://commons.wikimedia.org/wiki/File:%C5%9Eile_Liman%C4%B1_A%C4%9Fustos_2024.jpg",
+  "referenceAuthor": "Vikimedyahesap",
+  "referenceLicense": "CC0-1.0; photo viewed, not redistributed",
+  "geometry": {
+    "links": [
+      {
+        "sourceId": 1485112033,
+        "length": 8.291381409774889,
+        "width": 2.4,
+        "shorePoint": [
+          70.53677584784322,
+          -261.36298897794467
+        ]
+      },
+      {
+        "sourceId": 1485112035,
+        "length": 25.14834422061043,
+        "width": 2.4,
+        "shorePoint": [
+          37.2607228454557,
+          -239.72362016782773
+        ]
+      },
+      {
+        "sourceId": 1485112037,
+        "length": 43.236282063729476,
+        "width": 2.4,
+        "shorePoint": [
+          -21.067156027937145,
+          -212.0884228478055
+        ]
+      }
+    ],
+    "stats": {
+      "links": 3,
+      "quayTriangles": 234,
+      "authored": true,
+      "rejected": []
+    },
+    "contactTriangles": 1206,
+    "landingTriangles": 6,
+    "meshes": 2
+  },
+  "invariants": {
+    "sourceData": "unchanged byte hashes; source coastline, terrain elevations, structures and boat placement unchanged",
+    "legacyWorld": "Old46mesh/10755box/1286prism geometry/material/collision fingerprints exactly match after excluding two explicitly new meshes and authored contact records",
+    "fieldFloat64Samples": 83025,
+    "fieldSha256": "b0be888b19f304edd9a696a75c4ac4c8feb0eae341cdb41b63f7403767212673",
+    "newMeshes": 2,
+    "newTotalWorldMeshes": 48,
+    "newInvisibleUnderpassSolid": false,
+    "newDependencies": 0
+  },
+  "verification": {
+    "focused": {
+      "pass": 26,
+      "fail": 0
+    },
+    "newTests": 7,
+    "redGreen": "Missing module and triangle contact initially RED; source attachment/uploaded Float32 records/CCD/underpass/teardown GREEN. Additional sea-facing winding, UV area, quay behind every link, upward landing bookkeeping each observed RED→GREEN.",
+    "infra": 11,
+    "vite": "pass; existing large chunk warning",
+    "arm64": "pass",
+    "review": "Fresh scoped reviewer found inward culled quay and selection excluding all3link backs (Important); corrected. UV and touchdown Minor also corrected. No deferred findings.",
+    "meshBudgetTests": "Explicit +2newdrawbatches; existing full-world golden still checks all pre-existing geometry and contacts separately.",
+    "actualBrowser": {
+      "GL": "fixed-camera overview/shore-link/sea-facing quay, errors[]",
+      "WebGPU": "actual fixed-camera gfx.kind webgpu overview, errors[]",
+      "qaHarness": "Ignored local external-module viewer; fixed-camera and explicitly labelled synthetic, not a physical flight; QA not in release"
+    },
+    "initialFullSuite": {
+      "pass": 534,
+      "fail": 2,
+      "cause": "Two historical exact draw-budget assertions excluded new2batches; corrected +explicit newobjects assertions, all old hashes unchanged",
+      "focusedAfterBudgetUpdate": "10/10 facade+rocks tests"
+    },
+    "node22": {
+      "pass": 536,
+      "fail": 0,
+      "durationMs": 139876.091026,
+      "architecture": "linux/arm64",
+      "concurrency": 4
+    }
+  },
+  "image": {
+    "release": "v2.38.0-44f8624aaa0d",
+    "imageId": "sha256:b63b526e93d970fe9cad5cd77148329757f9433e093e6c14196a8d452747cb52",
+    "archiveSha256": "e69454b0b572f2c2e499bddedc8da6e6987e0b4dcff2ee4b15f15d3c4a545d17",
+    "archiveBytes": 141406839,
+    "architecture": "arm64",
+    "sourceFiles": 279
+  },
+  "proofDir": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1",
+  "proof": [
+    "harbour-links-before-overview.png",
+    "harbour-links-after-overview.png",
+    "harbour-links-after-close.png",
+    "harbour-links-after-gpu.png",
+    "harbour-links-after-water.png",
+    "harbour-links-live-ready-2.38.png"
+  ],
+  "limits": [
+    "Authored access dimensions/construction, not measured marina engineering or photogrammetry",
+    "Remaining coast/buildings retain source30mDSM/representative architecture limitations",
+    "No new physicalTX15/realILKE acceptance or full manual route flight"
+  ],
+  "url": "https://hangar.18-153-158-209.sslip.io/",
+  "live": {
+    "release": "v2.38.0-44f8624aaa0d",
+    "manifestFiles": 279,
+    "runningSourceHashes": 114,
+    "publicHttpsAssetsAndSources": "pass; includes new metadata hash, bundle and scope page",
+    "twoClientWssJoinStateLeave": "pass",
+    "browser": "inspection ready DISARM0/3, loading hidden, errors[]; no physical/manual complete-route claim",
+    "profile": {
+      "reference": "f60-1750-6s",
+      "massG": 650,
+      "capacityMah": 1100,
+      "quality": "medium",
+      "tiltDegrees": 25,
+      "input": "gamepad"
+    },
+    "restarts": 0,
+    "memoryMiB": 24.2,
+    "limitMiB": 256,
+    "uid": "1000:1000",
+    "readonly": true,
+    "otherSevenTenantsAndNginx": "unchanged; nginx syntax pass",
+    "zenthWebAndApi": 200,
+    "gelisimTlsOrigin": 200,
+    "rollbackContainerAndConsistentDataBackup": "retained",
+    "qaViewer": "local server stopped; QA tabs closed; no QA files in release"
+  },
+  "git": "main; final commit and remote identity in Git history/session"
+}

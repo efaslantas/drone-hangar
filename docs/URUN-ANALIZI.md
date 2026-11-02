@@ -75,3 +75,7 @@ Bina çevresi zemin rengi hesaplanırken yakın yol parçaları 48 m hücreli bi
 ### Bina tabanı hesaplaması — 2.37
 
 Kırpma parçalarının sınır hesabı dört geçici dizi yerine tek geçiş kullanır. Sayısal sahne/çarpışma kayıtları aynıdır; yerel iki kurulumda yaklaşık %6 azalma görüldü. Bu bir FPS garantisi değildir. [Doğrulama](pad-bounds-validation.json).
+
+### Limanın kıyıyla bağlantısı — 2.38
+
+Teknelerin bulunduğu üç iskele kaynak kara sınırından kopuk görünüyordu. Kaynak iskeleleri ve tekneleri taşımadan, mevcut kıyıya ulaşan üç eğimli geçit, korkuluklar ve iç liman kıyısına rıhtım yüzeyi eklendi. 2024 liman fotoğrafıyla karşılaştırıldı; boyutlar ve yapı yorumu temsili, ölçülmüş liman mühendisliği değildir. Çarpışma çizilen yüzeylerle eşleşir ve alt geçişlerde görünmez dolgu yoktur. [Doğrulama](sile-mooring-validation.json).

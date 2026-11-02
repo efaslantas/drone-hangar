@@ -2,6 +2,24 @@
   "mergePolicy": "Existing core objects win by(type,id); append only newly fetched objects, preserving original core node coordinates and tags",
   "inputs": [
     {
+      "role": "established-centre-west",
+      "url": "https://hangar.18-153-158-209.sslip.io/maps/sile/source-osm.json",
+      "retrievedDate": "2026-11-02",
+      "rawSha256": "fbec7ff16b498158967b953e94fd06c0f2692069412e12f613661916b42454e1"
+    },
+    {
+      "role": "east",
+      "url": "https://api.openstreetmap.org/api/0.6/map.json?bbox=29.62444,41.1654,29.642345,41.18341",
+      "retrievedDate": "2026-11-03",
+      "rawSha256": "26355d62d7f0af21075fa3db47fa2b91cf12119792ae1908e0e78b958aa3a6d3"
+    }
+  ],
+  "mergedSha256": "12539b73b2b564918d580784bc1e1f6a95d5dab25edab1e2df06a16046451099",
+  "coreElements": 13136,
+  "westElements": 1344,
+  "mergedElements": 13892,
+  "priorInputs": [
+    {
       "role": "core",
       "url": "https://api.openstreetmap.org/api/0.6/map.json?bbox=29.60059,41.1654,29.62445,41.18341",
       "retrievedDate": "2026-11-01",
@@ -13,9 +31,5 @@
       "retrievedDate": "2026-11-02",
       "rawSha256": "4357cbf5ad8b54dd7709050e28bdcc0851332cfcc4481996e3567f9994c79ab2"
     }
-  ],
-  "mergedSha256": "cbbd106d8bbe9af2a7df4b07eada27fd6b960da5a94716a1479ac3433c3528bf",
-  "coreElements": 11440,
-  "westElements": 2149,
-  "mergedElements": 13136
+  ]
 }

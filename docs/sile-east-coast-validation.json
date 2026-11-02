@@ -1,0 +1,195 @@
+{
+  "date": "2026-11-03",
+  "release": "v2.49.0-7737887e5d1c",
+  "status": "published",
+  "url": "https://hangar.18-153-158-209.sslip.io/",
+  "scope": "East geographic coverage toward Ağlayankaya; sea cave geometry is NOT implemented",
+  "image": {
+    "release": "v2.49.0-7737887e5d1c",
+    "imageId": "sha256:e1859f8b69c392b1dee27308cbdacea420bf685a96c02cf5496d43e020b35878",
+    "archiveSha256": "b12c693c27d00bf67758613b81a299d049fef0a355c2eeb8e56df29365d9d13c",
+    "archiveBytes": 141726893,
+    "architecture": "arm64",
+    "sourceFiles": 288
+  },
+  "runtimeDelta": {
+    "changed": [
+      "package-lock.json",
+      "package.json",
+      "public/maps/sile/building-types.json",
+      "public/maps/sile/coast-surfaces.json",
+      "public/maps/sile/context-data.json",
+      "public/maps/sile/geography-audit.json",
+      "public/maps/sile/geography-check.svg",
+      "public/maps/sile/map.json",
+      "public/maps/sile/preview.svg",
+      "public/maps/sile/provenance.json",
+      "public/maps/sile/source-dem.tif",
+      "public/maps/sile/source-inputs.json",
+      "public/maps/sile/source-osm.json",
+      "public/sile.html",
+      "src/data/sile-building-types.json",
+      "src/data/sile-coast.json",
+      "src/data/sile-context.json",
+      "src/sile-beach.js",
+      "src/world.js"
+    ],
+    "added": [],
+    "removed": [],
+    "licensedCadBytesUnchanged": true
+  },
+  "coverage": {
+    "oldCols": 97,
+    "newCols": 145,
+    "rows": 65,
+    "unchangedEstablishedHeightSamples": 6305,
+    "oldBounds": [
+      -1564.225,
+      1439.03,
+      -917.08,
+      1083.06
+    ],
+    "newBounds": [
+      -1564.225,
+      2940.6575000000003,
+      -917.08,
+      1083.06
+    ],
+    "projectionAndSpawnUnchanged": true,
+    "oldStats": {
+      "buildings": 1316,
+      "roads": 383,
+      "marineStructures": 10,
+      "terrainTriangles": 8210,
+      "measuredBuildingHeights": 0,
+      "sourceBuildingLevels": 1,
+      "landFraction": 0.5897,
+      "spawnClearanceM": 13.8
+    },
+    "newStats": {
+      "buildings": 1331,
+      "roads": 468,
+      "marineStructures": 10,
+      "terrainTriangles": 10879,
+      "measuredBuildingHeights": 0,
+      "sourceBuildingLevels": 1,
+      "landFraction": 0.5236,
+      "spawnClearanceM": 13.8
+    }
+  },
+  "fingerprints": [
+    {
+      "full": {
+        "meshes": "91ff46a18c41e68474ffeea34ee88560e49aa8b50cd743cc85db9770021f2c71",
+        "collision": "a4dacb2fcf402b020cb82a66f75aa2315ab20b228902c756bd184d87ba16451a",
+        "meshCount": 51,
+        "boxes": 10810,
+        "prisms": 1351
+      },
+      "base": {
+        "meshes": "37d5fdb18266e3dab5f2bb714dc43db219e8813780796b41fba449730909fb40",
+        "collision": "57c45a0c118d31e6ddfc38b80ca6e6722f87560d070644993d43d3a9f4e813c5",
+        "meshCount": 47,
+        "boxes": 10810,
+        "prisms": 1351
+      }
+    }
+  ],
+  "sourcePreservation": {
+    "heightSamples": 6305,
+    "projectionAndSpawn": "unchanged",
+    "establishedSourceElements": 13136,
+    "oldBuildingIdsRetained": 1316,
+    "restoredFormerlyClippedBuilding": {
+      "id": 414800231,
+      "oldBase": 40.91,
+      "newBase": 40.33,
+      "reason": "Full source footprint now inside expanded crop; native minimum base recomputed"
+    },
+    "caveStatus": "Reference photos and source-region matching researched; no cave mouths/interior/flight void claimed; see docs/sile-coastal-caves-evidence.md"
+  },
+  "safety": {
+    "authoredGradingSourceIds": [
+      309193706
+    ],
+    "newEasternSand": "native source DSM",
+    "actualFullVertexAndCentroidAgreement": "10coast/beach focused tests pass;0.0002m guard",
+    "regression": "Automatic grading newly enabled by broad east source beaches caused2m/0.115m projected overlaps; unsupported earthworks removed, not query tolerances widened",
+    "historicalGoldenChanges": "Current dataset snapshots updated; original centre/west native sample hash and source-prefix regression remain frozen"
+  },
+  "geographicAudit": {
+    "coast": {
+      "sourceWays": 8,
+      "sourceLengthM": 12087.326094596923,
+      "modelLengthM": 12087.354804976754,
+      "sourceConversionMaxDeviationM": 0.006566911575065188
+    },
+    "roadIds": 466,
+    "missingRoadIds": [],
+    "maxRoadSourceConversionDeviationM": 0.007021174124021941,
+    "unresolvedSourceSupportIds": [
+      1485112031,
+      1485112032,
+      426790796
+    ],
+    "note": "Residuals describe conversion rounding against OSM, not surveyed accuracy"
+  },
+  "verification": {
+    "node22Arm64": {
+      "pass": 576,
+      "fail": 0,
+      "durationMs": 196801.148427
+    },
+    "gis": 7,
+    "infra": 11,
+    "focusedCoastBeach": 10,
+    "focusedSourceCoverage": 6,
+    "foliageFocused": 6,
+    "review": "review_east_coverage: actual overlap found, final fail-closed region opt-in clean; independent10/10 plus source/GIS pass",
+    "viteArm64": "pass; existing chunk-size warning",
+    "browser": {
+      "webgl": {
+        "views": [
+          "eastwide",
+          "former east edge"
+        ],
+        "errors": []
+      },
+      "webgpu": {
+        "views": [
+          "eastwide"
+        ],
+        "errors": [],
+        "limitation": "Some distant tree crowns appear white in this experimental renderer; defaultWebGL crowns remain coloured. Coastal geometry rendered; do not claim GPU appearance parity."
+      },
+      "references": {
+        "municipality": "https://sile.bel.tr/tr/dogal-guzellikler/",
+        "route": "https://www.wikiloc.com/hiking-trails/sile-aglayan-kayalar-16836438#wp-16836441",
+        "arch": "Google Maps Su İçen Fil41.1791141,29.6222048",
+        "notModeled": true
+      },
+      "evidence": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1",
+      "syntheticCamera": true
+    },
+    "https": {
+      "release": "v2.49.0-7737887e5d1c",
+      "entryAssets": 5,
+      "uniqueIds": 252,
+      "changedPublicSha": "pass",
+      "sourceMapMatchesRelease": "pass",
+      "buildings": 1331,
+      "roads": 468
+    },
+    "wss": "two-client join/state/leave pass",
+    "runningSourceHashes": 120,
+    "liveProfile": "SOURCEONEv4,Şileinspection,DISARM0mAGL0of3",
+    "liveConsoleErrors": [],
+    "host": "app-only;7tenant identities and nginx bytes unchanged;old container/data backup retained;Zenthweb/API/GelişimTLSorigin200"
+  },
+  "limits": [
+    "Sea caves/natural arch voids not implemented; coastline expansion does not complete them.",
+    "30mDSM/source polygons approximate cliffs; no surveyed3D coast/interior or full district replica.",
+    "WebGPU distant tree colour artifact recorded; defaultWebGL appearance checked.",
+    "No physicalTX15/İLKE flight acceptance or FPS claim."
+  ]
+}

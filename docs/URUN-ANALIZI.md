@@ -123,3 +123,7 @@ Köpük farklı kıyı noktalarında ilerler; alçak kum üzerinde yayılıp ger
 ## 2.48 — Kayalık yüzey ve ıslaklık geçişi
 
 Şile kıyı kayalıklarında ıslak-kuru malzeme çizgisi yerine deniz seviyesine bağlı yumuşak pürüzlülük geçişi kullanılır. Hücresel desen hafifletildi; temsili katman/çatlak ve geniş lekeler eklendi. Dokular kale adası ve kıyı tahkimatında da kullanılır. Yeniuv1 ve kıyı kaya rengi dışında geometri/temaslar2.47 ile aynı.575/575Node22ARM64,11infra,ViteARM64,bağımsız inceleme veGL/GPU/AWS doğrulandı. KaynakOSM/DSM/CAD korunur;gerçek kaya türü,gelgit veya saha doğrulaması değildir. Ayrıntı: `docs/sile-rock-weathering-validation.json`.
+
+## 2.49 — Ağlayankaya yönünde doğu kıyı kapsamı
+
+Alan yaklaşık4.5×2km/145×65oldu;doğu kıyı/koy/yollar yeniOSMkaydıyla devam eder. Eski6305nativeyükseklik/projeksiyon/kalkış/13136sourceprefix korunur.1331bina/468yolparçası;15yeni bina/85yolparçası. DoğubeachnativeDSM,tesviyeyalnızdoğrulanmışbatı309193706. Bütünkumköşeleri/üçgenmerkezleri0.2mmqueryguardgeçer.576/576Node22ARM64,7GIS,11infra,ViteARM64,bağımsızinceleme ve canlıHTTPS/WSS doğrulandı. Mağara/kemer boşlukları henüz modellenmedi;referans incelemesi `docs/sile-coastal-caves-evidence.md`. WebGPUuzakağaç renk farkı açık;WebGLdefault kontrol edildi. Ayrıntı `docs/sile-east-coast-validation.json`.

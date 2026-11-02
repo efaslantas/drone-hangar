@@ -1,6 +1,6 @@
 # Drone Hangar — AWS işletim kaydı
 
-2026-11-02: Kullanıcı Drone simülatörü 2.16 için mevcut Zenth AWS sunucusunu seçti. Canlı adres: https://hangar.18-153-158-209.sslip.io/ . İlk kurulum `v2.16.0-7f5130339846`; güncel sürüm `v2.48.0-b2c6d496aef2` (2.48, 2026-11-03).
+2026-11-02: Kullanıcı Drone simülatörü 2.16 için mevcut Zenth AWS sunucusunu seçti. Canlı adres: https://hangar.18-153-158-209.sslip.io/ . İlk kurulum `v2.16.0-7f5130339846`; güncel sürüm `v2.49.0-7737887e5d1c` (2.49, 2026-11-03).
 
 ## Yerleşim
 
@@ -175,3 +175,7 @@ v2.47.0-5f986166dd40: kıyıya ilerleyen köpük tepesi ve kum üzerinde yayıl�
 ## 2026-11-03 — 2.48 kayalık yüzey ve ıslaklık geçişi
 
 v2.48.0-b2c6d496aef2: düzensiz katman/çatlak dokusu, geniş renk lekeleri ve deniz seviyesine bağlı yumuşak pürüzlülük geçişi. Yeniuv1 ve kaya rengi dışında görsel geometri ve tüm fiziksel temaslar2.47 ile birebir.575/575Node22ARM64,10reviewerfocused,11infra,ViteARM64 ve gerçekGL/GPU görünüm kontrolü geçti.288manifest/120runningSHA,HTTPS/WSS pass.7tenant/nginx aynı;eski konteyner/veri yedeği korunur. Kanıt: `docs/sile-rock-weathering-validation.json`. Temsili malzeme görünümüdür.
+
+## 2026-11-03 — 2.49 Ağlayankaya doğu kapsamı
+
+v2.49.0-7737887e5d1c: doğuya48sütun/~1.5km eklenir;145×65/~4.5×2km.6305eskiyükseklik/projeksiyon/kalkış/13136sourceprefix korunur;1331bina/468yolparçası. Eski crop binası414800231tamamlanır. Yalnız309193706batıplajında doğrulanmış tesviye;doğukum nativeDSM.576/576Node22ARM64,7GIS,11infra,ViteARM64;bağımsız10coast/beach+6source/coverage geçer.288manifest/120runningSHA/HTTPS/WSS pass;7tenant/nginx aynı. Mağara hacimleri modellenmedi;WebGPUuzakağaç beyazlığı kaydedildi,varsayılanWebGLnormal. Kanıt: `docs/sile-east-coast-validation.json`.

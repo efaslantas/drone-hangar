@@ -3,6 +3,9 @@ import {sampleTriangleSurface} from './triangle-surface.js';
 import source from './data/sile-coast.json' with {type:'json'};
 import {insidePolygon,surfaceAt,terrainHeight,splitTerrainEdge} from './geo-terrain.js';
 import {createSurfacePartition} from './sile-shore.js';
+// Only this western source beach has an accepted authored approach surface.
+// Loading new coast coverage must not silently reshape unvalidated beaches.
+const GRADED_BEACH_IDS=new Set([309193706]);
 const WIDTH=18,SLOPE=.08,TOE=.03;
 const area=r=>Math.abs(r.reduce((s,p,i)=>{const q=r[(i+1)%r.length];return s+p[0]*q[1]-p[1]*q[0];},0))/2;
 const bounds=p=>[Math.min(...p.map(v=>v[0])),Math.max(...p.map(v=>v[0])),Math.min(...p.map(v=>v[1])),Math.max(...p.map(v=>v[1]))];
@@ -38,7 +41,7 @@ function conformTriangles(triangles){
 export function buildBeachApproach(data,terrain,sand){
  const stats={changedVertices:0,maxCutM:0,rampTriangles:0,unsafe:false};
  if(data.id!=='sile'||!Object.entries(source.projection).every(([k,v])=>data.projection?.[k]===v))return null;
- const beaches=connectedBeachFeatures(terrain),ramps=[];
+ const beaches=connectedBeachFeatures(terrain).filter(f=>GRADED_BEACH_IDS.has(f.id)),ramps=[];
  for(const rings of terrain.land)for(const sourceRing of rings){
   const ring=sourceRing.flatMap((a,i)=>splitTerrainEdge(terrain,a,sourceRing[(i+1)%sourceRing.length]).slice(0,-1));
   const edges=ring.map((a,i)=>{const b=ring[(i+1)%ring.length],len=Math.hypot(b[0]-a[0],b[1]-a[1]),mx=(a[0]+b[0])/2,mz=(a[1]+b[1])/2;let nx=-(b[1]-a[1])/len,nz=(b[0]-a[0])/len;if(surfaceAt({terrain},mx+nx*.8,mz+nz*.8).water){nx=-nx;nz=-nz;}

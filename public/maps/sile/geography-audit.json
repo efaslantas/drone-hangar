@@ -1,15 +1,15 @@
 {
-  "scope": "Existing3x2km mixed snapshot source fidelity, not surveyed real-world accuracy",
+  "scope": "Current expanded Şile mixed snapshot source fidelity, not surveyed real-world accuracy",
   "coast": {
     "sourceWays": 8,
-    "sourceLengthM": 9433.365544234166,
-    "modelLengthM": 9433.395308236022,
+    "sourceLengthM": 12087.326094596923,
+    "modelLengthM": 12087.354804976754,
     "sourceConversionMaxDeviationM": 0.006566911575065188
   },
   "roads": {
-    "sourceWaysChecked": 381,
-    "modelPieces": 383,
-    "modelUniqueWayIds": 381,
+    "sourceWaysChecked": 466,
+    "modelPieces": 468,
+    "modelUniqueWayIds": 466,
     "missing": [],
     "maxSourceConversionDeviationM": 0.007021174124021941,
     "worst": [
@@ -65,56 +65,64 @@
         "kind": "footway",
         "bridge": "yes",
         "waterGapM": 179.80477413396068
+      },
+      {
+        "id": 426790796,
+        "name": "",
+        "kind": "footway",
+        "bridge": null,
+        "waterGapM": 2.2943011695636515
       }
     ],
     "buildingCenterlineConflicts": [],
-    "namedModelPieces": 120,
-    "namedSourceWays": 120,
+    "namedModelPieces": 166,
+    "namedSourceWays": 166,
     "waterBridgeSourceIds": [
       1531132593
     ],
     "unresolvedSourceSupportIds": [
       1485112031,
-      1485112032
+      1485112032,
+      426790796
     ]
   },
   "sourceWidthTags": 0,
-  "sourceDate": "2026-11-02",
+  "sourceDate": "2026-11-03",
   "sourceInputs": [
     {
-      "role": "core",
-      "url": "https://api.openstreetmap.org/api/0.6/map.json?bbox=29.60059,41.1654,29.62445,41.18341",
-      "retrievedDate": "2026-11-01",
-      "rawSha256": "ce0cabe7cceaf070c4f4d937ff600fb636830158711904a85b5cc4f8396a643b"
+      "role": "established-centre-west",
+      "url": "https://hangar.18-153-158-209.sslip.io/maps/sile/source-osm.json",
+      "retrievedDate": "2026-11-02",
+      "rawSha256": "fbec7ff16b498158967b953e94fd06c0f2692069412e12f613661916b42454e1"
     },
     {
-      "role": "west",
-      "url": "https://api.openstreetmap.org/api/0.6/map.json?bbox=29.58866,41.1654,29.6006,41.18341",
-      "retrievedDate": "2026-11-02",
-      "rawSha256": "4357cbf5ad8b54dd7709050e28bdcc0851332cfcc4481996e3567f9994c79ab2"
+      "role": "east",
+      "url": "https://api.openstreetmap.org/api/0.6/map.json?bbox=29.62444,41.1654,29.642345,41.18341",
+      "retrievedDate": "2026-11-03",
+      "rawSha256": "26355d62d7f0af21075fa3db47fa2b91cf12119792ae1908e0e78b958aa3a6d3"
     }
   ],
   "coverage": {
     "bbox": [
       29.58866,
       41.1654,
-      29.62445,
+      29.642345,
       41.18341
     ],
     "bounds": [
       -1564.225,
-      1439.03,
+      2940.6575000000003,
       -917.08,
       1083.06
     ],
-    "cols": 97,
+    "cols": 145,
     "rows": 65
   },
   "limits": [
     "Residuals are conversion rounding against OSM, NOT surveyed positional accuracy",
     "All source road widths absent; model widths use class estimates",
     "Native DSM is30m; missing islet has native elevation0m, no surveyed relief",
-    "Two service routes cross mapped water without bridge/support tags; no inferred landfill or invented bridges",
+    "Some source routes cross mapped water without bridge/support tags; see unresolvedSourceSupportIds; no invented landfill or bridges",
     "Bayrak Caddesi source bridge is in the road network; underside/ground separation is not resolved by the DSM"
   ]
 }

@@ -76,8 +76,8 @@
   "git": "no commit/push/merge",
   "latestUpdate": {
     "date": "2026-11-03",
-    "release": "v2.48.0-b2c6d496aef2",
+    "release": "v2.49.0-7737887e5d1c",
     "status": "published",
-    "validation": "docs/sile-rock-weathering-validation.json"
+    "validation": "docs/sile-east-coast-validation.json"
   }
 }

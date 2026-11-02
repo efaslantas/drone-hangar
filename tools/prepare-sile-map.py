@@ -9,8 +9,9 @@ from shapely.geometry import Polygon,LineString,Point,box,mapping
 from shapely.ops import polygonize,unary_union
 from shapely import constrained_delaunay_triangles
 from sile_geography import coast_land_classifier,road_features
+from sile_grid import preserve_grid
 
-parser=argparse.ArgumentParser();parser.add_argument('--osm',required=True);parser.add_argument('--dem',required=True);parser.add_argument('--out',default='public/maps/sile');parser.add_argument('--bbox',type=float,nargs=4,default=[29.60059,41.16540,29.62445,41.18341]);parser.add_argument('--cols',type=int,default=65);parser.add_argument('--rows',type=int,default=65);parser.add_argument('--source-inputs');parser.add_argument('--preserve-grid');parser.add_argument('--osm-date',default='2026-11-01');args=parser.parse_args()
+parser=argparse.ArgumentParser();parser.add_argument('--osm',required=True);parser.add_argument('--dem',required=True);parser.add_argument('--out',default='public/maps/sile');parser.add_argument('--bbox',type=float,nargs=4,default=[29.60059,41.16540,29.62445,41.18341]);parser.add_argument('--cols',type=int,default=65);parser.add_argument('--rows',type=int,default=65);parser.add_argument('--source-inputs');parser.add_argument('--preserve-grid');parser.add_argument('--extend-side',choices=['west','east'],default='west');parser.add_argument('--osm-date',default='2026-11-01');args=parser.parse_args()
 if not all(math.isfinite(v)for v in args.bbox)or not(args.bbox[0]<args.bbox[2]and args.bbox[1]<args.bbox[3])or not(2<=args.cols<=257 and 2<=args.rows<=257):parser.error('Finite ordered bbox and grid dimensions2..257 required')
 out=pathlib.Path(args.out);out.mkdir(parents=True,exist_ok=True)
 rawpath=pathlib.Path(args.osm);dempath=pathlib.Path(args.dem);raw=json.loads(rawpath.read_text());elements=raw['elements'];nodes={e['id']:e for e in elements if e['type']=='node'};ways={e['id']:e for e in elements if e['type']=='way'}
@@ -73,12 +74,12 @@ def rings(p):return [[xz(x,y) for x,y in list(r.coords)[:-1]] for r in [p.exteri
 bounds=[round(minx-px,2),round(maxx-px,2),round(py-maxy,2),round(py-miny,2)]
 alignment=None
 if args.preserve_grid:
- core=json.loads(pathlib.Path(args.preserve_grid).read_text());ct=core['terrain'];step=(ct['bounds'][1]-ct['bounds'][0])/(ct['cols']-1);extra=cols-ct['cols']
+ core=json.loads(pathlib.Path(args.preserve_grid).read_text());ct=core['terrain']
  expected={'lat':lat0,'lon':lon0,'metresLat':my,'metresLon':mx,'offsetX':px,'offsetZ':-py}
- if core['projection']!=expected or rows!=ct['rows']or extra<0 or max(abs(bounds[i]-ct['bounds'][i])for i in [1,2,3])>.02 or abs(bounds[0]-(ct['bounds'][0]-extra*step))>.02:raise ValueError('Coverage must extend the same core grid west in whole columns')
- if any(heights[r*cols+extra+c]!=ct['heights'][r*ct['cols']+c]for r in range(rows)for c in range(ct['cols'])):raise ValueError('Core native grid samples changed')
- bounds[0]=ct['bounds'][0]-extra*step
- alignment={'coreCols':ct['cols'],'coreRows':ct['rows'],'westColumnsAdded':extra,'coreBounds':ct['bounds'],'heightSamplesUnchanged':True,'notice':'Runtime bounds align to the existing rounded core lattice; geographic clipping still uses source bbox'}
+ if core['projection']!=expected:raise ValueError('Established projection or spawn changed')
+ preserved=preserve_grid(ct,cols,rows,bounds,heights,args.extend_side);bounds=preserved['bounds'];heights=preserved['heights'];extra=preserved['extra']
+ alignment={'coreCols':ct['cols'],'coreRows':ct['rows'],args.extend_side+'ColumnsAdded':extra,'coreBounds':ct['bounds'],'heightSamplesUnchanged':True,'maxResamplingDifferenceM':preserved['maxResamplingDifferenceM'],'notice':'Runtime bounds align to the established rounded lattice; geographic clipping still uses source bbox'}
+
 terrain={'cols':cols,'rows':rows,'bounds':bounds,'heights':heights,'datum':datum,'land':[rings(p) for p in polygons(land)]}
 def gridheight(x,y):
  u=(x-minx)/(maxx-minx)*(cols-1);v=(maxy-y)/(maxy-miny)*(rows-1);i=max(0,min(cols-2,int(u)));j=max(0,min(rows-2,int(v)));u=max(0,min(1,u-i));v=max(0,min(1,v-j));a,b,c,d=heights[j*cols+i],heights[j*cols+i+1],heights[(j+1)*cols+i],heights[(j+1)*cols+i+1]

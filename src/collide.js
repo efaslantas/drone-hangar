@@ -180,14 +180,14 @@ function hitTerrainWalls(state,walls,r){
  for(const triangle of triangles){centre.set(state.x,state.y,state.z);triangle.closestPointToPoint(centre,nearest);const distance=centre.distanceTo(nearest);if(distance>=r)continue;const normal=centre.clone().sub(nearest);if(distance>1e-8)normal.multiplyScalar(1/distance);else triangle.getNormal(normal);const landing=triangle.landing&&normal.y>.5;if(landing&&!state.worldTouchdown)state.worldTouchdown={verticalSpeed:Math.max(0,-state.vx*normal.x-state.vy*normal.y-state.vz*normal.z),horizontalSpeed:Math.hypot(state.vx,state.vz)};hitNormal(state,normal.x,normal.y,normal.z,r-distance,triangle.contactReason);if(landing&&!state.crashed)state.grounded=true;if(state.crashed)return;}
 }
 function hitTerrain(state,spec,play){
- const surface=surfaceAt(play,state.x,state.z),r=groundSupport(spec,state,surface.normal,.06),[nx,ny,nz]=surface.normal;
+ const surface=surfaceAt(play,state.x,state.z,state.y),r=groundSupport(spec,state,surface.normal,.06),[nx,ny,nz]=surface.normal;
  const distance=(state.y-surface.height)*ny;
  if(distance>=r)return;
  if(surface.water){crashAt(state,'suya düştü');return;}
  // A coastline can be a vertical cliff even where the coarse DSM triangle
  // is flat. Intercept a sea→land crossing below its lip before resolving the
  // sloped ground plane, so it cannot lift a drone through the rock face.
- if(state.motionStart&&surfaceAt(play,state.motionStart.x,state.motionStart.z).water&&state.y<surface.height-r){
+ if(state.motionStart&&surfaceAt(play,state.motionStart.x,state.motionStart.z,state.motionStart.y).water&&state.y<surface.height-r){
   let closest=Infinity,qx=0,qz=0;
   for(const polygon of play.terrain.land)for(const ring of polygon)for(let i=0;i<ring.length;i++){
    const a=ring[i],b=ring[(i+1)%ring.length],dx=b[0]-a[0],dz=b[1]-a[1],length=dx*dx+dz*dz;if(!length)continue;

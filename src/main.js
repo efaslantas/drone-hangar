@@ -1162,7 +1162,7 @@ function spawn() {
   let sp = play.spawn&&op.kind==='free'?{...play.spawn,y:surfaceAt(play,play.spawn.x,play.spawn.z).height+.12}:op.spawn || { x: 0, y: 8, z: -14 };
   state = createState(sp.x, sp.y, sp.z);
   if (op.startGrounded) {
-    state.y = groundHeight(spec,state,surfaceAt(play,state.x,state.z));
+    state.y = groundHeight(spec,state,surfaceAt(play,state.x,state.z,state.y));
     state.grounded = true;
     state.groundedFor = 1;
   }
@@ -1170,7 +1170,7 @@ function spawn() {
   state.motor = state.armed ? hoverThrottle(spec) : 0;
   state.throttleOut = state.motor;
   state.altHold = state.armed ? state.y : null;
-  applyRcGroundStart(state,poll(),groundHeight(spec,state,surfaceAt(play,state.x,state.z)));
+  applyRcGroundStart(state,poll(),groundHeight(spec,state,surfaceAt(play,state.x,state.z,state.y)));
   angleOverride = op.requiredFlightMode ? op.requiredFlightMode === "angle" : spec.defaultMode === "angle";
   resetSimulationClock(simClock);
   chase = false;chaseHeading.x=0;chaseHeading.z=-1;
@@ -2152,7 +2152,7 @@ function drawHud(input, spd) {
   const ha = document.getElementById("hud-alt");
   const hm = document.getElementById("hud-mode");
   if (hs) hs.textContent = `${(spd * 3.6).toFixed(0)} km/h`;
-  if (ha) ha.textContent = play.terrain?`${Math.max(0,state.y-surfaceAt(play,state.x,state.z).height).toFixed(0)} m AGL`:`${state.y.toFixed(0)} m`;
+  if (ha) ha.textContent = play.terrain?`${Math.max(0,state.y-surfaceAt(play,state.x,state.z,state.y).height).toFixed(0)} m AGL`:`${state.y.toFixed(0)} m`;
   if (hm) hm.textContent = mode;
   const haArm = document.getElementById("hud-arm");
   if (haArm) {

@@ -396,7 +396,7 @@ export function step(state, input, spec, dt, play) {
     state.battery = Math.max(0, state.battery - consumption * (spec.propulsion ? 1 : drain));
   }
 
-  const ground=groundHeight(spec,state,surfaceAt(play,state.x,state.z));
+  const ground=groundHeight(spec,state,surfaceAt(play,state.x,state.z,state.y));
   if (!play?.terrain && state.y < ground) {
     const impact = -state.vy;
     const horizontalSpeed = Math.hypot(state.vx, state.vz);

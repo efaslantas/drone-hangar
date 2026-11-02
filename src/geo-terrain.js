@@ -1,3 +1,4 @@
+import {caveColumnAt,caveFloor} from './sea-cave-volume.js';
 import {sampleTriangleSurface,triangleSurfaceCuts,partitionTriangleSurface} from './triangle-surface.js';
 import {createSurfacePartition} from './sile-shore.js';
 // Metric local tangent approximation; producer records its WGS84 scale factors.
@@ -36,8 +37,9 @@ export function terrainSample(t,x,z){
  const n=Math.hypot(dx,1,dz);return {height:height-t.datum,normal:[-dx/n||0,1/n,-dz/n||0]};
 }
 export function terrainHeight(t,x,z){return terrainSample(t,x,z).height;}
-export function surfaceAt(play,x,z){
+export function surfaceAt(play,x,z,y=Infinity){
  const t=play?.terrain;if(!t)return {height:0,water:false,normal:[0,1,0]};
+ if(Number.isFinite(y))for(const c of t.seaCaves||[])if(caveColumnAt(c,x,y,z))return caveFloor(c,x,z);
  const platform=platformAt(t,x,z);if(platform)return {...terrainSample(t,x,z),water:false};
  if(!t.land.some(rings=>insidePolygon(x,z,rings)))return {height:-t.datum,water:true,normal:[0,1,0]};
  return {...terrainSample(t,x,z),water:false};

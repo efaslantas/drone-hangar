@@ -1,15 +1,15 @@
 {
   "full": {
-    "meshes": "91ff46a18c41e68474ffeea34ee88560e49aa8b50cd743cc85db9770021f2c71",
-    "collision": "a4dacb2fcf402b020cb82a66f75aa2315ab20b228902c756bd184d87ba16451a",
-    "meshCount": 51,
+    "meshes": "482d4f20b9475a1c39f296a11ce7bc7f4fc9866969c702b2849d370338162abb",
+    "collision": "2baa45536d8bfb3f0ae01a504227193033d710faa7ce18f8abb3242074ec18b8",
+    "meshCount": 52,
     "boxes": 10810,
     "prisms": 1351
   },
   "base": {
-    "meshes": "37d5fdb18266e3dab5f2bb714dc43db219e8813780796b41fba449730909fb40",
-    "collision": "57c45a0c118d31e6ddfc38b80ca6e6722f87560d070644993d43d3a9f4e813c5",
-    "meshCount": 47,
+    "meshes": "1629a32a78895fa5ee01b274f15dca1e8a285c5752623985c3a382fa4c63fc3a",
+    "collision": "c1ffd08f26e911ad2ac2665f5c76c3eaa2e4db571dee6a7321919697be30f956",
+    "meshCount": 48,
     "boxes": 10810,
     "prisms": 1351
   }

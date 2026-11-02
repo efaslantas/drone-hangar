@@ -1,0 +1,146 @@
+{
+  "date": "2026-11-03",
+  "release": "v2.50.0-e90c470d8afd",
+  "image": {
+    "release": "v2.50.0-e90c470d8afd",
+    "imageId": "sha256:2de1088cce3d0f0c79ad1b97a141354ee2e00b52a868b061e804f64d0bcbf9d4",
+    "archiveSha256": "80e03a2a5252445cbcf43bc5b2095afd41678b57ec26416ed9033ebf8e4f8c39",
+    "archiveBytes": 141721197,
+    "architecture": "arm64",
+    "sourceFiles": 292
+  },
+  "status": "published-and-verified",
+  "scope": [
+    "Feneraltı blind sea cave with authored rear sand shelf",
+    "Su İçen Fil sea-to-sea natural arch passage"
+  ],
+  "sourceLimits": {
+    "interiorSurveyed": false,
+    "placement": "Photo/route estimated Feneraltı, arch near public place pin; local offsets and all interior dimensions authored.",
+    "unchangedCanonicalAssets": 26,
+    "baseline": "v2.49.0-7737887e5d1c",
+    "realTx15Validation": false
+  },
+  "geometry": {
+    "extraMeshes": 1,
+    "sourceSceneBudget": 51,
+    "fullWorldMeshes": 52,
+    "shellTriangles": {
+      "feneralti": 636,
+      "suIcenFil": 668
+    },
+    "collision": "Same uploaded Float32 shell/floor triangles; original drawn native roof contact pieces; swept body sphere.",
+    "roofClearanceSampleMinM": {
+      "feneralti": 3.1165,
+      "suIcenFil": 0.57
+    },
+    "clearanceMeaning": "Against coarse DSM on sampled authored footprint, not physical survey or flight safety."
+  },
+  "verification": {
+    "focusedCore": {
+      "passed": 10,
+      "failed": 0
+    },
+    "budgetMaterialRegressions": {
+      "passed": 16,
+      "failed": 0
+    },
+    "awsInfrastructure": {
+      "passed": 11,
+      "failed": 0
+    },
+    "actualPhysicsStep": [
+      {
+        "cave": "feneralti",
+        "ticks": 240,
+        "d": 8.815556866271406,
+        "y": 0.19999999999999493,
+        "crashed": false,
+        "reason": "",
+        "profile": "f60-1750-6s"
+      },
+      {
+        "cave": "su-icen-fil",
+        "ticks": 240,
+        "d": 8.806593035918622,
+        "y": 0.19999999999999493,
+        "crashed": false,
+        "reason": "",
+        "profile": "f60-1750-6s"
+      }
+    ],
+    "webgl": {
+      "solverRoutePositions": 682,
+      "blocked": 0,
+      "consoleErrors": []
+    },
+    "webgpu": {
+      "solverRoutePositions": 682,
+      "blocked": 0,
+      "consoleErrors": [],
+      "knownLimitation": "Distant white foliage in wide views recorded in2.49 remains unresolved; default renderer WebGL."
+    },
+    "independentReview": "No Important/Critical; two custom-source minors regraded and fixed with regression coverage. No deferred minors.",
+    "build": "Vite7.3.6 in Node22 ARM64 image build passed.",
+    "node22Arm64FullSuite": {
+      "passed": 584,
+      "failed": 0,
+      "durationMs": 277054.663485
+    }
+  },
+  "fingerprints": {
+    "full": {
+      "meshes": "482d4f20b9475a1c39f296a11ce7bc7f4fc9866969c702b2849d370338162abb",
+      "collision": "2baa45536d8bfb3f0ae01a504227193033d710faa7ce18f8abb3242074ec18b8",
+      "meshCount": 52,
+      "boxes": 10810,
+      "prisms": 1351
+    },
+    "base": {
+      "meshes": "1629a32a78895fa5ee01b274f15dca1e8a285c5752623985c3a382fa4c63fc3a",
+      "collision": "c1ffd08f26e911ad2ac2665f5c76c3eaa2e4db571dee6a7321919697be30f956",
+      "meshCount": 48,
+      "boxes": 10810,
+      "prisms": 1351
+    }
+  },
+  "evidence": [
+    "sile-250-feneralti-inside-webgl.png",
+    "sile-250-su-icen-fil-webgl.png",
+    "sile-250-su-icen-fil-inside-webgpu.png",
+    "sile-250-live-webgl.png"
+  ],
+  "live": {
+    "url": "https://hangar.18-153-158-209.sslip.io/",
+    "https": {
+      "release": "v2.50.0-e90c470d8afd",
+      "entryAssets": 5,
+      "uniqueIds": 252,
+      "changedPublicSha": "pass",
+      "sourceMapMatchesRelease": "pass",
+      "buildings": 1331,
+      "roads": 468
+    },
+    "wss": "Two-client join/state/leave passed",
+    "runningSourceSha256Files": 122,
+    "update": {
+      "Status": "Success",
+      "StandardOutputContent": "HTTPS update healthy: v2.50.0-e90c470d8afd\nOld container/data backup retained;7tenant identities and nginx bytes unchanged\n",
+      "StandardErrorContent": ""
+    },
+    "hostVerification": {
+      "Status": "Success",
+      "StandardOutputContent": "Running image source hashes: 122 OK\ndrone-hangar | 20.97MiB / 256MiB | 6.54%\n{\"running\": true, \"restarts\": 0, \"image\": \"sha256:2de1088cce3d0f0c79ad1b97a141354ee2e00b52a868b061e804f64d0bcbf9d4\", \"user\": \"1000:1000\", \"readonly\": true, \"network\": [\"drone-hangar-net\"]}\nOld container preserved, stopped; data backup retained\nNginx bytes match update receipt\nExisting origin https://zenth.finance/ 200\nExisting origin https://api.zenth.finance/health 200\nGelişim TLS origin 200\n",
+      "StandardErrorContent": "nginx: the configuration file /etc/nginx/nginx.conf syntax is ok\nnginx: configuration file /etc/nginx/nginx.conf test is successful\n"
+    },
+    "browser": {
+      "renderer": "WebGL",
+      "profile": "SOURCE ONE v4 /5 inch /6S",
+      "map": "Şile merkez",
+      "armed": false,
+      "speedKmh": 0,
+      "aglM": 0,
+      "consoleErrors": []
+    }
+  }
+}

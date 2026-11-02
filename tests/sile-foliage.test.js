@@ -26,7 +26,7 @@ test('expanded world keeps source collision fingerprints and all foliage vertice
  const hash=crypto.createHash('sha256').update(JSON.stringify({boxes:play.boxes,prisms:play.prisms,pads:play.terrain.buildingPads})).digest('hex');assert.equal(hash,'1d8e242766d410a3087654c026b1c78b5b5aa74fd60c86e9b2ed69d4e00c03f4');assert.equal(JSON.stringify(data),before);
  const resources=new Set(),point=new THREE.Vector3(),matrix=new THREE.Matrix4();let crowns=0,meshes=0;
  scene.traverse(o=>{if(o.isMesh)meshes++;if(!['sile-context-leaf:leaf','sile-neighbourhood-leaf:solid'].includes(o.name))return;resources.add(o.geometry);for(const m of Array.isArray(o.material)?o.material:[o.material]){resources.add(m);if(m.map)resources.add(m.map);}const records=o.userData.contextBoxes||o.userData.neighbourhoodBoxes,p=o.geometry.attributes.position;for(let i=0;i<o.count;i++){o.getMatrixAt(i,matrix);const box=records[i];for(let j=0;j<p.count;j++){point.fromBufferAttribute(p,j).applyMatrix4(matrix);assert.ok(point.x>=box.minx&&point.x<=box.maxx&&point.y>=box.miny&&point.y<=box.maxy&&point.z>=box.minz&&point.z<=box.maxz);}crowns++;}});
- assert.equal(meshes,51);assert.equal(crowns,3202);assert.deepEqual(scene.userData.sileFoliageStats,{batches:2,crowns:3202,cardsPerCrown:32,trianglesPerCrown:64,soilPatches:36,authored:true});
+ assert.equal(meshes,52);assert.equal(crowns,3202);assert.deepEqual(scene.userData.sileFoliageStats,{batches:2,crowns:3202,cardsPerCrown:32,trianglesPerCrown:64,soilPatches:36,authored:true});
  let disposed=0;for(const r of resources)r.addEventListener('dispose',()=>disposed++);assert.equal(resources.size,5);clearWorld(scene);assert.equal(disposed,5);assert.equal(scene.userData.sileFoliageStats,null);
 });
 

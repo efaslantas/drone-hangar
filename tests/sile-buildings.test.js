@@ -23,7 +23,7 @@ test('coastal walls replace legacy wall geometry and preserve source prisms and 
 test('solid seaside balcony parts use their actual transformed bounds and stay over land within source height',()=>{
  const scene=new THREE.Scene(),play=buildSile(scene,data);scene.updateMatrixWorld(true);let count=0;
  scene.traverse(o=>{if(!o.isInstancedMesh||!o.userData.buildingBoxes)return;for(let i=0;i<o.count;i++){const m=new THREE.Matrix4();o.getMatrixAt(i,m);const b=o.geometry.boundingBox.clone().applyMatrix4(m),record=o.userData.buildingBoxes[i],c=record.box;assert.ok(play.boxes.includes(c));assert.ok(b.min.x>=c.minx-.0001&&b.max.x<=c.maxx+.0001&&b.min.y>=c.miny-.0001&&b.max.y<=c.maxy+.0001&&b.min.z>=c.minz-.0001&&b.max.z<=c.maxz+.0001);assert.ok(c.maxy<=record.top+.002&&c.miny>=record.base-.002);for(const x of [c.minx,c.maxx])for(const z of [c.minz,c.maxz])assert.equal(surfaceAt(play,x,z).water,false);count++;}});
- assert.ok(count>50);assert.ok(scene.userData.sileBuildingStats.balconies<=160);let meshes=0;scene.traverse(o=>{if(o.isMesh)meshes++});assert.ok(meshes<=50);
+ assert.ok(count>50);assert.ok(scene.userData.sileBuildingStats.balconies<=160);let meshes=0;scene.traverse(o=>{if(o.isMesh)meshes++});assert.ok(meshes<=51);
 });
 test('building aprons replace ground once and follow terrain without spilling onto water',()=>{
  assert.equal(typeof api.buildingAprons,'function');const profiles=api.coastalBuildings(data),input=data.positions,result=api.buildingAprons(data,input,profiles),sum=p=>{let s=0;for(let i=0;i<p.length;i+=9)s+=areaXZ(...[0,3,6].map(k=>[p[i+k],p[i+k+2]]));return s;};assert.ok(sum(result.paved)>500);assert.ok(Math.abs(sum(result.ground)+sum(result.paved)-sum(input))<.5);

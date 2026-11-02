@@ -43,5 +43,5 @@ globalThis.document={createElement:()=>({width:0,height:0,getContext:()=>context
 
  const scene=new THREE.Scene(),play=buildWorld(scene,'sile',{sileData:data,props:false,quality:'medium'});
  const added=scene.children.filter(o=>['sile-mooring-links','sile-harbour-quay','sile-source-footbridges','sile-shore-armour'].includes(o.name));assert.equal(added.length,4);scene.remove(...added);
- assert.deepEqual(sileWorldFingerprint(scene,{...play,terrainWalls:play.terrainWalls.filter(w=>!['harbour-link','shore-armour'].includes(w.authored))}),{meshes:'37d5fdb18266e3dab5f2bb714dc43db219e8813780796b41fba449730909fb40',collision:'57c45a0c118d31e6ddfc38b80ca6e6722f87560d070644993d43d3a9f4e813c5',meshCount:47,boxes:10810,prisms:1351});scene.add(...added);clearWorld(scene);
+ assert.deepEqual(sileWorldFingerprint(scene,{...play,terrainWalls:play.terrainWalls.filter(w=>!['harbour-link','shore-armour'].includes(w.authored))}),JSON.parse(fs.readFileSync(new URL('./helpers/sile-current-fingerprint.json',import.meta.url))).base);scene.add(...added);clearWorld(scene);
 });

@@ -8,4 +8,13 @@ Kullanıcının istediği kapsam iki bölgedir: Feneraltı/Zeki Müren Mağaras�
 
 Google Haritalar'da yalnız “Zeki Müren Mağarası” araması Antalya'daki aynı adlı yeri de getirir. Feneraltı/Akşam Güneşi sorgularında alakasız Sofular sonuçları görüldü; bunlar Şile merkez mağarası diye kullanılmadı. Belediye ve rota referansları birlikte değerlendirilir. Fotoğraflar uygulama varlığı olarak indirilip yayımlanmadı.
 
-Açık modelleme işi: iki bölgede referansla konumlandırılmış gerçek3B ağız/duvar/tavan, görünür yüzeyle aynı çarpışma boşluğu, su ve üst araziyle birleşim. Bunlar yapılmadan “mağaralar tamamlandı”, “tüm Şile sahili birebir” veya “içinden uçulabilir” denmez.
+2.49 sonunda açık modelleme işi: iki bölgede referansla konumlandırılmış gerçek3B ağız/duvar/tavan, görünür yüzeyle aynı çarpışma boşluğu, su ve üst araziyle birleşim. Bunlar yapılmadan “mağaralar tamamlandı”, “tüm Şile sahili birebir” veya “içinden uçulabilir” denmez.
+
+
+## 2.50 — uçulabilir temsili hacimler
+
+İki gerçek3B boşluk eklendi. `src/sile-sea-caves.js` konum ve ölçü varsayımlarını, `src/sea-cave-volume.js` ortak dışbükey hacim/kemer düzlemlerini sahiplenir. Feneraltı: kaynak kıyısına oturtulan yaklaşık giriş, 16 m ağız genişliği, nominal 4,5 m su üstü kemer, 21 m arka uç; son15mde temsili kum eğimi %6. Su İçen Fil: kamuya açık yer işaretinden yaklaşık5m ötede, mevcut kayayı koruyan eksende 5,6m genişlik/4m su üstü kemer; merkez hattındaki kaynak kara kesişimi yaklaşık15,9m. Bunlar ölçüm değildir.
+
+Kaynak kıyı kayalıkları ortak hacimle kırpılır; iç duvar/tavan/arka yüzler özgün kaynak kara katısına kırpılır. Yüklenen Float32 üçgenler mevcut süpürülen küre temas çözücüsüne verilir. Üstten düşüş için özgün çizilmiş üst arazi yüzlerinden yerel temas parçaları alınır; ek üst yüzey çizilmez. Yüksekliksiz yer sorgusu eski üst araziyi, yükseklikli dinamik sorgu hacim içinde alt su/kum yüzeyini döndürür. Su çizgisi ve kaynak OSM/DSM/CAD dosyaları değişmez.
+
+Feneraltı temsili konumu [1012.477558,-348.139691], iç ekseni [0.662917,0.748693]; Su İçen Fil [1245.811108,-439.429655], ekseni [0.642788,0.766044] yerelmetredir. Halk açık kaynakları giriş ağzını ve iç planı ölçmediğinden konum hassasiyeti iddia edilmez. Ekran görselleri simülasyondur; fotoğrafların dokusu uygulamaya kopyalanmadı.

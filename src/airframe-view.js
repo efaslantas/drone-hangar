@@ -1,3 +1,4 @@
+import {caveClearance} from './sea-cave-volume.js';
 import {surfaceAt} from './geo-terrain.js';
 import {airframeAppearance} from './airframe-appearance.js';
 
@@ -22,7 +23,8 @@ export function fpvNearPlane(clearance,terrain=false){
  return Math.max(.003,Math.min(terrain?.1:.04,safe*.12));
 }
 export function cameraClearance(play,point){
- let nearest=Math.max(0,point.y-surfaceAt(play,point.x,point.z).height);
+ let nearest=Math.max(0,point.y-surfaceAt(play,point.x,point.z,point.y).height);
+ for(const c of play.terrain?.seaCaves||[])nearest=Math.min(nearest,caveClearance(c,point.x,point.y,point.z));
  const boxDistance=(minx,maxx,miny,maxy,minz,maxz)=>{
   const x=Math.max(minx-point.x,0,point.x-maxx),y=Math.max(miny-point.y,0,point.y-maxy),z=Math.max(minz-point.z,0,point.z-maxz);
   if(x<1&&y<1&&z<1)nearest=Math.min(nearest,Math.hypot(x,y,z));

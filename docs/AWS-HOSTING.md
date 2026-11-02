@@ -179,3 +179,8 @@ v2.48.0-b2c6d496aef2: düzensiz katman/çatlak dokusu, geniş renk lekeleri ve d
 ## 2026-11-03 — 2.49 Ağlayankaya doğu kapsamı
 
 v2.49.0-7737887e5d1c: doğuya48sütun/~1.5km eklenir;145×65/~4.5×2km.6305eskiyükseklik/projeksiyon/kalkış/13136sourceprefix korunur;1331bina/468yolparçası. Eski crop binası414800231tamamlanır. Yalnız309193706batıplajında doğrulanmış tesviye;doğukum nativeDSM.576/576Node22ARM64,7GIS,11infra,ViteARM64;bağımsız10coast/beach+6source/coverage geçer.288manifest/120runningSHA/HTTPS/WSS pass;7tenant/nginx aynı. Mağara hacimleri modellenmedi;WebGPUuzakağaç beyazlığı kaydedildi,varsayılanWebGLnormal. Kanıt: `docs/sile-east-coast-validation.json`.
+
+
+## 2026-11-03 — 2.50 uçulabilir mağara ve doğal geçit
+
+v2.50.0-e90c470d8afd: Feneraltı kapalı uçlu deniz mağarası/kum zemini ve Su İçen Fil iki ağızlı geçit. Kıyı yüzleri kırpılır; ortak Float32 iç yüzler ve korunmuş üst arazi temasları mevcut süpürülen gövde çözücüsünü kullanır. Fotoğrafa dayalı temsili konum/iç ölçüler;26kaynakvarlığı2.49ileSHAeşit. Tek ek çizim nesnesi,52tam dünya/51kaynak sahne bütçesi.584/584Node22ARM64,11infra,ViteARM64,GL/GPU682/682geçiş ve SOURCEONE240fizikadımı/hermağara geçti.292manifest/122runningSHA,HTTPS/5asset/252ID/WSS pass;0restart20.97MiB/256MiB,UID1000readonly.7tenant/nginx aynı;eskiapp/veriyedeği korunur,Zenthweb/API/GelişimTLSorigin200. DeneyselGPUuzakfoliagebeyazlığı önceki kayıt olarak kalır. Kanıt: `docs/sile-sea-caves-validation.json`.

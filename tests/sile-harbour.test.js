@@ -23,7 +23,7 @@ test('harbour hardscape replaces soil once on source land and follows the physic
 test('inset harbour rock armour stays on land, clear of roads and visible bounds share actual colliders',()=>{
  const scene=new THREE.Scene(),play=buildSile(scene,data),rocks=scene.getObjectByName('sile-harbour-armour');assert.ok(rocks);assert.ok(rocks.count>100&&rocks.count<=800);scene.updateMatrixWorld(true);rocks.geometry.computeBoundingBox();const matrix=new THREE.Matrix4();
  for(let i=0;i<rocks.count;i++){rocks.getMatrixAt(i,matrix);const b=rocks.geometry.boundingBox.clone().applyMatrix4(matrix),c=rocks.userData.harbourBoxes[i];assert.ok(play.boxes.includes(c));for(const [axis,lo,hi]of [['x','minx','maxx'],['y','miny','maxy'],['z','minz','maxz']]){assert.ok(b.min[axis]>=c[lo]-.0001);assert.ok(b.max[axis]<=c[hi]+.0001);}for(const x of [b.min.x,b.max.x])for(const z of [b.min.z,b.max.z])assert.equal(surfaceAt(play,x,z).water,false);assert.ok(Math.hypot((b.min.x+b.max.x)/2,(b.min.z+b.max.z)/2)>14);}
- let meshes=0;scene.traverse(o=>{if(o.isMesh)meshes++});assert.ok(meshes<=50);
+ let meshes=0;scene.traverse(o=>{if(o.isMesh)meshes++});assert.ok(meshes<=51);
 });
 test('stale harbour input skips features rather than painting unrelated terrain',()=>{
  assert.equal(typeof api.harbourSurfaces,'function');const pos=[0,0,0,1,0,0,0,0,1],p=api.harbourSurfaces({...data,projection:{...data.projection,lon:0}},pos);assert.equal(p.valid,false);assert.deepEqual(p.ground,pos);assert.deepEqual(p.paved,[]);const empty=api.harbourSurfaces({...data,terrain:{...data.terrain,land:[]}},pos);assert.equal(empty.valid,false);assert.deepEqual(empty.ground,pos);

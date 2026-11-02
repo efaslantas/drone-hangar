@@ -1,3 +1,4 @@
+import {sileSeaCaves,carveCaveCliffs,addSeaCaveInteriors} from './sile-sea-caves.js';
 import {prepareFoamMotion} from './sile-water.js';
 import {prepareTerrainWallIndex} from './terrain-wall-index.js';
 import {buildBeachApproach} from './sile-beach.js';
@@ -74,6 +75,7 @@ export function buildSile(scene,data){
  const coast=buildCoast(terrain,{sheltered:harbourLayout(data)?.waterRings});
  const offshoreVertexCount=coast.foam.positions.length/3;
  if(beach)for(const k of ['positions','uv','colors'])coast.foam[k].push(...beach.swash[k]);
+ const caves=sileSeaCaves(terrain,data);coast.dryCliffs=carveCaveCliffs(coast.dryCliffs,caves);coast.wetCliffs=carveCaveCliffs(coast.wetCliffs,caves);
  const cliffGeometry=prepareCliffWeathering(rockGeometry(coast.dryCliffs,coast.wetCliffs),terrain.datum);
  const cliff=new THREE.Mesh(cliffGeometry,[rockFinish.wet,rockFinish.wet]);cliff.name='sile-coast-cliffs';cliff.receiveShadow=true;scene.add(cliff);
  const foamGeometry=geometry(coast.foam.positions);foamGeometry.setAttribute('uv',new THREE.Float32BufferAttribute(coast.foam.uv,2));foamGeometry.setAttribute('color',new THREE.Float32BufferAttribute(coast.foam.colors,4));const shore=new THREE.Mesh(foamGeometry,foamMaterial());shore.name='sile-shore-foam';shore.userData.offshoreVertexCount=offshoreVertexCount;scene.add(shore);
@@ -148,6 +150,7 @@ export function buildSile(scene,data){
  addMooringLinks(scene,data,play);
  addShoreArmour(scene,data,play,rockFinish.dry);
  play.terrainWalls??=[];for(const contact of coastCliffContacts(cliffGeometry))play.terrainWalls.push(contact);
+ addSeaCaveInteriors(scene,data,play,caves,rockFinish.wet);
  prepareTerrainWallIndex(play.terrainWalls);
  addFacadeDepth(scene,data,play,coastal);
  finishSileFoliage(scene);

@@ -67,3 +67,7 @@ Gizli ana uçuş sahnesi ilk başlatmaya kadar oluşturulmaz; ana ekran görün�
 ### Hazırlık hatasından klavyeyle devam — 2.35
 
 Hazırlık hatası sonrasında odak önceki görünür düğmeye, o düğme gizlendiyse mevcut ekranın başlatma düğmesine döner. Enter ile yeniden denenebilir; başarılı uçuş gizli hazırlık ekranına odak taşımaz. [Doğrulama](start-focus-validation.json).
+
+### Şile kurulumunda yol sorgusu — 2.36
+
+Bina çevresi zemin rengi hesaplanırken yakın yol parçaları 48 m hücreli bir indeksle seçilir. Kaynak sırası ve son mesafe hesabı korunur; 83.025 Float64 örneği ile tam sahnenin geometri ve çarpışma özetleri önceki sürümle birebir aynıdır. Yerel iki kurulum ölçümünde yaklaşık %9 azalma görüldü; bu bir FPS veya cihaz yükleme süresi garantisi değildir. [Doğrulama](sile-build-profile-validation.json).

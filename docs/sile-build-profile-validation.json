@@ -1,0 +1,126 @@
+{
+  "date": "2026-11-02",
+  "status": "published",
+  "release": "v2.36.0-0296056ce7e4",
+  "scope": "Şile neighbourhood ground road lookup CPU optimization; unchanged exact field and world",
+  "architecture": {
+    "gridM": 48,
+    "maxCellsPerSegment": 1024,
+    "maxTotalReferences": 65536,
+    "overflow": "source-ordered global candidates, no duplicate placement",
+    "cache": "per-build only; no global data cache"
+  },
+  "baseline": {
+    "commit": "fa2f5e0717ca286eafe5d0babb32d874863c9ec5",
+    "worldMs": [
+      4326.257917,
+      3756.753417
+    ],
+    "earlierRootProfileWorldMs": [
+      4639.287375,
+      4179.729
+    ]
+  },
+  "after": {
+    "worldMs": [
+      3938.19,
+      3429.460791
+    ],
+    "diagnosticReductionPercent": [
+      8.97,
+      8.71
+    ]
+  },
+  "measurementLimits": "Local Node construction diagnostic with canvas shim, two builds per process and CPU profiling overhead; not browser loading or FPS benchmark",
+  "candidates": {
+    "roadSegments": 7557,
+    "gridQueries": 83025,
+    "mean": 9.120891297801867,
+    "p95": 29,
+    "max": 62
+  },
+  "invariants": {
+    "fieldFloat64Samples": 83025,
+    "fieldSha256": "b0be888b19f304edd9a696a75c4ac4c8feb0eae341cdb41b63f7403767212673",
+    "geometryMaterialSha256": "6cd4080934eb97cc56fd0402d5c5eec2df322d35f6b2498831ecf377e4b48216",
+    "collisionSha256": "4bc6080dfd3fd712bf527af96385cc9a1ab71c5f81c8affd36afcf62885dcd77",
+    "meshes": 46,
+    "boxes": 10755,
+    "prisms": 1286,
+    "beforeAndAfter": "exactly equal",
+    "changedRuntimeFiles": [
+      "src/sile-neighbourhood.js",
+      "index.html",
+      "package.json",
+      "package-lock.json"
+    ],
+    "newDependencies": 0
+  },
+  "verification": {
+    "newTests": 5,
+    "focused": "5/5",
+    "infra": 11,
+    "vite": "pass; existing chunk-size warning",
+    "arm64": "pass",
+    "review": "Fresh scoped review; no Critical/Important. Minor budget coverage corrected from 100 to 200 segments with distant fallback, ordering and uniqueness assertions.",
+    "browserLocal": {
+      "GL": "ready DISARM 0/3, errors[]",
+      "WebGPU": "actual DOM şu an: WebGPU; ready DISARM 0/3, errors[]"
+    },
+    "node22": {
+      "pass": 529,
+      "fail": 0,
+      "durationMs": 160015.541685,
+      "concurrency": 4,
+      "platform": "linux/arm64",
+      "memoryMiB": 1536
+    }
+  },
+  "image": {
+    "release": "v2.36.0-0296056ce7e4",
+    "imageId": "sha256:26743eac4746ea19ae7fef3ce830f20e077f3db1417d620caaa0b0d6068b75a2",
+    "archiveSha256": "25b9b5ddfc49d735e68d9c63776a2d9245801ce54875a8892305b35715647601",
+    "archiveBytes": 141397712,
+    "architecture": "arm64",
+    "sourceFiles": 277
+  },
+  "proofDir": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1",
+  "proof": [
+    "sile-road-field-local-gl-2.36.png",
+    "sile-road-field-local-gpu-2.36.png",
+    "sile-road-field-live-2.36.png"
+  ],
+  "limits": [
+    "Map remains source-based with 30m DSM and representative architecture",
+    "No new physical TX15/real ILKE/physics validation",
+    "Initial synchronous full scene construction remains"
+  ],
+  "url": "https://hangar.18-153-158-209.sslip.io/",
+  "live": {
+    "release": "v2.36.0-0296056ce7e4",
+    "manifestFiles": 277,
+    "runningSourceHashes": 113,
+    "publicHttpsAssetsAndSources": "pass",
+    "twoClientWssJoinStateLeave": "pass",
+    "browser": "inspection DISARM 0/3, errors[]; loading hidden",
+    "profile": {
+      "reference": "f60-1750-6s",
+      "massG": 650,
+      "capacityMah": 1100,
+      "quality": "medium",
+      "tiltDegrees": 25,
+      "input": "gamepad"
+    },
+    "initialProbe": "new tab initially remained before app initialization; read-only network trace showed HTTP200 assets; explicit reload completed initialization. Not a timed browser benchmark.",
+    "restarts": 0,
+    "memoryMiB": 24.41,
+    "limitMiB": 256,
+    "uid": "1000:1000",
+    "readonly": true,
+    "otherSevenTenantsAndNginx": "unchanged; syntax pass",
+    "zenthWebAndApi": 200,
+    "gelisimTlsOrigin": 200,
+    "rollbackContainerAndConsistentDataBackup": "retained"
+  },
+  "git": "main; final commit and remote identity recorded in Git history/session"
+}

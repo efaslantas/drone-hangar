@@ -4,6 +4,26 @@ import {buildingFacade}from './sile-buildings.js';
 const smooth=(a,b,x)=>{const t=Math.max(0,Math.min(1,(x-a)/(b-a)));return t*t*(3-2*t);};
 const hash=(id,s=0)=>{let n=(Math.imul(id|0,374761393)^Math.imul(s,668265263))>>>0;n=Math.imul(n^(n>>>13),1274126177);return ((n^(n>>>16))>>>0)/4294967295;};
 export function segmentDistance(x,z,a,b){const dx=b[0]-a[0],dz=b[1]-a[1],l=dx*dx+dz*dz,u=l?Math.max(0,Math.min(1,((x-a[0])*dx+(z-a[1])*dz)/l)):0;return Math.hypot(x-a[0]-u*dx,z-a[1]-u*dz);}
+// Conservative broad phase only; the field keeps its original exact checks.
+export function roadFieldIndex(roads){
+ const cells=new Map(),global=[],empty=Object.freeze([]),step=48;let references=0,order=0;
+ for(const road of roads)for(let i=1;i<road.points.length;i++){
+  const a=road.points[i-1],b=road.points[i],width=road.width/2;
+  const r=Object.freeze({a,b,width,minx:Math.min(a[0],b[0]),maxx:Math.max(a[0],b[0]),minz:Math.min(a[1],b[1]),maxz:Math.max(a[1],b[1]),order:order++});
+  const reach=width+3,x0=Math.floor((r.minx-reach)/step),x1=Math.floor((r.maxx+reach)/step),z0=Math.floor((r.minz-reach)/step),z1=Math.floor((r.maxz+reach)/step),count=(x1-x0+1)*(z1-z0+1);
+  // Oversized or unsafe ranges stay in source order in the bounded fallback.
+  if(!Number.isFinite(width)||width<0||![x0,x1,z0,z1].every(Number.isSafeInteger)||!Number.isSafeInteger(count)||count<1||count>1024||references+count>65536){global.push(r);continue;}
+  references+=count;
+  for(let x=x0;x<=x1;x++)for(let z=z0;z<=z1;z++){const key=x+':'+z;if(!cells.has(key))cells.set(key,[]);cells.get(key).push(r);}
+ }
+ for(const bucket of cells.values())Object.freeze(bucket);Object.freeze(global);
+ return (x,z)=>{
+  const local=cells.get(Math.floor(x/step)+':'+Math.floor(z/step))||empty;
+  if(!global.length)return local;
+  if(!local.length)return global;
+  return Object.freeze([...local,...global].sort((a,b)=>a.order-b.order));
+ };
+}
 function profileIndex(profiles){
  const cells=new Map(),step=48;for(const p of profiles.values()){const ring=p.item.rings[0],xs=ring.map(v=>v[0]),zs=ring.map(v=>v[1]),b={minx:Math.min(...xs),maxx:Math.max(...xs),minz:Math.min(...zs),maxz:Math.max(...zs),profile:p};for(let x=Math.floor(b.minx/step);x<=Math.floor(b.maxx/step);x++)for(let z=Math.floor(b.minz/step);z<=Math.floor(b.maxz/step);z++){const k=x+':'+z;if(!cells.has(k))cells.set(k,[]);cells.get(k).push(b);}}
  return (x,z,r)=>{const out=new Set();for(let a=Math.floor((x-r)/step);a<=Math.floor((x+r)/step);a++)for(let b=Math.floor((z-r)/step);b<=Math.floor((z+r)/step);b++)for(const p of cells.get(a+':'+b)||[]){const dx=Math.max(p.minx-x,0,x-p.maxx),dz=Math.max(p.minz-z,0,z-p.maxz);if(Math.hypot(dx,dz)<=r)out.add(p.profile);}return [...out];};
@@ -27,13 +47,12 @@ export function refineNeighbourhoodGround(positions,profiles){
  return current;
 }
 export function neighbourhoodField(data,profiles){
- if(!matches(data)||!profiles.size)return()=>0;const near=profileIndex(profiles),buildings=profileIndex(new Map(data.buildings.map(item=>[item.id,{item}]))),exclude=[...source.green,...source.lawns,...source.paved,...source.harbour,...source.beaches],roads=[];
- for(const road of data.roads)for(let i=1;i<road.points.length;i++)roads.push({a:road.points[i-1],b:road.points[i],width:road.width/2,minx:Math.min(road.points[i-1][0],road.points[i][0]),maxx:Math.max(road.points[i-1][0],road.points[i][0]),minz:Math.min(road.points[i-1][1],road.points[i][1]),maxz:Math.max(road.points[i-1][1],road.points[i][1])});
+ if(!matches(data)||!profiles.size)return()=>0;const near=profileIndex(profiles),buildings=profileIndex(new Map(data.buildings.map(item=>[item.id,{item}]))),exclude=[...source.green,...source.lawns,...source.paved,...source.harbour,...source.beaches],roadCandidates=roadFieldIndex(data.roads);
  return (x,z)=>{
   const candidates=near(x,z,35);if(!candidates.length||exclude.some(f=>insidePolygon(x,z,f.rings))||buildings(x,z,0).some(p=>insidePolygon(x,z,p.item.rings)))return 0;let d=Infinity;
   for(const p of candidates){if(insidePolygon(x,z,p.item.rings))return 0;const ring=p.item.rings[0];for(let i=0;i<ring.length;i++)d=Math.min(d,segmentDistance(x,z,ring[i],ring[(i+1)%ring.length]));}
   if(d>35||d<1.4)return 0;let roadFade=1;
-  for(const r of roads){const reach=r.width+3;if(x<r.minx-reach||x>r.maxx+reach||z<r.minz-reach||z>r.maxz+reach)continue;roadFade=Math.min(roadFade,smooth(r.width+.6,r.width+3,segmentDistance(x,z,r.a,r.b)));if(!roadFade)return 0;}
+  for(const r of roadCandidates(x,z)){const reach=r.width+3;if(x<r.minx-reach||x>r.maxx+reach||z<r.minz-reach||z>r.maxz+reach)continue;roadFade=Math.min(roadFade,smooth(r.width+.6,r.width+3,segmentDistance(x,z,r.a,r.b)));if(!roadFade)return 0;}
   const variation=.82+.18*Math.sin(x*.037+Math.sin(z*.029))*Math.sin(z*.041+x*.011);return Math.max(0,Math.min(1,(1-smooth(13,35,d))*smooth(1.4,3,d)*variation*roadFade));
  };
 }

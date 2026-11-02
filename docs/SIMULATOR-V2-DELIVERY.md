@@ -507,3 +507,13 @@ Yeni otomatik test eklenmedi; küçükDOMdüzeltmesi actualUIRED→GREEN/sınır
 Paket alanı için SHA/manifest/S3size/stageSuccess doğrulanmış eski2.33yerelarchive ve2.34üretilmişbuildkopyası207459732bayt temizlendi. Asıl kaynak/beforekanıt/receipt/current2.34archive/remotebackupkorunur.
 
 Canlı `v2.35.0-c37c3a8426e3`:277manifest/113runninghash/HTTPS/source/uniqueIDs/admin401/WSS/normalEnterstartFPVDISARM/loadinghidden/error[] geçti. SOURCEONEf60-1750-6s650g1100medium25/gamepad korunur.7diğer servis/nginx aynı; eski app/tutarlıbackup korunur;0restart24.48MiB/256MiB. Main üzerinden çalışıldı, yeni dal açılmadı. `docs/start-focus-validation.json`.
+
+## 2026-11-02 — 2.36 Şile yol sorgusu performansı
+
+CPU profili, bina çevresindeki zemin rengi için her uygun noktada bütün 7.557 yol parçasının tarandığını gösterdi. Aynı modüle 48 m hücreli, kaynak sırasını koruyan indeks eklendi. Parça başına 1.024 hücre ve toplam 65.536 referans sınırı vardır; geniş veya güvenli olmayan aralıklar sıralı global yedekte kalır. Son AABB/mesafe/smooth hesabı aynıdır. Global veri önbelleği, yeni bağımlılık, geometri azaltma veya fizik değişimi yoktur.
+
+Önceki iki tam kurulum 4326/3757 ms, sonraki 3938/3429 ms: yaklaşık %9 yerel Node kurulum kazancı. Canvas shim ve CPU profiler kullanılmıştır; bunlar cihaz yükleme/FPS ölçümü değildir. 83.025 Float64 zemin örneği ile tam dünya geometri/malzeme skalerleri ve çarpışma özetleri birebir aynı. Örneklenen alanda yol aday sayısı ortalama 9.12, p95 29, en çok 62. Baseline 46 mesh, 10.755 box ve 1.286 prism korunur.
+
+Yeni beş testin eksik API ile RED, uygulama sonrası GREEN olduğu görüldü. Bağımsız inceleme Critical/Important bulmadı; aggregate grid limitini aşmayan test fixture hakkındaki Minor düzeltildi (200 parça, uzak sorguda fallback ve birleşmiş sıra/tekrarsızlık). 529/529 Node22 ARM64, 11 infra, Vite ve ARM64 paket geçti. Yerelde GL ve gerçek WebGPU DISARM/0/3/error[] doğrulandı. Canlı ilk sekme uygulama başlamadan bekledi; ağ izlemesinde dosyalar HTTP200 idi, yeniden yükleme sonrası profil ve uçuş açıldı. Bu bir yükleme süresi ölçümü değildir.
+
+Canlı `v2.36.0-0296056ce7e4`: 277 manifest/113 çalışan kaynak hash, HTTPS varlık/kaynak, admin401 ve iki istemcili WSS geçti. İnceleme DISARM/0/3/error[]; SOURCE ONE f60-1750-6s/650g/1100mAh/medium/25°/gamepad korunur. Diğer yedi servis ve nginx aynı, rollback container ve tutarlı veri yedeği korunur; 0 restart,24.41MiB. Haritanın yaklaşık arazi/temsili mimari sınırları sürer; fiziksel TX15 veya gerçek İLKE doğrulaması yapılmadı. `docs/sile-build-profile-validation.json`.

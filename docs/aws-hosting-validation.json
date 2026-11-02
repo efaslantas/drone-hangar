@@ -76,8 +76,8 @@
   "git": "no commit/push/merge",
   "latestUpdate": {
     "date": "2026-11-02",
-    "release": "v2.44.0-9a2633331605",
+    "release": "v2.45.0-fbd27ca93aaa",
     "status": "published",
-    "validation": "docs/sile-sand-validation.json"
+    "validation": "docs/sile-waterline-validation.json"
   }
 }

@@ -1,3 +1,4 @@
+import {buildBeachApproach} from './sile-beach.js';
 import {beachSandMaterial} from './sile-sand.js';
 import {addShoreArmour} from './sile-shore-armour.js';
 import {addMooringLinks} from './sile-mooring.js';
@@ -42,16 +43,17 @@ function prismRecord(item){
 }
 export function buildSile(scene,data){
  if(!data)throw new Error('Şile verisi önce yüklenmeli.');
- const site=castleSite(data),terrain=site?.terrain||data.terrain,sourceItems=[...data.buildings,...data.structures].map(item=>site&&item===site.source?site.castle:item),play={bounds:{minx:terrain.bounds[0],maxx:terrain.bounds[1],minz:terrain.bounds[2],maxz:terrain.bounds[3]},ceil:Math.max(...terrain.heights)-terrain.datum+160,terrain,prisms:sourceItems.map(prismRecord),boxes:[],spawn:{x:0,z:0},trainingOnly:true};
+ const coastal=coastalBuildings(data),streets=streetLayout(data,coastal);
+ const site=castleSite(data),sourceTerrain=site?.terrain||data.terrain,patches=sourceCoastPatches(data,sourceTerrain,{exactSand:true}),sand=streetRemainder(patches.sand,streets),beach=buildBeachApproach(data,sourceTerrain,sand),terrain=beach?{...sourceTerrain,beachSurface:beach.surface}:sourceTerrain,sourceItems=[...data.buildings,...data.structures].map(item=>site&&item===site.source?site.castle:item),play={bounds:{minx:terrain.bounds[0],maxx:terrain.bounds[1],minz:terrain.bounds[2],maxz:terrain.bounds[3]},ceil:Math.max(...terrain.heights)-terrain.datum+160,terrain,prisms:sourceItems.map(prismRecord),boxes:[],spawn:{x:0,z:0},trainingOnly:true};
+ if(beach){patches.sand=beach.surface.positions;scene.userData.sileBeachStats=beach.stats;}
  const rockFinish=coastalRockMaterials();
- const coastal=coastalBuildings(data);
- const streets=streetLayout(data,coastal);play.groundCorridors=streets.groundCorridors;
+ play.groundCorridors=streets.groundCorridors;
  const contextPlan=planSileContext(data,play);
  const soil=[];
  for(let i=0;i<data.positions.length;i+=9){const t=data.positions.slice(i,i+9),x=(t[0]+t[3]+t[6])/3,z=(t[2]+t[5]+t[8])/3;if(!site||!insidePolygon(x,z,site.platform.rings))soil.push(...t);}
  const groundMat=new THREE.MeshStandardMaterial({map:surfaceTexture('grass',1),roughness:1});
  const street=streetSurfaces(data,soil,streets);
- const harbour=harbourSurfaces(data,coastGround(data,street.ground));
+ const harbour=harbourSurfaces(data,coastGround(data,street.ground,{exactSand:true,terrain:sourceTerrain}));
  const aprons=buildingAprons(data,harbour.ground,coastal);
  const rawGround=geometry(refineNeighbourhoodGround(aprons.ground,coastal),true);rawGround.deleteAttribute('normal');
  const smoothGround=mergeVertices(rawGround,.001);smoothGround.computeVertexNormals();rawGround.dispose();
@@ -68,12 +70,14 @@ export function buildSile(scene,data){
  const sea=new THREE.Mesh(new THREE.PlaneGeometry(10000,10000),waterMaterial(terrain));
  sea.rotation.x=-Math.PI/2;sea.position.y=-terrain.datum-.01;sea.name='sile-sea';sea.receiveShadow=true;scene.add(sea);
  const coast=buildCoast(terrain,{sheltered:harbourLayout(data)?.waterRings});
+ const offshoreVertexCount=coast.foam.positions.length/3;
+ if(beach)for(const k of ['positions','uv','colors'])coast.foam[k].push(...beach.swash[k]);
  const cliffGeometry=rockGeometry(coast.dryCliffs,coast.wetCliffs);
  const cliff=new THREE.Mesh(cliffGeometry,[rockFinish.dry,rockFinish.wet]);cliff.name='sile-coast-cliffs';cliff.receiveShadow=true;scene.add(cliff);
- const foamGeometry=geometry(coast.foam.positions);foamGeometry.setAttribute('uv',new THREE.Float32BufferAttribute(coast.foam.uv,2));foamGeometry.setAttribute('color',new THREE.Float32BufferAttribute(coast.foam.colors,4));const shore=new THREE.Mesh(foamGeometry,foamMaterial());shore.name='sile-shore-foam';scene.add(shore);
+ const foamGeometry=geometry(coast.foam.positions);foamGeometry.setAttribute('uv',new THREE.Float32BufferAttribute(coast.foam.uv,2));foamGeometry.setAttribute('color',new THREE.Float32BufferAttribute(coast.foam.colors,4));const shore=new THREE.Mesh(foamGeometry,foamMaterial());shore.name='sile-shore-foam';shore.userData.offshoreVertexCount=offshoreVertexCount;scene.add(shore);
  scene.userData.sileWater={normalMap:sea.material.normalMap,roughnessMap:sea.material.roughnessMap,foamMaterial:shore.material};
- const patches=sourceCoastPatches(data,terrain);for(const kind of ['sand','rock']){patches[kind]=streetRemainder(patches[kind],streets);if(!patches[kind].length)continue;const material=kind==='sand'?beachSandMaterial():rockMaterial();material.polygonOffset=true;material.polygonOffsetFactor=-1;material.polygonOffsetUnits=-2;
- const mesh=new THREE.Mesh(geometry(patches[kind],true),material);mesh.name='sile-source-'+kind;if(kind==='sand')mesh.userData.groundSurface=true;mesh.receiveShadow=true;scene.add(mesh);}
+ for(const kind of ['sand','rock']){if(kind!=='sand'||!beach)patches[kind]=streetRemainder(patches[kind],streets);if(!patches[kind].length)continue;const material=kind==='sand'?beachSandMaterial():rockMaterial();material.polygonOffset=true;material.polygonOffsetFactor=-1;material.polygonOffsetUnits=-2;
+ const g=geometry(patches[kind],true);if(kind==='sand'&&beach){g.setAttribute('color',new THREE.Float32BufferAttribute(beach.colors,3));material.vertexColors=true;}const mesh=new THREE.Mesh(g,material);mesh.name='sile-source-'+kind;if(kind==='sand')mesh.userData.groundSurface=true;mesh.receiveShadow=true;scene.add(mesh);}
  // Roads are visual strips over the same sampled surface, not flattened terrain.
  const roadPositions=[];
  if(!streets.valid)for(const road of data.roads)for(let i=1;i<road.points.length;i++){

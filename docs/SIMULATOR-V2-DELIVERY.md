@@ -587,3 +587,7 @@ Geometriyi çevrimdışı yeniden üretmek için yayımlanan source-osm.json, ay
 ## 2.44 — Şile kum görünümü
 
 Mevcut plaj yüzeyleri ince tane, düzensiz küçük dalgacık ve filtreli PBR malzemeyle güncellendi.4m tekrar ve milimetre kabarıklık temsili görseldir; kaynak arazi/çarpışmalar değişmedi. v2.44.0-9a2633331605 canlı;553/553test,11infra,WebGL/WebGPU ve dosyaSHA kontrolleri geçti. [Doğrulama](sile-sand-validation.json).
+
+## 2.45 — Su-kum birleşimi
+
+Geniş batı plajındaki dik DSM kum kenarı, araziye bağlanan temsili bir yaklaşımla düzeltildi. Dar kuru-kum/su çizgisi boşlukları en fazla2m iç ıslak kum şeridiyle tamamlanır; görünen kum ve temas aynıFloat32üçgenleri kullanır. Nominal18m/%8 başlangıç,3cm su üstü uç ve2m alçaltma sınırı ölçülmüş mikroarazi değildir. Kaynak harita/su çizgisi/yol/bina verileri aynı. v2.45.0-fbd27ca93aaa canlı;560/560test,11infra,GL/GPU ve bağımsızinceleme geçti. [Doğrulama](sile-waterline-validation.json).

@@ -1,3 +1,4 @@
+import {sampleTriangleSurface,triangleSurfaceCuts,partitionTriangleSurface} from './triangle-surface.js';
 import {createSurfacePartition} from './sile-shore.js';
 // Metric local tangent approximation; producer records its WGS84 scale factors.
 export function projectCoordinate(p,lon,lat){return [(lon-p.lon)*p.metresLon-p.offsetX,-(lat-p.lat)*p.metresLat-p.offsetZ];}
@@ -24,6 +25,7 @@ function platformAt(t,x,z){
 }
 export function terrainSample(t,x,z){
  const platform=platformAt(t,x,z)|| (t.buildingPads||[]).find(p=>insidePolygon(x,z,p.rings));if(platform)return platform.surface?terrainSample(platform.surface,x,z):{height:platform.height,normal:[0,1,0]};
+ const beach=sampleTriangleSurface(t.beachSurface,x,z);if(beach)return beach;
  const [minx,maxx,minz,maxz]=t.bounds,sx=(maxx-minx)/(t.cols-1),sz=(maxz-minz)/(t.rows-1);
  const gx=Math.max(0,Math.min(t.cols-1,(x-minx)/sx)),gz=Math.max(0,Math.min(t.rows-1,(z-minz)/sz));
  const c=Math.min(t.cols-2,Math.floor(gx)),r=Math.min(t.rows-2,Math.floor(gz)),u=gx-c,v=gz-r;
@@ -44,7 +46,7 @@ export function surfaceAt(play,x,z){
 // each resulting cliff lip then lies on exactly one rendered terrain triangle.
 export function splitTerrainEdge(t,a,b){
  const [minx,maxx,minz,maxz]=t.bounds,sx=(maxx-minx)/(t.cols-1),sz=(maxz-minz)/(t.rows-1);
- const ua=(a[0]-minx)/sx,ub=(b[0]-minx)/sx,va=(a[1]-minz)/sz,vb=(b[1]-minz)/sz,values=[0,1];
+ const ua=(a[0]-minx)/sx,ub=(b[0]-minx)/sx,va=(a[1]-minz)/sz,vb=(b[1]-minz)/sz,values=[0,1,...triangleSurfaceCuts(t.beachSurface,a,b)];
  for(const [start,end,limit] of [[ua,ub,t.cols],[va,vb,t.rows],[ua+va,ub+vb,t.cols+t.rows]]){
   if(Math.abs(end-start)<1e-12)continue;
   for(let k=1;k<limit;k++){const u=(k-start)/(end-start);if(u>1e-9&&u<1-1e-9)values.push(u);}
@@ -66,11 +68,12 @@ export function partitionBuildingPads(terrain,positions,{drape=false,lift=0}={})
    for(const t of parts.outside)for(const [x,z,y]of t)next.push(x,y,z);
   }remaining=next;
  }
- if(drape){for(const v of drapeGridTriangles(source,remaining,lift))output.push(v);}else for(const v of remaining)output.push(v);
+ if(drape){for(const v of drapeTerrainTriangles(source,remaining,lift))output.push(v);}else for(const v of remaining)output.push(v);
  return output;
 }
 export function drapeTerrainTriangles(terrain,positions,lift=.0005){
  if(terrain.buildingPads?.length)return partitionBuildingPads(terrain,positions,{drape:true,lift});
+ if(terrain.beachSurface){const p=partitionTriangleSurface(terrain.beachSurface,positions,lift);return [...p.inside,...drapeGridTriangles({...terrain,beachSurface:null},p.outside,lift)];}
  return drapeGridTriangles(terrain,positions,lift);
 }
 function drapeGridTriangles(terrain,positions,lift){

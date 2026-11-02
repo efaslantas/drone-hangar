@@ -1146,6 +1146,7 @@ export function clearWorld(scene) {
   scene.userData.sileMooringStats = null;
   scene.userData.sileSourceBridgeStats = null;
   scene.userData.sileShoreArmourStats = null;
+  scene.userData.sileBeachStats = null;
   scene.userData.sileBuildingStats = null;
   scene.userData.silePadStats = null;
   scene.userData.sileArchitecturalStats = null;
@@ -1189,6 +1190,7 @@ export function buildWorld(scene, mapId = "yard", opts = {}) {
   scene.userData.sileMooringStats = null;
   scene.userData.sileSourceBridgeStats = null;
   scene.userData.sileShoreArmourStats = null;
+  scene.userData.sileBeachStats = null;
   scene.userData.sileBuildingStats = null;
   scene.userData.silePadStats = null;
   scene.userData.sileArchitecturalStats = null;

@@ -1,0 +1,153 @@
+{
+  "date": "2026-11-02",
+  "release": "v2.45.0-fbd27ca93aaa",
+  "status": "published",
+  "url": "https://hangar.18-153-158-209.sslip.io/",
+  "scope": "Broad connected western source beach: sea/sand approach geometry, exact shared contact surface, wet appearance and narrow wet-sand apron. Other source map data retained.",
+  "authoredAssumptions": {
+    "nominalApproachWidthM": 18,
+    "nominalMinimumRisePerMetre": 0.08,
+    "toeAboveMeanSeaM": 0.03,
+    "maxCutLimitM": 2,
+    "actualMaxCutM": 1.7568810973176854,
+    "wetApronMaxInlandWidthM": 2,
+    "roundingAlignmentM": 0.015,
+    "triangleQueryEdgeToleranceM": 0.0002,
+    "inlandEdge": "at least existing native grid height; avoids a second inland cliff",
+    "note": "Not surveyed Şile microterrain, tides or bathymetry. PBR wet color and swash are visual."
+  },
+  "image": {
+    "release": "v2.45.0-fbd27ca93aaa",
+    "imageId": "sha256:051c3d59d6486fe18aaa30864a099b87670408fe282ed444b1b351b72aa81341",
+    "archiveSha256": "fc9d953aa0fc7a3d293b566dc6a0bb1609aca039d19bf23115183e1c7f4259e7",
+    "archiveBytes": 141589175,
+    "architecture": "arm64",
+    "sourceFiles": 287
+  },
+  "sharedSurfaceAudit": {
+    "stats": {
+      "changedVertices": 31883,
+      "maxCutM": 1.7568810973176854,
+      "rampTriangles": 210,
+      "unsafe": false
+    },
+    "triangles": 29263,
+    "vertexMax": 6.944000547348672e-06,
+    "centerMax": 7.192610908007824e-06,
+    "centerBad": [],
+    "swash": {
+      "max": 1.3616700520909658e-05,
+      "count": 13236,
+      "bad": []
+    },
+    "wrong": []
+  },
+  "sourceCoastToeProbes": {
+    "count": 288,
+    "max": 0.030003157729383334,
+    "aboveHalf": 0,
+    "bad": []
+  },
+  "formerFalseLip": {
+    "x": -1152.38,
+    "z": 487.29,
+    "afterAboveSeaM": 0.03056
+  },
+  "runtimeDelta": {
+    "changed": [
+      "package-lock.json",
+      "package.json",
+      "public/sile.html",
+      "src/geo-terrain.js",
+      "src/sile-coast.js",
+      "src/sile-world.js",
+      "src/world.js"
+    ],
+    "added": [
+      "src/sile-beach.js",
+      "src/triangle-surface.js"
+    ],
+    "removed": [],
+    "unchangedPublicFiles": 161,
+    "sourceMapAndInputsUnchanged": true
+  },
+  "fingerprints": [
+    {
+      "full": {
+        "meshes": "f93e292ac18b21ddac68beb564f68f078b13c01055867a88001b903df74cc5f7",
+        "collision": "b6ec12aec581d64d2cb0a61af29e868bd7268cfab5d2e673c724d5e061ae5ba4",
+        "meshCount": 51,
+        "boxes": 10807,
+        "prisms": 1336
+      }
+    },
+    {
+      "base": {
+        "meshes": "de4bd066a8fa33b52a6d9f8f84d6eb7680cab70272cba024e96253c557dac5ad",
+        "collision": "00d2d78296278e12a133c6f04bc01d7630230515465abe09543f9c729a05828d",
+        "meshCount": 47,
+        "boxes": 10807,
+        "prisms": 1336
+      }
+    }
+  ],
+  "sourceGeometry": {
+    "foam": "ff67b9ad449158705c85d50ba6a09cc0b2ecd05a8b3579b88787f48b45d41267",
+    "objects": "c9b91a173ff7267bd1dbafc5a186248c599e01125d10e202ab10a7c7a367e1d1",
+    "castle": "2eac3423b35205c5336c3cae29bf1ce3542044ac77e2d80a5c178d7df3c03367",
+    "facade": "9a1016bf4f73f5ea05b4db93f19611cea8e9e16043679e4b59b3d8e8b446e31f",
+    "terrain": "2c0db3a60c125c608b36aba4a266d77962b0c5fdff2e22982eacd6ce40c69b6d"
+  },
+  "fingerprintNote": "Beach position/normal/color/foam, new terrain.beachSurface and grounded context contacts change intentionally. Original source data and castle/facade geometry stay identical. Tests check native road/building ground and exact rendered Float32 sand versus contact data.",
+  "checks": {
+    "node22Arm64": {
+      "pass": 560,
+      "fail": 0,
+      "durationMs": 152404.764475
+    },
+    "infra": 11,
+    "viteArm64": "pass in packaged Docker build; existing chunk warning",
+    "focusedSurfaceBeachPads": 21,
+    "review": "Fresh review_waterline: no remaining actionable issues; initial6.64s protection scan fixed with spatial index, final independent951ms",
+    "visual": "Actual WebGL/WebGPU close seam and wide source-world view; synthetic fixed cameras, not realflight",
+    "browser": "Fresh GL/GPU consoleerrors[]; earlier extension passkey errors were extension-origin only, no app suppression",
+    "manifestFiles": 287,
+    "runningSourceFiles": 119,
+    "https": {
+      "release": "v2.45.0-fbd27ca93aaa",
+      "entryAssets": 5,
+      "uniqueIds": 252,
+      "changedPublicSha": "pass",
+      "sourceMapUnchanged": "pass",
+      "buildings": 1316,
+      "roads": 383
+    },
+    "wss": "Two-clientjoin/state/leave pass",
+    "live": "SOURCEONE active; ŞileinspectionDISARM0m/0of3; consoleerrors[]"
+  },
+  "isolation": {
+    "otherTenantIdentitiesUnchanged": 7,
+    "nginxBytesUnchanged": true,
+    "restarts": 0,
+    "memoryMiB": 24.18,
+    "uid": "1000:1000",
+    "readonly": true,
+    "oldContainerAndBackupRetained": true,
+    "zenthWebApiAndGelisimTlsOrigin": "200"
+  },
+  "limits": [
+    "Profile/apron are authored corrections over30mDSM; no new surveyed terrain",
+    "Canonical coastline/water classification remains; waves do not change physical water height",
+    "Existing source-service-route uncertainty and estimated building heights/road widths remain",
+    "No physicalTX15 or realILKEflight validation"
+  ],
+  "evidence": {
+    "scratch": "/Users/efa/projects/drone-hangar/.superpowers/sdd/2026-11-02-sile-waterline",
+    "before": "waterline-lip-before-2.45.png",
+    "after": "waterline-after-2.45.png",
+    "gpu": "waterline-gpu-2.45.png",
+    "wide": "waterline-wide-2.45.png",
+    "live": "waterline-live-2.45.png",
+    "directory": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1"
+  }
+}

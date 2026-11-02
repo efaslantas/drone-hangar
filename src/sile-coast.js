@@ -1,21 +1,50 @@
 import {ShapeUtils,Vector2,Color} from 'three';
 import source from './data/sile-coast.json' with {type:'json'};
-import {createShoreClipper,createLandClipper} from './sile-shore.js';
+import {createShoreClipper,createLandClipper,createSurfacePartition} from './sile-shore.js';
 import {insidePolygon,terrainHeight,surfaceAt,splitTerrainEdge,drapeTerrainTriangles} from './geo-terrain.js';
 const smooth=(a,b,x)=>{const t=Math.max(0,Math.min(1,(x-a)/(b-a)));return t*t*(3-2*t);};
 function noise(x,z,scale){const a=Math.floor(x/scale),b=Math.floor(z/scale),u=smooth(0,1,x/scale-a),v=smooth(0,1,z/scale-b),hash=(i,j)=>{let h=(Math.imul(i,374761393)^Math.imul(j,668265263))>>>0;h=Math.imul(h^(h>>>13),1274126177);return ((h^(h>>>16))>>>0)/4294967295;};return (hash(a,b)*(1-u)+hash(a+1,b)*u)*(1-v)+(hash(a,b+1)*(1-u)+hash(a+1,b+1)*u)*v;}
 const sourceMatches=data=>data?.id==='sile'&&Object.entries(source.projection).every(([k,v])=>data.projection?.[k]===v);
-export function coastGround(data,positions){
- if(!sourceMatches(data))return positions;const clip=createShoreClipper(source.features.map(f=>f.rings)),out=[];
+const beachFeatures=new WeakMap();
+export function connectedBeachFeatures(terrain){
+ if(beachFeatures.has(terrain.land))return beachFeatures.get(terrain.land);
+ const result=source.features.filter(f=>f.kind==='sand'&&Math.abs(f.rings[0].reduce((s,p,i)=>{const q=f.rings[0][(i+1)%f.rings[0].length];return s+p[0]*q[1]-p[1]*q[0];},0))/2>5000).filter(f=>{let length=0;for(const rings of terrain.land)for(const r of rings)for(let i=0;i<r.length;i++){const a=r[i],b=r[(i+1)%r.length];if(terrain.bounds.some((v,k)=>Math.abs(a[k<2?0:1]-v)<.05&&Math.abs(b[k<2?0:1]-v)<.05))continue;if(insidePolygon((a[0]+b[0])/2,(a[1]+b[1])/2,f.rings))length+=Math.hypot(b[0]-a[0],b[1]-a[1]);}return length>100;});beachFeatures.set(terrain.land,result);return result;
+}
+function alignedBeachRings(feature,terrain){
+ if(feature.kind!=='sand')return feature.rings;
+ const edges=[];for(const rings of terrain.land)for(const r of rings)for(let i=0;i<r.length;i++){const a=r[i],b=r[(i+1)%r.length];if(!terrain.bounds.some((v,k)=>Math.abs(a[k<2?0:1]-v)<.05&&Math.abs(b[k<2?0:1]-v)<.05))edges.push([a,b]);}
+ // The canonical coast was rounded to centimetres while the beach mask kept
+ // submillimetre source coordinates. Broad connected beach masks also leave
+ // narrow dry-sand/water gaps: an authored wet-sand apron closes gaps up to2m,
+ // clipped to canonical land. Other sand masks receive rounding alignment only.
+ return feature.rings.map(r=>r.map(p=>{let closest=.015,best=p;for(const [a,b]of edges){const dx=b[0]-a[0],dz=b[1]-a[1],length=dx*dx+dz*dz;if(!length)continue;const u=Math.max(0,Math.min(1,((p[0]-a[0])*dx+(p[1]-a[1])*dz)/length)),q=[a[0]+u*dx,a[1]+u*dz],d=Math.hypot(p[0]-q[0],p[1]-q[1]);if(d<closest){closest=d;best=q;}}return best;}));
+}
+const apronCache=new WeakMap();
+function wetApronRings(terrain){
+ if(apronCache.has(terrain.land))return apronCache.get(terrain.land);
+ const beaches=connectedBeachFeatures(terrain),result=[],near=(x,z)=>beaches.some(f=>insidePolygon(x,z,f.rings)||f.rings.some(r=>r.some((a,i)=>{const b=r[(i+1)%r.length],dx=b[0]-a[0],dz=b[1]-a[1],l=dx*dx+dz*dz,u=l?Math.max(0,Math.min(1,((x-a[0])*dx+(z-a[1])*dz)/l)):0;return Math.hypot(x-a[0]-u*dx,z-a[1]-u*dz)<2;})));
+ for(const rings of terrain.land)for(const r of rings){
+  const edges=r.map((a,i)=>{const b=r[(i+1)%r.length],l=Math.hypot(b[0]-a[0],b[1]-a[1]),mx=(a[0]+b[0])/2,mz=(a[1]+b[1])/2;let nx=-(b[1]-a[1])/l,nz=(b[0]-a[0])/l;if(surfaceAt({terrain},mx+nx*.8,mz+nz*.8).water){nx=-nx;nz=-nz;}const crop=terrain.bounds.some((v,k)=>Math.abs(a[k<2?0:1]-v)<.05&&Math.abs(b[k<2?0:1]-v)<.05);return {a,b,nx,nz,active:l>.01&&!crop&&near(mx,mz)};});
+  const joins=edges.map((e,i)=>{const p=edges[(i+edges.length-1)%edges.length];if(!p.active)return [e.nx,e.nz];if(!e.active)return [p.nx,p.nz];const x=p.nx+e.nx,z=p.nz+e.nz,l=Math.hypot(x,z);if(l<.1)return [e.nx,e.nz];const scale=Math.min(1.6,1/Math.max(.1,(x*e.nx+z*e.nz)/l));return [x/l*scale,z/l*scale];});
+  for(let i=0;i<edges.length;i++){const e=edges[i];if(!e.active)continue;const a=joins[i],b=joins[(i+1)%edges.length];result.push([[e.a,e.b,[e.b[0]+b[0]*2,e.b[1]+b[1]*2],[e.a[0]+a[0]*2,e.a[1]+a[1]*2]]]);}
+ }apronCache.set(terrain.land,result);return result;
+}
+export function coastGround(data,positions,{exactSand=false,terrain=data.terrain}={}){
+ if(!sourceMatches(data))return positions;const clip=createShoreClipper([...source.features.map(f=>exactSand?alignedBeachRings(f,terrain):f.rings),...(exactSand?wetApronRings(terrain):[])]),out=[];
  for(let i=0;i<positions.length;i+=9){const triangle=[0,3,6].map(k=>[positions[i+k],positions[i+k+2],positions[i+k+1]]);for(const t of clip(triangle))for(const [x,z,y] of t)out.push(x,y,z);}
  return out;
 }
-export function sourceCoastPatches(data,terrain){
+export function sourceCoastPatches(data,terrain,{exactSand=false}={}){
  const result={sand:[],rock:[]};if(!sourceMatches(data))return result;
- const clip=createLandClipper(terrain.land);
- for(const feature of source.features){const vectors=feature.rings.map(r=>r.map(([x,z])=>new Vector2(x,z))),points=vectors.flat(),flat=[];
-  for(const indices of ShapeUtils.triangulateShape(vectors[0],vectors.slice(1))){const triangle=indices.map(i=>[points[i].x,points[i].y]);if((triangle[1][0]-triangle[0][0])*(triangle[2][1]-triangle[0][1])-(triangle[1][1]-triangle[0][1])*(triangle[2][0]-triangle[0][0])>0)triangle.reverse();for(const t of clip(triangle))for(const [x,z] of t)flat.push(x,0,z);}
+ const clip=createLandClipper(terrain.land),exact=exactSand?createSurfacePartition(terrain.land,{spatial:true}):null;
+ for(const feature of source.features){const rings=exactSand?alignedBeachRings(feature,terrain):feature.rings,vectors=rings.map(r=>r.map(([x,z])=>new Vector2(x,z))),points=vectors.flat(),flat=[];
+  for(const indices of ShapeUtils.triangulateShape(vectors[0],vectors.slice(1))){const triangle=indices.map(i=>[points[i].x,points[i].y]);if((triangle[1][0]-triangle[0][0])*(triangle[2][1]-triangle[0][1])-(triangle[1][1]-triangle[0][1])*(triangle[2][0]-triangle[0][0])>0)triangle.reverse();for(const t of (exact&&feature.kind==='sand'?exact(triangle).inside:clip(triangle)))for(const [x,z] of t)flat.push(x,0,z);}
   result[feature.kind].push(...drapeTerrainTriangles(terrain,flat));
+ }
+ if(exactSand){
+  const masks=source.features.filter(f=>f.kind==='sand').map(f=>alignedBeachRings(f,terrain)),flat=[];
+  for(const rings of wetApronRings(terrain)){const exclude=createSurfacePartition(masks,{spatial:true}),r=rings[0];for(const ids of [[0,1,2],[0,2,3]]){const triangle=ids.map(i=>r[i]);if((triangle[1][0]-triangle[0][0])*(triangle[2][1]-triangle[0][1])-(triangle[1][1]-triangle[0][1])*(triangle[2][0]-triangle[0][0])>0)triangle.reverse();for(const t of exact(triangle).inside)for(const q of exclude(t).outside)for(const [x,z]of q)flat.push(x,0,z);}masks.push(rings);}
+  result.sand.push(...drapeTerrainTriangles(terrain,flat));
  }return result;
 }
 export function buildCoast(terrain,{sheltered=[]}={}){

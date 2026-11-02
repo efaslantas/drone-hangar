@@ -1,6 +1,6 @@
 # Drone Hangar — AWS işletim kaydı
 
-2026-11-02: Kullanıcı Drone simülatörü 2.16 için mevcut Zenth AWS sunucusunu seçti. Canlı adres: https://hangar.18-153-158-209.sslip.io/ . İlk kurulum `v2.16.0-7f5130339846`; güncel sürüm `v2.44.0-9a2633331605` (2.44, 2026-11-02).
+2026-11-02: Kullanıcı Drone simülatörü 2.16 için mevcut Zenth AWS sunucusunu seçti. Canlı adres: https://hangar.18-153-158-209.sslip.io/ . İlk kurulum `v2.16.0-7f5130339846`; güncel sürüm `v2.45.0-fbd27ca93aaa` (2.45, 2026-11-02).
 
 ## Yerleşim
 
@@ -159,3 +159,7 @@ Geometriyi çevrimdışı yeniden üretmek için yayımlanan source-osm.json, ay
 ## 2.44 — Yakın kum yüzeyi
 
 v2.44.0-9a2633331605: mevcut kaynak plajlarına uygulama için üretilmiş 4m PBR kum dokusu. Geometri/çarpışma aynı; saha ölçümü değil. 553/553 Node22 ARM64,11infra,Vite/ARM64,gerçek WebGL/WebGPU görsel kontrol ve bağımsız inceleme geçti.285paket/117çalışan kaynak SHA,HTTPS/WSS doğrulandı;0restart,28.04MiB.7diğer servis/nginx aynı;geri dönüş konteyneri ve veri yedeği korundu. Kanıt: [kum doğrulaması](sile-sand-validation.json).
+
+## 2.45 — Deniz-kum geometrisi ve temas
+
+v2.45.0-fbd27ca93aaa: batı geniş plajında denize inen temsili yaklaşım, en fazla2m iç ıslak kum şeridi ve aynıFloat32üçgenlerden yükseklik/normal sorgusu. KaynakOSM/DSM değişmedi; profil yeni saha ölçümü değil.560/560Node22ARM64,21odaklı,11infra,Vite/ARM64,gerçekGL/GPU ve bağımsız inceleme geçti.287paket/119çalışankaynakSHA,HTTPS/WSS doğrulandı.0restart24.18MiB;7diğer servis/nginx aynı;geri dönüş konteyneri/veri yedeği korundu. [Doğrulama](sile-waterline-validation.json).

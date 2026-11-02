@@ -40,8 +40,8 @@ test('smoothed terrain preserves vertex heights and foam avoids crop-border clos
  assert.ok(ground.attributes.normal.array.every(Number.isFinite));
  const source=new Set();for(let i=0;i<data.positions.length;i+=3)source.add(data.positions.slice(i,i+3).map(v=>v.toFixed(2)).join(','));
  const p=ground.attributes.position;let retained=0;for(let i=0;i<p.count;i++)if(source.has([p.getX(i),p.getY(i),p.getZ(i)].map(v=>v.toFixed(2)).join(',')))retained++;assert.ok(retained>1000,'original unmasked terrain vertices retained; sourced beach boundaries may add cut vertices');
- const foam=scene.getObjectByName('sile-shore-foam').geometry.attributes.position;
- assert.ok(foam.count>0);for(let i=0;i<foam.count;i++)assert.ok(Math.abs(foam.getY(i)-(-data.terrain.datum+.025))<.0001);
+ const foamMesh=scene.getObjectByName('sile-shore-foam'),foam=foamMesh.geometry.attributes.position;
+ assert.ok(foam.count>0);for(let i=0;i<foamMesh.userData.offshoreVertexCount;i++)assert.ok(Math.abs(foam.getY(i)-(-data.terrain.datum+.025))<.0001);
  const cropped=structuredClone(data);cropped.terrain.land=[[[[cropped.terrain.bounds[0],0],[cropped.terrain.bounds[0],10],[cropped.terrain.bounds[0],20]]]];
  const edgeScene=new THREE.Scene();buildSile(edgeScene,cropped);assert.equal(edgeScene.getObjectByName('sile-shore-foam').geometry.attributes.position.count,0);
 });
@@ -55,9 +55,9 @@ test('unused building batches release their authored textures on an empty source
  THREE.Texture.prototype.dispose=function(){disposed++;return original.call(this)};
  try{buildSile(new THREE.Scene(),empty);assert.equal(disposed,19);}finally{THREE.Texture.prototype.dispose=original;}
 });
-test('all actual foam vertices and triangle interiors remain water after Float32 upload',async()=>{
- const {surfaceAt}=await import('../src/geo-terrain.js');const scene=new THREE.Scene(),play=buildSile(scene,data),p=scene.getObjectByName('sile-shore-foam').geometry.attributes.position;
- let spills=0;for(let i=0;i<p.count;i+=3)for(let a=0;a<=4;a++)for(let b=0;b<=4-a;b++){const u=a/4,v=b/4,x=p.getX(i)*(1-u-v)+p.getX(i+1)*u+p.getX(i+2)*v,z=p.getZ(i)*(1-u-v)+p.getZ(i+1)*u+p.getZ(i+2)*v;if(!surfaceAt(play,x,z).water)spills++;}
+test('all offshore foam vertices and triangle interiors remain water after Float32 upload',async()=>{
+ const {surfaceAt}=await import('../src/geo-terrain.js');const scene=new THREE.Scene(),play=buildSile(scene,data),foam=scene.getObjectByName('sile-shore-foam'),p=foam.geometry.attributes.position;
+ let spills=0;for(let i=0;i<foam.userData.offshoreVertexCount;i+=3)for(let a=0;a<=4;a++)for(let b=0;b<=4-a;b++){const u=a/4,v=b/4,x=p.getX(i)*(1-u-v)+p.getX(i+1)*u+p.getX(i+2)*v,z=p.getZ(i)*(1-u-v)+p.getZ(i+1)*u+p.getZ(i+2)*v;if(!surfaceAt(play,x,z).water)spills++;}
  assert.equal(spills,0,'foam must be clipped against land, not classified by midpoint');
 });
 

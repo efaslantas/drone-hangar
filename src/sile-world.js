@@ -1,3 +1,4 @@
+import {prepareTerrainWallIndex} from './terrain-wall-index.js';
 import {buildBeachApproach} from './sile-beach.js';
 import {beachSandMaterial} from './sile-sand.js';
 import {addShoreArmour} from './sile-shore-armour.js';
@@ -13,7 +14,7 @@ import {buildingMaterials,facadeUvs,rockMaterial,waterMaterial,foamMaterial,laun
 import {buildCoast,sourceCoastPatches,coastGround} from './sile-coast.js';
 import {buildingRoof} from './sile-roofs.js';
 import {islandSurface} from './sile-island.js';
-import {coastalRockMaterials,rockGeometry}from './sile-rock-view.js';
+import {coastalRockMaterials,rockGeometry,coastCliffContacts}from './sile-rock-view.js';
 import {castleSite,castleModel} from './sile-landmarks.js';
 import {surfaceTexture} from './surfaces.js';
 import {terrainHeight,surfaceAt,insidePolygon,drapeTerrainTriangles} from './geo-terrain.js';
@@ -145,6 +146,8 @@ export function buildSile(scene,data){
  applyBuildingPads(scene,data,play,coastal,streets);
  addMooringLinks(scene,data,play);
  addShoreArmour(scene,data,play,rockFinish.dry);
+ play.terrainWalls??=[];for(const contact of coastCliffContacts(cliffGeometry))play.terrainWalls.push(contact);
+ prepareTerrainWallIndex(play.terrainWalls);
  addFacadeDepth(scene,data,play,coastal);
  finishSileFoliage(scene);
  return play;

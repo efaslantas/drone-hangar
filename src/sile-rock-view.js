@@ -23,3 +23,13 @@ export function coastalRockMaterials(){
 export function rockGeometry(dry,wet){
  const raw=new THREE.BufferGeometry();for(const[name,key,size]of [['position','positions',3],['uv','uv',2],['color','colors',3]])raw.setAttribute(name,new THREE.Float32BufferAttribute([...dry[key],...wet[key]],size));raw.addGroup(0,dry.positions.length/3,0);raw.addGroup(dry.positions.length/3,wet.positions.length/3,1);const g=mergeVertices(raw,.00001);g.computeVertexNormals();raw.dispose();return g;
 }
+
+// Collision owns exactly the uploaded cliff triangles, including indexed wet
+// contours and authored surface recesses. No extra wall box or landing deck.
+export function coastCliffContacts(geometry){
+ const p=geometry.attributes.position,ids=geometry.index,count=ids?.count??p.count,result=[];
+ for(let i=0;i<count;i+=3){const vertices=[0,1,2].map(k=>{const j=ids?ids.getX(i+k):i+k;return [p.getX(j),p.getY(j),p.getZ(j)];}),[a,b,c]=vertices,ab=b.map((v,k)=>v-a[k]),ac=c.map((v,k)=>v-a[k]);
+  if(Math.hypot(ab[1]*ac[2]-ab[2]*ac[1],ab[2]*ac[0]-ab[0]*ac[2],ab[0]*ac[1]-ab[1]*ac[0])<1e-10)continue;
+  result.push({vertices,contactBounds:[0,1,2].flatMap(k=>[Math.min(...vertices.map(v=>v[k])),Math.max(...vertices.map(v=>v[k]))]),landing:false,mesh:'sile-coast-cliffs',authored:'coast-cliff',reason:'kayalığa çarptı',face:i/3});
+ }return result;
+}

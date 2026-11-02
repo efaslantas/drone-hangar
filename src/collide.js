@@ -1,3 +1,4 @@
+import {terrainWallCandidates} from './terrain-wall-index.js';
 import {Triangle,Vector3} from 'three';
 import {groundSupport} from './airframe-contact.js';
 import {insidePolygon,surfaceAt} from './geo-terrain.js';
@@ -167,7 +168,7 @@ function sweptTriangleSphere(start,end,triangle,r){
 function hitTerrainWalls(state,walls,r){
  if(!walls?.length)return;
  const end=new Vector3(state.x,state.y,state.z),start=state.motionStart?new Vector3(state.motionStart.x,state.motionStart.y,state.motionStart.z):null,triangles=[];let earliest=null;
- for(const w of walls){
+ for(const w of terrainWallCandidates(walls,[Math.min(end.x,start?.x??end.x)-r,Math.max(end.x,start?.x??end.x)+r,Math.min(end.z,start?.z??end.z)-r,Math.max(end.z,start?.z??end.z)+r])){
   const vertices=w.vertices,cb=w.contactBounds||(vertices?[0,1,2].flatMap(k=>[Math.min(...vertices.map(v=>v[k])),Math.max(...vertices.map(v=>v[k]))]):null);
   const minx=(vertices?cb[0]:Math.min(w.a[0],w.b[0]))-r,maxx=(vertices?cb[1]:Math.max(w.a[0],w.b[0]))+r,minz=(vertices?cb[4]:Math.min(w.a[1],w.b[1]))-r,maxz=(vertices?cb[5]:Math.max(w.a[1],w.b[1]))+r,miny=(vertices?cb[2]:Math.min(w.height,w.ya,w.yb))-r,maxy=(vertices?cb[3]:Math.max(w.height,w.ya,w.yb))+r;
   if(Math.min(end.x,start?.x??end.x)>maxx||Math.max(end.x,start?.x??end.x)<minx||Math.min(end.z,start?.z??end.z)>maxz||Math.max(end.z,start?.z??end.z)<minz||Math.min(end.y,start?.y??end.y)>maxy||Math.max(end.y,start?.y??end.y)<miny)continue;

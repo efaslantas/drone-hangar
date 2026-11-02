@@ -76,8 +76,8 @@
   "git": "no commit/push/merge",
   "latestUpdate": {
     "date": "2026-11-02",
-    "release": "v2.45.0-fbd27ca93aaa",
+    "release": "v2.46.0-16eb380405d8",
     "status": "published",
-    "validation": "docs/sile-waterline-validation.json"
+    "validation": "docs/sile-cliff-contact-validation.json"
   }
 }

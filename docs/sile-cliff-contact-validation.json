@@ -1,0 +1,130 @@
+{
+  "date": "2026-11-02",
+  "release": "v2.46.0-16eb380405d8",
+  "status": "published",
+  "url": "https://hangar.18-153-158-209.sslip.io/",
+  "scope": "Coastal rock body contact while centre remains over water; exact rendered triangles, no visual/source geometry changes",
+  "reproduction": "10mcliff x0,land x<0,bodycentre x.1,y5,r.24 previously stayed penetrated; now separated by existing exact triangle solver",
+  "changes": [
+    "52,290 indexed Float32 cliff triangles join existing swept/discrete sphere contact solver",
+    "Prepared static XZ wall index preserves original candidate order and exactXYZ/triangle narrow phase",
+    "Unprepared or length-mutated wall arrays retain full linear behavior; oversized/reference/query limits preserve bounded indexing",
+    "Existing source land/water,beach terrain,visuals,building/pier geometry and sphere collision approximation remain"
+  ],
+  "image": {
+    "release": "v2.46.0-16eb380405d8",
+    "imageId": "sha256:d2f670f6833f601bc9c9ee60acc6a09d93629b230f101af4880fb45b3e2f4ca6",
+    "archiveSha256": "52e6ac13b555f91a6e7ca423ca3c87afe6566fa5a5a83cdbfad68671bf3cab78",
+    "archiveBytes": 141589143,
+    "architecture": "arm64",
+    "sourceFiles": 288
+  },
+  "runtimeDelta": {
+    "changed": [
+      "package-lock.json",
+      "package.json",
+      "public/sile.html",
+      "src/collide.js",
+      "src/sile-rock-view.js",
+      "src/sile-world.js"
+    ],
+    "added": [
+      "src/terrain-wall-index.js"
+    ],
+    "removed": [],
+    "sourceMapAndInputsUnchanged": true
+  },
+  "fingerprints": [
+    {
+      "full": {
+        "meshes": "f93e292ac18b21ddac68beb564f68f078b13c01055867a88001b903df74cc5f7",
+        "collision": "d2fce28dc1de0b689d7aafbd19e8d724c7668c19cac34ab36c6cc3f1b601270a",
+        "meshCount": 51,
+        "boxes": 10807,
+        "prisms": 1336
+      }
+    },
+    {
+      "base": {
+        "meshes": "de4bd066a8fa33b52a6d9f8f84d6eb7680cab70272cba024e96253c557dac5ad",
+        "collision": "13ac04cd1844429106dc2996fe5310a29357e71da056bf88307df6b377251242",
+        "meshCount": 47,
+        "boxes": 10807,
+        "prisms": 1336
+      }
+    }
+  ],
+  "visualComparison": {
+    "identicalTo2_45": true,
+    "fullMeshHash": "f93e292ac18b21ddac68beb564f68f078b13c01055867a88001b903df74cc5f7",
+    "basis": "Independent actual-world test compares uploaded attributes/transforms/materials against shipped2.45 fingerprint"
+  },
+  "contactAudit": {
+    "cliffTriangles": 52290,
+    "totalWalls": 61228,
+    "index": {
+      "walls": 61228,
+      "cells": 286,
+      "references": 65071,
+      "global": 0
+    },
+    "indexMs": 7.180374999999913,
+    "actualRockProbes": 30,
+    "physicalIndexedEqualsLinear": true,
+    "candidates": {
+      "min": 405,
+      "max": 1156,
+      "mean": 750.7
+    },
+    "note": "Candidate counts and construction time are not gameplay FPS measurements"
+  },
+  "checks": {
+    "node22Arm64": {
+      "pass": 567,
+      "fail": 0,
+      "durationMs": 158493.316736
+    },
+    "focused": 7,
+    "infra": 11,
+    "viteArm64": "pass in packaged Docker build; existing chunk warning",
+    "review": "Fresh review_cliff_contact; no actionable findings; independently7/7focused tests pass",
+    "visual": "ActualGL/GPU source-world contact markers; r=.1056m represents existing freestyle contact radius, synthetic test not realflight; diagnostic markers excluded from release",
+    "browser": "FreshGL/GPU/liveconsoleerrors[]; olderGLtab3unattributedasyncmessagechannelerrors retained in browser-qa.json; not reproduced fresh and no suppression",
+    "manifestFiles": 288,
+    "runningSourceFiles": 120,
+    "https": {
+      "release": "v2.46.0-16eb380405d8",
+      "entryAssets": 5,
+      "uniqueIds": 252,
+      "changedPublicSha": "pass",
+      "sourceMapUnchanged": "pass",
+      "buildings": 1316,
+      "roads": 383
+    },
+    "wss": "Two-clientjoin/state/leave pass",
+    "live": "SOURCEONE active; ŞileinspectionDISARM0m/0of3; consoleerrors[]"
+  },
+  "isolation": {
+    "otherTenantIdentitiesUnchanged": 7,
+    "nginxBytesUnchanged": true,
+    "restarts": 0,
+    "memoryMiB": 24.51,
+    "uid": "1000:1000",
+    "readonly": true,
+    "oldContainerAndBackupRetained": true,
+    "zenthWebApiAndGelisimTlsOrigin": "200"
+  },
+  "limits": [
+    "Drone wall contact still uses existing sphere approximation, not hull deformation",
+    "Authored visible rock recesses and approximateDSM heights remain; no new surveyed geology",
+    "No physicalTX15 or realILKEflight calibration",
+    "Index is opt-in for completed static wall arrays; changed-length arrays fall back; same-length structural edits require rebuilding the index"
+  ],
+  "evidence": {
+    "scratch": "/Users/efa/projects/drone-hangar/.superpowers/sdd/2026-11-02-sile-cliff-contact",
+    "contact": "cliff-contact-2.46.png",
+    "gpu": "cliff-contact-gpu-2.46.png",
+    "live": "cliff-live-2.46.png",
+    "directory": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1"
+  }
+}

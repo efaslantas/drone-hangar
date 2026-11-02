@@ -75,9 +75,9 @@
   ],
   "git": "no commit/push/merge",
   "latestUpdate": {
-    "date": "2026-11-02",
-    "release": "v2.47.0-5f986166dd40",
+    "date": "2026-11-03",
+    "release": "v2.48.0-b2c6d496aef2",
     "status": "published",
-    "validation": "docs/sile-surf-motion-validation.json"
+    "validation": "docs/sile-rock-weathering-validation.json"
   }
 }

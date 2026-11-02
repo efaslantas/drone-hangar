@@ -1,6 +1,6 @@
 # Drone Hangar — AWS işletim kaydı
 
-2026-11-02: Kullanıcı Drone simülatörü 2.16 için mevcut Zenth AWS sunucusunu seçti. Canlı adres: https://hangar.18-153-158-209.sslip.io/ . İlk kurulum `v2.16.0-7f5130339846`; güncel sürüm `v2.47.0-5f986166dd40` (2.47, 2026-11-02).
+2026-11-02: Kullanıcı Drone simülatörü 2.16 için mevcut Zenth AWS sunucusunu seçti. Canlı adres: https://hangar.18-153-158-209.sslip.io/ . İlk kurulum `v2.16.0-7f5130339846`; güncel sürüm `v2.48.0-b2c6d496aef2` (2.48, 2026-11-03).
 
 ## Yerleşim
 
@@ -171,3 +171,7 @@ v2.46.0-16eb380405d8:52.290çizilen kayaüçgeni mevcut küre/üçgen temasına 
 ## 2026-11-02 — 2.47 yerel kıyı köpüğü
 
 v2.47.0-5f986166dd40: kıyıya ilerleyen köpük tepesi ve kum üzerinde yayılıp çekilen görsel swash. Tek standart malzeme atlası, sabit RGBA ve temaslar; foam UV dışında tüm görsel geometri aynı. 571/571 Node22ARM64,8focused,11infra,ViteARM64 ve gerçekGL/GPU görüntüleri geçti. 288manifest/120runningSHA,HTTPS/WSS pass.0restart26MiB;7tenant/nginx aynı,eski konteyner/veri yedeği korundu. Ayrıntı: `docs/sile-surf-motion-validation.json`. Ölçülmüş dalga iklimi veya gerçek uçuş doğrulaması değildir.
+
+## 2026-11-03 — 2.48 kayalık yüzey ve ıslaklık geçişi
+
+v2.48.0-b2c6d496aef2: düzensiz katman/çatlak dokusu, geniş renk lekeleri ve deniz seviyesine bağlı yumuşak pürüzlülük geçişi. Yeniuv1 ve kaya rengi dışında görsel geometri ve tüm fiziksel temaslar2.47 ile birebir.575/575Node22ARM64,10reviewerfocused,11infra,ViteARM64 ve gerçekGL/GPU görünüm kontrolü geçti.288manifest/120runningSHA,HTTPS/WSS pass.7tenant/nginx aynı;eski konteyner/veri yedeği korunur. Kanıt: `docs/sile-rock-weathering-validation.json`. Temsili malzeme görünümüdür.

@@ -119,3 +119,7 @@ Merkez hâlâ su üzerindeyken gövdenin kaya yüzüne girmesi düzeltildi. Çiz
 ## 2.47 — Şile yerel dalga köpüğü
 
 Köpük farklı kıyı noktalarında ilerler; alçak kum üzerinde yayılıp geri çekilir. Mutlak simülasyon zamanına bağlı atlas, duraklatma/geri sarma sırasında deterministiktir. Seyrek üçgenlerde ara dalga tepesi doku örneklemesiyle korunur. Temaslar ve foamUV dışındaki görsel geometri2.46 ile aynı.571/571 Node22ARM64,8focused,11infra,ViteARM64,GL/GPU ve AWS canlı/HTTPS/WSS doğrulandı. Temsili6,4s/25,6s görsel modeldir; hidrodinamik/saha/TX15 doğrulaması değildir. Kanıt: `docs/sile-surf-motion-validation.json`.
+
+## 2.48 — Kayalık yüzey ve ıslaklık geçişi
+
+Şile kıyı kayalıklarında ıslak-kuru malzeme çizgisi yerine deniz seviyesine bağlı yumuşak pürüzlülük geçişi kullanılır. Hücresel desen hafifletildi; temsili katman/çatlak ve geniş lekeler eklendi. Dokular kale adası ve kıyı tahkimatında da kullanılır. Yeniuv1 ve kıyı kaya rengi dışında geometri/temaslar2.47 ile aynı.575/575Node22ARM64,11infra,ViteARM64,bağımsız inceleme veGL/GPU/AWS doğrulandı. KaynakOSM/DSM/CAD korunur;gerçek kaya türü,gelgit veya saha doğrulaması değildir. Ayrıntı: `docs/sile-rock-weathering-validation.json`.

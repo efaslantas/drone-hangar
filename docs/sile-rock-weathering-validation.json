@@ -1,0 +1,141 @@
+{
+  "date": "2026-11-03",
+  "release": "v2.48.0-b2c6d496aef2",
+  "status": "published",
+  "url": "https://hangar.18-153-158-209.sslip.io/",
+  "scope": "Irregular authored rock texture and continuous sea-relative wet-to-dry cliff response",
+  "image": {
+    "release": "v2.48.0-b2c6d496aef2",
+    "imageId": "sha256:d4dfa8adb134959dfdee6f63c6ada92ec5ad0b36963863429da358b6254ad4a3",
+    "archiveSha256": "cd9739dfca0b8242bb07de8feab31ccb493519df01a3e8bfdba09f2de6aa87d1",
+    "archiveBytes": 141588285,
+    "architecture": "arm64",
+    "sourceFiles": 288
+  },
+  "runtimeChanged": [
+    "package-lock.json",
+    "package.json",
+    "public/sile.html",
+    "src/sile-rock-view.js",
+    "src/sile-world.js"
+  ],
+  "geometry": {
+    "geometryExcludingCliffColorAndNewUv1": [
+      "859a0e62c9d23329d783294c69979dc8dcc06726ae9a694eebd79f95452248aa",
+      "859a0e62c9d23329d783294c69979dc8dcc06726ae9a694eebd79f95452248aa"
+    ],
+    "runtimeChanged": [
+      "package-lock.json",
+      "package.json",
+      "public/sile.html",
+      "src/sile-rock-view.js",
+      "src/sile-world.js"
+    ],
+    "allOtherRuntimeAndPublicFilesUnchanged": true
+  },
+  "fingerprints": [
+    {
+      "full": {
+        "meshes": "bcfab197902df92523e1af98a4e5705c2e5685cba783eecbc240bec28e8be35c",
+        "collision": "d2fce28dc1de0b689d7aafbd19e8d724c7668c19cac34ab36c6cc3f1b601270a",
+        "meshCount": 51,
+        "boxes": 10807,
+        "prisms": 1336
+      },
+      "base": {
+        "meshes": "b912bd12fbacd4e8f4331c5510086288ead0be10affc6c77f72d4b6a636ab29f",
+        "collision": "13ac04cd1844429106dc2996fe5310a29357e71da056bf88307df6b377251242",
+        "meshCount": 47,
+        "boxes": 10807,
+        "prisms": 1336
+      }
+    }
+  ],
+  "appearance": {
+    "roughnessAtlas": [
+      512,
+      256
+    ],
+    "channel": 1,
+    "heightBandMetres": [
+      -0.25,
+      2.75
+    ],
+    "wetFadeMetres": [
+      0.05,
+      1.5
+    ],
+    "verticalWrap": "clamp",
+    "additionalTextureBaseMiB": 0.5,
+    "perFrameUploads": 0,
+    "extraRenderPass": 0,
+    "changes": [
+      "Same cliff material on both existing face groups avoids a hard color/normal-scale/roughness switch",
+      "Original primary UV, positions, normals, indices, contact records preserved; cliff color and uv1 deliberately change",
+      "Shared rock texture gains warped localized beds/fissures; castle island and shore armour retain existing geometry"
+    ]
+  },
+  "verification": {
+    "node22Arm64": {
+      "pass": 575,
+      "fail": 0,
+      "durationMs": 212116.376324
+    },
+    "infra": 11,
+    "focusedReviewer": 10,
+    "review": "review_rock_weathering: no actionable findings",
+    "viteArm64": "pass; existing chunk-size warning",
+    "browser": {
+      "webgl": {
+        "views": [
+          "east before/after final contrast",
+          "castle close",
+          "harbour overview",
+          "waterline"
+        ],
+        "console": [
+          {
+            "level": "error",
+            "message": "Error: Could not establish connection. Receiving end does not exist.",
+            "timestamp": "2026-11-02T21:17:56.646Z",
+            "url": "chrome-extension://oboonakemofpalcgghocfoadofidjkkk/content/passkeys-inject.js"
+          },
+          {
+            "level": "error",
+            "message": "Error: Could not establish connection. Receiving end does not exist.",
+            "timestamp": "2026-11-02T21:20:32.003Z",
+            "url": "chrome-extension://oboonakemofpalcgghocfoadofidjkkk/content/passkeys-inject.js"
+          }
+        ]
+      },
+      "webgpu": {
+        "views": [
+          "east final contrast",
+          "castle close final contrast"
+        ],
+        "console": []
+      },
+      "notes": "One explicit chrome-extension passkeys-inject error in GL; no application suppression. GPU error list empty. Fixed synthetic cameras; not flight acceptance.",
+      "evidence": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1"
+    },
+    "https": {
+      "release": "v2.48.0-b2c6d496aef2",
+      "entryAssets": 5,
+      "uniqueIds": 252,
+      "changedPublicSha": "pass",
+      "sourceMapUnchanged": "pass",
+      "buildings": 1316,
+      "roads": 383
+    },
+    "runningSourceHashes": 120,
+    "wss": "two-client join/state/leave pass",
+    "liveProfile": "SOURCEONEv4/5in6S,Şileinspection,DISARM0mAGL0of3",
+    "liveConsoleErrors": [],
+    "host": "app-only;7tenant identities/nginx bytes unchanged;old container/data backup retained;UID1000 readonly;Zenthweb/API/GelişimTLSorigin200"
+  },
+  "limits": [
+    "Authored material appearance, not measured geology, photogrammetry, tide, new coast survey or bathymetry.",
+    "Known30mDSM/source geometry approximation remains; full photorealism not claimed.",
+    "No FPS, GPU timing, physical TX15 or İLKE flight acceptance claimed."
+  ]
+}

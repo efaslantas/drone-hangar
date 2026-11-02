@@ -76,8 +76,8 @@
   "git": "no commit/push/merge",
   "latestUpdate": {
     "date": "2026-11-02",
-    "release": "v2.46.0-16eb380405d8",
+    "release": "v2.47.0-5f986166dd40",
     "status": "published",
-    "validation": "docs/sile-cliff-contact-validation.json"
+    "validation": "docs/sile-surf-motion-validation.json"
   }
 }

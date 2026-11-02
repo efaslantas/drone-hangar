@@ -19,9 +19,9 @@ export function foamDensity(u,v){
  return Math.max(0,Math.min(1,flecks*edge));
 }
 const pixelCache=new Map(); // immutable pixel buffers only; each world owns its textures
-function dataMap(size,pixel,{repeat=1,clampV=false,cacheId}={}){
- let bytes=pixelCache.get(cacheId);if(!bytes){bytes=new Uint8Array(size*size*4);for(let y=0;y<size;y++)for(let x=0;x<size;x++){const p=pixel(x/(size-1),y/(size-1));const i=(y*size+x)*4;bytes[i]=p[0];bytes[i+1]=p[1];bytes[i+2]=p[2];bytes[i+3]=255;}if(cacheId)pixelCache.set(cacheId,bytes);}
- const map=new THREE.DataTexture(bytes,size,size);map.wrapS=THREE.RepeatWrapping;map.wrapT=clampV?THREE.ClampToEdgeWrapping:THREE.RepeatWrapping;map.magFilter=THREE.LinearFilter;map.minFilter=THREE.LinearMipmapLinearFilter;map.generateMipmaps=true;map.anisotropy=8;map.repeat.set(repeat,repeat);map.needsUpdate=true;return map;
+function dataMap(size,pixel,{repeat=1,clampV=false,cacheId,height=size}={}){
+ let bytes=pixelCache.get(cacheId);if(!bytes){bytes=new Uint8Array(size*height*4);for(let y=0;y<height;y++)for(let x=0;x<size;x++){const p=pixel(x/(size-1),y/(height-1));const i=(y*size+x)*4;bytes[i]=p[0];bytes[i+1]=p[1];bytes[i+2]=p[2];bytes[i+3]=255;}if(cacheId)pixelCache.set(cacheId,bytes);}
+ const map=new THREE.DataTexture(bytes,size,height);map.wrapS=THREE.RepeatWrapping;map.wrapT=clampV?THREE.ClampToEdgeWrapping:THREE.RepeatWrapping;map.magFilter=THREE.LinearFilter;map.minFilter=THREE.LinearMipmapLinearFilter;map.generateMipmaps=true;map.anisotropy=8;map.repeat.set(repeat,repeat);map.needsUpdate=true;return map;
 }
 // A single ocean albedo field avoids overlapping transparent coastal sheets.
 function shoreColorMap(terrain){
@@ -41,11 +41,42 @@ export function waterMaterial(terrain){
  return new THREE.MeshStandardMaterial({color:terrain?0xffffff:0x244f5d,map:terrain?shoreColorMap(terrain):null,metalness:0,roughness:.52,normalMap:normal,normalScale:new THREE.Vector2(.75,.75),roughnessMap:rough,envMapIntensity:1.05});
 }
 export function foamMaterial(){
- const alpha=dataMap(512,(u,v)=>{const a=Math.round(foamDensity(u,v)*255);return [a,a,a];},{clampV:true,cacheId:'foam'});
+ // Two padded V bands share one standard-material atlas. U spans four waves,
+ // including the slower strength envelope; fragment sampling preserves crests
+ // even on offshore triangles that only have V=0/1 endpoints.
+ const alpha=dataMap(512,(u,v)=>{
+  const land=v>.5,local=(v-(land?.52:.02))/.46;
+  const a=local<=0||local>=1?0:Math.round(foamDensity(u*4,local)*surfValue(u*25.6,0,local,land)*255);
+  return [a,a,a];
+ },{clampV:true,cacheId:'foam-surf-atlas',height:1024});
  return new THREE.MeshBasicMaterial({vertexColors:true,color:0xd1dfd6,alphaMap:alpha,transparent:true,opacity:.48,depthWrite:false,side:THREE.DoubleSide,fog:true});
+}
+// Authored visual surf, not wave hydrodynamics. Both strips use a common
+// world-space phase: offshore crest, low-sand run-up, then fading retreat.
+function surfValue(time,phase,v,land){
+ const p=fract(time/6.4-phase),strength=.88+.12*Math.sin(tau*(time/25.6-phase*.25));
+ if(land){const runup=.42*smooth(.42,.68,p)*(1-smooth(.7,1,p)),window=smooth(.42,.5,p)*(1-smooth(.85,1,p));return strength*window*(1-smooth(runup-.045,runup+.045,v));}
+ const front=1-Math.min(1,p*2),gate=smooth(0,.12,p)*(1-smooth(.42,.55,p)),crest=(1-smooth(.06,.22,Math.abs(v-front)))*gate;
+ return strength*(.28+.72*crest);
+}
+export function surfOpacity(time,phase,v,land=false){return Number.isFinite(time)&&Number.isFinite(phase)&&Number.isFinite(v)?surfValue(time,phase,v,land):0;}
+export function prepareFoamMotion(geometry,offshoreVertexCount,alphaMap){
+ const position=geometry.attributes.position,uv=geometry.attributes.uv;
+ if(!position||!uv||!alphaMap)return null;
+ for(let i=0;i<uv.count;i++){
+  const x=position.getX(i),z=position.getZ(i),phase=x*.013+z*.009+periodicNoise(x/60,z/60,128)*.35;
+  // Do not wrap vertex phases: interpolation must cross cycle boundaries smoothly.
+  uv.setXY(i,-phase/4,(i>=offshoreVertexCount?.52:.02)+.46*uv.getY(i));
+ }
+ uv.needsUpdate=true;return {alphaMap};
+}
+export function tickFoamMotion(motion,time){
+ if(!motion||!Number.isFinite(time))return false;
+ const offset=fract(time/25.6);if(offset===motion.alphaMap.offset.x)return false;
+ motion.alphaMap.offset.x=offset;return true;
 }
 export function tickSileWater(scene,time){
  const water=scene.userData.sileWater;if(!water)return;
- water.normalMap.offset.set(fract(time*.0037),fract(time*-.0023));if(water.roughnessMap)water.roughnessMap.offset.copy(water.normalMap.offset);water.foamMaterial.alphaMap.offset.x=fract(time*.018);
- water.foamMaterial.opacity=.42+Math.sin(time*.71)*.07;
+ water.normalMap.offset.set(fract(time*.0037),fract(time*-.0023));if(water.roughnessMap)water.roughnessMap.offset.copy(water.normalMap.offset);
+ water.foamMaterial.opacity=.48;tickFoamMotion(water.foamMotion||{alphaMap:water.foamMaterial.alphaMap},time);
 }

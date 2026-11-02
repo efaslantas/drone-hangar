@@ -1,0 +1,129 @@
+{
+  "date": "2026-11-02",
+  "release": "v2.47.0-5f986166dd40",
+  "status": "published",
+  "url": "https://hangar.18-153-158-209.sslip.io/",
+  "scope": "Local offshore crest travel and low-sand swash; authored visual model, unchanged physical water/contact surfaces",
+  "image": {
+    "release": "v2.47.0-5f986166dd40",
+    "imageId": "sha256:8d33b3fb0c87f78caa00207309495a5285c96944eae800069a6a91169b8ec420",
+    "archiveSha256": "d1b2cd6365e775db066767d551d09feb33e3ec8f425e20ce8f79de232f0e389f",
+    "archiveBytes": 141596971,
+    "architecture": "arm64",
+    "sourceFiles": 288
+  },
+  "runtimeDelta": [
+    "package-lock.json",
+    "package.json",
+    "public/sile.html",
+    "src/sile-water.js",
+    "src/sile-world.js"
+  ],
+  "geometry": {
+    "geometryExcludingIntentionalFoamUv": [
+      "123efeb074cbadf9bc443349306df54c6838a94a120ada2810e4301185bb7d81",
+      "123efeb074cbadf9bc443349306df54c6838a94a120ada2810e4301185bb7d81"
+    ],
+    "runtimeChanged": [
+      "package-lock.json",
+      "package.json",
+      "public/sile.html",
+      "src/sile-water.js",
+      "src/sile-world.js"
+    ],
+    "allOtherRuntimeAndPublicFilesUnchanged": true
+  },
+  "model": {
+    "waveSeconds": 6.4,
+    "strengthEnvelopeSeconds": 25.6,
+    "atlas": [
+      512,
+      1024
+    ],
+    "bands": {
+      "offshore": [
+        0.02,
+        0.48
+      ],
+      "land": [
+        0.52,
+        0.98
+      ]
+    },
+    "standardMaterial": true,
+    "perFrameVertexUploads": 0,
+    "meshMaterialTextureCountDelta": 0,
+    "rgba8BaseMemoryMiB": {
+      "before": 1,
+      "after": 2
+    },
+    "notes": "Four waves along periodic U; continuous world-space phase, absolute simulation time; filtered fragment sampling retains crest on sparse endpoint-only triangles. Remapped foam UVs intentionally change visual golden, all other attributes and all collision data unchanged."
+  },
+  "fingerprints": [
+    {
+      "full": {
+        "meshes": "852d28461c2e2cf06031792938ba3c260c4d8c01838af22fab2e5212984d7633",
+        "collision": "d2fce28dc1de0b689d7aafbd19e8d724c7668c19cac34ab36c6cc3f1b601270a",
+        "meshCount": 51,
+        "boxes": 10807,
+        "prisms": 1336
+      },
+      "base": {
+        "meshes": "1833ebb0a4b556c737d590888c3320830a2936be0845fa310c1f22fe1e6a1b8d",
+        "collision": "13ac04cd1844429106dc2996fe5310a29357e71da056bf88307df6b377251242",
+        "meshCount": 47,
+        "boxes": 10807,
+        "prisms": 1336
+      }
+    }
+  ],
+  "verification": {
+    "node22Arm64": {
+      "pass": 571,
+      "fail": 0,
+      "durationMs": 179839.999927
+    },
+    "focused": 8,
+    "infra": 11,
+    "viteArm64": "pass; existing chunk-size warning",
+    "review": "review_surf_motion: vertex interpolation defect reproduced; atlas revision clean, independent8/8 focused",
+    "browser": {
+      "webgl": {
+        "errors": [],
+        "views": [
+          "waterline t0/t1",
+          "wet t2/t4"
+        ]
+      },
+      "webgpu": {
+        "errors": [],
+        "views": [
+          "waterline t1",
+          "wet t2/t4"
+        ]
+      },
+      "evidence": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1",
+      "syntheticCamera": true,
+      "realFlight": false
+    },
+    "https": {
+      "release": "v2.47.0-5f986166dd40",
+      "entryAssets": 5,
+      "uniqueIds": 252,
+      "changedPublicSha": "pass",
+      "sourceMapUnchanged": "pass",
+      "buildings": 1316,
+      "roads": 383
+    },
+    "wss": "two-client join/state/leave pass",
+    "runningSourceHashes": 120,
+    "liveProfile": "SOURCEONE v4 5in/6S, Şile inspection, DISARM,0mAGL,0/3",
+    "host": "app-only;7other services and nginx bytes unchanged;0restart;26MiB/256MiB;readonly UID1000;old container/data backup retained;Zenthweb/API/GelişimTLSorigin200",
+    "liveConsoleErrors": []
+  },
+  "limits": [
+    "Visual surf is not hydrodynamics or measured Şile wave climate.",
+    "No tide, water displacement, new bathymetry or field survey.",
+    "No FPS/GPU timing or physical TX15/İLKE flight acceptance claimed."
+  ]
+}

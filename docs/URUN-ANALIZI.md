@@ -115,3 +115,7 @@ Geniş batı plajındaki dik DSM kum kenarı, araziye bağlanan temsili bir yakl
 ## 2.46 — Kayalık temas düzeltmesi
 
 Merkez hâlâ su üzerindeyken gövdenin kaya yüzüne girmesi düzeltildi. Çizilen indeksliFloat32kayaüçgenleri mevcut süpürülen/statik küre temasını kullanır; sabit duvarindeksi çizim veya araziyi değiştirmez. v2.46.0-16eb380405d8 canlı;567/567test,11infra,GL/GPU ve bağımsızinceleme geçti. Küresel gövde yaklaşımı/saha kalibrasyonu sınırları sürer. [Doğrulama](sile-cliff-contact-validation.json).
+
+## 2.47 — Şile yerel dalga köpüğü
+
+Köpük farklı kıyı noktalarında ilerler; alçak kum üzerinde yayılıp geri çekilir. Mutlak simülasyon zamanına bağlı atlas, duraklatma/geri sarma sırasında deterministiktir. Seyrek üçgenlerde ara dalga tepesi doku örneklemesiyle korunur. Temaslar ve foamUV dışındaki görsel geometri2.46 ile aynı.571/571 Node22ARM64,8focused,11infra,ViteARM64,GL/GPU ve AWS canlı/HTTPS/WSS doğrulandı. Temsili6,4s/25,6s görsel modeldir; hidrodinamik/saha/TX15 doğrulaması değildir. Kanıt: `docs/sile-surf-motion-validation.json`.

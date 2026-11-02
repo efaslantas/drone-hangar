@@ -1,6 +1,6 @@
 # Drone Hangar — AWS işletim kaydı
 
-2026-11-02: Kullanıcı Drone simülatörü 2.16 için mevcut Zenth AWS sunucusunu seçti. Canlı adres: https://hangar.18-153-158-209.sslip.io/ . İlk kurulum `v2.16.0-7f5130339846`; güncel sürüm `v2.46.0-16eb380405d8` (2.46, 2026-11-02).
+2026-11-02: Kullanıcı Drone simülatörü 2.16 için mevcut Zenth AWS sunucusunu seçti. Canlı adres: https://hangar.18-153-158-209.sslip.io/ . İlk kurulum `v2.16.0-7f5130339846`; güncel sürüm `v2.47.0-5f986166dd40` (2.47, 2026-11-02).
 
 ## Yerleşim
 
@@ -167,3 +167,7 @@ v2.45.0-fbd27ca93aaa: batı geniş plajında denize inen temsili yaklaşım, en 
 ## 2.46 — Kıyı kayalıklarında gövde teması
 
 v2.46.0-16eb380405d8:52.290çizilen kayaüçgeni mevcut küre/üçgen temasına eklendi. Gövde merkezi su tarafında kalırken görünen kayaya girme düzeldi; sabit duvarindeksi yakın adayları seçer. Görsel/sourcegeometri aynı;567/567Node22ARM64,7focused,11infra,Vite/ARM64,GL/GPU ve bağımsızinceleme geçer.288paket/120runningSHA,HTTPS/WSSpass.0restart24.51MiB;7tenant/nginx aynı;oldcontainer/data yedeği korundu. [Doğrulama](sile-cliff-contact-validation.json).
+
+## 2026-11-02 — 2.47 yerel kıyı köpüğü
+
+v2.47.0-5f986166dd40: kıyıya ilerleyen köpük tepesi ve kum üzerinde yayılıp çekilen görsel swash. Tek standart malzeme atlası, sabit RGBA ve temaslar; foam UV dışında tüm görsel geometri aynı. 571/571 Node22ARM64,8focused,11infra,ViteARM64 ve gerçekGL/GPU görüntüleri geçti. 288manifest/120runningSHA,HTTPS/WSS pass.0restart26MiB;7tenant/nginx aynı,eski konteyner/veri yedeği korundu. Ayrıntı: `docs/sile-surf-motion-validation.json`. Ölçülmüş dalga iklimi veya gerçek uçuş doğrulaması değildir.

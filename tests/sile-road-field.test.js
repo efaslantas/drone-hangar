@@ -35,7 +35,7 @@ test('real Şile field preserves all 83025 baseline Float64 samples',()=>{
  assert.equal(values.length,83025);assert.equal(createHash('sha256').update(Buffer.from(new Float64Array(values).buffer)).digest('hex'),'b0be888b19f304edd9a696a75c4ac4c8feb0eae341cdb41b63f7403767212673');
 });
 
-test('geography-corrected base world has a stable source mesh and collision fingerprint',async()=>{
+test('west-expanded base world has a stable source mesh and collision fingerprint',async()=>{
  const THREE=await import('three'),{buildWorld,clearWorld}=await import('../src/world.js'),{sileWorldFingerprint}=await import('./helpers/sile-world-fingerprint.js');
  const data=JSON.parse(fs.readFileSync(new URL('../public/maps/sile/map.json',import.meta.url)));
 const context=new Proxy({createImageData:(w,h)=>({data:new Uint8ClampedArray(w*h*4)}),getImageData:(x,y,w,h)=>({data:new Uint8ClampedArray(w*h*4)}),createLinearGradient:()=>({addColorStop(){}}),createRadialGradient:()=>({addColorStop(){}}),measureText:()=>({width:20})},{get:(o,k)=>k in o?o[k]:()=>{}});
@@ -43,5 +43,5 @@ globalThis.document={createElement:()=>({width:0,height:0,getContext:()=>context
 
  const scene=new THREE.Scene(),play=buildWorld(scene,'sile',{sileData:data,props:false,quality:'medium'});
  const added=scene.children.filter(o=>['sile-mooring-links','sile-harbour-quay','sile-source-footbridges','sile-shore-armour'].includes(o.name));assert.equal(added.length,4);scene.remove(...added);
- assert.deepEqual(sileWorldFingerprint(scene,{...play,terrainWalls:play.terrainWalls.filter(w=>!['harbour-link','shore-armour'].includes(w.authored))}),{meshes:'d2f8b20f006d646aae8860d7cd012ef38b9d42833a3ff3930c9b59ce6452f96b',collision:'9baef0798946a68ab6a1465082cadadaaccc455cbe371f221c1d9b38da501f95',meshCount:47,boxes:10755,prisms:1286});scene.add(...added);clearWorld(scene);
+ assert.deepEqual(sileWorldFingerprint(scene,{...play,terrainWalls:play.terrainWalls.filter(w=>!['harbour-link','shore-armour'].includes(w.authored))}),{meshes:'525e0cd20c0eafbd74302cfd330575e6138fec1fd6e45a4f1c2a5ab0d15a767e',collision:'8519a6e48fcb504d2effb3e5282d1d650dca83f45226ab8bba349ce60b6baa9c',meshCount:47,boxes:10807,prisms:1336});scene.add(...added);clearWorld(scene);
 });

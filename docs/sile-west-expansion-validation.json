@@ -1,0 +1,360 @@
+{
+  "date": "2026-11-02",
+  "status": "published",
+  "release": "v2.43.0-8d4c747f78ad",
+  "url": "https://hangar.18-153-158-209.sslip.io/",
+  "scope": "Canonical approximately3x2km Sile map, expanded1km west from the previous2x2km crop; still finite, not entire district",
+  "coverage": {
+    "bbox": [
+      29.58866,
+      41.1654,
+      29.62445,
+      41.18341
+    ],
+    "runtimeBounds": [
+      -1564.225,
+      1439.03,
+      -917.08,
+      1083.06
+    ],
+    "grid": [
+      97,
+      65
+    ],
+    "buildings": 1316,
+    "roads": 383,
+    "roadIds": 381,
+    "coastWays": 8,
+    "marineStructures": 10,
+    "landPolygons": 5,
+    "newBuildings": 50,
+    "newRoadPieces": 42,
+    "terrainTriangles": 8210
+  },
+  "source": {
+    "mergePolicy": "Existing core objects win by(type,id); append only newly fetched objects, preserving original core node coordinates and tags",
+    "inputs": [
+      {
+        "role": "core",
+        "url": "https://api.openstreetmap.org/api/0.6/map.json?bbox=29.60059,41.1654,29.62445,41.18341",
+        "retrievedDate": "2026-11-01",
+        "rawSha256": "ce0cabe7cceaf070c4f4d937ff600fb636830158711904a85b5cc4f8396a643b"
+      },
+      {
+        "role": "west",
+        "url": "https://api.openstreetmap.org/api/0.6/map.json?bbox=29.58866,41.1654,29.6006,41.18341",
+        "retrievedDate": "2026-11-02",
+        "rawSha256": "4357cbf5ad8b54dd7709050e28bdcc0851332cfcc4481996e3567f9994c79ab2"
+      }
+    ],
+    "mergedSha256": "cbbd106d8bbe9af2a7df4b07eada27fd6b960da5a94716a1479ac3433c3528bf",
+    "coreElements": 11440,
+    "westElements": 2149,
+    "mergedElements": 13136
+  },
+  "preservation": {
+    "geography": {
+      "roadPiecesChecked": 341,
+      "oldRoadIdsRetained": 339,
+      "roadsChangedOver2cmWithinCore": [],
+      "oldBuildingCount": 1266,
+      "coreBuildingsPreserved": 1266,
+      "recoveredOldCropBuildingChanges": [],
+      "marineStructuresExact": 10,
+      "coreLandSymmetricDifferenceM2": 0.21546881412379526,
+      "sourceCoreObjectsPreservedByMerge": true,
+      "newBuildings": 50,
+      "newRoadPieces": 42
+    },
+    "heightQueries": {
+      "samples": 65536,
+      "maxHeightDeltaM": 1.5987211554602254e-13,
+      "maxNormalDelta": 0,
+      "datumIdentical": true
+    },
+    "coreNativeSamples": 4225,
+    "coreSamplesSha256": "c3071f1f2702bf05c2d4ac6e751d52c224f4f1dc040a4f5e981adf007bc71ca2",
+    "castleAndFacadeUploadedGeometry": "Original2eac3423/9a1016bf hashes unchanged",
+    "note": "Original source objects retained; source props can be redistributed on expanded land. Newsource-house/box/terrain/foam coverage legitimately changes full-world goldens."
+  },
+  "sourceAudit": {
+    "scope": "Existing3x2km mixed snapshot source fidelity, not surveyed real-world accuracy",
+    "coast": {
+      "sourceWays": 8,
+      "sourceLengthM": 9433.365544234166,
+      "modelLengthM": 9433.395308236022,
+      "sourceConversionMaxDeviationM": 0.006566911575065188
+    },
+    "roads": {
+      "sourceWaysChecked": 381,
+      "modelPieces": 383,
+      "modelUniqueWayIds": 381,
+      "missing": [],
+      "maxSourceConversionDeviationM": 0.007021174124021941,
+      "worst": [
+        {
+          "id": 1531132593,
+          "maxSourceDeviationM": 0.007021174124021941,
+          "sourceLengthM": 183.94710763620725,
+          "modelLengthM": 183.95602747802528
+        },
+        {
+          "id": 677651509,
+          "maxSourceDeviationM": 0.006928838035125883,
+          "sourceLengthM": 40.18937846540543,
+          "modelLengthM": 40.186072214139045
+        },
+        {
+          "id": 677651510,
+          "maxSourceDeviationM": 0.006928838035125883,
+          "sourceLengthM": 35.94139419504875,
+          "modelLengthM": 35.94641064801789
+        },
+        {
+          "id": 371474919,
+          "maxSourceDeviationM": 0.006890071516215604,
+          "sourceLengthM": 248.8841618192196,
+          "modelLengthM": 248.88954283231897
+        },
+        {
+          "id": 643468071,
+          "maxSourceDeviationM": 0.006881344335907091,
+          "sourceLengthM": 161.42356492326647,
+          "modelLengthM": 161.41016906949366
+        }
+      ],
+      "overWaterNotOnSourcePier": [
+        {
+          "id": 1485112031,
+          "name": "",
+          "kind": "service",
+          "bridge": null,
+          "waterGapM": 35.23728825285255
+        },
+        {
+          "id": 1485112032,
+          "name": "",
+          "kind": "service",
+          "bridge": null,
+          "waterGapM": 107.77885557459605
+        },
+        {
+          "id": 1531132593,
+          "name": "",
+          "kind": "footway",
+          "bridge": "yes",
+          "waterGapM": 179.80477413396068
+        }
+      ],
+      "buildingCenterlineConflicts": [],
+      "namedModelPieces": 120,
+      "namedSourceWays": 120,
+      "waterBridgeSourceIds": [
+        1531132593
+      ],
+      "unresolvedSourceSupportIds": [
+        1485112031,
+        1485112032
+      ]
+    },
+    "sourceWidthTags": 0,
+    "sourceDate": "2026-11-02",
+    "sourceInputs": [
+      {
+        "role": "core",
+        "url": "https://api.openstreetmap.org/api/0.6/map.json?bbox=29.60059,41.1654,29.62445,41.18341",
+        "retrievedDate": "2026-11-01",
+        "rawSha256": "ce0cabe7cceaf070c4f4d937ff600fb636830158711904a85b5cc4f8396a643b"
+      },
+      {
+        "role": "west",
+        "url": "https://api.openstreetmap.org/api/0.6/map.json?bbox=29.58866,41.1654,29.6006,41.18341",
+        "retrievedDate": "2026-11-02",
+        "rawSha256": "4357cbf5ad8b54dd7709050e28bdcc0851332cfcc4481996e3567f9994c79ab2"
+      }
+    ],
+    "coverage": {
+      "bbox": [
+        29.58866,
+        41.1654,
+        29.62445,
+        41.18341
+      ],
+      "bounds": [
+        -1564.225,
+        1439.03,
+        -917.08,
+        1083.06
+      ],
+      "cols": 97,
+      "rows": 65
+    },
+    "limits": [
+      "Residuals are conversion rounding against OSM, NOT surveyed positional accuracy",
+      "All source road widths absent; model widths use class estimates",
+      "Native DSM is30m; missing islet has native elevation0m, no surveyed relief",
+      "Two service routes cross mapped water without bridge/support tags; no inferred landfill or invented bridges",
+      "Bayrak Caddesi source bridge is in the road network; underside/ground separation is not resolved by the DSM"
+    ]
+  },
+  "armour": {
+    "pieces": 468,
+    "rocks": 344,
+    "blocks": 124,
+    "triangles": 8368,
+    "sourceEdgeLengthM": 722.7554971001975
+  },
+  "fixes": [
+    "Replace previous western crop with actualOSM/Copernicus coverage, not background-only decoration",
+    "Align expanded runtime grid with original rounded lattice; preserve original projection/spawn/native core samples",
+    "Reject beach setups whose6m footprint deviates>.012m from native local plane; prevents lounger support feet floating at triangle creases",
+    "Replace hardcoded legacy source-box prefixes in tests with authored-owner boundaries",
+    "Update current source/visual receipts and UI3x2km/mixed-snapshot coverage"
+  ],
+  "checks": {
+    "node22": {
+      "pass": 550,
+      "fail": 0,
+      "durationMs": 144898.78532
+    },
+    "gis": 3,
+    "mergeCli": 2,
+    "infra": 11,
+    "vite": "pass; existing chunk warning",
+    "arm64": "pass",
+    "regression": "New97grid/source extent assertions observedRED→GREEN; existing lounger feet test failed in first expanded run then all7contexttests passed after placement fix",
+    "review": "Fresh independent source/provenance review: noCritical/Important; Minor2x2visualreceipt prose fixed. Supplemental beach-fit review clean,7contexttests verified. All11440original sourceobjects retained, no missing waynode refs, provenance/derivative hash coherence verified.",
+    "reproducibility": [
+      "Default CLI recreates original2x2km map byte-for-byte",
+      "Published cleaned OSM facts recreate newmap byte-for-byte; raw contributor metadata not needed for geometry"
+    ],
+    "physicsProbe": {
+      "expandedFlightBounds": {
+        "minx": -1564.225,
+        "maxx": 1439.03,
+        "minz": -917.08,
+        "maxz": 1083.06
+      },
+      "groundHeight": -0.7818741501492414,
+      "crossFormerBoundaryHover": {
+        "x": -750,
+        "y": 30,
+        "z": 400,
+        "vx": -2,
+        "vy": 0,
+        "vz": 0,
+        "armed": false,
+        "motionStart": {
+          "x": -500,
+          "y": 30,
+          "z": 400
+        }
+      }
+    },
+    "visual": "ActualGL formercrop/newwest/harbour and WebGPU formercrop; synthetic fixed camera, not physicalflight/FPS test",
+    "https": {
+      "health": {
+        "ok": true,
+        "version": "v2.43.0-8d4c747f78ad"
+      },
+      "uniqueIds": 252,
+      "entryAssets": "pass",
+      "changedPublicFilesSha": [
+        "public/maps/sile/building-pads-visuals.json",
+        "public/maps/sile/building-types.json",
+        "public/maps/sile/building-visuals.json",
+        "public/maps/sile/coast-surfaces.json",
+        "public/maps/sile/context-data.json",
+        "public/maps/sile/context-visuals.json",
+        "public/maps/sile/geography-audit.json",
+        "public/maps/sile/geography-check.svg",
+        "public/maps/sile/harbour-visuals.json",
+        "public/maps/sile/map.json",
+        "public/maps/sile/mooring-visuals.json",
+        "public/maps/sile/neighbourhood-visuals.json",
+        "public/maps/sile/preview.svg",
+        "public/maps/sile/provenance.json",
+        "public/maps/sile/source-dem.tif",
+        "public/maps/sile/source-inputs.json",
+        "public/maps/sile/source-osm.json",
+        "public/maps/sile/street-visuals.json",
+        "public/sile.html"
+      ],
+      "expandedMapCounts": "97x65/383roads/1316buildings;westbound<-1500"
+    },
+    "wss": "two-clientjoin/state/leave pass",
+    "liveBrowser": {
+      "landPaths": 5,
+      "roadPaths": 383,
+      "settings": [
+        {
+          "id": "reference-profile",
+          "value": "f60-1750-6s"
+        },
+        {
+          "id": "reference-mass",
+          "value": "650"
+        },
+        {
+          "id": "reference-capacity",
+          "value": "1100"
+        },
+        {
+          "id": "quality-preset",
+          "value": "medium"
+        },
+        {
+          "id": "cam-tilt",
+          "value": "25"
+        },
+        {
+          "id": "input-mode",
+          "value": "gamepad"
+        }
+      ],
+      "svgViewBox": "0 0 1000 665.9907333876076",
+      "version": "2.43.0",
+      "errors": [],
+      "runtimeExceptions": [],
+      "flight": "DISARM0/3 after initial render"
+    },
+    "reusedBrowserObservation": {
+      "messageChannelWarnings": 3,
+      "text": "A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received",
+      "source": "Not conclusively attributed; application has no Chrome/browser runtime messagingAPI calls. Not reproduced in fresh root tab; freshRuntime.exceptionThrown events[] and consoleerrors[]. Reused tab evidence retained in scratch/live-browser.json."
+    },
+    "liveFlight": "DISARM0/3 after initial render;sourceonef60-1750-6s650g1100medium25/gamepad preserved",
+    "manifestFiles": 284,
+    "runningSourceHashes": 116,
+    "container": {
+      "restarts": 0,
+      "memoryMiB": 25.08,
+      "user": "1000:1000",
+      "readonly": true
+    },
+    "sharedHost": "7other tenants/nginx bytes unchanged;Zenthweb/API200,GelisımTLSorigin200;oldapp/consistentbackupretained"
+  },
+  "image": {
+    "release": "v2.43.0-8d4c747f78ad",
+    "imageId": "sha256:0d6ce9774c2df3e70b86ddc9a9fe1415ec7eb35457888e1e3cb7c4e59b56245f",
+    "archiveSha256": "5364e06220a463c268dea4865b6ebd65f9555aa41af6e80640d824274efe48ea",
+    "archiveBytes": 141571026,
+    "architecture": "arm64",
+    "sourceFiles": 284
+  },
+  "limits": [
+    "Newwestern edge remains finite; no unmeasured continuation beyond source bbox",
+    "Mixed1Novcore/2Novwest snapshots retain core IDs/coordinates; not entirely freshOSM snapshot",
+    "30mDSM contains buildings/vegetation; estimated widths/heights remain",
+    "Service ways1485112031/1485112032 source-support uncertainty persists",
+    "No physicalTX15 or realILKEflightvalidation"
+  ],
+  "evidence": {
+    "scratch": "/Users/efa/projects/drone-hangar/.superpowers/sdd/2026-11-02-sile-west-expansion",
+    "screenshots": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1",
+    "after": "west-seam-after-2.43.png",
+    "gpu": "west-seam-gpu-2.43.png",
+    "newWest": "west-new-area-2.43.png",
+    "live": "west-live-fresh-2.43.png"
+  }
+}

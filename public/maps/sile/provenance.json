@@ -1,7 +1,7 @@
 {
-  "generatedUtc": "2026-11-02T15:52:10.079601+00:00",
+  "generatedUtc": "2026-11-02T17:49:02.727891+00:00",
   "bbox": [
-    29.60059,
+    29.58866,
     41.1654,
     29.62445,
     41.18341
@@ -16,16 +16,31 @@
   },
   "verticalDatum": "EGM2008 source; runtime relative to launch 1.6m",
   "osm": {
-    "url": "https://api.openstreetmap.org/api/0.6/map.json?bbox=29.60059,41.1654,29.62445,41.18341",
+    "url": "https://api.openstreetmap.org/api/0.6/map.json?bbox=29.58866,41.1654,29.62445,41.18341",
     "license": "ODbL-1.0",
-    "rawSha256": "ce0cabe7cceaf070c4f4d937ff600fb636830158711904a85b5cc4f8396a643b",
-    "retrievedDate": "2026-11-01"
+    "rawSha256": "cbbd106d8bbe9af2a7df4b07eada27fd6b960da5a94716a1479ac3433c3528bf",
+    "retrievedDate": "2026-11-02",
+    "inputs": [
+      {
+        "role": "core",
+        "url": "https://api.openstreetmap.org/api/0.6/map.json?bbox=29.60059,41.1654,29.62445,41.18341",
+        "retrievedDate": "2026-11-01",
+        "rawSha256": "ce0cabe7cceaf070c4f4d937ff600fb636830158711904a85b5cc4f8396a643b"
+      },
+      {
+        "role": "west",
+        "url": "https://api.openstreetmap.org/api/0.6/map.json?bbox=29.58866,41.1654,29.6006,41.18341",
+        "retrievedDate": "2026-11-02",
+        "rawSha256": "4357cbf5ad8b54dd7709050e28bdcc0851332cfcc4481996e3567f9994c79ab2"
+      }
+    ],
+    "mergePolicy": "Existing core objects win by(type,id); append only newly fetched objects, preserving original core node coordinates and tags"
   },
   "dem": {
     "url": "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N41_00_E029_00_DEM/Copernicus_DSM_COG_10_N41_00_E029_00_DEM.tif",
     "sourceSha256": "ae60579da4bcbc68cd853a22e70f46c2164a7360a4c53d7dc559a7434ad68e0d",
     "release": "2021 public GLO-30 DSM",
-    "sampling": "native crop, bilinear to65x65, triangle interpolation; no bare-earth correction",
+    "sampling": "native crop, bilinear to97x65, triangle interpolation; no bare-earth correction",
     "notice": "produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
   },
   "lighthouse": {
@@ -42,27 +57,44 @@
     "No imagery, no bathymetry, no real-time or complete city replica"
   ],
   "stats": {
-    "buildings": 1266,
-    "roads": 341,
+    "buildings": 1316,
+    "roads": 383,
     "marineStructures": 10,
-    "terrainTriangles": 6789,
+    "terrainTriangles": 8210,
     "measuredBuildingHeights": 0,
     "sourceBuildingLevels": 1,
-    "landFraction": 0.7236,
+    "landFraction": 0.5897,
     "spawnClearanceM": 13.8
+  },
+  "gridAlignment": {
+    "coreCols": 65,
+    "coreRows": 65,
+    "westColumnsAdded": 32,
+    "coreBounds": [
+      -563.14,
+      1439.03,
+      -917.08,
+      1083.06
+    ],
+    "heightSamplesUnchanged": true,
+    "notice": "Runtime bounds align to the existing rounded core lattice; geographic clipping still uses source bbox"
   },
   "files": {
     "source-dem.tif": {
-      "sha256": "4f827307929e118c578a3b03bdbb70438596ad041adf9b641cbe3145fcc78ed6",
-      "bytes": 16098
+      "sha256": "e4053a9be4859229645464f87c0d9f7cc41ae174bd5a8ca907ebc39586580aa5",
+      "bytes": 19907
+    },
+    "source-inputs.json": {
+      "sha256": "c2a47318c2d3450a0a588aa98b47a3c6aa4a5e9e991ef9ef8450efd8cd0377ce",
+      "bytes": 849
     },
     "map.json": {
-      "sha256": "7cd45cff4de03231c7e2ed6956955602d43c928ce6051afa62fe6e19d2999aeb",
-      "bytes": 798304
+      "sha256": "7f02506fe01e902737766a03ba76ec5cb97aba192fdf4a7ce6b3d898fcedff97",
+      "bytes": 929160
     },
     "source-osm.json": {
-      "sha256": "6f470aa0a10ed28dad87247f8b3c50563acea599e5a215ba96ea76005b10e5ed",
-      "bytes": 1143102
+      "sha256": "fbec7ff16b498158967b953e94fd06c0f2692069412e12f613661916b42454e1",
+      "bytes": 1280588
     }
   }
 }

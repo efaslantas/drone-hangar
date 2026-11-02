@@ -24,10 +24,12 @@
   },
   "collision": "new visible hard parts use conservative world AABBs from their actual mesh transform; source terrain/prism order unchanged",
   "ground": "authored summer macro tints from source landuse; no satellite imagery",
-  "extent": "existing2x2km; long western beach in reference continues outside current map",
+  "extent": "approximately3x2km after west expansion2.43; new western crop is still finite",
   "limits": [
     "No measured tree species/heights or boat models/inventory",
     "No complete aerial orthorectification, photogrammetry or facade survey",
     "No new dynamic water/boat/traffic physics"
-  ]
+  ],
+  "coverageVersion": "2.43",
+  "currentCoverage": "Approximately3x2km;1Novcore+2NovwestOSMsnapshots;originalprojectionand4225coreheightsamplespreserved"
 }

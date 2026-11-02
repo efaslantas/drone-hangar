@@ -1,15 +1,15 @@
 {
-  "scope": "Existing2x2km snapshot source fidelity, not surveyed real-world accuracy",
+  "scope": "Existing3x2km mixed snapshot source fidelity, not surveyed real-world accuracy",
   "coast": {
-    "sourceWays": 7,
-    "sourceLengthM": 8220.503716272184,
-    "modelLengthM": 8220.556522623974,
-    "sourceConversionMaxDeviationM": 0.006700656348408702
+    "sourceWays": 8,
+    "sourceLengthM": 9433.365544234166,
+    "modelLengthM": 9433.395308236022,
+    "sourceConversionMaxDeviationM": 0.006566911575065188
   },
   "roads": {
-    "sourceWaysChecked": 339,
-    "modelPieces": 341,
-    "modelUniqueWayIds": 339,
+    "sourceWaysChecked": 381,
+    "modelPieces": 383,
+    "modelUniqueWayIds": 381,
     "missing": [],
     "maxSourceConversionDeviationM": 0.007021174124021941,
     "worst": [
@@ -18,6 +18,18 @@
         "maxSourceDeviationM": 0.007021174124021941,
         "sourceLengthM": 183.94710763620725,
         "modelLengthM": 183.95602747802528
+      },
+      {
+        "id": 677651509,
+        "maxSourceDeviationM": 0.006928838035125883,
+        "sourceLengthM": 40.18937846540543,
+        "modelLengthM": 40.186072214139045
+      },
+      {
+        "id": 677651510,
+        "maxSourceDeviationM": 0.006928838035125883,
+        "sourceLengthM": 35.94139419504875,
+        "modelLengthM": 35.94641064801789
       },
       {
         "id": 371474919,
@@ -30,18 +42,6 @@
         "maxSourceDeviationM": 0.006881344335907091,
         "sourceLengthM": 161.42356492326647,
         "modelLengthM": 161.41016906949366
-      },
-      {
-        "id": 1493330719,
-        "maxSourceDeviationM": 0.006792099922751291,
-        "sourceLengthM": 156.17129790795374,
-        "modelLengthM": 156.16771543998757
-      },
-      {
-        "id": 1493075496,
-        "maxSourceDeviationM": 0.006755981017749698,
-        "sourceLengthM": 85.97695959860086,
-        "modelLengthM": 85.97840266596818
       }
     ],
     "overWaterNotOnSourcePier": [
@@ -68,8 +68,8 @@
       }
     ],
     "buildingCenterlineConflicts": [],
-    "namedModelPieces": 114,
-    "namedSourceWays": 114,
+    "namedModelPieces": 120,
+    "namedSourceWays": 120,
     "waterBridgeSourceIds": [
       1531132593
     ],
@@ -79,7 +79,37 @@
     ]
   },
   "sourceWidthTags": 0,
-  "sourceDate": "2026-11-01",
+  "sourceDate": "2026-11-02",
+  "sourceInputs": [
+    {
+      "role": "core",
+      "url": "https://api.openstreetmap.org/api/0.6/map.json?bbox=29.60059,41.1654,29.62445,41.18341",
+      "retrievedDate": "2026-11-01",
+      "rawSha256": "ce0cabe7cceaf070c4f4d937ff600fb636830158711904a85b5cc4f8396a643b"
+    },
+    {
+      "role": "west",
+      "url": "https://api.openstreetmap.org/api/0.6/map.json?bbox=29.58866,41.1654,29.6006,41.18341",
+      "retrievedDate": "2026-11-02",
+      "rawSha256": "4357cbf5ad8b54dd7709050e28bdcc0851332cfcc4481996e3567f9994c79ab2"
+    }
+  ],
+  "coverage": {
+    "bbox": [
+      29.58866,
+      41.1654,
+      29.62445,
+      41.18341
+    ],
+    "bounds": [
+      -1564.225,
+      1439.03,
+      -917.08,
+      1083.06
+    ],
+    "cols": 97,
+    "rows": 65
+  },
   "limits": [
     "Residuals are conversion rounding against OSM, NOT surveyed positional accuracy",
     "All source road widths absent; model widths use class estimates",

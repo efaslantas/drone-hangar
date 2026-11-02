@@ -55,7 +55,10 @@
     "thicknessM": 0.18,
     "railsAdded": false
   },
-  "sourceOsmUnchanged": true,
+  "sourceOsmUnchanged": false,
   "sourcePiersUnchanged": true,
-  "convertedMapCorrectedIn": "2.40"
+  "convertedMapCorrectedIn": "2.40",
+  "coverageVersion": "2.43",
+  "currentCoverage": "Approximately3x2km;1Novcore+2NovwestOSMsnapshots;originalprojectionand4225coreheightsamplespreserved",
+  "sourceProjectionUnchanged": true
 }

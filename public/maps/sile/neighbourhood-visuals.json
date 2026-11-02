@@ -36,8 +36,10 @@
   },
   "limits": [
     "No new terrain/building/shore survey or measured yard inventory",
-    "Existing2x2km scope, source building geometry and flight/input profile retained",
+    "Approximately3x2km scope, source building geometry and flight/input profile retained",
     "No new water/traffic/people dynamics",
     "Small lamp lens emissive surface is visual only; no added point lights"
-  ]
+  ],
+  "coverageVersion": "2.43",
+  "currentCoverage": "Approximately3x2km;1Novcore+2NovwestOSMsnapshots;originalprojectionand4225coreheightsamplespreserved"
 }

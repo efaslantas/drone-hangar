@@ -3,7 +3,7 @@ import {insidePolygon,surfaceAt} from '../src/geo-terrain.js';
 const api=await import('../src/sile-mooring.js'),data=JSON.parse(fs.readFileSync(new URL('../public/maps/sile/map.json',import.meta.url))),raw=JSON.parse(fs.readFileSync(new URL('../public/maps/sile/source-osm.json',import.meta.url)));
 const ctx=new Proxy({createImageData:(w,h)=>({data:new Uint8ClampedArray(w*h*4)}),getImageData:(x,y,w,h)=>({data:new Uint8ClampedArray(w*h*4)}),createLinearGradient:()=>({addColorStop(){}}),createRadialGradient:()=>({addColorStop(){}})},{get:(o,k)=>k in o?o[k]:()=>{}});globalThis.document={createElement:()=>({getContext:()=>ctx})};
 test('all source street IDs and names survive conversion, including the missing main-road link',()=>{
- const ways=raw.elements.filter(e=>e.type==='way'&&e.tags?.highway),ids=new Set(data.roads.map(r=>r.id));assert.equal(ways.length,339);assert.equal(ids.size,339);assert.equal(data.roads.length,341);for(const e of ways){assert.ok(ids.has(e.id),'missing road '+e.id);for(const r of data.roads.filter(r=>r.id===e.id))assert.equal(r.name,e.tags.name);}
+ const ways=raw.elements.filter(e=>e.type==='way'&&e.tags?.highway),ids=new Set(data.roads.map(r=>r.id));assert.equal(ways.length,381);assert.equal(ids.size,381);assert.equal(data.roads.length,383);for(const e of ways){assert.ok(ids.has(e.id),'missing road '+e.id);for(const r of data.roads.filter(r=>r.id===e.id))assert.equal(r.name,e.tags.name);}
  assert.equal(data.roads.find(r=>r.id===1025872605).kind,'primary_link');assert.equal(data.roads.find(r=>r.id===1531132593).bridge,true);
 });
 test('closed concave source islet is present in the physical coastline',()=>{

@@ -1,6 +1,6 @@
 {
   "source": "existing source-osm.json snapshot",
-  "sourceSha256": "6f470aa0a10ed28dad87247f8b3c50563acea599e5a215ba96ea76005b10e5ed",
+  "sourceSha256": "fbec7ff16b498158967b953e94fd06c0f2692069412e12f613661916b42454e1",
   "license": "ODbL-1.0",
   "projection": {
     "lat": 41.1744067,

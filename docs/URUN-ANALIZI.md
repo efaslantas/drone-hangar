@@ -98,3 +98,8 @@ Mevcut kıyı konumu ve uçuş temas geometrisi korunarak plaka derzleri, gözen
 ### Uzun kıyı ve koruma kayalıkları — 2.42
 
 Dış mendireğin yaklaşık606m hattına, kaynak kıyıyı ve yolları taşımadan suya kısmen gömülen383kaya/blok eklendi. Çizilen yüzeyler gerçek simülasyon temasına katılır. Kayalık doku ve açık/sakin kıyı köpüğü ayrışır. Batıdaki2×2km veri kesimi görünür; kaynak kapsamı sınırı sürer. [Doğrulama](sile-shore-armour-validation.json).
+
+
+### Batı kıyısının gerçek kaynakla devamı — 2.43
+
+Harita yaklaşık3×2km oldu. Önceki batıdaki yapay kesim içeride kaldı;50bina42yol parçası, daha uzun kıyı ve tamamlanan mendirek ucu kaynakla eklenir. Eski merkezin zemin örnekleri ve kumanda profili korunur; şezlonglar arazi kırıklarından uzak yerleştirilir. Kaynak kapsamı hâlâ sonlu ve arazi30mDSMdir. [Doğrulama](sile-west-expansion-validation.json).

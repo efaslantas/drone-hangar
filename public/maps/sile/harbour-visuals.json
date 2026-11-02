@@ -3,7 +3,7 @@
   "source": "existing source coastline + harbour context",
   "data": "/maps/sile/context-data.json",
   "license": "ODbL-1.0",
-  "sourceMapUnchanged": true,
+  "sourceMapUnchanged": false,
   "surface": {
     "apronWidthM": 10,
     "widthMeasured": false,
@@ -21,6 +21,9 @@
   "limits": [
     "No new coastal survey, bathymetry or measured harbour structures",
     "Photo reference remains AA2022-07-09; not redistributed",
-    "Existing2x2km extent; water and flight forces unchanged"
-  ]
+    "Approximately3x2km extent; water and flight forces unchanged"
+  ],
+  "coverageVersion": "2.43",
+  "currentCoverage": "Approximately3x2km;1Novcore+2NovwestOSMsnapshots;originalprojectionand4225coreheightsamplespreserved",
+  "sourceProjectionUnchanged": true
 }

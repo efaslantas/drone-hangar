@@ -230,7 +230,7 @@ function container(x, y, z, yaw, color) {
 // `wind` is the free-flight breeze for the map (m/s² push, see physics.js);
 // missions bring their own op.wind and override it.
 export const MAPS = [
-  {id:"sile",name:"Şile merkez",blurb:"2 × 2 km · OSM/Copernicus · temsili binalar.",tint:"#3c7181",wind:{x:.7,z:.3}},
+  {id:"sile",name:"Şile merkez",blurb:"3 × 2 km · OSM/Copernicus · temsili binalar.",tint:"#3c7181",wind:{x:.7,z:.3}},
   { id: "yard", name: "Depo sahası", blurb: "Konteyner koridoru, asfalt, hangar.", tint: "#6b7a52", wind: { x: 0.35, z: 0.15 } },
   { id: "airfield", name: "Pist", blurb: "Pist, rüzgâr tulumu, açık alan.", tint: "#8a8680", wind: { x: 0.9, z: 0.35 } },
   { id: "coast", name: "Kıyı", blurb: "Deniz, kayalık, seyir hattı.", tint: "#3d6a7a", wind: { x: 1.1, z: 0.4 } },

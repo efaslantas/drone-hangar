@@ -10,11 +10,12 @@ from shapely.ops import polygonize,unary_union
 from shapely import constrained_delaunay_triangles
 from sile_geography import coast_land_classifier,road_features
 
-parser=argparse.ArgumentParser();parser.add_argument('--osm',required=True);parser.add_argument('--dem',required=True);parser.add_argument('--out',default='public/maps/sile');args=parser.parse_args()
+parser=argparse.ArgumentParser();parser.add_argument('--osm',required=True);parser.add_argument('--dem',required=True);parser.add_argument('--out',default='public/maps/sile');parser.add_argument('--bbox',type=float,nargs=4,default=[29.60059,41.16540,29.62445,41.18341]);parser.add_argument('--cols',type=int,default=65);parser.add_argument('--rows',type=int,default=65);parser.add_argument('--source-inputs');parser.add_argument('--preserve-grid');parser.add_argument('--osm-date',default='2026-11-01');args=parser.parse_args()
+if not all(math.isfinite(v)for v in args.bbox)or not(args.bbox[0]<args.bbox[2]and args.bbox[1]<args.bbox[3])or not(2<=args.cols<=257 and 2<=args.rows<=257):parser.error('Finite ordered bbox and grid dimensions2..257 required')
 out=pathlib.Path(args.out);out.mkdir(parents=True,exist_ok=True)
 rawpath=pathlib.Path(args.osm);dempath=pathlib.Path(args.dem);raw=json.loads(rawpath.read_text());elements=raw['elements'];nodes={e['id']:e for e in elements if e['type']=='node'};ways={e['id']:e for e in elements if e['type']=='way'}
 lat0,lon0=41.1744067,29.6125216;phi=math.radians(lat0);e2=.00669437999014;den=math.sqrt(1-e2*math.sin(phi)**2);mx=math.pi/180*6378137/den*math.cos(phi);my=math.pi/180*6378137*(1-e2)/den**3
-bbox=[29.60059,41.16540,29.62445,41.18341]
+bbox=args.bbox
 def project(lon,lat):return ((lon-lon0)*mx,(lat-lat0)*my)
 def ll(x,y):return lon0+x/mx,lat0+y/my
 area=box(*project(bbox[0],bbox[1]),*project(bbox[2],bbox[3]))
@@ -65,11 +66,19 @@ with rasterio.open(dempath) as ds:
   lon,lat=ll(x,y);c,r=inverse*(lon,lat);c-=.5;r-=.5;c=max(0,min(crop.shape[1]-1.001,c));r=max(0,min(crop.shape[0]-1.001,r));i,j=int(c),int(r);u,v=c-i,r-j
   return float(crop[j,i]*(1-u)*(1-v)+crop[j,i+1]*u*(1-v)+crop[j+1,i]*(1-u)*v+crop[j+1,i+1]*u*v)
  datum=round(sample(px,py),2)
- cols=rows=65;minx,miny,maxx,maxy=area.bounds;xs=np.linspace(minx,maxx,cols);ys=np.linspace(maxy,miny,rows);heights=[round(sample(x,y),2) for y in ys for x in xs]
+ cols,rows=args.cols,args.rows;minx,miny,maxx,maxy=area.bounds;xs=np.linspace(minx,maxx,cols);ys=np.linspace(maxy,miny,rows);heights=[round(sample(x,y),2) for y in ys for x in xs]
 # Runtime uses x east,z south, y height relative to the launch point.
 def xz(x,y):return [round(x-px,2),round(py-y,2)]
 def rings(p):return [[xz(x,y) for x,y in list(r.coords)[:-1]] for r in [p.exterior,*p.interiors]]
 bounds=[round(minx-px,2),round(maxx-px,2),round(py-maxy,2),round(py-miny,2)]
+alignment=None
+if args.preserve_grid:
+ core=json.loads(pathlib.Path(args.preserve_grid).read_text());ct=core['terrain'];step=(ct['bounds'][1]-ct['bounds'][0])/(ct['cols']-1);extra=cols-ct['cols']
+ expected={'lat':lat0,'lon':lon0,'metresLat':my,'metresLon':mx,'offsetX':px,'offsetZ':-py}
+ if core['projection']!=expected or rows!=ct['rows']or extra<0 or max(abs(bounds[i]-ct['bounds'][i])for i in [1,2,3])>.02 or abs(bounds[0]-(ct['bounds'][0]-extra*step))>.02:raise ValueError('Coverage must extend the same core grid west in whole columns')
+ if any(heights[r*cols+extra+c]!=ct['heights'][r*ct['cols']+c]for r in range(rows)for c in range(ct['cols'])):raise ValueError('Core native grid samples changed')
+ bounds[0]=ct['bounds'][0]-extra*step
+ alignment={'coreCols':ct['cols'],'coreRows':ct['rows'],'westColumnsAdded':extra,'coreBounds':ct['bounds'],'heightSamplesUnchanged':True,'notice':'Runtime bounds align to the existing rounded core lattice; geographic clipping still uses source bbox'}
 terrain={'cols':cols,'rows':rows,'bounds':bounds,'heights':heights,'datum':datum,'land':[rings(p) for p in polygons(land)]}
 def gridheight(x,y):
  u=(x-minx)/(maxx-minx)*(cols-1);v=(maxy-y)/(maxy-miny)*(rows-1);i=max(0,min(cols-2,int(u)));j=max(0,min(rows-2,int(v)));u=max(0,min(1,u-i));v=max(0,min(1,v-j));a,b,c,d=heights[j*cols+i],heights[j*cols+i+1],heights[(j+1)*cols+i],heights[(j+1)*cols+i+1]
@@ -126,8 +135,14 @@ mapdata={'version':1,'id':'sile','projection':projection,'terrain':terrain,'posi
 clean={'version':.6,'license':'https://opendatacommons.org/licenses/odbl/1-0/','attribution':'© OpenStreetMap contributors','bounds':bbox,'elements':[{k:e[k] for k in ['type','id','lat','lon','nodes','members','tags'] if k in e} for e in elements]}
 (out/'source-osm.json').write_text(json.dumps(clean,separators=(',',':'),ensure_ascii=False)+'\n')
 notice='produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved'
-provenance={'generatedUtc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'bbox':bbox,'projection':projection,'verticalDatum':'EGM2008 source; runtime relative to launch '+str(datum)+'m','osm':{'url':'https://api.openstreetmap.org/api/0.6/map.json?bbox='+','.join(map(str,bbox)),'license':'ODbL-1.0','rawSha256':hashlib.sha256(rawpath.read_bytes()).hexdigest(),'retrievedDate':'2026-11-01'},'dem':{'url':'https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N41_00_E029_00_DEM/Copernicus_DSM_COG_10_N41_00_E029_00_DEM.tif','sourceSha256':hashlib.sha256(dempath.read_bytes()).hexdigest(),'release':'2021 public GLO-30 DSM','sampling':'native crop, bilinear to65x65, triangle interpolation; no bare-earth correction','notice':notice},'lighthouse':{'url':'https://www.kiyiemniyeti.gov.tr/yer-detay/612/SILE-FENERI','towerHeightM':19,'appearance':'authored schematic; not scanned'},'assumptions':['Most building heights7.5m; OSM levels converted at3m/level','Castle12m assumed; facades/roofs schematic','Road widths follow OSM width if numeric, otherwise class defaults','DSM includes roofs/vegetation; no bare-earth or centimetre collision accuracy','Synthetic launch pad in an OSM park; not a real designated flying site','No imagery, no bathymetry, no real-time or complete city replica'], 'stats':mapdata['stats']}
-provenance['files']={p.name:{'sha256':hashlib.sha256(p.read_bytes()).hexdigest(),'bytes':p.stat().st_size} for p in out.iterdir() if p.name in ['map.json','source-osm.json','source-dem.tif']}
+provenance={'generatedUtc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'bbox':bbox,'projection':projection,'verticalDatum':'EGM2008 source; runtime relative to launch '+str(datum)+'m','osm':{'url':'https://api.openstreetmap.org/api/0.6/map.json?bbox='+','.join(map(str,bbox)),'license':'ODbL-1.0','rawSha256':hashlib.sha256(rawpath.read_bytes()).hexdigest(),'retrievedDate':args.osm_date},'dem':{'url':'https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N41_00_E029_00_DEM/Copernicus_DSM_COG_10_N41_00_E029_00_DEM.tif','sourceSha256':hashlib.sha256(dempath.read_bytes()).hexdigest(),'release':'2021 public GLO-30 DSM','sampling':f'native crop, bilinear to{cols}x{rows}, triangle interpolation; no bare-earth correction','notice':notice},'lighthouse':{'url':'https://www.kiyiemniyeti.gov.tr/yer-detay/612/SILE-FENERI','towerHeightM':19,'appearance':'authored schematic; not scanned'},'assumptions':['Most building heights7.5m; OSM levels converted at3m/level','Castle12m assumed; facades/roofs schematic','Road widths follow OSM width if numeric, otherwise class defaults','DSM includes roofs/vegetation; no bare-earth or centimetre collision accuracy','Synthetic launch pad in an OSM park; not a real designated flying site','No imagery, no bathymetry, no real-time or complete city replica'], 'stats':mapdata['stats']}
+if alignment:provenance['gridAlignment']=alignment
+if args.source_inputs:
+ inputs=json.loads(pathlib.Path(args.source_inputs).read_text())
+ if inputs['mergedSha256']!=provenance['osm']['rawSha256']:raise ValueError('Merged source input SHA mismatch')
+ provenance['osm']['inputs']=inputs['inputs'];provenance['osm']['mergePolicy']=inputs['mergePolicy']
+ (out/'source-inputs.json').write_text(json.dumps(inputs,indent=2)+'\n')
+provenance['files']={p.name:{'sha256':hashlib.sha256(p.read_bytes()).hexdigest(),'bytes':p.stat().st_size} for p in out.iterdir() if p.name in ['map.json','source-osm.json','source-dem.tif','source-inputs.json']}
 (out/'provenance.json').write_text(json.dumps(provenance,indent=2,ensure_ascii=False)+'\n')
 # A source-derived map-card preview, not a copied tile/image.
 w,h=640,440;scale=min((w-20)/(maxx-minx),(h-20)/(maxy-miny))

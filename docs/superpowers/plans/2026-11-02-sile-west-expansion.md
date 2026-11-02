@@ -1,0 +1,10 @@
+# Şile western source coverage
+
+Execute inline on main; publication/main push authorized, user opted out of repeated design approval. Keep ignored evidence/receipts (do not delete release history). Goal: remove the current western crop from the central beach/breakwater by adding real source coverage~1km west, not inventing coast continuation. No controller/vehicle changes.
+
+- [x] Download one small adjacent OSM extract, preserve old snapshot by(type,id) priority; reproducible offline merge+input SHA/date/URL receipts. Use existing Copernicus1degree source (same license/hash).
+- [x] Parameterize existing producer bbox/cols/rows and provenance; expand longitude29.60059→29.58866 and65→97cols,65rows. Verify old65x65 core sample SHA, exact projection/spawn, retained existing object geometry (except intentionally recovered crop portions). Rebuild existing coast/context/building-type datasets; no parallel terrain system.
+- [x] Independent GIS geometry audit/road coverage/coast classification/seam; regression western data + real world contacts/bounds. Update source-dependent counts/legitimate goldens with preservation evidence. Fix source-ring origin assumptions if exposed. Review source shifts rather than blindly update hashes.
+- [x] Correct UI/source-page scope≈3x2km and mixed snapshot dates; source links/data attribution and limits. GL/GPU inspect old boundary seam/new western beach/full harbour; final fresh scoped review; fullNode22/GIS/infra/Vite/ARM64. Publish2.43app-onlyAWS, verifyHTTPS/WSS/source/profile/other7tenants; commit/pushmainclean and notes.
+
+Acceptance: real coastline crosses formerwestx=-563.14 continuously; no fake cliff/foam along internal formercrop. Core97gridcolumns32..96 hashc3071f1f2702bf05c2d4ac6e751d52c224f4f1dc040a4f5e981adf007bc71ca2; no gap in native height interpolation. New3x2km edge still finite and honestly disclosed, not allŞile. Preserve3directpiers/383seawardarmour concept and exactcontact ownership. Most heights/widths remain estimates/30mDSM, no realTX15/ILKEflightclaim.

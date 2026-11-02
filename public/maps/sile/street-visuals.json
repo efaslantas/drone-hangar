@@ -33,5 +33,7 @@
     "No new street survey, imagery, curb height, traffic or physical steps",
     "Paving and entrances are authored visual interpretation, not measured current district inventory",
     "Original physical terrain, source buildings, shoreline, flight forces and selected input/profile retained"
-  ]
+  ],
+  "coverageVersion": "2.43",
+  "currentCoverage": "Approximately3x2km;1Novcore+2NovwestOSMsnapshots;originalprojectionand4225coreheightsamplespreserved"
 }

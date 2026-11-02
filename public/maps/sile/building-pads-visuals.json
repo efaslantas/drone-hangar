@@ -38,5 +38,7 @@
   ],
   "remaining": "131 coastal profiles remain unchanged for these safety/geometry limits or absence of meaningful burial; unsupported uphill burial remains; no universal excavation claim",
   "meshBudget": 45,
-  "runtimeMeshCount": 43
+  "runtimeMeshCount": 43,
+  "coverageVersion": "2.43",
+  "currentCoverage": "Approximately3x2km;1Novcore+2NovwestOSMsnapshots;originalprojectionand4225coreheightsamplespreserved"
 }

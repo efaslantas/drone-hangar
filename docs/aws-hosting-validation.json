@@ -76,8 +76,8 @@
   "git": "no commit/push/merge",
   "latestUpdate": {
     "date": "2026-11-02",
-    "release": "v2.43.0-8d4c747f78ad",
+    "release": "v2.44.0-9a2633331605",
     "status": "published",
-    "validation": "docs/sile-west-expansion-validation.json"
+    "validation": "docs/sile-sand-validation.json"
   }
 }

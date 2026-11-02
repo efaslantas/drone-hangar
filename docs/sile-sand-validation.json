@@ -1,0 +1,92 @@
+{
+  "date": "2026-11-02",
+  "release": "v2.44.0-9a2633331605",
+  "status": "published",
+  "url": "https://hangar.18-153-158-209.sslip.io/",
+  "scope": "Existing source beach material only; fine grain, irregular shallow ripples and authored4m PBR tile. Not sampled Şile sand.",
+  "image": {
+    "release": "v2.44.0-9a2633331605",
+    "imageId": "sha256:0537a1a0f8fb02993661dea604bdf2e7a2e32f0160906f313bbca1cefc96cf76",
+    "archiveSha256": "e539c8b1494a81c15a9ccec8af3c855e3ff7005f424ae7e9b1c64bc9d3517d52",
+    "archiveBytes": 141574203,
+    "architecture": "arm64",
+    "sourceFiles": 285
+  },
+  "geometryComparison": [
+    {
+      "shape": "e401a56b6a8028148661034944b8e886255939b296603ccc32e907e568378166",
+      "collision": "7869a7d441a379227256d3415fd68bbe7cd3e02de822c0b77c259b3e066d1f2a"
+    },
+    {
+      "shape": "e401a56b6a8028148661034944b8e886255939b296603ccc32e907e568378166",
+      "collision": "7869a7d441a379227256d3415fd68bbe7cd3e02de822c0b77c259b3e066d1f2a"
+    }
+  ],
+  "runtimeDelta": {
+    "changed": [
+      "package-lock.json",
+      "package.json",
+      "public/sile.html",
+      "src/sile-world.js"
+    ],
+    "added": [
+      "src/sile-sand.js"
+    ],
+    "removed": []
+  },
+  "fingerprint": {
+    "fullMesh": "0ef3874ac486ea5e77076fcfc82bbfc85de13f9ea13e2cf6295a93343599a665",
+    "baseMesh": "73922506767bbb60c19643c37bbd231fd0953c64f6245ff5baa5bb2207b92d77",
+    "collisionUnchanged": "4605af08f0bc9d7847dd81f632f487029652cfbe3ffd130f0c4c7574aa2c99d8",
+    "note": "Sand UV/color attributes and material fingerprint change intentionally; positions/normals/indices/transforms and play data compare exactly to2.43."
+  },
+  "checks": {
+    "node22Arm64": {
+      "pass": 553,
+      "fail": 0,
+      "durationMs": 152270.530259
+    },
+    "sandTests": "2field/map tests RED→GREEN plus world finishing/5resource disposal integration pass",
+    "infra": 11,
+    "vite": "pass; existing chunk warning",
+    "arm64": "pass",
+    "visual": "ActualWebGL+WebGPU close beach and WebGL wide coast; synthetic fixed camera, not realflight; consoleerrors[]",
+    "review": "Fresh review_sand: no actionable issues",
+    "manifestFiles": 285,
+    "runningSourceFiles": 117,
+    "https": {
+      "release": "v2.44.0-9a2633331605",
+      "entryAssets": 5,
+      "uniqueIds": 252,
+      "changedPublicSha": "pass",
+      "sourceMapUnchanged": "pass",
+      "buildings": 1316,
+      "roads": 383
+    },
+    "wss": "Two-clientjoin/state/leave pass",
+    "liveBrowser": "Şileinspection DISARM0m/0of3; SOURCEONE active; consoleerrors[]"
+  },
+  "isolation": {
+    "otherTenantIdentitiesUnchanged": 7,
+    "nginxBytesUnchanged": true,
+    "restarts": 0,
+    "memoryMiB": 28.04,
+    "uid": "1000:1000",
+    "readonly": true,
+    "oldContainerAndBackupRetained": true,
+    "zenthWebApiAndGelisimTlsOrigin": "200"
+  },
+  "limits": [
+    "Authored appearance only; no beach microterrain, wetting or bathymetry measurements",
+    "Existing30mDSM/estimated building heights and road widths remain",
+    "No physical TX15 or realILKEflight validation"
+  ],
+  "evidence": {
+    "scratch": "/Users/efa/projects/drone-hangar/.superpowers/sdd/2026-11-02-sile-west-grounding",
+    "close": "sand-close-2.44.png",
+    "gpu": "sand-close-gpu-2.44.png",
+    "wide": "sand-wide-2.44.png",
+    "live": "sand-live-2.44.png",
+    "directory": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1"
+  }
+}

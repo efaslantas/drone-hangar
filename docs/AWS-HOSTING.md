@@ -1,6 +1,6 @@
 # Drone Hangar — AWS işletim kaydı
 
-2026-11-02: Kullanıcı Drone simülatörü 2.16 için mevcut Zenth AWS sunucusunu seçti. Canlı adres: https://hangar.18-153-158-209.sslip.io/ . İlk kurulum `v2.16.0-7f5130339846`; güncel sürüm `v2.43.0-8d4c747f78ad` (2.43, 2026-11-02).
+2026-11-02: Kullanıcı Drone simülatörü 2.16 için mevcut Zenth AWS sunucusunu seçti. Canlı adres: https://hangar.18-153-158-209.sslip.io/ . İlk kurulum `v2.16.0-7f5130339846`; güncel sürüm `v2.44.0-9a2633331605` (2.44, 2026-11-02).
 
 ## Yerleşim
 
@@ -155,3 +155,7 @@ Kanonik Şile haritası batıya yaklaşık1km genişledi: yaklaşık3×2km,97×6
 Canlıv2.43.0-8d4c747f78ad:284manifest116runninghash/19değişenpublicSHA/HTTPS/uniqueIDs/entryassets/WSS geçti. Yeni canlı sekmede383yol/5kara,DISARM0/3,RuntimeException[]/consoleerror[];SOURCEONEf60-1750-6s650g1100medium25/gamepadkorunur. Eski tekrar kullanılan sekmede3message-channeluyarısı görüldü;kaynağı kesin atanamadı,yeni kök oturumda tekrarlanmadı;hamkanıt saklandı.0restart25.08MiB/256MiB;diğer7servis/nginx aynı,eskiapp/tutarlıbackupkorundu.30mDSM/tahminigenişlikyükseklik/iki servis yolu belirsizliği ve yeni dış kesim sınırı sürer. [Doğrulama](sile-west-expansion-validation.json).
 
 Geometriyi çevrimdışı yeniden üretmek için yayımlanan source-osm.json, aynı hashli Copernicus kaynakTIFF ve `git show 477324d:public/maps/sile/map.json` içindeki eski coregrid kullanılır. prepare-sile-map.py seçenekleri: `--bbox 29.58866 41.16540 29.62445 41.18341 --cols 97 --rows 65 --preserve-grid CORE.json`. Ardından mevcut prepare-sile-context/coast/building-types araçları ve audit-sile-geography çalıştırılır. Orijinal ham kaynak makbuzunu yeniden üretmek için merge-sile-osm.py ve iki ham girdi gerekir; temiz kaynakla geometri aynıdır, ham provenanceSHAfarklıdır.
+
+## 2.44 — Yakın kum yüzeyi
+
+v2.44.0-9a2633331605: mevcut kaynak plajlarına uygulama için üretilmiş 4m PBR kum dokusu. Geometri/çarpışma aynı; saha ölçümü değil. 553/553 Node22 ARM64,11infra,Vite/ARM64,gerçek WebGL/WebGPU görsel kontrol ve bağımsız inceleme geçti.285paket/117çalışan kaynak SHA,HTTPS/WSS doğrulandı;0restart,28.04MiB.7diğer servis/nginx aynı;geri dönüş konteyneri ve veri yedeği korundu. Kanıt: [kum doğrulaması](sile-sand-validation.json).

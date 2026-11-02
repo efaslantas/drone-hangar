@@ -103,3 +103,7 @@ Dış mendireğin yaklaşık606m hattına, kaynak kıyıyı ve yolları taşıma
 ### Batı kıyısının gerçek kaynakla devamı — 2.43
 
 Harita yaklaşık3×2km oldu. Önceki batıdaki yapay kesim içeride kaldı;50bina42yol parçası, daha uzun kıyı ve tamamlanan mendirek ucu kaynakla eklenir. Eski merkezin zemin örnekleri ve kumanda profili korunur; şezlonglar arazi kırıklarından uzak yerleştirilir. Kaynak kapsamı hâlâ sonlu ve arazi30mDSMdir. [Doğrulama](sile-west-expansion-validation.json).
+
+## 2.44 — Şile kum görünümü
+
+Mevcut plaj yüzeyleri ince tane, düzensiz küçük dalgacık ve filtreli PBR malzemeyle güncellendi.4m tekrar ve milimetre kabarıklık temsili görseldir; kaynak arazi/çarpışmalar değişmedi. v2.44.0-9a2633331605 canlı;553/553test,11infra,WebGL/WebGPU ve dosyaSHA kontrolleri geçti. [Doğrulama](sile-sand-validation.json).

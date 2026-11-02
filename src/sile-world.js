@@ -1,3 +1,4 @@
+import {beachSandMaterial} from './sile-sand.js';
 import {addShoreArmour} from './sile-shore-armour.js';
 import {addMooringLinks} from './sile-mooring.js';
 import {finishSileFoliage} from './sile-foliage.js';
@@ -71,7 +72,7 @@ export function buildSile(scene,data){
  const cliff=new THREE.Mesh(cliffGeometry,[rockFinish.dry,rockFinish.wet]);cliff.name='sile-coast-cliffs';cliff.receiveShadow=true;scene.add(cliff);
  const foamGeometry=geometry(coast.foam.positions);foamGeometry.setAttribute('uv',new THREE.Float32BufferAttribute(coast.foam.uv,2));foamGeometry.setAttribute('color',new THREE.Float32BufferAttribute(coast.foam.colors,4));const shore=new THREE.Mesh(foamGeometry,foamMaterial());shore.name='sile-shore-foam';scene.add(shore);
  scene.userData.sileWater={normalMap:sea.material.normalMap,roughnessMap:sea.material.roughnessMap,foamMaterial:shore.material};
- const patches=sourceCoastPatches(data,terrain);for(const kind of ['sand','rock']){patches[kind]=streetRemainder(patches[kind],streets);if(!patches[kind].length)continue;const material=kind==='sand'?new THREE.MeshStandardMaterial({map:surfaceTexture('sand',1),roughness:1}):rockMaterial();material.polygonOffset=true;material.polygonOffsetFactor=-1;material.polygonOffsetUnits=-2;
+ const patches=sourceCoastPatches(data,terrain);for(const kind of ['sand','rock']){patches[kind]=streetRemainder(patches[kind],streets);if(!patches[kind].length)continue;const material=kind==='sand'?beachSandMaterial():rockMaterial();material.polygonOffset=true;material.polygonOffsetFactor=-1;material.polygonOffsetUnits=-2;
  const mesh=new THREE.Mesh(geometry(patches[kind],true),material);mesh.name='sile-source-'+kind;if(kind==='sand')mesh.userData.groundSurface=true;mesh.receiveShadow=true;scene.add(mesh);}
  // Roads are visual strips over the same sampled surface, not flattened terrain.
  const roadPositions=[];

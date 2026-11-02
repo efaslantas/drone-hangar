@@ -1,0 +1,86 @@
+{
+  "date": "2026-11-02",
+  "status": "published",
+  "url": "https://hangar.18-153-158-209.sslip.io/",
+  "scope": "Procedural authored foliage finish and existing planter soil-top patches",
+  "metrics": {
+    "treeCrowns": 3164,
+    "planterCrowns": 36,
+    "cardsPerCrown": 32,
+    "trianglesPerCrown": 64,
+    "soilTrianglesPerPlanter": 2,
+    "newMeshes": 0,
+    "totalMeshesBuildSile": 45,
+    "totalMeshesBuildWorld": 46,
+    "boxes": 10755,
+    "prisms": 1286,
+    "pads": 4
+  },
+  "invariants": {
+    "allCollisionsAndPadsHash": "f6ac98e7e2f5cf83fd22eb0f0f166892b74d7536746e979cca1ba5d09280934f",
+    "allPreviousNonfoliageGeometryTransformsInstanceColours": "exact, independently compared",
+    "sourceMapAndProfileAndForces": "unchanged",
+    "foliageVertices": "every transformed vertex within old conservative boxes",
+    "texture": "authored128RGBA, mipmaps, alphaTest.35, meanAlpha.4408246; all numeric mip levels survive",
+    "lifecycle": "shared replacements tracked, originals disposed only if unused, idempotent"
+  },
+  "verification": {
+    "newFocused": 6,
+    "independentNode22Focused": 22,
+    "independentReview": "no actionable findings",
+    "node22Full": {
+      "pass": 479,
+      "fail": 0,
+      "durationMs": 134521.477347,
+      "concurrency": 4
+    },
+    "infra": 11,
+    "viteBuild": "pass",
+    "webgl": "tree/planter before-after,quality,narrowframe and aerial distant silhouette;warm60observed",
+    "webgpu": "planter/tree/narrowframe;60observed,error[]",
+    "browserNoise": "GL async-message-channel errors after closing comparison tab; no shader/render exception;GPUerrors[]"
+  },
+  "limits": [
+    "No physical phone or TX15 test",
+    "Not a photographic or botanical reconstruction",
+    "Old conservative foliage boxes remain solid across visible leaf gaps",
+    "Soil patch decorates existing solid pot top, no pot interior modeled",
+    "Source30mDSM and authored placement limits remain"
+  ],
+  "proofDir": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1",
+  "release": "v2.30.0-d5fc927a38fd",
+  "image": {
+    "release": "v2.30.0-d5fc927a38fd",
+    "imageId": "sha256:0ae1441105102bcd08eaa505591bf450271f002b9237c657a809d4f69dc88dea",
+    "archiveSha256": "f2a89453a50ffb6c5ac89411d27f471aaa41c61898d244b4695809f77b563fcb",
+    "archiveBytes": 141357626,
+    "architecture": "arm64",
+    "sourceFiles": 272
+  },
+  "live": {
+    "httpsHealth": "v2.30.0-d5fc927a38fd",
+    "runningSourceHashes": 110,
+    "publicAssetsAndSourceHashes": "pass; /tmp/sile-foliage-live-verification.log",
+    "twoClientWssJoinStateLeave": "pass",
+    "browser": "FPV DISARM,error[]; separate hangar-check-230 test room for clean screenshot",
+    "restarts": 0,
+    "memoryMiB": 24.5,
+    "limitMiB": 256,
+    "uid": "1000:1000",
+    "readonly": true,
+    "network": [
+      "drone-hangar-net"
+    ],
+    "otherSevenTenantsAndNginx": "unchanged",
+    "rollbackContainerAndConsistentDataBackup": "retained",
+    "profile": {
+      "reference": "f60-1750-6s",
+      "massG": 650,
+      "capacityMah": 1100,
+      "quality": "medium",
+      "tilt": 25,
+      "input": "gamepad"
+    },
+    "proof": "sile-foliage-live-2.30.png"
+  }
+}

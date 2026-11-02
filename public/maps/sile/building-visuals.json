@@ -1,0 +1,63 @@
+{
+  "version": "2.21",
+  "dataSource": "existing source-osm.json and map.json",
+  "license": "ODbL-1.0",
+  "sourceTypeLookup": "/maps/sile/building-types.json",
+  "selection": "building centroid within100m of non-crop source coast; supported non-landmark buildings",
+  "facades": {
+    "atlasPixels": 1024,
+    "cells": 16,
+    "imagery": "authored procedural windows/doors/shutters/plaster, not facade photographs",
+    "commercialGroundFloor": "only OSM building=commercial or retail",
+    "paintAndWindowsMeasured": false,
+    "residentialEntrance": "one authored entrance on nearest-source-road edge; no measured door position",
+    "materialFinishVersion": "2.24",
+    "materialFinish": "authored grain/rain/splash marks, varied glass reflection/curtains/shutters; existing geometry/UV/paint unchanged",
+    "atlasChannels": "sRGB colour, linear recessed height and material roughness; opaque shared RGBA8 atlas"
+  },
+  "balconies": {
+    "maximum": 160,
+    "placement": "authored on seaward wall cells; neighbour/prior-prop/water checks",
+    "collision": "conservative world AABB from actual part geometry transform; original building prism remains closed",
+    "openingsTraversable": false
+  },
+  "surroundings": {
+    "apronWidthM": 1.4,
+    "widthMeasured": false,
+    "placement": "source footprint outward bands intersect existing unpaved land; terrain triangle sampling",
+    "curbHeightAdded": false
+  },
+  "references": [
+    {
+      "url": "https://www.aa.com.tr/tr/yesilhat/dogal-yasam/silede-denize-gireceklere-rip-akintisi-uyarisi/1816475",
+      "date": "2022-07-09",
+      "purpose": "town roof silhouette, visual reference only",
+      "redistributed": false
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:%C5%9Eile_boardwalk_%26_Black_Sea_coast_June_2025.jpg",
+      "author": "Zach1055",
+      "date": "2025-06-07",
+      "license": "CC-BY-SA-4.0",
+      "purpose": "surroundings reference only, not a facade survey",
+      "redistributed": false
+    }
+  ],
+  "limits": [
+    "Existing2x2km scope and source heights retained; no photogrammetry",
+    "No measured balconies/windows/storefronts or current business inventory",
+    "No new building interiors, traffic, water or flight dynamics"
+  ],
+  "sourceBuildingFootprintsAndHeightsUnchanged": true,
+  "foundations": {
+    "version": "2.26",
+    "authored": true,
+    "maximumExposedGapM": 2,
+    "terrainEmbedM": 0.015,
+    "placement": "selected source coastal footprints; skirt edges split at heightfield grid, diagonal and wall-base crossings",
+    "collision": "additional tagged closed source-footprint prism down to minimum terrain beneath footprint; buried conservative volume",
+    "sourceFootprintsWallBasesRoofsAndTerrainUnchanged": true,
+    "limits": "only exposed gaps closed; uphill buried doors/facades from coarse DSM remain; unsupported geometry retains original prism",
+    "minimumExposedGapM": 0.03
+  }
+}

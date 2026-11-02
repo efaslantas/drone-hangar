@@ -1,5 +1,10 @@
+import {normalizeRcSettings,selectRcDevice,mapRcInput} from './rc-input.js';
 import { R2_ENGAGE, KEY_CLIMB, KEY_DESCEND, radialDeadzone, expo, clamp, calibratedAxis, rightStickAxes, triggerValue, profileFor } from "./controls.js";
 
+let inputSettings=normalizeRcSettings(null);
+export function setInputSettings(value){inputSettings=normalizeRcSettings(value);return inputSettings;}
+export function getInputSettings(){return structuredClone(inputSettings);}
+export function readInputDevices(){return Array.from(globalThis.navigator?.getGamepads?.()||[]).filter(Boolean);}
 let controlProfile = profileFor("training");
 let gamepadCalibration = null;
 
@@ -61,10 +66,6 @@ export const flags = {
   hangar: false,
   help: false,
   mute: false,
-  vehiclePrev: false,
-  vehicleNext: false,
-  emergencyStop: false,
-  consoleHelp: false,
   controlLost: false,
 };
 
@@ -76,16 +77,9 @@ const held = {
   hangar: false,
   help: false,
   mute: false,
-  vehiclePrev: false,
-  vehicleNext: false,
-  consoleHelp: false,
 };
 
 let gpIndex = null;
-let mouseFire = false;
-let holdFire = false;
-let emergencyChordAt = null;
-let emergencyChordFired = false;
 
 function edge(name, down) {
   if (down && !held[name]) flags[name] = true;
@@ -94,6 +88,8 @@ function edge(name, down) {
 
 globalThis.window?.addEventListener("keydown", (e) => {
   if (e.target?.matches?.("input, textarea, select, [contenteditable='true']") && e.code !== "Escape") return;
+  // A focused button owns Space; native activation must not also request ARM.
+  if(e.code==='Space'&&e.target?.closest?.('button, a[href], summary, [role="button"]'))return;
   keys.add(e.code);
   if (e.code === "Escape" && !e.repeat) { flags.hangar = true; e.preventDefault(); }
   if (["Space", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].includes(e.code)) {
@@ -112,26 +108,6 @@ globalThis.window?.addEventListener("gamepaddisconnected", (e) => {
     flags.controlLost = true;
   }
 });
-let lastTouchAt = 0;
-globalThis.window?.addEventListener(
-  "touchstart",
-  () => {
-    lastTouchAt = Date.now();
-  },
-  { passive: true },
-);
-globalThis.window?.addEventListener("mousedown", (e) => {
-  if (Date.now() - lastTouchAt < 900) return;
-  if (e.button === 0) mouseFire = true;
-});
-globalThis.window?.addEventListener("mouseup", (e) => {
-  if (e.button === 0) mouseFire = false;
-});
-globalThis.window?.addEventListener("blur", () => {
-  mouseFire = false;
-  holdFire = false;
-});
-
 function kaxis(pos, neg) {
   let v = 0;
   if (keys.has(pos)) v += 1;
@@ -139,38 +115,7 @@ function kaxis(pos, neg) {
   return v;
 }
 
-function rawTrigger(gp, buttonIndex) {
-  const button = gp?.buttons?.[buttonIndex];
-  const value = typeof button === "object" ? Number(button.value) || 0 : Number(button) || 0;
-  if (value > 0.02) return Math.min(1, value);
-  return button?.pressed ? 1 : 0;
-}
-
-export function consoleInput(rawInput, vehicleKind, profile = {}) {
-  const threshold = Number(profile.manualIntentThreshold) || 0.22;
-  if (vehicleKind === "sea") {
-    const command = {
-      throttle: clamp(-Number(rawInput?.viz?.ly || 0)),
-      steer: clamp(Number(rawInput?.viz?.rx || 0)),
-    };
-    return {
-      command,
-      manualIntent: Math.max(Math.abs(command.throttle), Math.abs(command.steer)) >= threshold,
-    };
-  }
-  const command = {
-    lift: clamp(Number(rawInput?.lift || 0)),
-    yaw: clamp(Number(rawInput?.yaw || 0)),
-    pitch: clamp(Number(rawInput?.pitch || 0)),
-    roll: clamp(Number(rawInput?.roll || 0)),
-  };
-  return {
-    command,
-    manualIntent: Object.values(command).some((value) => Math.abs(value) >= threshold),
-  };
-}
-
-export function poll(now = performance.now()) {
+export function poll() {
   let lift = 0;
   if (keys.has("KeyW")) lift += KEY_CLIMB;
   if (keys.has("KeyS")) lift -= KEY_DESCEND;
@@ -178,22 +123,23 @@ export function poll(now = performance.now()) {
   let pitch = expo(kaxis("ArrowUp", "ArrowDown") + kaxis("KeyI", "KeyK"), 0.2);
   let roll = expo(kaxis("ArrowRight", "ArrowLeft") + kaxis("KeyL", "KeyJ"), 0.2);
   let r2 = 0;
-  let l2 = 0;
-  let rawR2 = 0;
   let gpName = "";
   let viz = { lx: 0, ly: 0, rx: 0, ry: 0, r2: 0 };
 
   const pads = navigator.getGamepads?.() || [];
-  const gp = gpIndex != null ? pads[gpIndex] : pads.find(Boolean);
-  if (gp) {
+  const isRc=inputSettings.mode==='rc';
+  const gp = isRc?selectRcDevice(pads,inputSettings):gpIndex != null ? pads[gpIndex] : pads.find(Boolean);
+  const rcInput=isRc?mapRcInput(gp,inputSettings):null;
+  if(isRc) {
+    ({yaw,pitch,roll}=rcInput);gpName=gp?.id||'';
+    viz={lx:yaw,ly:1-2*rcInput.throttle,rx:roll,ry:-pitch,r2:0};
+  } else if (gp) {
     gpName = gp.id;
     const calibrated = Array.from(gp.axes, (v, i) => calibratedAxis(v, gamepadCalibration?.axes?.[i]));
     const [lx, ly] = radialDeadzone(calibrated[0] || 0, calibrated[1] || 0, controlProfile.dead);
     const [rax, ray] = rightStickAxes(calibrated);
     const [rx, ry] = radialDeadzone(rax, ray, controlProfile.dead);
     const trig = triggerValue(gp);
-    l2 = rawTrigger(gp, 6);
-    rawR2 = trig;
     r2 = controlProfile.punch && trig > R2_ENGAGE ? trig : 0;
     yaw = expo(lx, controlProfile.expo) * controlProfile.rate;
     lift = -ly;
@@ -202,7 +148,7 @@ export function poll(now = performance.now()) {
     viz = { lx, ly, rx, ry, r2: trig };
   }
 
-  if (sticks.left.active || sticks.right.active) {
+  if (!isRc && (sticks.left.active || sticks.right.active)) {
     yaw = expo(sticks.left.x, 0.2);
     lift = -sticks.left.y;
     roll = expo(sticks.right.x, 0.22);
@@ -216,42 +162,19 @@ export function poll(now = performance.now()) {
     };
   }
 
-  edge("arm", keys.has("Space") || (gp && gp.buttons[0]?.pressed));
-  edge("reset", keys.has("KeyR") || (gp && gp.buttons[1]?.pressed));
-  edge("cam", keys.has("KeyC") || (gp && gp.buttons[2]?.pressed));
-  edge("mode", keys.has("KeyT") || (gp && gp.buttons[3]?.pressed));
-  edge("help", keys.has("KeyH") || (gp && (gp.buttons[9]?.pressed || gp.buttons[8]?.pressed)));
+  const actionPad=isRc?null:gp;
+  edge("arm", keys.has("Space") || (actionPad && actionPad.buttons[0]?.pressed));
+  edge("reset", keys.has("KeyR") || (actionPad && actionPad.buttons[1]?.pressed));
+  edge("cam", keys.has("KeyC") || (actionPad && actionPad.buttons[2]?.pressed));
+  edge("mode", keys.has("KeyT") || (actionPad && actionPad.buttons[3]?.pressed));
+  edge("help", keys.has("KeyH") || (actionPad && (actionPad.buttons[9]?.pressed || actionPad.buttons[8]?.pressed)));
   edge("mute", keys.has("KeyM"));
-  edge("vehiclePrev", Boolean(gp?.buttons[4]?.pressed));
-  edge("vehicleNext", Boolean(gp?.buttons[5]?.pressed));
-  edge("consoleHelp", Boolean(gp?.buttons[9]?.pressed));
-
-  if (l2 >= 0.9 && rawR2 >= 0.9) {
-    if (emergencyChordAt == null) emergencyChordAt = now;
-    if (!emergencyChordFired && now - emergencyChordAt >= 700) {
-      flags.emergencyStop = true;
-      emergencyChordFired = true;
-    }
-  } else {
-    emergencyChordAt = null;
-    emergencyChordFired = false;
-  }
-
-  const fire =
-    keys.has("KeyF") ||
-    mouseFire ||
-    holdFire ||
-    Boolean(gp && (gp.buttons[5]?.pressed || gp.buttons[4]?.pressed));
-
   return {
-    lift: clamp(lift),
+    ...(isRc?rcInput:{controlMode:'gamepad',lift:clamp(lift)}),
     r2: clamp(r2, 0, 1),
-    l2,
-    rawR2,
     yaw: clamp(yaw),
     pitch: clamp(pitch),
     roll: clamp(roll),
-    fire,
     gpName,
     connected: Boolean(gp),
     viz,
@@ -315,27 +238,6 @@ export function bindStick(el, side) {
   el.addEventListener("lostpointercapture", end);
 }
 
-export function bindHold(el, on) {
-  const start = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    el.setPointerCapture?.(e.pointerId);
-    on(true);
-  };
-  const stop = (e) => {
-    e.preventDefault();
-    on(false);
-  };
-  el.addEventListener("pointerdown", start, { passive: false });
-  el.addEventListener("pointerup", stop);
-  el.addEventListener("pointercancel", stop);
-  el.addEventListener("lostpointercapture", () => on(false));
-}
-
-export function setHoldFire(v) {
-  holdFire = v;
-}
-
 export function bindTap(el, fn) {
   if (!el) return;
   el.addEventListener(
@@ -350,6 +252,7 @@ export function bindTap(el, fn) {
   el.addEventListener("click", (e) => {
     e.preventDefault();
     e.stopPropagation();
+    if (e.detail === 0) fn(e);
   });
 }
 
@@ -359,7 +262,6 @@ const stickOrigin = {
   left: { x: 0, y: 0 },
   right: { x: 0, y: 0 },
 };
-const fireTouches = new Set();
 
 function setKnob(side) {
   const el = document.getElementById(side === "left" ? "st-l" : "st-r");
@@ -394,15 +296,10 @@ function clearStick(side) {
   setKnob(side);
 }
 
-function refreshFire() {
-  holdFire = fireTouches.size > 0;
-}
-
 export function bindFlightTouches(root) {
   function roleFor(touch, target) {
-    if (target?.closest?.("[data-fire]")) return "fire";
     if (target?.closest?.("[data-ui]")) return "ui";
-    if (stickTouch.left != null && stickTouch.right != null) return "fire";
+    if (stickTouch.left != null && stickTouch.right != null) return "ui";
     return touch.clientX < (globalThis.window?.innerWidth || 0) * 0.5 ? "left" : "right";
   }
 
@@ -412,16 +309,7 @@ export function bindFlightTouches(root) {
       const role = roleFor(t, node);
       if (role === "ui") continue;
       e.preventDefault();
-      if (role === "fire") {
-        fireTouches.add(t.identifier);
-        refreshFire();
-        continue;
-      }
-      if (stickTouch[role] != null) {
-        fireTouches.add(t.identifier);
-        refreshFire();
-        continue;
-      }
+      if (stickTouch[role] != null) continue;
       stickTouch[role] = t.identifier;
       stickOrigin[role] = { x: t.clientX, y: t.clientY };
       applyStick(role, t.clientX, t.clientY);
@@ -444,7 +332,6 @@ export function bindFlightTouches(root) {
 
   function onEnd(e) {
     for (const t of e.changedTouches) {
-      if (fireTouches.delete(t.identifier)) refreshFire();
       if (stickTouch.left === t.identifier) clearStick("left");
       if (stickTouch.right === t.identifier) clearStick("right");
     }

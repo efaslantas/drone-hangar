@@ -1,0 +1,83 @@
+{
+  "date": "2026-11-02",
+  "release": "v2.16.0-7f5130339846",
+  "url": "https://hangar.18-153-158-209.sslip.io/",
+  "status": "published",
+  "host": {
+    "instance": "i-0b40d5bd73f2e3b3a",
+    "region": "eu-central-1",
+    "architecture": "arm64",
+    "existingInstance": true,
+    "sgIamUnchanged": true,
+    "access": "SSM; SSH remains closed"
+  },
+  "image": {
+    "id": "sha256:16cbb7d1f761031eeeb9833aff6707b6f43db7fc05595c6f54f80d51df4e1945",
+    "archiveSha256": "b335667058de49f5fc1119ea78a25d6826ce599b927d2c49fd3583801f3224ba",
+    "sourceFiles": 239,
+    "localBuild": "pass",
+    "remoteIdentityVerified": true
+  },
+  "checks": {
+    "httpsHealthVersion": "pass",
+    "entryAssets": 5,
+    "uniqueUiIds": "pass",
+    "unauthorizedAdmin": 401,
+    "leaderboardRead": "pass",
+    "sourceAssetHashes": "pass; see /tmp/hangar-aws-live-verification.log",
+    "twoClientWssJoinStateLeave": "pass",
+    "nginxSyntax": "pass",
+    "infraRegressionTests": 6,
+    "applicationTestsPreviouslyPassed": 382,
+    "browserProfileReload": "pass",
+    "temporaryAcmeProbeRemoved": true
+  },
+  "isolation": {
+    "existingServiceIdentitiesUnchanged": 7,
+    "existingNginxBytesPreserved": true,
+    "ownDataAndEnv": true,
+    "network": "drone-hangar-net",
+    "uid": "1000:1000",
+    "readOnlyRoot": true,
+    "memoryLimitMiB": 256,
+    "memoryObservedMiB": 17.85,
+    "restarts": 0,
+    "hostAvailableMiB": 1062
+  },
+  "existingServices": {
+    "zenthPublicWebAndApi": "200",
+    "gelisimPublic": "connection refused before deployment; unchanged",
+    "gelisimOrigin": "200 with verified TLS/SNI and localhost resolve"
+  },
+  "certificate": {
+    "name": "drone-hangar",
+    "expires": "2027-01-30",
+    "renewal": "existing daily cert-renew.sh loop"
+  },
+  "browser": {
+    "profile": "SOURCE ONE v4 / f60-1750-6s",
+    "massG": 650,
+    "capacityMah": 1100,
+    "map": "sile",
+    "quality": "medium",
+    "tiltDegrees": 25,
+    "input": "rc",
+    "state": "FPV DISARM",
+    "rcCalibration": "required once for new origin; not migrated"
+  },
+  "limits": [
+    "Azure old score/admin data unavailable; separate new AWS data directory; no old data deleted",
+    "No physical TX15 flight or flight-log calibration",
+    "Future nginx replacement must preserve auxiliary include and network; see AWS-HOSTING.md"
+  ],
+  "proof": [
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/aws-hangar-live-2.16.png"
+  ],
+  "git": "no commit/push/merge",
+  "latestUpdate": {
+    "release": "v2.33.0-49b01ebfc1b8",
+    "validation": "docs/sile-preview-reuse-validation.json",
+    "status": "published",
+    "date": "2026-11-02"
+  }
+}

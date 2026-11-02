@@ -1,0 +1,57 @@
+{
+  "date": "2026-11-01",
+  "release": "v2.13.0-9a84f9c79092",
+  "tests": {
+    "passed": 362,
+    "failed": 0,
+    "build": "pass",
+    "diffCheck": "pass"
+  },
+  "review": {
+    "importantFindings": 0,
+    "minorFindings": 0,
+    "independentFocusedTests": 21,
+    "rotorPhaseSweep": "all 10 stable",
+    "overlayRandomAreaErrorMax": 1.14e-13,
+    "sileRoadVertices": 110088,
+    "sileTotalVertices": 183916
+  },
+  "implementation": [
+    "Model-local box support +1mm for land ground only",
+    "Legacy missing-metadata fallback retained",
+    "Runtime bounds shared with active/payload spec, never persisted",
+    "Model lens FPV anchor; FOV/tilt and RC preserved",
+    "Adaptive near plane considers land and obstacle AABB distance",
+    "Separate workshop yaw pivot; renderer overlay triangles conform to terrain"
+  ],
+  "browser": [
+    "WebGL Sile/Pist/Arcade and FPV/chase",
+    "390x844 iframe workshop and FPV",
+    "WebGPU FPV warm60fps, no app log error",
+    "Live SOURCE ONE/Şile/TX15 saved calibration status, DISARM/FPV ready"
+  ],
+  "production": {
+    "sourceFiles": 234,
+    "candidateHealth": "pass",
+    "productionHealth": "pass",
+    "externalHttpsAssetsHashes": "all checks pass",
+    "rollback": "previous container/data backup retained",
+    "saved": {
+      "profile": "f60-1750-6s",
+      "massG": 650,
+      "capacityMah": 1100,
+      "map": "sile",
+      "quality": "medium",
+      "tiltDegrees": 25,
+      "TX15": "calibration saved"
+    },
+    "browserNotes": "One asynchronous browser message-channel-close error reported at root URL after reload; no matching app messaging API/source string, no asset-origin exception or visible failure. Extension warnings also present."
+  },
+  "limits": [
+    "Conservative model box contact, not measured friction/contact torque/flexibility",
+    "Obstacle and roof collisions retain legacy approximate sphere",
+    "External payloads retain prior representative behavior",
+    "No actual phone/TX15 flight or physical log/contact calibration",
+    "Old trace positions are unchanged"
+  ]
+}

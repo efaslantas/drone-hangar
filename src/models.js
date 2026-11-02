@@ -1,53 +1,36 @@
+import {airframeAppearance,carbonUvs,AIRFRAME_DIMENSIONS} from './airframe-appearance.js';
+import {makeSourceOneFrame} from './source-one-frame.js';
+import {mergeGeometries} from 'three/addons/utils/BufferGeometryUtils.js';
 import * as THREE from "three";
 import { RoundedBoxGeometry } from "three/addons/geometries/RoundedBoxGeometry.js";
+import {addDroneElectronics} from './drone-electronics.js';
 import { addAirframeDetails } from "./drone-details.js";
 
-let carbonMap = null;
-let carbonRough = null;
-function carbon() {
-  if (carbonMap) return { map: carbonMap, rough: carbonRough };
-  const c = document.createElement("canvas");
-  const r = document.createElement("canvas");
-  c.width = c.height = r.width = r.height = 256;
-  const g = c.getContext("2d");
-  const rg = r.getContext("2d");
-  g.fillStyle = "#353a38";
-  g.fillRect(0, 0, 256, 256);
-  rg.fillStyle = "#6a6a6a";
-  rg.fillRect(0, 0, 256, 256);
-  for (let y = 0; y < 256; y += 4) {
-    for (let x = 0; x < 256; x += 4) {
-      const weave = ((x >> 2) ^ (y >> 2)) & 1;
-      g.fillStyle = weave ? "#494e4b" : "#303633";
-      g.fillRect(x, y, 4, 4);
-      g.fillStyle = weave ? "rgba(120,124,140,0.18)" : "rgba(0,0,0,0.28)";
-      g.fillRect(x, y, 4, 1);
-      rg.fillStyle = weave ? "#8a8a8a" : "#4a4a4a";
-      rg.fillRect(x, y, 4, 4);
-    }
-  }
-  carbonMap = new THREE.CanvasTexture(c);
-  carbonMap.wrapS = carbonMap.wrapT = THREE.RepeatWrapping;
-  carbonMap.repeat.set(8, 8);
-  carbonMap.colorSpace = THREE.SRGBColorSpace;
-  carbonMap.anisotropy = 8;
-  carbonRough = new THREE.CanvasTexture(r);
-  carbonRough.wrapS = carbonRough.wrapT = THREE.RepeatWrapping;
-  carbonRough.repeat.set(8, 8);
-  return { map: carbonMap, rough: carbonRough };
+let carbonTextures;
+function carbon(){
+ if(carbonTextures)return carbonTextures;
+ const size=128,edge=new Uint8Array(size*size*4),color=new Uint8Array(size*size*4),rough=new Uint8Array(size*size*4),normal=new Uint8Array(size*size*4);
+ for(let y=0;y<size;y++)for(let x=0;x<size;x++){
+  const i=(y*size+x)*4,warp=(Math.floor(x/8)+Math.floor(y/8))%4<2,grain=Math.sin((warp?x:y)*Math.PI/4),value=38+(warp?7:0)+grain*3;
+  edge.set([55+(y%8<2?12:0),58+(y%8<2?12:0),59+(y%8<2?12:0),255],i);color.set([value,value+2,value+3,255],i);rough.set([160+grain*9,160+grain*9,160+grain*9,255],i);normal.set([128+(warp?grain*10:0),128+(warp?0:grain*10),254,255],i);
+ }
+ const texture=(data,space)=>{const t=new THREE.DataTexture(data,size,size);t.colorSpace=space;t.wrapS=t.wrapT=THREE.RepeatWrapping;t.magFilter=THREE.LinearFilter;t.minFilter=THREE.LinearMipmapLinearFilter;t.generateMipmaps=true;t.anisotropy=8;t.needsUpdate=true;return t;};
+ carbonTextures={edge:texture(edge,THREE.SRGBColorSpace),map:texture(color,THREE.SRGBColorSpace),rough:texture(rough,THREE.NoColorSpace),normal:texture(normal,THREE.NoColorSpace)};return carbonTextures;
 }
 
 function mats(spec) {
-  const { map, rough } = carbon();
+  const { map, rough, normal, edge } = carbon();
   return {
     frame: new THREE.MeshStandardMaterial({
       map,
       roughnessMap: rough,
-      color: 0x989d99,
-      metalness: 0.18,
-      roughness: 0.72,
-      envMapIntensity: 1.2,
+      normalMap: normal,normalScale:new THREE.Vector2(.12,.12),
+      color: 0x7d8380,
+      metalness: 0.02,
+      roughness: 0.78,
+      envMapIntensity: 0.35,
     }),
+    carbonEdge:new THREE.MeshStandardMaterial({map:edge,color:0x979c99,roughness:.9,metalness:0,envMapIntensity:.15}),
     metal: new THREE.MeshStandardMaterial({
       color: 0x68717a,
       metalness: 0.95,
@@ -90,6 +73,8 @@ function mats(spec) {
     tape: new THREE.MeshStandardMaterial({ color: 0x111111, roughness: 0.85 }),
     pcb: new THREE.MeshStandardMaterial({ color: 0x294a37, roughness: 0.55, metalness: 0.15 }),
     gold: new THREE.MeshStandardMaterial({ color: 0xc4a24a, metalness: 0.9, roughness: 0.25 }),
+    copper:new THREE.MeshStandardMaterial({color:0xb6783d,metalness:.8,roughness:.36}),
+    connector:new THREE.MeshStandardMaterial({color:0xcda43a,roughness:.6}),
     tpu: new THREE.MeshStandardMaterial({ color: 0x1a1c1e, roughness: 0.78, metalness: 0.05 }),
     lens: new THREE.MeshStandardMaterial({
       color: 0x0a1018,
@@ -155,74 +140,78 @@ function makeProp(radius, blades, mat) {
   return g;
 }
 
-function addMotor(root, m, s, px, py, pz) {
-  const base = new THREE.Mesh(new THREE.CylinderGeometry(s * 0.055, s * 0.062, s * 0.028, 14), m.metal);
-  base.position.set(px, py - s * 0.02, pz);
-  const bell = new THREE.Mesh(new THREE.CylinderGeometry(s * 0.068, s * 0.074, s * 0.085, 24, 1, true), m.bell);
-  bell.position.set(px, py + s * 0.028, pz);
-  const ring = new THREE.Mesh(new THREE.TorusGeometry(s * 0.062, s * 0.008, 6, 16), m.metal);
-  ring.rotation.x = Math.PI / 2;
-  ring.position.set(px, py + s * 0.07, pz);
-  const shaft = new THREE.Mesh(new THREE.CylinderGeometry(s * 0.01, s * 0.01, s * 0.05, 8), m.metal);
-  shaft.position.set(px, py + s * 0.072, pz);
-  root.add(base, bell, ring, shaft);
-  // Open bell top exposes the stator instead of hiding it behind a solid cap.
-  for (let i = 0; i < 6; i++) {
-    const a = i * Math.PI / 3;
-    const spoke = new THREE.Mesh(new THREE.BoxGeometry(s*.013,s*.008,s*.051),m.bell);
-    spoke.position.set(px+Math.sin(a)*s*.036,py+s*.07,pz+Math.cos(a)*s*.036);
-    spoke.rotation.y=a;root.add(spoke);
-  }
+function addMotor(root,m,appearance,px,mountY,pz){
+ const motor=new THREE.Group();motor.name='brushless-motor';motor.position.set(px,mountY,pz);
+ const r=appearance.motorDiameter/2,h=appearance.motorBodyH,groups=new Map();
+ function add(geo,mat,x=0,y=0,z=0,yaw=0){geo.rotateY(yaw);geo.translate(x,y,z);if(!groups.has(mat))groups.set(mat,[]);groups.get(mat).push(geo);}
+ if(mountY>.005)add(new THREE.CylinderGeometry(r*.72,r*.9,mountY,16),m.tpu,0,-mountY/2);
+ add(new THREE.CylinderGeometry(r*.89,r*.91,.002,24),m.metal,0,.001);
+ for(let i=0;i<12;i++){
+  const angle=i*Math.PI/6;
+  add(new THREE.CylinderGeometry(r,r,h*.67,5,1,true,angle,Math.PI/6*.62),m.bell,0,h*.55);
+  add(new THREE.CylinderGeometry(r*.09,r*.09,h*.52,6),m.copper,Math.sin(angle)*r*.65,h*.42,Math.cos(angle)*r*.65);
+ }
+ const ring=new THREE.TorusGeometry(r-.0006,.0006,6,32);ring.rotateX(Math.PI/2);add(ring,m.metal,0,h-.0006);
+ for(let i=0;i<6;i++){const a=i*Math.PI/3;add(new THREE.BoxGeometry(r*.13,.0012,r*.7),m.bell,Math.sin(a)*r*.48,h-.001,Math.cos(a)*r*.48,a);}
+ const shaftH=appearance.motorTotalH-h;add(new THREE.CylinderGeometry(Math.min(.0025,r*.18),Math.min(.0025,r*.18),shaftH,12),m.metal,0,h+shaftH/2);
+ for(const [mat,pieces] of groups){const mesh=new THREE.Mesh(mergeGeometries(pieces),mat);mesh.castShadow=mesh.receiveShadow=true;mesh.name=mat===m.copper?'motor-windings':mat===m.bell?'motor-bell':'motor-shaft';motor.add(mesh);pieces.forEach(g=>g.dispose());}
+ root.add(motor);root.userData.motors.push(motor);return mountY+h+.003;
 }
 
-export const CAM_POD = "camera-gun-pod";
+export const CAM_POD = "camera-pod";
 // 30 degrees up, the middle option in the hangar; main.js hands in whatever
 // the pilot picked, this is only for models built outside the flight screen.
 export const DEFAULT_CAM_TILT = (30 * Math.PI) / 180;
 
 // Visual dimensions in metres. Physics size is a conservative collision
 // envelope, not the motor-to-motor wheelbase or the propeller diameter.
-export const AIRFRAME_DIMENSIONS = {
-  micro: { wheelbase:.075, propDiameter:.031 },
-  whoop: { wheelbase:.065, propDiameter:.031 },
-  cinewhoop: { wheelbase:.155, propDiameter:.0762 },
-  toothpick: { wheelbase:.125, propDiameter:.0762 },
-  freestyle: { wheelbase:.225, propDiameter:.127 },
-  racer: { wheelbase:.21, propDiameter:.127 },
-  cine5: { wheelbase:.235, propDiameter:.127 },
-  seven: { wheelbase:.3, propDiameter:.1778 },
-  camera: { wheelbase:.35, propDiameter:.2286 },
-  heavy: { wheelbase:.45, propDiameter:.3048 },
-};
+export {AIRFRAME_DIMENSIONS} from './airframe-appearance.js';
 
 // Re-aim an already built craft's pod (the hangar tilt can change mid-session).
 export function setCamPodTilt(root, tilt) {
   const pod = root?.getObjectByName(CAM_POD);
-  if (pod) pod.rotation.x = tilt;
+  if (pod){pod.rotation.x=tilt;recordAirframeAnchors(root);}
   return pod;
+}
+
+function recordAirframeAnchors(root){
+ root.updateWorldMatrix(true,true);
+ const inverse=root.matrixWorld.clone().invert(),bounds=new THREE.Box3(),part=new THREE.Box3(),matrix=new THREE.Matrix4();
+ root.traverse(o=>{if(!o.geometry||o.isSprite||o.name==='rotor-blur')return;if(!o.geometry.boundingBox)o.geometry.computeBoundingBox();matrix.multiplyMatrices(inverse,o.matrixWorld);part.copy(o.geometry.boundingBox).applyMatrix4(matrix);bounds.union(part);});
+ // Include a full swept rotor disk, so animation phase cannot move the floor.
+ const visual=root.userData.visual;if(visual){const radius=visual.propDiameter*.505;for(const rotor of root.userData.props||[]){bounds.min.x=Math.min(bounds.min.x,rotor.position.x-radius);bounds.max.x=Math.max(bounds.max.x,rotor.position.x+radius);bounds.min.z=Math.min(bounds.min.z,rotor.position.z-radius);bounds.max.z=Math.max(bounds.max.z,rotor.position.z+radius);}}
+ const contact=root.userData.contactBounds||(root.userData.contactBounds={});contact.min=bounds.min.toArray();contact.max=bounds.max.toArray();
+ const lens=root.getObjectByName('fpv-optical-centre');if(lens)root.userData.fpvAnchor=lens.getWorldPosition(new THREE.Vector3()).applyMatrix4(inverse).toArray();
+ return contact;
 }
 
 export function makeDrone(spec, camTilt = DEFAULT_CAM_TILT) {
   const m = mats(spec);
   const root = new THREE.Group();
+  const appearance=airframeAppearance(spec);root.userData.motors=[];root.userData.guards=[];root.userData.ownedTextures=[];root.userData.ownedMaterials=Object.values(m);
   const s = spec.size;
   const ducts = !!spec.ducts;
   const racer = spec.id === "racer";
   const stretch = racer || spec.id === "freestyle" || spec.id === "toothpick";
   const dimensions = AIRFRAME_DIMENSIONS[spec.id];
-  const spread = dimensions ? dimensions.wheelbase / Math.sqrt(8) : s * (ducts ? 0.5 : stretch ? 0.64 : 0.58);
+  const spread = spec.dynamics ? spec.dynamics.wheelbaseMm / 1000 / Math.sqrt(8) : dimensions ? dimensions.wheelbase / Math.sqrt(8) : s * (ducts ? 0.5 : stretch ? 0.64 : 0.58);
   const propR = dimensions ? dimensions.propDiameter / 2 : s * (ducts ? .25 : .4);
-  const blades = ducts || ['freestyle','racer','cine5','seven'].includes(spec.id) ? 3 : 2;
-  const plateW = s * (racer ? 0.28 : spec.gimbal ? 0.52 : ducts ? 0.38 : 0.4);
-  const plateL = s * (racer ? 0.78 : spec.gimbal ? 0.52 : ducts ? 0.42 : 0.48);
+  const blades = spec.build ? ({ bi:2, tri:3, quad:4 }[spec.build.props] || 3) : ducts || ['freestyle','racer','cine5','seven'].includes(spec.id) ? 3 : 2;
+  const frameWidth = spec.build ? ({ race:.92, freestyle:1.12, longrange:.92 }[spec.build.frame] || 1) : 1;
+  const frameLength = spec.build?.frame === "longrange" ? 1.22 : 1;
+  const plateW = appearance.plateW * (appearance.sourceOne?1:frameWidth);
+  const plateL = appearance.plateL * (appearance.sourceOne?1:frameLength);
 
+  if(appearance.sourceOne)root.add(makeSourceOneFrame(m.frame,appearance,m.carbonEdge));
+  else {
   const bot = new THREE.Mesh(new RoundedBoxGeometry(plateW, s * 0.028, plateL, 2, s*.01), m.frame);
   bot.position.y = -s * 0.012;
   bot.castShadow = true;
   const top = new THREE.Mesh(new RoundedBoxGeometry(plateW * 0.92, s * 0.026, plateL * 0.72, 2, s*.009), m.frame);
-  top.position.y = s * 0.038;
+  top.position.y = appearance.stackH;
   top.castShadow = true;
   root.add(bot, top);
+  }
 
   for (const [sx, sz] of [
     [1, 1],
@@ -230,48 +219,38 @@ export function makeDrone(spec, camTilt = DEFAULT_CAM_TILT) {
     [-1, 1],
     [-1, -1],
   ]) {
-    const st = new THREE.Mesh(new THREE.CylinderGeometry(s * 0.012, s * 0.012, s * 0.07, 8), m.metal);
-    st.position.set(sx * plateW * 0.32, s * 0.014, sz * plateL * 0.28);
+    const st = new THREE.Mesh(new THREE.CylinderGeometry(.0018, .0018, appearance.stackH, 10), m.metal);
+    st.position.set(sx * (appearance.sourceOne?.012:plateW*.32), appearance.stackH/2, sz * (appearance.sourceOne?.03615:plateL*.28));
     root.add(st);
   }
 
-  const pcb = new THREE.Mesh(new THREE.BoxGeometry(plateW * 0.55, s * 0.012, plateL * 0.38), m.pcb);
-  pcb.position.y = s * 0.018;
-  root.add(pcb);
+  addDroneElectronics(root,spec,appearance,m);
 
-  const battW = plateW * (spec.gimbal ? 0.62 : 0.72);
-  const battL = plateL * (racer ? 0.88 : spec.fpv ? 0.7 : 0.5);
-  const batt = new THREE.Mesh(new RoundedBoxGeometry(battW, s * 0.09, battL, 2, s*.012), m.batt);
-  batt.position.y = -s * 0.068;
-  root.add(batt);
-  const strap = new THREE.Mesh(new THREE.BoxGeometry(battW * 1.08, s * 0.018, s * 0.06), m.tape);
-  strap.position.y = -s * 0.028;
-  root.add(strap);
-  const xt = new THREE.Mesh(new THREE.BoxGeometry(s * 0.055, s * 0.04, s * 0.07), m.gold);
-  xt.position.set(0, -s * 0.06, -battL * 0.52);
-  root.add(xt);
+  const topPack=!ducts&&!spec.gimbal;
+  const battW=appearance.pack.width,battL=appearance.pack.length,packH=appearance.pack.height;
+  const packY=topPack?(appearance.sourceOne?.032:appearance.stackH+.003)+packH/2:-s*.035-packH/2;
+  const packZ=topPack?(appearance.sourceOne?.02:plateL*.06):0;
+  const batt=new THREE.Mesh(new RoundedBoxGeometry(battW,packH,battL,2,Math.min(.004,packH*.12)),m.batt);batt.name='build-battery';batt.position.set(0,packY,packZ);root.add(batt);root.userData.activeBattery=batt;
+  for(const side of [-1,1]){const band=new THREE.Mesh(new RoundedBoxGeometry(battW+.001,packH+.001,.006,2,.0005),m.tape);band.position.set(0,packY,packZ+side*battL*.26);root.add(band);}
+  const xt=new THREE.Mesh(new RoundedBoxGeometry(.01,.006,.011,1,.001),m.connector);xt.position.set(battW*.6,packY-packH*.25,packZ+battL*.5+.008);root.add(xt);
+  for(const x of [-.0025,.0025]){const pin=new THREE.Mesh(new THREE.CylinderGeometry(.0014,.0014,.006,10),m.gold);pin.rotation.x=Math.PI/2;pin.position.set(xt.position.x+x,xt.position.y,xt.position.z+.004);root.add(pin);}
 
-  // The camera/gun pod is one rigid group hinged at its mount, so the whole
-  // thing can be re-aimed as a unit (setCamPodTilt) instead of every part
-  // carrying its own baked angle. Rounds leave along that same angle
-  // (combat.aimDir with the pilot's camTiltRad), which is what keeps the
-  // barrel, the reticle and the shot pointing at one place.
-  const camY = spec.gimbal ? -s * 0.04 : s * 0.03;
+  const camY = spec.gimbal ? -s * 0.04 : appearance.sourceOne?.017:appearance.stackH*.55;
   const pod = new THREE.Group();
   pod.name = CAM_POD;
-  pod.position.set(0, camY, -plateL * 0.52);
+  pod.position.set(0, camY, appearance.sourceOne?-.060:-plateL*.52);
   pod.rotation.x = camTilt;
   root.add(pod);
-  const tpu = new THREE.Mesh(new RoundedBoxGeometry(s * 0.16, s * 0.13, s * 0.12, 2, s*.012), m.tpu);
+  const tpu = new THREE.Mesh(new RoundedBoxGeometry(appearance.sourceOne?.022:s*.16, appearance.sourceOne?.022:s*.13, s*.12, 2, s*.012), m.tpu);
   pod.add(tpu);
-  const bodyCam = new THREE.Mesh(new THREE.BoxGeometry(s * 0.11, s * 0.09, s * 0.1), m.metal);
+  const bodyCam = new THREE.Mesh(new THREE.BoxGeometry(appearance.sourceOne?.019:s*.11, appearance.sourceOne?.019:s*.09, s*.1), m.metal);
   bodyCam.position.set(0, 0, -s * 0.02);
   pod.add(bodyCam);
-  const barrel = new THREE.Mesh(new THREE.CylinderGeometry(s * 0.038, s * 0.042, s * 0.055, 16), m.metal);
-  barrel.rotation.x = Math.PI / 2;
-  barrel.position.set(0, 0, -s * 0.09);
-  pod.add(barrel);
-  const lens = new THREE.Mesh(new THREE.SphereGeometry(s * 0.032, 14, 10), m.lens);
+  const lensHousing = new THREE.Mesh(new THREE.CylinderGeometry(s * 0.038, s * 0.042, s * 0.055, 16), m.metal);
+  lensHousing.rotation.x = Math.PI / 2;
+  lensHousing.position.set(0, 0, -s * 0.09);
+  pod.add(lensHousing);
+  const lens = new THREE.Mesh(new THREE.SphereGeometry(s * 0.032, 14, 10), m.lens);lens.name='fpv-optical-centre';
   lens.scale.z = 0.55;
   lens.position.set(0, 0, -s * 0.11);
   pod.add(lens);
@@ -329,24 +308,10 @@ export function makeDrone(spec, camTilt = DEFAULT_CAM_TILT) {
         root.add(vent);
       }
     }
-  } else {
-    const flightPack = new THREE.Mesh(new RoundedBoxGeometry(plateW*.76,s*.14,plateL*.68,3,s*.019),m.batt);
-    flightPack.position.set(0,s*.12,s*.015);
-    flightPack.name = "top-mounted-flight-pack";
-    root.add(flightPack);
-    // The main pack sits above an open FPV frame; the underside remains clear.
-    batt.visible = strap.visible = xt.visible = false;
-    for (const z of [-1,1]) {
-      const band=new THREE.Mesh(new RoundedBoxGeometry(plateW*.8,s*.147,s*.045,2,s*.006),m.tape);
-      band.position.set(0,s*.12,z*plateL*.19+s*.015);root.add(band);
-    }
   }
 
-  const vtx = new THREE.Mesh(new THREE.BoxGeometry(s * 0.08, s * 0.04, s * 0.1), m.pcb);
-  vtx.position.set(s * 0.08, s * 0.055, plateL * 0.22);
-  root.add(vtx);
   const ant = new THREE.Mesh(new THREE.CylinderGeometry(s * 0.007, s * 0.009, s * 0.32, 6), m.accent);
-  ant.position.set(s * 0.07, s * 0.16, plateL * 0.38);
+  ant.position.set(appearance.sourceOne?.012:s*.07, appearance.sourceOne?.056:appearance.stackH+.02, appearance.sourceOne?.076:plateL*.38);
   ant.rotation.z = 0.45;
   ant.rotation.x = 0.15;
   root.add(ant);
@@ -386,6 +351,7 @@ export function makeDrone(spec, camTilt = DEFAULT_CAM_TILT) {
   corners.forEach(([sx, sz], i) => {
     const px = sx * spread;
     const pz = sz * spread;
+    if(!appearance.sourceOne){
     const armLen = Math.hypot(px, pz) + s*.07;
     const arm = new THREE.Mesh(
       new THREE.BoxGeometry(s * (racer ? 0.048 : ducts ? 0.055 : 0.062), s * 0.028, armLen),
@@ -400,102 +366,70 @@ export function makeDrone(spec, camTilt = DEFAULT_CAM_TILT) {
     pad.rotation.y = Math.PI / 4;
     root.add(pad);
 
-    addMotor(root, m, s, px, s * 0.02, pz);
+    }
+    const mountY=appearance.sourceOne?.001:(ducts||spec.gimbal)?Math.max(s*.014,s*.16+.004-appearance.motorBodyH-.003):s*.014;
+    const propY=addMotor(root,m,appearance,px,mountY,pz);
 
     if (ducts) {
       const ductRadius = propR + s*.025;
-      const duct = new THREE.Mesh(new THREE.CylinderGeometry(ductRadius, ductRadius, s * 0.12, 40, 1, true), m.tpu);
+      const guardBottom=propY-(spec.id==='cinewhoop'?.009:.005),guardTop=propY+.003,guardH=guardTop-guardBottom;
+      const duct = new THREE.Mesh(new THREE.CylinderGeometry(ductRadius, ductRadius, guardH, 40, 1, true), m.tpu);duct.name="propeller-guard";root.userData.guards.push(duct);
       duct.material.side = THREE.DoubleSide;
-      duct.position.set(px, s * 0.04, pz);
+      duct.position.set(px, (guardTop+guardBottom)/2, pz);
       const rim = new THREE.Mesh(new THREE.TorusGeometry(ductRadius, s * 0.008, 8, 40), m.tpu);
       rim.rotation.x = Math.PI / 2;
-      rim.position.set(px, s * 0.1, pz);
+      rim.position.set(px, guardTop, pz);
       root.add(duct, rim);
-      const lowerRim = rim.clone(); lowerRim.position.y = -s*.02; root.add(lowerRim);
+      const lowerRim = rim.clone(); lowerRim.position.y = guardBottom; root.add(lowerRim);
       for (let spoke=0;spoke<3;spoke++) {
         const angle=spoke*Math.PI*2/3;
         const brace=new THREE.Mesh(new THREE.BoxGeometry(s*.018,s*.018,ductRadius*.78),m.tpu);
-        brace.position.set(px+Math.sin(angle)*ductRadius*.55,-s*.012,pz+Math.cos(angle)*ductRadius*.55);
+        brace.position.set(px+Math.sin(angle)*ductRadius*.55,guardBottom,pz+Math.cos(angle)*ductRadius*.55);
         brace.rotation.y=angle;root.add(brace);
       }
     }
 
     const prop = makeProp(propR, blades, m.prop);
     prop.scale.x = sx * sz;
-    prop.position.set(px, s * 0.085, pz);
+    prop.position.set(px, propY, pz);
     prop.userData.spin = sx * sz;
     root.add(prop);
     props.push(prop);
 
-    const disc = new THREE.Mesh(new THREE.CircleGeometry(propR * 0.95, 24), m.disc);
-    disc.visible = false;
+    const disc = new THREE.Mesh(new THREE.CircleGeometry(propR * 0.95, 24), m.disc.clone());
+    disc.name='rotor-blur';disc.visible = false;
     disc.rotation.x = -Math.PI / 2;
-    disc.position.set(px, s * 0.088, pz);
+    disc.position.set(px, propY+.0004, pz);
     root.add(disc);
     discs.push(disc);
   });
 
-  addAirframeDetails(root, spec, {size:s,plateW,plateL,spread,battW,battL});
+  addAirframeDetails(root, spec, {size:s,plateW,plateL,spread,battW,battL,packH,packY,packZ,motorMounts:root.userData.motors,cells:appearance.pack.cells,capacityMah:appearance.pack.capacityMah});
+  const carbonGeometry=new Set();root.traverse(o=>{if(o.material===m.frame&&o.geometry&&!carbonGeometry.has(o.geometry)){carbonUvs(o.geometry);carbonGeometry.add(o.geometry);}});
+  root.userData.visual=appearance;
   root.userData.props = props;
   root.userData.discs = discs;
   root.userData.spec = spec;
+  recordAirframeAnchors(root);
   return root;
 }
 
-export function makeSurfaceVehicle(spec = {}) {
-  const root = new THREE.Group();
-  const body = Number.isFinite(spec.color) ? spec.color : 0x284f68;
-  const accent = Number.isFinite(spec.accent) ? spec.accent : 0xffb020;
-  const hullMat = new THREE.MeshStandardMaterial({ color: body, roughness: 0.55, metalness: 0.25 });
-  const deckMat = new THREE.MeshStandardMaterial({ color: 0xc8d2d6, roughness: 0.72, metalness: 0.1 });
-  const accentMat = new THREE.MeshStandardMaterial({ color: accent, roughness: 0.45, metalness: 0.2 });
+export function disposeDrone(root){
+ if(!root||root.userData.disposed)return;
+ const resources=new Set(root.userData.ownedMaterials||[]);
+ for(const texture of root.userData.ownedTextures||[])resources.add(texture);
+ root.traverse(o=>{
+  if(o.geometry&&!o.isSprite)resources.add(o.geometry);
+  for(const material of (Array.isArray(o.material)?o.material:o.material?[o.material]:[]))resources.add(material);
+  if(o.userData.ownedTexture)resources.add(o.userData.ownedTexture);
+ });
+ root.removeFromParent();for(const resource of resources)resource.dispose();root.userData.disposed=true;
+}
 
-  const hull = new THREE.Mesh(new THREE.BoxGeometry(1.8, 0.45, 4.2), hullMat);
-  hull.position.y = 0.28;
-  hull.castShadow = true;
-  root.add(hull);
-
-  const bow = new THREE.Mesh(new THREE.ConeGeometry(0.9, 1.5, 4), hullMat);
-  bow.rotation.x = -Math.PI / 2;
-  bow.rotation.z = Math.PI / 4;
-  bow.position.set(0, 0.28, -2.75);
-  bow.castShadow = true;
-  root.add(bow);
-
-  const cabin = new THREE.Mesh(new THREE.BoxGeometry(1.2, 0.75, 1.25), deckMat);
-  cabin.position.set(0, 0.85, 0.2);
-  cabin.castShadow = true;
-  root.add(cabin);
-
-  const mast = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.06, 1.1, 8), accentMat);
-  mast.position.set(0, 1.65, 0.15);
-  root.add(mast);
-
-  const rudder = new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.5, 0.65), accentMat);
-  rudder.position.set(0, 0.05, 2.25);
-  root.add(rudder);
-
-  const cameraTarget = new THREE.Object3D();
-  cameraTarget.position.set(0, 0.75, -1.5);
-  root.add(cameraTarget);
-
-  const deckCamera = new THREE.Object3D();
-  deckCamera.name = "surface-deck-camera";
-  deckCamera.position.set(0, 1.3, 0.5);
-  root.add(deckCamera);
-
-  const followCamera = new THREE.Object3D();
-  followCamera.name = "surface-follow-camera";
-  followCamera.position.set(0, 3.4, 7.5);
-  root.add(followCamera);
-
-  root.userData.vehicleType = "surface";
-  root.userData.spec = spec;
-  root.userData.rudder = rudder;
-  root.userData.cameraTarget = cameraTarget;
-  root.userData.deckCamera = deckCamera;
-  root.userData.followCamera = followCamera;
-  return root;
+// Every model owns its materials; only texture maps are shared between craft.
+export function setDroneOpacity(root,opacity){
+ const value=THREE.MathUtils.clamp(Number.isFinite(opacity)?opacity:1,0,1),seen=new Set();
+ root.traverse(o=>{for(const material of Array.isArray(o.material)?o.material:o.material?[o.material]:[]){if(seen.has(material))continue;seen.add(material);material.transparent=value<1;material.opacity=value;material.depthWrite=value===1;material.needsUpdate=true;}});
 }
 
 function hexCol(n) {
@@ -541,18 +475,15 @@ export function droneSvg(spec) {
   </svg>`;
 }
 
-export function spinProps(root, throttle, dt) {
-  const props = root.userData.props || [];
-  const w = (10 + throttle * 62) * dt;
-  for (const p of props) p.rotation.y += w * (p.userData.spin || 1);
-  const discs = root.userData.discs || [];
-  // A spinning prop remains mostly transparent; opaque white discs made
-  // every airframe look like it had four solid plastic saucers attached.
-  const op = Math.min(0.12, throttle * 0.17);
-  for (const d of discs) {
-    if (d.material) d.material.opacity = op;
-    d.visible = op > 0.04;
-  }
+export function spinProps(root,throttle,dt,rotorCommands=null){
+ const props=root.userData.props||[],discs=root.userData.discs||[],motors=root.userData.motors||[];
+ props.forEach((p,i)=>{
+  const command=Math.min(1,Math.max(0,Number.isFinite(rotorCommands?.[i])?rotorCommands[i]:throttle||0));
+  // Visual animation from model commands; not measured motor RPM.
+  const delta=(command>0?10+command*62:0)*Math.max(0,dt||0)*(p.userData.spin||1);
+  p.rotation.y+=delta;const bell=motors[i]?.getObjectByName('motor-bell');if(bell)bell.rotation.y+=delta;
+  const disc=discs[i];if(disc){const opacity=Math.min(.12,command*.17);disc.material.opacity=opacity;disc.visible=opacity>.04;}
+ });
 }
 
 export function makeNametag(text, color = "#c8ff9a") {
@@ -575,6 +506,7 @@ export function makeNametag(text, color = "#c8ff9a") {
     for (let i = 2; i < n.length; i += 3) n[i] = 1;
     sprite.geometry.setAttribute("normal", new THREE.BufferAttribute(n, 3));
   }
+  sprite.name='pilot-name-tag';sprite.userData.ownedTexture=tex;
   sprite.scale.set(1.6, 0.4, 1);
   sprite.position.y = 0.55;
   return sprite;

@@ -1,0 +1,120 @@
+{
+  "date": "2026-11-02",
+  "release": "v2.25.0-d1dc4cb9b99d",
+  "url": "https://hangar.18-153-158-209.sslip.io/",
+  "status": "published",
+  "image": {
+    "release": "v2.25.0-d1dc4cb9b99d",
+    "imageId": "sha256:72f2d28c813e16c75408124745134d7d9e4c47dfe33a4edb588652a2a97e68fe",
+    "archiveSha256": "173f427d4e4753f3345edcff8093b91242ca36054f39f2c26785780695c7a4c9",
+    "archiveBytes": 141325631,
+    "architecture": "arm64",
+    "sourceFiles": 265
+  },
+  "metrics": {
+    "rawCliffTriangles": 38218,
+    "dryTriangles": 33094,
+    "wetTriangles": 18708,
+    "indexedVertices": 30872,
+    "cliffTriangles": 51802,
+    "meshes": 41,
+    "boxes": 8867,
+    "buildMs": 2684.720292
+  },
+  "baseline": {
+    "release": "v2.24.0-9660654a4365",
+    "foam": "5bba72de3666ede643c27872d6f4c0996de653e15680213be6b6313f64544cbc",
+    "island": "2eac3423b35205c5336c3cae29bf1ce3542044ac77e2d80a5c178d7df3c03367",
+    "collision": "d147d7d701cc0015b37fa1c7731c5e92bcd541c79741f8795e3a8d4dda24ad7d",
+    "terrain": "22843c00f2eccf33dd5ab2885828239787759489795a014893c71dd7eeedab43"
+  },
+  "source": {
+    "mapOsmDemCoastlineUnchanged": true,
+    "physicalTerrainCastleFoundationAndAllCollisionsUnchanged": true,
+    "foamAndIslandGeometryBitIdentical": true,
+    "materialAndWetContour": "authored; not surveyed geology, tide or imagery",
+    "existingFractureRecessMaximumM": 0.08
+  },
+  "checks": {
+    "focusedTests": 16,
+    "applicationTests": 442,
+    "fullTestRuntime": "Node22.23.4 linux/arm64 Docker, readonly project mount;NODE_ENV=test/RELEASE_SHA=dev",
+    "failures": 0,
+    "infraTests": 11,
+    "viteBuild": "pass; existing >500KB advisory",
+    "arm64Build": "pass",
+    "sourceManifestFiles": 265,
+    "wetDryPartition": "exclusive clipped attributes/3Darea/winding pass",
+    "lip": "actual indexed terrain edges/diagonals preserved; source winding variants pass",
+    "cropClosureRegression": "RED44640positions→0; original foam phase/hash unchanged",
+    "baselineCliffTriangles": 108258,
+    "finalCliffTriangles": 51802,
+    "verticalSpacing": "<=1m per vertical column; sloped triangles can span1.986m in total elevation",
+    "material": "periodic1024px sRGBalbedo/linear normal+roughness shared by2materialgroups andislandtop",
+    "lifecycle": "shared owned textures/material/geometry dispose once; no new scene meshes",
+    "runningImageSourceHashes": 106,
+    "httpsHealthAssetsSourceHashes": "pass",
+    "twoClientWssJoinStateLeave": "pass",
+    "uniqueUiIds": "pass",
+    "adminUnauthorized": 401,
+    "existingServiceIdentitiesUnchanged": 7,
+    "nginxSyntax": "pass",
+    "nginxBytesUnchanged": true,
+    "oldContainerAndConsistentDataBackupRetained": true
+  },
+  "review": {
+    "findings": "no actionable Critical/Important/Minor",
+    "independentFocusedTests": 10,
+    "independentClipCases": 1000,
+    "maxIndependent3DAreaError": 1.14e-13,
+    "finiteIndexedAttributesAndNormals": "pass",
+    "secondIndependentReview": false,
+    "declinedToJudge": "browser/GPU/live accepted by author with screenshots and production source/HTTPS/WSS verification"
+  },
+  "browser": {
+    "webgl": "close castle island/high natural coast/wide island/low-high-medium/390x844 renderframe/before2.24 comparison",
+    "experimentalWebgpu": "same close rock view inspected,error[]",
+    "observedFps": "warmGL/GPU60; quality52transient, no universal guarantee",
+    "logs": "application errors empty; old HMR tab frame-query timeout resolved by closing own stale QA tab and fresh same-browser tab",
+    "live": {
+      "state": "FPV DISARM",
+      "errorLogs": "empty",
+      "profile": "f60-1750-6s",
+      "massG": 650,
+      "capacityMah": 1100,
+      "map": "sile",
+      "quality": "medium",
+      "tiltDegrees": 25,
+      "input": "gamepad; existing selection unchanged",
+      "initialLoad": "normal bootstrap; no reload needed"
+    }
+  },
+  "limits": [
+    "Existing2x2km/30mDSM large-scale planar silhouettes remain; finer survey required for accurate major shape changes",
+    "8cm inward decorative fractures retain original conservative coast collision approximation",
+    "Wetting0.5..0.8m above mean water is authored, no measured tide/bathymetry",
+    "Source geometry/physics/input/profile unchanged; no new seaward boulders or physical obstacles",
+    "Existing horizontal illumination band visible both before/after; cause not established and not resolved in this scoped rock finish",
+    "No physical phone/TX15 flight or flight-log calibration"
+  ],
+  "proof": [
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-rocks-before-2.24.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-rocks-detail-2.25.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-rocks-high-coast-2.25.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-rocks-overview-2.25.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-rocks-mobile-2.25.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-rocks-webgpu-2.25.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-rocks-live-2.25.png"
+  ],
+  "git": "same dirty codex/simulator-v2 retained; no commit/push/merge",
+  "runtime": {
+    "memoryObservedMiB": 19.5,
+    "limitMiB": 256,
+    "restarts": 0,
+    "uid": "1000:1000",
+    "readOnlyRoot": true,
+    "network": [
+      "drone-hangar-net"
+    ]
+  }
+}

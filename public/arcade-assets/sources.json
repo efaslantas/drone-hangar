@@ -1,0 +1,82 @@
+[
+  {
+    "asset": "damaged_plaster",
+    "channel": "color",
+    "source": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/damaged_plaster/damaged_plaster_diff_1k.jpg",
+    "license": "CC0",
+    "page": "https://polyhaven.com/a/damaged_plaster",
+    "md5": "a8df39b93ebece3c1c84290e3e916ec1",
+    "sha256": "391649dbb391c978b0d95cdd2351617fe3b7a577e432b94171208e576c9b2c63",
+    "file": "/materials/damaged_plaster/color.jpg",
+    "bytes": 850524,
+    "variants": {
+      "512": {
+        "file": "/materials/web-v1/512/damaged_plaster/color.webp",
+        "sha256": "6eee6ab4e3ce6e5f4f87c74c881126fd19619f756c3492798b42df2409b50138",
+        "bytes": 53234
+      },
+      "1024": {
+        "file": "/materials/web-v1/1024/damaged_plaster/color.webp",
+        "sha256": "722d716aaeb4fe73ffa7da731a22aa70eef0ee98ebe74f813edd23e2bb9b7c6e",
+        "bytes": 202066
+      }
+    }
+  },
+  {
+    "asset": "damaged_plaster",
+    "channel": "normal",
+    "source": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/damaged_plaster/damaged_plaster_nor_gl_1k.jpg",
+    "license": "CC0",
+    "page": "https://polyhaven.com/a/damaged_plaster",
+    "md5": "f51f2fb57309e9d1974b9841f9b605ea",
+    "sha256": "9d2e4c261211c951fc424fe695483596e821f86b13d1d05485551ef0240d6b67",
+    "file": "/materials/damaged_plaster/normal.jpg",
+    "bytes": 959148,
+    "variants": {
+      "512": {
+        "file": "/materials/web-v1/512/damaged_plaster/normal.webp",
+        "sha256": "0848c0e507f844c4b7bf9694c83ec1a93e766632bdd955822eccf738c1dfe5f0",
+        "bytes": 80976
+      },
+      "1024": {
+        "file": "/materials/web-v1/1024/damaged_plaster/normal.webp",
+        "sha256": "6e825c0cd951ee2b6a68d4e42d8da57b46ffdc309461f23bab5262912dd1cd71",
+        "bytes": 301634
+      }
+    }
+  },
+  {
+    "asset": "damaged_plaster",
+    "channel": "roughness",
+    "source": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/damaged_plaster/damaged_plaster_rough_1k.jpg",
+    "license": "CC0",
+    "page": "https://polyhaven.com/a/damaged_plaster",
+    "md5": "bbdad97a6d7c74e24b58b6e398e8eb19",
+    "sha256": "595b9cc69e163687c27681f73fae4a34f5f82ecd70a1ce3867fc8026a0db76cb",
+    "file": "/materials/damaged_plaster/roughness.jpg",
+    "bytes": 421151,
+    "variants": {
+      "512": {
+        "file": "/materials/web-v1/512/damaged_plaster/roughness.webp",
+        "sha256": "4fbbd4a9e6b891d651ec1268b7b8d6ede41a229c06d1702f92ebcc892a428245",
+        "bytes": 12306
+      },
+      "1024": {
+        "file": "/materials/web-v1/1024/damaged_plaster/roughness.webp",
+        "sha256": "9cbb76b1adbc58e487a65e888b16baaf9feebdb5e82cdc075fda38036a5fc3b5",
+        "bytes": 41322
+      }
+    }
+  },
+  {
+    "asset": "overcast_soil_puresky",
+    "channel": "hdri",
+    "source": "https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/overcast_soil_puresky_1k.hdr",
+    "license": "CC0",
+    "page": "https://polyhaven.com/a/overcast_soil_puresky",
+    "md5": "7fbca6264f4618a787092b9e1679a578",
+    "sha256": "2dbbbbb1323a8e8989db2e8306bd13099b215539e5adba41b85738a250a7904e",
+    "file": "/arcade-assets/overcast_soil_puresky_1k.hdr",
+    "bytes": 1195816
+  }
+]

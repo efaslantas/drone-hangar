@@ -5,7 +5,7 @@ Guvenlik acigi, yetkisiz erisim, veri sizintisi veya abuse riski bulursaniz ayri
 ## Kapsam
 
 - Admin ve siralama API'leri.
-- WebSocket oda ve takim maci protokolu.
+- WebSocket oda ve canlı uçuş protokolü.
 - Ghost yukleme/indirme API'si.
 - Olay kayitlari ve `server/data/` kaliciligi.
 - Dagitim/proxy yapilandirmasi ve gizli anahtarlar.

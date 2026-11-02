@@ -1,0 +1,69 @@
+{
+  "version": "2.31",
+  "id": "sile-inspection",
+  "purpose": "Manual civilian inspection exercise; first ILKE simulation layer",
+  "regions": [
+    {
+      "id": "castle",
+      "sourceId": 643467902,
+      "viewpoint": {
+        "x": 157.195,
+        "y": 18.9,
+        "z": -677.38
+      }
+    },
+    {
+      "id": "coastal-facade",
+      "sourceId": 550116788,
+      "viewpoint": {
+        "x": 496.24,
+        "y": 35.93,
+        "z": -453.84
+      }
+    },
+    {
+      "id": "harbour",
+      "sourceId": 1485112037,
+      "viewpoint": {
+        "x": -77.12,
+        "y": 5.9,
+        "z": -303.85
+      }
+    }
+  ],
+  "regionMeaning": "Authored above-roof/area reference centers, not detected defects or surveyed camera stations",
+  "demoCriteria": {
+    "holdSeconds": 3,
+    "viewpointRadiusM": 12,
+    "maxSpeedMps": 3,
+    "cameraConeDegrees": 15,
+    "geometryVisibility": true,
+    "cameraTiltDegrees": 0,
+    "maxAglM": 80,
+    "maxActiveSeconds": 1200,
+    "returnRadiusM": 8
+  },
+  "record": {
+    "sampleHz": 5,
+    "maxSamples": 6100,
+    "maxEvents": 256,
+    "jpegSize": [
+      320,
+      180
+    ],
+    "maxJpegCharacters": 180000,
+    "maxReportBytes": 2500000,
+    "schema": "ilke.sile.inspection.v1",
+    "localStorageKey": "efa-hangar-sile-inspection-v1",
+    "serverUpload": false,
+    "replay": "recorded poses, not a physical resimulation"
+  },
+  "limits": [
+    "Existing FPV reference is not a validated ILKE-1 model",
+    "No SITL/MAVLink/hardware/autonomous flight connection",
+    "No sensor accuracy or semantic defect detection claim",
+    "Coordinates are approximate source-projection WGS84, not GNSS measurements",
+    "Demo thresholds are not field qualification or legal limits",
+    "Map geometry/terrain/source/collision envelopes unchanged"
+  ]
+}

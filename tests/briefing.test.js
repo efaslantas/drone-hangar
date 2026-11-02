@@ -36,7 +36,6 @@ test("every op has a numeric objective line", () => {
   assert.equal(objectiveText(opById("school")), "4 kapı → pad'e iniş");
   assert.equal(objectiveText(opById("hover")), "3 hover → pad'e iniş");
   assert.equal(objectiveText(opById("range")), "5 kapı · 1 pil değişimi → pad'e iniş");
-  assert.equal(objectiveText(opById("boss")), "2 dalga (1/2 bot)");
   assert.match(objectiveText(FREE), /serbest/i);
 });
 
@@ -89,7 +88,7 @@ test("free flight takes the map breeze, missions keep their own wind", async () 
   assert.equal(indoor.rows.find((r) => r.k === "Rüzgâr").v, "Kapalı alan");
   assert.deepEqual(windFor(FREE, "airfield"), { x: 0.9, z: 0.35 });
   assert.equal(windFor(FREE, "indoor"), null);
-  assert.equal(windFor(opById("waves"), "airfield"), null, "the dogfight op defines no wind, so none");
+  assert.equal(windFor(opById("school"), "airfield"), null, "the indoor lesson defines no wind");
   assert.deepEqual(windFor(opById("race"), "coast"), opById("race").wind);
   for (const m of MAPS) if (m.id !== "indoor") assert.ok(m.wind && Math.hypot(m.wind.x, m.wind.z) > 0.1, m.id);
 });

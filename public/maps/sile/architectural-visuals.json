@@ -1,0 +1,26 @@
+{
+  "version": "2.29",
+  "authored": true,
+  "source": "Existing coastal building profiles and shared procedural facade atlas; no new geographic or photographic data",
+  "limits": {
+    "windowsMax": 384,
+    "eavesMax": 160,
+    "partsMax": 1696,
+    "meshesMax": 2,
+    "projectionMaxM": 0.16,
+    "windowTypes": "residential glass/shutter tiles0–7 only; no door/shop opening geometry",
+    "placement": "round-robin profiles; exact land clipping, final terrain and conservative old-solid/other-prism rejection; own source building allowed attachment"
+  },
+  "collision": "Conservative tagged AABBs computed from each rendered solid instance transform; quality independent",
+  "unchanged": [
+    "original wall/roof geometry",
+    "source OSM/DEM/terrain grids",
+    "previous box prefix/prisms/pads",
+    "flight forces and saved drone/controller profile"
+  ],
+  "notMeasured": [
+    "frame and sill dimensions",
+    "eaves strips",
+    "individual real building facade inventory"
+  ]
+}

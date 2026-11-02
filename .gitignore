@@ -15,3 +15,6 @@ server/data/
 coverage/
 test-results/
 playwright-report/
+.superpowers/
+__pycache__/
+*.py[cod]

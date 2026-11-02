@@ -1,0 +1,26 @@
+{
+  "version": "2.20",
+  "source": "existing source coastline + harbour context",
+  "data": "/maps/sile/context-data.json",
+  "license": "ODbL-1.0",
+  "sourceMapUnchanged": true,
+  "surface": {
+    "apronWidthM": 10,
+    "widthMeasured": false,
+    "westernArm": "selected existing coastline vertices from[-84.4,-657.63] to[-119.31,-686.03]",
+    "material": "existing concrete visual template",
+    "extent": "authored; not mapped surface type or measured civil engineering",
+    "terrain": "partitioned, clipped to existing land; physical triangle sampling; no height modification"
+  },
+  "armour": {
+    "positions": "deterministic inset existing land coast near harbour; road/building/prop/spawn clearance",
+    "maximumInstances": 800,
+    "geometry": "authored irregular rocks; not photogrammetry",
+    "collision": "conservative world AABB from actual transformed geometry; all quality settings"
+  },
+  "limits": [
+    "No new coastal survey, bathymetry or measured harbour structures",
+    "Photo reference remains AA2022-07-09; not redistributed",
+    "Existing2x2km extent; water and flight forces unchanged"
+  ]
+}

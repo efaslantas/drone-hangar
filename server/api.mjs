@@ -1,3 +1,4 @@
+import { isRetiredOperation } from "../src/missions.js";
 import { ADMIN_KEY, ADMIN_USER, getEvents, getLeaderboard, logEvent, saveGhostShare, getGhostShare } from "./store.mjs";
 import { createAdminSessions, parseCookies } from "./auth.mjs";
 import { createRateLimiter } from "./rate-limit.mjs";
@@ -68,7 +69,7 @@ export function handleApi(req, res, wss) {
 
   if (p === "/api/leaderboard" && req.method === "GET") {
     if (limited("leaderboard", 120, 60_000)) return true;
-    sendJson(res, 200, { ops: getLeaderboard() });
+    sendJson(res, 200, { ops: getLeaderboard().filter(board => !isRetiredOperation(board.opId)) });
     return true;
   }
 

@@ -1,0 +1,74 @@
+{
+  "date": "2026-11-01",
+  "release": "v2.15.0-5a64814510d8",
+  "tests": {
+    "passed": 374,
+    "failed": 0,
+    "focused": 13,
+    "build": "pass",
+    "diffCheck": "pass"
+  },
+  "roofCounts": {
+    "gabledBuildings": 558,
+    "unchangedBuildings": 708,
+    "unchangedStructures": 10
+  },
+  "scope": [
+    "Authored gables inside source footprint and total height",
+    "No new data/textures/material batches/dependencies",
+    "Existing full-height collision prisms,physics,camera,RC/profile unchanged"
+  ],
+  "independentReview": {
+    "importantFindings": 0,
+    "transformedAndReversedSnapshotGables": "all verified outward",
+    "maxProjectedAreaErrorM2": 6.74e-11,
+    "maxFloat32EaveWallGapM": 3.8e-06,
+    "buildSileResources": {
+      "meshes": 15,
+      "materials": 15,
+      "textures": 26,
+      "change": 0
+    },
+    "minorClarification": "708 flat buildings excludes10 structures;ledger clarified before final report",
+    "deferredMinors": [
+      "Persistent transformed/reversed gable winding assertion absent; independent snapshot variant verification passed. Existing ordinary-gable assertion remains."
+    ],
+    "declinedScope": "Unrelated old code/physics,survey accuracy,browser/deployment not independently reviewed"
+  },
+  "browser": [
+    "WebGL actual world near/reverse and low/high/medium quality transitions",
+    "390x844 renderframe,not physical phone",
+    "WebGPU world near/overview,warm60fps,no app-origin error",
+    "Live profile/Şile/savedTX15/FPV DISARM60fps verified"
+  ],
+  "production": {
+    "sourceFiles": 236,
+    "candidateHealth": "pass",
+    "productionHealth": "pass",
+    "externalHttpsAssetsHashes": "all checks pass",
+    "saved": {
+      "profile": "f60-1750-6s",
+      "massG": 650,
+      "capacityMah": 1100,
+      "map": "sile",
+      "quality": "medium",
+      "tiltDegrees": 25,
+      "TX15": "calibration saved"
+    },
+    "browserNotes": "Canlı reload/FPV kontrolünde error kaydı boş; yalnız Chrome uzantısı kaynaklı uyarılar vardı. Önceki2.14message-channel-close kaydı bu reloadta tekrarlanmadı.",
+    "rollback": "prior container and0600data backup retained",
+    "git": "no commit/push/merge"
+  },
+  "limits": [
+    "Roof shape/orientation/distribution authored,not measured Şile roofs",
+    "Existing conservative prism remains full height;no slope-matched roof contact",
+    "No actual phone/TX15 flight or flight-log calibration"
+  ],
+  "proof": [
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-roofs-detail-2.15.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-roofs-overview-2.15.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-roofs-mobile-2.15.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-roofs-webgpu-2.15.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-roofs-live-2.15.png"
+  ]
+}

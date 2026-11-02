@@ -1,0 +1,50 @@
+{
+  "date": "2026-11-01",
+  "release": "v2.12.0-cd04597c4870",
+  "tests": {
+    "allPassed": 352,
+    "focusedPassed": 21,
+    "failed": 0,
+    "build": "pass",
+    "diffCheck": "pass"
+  },
+  "review": {
+    "chaseCameraP2": "RED: actual mesh near-plane violation at steep pitch; GREEN: normalized XZ plus last heading at vertical",
+    "pcbIntersection": "Regraded important for hardware realism; toothpick real board boxes RED→GREEN",
+    "deferredMinor": "Workshop yaw pivot creates up to ~1.6% radius centre drift on some craft"
+  },
+  "visualQA": [
+    "SOURCE ONE angle/top/bottom",
+    "390x844 iframe SOURCE ONE/Whoop/Heavy",
+    "WebGL chase then FPV",
+    "WebGPU chase warm 60fps",
+    "Live workshop app warn/error empty"
+  ],
+  "production": {
+    "sourceFilesVerified": 233,
+    "candidate": "pass",
+    "production": "pass",
+    "externalVerificationLog": "all checks pass",
+    "previousContainer": "preserved",
+    "dataBackup": "preserved",
+    "savedProfile": "f60-1750-6s",
+    "massG": 650,
+    "capacityMah": 1100,
+    "map": "sile",
+    "quality": "medium",
+    "tiltDegrees": 25,
+    "TX15": "saved calibration status present"
+  },
+  "unchanged": [
+    "FPV origin/tilt/FOV",
+    "flight physics and collision envelope",
+    "rotor positions/prop diameter",
+    "RC calibration",
+    "SOURCE ONE CAD cut geometry/data license"
+  ],
+  "limits": [
+    "New electronics and finishes are artist models, not measured PCB/BRDF",
+    "No actual phone/TX15 flight or log validation",
+    "Existing conservative collider remains unchanged"
+  ]
+}

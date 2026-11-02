@@ -1,0 +1,11 @@
+SOURCE ONE v4 cut geometry from TBS upstream commit 9ae65b1387f192fb90d07d483178169924b286b5
+GPL-3.0: see LICENSE. Raw DXFs and generator supplied.
+Assembly/stand-off positions and other hardware are artistic approximations.
+Arms are aligned to simulation symmetric X motor centres; not exact assembled CAD.
+Original design: TBS SOURCE ONE; https://github.com/tbs-trappy/source_one
+Visual conversion/assembly changes: EFA Hangar, 2026-11-01.
+F60 Pro IV outer diameter 27.1mm / total height 31.1mm: DroneHiTech 2020-05-23 specs.
+https://dronehitech.com/t-motor-f60-pro-iv-review-and-thrust-test/
+Motor internals, pack dimensions, leads, camera and generic families are approximations.
+Propeller motion follows model commands, not measured RPM. Physics/calibration unchanged.
+Generate: python prepare-source-one-visual.py; install pinned requirements-visual.txt first.

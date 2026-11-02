@@ -1,0 +1,106 @@
+{
+  "date": "2026-11-02",
+  "release": "v2.22.0-f237ea6e62b5",
+  "url": "https://hangar.18-153-158-209.sslip.io/",
+  "status": "published",
+  "image": {
+    "release": "v2.22.0-f237ea6e62b5",
+    "imageId": "sha256:d098f6339ae929deb7a63900a27e4e07c26c1a4a2357091c3a4cb0aa559b85f0",
+    "archiveSha256": "a626e3a351039928375c2e4401a11923fa1ca4c7a0157362dadcdbedbf626ed2",
+    "archiveBytes": 141323767,
+    "architecture": "arm64",
+    "sourceFiles": 260
+  },
+  "metrics": {
+    "lamps": 56,
+    "planters": 38,
+    "authored": true,
+    "boxes": 8871,
+    "meshes": 40,
+    "apronAreaM2": 9190.040590331131,
+    "maxHeightErrorM": 1.9560631784543148e-05,
+    "apronWaterTriangles": 0,
+    "buildMs": 1378.8530409999998,
+    "groundTriangles": 112232
+  },
+  "source": {
+    "mapOsmDemBuildingsHeightsCoastUnchanged": true,
+    "license": "ODbL-1.0",
+    "existingGrassImageUnchanged": true,
+    "gardenPaletteInventoryDimensions": "authored; not measured/satellite/current vegetation",
+    "roadWidths": "existing OSM width when supplied, otherwise original derived defaults",
+    "physicalTerrainAndOriginalPrismsUnchanged": true
+  },
+  "checks": {
+    "applicationTests": 425,
+    "failures": 0,
+    "infraTests": 11,
+    "viteBuild": "pass; existing >500KB chunk advisory",
+    "arm64Build": "pass",
+    "sourceManifestFiles": 260,
+    "refinement": "plane/area/shared full edges and actual clipped partial-edge neighbours;0introduced hanging vertex hits in regression",
+    "sourcePriority": "mapped green/lawn/beach/harbour/paved,roads and ALL building interiors excluded",
+    "colourFinish": "visible first application; idempotent; positions/colliders immutable",
+    "solidBounds": "actual transform bounds contained in corresponding boxes,land/budget/source immutability pass",
+    "lifecycle": "unique geometry/material disposed once; context metadata cleared",
+    "runningImageSourceHashes": 102,
+    "httpsHealthAssetsSourceHashes": "pass",
+    "twoClientWssJoinStateLeave": "pass",
+    "uniqueUiIds": "pass",
+    "adminUnauthorized": 401,
+    "nginxSyntax": "pass",
+    "existingServiceIdentitiesUnchanged": 7,
+    "nginxBytesUnchanged": true,
+    "oldContainerAndConsistentDataBackupRetained": true
+  },
+  "review": {
+    "findings": "one Important partial-edge T junctions; one Minor unselected building interior tint",
+    "fixPass": "both RED to GREEN; actual terrain2943hangingedgehits to0; building342473969 field.783 to0",
+    "normalization": "normalize legacy clipped shared atomic edges globally with10µm visual canonical weld (below existing1mm render merge), remove collapsed zero-area cut slivers; local refinement at most3passes",
+    "postReviewVisual": "irregular mottled320triangle shrub geometry replaces smooth sphere; actual bounds/full425tests and GL/GPU author acceptance repeated",
+    "secondIndependentReview": false
+  },
+  "browser": {
+    "webgl": "close entrance/wide coast/qualitylow-high-medium/390x844renderframe/3rebuild",
+    "experimentalWebgpu": "same entrance view inspected,final error logs empty",
+    "observedFps": "warm60; resize50 and shader/rebuild2fps transient; no universal guarantee",
+    "logs": "explicit Chrome passkeys-inject extension error; no application shader/asset exception or visible failure",
+    "live": {
+      "state": "FPV DISARM",
+      "errorLogs": "empty",
+      "profile": "f60-1750-6s",
+      "massG": 650,
+      "capacityMah": 1100,
+      "map": "sile",
+      "quality": "medium",
+      "tiltDegrees": 25,
+      "input": "gamepad; current selection unchanged",
+      "initialLoad": "first tab stayed on static home before bootstrap, with extension warnings only; closing QA tabs and one reload completed startup; cause not established"
+    }
+  },
+  "limits": [
+    "Existing2x2km extent, authored facade/garden/props; no photogrammetry or1:1measured town",
+    "No new physical height or dynamic water/traffic/people",
+    "Lamp emissive lens visual only; no added dynamic light sources",
+    "Planter shrubs are bounded authored meshes with conservative contact boxes",
+    "No physical phone/TX15 flight or flight-log calibration; RC origin calibration remains user step"
+  ],
+  "proof": [
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-neighbourhood-detail-2.22.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-neighbourhood-overview-2.22.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-neighbourhood-mobile-2.22.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-neighbourhood-webgpu-2.22.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-neighbourhood-live-2.22.png"
+  ],
+  "git": "same dirty codex/simulator-v2 retained; no commit/push/merge",
+  "runtime": {
+    "memoryObservedMiB": 18.62,
+    "limitMiB": 256,
+    "restarts": 0,
+    "uid": "1000:1000",
+    "readOnlyRoot": true,
+    "network": [
+      "drone-hangar-net"
+    ]
+  }
+}

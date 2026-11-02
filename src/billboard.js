@@ -1,19 +1,39 @@
 import * as THREE from "three";
-import { makeDrone, spinProps } from "./models.js";
+import { makeDrone, disposeDrone, spinProps } from "./models.js";
 import { droneById } from "./catalog.js";
-import { buildWorld, clearWorld, tickWorld } from "./world.js";
+import { buildWorld, clearWorld, tickWorld, worldMatches } from "./world.js";
 
-const TEAM_A = 0xff6a2a;
-const TEAM_B = 0x3ec8e8;
+const previewWorlds=new WeakMap();
+export function updateBillboardMap(scene,cam,id,{reduced=false,crafts=[]}={}){
+  const mapId=id||'yard',previous=previewWorlds.get(scene);
+  if(previous?.id===mapId&&previous.reduced===!!reduced&&previous.camera===cam&&previous.token===scene.userData.worldToken&&worldMatches(scene,mapId))return mapId;
+  // Only completed builds can be reused; clearWorld or a failed build invalidates
+  // the token even when the requested map name has not changed.
+  previewWorlds.delete(scene);
+  const keep=new Set(crafts.map(c=>c.mesh));
+  for(const item of keep)scene.remove(item);
+  try{
+    clearWorld(scene);
+    buildWorld(scene,mapId,{lite:reduced,quality:'medium'});
+    cam.far=mapId==='sile'?6500:220;cam.fov=mapId==='sile'?58:44;cam.updateProjectionMatrix();
+    scene.add(new THREE.HemisphereLight(0xdce6da,0x7d8666,.85));
+    scene.traverse(o=>{if(o.castShadow)o.castShadow=false;if(o.receiveShadow)o.receiveShadow=false;});
+  }finally{for(const item of keep)if(!item.parent)scene.add(item);}
+  previewWorlds.set(scene,{id:mapId,reduced:!!reduced,camera:cam,token:scene.userData.worldToken});
+  return mapId;
+}
+
+const ACCENT_WARM = 0xff6a2a;
+const ACCENT_COOL = 0x3ec8e8;
 const FLEET = [
-  { id: "racer", team: 0 },
-  { id: "freestyle", team: 1 },
-  { id: "toothpick", team: 0 },
-  { id: "racer", team: 1 },
-  { id: "seven", team: 0 },
-  { id: "freestyle", team: 1 },
-  { id: "toothpick", team: 1 },
-  { id: "racer", team: 0 },
+  { id: "racer", variant: 0 },
+  { id: "freestyle", variant: 1 },
+  { id: "toothpick", variant: 0 },
+  { id: "racer", variant: 1 },
+  { id: "seven", variant: 0 },
+  { id: "freestyle", variant: 1 },
+  { id: "toothpick", variant: 1 },
+  { id: "racer", variant: 0 },
 ];
 
 function dummy() {
@@ -24,10 +44,10 @@ function poseAt(craft, t) {
   const p = craft.phase;
   const s = craft.speed;
   const u = t * s + p;
-  const side = craft.team ? 1 : -1;
+  const side = craft.variant ? 1 : -1;
   return {
     x: Math.sin(u) * craft.rx + Math.sin(u * 2.15 + p) * 5.5 * side,
-    y: 7.2 + Math.sin(u * 1.35 + p * 0.7) * 3.4 + craft.team * 0.6,
+    y: 7.2 + Math.sin(u * 1.35 + p * 0.7) * 3.4 + craft.variant * 0.6,
     z: Math.cos(u * 0.92) * craft.rz + Math.cos(u * 1.7 + p) * 4.2,
   };
 }
@@ -64,7 +84,7 @@ export function startBillboard(canvas, { reduced = false } = {}) {
   renderer.setPixelRatio(Math.min(devicePixelRatio, reduced ? 1 : 1.4));
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.0;
+  renderer.toneMappingExposure = .94;
   renderer.setClearColor(0x000000, 0);
   renderer.shadowMap.enabled = false;
 
@@ -75,88 +95,23 @@ export function startBillboard(canvas, { reduced = false } = {}) {
   const cam = new THREE.PerspectiveCamera(44, 1, 0.2, 220);
   cam.position.set(22, 5.4, 26);
 
-  const nCraft = reduced ? 5 : FLEET.length;
+  const nCraft = reduced ? 1 : 2;
   const crafts = [];
   for (let i = 0; i < nCraft; i++) {
     const def = FLEET[i];
     const base = droneById(def.id);
-    const spec = { ...base, accent: def.team ? TEAM_B : TEAM_A, color: def.team ? 0x161c22 : 0x1a1210 };
+    const spec = { ...base, accent: def.variant ? ACCENT_COOL : ACCENT_WARM, color: def.variant ? 0x161c22 : 0x1a1210 };
     const mesh = makeDrone(spec);
     mesh.scale.setScalar(1.7);
     scene.add(mesh);
     crafts.push({
       mesh,
-      team: def.team,
+      variant: def.variant,
       phase: (i / nCraft) * Math.PI * 2,
       speed: 0.55 + (i % 3) * 0.12,
       rx: 11 + (i % 4) * 1.6,
       rz: 13 + (i % 3) * 1.8,
-      fire: 0.3 + i * 0.17,
-      hit: 0,
-      prev: { x: 0, y: 8, z: 0 },
     });
-  }
-
-  const tracerN = reduced ? 12 : 22;
-  const tracers = [];
-  for (let i = 0; i < tracerN; i++) {
-    const pos = new Float32Array(6);
-    const geo = new THREE.BufferGeometry();
-    geo.setAttribute("position", new THREE.BufferAttribute(pos, 3));
-    geo.setAttribute("normal", new THREE.Float32BufferAttribute([0, 1, 0, 0, 1, 0], 3));
-    const mat = new THREE.LineBasicMaterial({
-      color: TEAM_A,
-      transparent: true,
-      opacity: 0,
-      depthWrite: false,
-    });
-    const line = new THREE.Line(geo, mat);
-    line.visible = false;
-    scene.add(line);
-    tracers.push({ line, geo, pos, mat, life: 0, max: 0.16 });
-  }
-  let tracerI = 0;
-
-  const sparkGeo = new THREE.SphereGeometry(0.18, 8, 6);
-  const sparkMatA = new THREE.MeshBasicMaterial({ color: 0xffe08a });
-  const sparkMatB = new THREE.MeshBasicMaterial({ color: 0xa8f0ff });
-  const sparks = [];
-  for (let i = 0; i < 10; i++) {
-    const m = new THREE.Mesh(sparkGeo, sparkMatA);
-    m.visible = false;
-    scene.add(m);
-    sparks.push({ mesh: m, life: 0 });
-  }
-  let sparkI = 0;
-
-  const flash = new THREE.PointLight(0xffcc88, 0, 18, 2);
-  scene.add(flash);
-
-  function fireTracer(from, to, team) {
-    const t = tracers[tracerI++ % tracers.length];
-    t.pos[0] = from.x;
-    t.pos[1] = from.y;
-    t.pos[2] = from.z;
-    t.pos[3] = to.x;
-    t.pos[4] = to.y;
-    t.pos[5] = to.z;
-    t.geo.attributes.position.needsUpdate = true;
-    t.mat.color.setHex(team ? TEAM_B : TEAM_A);
-    t.mat.opacity = 1;
-    t.life = t.max;
-    t.line.visible = true;
-  }
-
-  function hitAt(p, team) {
-    const s = sparks[sparkI++ % sparks.length];
-    s.mesh.position.set(p.x, p.y, p.z);
-    s.mesh.material = team ? sparkMatB : sparkMatA;
-    s.mesh.visible = true;
-    s.mesh.scale.setScalar(1);
-    s.life = 0.22;
-    flash.position.copy(s.mesh.position);
-    flash.intensity = 6;
-    flash.color.setHex(team ? TEAM_B : TEAM_A);
   }
 
   let raf = 0;
@@ -164,34 +119,15 @@ export function startBillboard(canvas, { reduced = false } = {}) {
   let t0 = 0;
   let last = 0;
   const hangar = canvas.closest("#hangar") || canvas.parentElement;
-  let mapId = "yard";
-
-  function keepers() {
-    const s = new Set(crafts.map((c) => c.mesh));
-    for (const t of tracers) s.add(t.line);
-    for (const sp of sparks) s.add(sp.mesh);
-    s.add(flash);
-    return s;
-  }
+  let mapId = "airfield";
 
   function setMap(id) {
-    mapId = id || "yard";
-    const keep = keepers();
-    for (const item of keep) scene.remove(item);
-    clearWorld(scene);
-    buildWorld(scene, mapId, { lite: reduced });
-    scene.traverse((o) => {
-      if (o.castShadow) o.castShadow = false;
-      if (o.receiveShadow) o.receiveShadow = false;
-    });
-    for (const o of keep) {
-      if (!o.parent) scene.add(o);
-    }
+    mapId=updateBillboardMap(scene,cam,id,{reduced,crafts});
   }
 
   function size() {
-    const vw = Math.max(1, Math.floor(window.visualViewport?.width || innerWidth));
-    const vh = Math.max(1, Math.floor(window.visualViewport?.height || innerHeight));
+    const vw = Math.max(1, canvas.clientWidth);
+    const vh = Math.max(1, canvas.clientHeight);
     renderer.setSize(vw, vh, false);
     cam.aspect = vw / vh;
     cam.updateProjectionMatrix();
@@ -206,8 +142,8 @@ export function startBillboard(canvas, { reduced = false } = {}) {
 
     tickWorld(scene, t0, dt, null);
     const camT = t0 * 0.07;
-    cam.position.set(Math.sin(camT) * 24, 5.2 + Math.sin(camT * 0.55) * 1.6, Math.cos(camT) * 28);
-    cam.lookAt(Math.sin(camT * 0.4) * 2, 8.4, Math.cos(camT * 0.3) * 1.5);
+    if(mapId==='sile'){cam.position.set(-240+Math.sin(camT)*10,200,520+Math.cos(camT)*10);cam.lookAt(250,20,-400);}
+    else{cam.position.set(18 + Math.sin(camT) * 4, 6.5, -55 + Math.cos(camT) * 4);cam.lookAt(0,3,-6);}
 
     for (const c of crafts) {
       const pos = poseAt(c, t0);
@@ -215,55 +151,7 @@ export function startBillboard(canvas, { reduced = false } = {}) {
       bankLook(c.mesh, pos, look, dt);
       c.mesh.position.set(pos.x, pos.y, pos.z);
       spinProps(c.mesh, 0.85, dt);
-      if (c.hit > 0) {
-        c.hit -= dt;
-        const k = 1 + c.hit * 0.8;
-        c.mesh.scale.setScalar(1.7 * k);
-      } else {
-        c.mesh.scale.setScalar(1.7);
-      }
-      c.prev = pos;
-      c.fire -= dt;
-      if (c.fire <= 0) {
-        c.fire = 0.45 + Math.random() * 0.85;
-        let best = null;
-        let bestD = 22;
-        for (const o of crafts) {
-          if (o.team === c.team) continue;
-          const d = Math.hypot(o.prev.x - pos.x, o.prev.y - pos.y, o.prev.z - pos.z);
-          if (d < bestD) {
-            bestD = d;
-            best = o;
-          }
-        }
-        if (best) {
-          const jitter = (n) => n + (Math.random() - 0.5) * 0.7;
-          fireTracer(
-            pos,
-            { x: jitter(best.prev.x), y: jitter(best.prev.y), z: jitter(best.prev.z) },
-            c.team,
-          );
-          if (Math.random() < 0.38) {
-            best.hit = 0.18;
-            hitAt(best.prev, c.team);
-          }
-        }
-      }
     }
-
-    for (const tr of tracers) {
-      if (tr.life <= 0) continue;
-      tr.life -= dt;
-      tr.mat.opacity = Math.max(0, tr.life / tr.max);
-      if (tr.life <= 0) tr.line.visible = false;
-    }
-    for (const s of sparks) {
-      if (s.life <= 0) continue;
-      s.life -= dt;
-      s.mesh.scale.setScalar(1 + (0.22 - s.life) * 8);
-      s.mesh.visible = s.life > 0;
-    }
-    flash.intensity *= Math.exp(-8 * dt);
 
     renderer.render(scene, cam);
   }
@@ -291,12 +179,14 @@ export function startBillboard(canvas, { reduced = false } = {}) {
     pause();
     window.removeEventListener("resize", size);
     document.removeEventListener("visibilitychange", onVis);
-    renderer.dispose();
+    for(const craft of crafts)disposeDrone(craft.mesh);
+    clearWorld(scene);renderer.dispose();
   }
 
   window.addEventListener("resize", size);
   document.addEventListener("visibilitychange", onVis);
   hangar?.classList.add("live");
+  new ResizeObserver(size).observe(canvas);
   setMap(mapId);
   resume();
   return { pause, resume, stop, setMap };

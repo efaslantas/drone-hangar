@@ -1,0 +1,41 @@
+{
+  "commit": "9ae65b1387f192fb90d07d483178169924b286b5",
+  "license": "GPL-3.0",
+  "files": [
+    {
+      "file": "LICENSE",
+      "sha256": "8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903",
+      "source": "https://raw.githubusercontent.com/tbs-trappy/source_one/9ae65b1387f192fb90d07d483178169924b286b5/LICENSE"
+    },
+    {
+      "file": "README.md",
+      "sha256": "976488b1acb164eed5bec63a6a3f9b9ca5fbef12293f08b3d17c95b523a19313",
+      "source": "https://raw.githubusercontent.com/tbs-trappy/source_one/9ae65b1387f192fb90d07d483178169924b286b5/README.md"
+    },
+    {
+      "file": "SO_v4_5inch_arm_4mm_4x.dxf",
+      "sha256": "cac4a73c9add6de977c2004052457db65eaa58ba77b69b2ea48a7305f142463f",
+      "source": "https://raw.githubusercontent.com/tbs-trappy/source_one/9ae65b1387f192fb90d07d483178169924b286b5/SO_v4_5inch_arm_4mm_4x.dxf"
+    },
+    {
+      "file": "SO_v4_bottom_plate_3mm.dxf",
+      "sha256": "e67367565d100aa69ea91b0b5ed435ffd78c80829d9f0ebdf17de35361bb7dfa",
+      "source": "https://raw.githubusercontent.com/tbs-trappy/source_one/9ae65b1387f192fb90d07d483178169924b286b5/SO_v4_bottom_plate_3mm.dxf"
+    },
+    {
+      "file": "SO_v4_center_plate_3mm.dxf",
+      "sha256": "4327728976cd1e9af72cc45b18c07cb53919970ff153ac5443414a34a6f2c064",
+      "source": "https://raw.githubusercontent.com/tbs-trappy/source_one/9ae65b1387f192fb90d07d483178169924b286b5/SO_v4_center_plate_3mm.dxf"
+    },
+    {
+      "file": "SO_v4_top_plate_2mm.dxf",
+      "sha256": "795af0c112fc7033e8291d93798a6db4cc04f581164449c1d60d0f82756cd111",
+      "source": "https://raw.githubusercontent.com/tbs-trappy/source_one/9ae65b1387f192fb90d07d483178169924b286b5/SO_v4_top_plate_2mm.dxf"
+    },
+    {
+      "file": "SO_v4_cam_plate_2mm_2x.dxf",
+      "sha256": "c1b30007ed0cd0de513944d051f18db33f7fdfe9c4a33fda1c72c55714de85c4",
+      "source": "https://raw.githubusercontent.com/tbs-trappy/source_one/9ae65b1387f192fb90d07d483178169924b286b5/SO_v4_cam_plate_2mm_2x.dxf"
+    }
+  ]
+}

@@ -196,8 +196,8 @@ export function dailyOp(id = dailyId()) {
     drone,
     lockMap: true,
     lockDrone: true,
-    fire: false,
-    bots: 0,
+
+
     academy: true,
     startGrounded: true,
     requiredFlightMode: "angle",

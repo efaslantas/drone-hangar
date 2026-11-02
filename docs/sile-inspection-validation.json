@@ -1,0 +1,154 @@
+{
+  "date": "2026-11-02",
+  "status": "published",
+  "release": "v2.31.0-b2bdbccd35e4",
+  "url": "https://hangar.18-153-158-209.sslip.io/",
+  "scope": "First ILKE simulation layer: Sile-only civilian manual inspection, local evidence and recorded-pose replay",
+  "regions": [
+    "castle",
+    "coastal-facade",
+    "harbour"
+  ],
+  "criteria": {
+    "authoredDemoOnly": true,
+    "continuousDwellSeconds": 3,
+    "viewpointRadiusM": 12,
+    "maxSpeedMps": 3,
+    "cameraConeDegrees": 15,
+    "requiresFpvAndActualGeometryVisibility": true,
+    "temporaryTiltDegrees": 0,
+    "maxAglM": 80,
+    "maxActiveSeconds": 1200,
+    "groundedDisarmReturnRadiusM": 8
+  },
+  "record": {
+    "schema": "ilke.sile.inspection.v1",
+    "sampleHz": 5,
+    "maxSamples": 6100,
+    "maxEvents": 256,
+    "maxJpegCharacters": 180000,
+    "jpegSize": [
+      320,
+      180
+    ],
+    "maxExportUtf8Bytes": 2500000,
+    "lastReportKey": "efa-hangar-sile-inspection-v1",
+    "serverUpload": false,
+    "typedInputSnapshots": "gamepad lift/r2 or RC throttle; no fabricated throttle",
+    "unknownVoltage": null,
+    "coordinates": "approximate source projection, not GNSS",
+    "replay": "recorded poses, not physics resimulation"
+  },
+  "invariants": {
+    "comparedTo": "v2.30.0-d5fc927a38fd",
+    "sourceMapTerrainGeometryCollisionsAndPhysics": "all preexisting owner/source files unchanged by manifest comparison",
+    "preferredMapAndDrone": "inspection locks effective map to Sile without overwriting preferences",
+    "savedTilt": "25 degrees retained on live origin; temporary0 only within inspection",
+    "scoreAndAcademy": "isolated free operation, no start/result/pose uploads or ranked progress"
+  },
+  "verification": {
+    "newPureTests": 21,
+    "newViewTests": 10,
+    "node22Full": {
+      "pass": 510,
+      "fail": 0,
+      "durationMs": 107954.599824,
+      "architecture": "linux/arm64",
+      "concurrency": 4,
+      "log": "/tmp/sile-inspection-node22-tests.log"
+    },
+    "infra": 11,
+    "viteBuild": "pass; preexisting large-chunk warning",
+    "arm64ImageBuild": "pass",
+    "review": {
+      "task": "raw lift/r2 input finding corrected;21pure+7view Node22 passed scoped review",
+      "wholePhase": "UTF8 compact export size cap and paused remote joins corrected;10view Node22 passed scoped review; no remaining Important",
+      "deferredMinor": "Download-only previous local report can accept some semantically impossible manually tampered status/route/pose/time combinations. No import, replay or live-flight effect."
+    },
+    "actualGeometryRays": {
+      "castle": true,
+      "coastal-facade": true,
+      "harbour": true,
+      "coldMilliseconds": [
+        34.9,
+        19.5,
+        19.0
+      ],
+      "guard": "no LOS ray in ready/chase/transit or outside candidate radius/angle; no positive result cache"
+    },
+    "syntheticModuleQa": {
+      "method": "teleported source viewpoint poses, not physical/manual flight",
+      "webgl": "completed3/3,9.10simsec,46samples,3JPEG; warm60fps observed,error[]",
+      "blockedWebgl": "0/3 after209.9simsec,hold0,1050samples,0images",
+      "webgpu": "completed3/3,9.10simsec,46samples,3JPEG;60fps observed,error[]; repeated at390x844 drawing buffer",
+      "report": ".superpowers/sdd/2026-11-02-sile-inspection/synthetic-report.json",
+      "images": [
+        "sile-inspection-castle-SYNTHETIC-2.31.jpg",
+        "sile-inspection-coastal-facade-SYNTHETIC-2.31.jpg",
+        "sile-inspection-harbour-SYNTHETIC-2.31.jpg"
+      ]
+    },
+    "actualUiQa": {
+      "method": "manual UI ARM stationary on ground, stop, export and replay; not full route flight",
+      "elapsedSeconds": 6.291666666666668,
+      "samples": 32,
+      "observations": 0,
+      "status": "stopped",
+      "exportBytes": 20110,
+      "replay": "auto-end restored stopped record and paused flight menu at6.3seconds",
+      "localProfile": "temporary test gamepad restored to baseline RC; original reference650g1100medium0 retained",
+      "report": ".superpowers/sdd/2026-11-02-sile-inspection/ui-record-report.json"
+    },
+    "gitDiffCheck": "pass"
+  },
+  "image": {
+    "release": "v2.31.0-b2bdbccd35e4",
+    "imageId": "sha256:4f96798a31ee066bccc880f2db051b9480ba23e1e9f9d2267bfe978516347790",
+    "archiveSha256": "76b00e771ff02d4695dd21a3a7e11f9a3524b72e7fe8fb66a79262a62add3b4b",
+    "archiveBytes": 141384393,
+    "architecture": "arm64",
+    "sourceFiles": 276
+  },
+  "live": {
+    "httpsHealth": "v2.31.0-b2bdbccd35e4",
+    "runningSourceHashes": 112,
+    "manifestFiles": 276,
+    "publicAssetsAndSourceHashes": "pass; /tmp/sile-inspection-live-verification.log",
+    "twoClientWssJoinStateLeave": "pass",
+    "browser": "new inspection preparation and FPV ready0/3 DISARM,error[]; hangar-check-231 test room",
+    "restarts": 0,
+    "memoryMiB": 22.9,
+    "limitMiB": 256,
+    "uid": "1000:1000",
+    "readonly": true,
+    "network": [
+      "drone-hangar-net"
+    ],
+    "otherSevenTenantsAndNginx": "unchanged",
+    "nginxSyntax": "pass",
+    "zenthWebAndApi": 200,
+    "gelisimTlsOrigin": 200,
+    "rollbackContainerAndConsistentDataBackup": "retained",
+    "profile": {
+      "reference": "f60-1750-6s",
+      "massG": 650,
+      "capacityMah": 1100,
+      "quality": "medium",
+      "tilt": 25,
+      "input": "gamepad"
+    },
+    "proof": "sile-inspection-live-2.31.png"
+  },
+  "limits": [
+    "Not a validated real ILKE-1 vehicle model; real mass/CG/physical acceptance remain open",
+    "No SITL/MAVLink, autonomous mission or real flight-controller/hardware connection",
+    "No physical TX15 or phone flight test and no complete manual route flight in this QA",
+    "JPEG frames are rendered simulation; no sensor accuracy or defect detection claim",
+    "Authored demo thresholds are not field engineering qualification or legal limits",
+    "Existing30mDSM and representative buildings/vegetation remain; no new measured map reconstruction",
+    "Sile preview construction still blocks the main thread during mode preparation; a UI automation click can time out while the action succeeds",
+    "Observed60fps is workstation QA, not a device performance guarantee"
+  ],
+  "proofDir": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1",
+  "git": "same dirty branch; no commit/push/merge; QA harness archived outside release"
+}

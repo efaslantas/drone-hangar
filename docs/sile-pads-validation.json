@@ -1,0 +1,152 @@
+{
+  "date": "2026-11-02",
+  "release": "v2.27.0-7e2da499e70a",
+  "url": "https://hangar.18-153-158-209.sslip.io/",
+  "status": "published",
+  "image": {
+    "release": "v2.27.0-7e2da499e70a",
+    "imageId": "sha256:203bdcfad254783711945d44ca4bcc3af5b5248da5d7f23249d7972c6d01b7e5",
+    "archiveSha256": "4a8f16f00fbf113383541a2f29cb26d5f652fb7c2cdcb0f9abb82bd9be674045",
+    "archiveBytes": 141346685,
+    "architecture": "arm64",
+    "sourceFiles": 268
+  },
+  "metrics": {
+    "pads": 4,
+    "wallSegments": 40,
+    "padIds": [
+      550130831,
+      550130832,
+      550116788,
+      550130807
+    ],
+    "foundations": 10,
+    "benches": 32,
+    "newBenchBoxes": 192,
+    "prisms": 1286,
+    "rawCliffTriangles": 38218,
+    "dryTriangles": 33094,
+    "wetTriangles": 18708,
+    "indexedVertices": 30872,
+    "cliffTriangles": 51802,
+    "meshes": 43,
+    "boxes": 9059,
+    "buildMs": 5126.169
+  },
+  "scope": {
+    "version": "2.27",
+    "authored": true,
+    "measured": false,
+    "source": "existing map.json/source OSM/DEM; no new survey",
+    "selection": "convex four-vertex coastal building footprints with exact outward1.4m edge offsets; conservative subset",
+    "candidateProfiles": 135,
+    "runtimePads": 4,
+    "sourceIds": [
+      550130831,
+      550130832,
+      550116788,
+      550130807
+    ],
+    "maximumAllowedCutM": 4,
+    "maximumAllowedFillM": 1,
+    "actualMaximumCutM": 3.0475352298178393,
+    "actualMaximumFillM": 0.7456049485762932,
+    "maximumEntryBoundaryStepM": 0.22683891009345913,
+    "entry": "existing1.25m entrance links retained; full-width sampled boundary step <=0.25m; visible step remains, no seamless or accessible entry claim",
+    "sourceBuildingBaseHeightRoofFootprintsUnchanged": true,
+    "sourceHeightGridAndLandUnchanged": true,
+    "runtimeTerrain": "separate authored buildingPads query priority after castle; exact ground owner partition before flat top; original outside planes preserved",
+    "retainingWalls": "batched visible triangles follow source grid edges and diagonals; two-sided contact and swept boundary interception, no new solid prism",
+    "unchanged": "baseline prop transforms, existing boxes and building/foundation prisms; source data arrays",
+    "reject": [
+      "unsupported/concave/complex footprint",
+      "land or water-hole crossing; positive0.15m shoreline margin",
+      "roads including1.6m clearance",
+      "source beach/harbour/paved/coast surfaces",
+      "neighbour building or landmark platform",
+      "map edge/spawn",
+      "overlapping terrace",
+      "cut/fill limits",
+      "disconnected entrance or boundary step >0.25m",
+      "other existing entrance corridors",
+      "actual rendered prop bounds"
+    ],
+    "remaining": "131 coastal profiles remain unchanged for these safety/geometry limits or absence of meaningful burial; unsupported uphill burial remains; no universal excavation claim",
+    "meshBudget": 45,
+    "runtimeMeshCount": 43
+  },
+  "checks": {
+    "applicationTests": 462,
+    "testRuntime": "Node22linuxARM64Dockerreadonly,NODE_ENV=test,RELEASE_SHA=dev",
+    "failures": 0,
+    "targetedTests": 22,
+    "newPadTests": 14,
+    "infraTests": 11,
+    "viteBuild": "pass; existing >500KBchunkadvisory",
+    "arm64Build": "pass",
+    "originalOutsideTriangles": 320680,
+    "outsideTriangleParity": "320680/320680 exactly retained",
+    "sourceBuildingsTerrainGridPropsCollisionEnvelopes": "unchanged; runtime ground explicitly graded in4pads",
+    "newInteriors": "flat heights within1e-5m/upwardnormals>.999999;synthetic1e-7",
+    "outside": "retains existing source quantization/slivers, conditionednormals only, 2cmheighttest bound",
+    "retainingContact": "actualtriangle spherecontact incl swept rims/ends/slopedlips/corners,bothsides,nearmisses,earliestwallorder independent",
+    "sourceManifestFiles": 268,
+    "runningImageSourceHashes": 108,
+    "httpsAssetsSourceHashes": "pass",
+    "wssTwoClients": "pass",
+    "uniqueUiIds": "pass",
+    "adminUnauthorized": 401,
+    "nginxBytesAnd7TenantIdentitiesUnchanged": true,
+    "oldContainerConsistentBackupRetained": true
+  },
+  "review": {
+    "taskAndFinalFinding": "one Important sweptcentre ignoredsphereradius at rims/endpoints; one fixwave RED→GREEN",
+    "fullSuiteRegression": "sourceindexedsharedground contract restored with exact fullattributeFloat32reindex, no tolerantmerge",
+    "rootPreReviewBug": "indexedterrainiterator incorrectly used rawtriples; realworldRED regression→actualindices",
+    "scopedRereview": "PASS,analyticoriginalreproTOIwithin3e-14 bothdirections",
+    "residualImportant": 0
+  },
+  "browser": {
+    "webgl": "before/afteruphillfloor/secondparcel/quality/390x844frame,error[]",
+    "webgpu": "samefourparcelgradeview,error[]",
+    "observedFps": "warmGL60,quality53,GPU52; no physicaldevice/universalclaim",
+    "live": {
+      "state": "FPV DISARM",
+      "profile": "f60-1750-6s",
+      "massG": 650,
+      "capacityMah": 1100,
+      "map": "sile",
+      "quality": "medium",
+      "tiltDegrees": 25,
+      "input": "gamepad",
+      "errors": [],
+      "bootstrap": "normal staticHTML then savedprofile, no reload"
+    }
+  },
+  "limits": [
+    "Authored local grading, not measured cityterraces or a new terrain survey",
+    "4eligiblecoastalparcels only; other sites remain unchanged or unsupported",
+    "Visible entry boundary steps0.16..0.23m remain, no seamless/accessibilityclaim",
+    "Original broad30mDSM and existingilluminationband persist",
+    "No physicalphone/TX15flight or flight-logcalibration"
+  ],
+  "proof": [
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-pads-before-2.26.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-pads-detail-2.27.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-pads-second-2.27.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-pads-mobile-2.27.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-pads-webgpu-2.27.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-pads-live-2.27.png"
+  ],
+  "git": "same dirtycodex/simulator-v2,no commit/push/merge",
+  "runtime": {
+    "memoryObservedMiB": 25.32,
+    "limitMiB": 256,
+    "restarts": 0,
+    "uid": "1000:1000",
+    "readOnlyRoot": true,
+    "network": [
+      "drone-hangar-net"
+    ]
+  }
+}

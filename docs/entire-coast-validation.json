@@ -1,0 +1,106 @@
+{
+  "date": "2026-11-02",
+  "release": "v2.18.0-b27b8592b4ad",
+  "url": "https://hangar.18-153-158-209.sslip.io/",
+  "status": "AWS live",
+  "image": {
+    "release": "v2.18.0-b27b8592b4ad",
+    "imageId": "sha256:35387574bde2a62896604cabcca6f4b7cf153daa554e60a278f493894a590c5e",
+    "archiveSha256": "508eefc05c5a1c8f609efcd3ed0ce27ff2cd333eb8b50bc6a350b59a69f2bbe5",
+    "archiveBytes": 141233275,
+    "architecture": "arm64",
+    "sourceFiles": 245
+  },
+  "checks": {
+    "applicationTests": 397,
+    "infraTests": 11,
+    "failed": 0,
+    "build": "pass",
+    "diffCheck": "pass",
+    "httpsEntryAssets": 5,
+    "runningSourceHashes": 93,
+    "publicSourceAndScopeHashes": "pass",
+    "twoClientWssJoinStateLeave": "pass"
+  },
+  "geometry": {
+    "cliffVertices": 324774,
+    "foamVertices": 22380,
+    "sandVertices": 3501,
+    "renderedRockMaskVertices": 0
+  },
+  "source": {
+    "rawOsmDemMap": "unchanged",
+    "beachWayIds": [
+      309193706,
+      426791953,
+      1285138759
+    ],
+    "bareRockWayId": 1485112029,
+    "rockMask": "entirely offshore; excluded, no island invented",
+    "publishedDerivedData": "/maps/sile/coast-surfaces.json",
+    "license": "ODbL-1.0",
+    "generator": "tools/prepare-sile-coast.mjs",
+    "embeddedPublicByteMatch": true
+  },
+  "visual": {
+    "sea": "single opaque PBR ocean, warped periodic normal/roughness maps; no geometric swell",
+    "nearshoreTint": "512px ocean albedo distance field over mapbounds+32m pad; authored8..14m width, no measured bathymetry",
+    "foam": "periodic cellular alpha, variable1.2..3.4m width, endpoint-exact joins, closed integer UV repeats",
+    "cliff": "<=4m horizontal/2m vertical quads, <=.08m authored inward fracture, lips fixed; conservative collision unchanged",
+    "sand": "mapped source masks; underlying duplicate grass removed; original terrain collision unchanged"
+  },
+  "review": {
+    "critical": 0,
+    "fixed": [
+      "Downward wash winding regression; final transparent wash removed in favor of opaque ocean field",
+      "Short original coast edge endpoint blend gap RED→GREEN",
+      "Closed foam texture phase discontinuity RED→GREEN"
+    ],
+    "additionalVisualFixes": [
+      "Regular sine crosshatch replaced with warped periodic noise",
+      "Beach overlapping grass produced triangular depth patches; raycast RED→GREEN masking",
+      "Overlapping transparent water sheets exposed near sea level; direct ocean-color field test RED→GREEN"
+    ],
+    "postReviewScope": "Final ocean albedo implementation authored and verified numerically + GL/GPU after one review fix pass; no second independent review cycle",
+    "deferred": []
+  },
+  "browser": {
+    "checks": [
+      "WebGL castle/overview/near-water/westbeach/eastcoast",
+      "low-high-medium texture switches",
+      "390x844 renderframe",
+      "WebGPU overview warm60fps",
+      "three world rebuilds stable29GLgeometries, initial rebuild shader hiccups",
+      "live profile persisted and FPV DISARM"
+    ],
+    "finalAppErrors": [],
+    "profile": "SOURCEONE f60-1750-6s/650g/1100mAh/Şile/medium25°/RC",
+    "rcCalibration": "unchanged; user still needs calibration on AWS origin"
+  },
+  "runtime": {
+    "restarts": 0,
+    "memoryMiB": 17.75,
+    "oldContainerAndConsistentDataBackup": "retained",
+    "sevenTenantIdentitiesAndNginx": "unchanged",
+    "zenthPublicWebAndApi": 200,
+    "gelisimTlsOrigin": 200
+  },
+  "limits": [
+    "Existing2x2km Şile map extent, not entire district coastline",
+    "Coarse DSM/coast geometry remains; beach slope not a new field survey",
+    "Watermeanphysics level flat; foam, fractures and color transitions authored visual detail",
+    "No physical phone/TX15 flight or real flight-log calibration",
+    "Azure legacy data still inaccessible; current AWS state preserved"
+  ],
+  "proof": [
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/entire-coast-hero-2.18.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/entire-coast-overview-2.18.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/entire-coast-rocks-2.18.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/entire-coast-beach-2.18.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/entire-coast-east-2.18.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/entire-coast-mobile-2.18.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/entire-coast-webgpu-2.18.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/entire-coast-live-2.18.png"
+  ],
+  "git": "same dirty codex/simulator-v2; no commit/push/merge"
+}

@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { OPS, LEGACY_OPS, FREE, TRACKS, opById, ROOM_OP, wantsBots, playerCanBeHit, trackOf, trackById, trackDone, trackGate, isOpOpen, nextInTrack, firstOpenOp } from "../src/missions.js";
+import { OPS, FREE, TRACKS, opById, ROOM_OP, trackOf, trackById, trackDone, trackGate, isOpOpen, nextInTrack, firstOpenOp } from "../src/missions.js";
 import { loadProgress, saveWin, isUnlocked, emptyProgress } from "../src/progress.js";
 import { createRun, tickRun, onPad, landedSoft, inSphere, nextGoal, canSwapBattery, atPoint } from "../src/goals.js";
 import { createState, step, withPayload, hoverThrottle } from "../src/physics.js";
@@ -34,20 +34,19 @@ function store() {
   };
 }
 
-test("academy tracks exclude combat while legacy mission ids survive", () => {
+test("academy tracks preserve aircraft mission IDs", () => {
   assert.deepEqual(TRACKS.map((t) => t.id), ["school", "manual", "acro", "environment", "advanced", "mission"]);
   assert.equal(TRACKS.slice(0, 5).reduce((n, t) => n + t.ops.length, 0), 30, "five academy modules contain 30 lessons");
   assert.equal(OPS.length, TRACKS.reduce((n, t) => n + t.ops.length, 0));
   assert.equal(new Set(OPS.map((o) => o.id)).size, OPS.length, "op ids are unique across tracks");
-  for (const id of ["school", "patrol", "waves", "race", "recon", "final"]) assert.equal(opById(id).id, id, `${id} keeps its id (progress + leaderboard key on it)`);
+  for (const id of ["school", "race", "recon"]) assert.equal(opById(id).id, id, `${id} keeps its id (progress + leaderboard key on it)`);
   for (const t of TRACKS) for (const op of t.ops) assert.equal(op.track, t.id);
-  assert.ok(LEGACY_OPS.some((o) => o.id === "boss"));
   assert.equal(trackOf("boss"), null);
   assert.equal(trackOf("free"), null);
   assert.equal(opById("free").kind, "free");
   assert.equal(ROOM_OP.indoor, "school");
   assert.equal(ROOM_OP.lr, "range");
-  for (const id of Object.values(ROOM_OP)) assert.ok(id === "free" || id === "team" || OPS.some((o) => o.id === id), id);
+  for (const id of Object.values(ROOM_OP)) assert.ok(id === "free" || OPS.some((o) => o.id === id), id);
 });
 
 test("every op references a real map and drone, and its goals sit inside the fence", () => {
@@ -80,24 +79,11 @@ test("every op references a real map and drone, and its goals sit inside the fen
   }
 });
 
-test("school/race/recon/patrol have no hostile bots", () => {
-  for (const id of ["hover", "school", "school-night", "patrol", "race", "race-forest", "recon", "sar", "range", "cargo"]) {
-    const op = opById(id);
-    assert.equal(wantsBots(op), false, id);
-    assert.equal(playerCanBeHit(op), false, id);
-  }
-  assert.equal(wantsBots(opById("waves")), true);
-  assert.equal(playerCanBeHit(opById("final")), true);
-  assert.equal(playerCanBeHit(FREE), false);
-  assert.equal(wantsBots(FREE), false);
-});
-
 test("unlock: first school rung open; the gate lesson opens the other tracks; rungs are a ladder", () => {
   const p = emptyProgress();
   assert.equal(isOpOpen(opById("hover"), p), true);
   assert.equal(isOpOpen(opById("school"), p), false, "lesson 2 waits on lesson 1");
   for (const id of ["race", "recon"]) assert.equal(isOpOpen(opById(id), p), false, `${id} waits on the school gate`);
-  assert.equal(isOpOpen(opById("patrol"), p), true, "legacy direct links do not enter the academy ladder");
   assert.equal(isOpOpen(FREE, p), true);
   assert.equal(trackGate(trackById("manual"), p)?.id, "school-night");
   assert.equal(trackGate(trackById("acro"), p)?.id, "manual-check");
@@ -128,9 +114,9 @@ test("a pilot from before the tracks keeps every win open, even with a new rung 
   for (const id of ["school", "patrol", "waves", "race", "recon", "final"]) assert.equal(isOpOpen(opById(id), p), true, id);
   assert.equal(isOpOpen(opById("hover"), p), true, "the new first lesson is open too");
   assert.equal(isOpOpen(opById("school-wind"), p), true);
-  assert.equal(isOpOpen(opById("arena"), p), true, "legacy combat remains open");
+  assert.equal(isOpOpen(opById("arena"), p), true, "retired activity falls back to free flight");
   for (const id of ["race-airfield", "sar"]) assert.equal(isOpOpen(opById(id), p), false, `${id}: new academy prerequisites apply`);
-  assert.equal(isOpOpen(opById("boss"), p), true, "legacy direct links remain available outside the academy");
+  assert.equal(isOpOpen(opById("boss"), p), true, "retired direct links fall back to free flight");
   assert.equal(isUnlocked(OPS, "school", p), true, "legacy helper agrees: a win never re-locks");
   assert.equal(trackDone(trackById("school"), p), 1);
 });
@@ -196,19 +182,6 @@ test("range op: the mid-run pad step needs a slow, low touch on the pad, and the
   assert.equal(op.steps[run.step].t, "land");
   tickRun(run, { state: { x: 0, y: 0.3, z: 0, vx: 0, vy: 0, vz: 0, armed: false, grounded: true, battery: 0.2 }, dt: 0.02 });
   assert.equal(run.won, true);
-});
-
-test("boss op is a no-respawn wave op with an armoured heavy bot; arena is a bigger score op", () => {
-  const boss = opById("boss");
-  assert.equal(boss.kind, "waves");
-  assert.deepEqual(boss.waves, [1, 2]);
-  assert.equal(boss.botDrone, "heavy");
-  assert.ok(boss.botHp >= 8);
-  assert.equal(wantsBots(boss), true);
-  const arena = opById("arena");
-  assert.equal(arena.kind, "final");
-  assert.ok(arena.scoreNeed > opById("final").scoreNeed);
-  assert.ok(arena.bots > opById("final").bots);
 });
 
 test("cargo: pick up low and slow, a crash drops it back, deliver each parcel, then land", () => {
@@ -403,16 +376,6 @@ test("recon marks then pad", () => {
   assert.equal(run.won, true);
 });
 
-test("waves break after clear", () => {
-  const run = createRun(opById("waves"));
-  tickRun(run, { state: createState(0, 8, 0), dt: 0.05, aliveBots: 0, waveSpawned: true });
-  assert.ok(run.waveBreak > 18);
-  assert.equal(run.recall, true);
-  run.waveBreak = 0.01;
-  tickRun(run, { state: createState(0, 8, 0), dt: 0.05, aliveBots: 0, waveSpawned: true });
-  assert.equal(run.wave, 1);
-});
-
 test("next goal points at the current school gate then the pad", () => {
   const run = createRun(opById("school"));
   const g0 = nextGoal(run);
@@ -423,7 +386,7 @@ test("next goal points at the current school gate then the pad", () => {
 });
 
 test("empty pack off the pad fails the op", () => {
-  const run = createRun(opById("patrol"));
+  const run = createRun(opById("hover"));
   const s = createState(18, 6, -22);
   s.armed = true;
   s.battery = 0;
@@ -448,18 +411,8 @@ test("crossing the winning gate the same tick the pack empties still wins", () =
   assert.equal(run.lap, 3);
 });
 
-test("a wave-clear the same tick the pack empties still recalls, not fails", () => {
-  const run = createRun(opById("waves"));
-  const s = createState(40, 8, -30);
-  s.armed = true;
-  s.battery = 0; // pack died this exact frame, far from the pad
-  tickRun(run, { state: s, dt: 0.02, aliveBots: 0, waveSpawned: true });
-  assert.equal(run.recall, true, `expected a wave-clear recall, got lost=${run.lost} reason=${run.reason}`);
-  assert.equal(run.lost, false);
-});
-
 test("empty pack on the pad does not fail", () => {
-  const run = createRun(opById("patrol"));
+  const run = createRun(opById("hover"));
   const s = createState(0, 0.4, 0);
   s.armed = false;
   s.battery = 0;

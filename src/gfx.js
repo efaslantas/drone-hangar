@@ -6,6 +6,7 @@
 // fresh one and WebGL takes over.
 import * as THREE from "three";
 import { createComposer as createWebGLComposer } from "./post.js";
+import {rendererOptions} from './render-options.js';
 
 export const GPU_KEY = "efa-hangar-gpu";
 
@@ -47,11 +48,11 @@ export function gfxLabel(kind) {
 }
 
 export async function createGfx(canvas, { touchUi = false, wantGpu = false } = {}) {
-  const powerPreference = touchUi ? "low-power" : "high-performance";
+  const options=rendererOptions({touchUi});
   if (wantGpu) {
     try {
       const mod = await import("./gfx-webgpu.js");
-      const g = await mod.createWebGPU(canvas, { antialias: !touchUi, powerPreference });
+      const g = await mod.createWebGPU(canvas, options);
       return { kind: g.backend, node: true, canvas, renderer: g.renderer, PMREMGenerator: g.PMREMGenerator, createComposer: g.createComposer, createSky: g.createSky };
     } catch (err) {
       console.warn("[gfx] WebGPU yolu açılamadı, WebGL'e dönülüyor:", err);
@@ -61,7 +62,7 @@ export async function createGfx(canvas, { touchUi = false, wantGpu = false } = {
       canvas = fresh;
     }
   }
-  const renderer = new THREE.WebGLRenderer({ canvas, antialias: !touchUi, powerPreference });
+  const renderer = new THREE.WebGLRenderer({ canvas, ...options });
   return {
     kind: "webgl",
     node: false,

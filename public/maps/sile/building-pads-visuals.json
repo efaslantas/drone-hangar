@@ -1,0 +1,42 @@
+{
+  "version": "2.27",
+  "authored": true,
+  "measured": false,
+  "source": "existing map.json/source OSM/DEM; no new survey",
+  "selection": "convex four-vertex coastal building footprints with exact outward1.4m edge offsets; conservative subset",
+  "candidateProfiles": 135,
+  "runtimePads": 4,
+  "sourceIds": [
+    550130831,
+    550130832,
+    550116788,
+    550130807
+  ],
+  "maximumAllowedCutM": 4,
+  "maximumAllowedFillM": 1,
+  "actualMaximumCutM": 3.0475352298178393,
+  "actualMaximumFillM": 0.7456049485762932,
+  "maximumEntryBoundaryStepM": 0.22683891009345913,
+  "entry": "existing1.25m entrance links retained; full-width sampled boundary step <=0.25m; visible step remains, no seamless or accessible entry claim",
+  "sourceBuildingBaseHeightRoofFootprintsUnchanged": true,
+  "sourceHeightGridAndLandUnchanged": true,
+  "runtimeTerrain": "separate authored buildingPads query priority after castle; exact ground owner partition before flat top; original outside planes preserved",
+  "retainingWalls": "batched visible triangles follow source grid edges and diagonals; two-sided contact and swept boundary interception, no new solid prism",
+  "unchanged": "baseline prop transforms, existing boxes and building/foundation prisms; source data arrays",
+  "reject": [
+    "unsupported/concave/complex footprint",
+    "land or water-hole crossing; positive0.15m shoreline margin",
+    "roads including1.6m clearance",
+    "source beach/harbour/paved/coast surfaces",
+    "neighbour building or landmark platform",
+    "map edge/spawn",
+    "overlapping terrace",
+    "cut/fill limits",
+    "disconnected entrance or boundary step >0.25m",
+    "other existing entrance corridors",
+    "actual rendered prop bounds"
+  ],
+  "remaining": "131 coastal profiles remain unchanged for these safety/geometry limits or absence of meaningful burial; unsupported uphill burial remains; no universal excavation claim",
+  "meshBudget": 45,
+  "runtimeMeshCount": 43
+}

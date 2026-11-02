@@ -1,0 +1,153 @@
+{
+  "date": "2026-11-02",
+  "status": "published",
+  "release": "v2.33.0-49b01ebfc1b8",
+  "url": "https://hangar.18-153-158-209.sslip.io/",
+  "scope": "Reuse successfully built billboard preview when the selected map/options/camera/world token already match; removes redundant full Sile build on inspection preparation entry",
+  "rootCause": "main.selectMap.commit always calls billboard.setMap; previous setter unconditionally clearWorld/buildWorld even when Sile already selected",
+  "implementation": {
+    "owner": "src/billboard.js/updateBillboardMap",
+    "successfulBuildOnly": true,
+    "guards": [
+      "scene weakmap",
+      "map id",
+      "reduced option",
+      "camera identity",
+      "world token identity",
+      "worldMatches map/night/variant"
+    ],
+    "crafts": "detached before clear, reattached in finally",
+    "failureRetry": "failed source build never memoized; externalclear/tokenchange or option/mapchange rebuilds",
+    "geometryAndCamera": "same prior world builder, lighting/shadow and camera setup; warm reuse retains exact scene/resources/children/craft/projection"
+  },
+  "verification": {
+    "newFocused": 3,
+    "redGreen": {
+      "beforeWarmSelectionMs": 4013.175,
+      "afterWarmSelectionMs": 0.022,
+      "independentWarmMs": 0.02,
+      "failure": "same-world token identity changed by redundant rebuild",
+      "pass": "same token/resources/children/craft/projection and zero disposal during repeat"
+    },
+    "node22Full": {
+      "pass": 521,
+      "fail": 0,
+      "durationMs": 151730.125835,
+      "architecture": "linux/arm64",
+      "concurrency": 4,
+      "log": ".superpowers/sdd/2026-11-02-sile-preview-reuse/sile-preview-final-node22-tests.log"
+    },
+    "infra": 11,
+    "viteBuild": "pass; existinglargechunkwarning",
+    "arm64Image": "pass",
+    "independentReview": {
+      "critical": 0,
+      "important": 0,
+      "minorDeferred": [
+        "Focused disposal test asserts disposal>0 but does not count exactly one event perresource through replacement/externalclear. Existing clearWorld Set owner is unchanged; no runtime disposal fault identified."
+      ],
+      "record": ".superpowers/sdd/2026-11-02-sile-preview-reuse/review-findings.md"
+    },
+    "actualBrowser": {
+      "baselineLive2_32EntryCallMs": 6457,
+      "baselineExceeded3SecondAutomationDeadline": true,
+      "localWarmEntryClickMs": [
+        292,
+        284
+      ],
+      "measurementLimit": "CUA action wall time on this workstation; not universal user latency or initial load",
+      "actualMapChanges": "Sile→yard shows yard preview; yard→Sile really rebuilds and still incurs synchronous preparation; then warm re-entry fast",
+      "flight": "inspectionFPVready0/3DISARM,error[]",
+      "localProfile": {
+        "reference": "f60-1750-6s",
+        "massG": 650,
+        "capacityMah": 1100,
+        "quality": "medium",
+        "tilt": 0,
+        "input": "rc"
+      },
+      "profilePreferences": "local map restored to Sile; no input/vehicle changes",
+      "browserConnection": "Chrome extension renumbered4→5; fresh same-browser QA tab used; no unrelated usertabs closed"
+    }
+  },
+  "invariants": {
+    "comparedTo": "v2.32.0-f52f89ea77ff",
+    "worldBuilderMapSourceTerrainPhysicsAndInspectionCore": "unchangedmanifesthashes",
+    "mainChange": "version fallback only",
+    "profileStorageAndNetworking": "unchanged",
+    "newDependencies": 0,
+    "runtimeSourceFiles": 277
+  },
+  "packagingRecovery": {
+    "firstExport": "failedDockerENOSPC; imagebuildhadpassed/live2.32unchanged",
+    "removedOldLocalArchives": [
+      "v2.29.0-298729911b76",
+      "v2.30.0-d5fc927a38fd",
+      "v2.31.0-b2bdbccd35e4"
+    ],
+    "archiveVerification": "localSHA/receipt/S3ContentLength/remote stageSuccess all matched before removal",
+    "archiveFreedBytes": 424095691,
+    "removedGeneratedBuildCopies": "same3oldreleasebuild contexts, allfiles matched sourcemanifests before removal;198093747bytes plus30bytefailedexport",
+    "preserved": "canonical source, before-evidence, manifests, receipts, current2.32package and remoteimages/rollback",
+    "retry": "success"
+  },
+  "image": {
+    "release": "v2.33.0-49b01ebfc1b8",
+    "imageId": "sha256:12988fb082288e492ed5e48c95fb7e779fd2636d1022f89af22da8637403b91f",
+    "archiveSha256": "7605661f0bf8de878a310163e4ad9c3555b6dc9fd65f7c615c1efe7584a784bf",
+    "archiveBytes": 141386117,
+    "architecture": "arm64",
+    "sourceFiles": 277
+  },
+  "limits": [
+    "First Sile startup and real map changes still build synchronously; this correction removes redundant same-map rebuilds only",
+    "Workstation action timings are not a device latency guarantee",
+    "No map geometry/physics/vehicle realism increment; existing30mDSM/representative scene and FPV reference limits remain",
+    "No physical TX15/phone flight or full manual route validation",
+    "No SITL/MAVLink or real ILKE vehicle integration"
+  ],
+  "proofDir": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1",
+  "proof": [
+    "sile-preview-mapchange-yard-2.33.png",
+    "sile-preview-local-flight-2.33.png",
+    "sile-preview-live-preparation-2.33.png",
+    "sile-preview-live-flight-2.33.png"
+  ],
+  "git": "same dirtycodex/simulator-v2; no commit/push/merge",
+  "live": {
+    "httpsHealth": "v2.33.0-49b01ebfc1b8",
+    "manifestFiles": 277,
+    "runningSourceHashes": 113,
+    "publicHttpsAssetsAndSources": "pass; /tmp/sile-preview-live-verification.log",
+    "uniqueUiIds": true,
+    "unauthorizedAdmin": 401,
+    "twoClientWssJoinStateLeave": "pass",
+    "warmEntryClickMs": [
+      297,
+      273
+    ],
+    "timingLimit": "CUA action wall time; existing Sile preview already built; not initial startup",
+    "browser": "inspectionpreparation/FPVDISARMready0/3,error[]",
+    "profile": {
+      "reference": "f60-1750-6s",
+      "massG": 650,
+      "capacityMah": 1100,
+      "quality": "medium",
+      "tilt": 25,
+      "input": "gamepad"
+    },
+    "restarts": 0,
+    "memoryMiB": 22.98,
+    "limitMiB": 256,
+    "uid": "1000:1000",
+    "readonly": true,
+    "network": [
+      "drone-hangar-net"
+    ],
+    "otherSevenTenantsAndNginx": "unchanged",
+    "nginxSyntax": "pass",
+    "zenthWebAndApi": 200,
+    "gelisimTlsOrigin": 200,
+    "rollbackContainerAndConsistentDataBackup": "retained"
+  }
+}

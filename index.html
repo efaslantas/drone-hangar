@@ -5,129 +5,157 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1, user-scalable=no, interactive-widget=resizes-visual" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="mobile-web-app-capable" content="yes" />
-    <meta name="theme-color" content="#07090d" />
+    <meta name="theme-color" content="#101212" />
     <meta name="format-detection" content="telephone=no" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="Hangar" />
     <link rel="manifest" href="/manifest.webmanifest" />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <title>Drone Hangar</title>
+    <meta name="app-version" content="2.33.0" /><title>EFA Hangar 2.0 · FPV Simülatörü</title>
+    <meta name="description" content="Drone’unu seç, uçuş alanını keşfet. Serbest uçuş, freestyle ve yarış için FPV simülatörü." />
     <link rel="stylesheet" href="/src/style.css" />
-    <link rel="stylesheet" href="/src/theme.css" />
   </head>
   <body>
     <div id="app">
       <section id="hangar" data-screen="home">
-        <canvas id="hangar-live" aria-hidden="true"></canvas>
-        <div class="hangar-sky" aria-hidden="true"></div>
-        <div class="hangar-grid" aria-hidden="true"></div>
-        <div class="hangar-vignette" aria-hidden="true"></div>
-        <div class="hangar-inner">
-          <nav class="topbar">
-            <div class="brand">
-              <span class="kicker">EFA</span>
-              <strong>HANGAR</strong>
-              <span class="home-sys">SYS · ONLINE</span>
-            </div>
-            <div class="topbar-actions">
-              <button type="button" class="ghost" id="fullscreen-btn">Tam Ekran</button>
-              <a class="rank-link" href="/leaderboard.html">Sıralama</a>
-              <button type="button" class="ghost" id="home-back" hidden>Ana ekran</button>
-              <button type="button" class="fly" id="go" data-start>KALKIŞ YAP</button>
-            </div>
+        <aside class="sidebar">
+          <a class="brand" href="/" aria-label="EFA Hangar ana ekran"><span class="brand-mark">H<span>↗</span></span><span>EFA <strong>HANGAR</strong><small>FPV SIMULATOR / 2.0</small></span></a>
+          <div class="sidebar-label">UÇUŞ MERKEZİ</div>
+          <nav class="home-options" aria-label="Ana menü">
+            <button type="button" id="home-fly" class="recommended"><span class="nav-icon">↗</span><b>Serbest uçuş</b><span class="nav-arrow">↗</span></button>
+            <button type="button" id="home-freestyle"><span class="nav-icon">∞</span><b>Serbest stil</b></button>
+            <button type="button" id="home-race"><span class="nav-icon">⚑</span><b>Yarış</b></button>
+            <button type="button" id="home-inspection"><span class="nav-icon">◎</span><b>İLKE · Şile inceleme</b><small>Manuel · 3 bölge · yerel kayıt</small></button>
+            <button type="button" id="home-arcade"><span class="nav-icon">◇</span><b>Arcade</b></button>
+            <button type="button" id="home-school"><span class="nav-icon">◈</span><b>Akademi</b></button>
+            <button type="button" id="home-workshop"><span class="nav-icon">⌘</span><b>Atölye</b></button>
+            <button type="button" id="home-more" aria-controls="more-navigation" aria-expanded="false"><span class="nav-icon">⋯</span><b>Diğer</b></button>
           </nav>
+          <div class="sidebar-label">DAHA FAZLA</div>
+          <nav class="secondary-nav" id="more-navigation" aria-label="Diğer seçenekler">
+            <button type="button" id="home-friends">Birlikte uç</button>
+            <button type="button" id="home-daily">Günün rotası <small id="home-daily-sub"></small></button>
+            <button type="button" id="home-rebuild">Pilot hikâyesi <small id="home-rebuild-sub">İsteğe bağlı</small></button>
+            <button type="button" id="home-settings">Ayarlar</button>
+            <a href="/leaderboard.html">Sıralama ↗</a>
+          </nav>
+          <p id="inspection-save-feedback" hidden role="status"></p>
+          <footer class="sidebar-foot"><span class="status-dot"></span> SİMÜLATÖR HAZIR <div class="public-links"><a href="/help.html">Yardım</a><a href="/privacy.html">Gizlilik</a><a href="/credits.html">Kaynaklar</a></div></footer>
+        </aside>
+        <main class="hangar-inner">
+          <header class="topbar"><div><span class="eyebrow">UÇUŞ MASASI</span><span class="topbar-sub">Kendi çizgini bul.</span></div><div class="topbar-actions"><button type="button" id="home-back" hidden>← Ana ekran</button><button type="button" id="fullscreen-btn">⛶ Tam ekran</button></div></header>
           <section class="home-hero" id="home-hero">
-            <div class="home-stage">
-              <div class="home-copy">
-                <span class="bay-label">EFA HANGAR · UÇUŞ SİMÜLATÖRÜ</span>
-                <h1>Ne yapmak<br>istiyorsun?</h1>
-                <p>Amacını seç; drone ve haritayı sonraki ekranda hazırlayabilirsin.</p>
-                <ul class="home-meters" aria-hidden="true">
-                  <li><b>10</b><span>platform</span></li>
-                  <li><b>FPV</b><span>bodycam</span></li>
-                  <li><b>16</b><span>kişi / oda</span></li>
-                  <li><b>M2</b><span>kontrol</span></li>
-                </ul>
-              </div>
-              <div class="home-options">
-                <button type="button" class="recommended" id="home-rebuild" data-code="01" hidden><b>Drone’u yeniden topla</b><small id="home-rebuild-sub">Kayıp çekime dönmek için gövdeyi hazırla.</small></button>
-                <button type="button" class="recommended" id="home-school" data-code="01"><b>İlk kez uçuyorum</b><small>Önerilen · Adım adım Uçuş Okulu</small></button>
-                <button type="button" id="home-fly" data-code="02"><b>Serbest uçuş</b><small>Kural yok; drone ve haritayı sen seç</small></button>
-                <button type="button" id="home-autonomy" data-code="03"><b>İHA + İDA görevi</b><small>Kıyıyı tara, deniz aracını olaya yönlendir</small></button>
-                <button type="button" id="home-operations" data-code="04"><b>Operasyon Masası</b><small>1 İHA + 2 İDA · PS koluyla serbest kontrol ve rota</small></button>
-                <button type="button" id="home-daily" data-code="05"><b>Günün görevi</b><small id="home-daily-sub">Herkes aynı rota, sıralama günlük</small></button>
-                <button type="button" class="secondary" id="home-friends" data-code="06"><b>Arkadaşlarla oyna</b><small>Aynı odaya katıl, birlikte uç</small></button>
-              </div>
-            </div>
+            <div class="home-copy"><div class="eyebrow"><span class="status-dot"></span> FPV / SERBEST UÇUŞ</div><h1>Uçmaya <br><em>hazır.</em></h1><p>Kumandanı bağla. Bir alan seç.<br> Gerisi senin uçuşun.</p><button type="button" class="fly" id="home-quick">Hızlı uçuş <span>↗</span></button><span class="last-label">SON KURULUM</span><strong id="home-last-setup">5" Freestyle · Pist</strong><p id="home-input-status" class="connection-hint" role="status"></p></div>
+            <div class="home-preview"><canvas id="hangar-live" aria-label="Pist uçuş alanı önizlemesi"></canvas><div class="preview-shade"></div><span class="scene-badge">01 / REFERANS ALAN</span><div class="scene-caption"><span>AÇIK HAVA · FREESTYLE · YARIŞ</span><h2>Pist</h2><p>Bir çizgi. Sonsuz ihtimal.</p></div><span class="scene-coordinate">EFA / FLIGHT FIELD</span></div>
+            <div class="home-bottom"><span><b>10</b> drone</span><span><b>7</b> uçuş alanı</span><span><b>36</b> eğitim adımı</span><span class="home-bottom-note">Hikâye ve eğitim isteğe bağlı. Hemen uçabilirsin.</span></div>
           </section>
-          <footer class="public-links"><a href="/privacy.html">Gizlilik</a><a href="/help.html">Yardım</a><a href="/credits.html">Credits</a></footer>
-          <div class="ops-strip" id="ops-strip">
-            <div>
-              <span>Drone</span>
-              <strong id="ops-drone">Tiny Whoop</strong>
-              <em id="ops-pace">Çok yavaş</em>
-            </div>
-            <div>
-              <span>Oyun modu</span>
-              <strong id="ops-op">Uçuş okulu</strong>
-            </div>
-            <div>
-              <span>Harita</span>
-              <strong id="ops-map">Kapalı hangar</strong>
-            </div>
-            <div>
-              <span>Oda</span>
-              <strong id="ops-room">Genel</strong>
-              <em id="ops-room-n">0 kişi</em>
-            </div>
-          </div>
-          <nav class="hangar-tabs" id="hangar-tabs">
-            <button type="button" class="on" data-tab="platform">Uçuş hazırlığı</button>
-            <button type="button" data-tab="ayarlar">Ayarlar</button>
-            <button type="button" data-tab="kontrol">Kontroller</button>
-          </nav>
-          <div class="hangar-tabpanels">
-          <section class="showcase" data-tab="ozellikler" hidden>
-            <div class="showcase-head">
-              <span class="bay-label">EFA Hangar — canlı briefing</span>
-              <h2>Hangarda seni neler bekliyor?</h2>
-              <p class="why">Kur yok, indirme yok — link aç, PS kolunu bağla, ARM'a bas ve uç. 10 platform, varsayılan gerçekçi acro, eğitim profili ve gerçek zamanlı çok oyunculu tek sekmede.</p>
-            </div>
-            <div class="showcase-grid">
-              <div class="showcase-card">
-                <span class="cls">10 platform</span>
-                <h2>Micro'dan Heavy Lift'e</h2>
-                <p>Küçük indoor drone'lardan uzun menzilli ve ağır yük modellerine kadar farklı hız, boyut ve uçuş karakterleri.</p>
+          <section class="preparation" aria-label="Uçuş hazırlığı">
+            <div class="preparation-heading"><div><span class="eyebrow">KURULUMUNU HAZIRLA</span><h1 id="preparation-title">Serbest uçuş</h1></div><span class="preparation-hint">Drone ve alan seçimin kaydedilir. Sayısal kurulumda Değerleri uygula düğmesini kullan.</span></div>
+            <div class="ops-strip" id="ops-strip"><div><span>DRONE</span><strong id="ops-drone"></strong><em id="ops-pace"></em></div><div><span>ALAN</span><strong id="ops-map"></strong></div><div><span>UÇUŞ</span><strong id="ops-op"></strong></div><div class="room-summary"><span>ODA</span><strong id="ops-room"></strong><em id="ops-room-n"></em></div></div>
+            <p id="reference-flight-note" class="reference-flight-note" hidden>Tezgâh itki referansı · antrenman; ders ilerlemesi ve rekorlar kaydedilmez. <button type="button" id="reference-use-generic">Genel profile geç</button></p><p id="geo-map-note" class="reference-flight-note" hidden>Şile · gerçek konumlar, temsili binalar ve yaklaşık arazi · Serbest uçuş. <a href="/sile.html" target="_blank" rel="noopener">Kaynaklar ve sınırlar ↗</a></p><p id="map-load-status" role="status"></p><nav class="hangar-tabs" id="hangar-tabs" aria-label="Hazırlık bölümleri"><button type="button" class="on" data-tab="platform">Drone & alan</button><button type="button" data-tab="operasyon">Eğitim & görev</button><button type="button" data-tab="atolye">Atölye</button><button type="button" data-tab="ayarlar">Görüntü & ayarlar</button><button type="button" data-tab="kontrol">Kontroller</button></nav>
+            <div class="hangar-tabpanels">
+              <section data-tab="platform" class="preparation-layout"><aside class="preview-column"><div class="model-stage">
+                <canvas id="hangar-preview" aria-label="Seçili drone için temsili 3B kurulum"></canvas>
+                <div class="model-meta">
+                  <p id="model-caption">Tiny Whoop</p><a id="airframe-visual-note" class="airframe-visual-note" href="/physics.html" target="_blank" rel="noopener">Temsili gövde</a>
+                  <dl class="hero-meta" id="spec-sheet">
+                    <div><dt>Sınıf</dt><dd id="spec-class">Indoor</dd></div>
+                    <div><dt>Açıklık</dt><dd id="spec-span">65 mm</dd></div>
+                    <div><dt>Mod</dt><dd id="spec-mode">angle</dd></div>
+                    <div><dt>Hız</dt><dd id="spec-pace">Çok yavaş</dd></div>
+                  </dl>
+                </div>
+              </div><div class="preview-tools"><span>Temsili 3B kurulum</span><div><button type="button" data-preview-view="angle">Açılı</button><button type="button" data-preview-view="top">Üstten</button><button type="button" data-preview-view="bottom">Alttan</button></div><label class="preview-zoom">Yakınlaştır<input id="preview-zoom" type="range" min="1" max="2.5" step="0.1" value="1.4" /></label><small>Çevirmek için modeli sürükle.</small></div><section class="briefing flight-briefing" id="flight-briefing" aria-live="polite">
+                <div class="bay-label" id="briefing-title">Uçuş brifingi</div>
+                <p class="briefing-kicker" id="briefing-kicker">Uçuş Okulu 2/6 · Kapılar</p>
+                <dl class="briefing-rows" id="briefing-rows"></dl>
+                <p class="briefing-note" id="briefing-note" hidden></p>
+              </section></aside><div class="preparation-choices"><section class="pick briefing"><div class="section-heading"><h2>Drone’unu seç</h2><span>01 / PLATFORM</span></div><div id="cards" class="pick-grid"></div></section><section class="maps briefing"><div class="section-heading"><h2>Uçuş alanı</h2><span>02 / HARİTA</span></div><div id="maps" class="maps-grid"></div></section><section class="rooms briefing">
+                <div class="bay-label">3 · Oda</div>
+                <div class="grid" id="room-cards"></div>
+              </section><section class="join">
+              <div class="bay-label">Davet adresi</div>
+              <p class="why">Seçili oda için paylaşılacak adres. Arkadaşın bunu açınca aynı lobiye düşer.</p>
+              <div class="share-row">
+                <input id="share-url" readonly />
+                <button type="button" id="copy-share">Kopyala</button>
               </div>
-              <div class="showcase-card">
-                <span class="cls">Gerçekçi Acro</span>
-                <h2>Varsayılan gerçek uçuş fiziği</h2>
-                <p>Acro’da motor gecikmesi, rölanti, batarya sag, kütleye bağlı atalet ve hava hızına göre rüzgâr sürüklemesi çalışır. Ders modu görev boyunca kilitlenir.</p>
-              </div>
-              <div class="showcase-card">
-                <span class="cls">Akademi + 6 operasyon</span>
-                <h2>Temelden saha görevine</h2>
-                <p>Beş bölümde 30 ders: temel, manuel gaz, Acro, çevre ve ileri parkur. Ardından altı operasyonda keşif, arama kurtarma, menzil, yük, iniş ve denetim uygula.</p>
-              </div>
-              <div class="showcase-card">
-                <span class="cls">Çok oyunculu</span>
-                <h2>6 oda, 16 kişiye kadar</h2>
-                <p>Canlı oyuncu listesi ve tek linkle davet. Görevlerdeki en hızlı sürelerini sıralamada karşılaştır.</p>
-              </div>
-              <div class="showcase-card">
-                <span class="cls">Her kontrol</span>
-                <h2>Klavye, kol, dokunmatik</h2>
-                <p>Klavye, DualSense/DualShock veya mobil çift çubukla uç. Kontroller ekranından tuşları öğren.</p>
-              </div>
-              <div class="showcase-card">
-                <span class="cls">Bodycam görünüm</span>
-                <h2>Doğal FPV kamera</h2>
-                <p>Doğal renkler, ölçülü lens etkisi ve gövdeye yaylı kamera. Temiz veya FPV görünümü, gece/gündüz ve kamera açısı seçilebilir.</p>
-              </div>
-            </div>
+              <p class="status-line"><span id="netstat">bağlanıyor…</span> · <span id="pilots">odada kimse yok</span></p>
+            </section></div></section>
+              <section class="ops briefing" data-tab="operasyon" hidden>
+            <div class="bay-label">2 · Oyun modu</div>
+            <p class="why">Önce ne yapmak istediğini seç. Eğitim bölümleri aşağıda sırayla açılır; serbest uçuş ve özel görevler her zaman kullanılabilir.</p>
+            <div class="grid ops-grid" id="ops"></div>
           </section>
-          <div class="session-panel" data-tab="ayarlar" hidden>
+              <section data-tab="atolye" hidden class="workshop-panel"><p id="workshop-unavailable" class="why" hidden>Bu gövdenin değiştirilebilir FPV parçaları yok. Drone & alan bölümünden bir FPV gövde seçebilirsin.</p><div class="workshop-layout"><div id="workshop-preview"><section class="workshop-comparison">                 <h3 class="build-comparison-title" id="build-comparison-title">Bu kurulum neyi değiştiriyor?</h3>
+                 <p class="why" id="build-comparison-note">Aynı drone’un standart kurulumuna göre fark. Süreler simülasyon tahminidir.</p>
+                 <dl class="build-stats" id="build-stats" aria-live="polite"></dl>
+                 <p class="workshop-feedback" id="workshop-feedback" role="status"></p>
+</section></div><section class="briefing workshop" id="fpv-workshop">
+                 <div class="bay-label">FPV Atölyesi</div>
+                 <p class="why" id="story-workshop-note" hidden></p>
+                 <p class="why">Parçalar itişi, çevikliği, sürüklenmeyi ve pack süresini değiştirir.</p>
+                 <p class="workshop-guide">Ölçüm tabanlı bir referans veya serbest parça seçimi kullan. Kaynağı ve varsayımları aşağıda görebilirsin.</p>
+                 <section id="reference-panel" class="reference-panel">
+                   <h3>Ölçüm tabanlı referans</h3>
+                   <button id="source-one-preset" type="button">SOURCE ONE v4 · 6S referansını sabitle</button>
+                   <p id="source-one-status" role="status" class="why"></p>
+                   <label>Motor / pervane / hücre eşleşmesi<select id="reference-profile"><option value="generic">Genel profil · ölçüm verisi yok</option><option value="f60-1750-6s">F60 Pro IV 1750KV · HQ 5×4×3 · 6S</option><option value="f60-2550-4s">F60 Pro IV 2550KV · HQ 5×4×3 · 4S</option></select></label>
+                   <div class="reference-inputs" id="reference-inputs">
+                     <label>Uçuşa hazır toplam ağırlık · g<input id="reference-mass" type="number" min="300" max="1500" step="10" value="650" /></label>
+                     <label>Batarya kapasitesi · mAh<input id="reference-capacity" type="number" min="500" max="3000" step="50" value="1100" /></label>
+                     <label>Kullanılabilir kapasite · %<input id="reference-usable" type="number" min="50" max="100" step="5" value="80" /></label>
+                     <label>Aviyonik akımı · A<input id="reference-electronics" type="number" min="0" max="3" step="0.1" value="0.5" /></label>
+                   </div>
+                   <details id="battery-panel" class="dynamics-panel" open><summary>Batarya · gerilim ve kapasite modeli</summary>
+                     <p>Rint devresi, örnek OCV eğrisi ve gerilimin karesiyle itki/akım ölçeklemesi kullanılır. Bunlar ölçülmüş batarya verisi değildir; ısı ve yaşlanma hesaplanmaz.</p>
+                     <label>Besleme modeli<select id="battery-mode"><option value="bench">Tezgâh · kaynak besleme koşulları</option><option value="rint">Rint · gerilim çökmesi ve kapasite</option></select></label>
+                     <div class="reference-inputs">
+                       <label>Hücre başına iç direnç · mΩ<input id="battery-resistance" type="number" min="0" max="30" step="0.5" /></label>
+                       <label>Başlangıç doluluğu · SOC %<input id="battery-soc" type="number" min="20" max="100" step="5" /></label>
+                       <label>Model güç kesme eşiği · V/hücre<input id="battery-cutoff" type="number" min="2.8" max="3.6" step="0.05" /></label>
+                     </div><p class="why">Eşik altında 0,2 saniye kalınca güç kesilir. Padde yeni paket veya R ile sıfırlama gerekir. Bu eşik gerçek ESC ayarı değildir. Pil çubuğu kullanılabilir bütçeyi, SOC ise toplam kapasite doluluğunu gösterir.</p>
+                     <p id="battery-summary"></p>
+                   </details>
+                   <details id="dynamics-panel" class="dynamics-panel"><summary>Uçuş dinamiği ve kontrol · model varsayımları</summary>
+                     <p>Referans + Gerçekçi Acro’da dört motor ve rijit gövde denklemi çalışır. Angle ve genel profil eski kontrol yolunu kullanır. Aşağıdaki parametreler donanımdan ölçülmüş değildir.</p>
+                     <div class="reference-inputs">
+                       <label>Hava yoğunluğu · kg/m³<input id="aero-density" type="number" min="0.5" max="2" step="0.001" /></label>
+                       <label>CdA sağ/sol · m²<input id="aero-x" type="number" min="0.0001" max="0.5" step="0.001" /></label>
+                       <label>CdA üst/alt · m²<input id="aero-y" type="number" min="0.0001" max="0.5" step="0.001" /></label>
+                       <label>CdA ön/arka · m²<input id="aero-z" type="number" min="0.0001" max="0.5" step="0.001" /></label>
+                       <p class="why">CdA, direnç katsayısı × izdüşüm alanıdır. Başlangıç değerleri varsayımdır; kuvvet hızın karesiyle artar, kütleye bölünerek ivmeye çevrilir.</p>
+                       <label>Motorlar arası çapraz mesafe · mm<input id="dyn-wheelbase" type="number" min="180" max="280" step="5" /></label>
+                       <label>Atalet kaynağı<select id="dyn-inertia-mode"><option value="estimated">Geometriden yaklaşık hesap</option><option value="manual">Elle girilen · doğrulanmadı</option></select></label>
+                       <label>Jx · pitch · kg·m²<input id="dyn-inertia-x" type="number" min="0.000001" max="0.1" step="0.0001" /></label>
+                       <label>Jy · yaw · kg·m²<input id="dyn-inertia-y" type="number" min="0.000001" max="0.1" step="0.0001" /></label>
+                       <label>Jz · roll · kg·m²<input id="dyn-inertia-z" type="number" min="0.000001" max="0.1" step="0.0001" /></label>
+                       <label>Motor zaman sabiti · ms<input id="dyn-tau" type="number" min="5" max="150" step="5" /></label>
+                       <label>Yaw tork / itki katsayısı · m<input id="dyn-yaw" type="number" min="0.002" max="0.04" step="0.001" /></label>
+                       <label>Merkez rate eğimi · °/sn<input id="dyn-center" type="number" min="20" max="400" step="10" /></label>
+                       <label>Model P · 1/sn<input id="dyn-kp" type="number" min="4" max="60" step="1" /></label>
+                       <label>Model I · 1/sn²<input id="dyn-ki" type="number" min="0" max="30" step="1" /></label>
+                       <label>Model D · boyutsuz<input id="dyn-kd" type="number" min="0" max="1" step="0.01" /></label>
+                     </div>
+                     <p id="dynamics-summary"></p>
+                     <p class="why">J tahmini, kütlenin %25’ini rotor konumlarında, %75’ini 120×40×160 mm merkez kutuda varsayar. Manuel J değerleri pozitif ve fiziksel üçgen eşitsizliğine uygun olmalıdır. Kübik rate eğrisi ve bu PID gerçek Betaflight/PX4 firmware’i değildir.</p>
+                   </details>
+                   <p class="why">Sayısal değişiklikleri kaydetmek için Değerleri uygula düğmesine bas.</p><button type="button" id="reference-apply">Değerleri uygula</button><p id="dynamics-validation" class="why" role="status"></p><div id="reference-parts" class="reference-parts"></div><div id="reference-evidence" aria-live="polite"></div>
+                   <p class="why">Ölçülen bölüm motor–pervane tezgâh eğrisidir. Ağırlık ve batarya girdileri örnek varsayımlardır; gerçek kurulumunu tartarak güncelle. Açısal tepki ve hava direnci yaklaşık modeldir.</p>
+                 </section>
+                 <div id="workshop-parts"></div>
+                 <footer class="workshop-foot"><small id="build-summary"></small><button type="button" id="build-reset">Bu gövdeyi sıfırla</button></footer>
+               </section></div></section>
+              <div class="session-panel" data-tab="ayarlar" hidden>
+            <div class="settings-intro"><span class="eyebrow">GÖRÜNTÜ & PERFORMANS</span><h2>Uçuşuna uygun görüntü.</h2><p>Temiz görüntü varsayılandır. Düşük kalite hafif yüzeyleri, orta/yüksek kalite taranmış dokuları kullanır; fizik değişmez.</p></div>
+            <div class="visual-grid">
+              <label>Grafik kalitesi<select id="quality-preset" data-visual="quality"><option value="low">Düşük · performans</option><option value="medium" selected>Orta · dengeli</option><option value="high">Yüksek · detay</option></select></label>
+              <label>Render çözünürlüğü <output id="scale-value">100%</output><input id="render-scale" data-visual="renderScale" type="range" min="0.5" max="1.5" step="0.1" value="1" /></label>
+              <label>Gölgeler<select id="shadow-quality" data-visual="shadows"><option value="auto">Kalite profiline göre</option><option value="off">Kapalı</option></select></label>
+              <label>Çevre yoğunluğu<select id="environment-detail" data-visual="detail"><option value="auto">Kalite profiline göre</option><option value="low">Düşük</option><option value="medium">Orta</option><option value="high">Yüksek</option></select></label>
+              <label>Uçuş göstergeleri<select id="hud-layout" data-visual="hud"><option value="minimal">Sade</option><option value="full">Ayrıntılı</option><option value="off">Gizli</option></select></label>
+            </div>
             <div class="field">
               <label for="pilot">Görünen ad</label>
               <input id="pilot" maxlength="18" value="pilot" autocomplete="nickname" />
@@ -151,33 +179,31 @@
               </label>
               <button type="button" id="calibrate-pad">PS kolu kalibre et</button>
               <small id="calibrate-status">Stick merkezini ve tam hareketini ölçer</small>
-              <label>Kamera
-                <select id="cam-tilt">
-                  <option value="15">15°</option>
-                  <option value="30" selected>30°</option>
-                  <option value="45">45°</option>
-                </select>
-              </label>
-              <label>Görüntü
-                <select id="camera-look">
-                  <option value="0" selected>Net / doğal</option>
-                  <option value="0.65">Doğal FPV</option>
-                  <option value="1">Belirgin FPV</option>
-                </select>
-              </label>
-              <label>Ateş
-                <select id="gun">
-                  <option value="std" selected>Standart</option>
-                  <option value="rapid">Hızlı</option>
-                </select>
-              </label>
+              <label>Görüş açısı · yatay <output id="fov-value">110°</output><input id="camera-fov" data-visual="fov" type="range" min="80" max="140" step="1" value="110" /></label>
+              <label>Kamera eğimi <output id="tilt-value">25°</output><input id="cam-tilt" data-visual="tilt" type="range" min="0" max="60" step="1" value="25" /></label>
+              <label>Lens görünümü<select id="camera-look" data-visual="lens"><option value="0">Net / doğal</option><option value="0.65">Hafif FPV lens</option><option value="1">Belirgin FPV lens</option></select></label>
+              <label class="tod"><input id="camera-vibration" data-visual="vibration" type="checkbox" /> Kamera titreşimi</label>
             </div>
             <p class="field-why">Eğitim profili küçük stick hareketlerini hassaslaştırır, dönüş hızını sınırlar ve R2 punch yardımını kapatır. Sol stick merkezi hover, üst uç tam motor gücüdür.</p>
           </div>
-
-          <section class="how briefing" data-tab="kontrol" hidden>
+              <section class="how briefing" data-tab="kontrol" hidden>
             <div class="bay-label">Nasıl oynanır — Mode 2</div>
-            <p class="why">Sol el: yaw + gaz (orta = hover). Sağ el: roll + pitch. İlk uçuş: <b>Uçuş okulu</b> → BAŞLAT. Sarı üçgen sıradaki kapı. H pad’e in, ARM kapat.</p>
+            <p class="why">PS/dokunmatik: sol el yaw + gaz (orta = hover). RC gazı aşağıdaki ayrı profilde 0–100 çalışır. Sağ el: roll + pitch. İlk uçuş: <b>Uçuş okulu</b> → BAŞLAT. Sarı üçgen sıradaki kapı. H pad’e in, ARM kapat.</p>
+            <section id="rc-setup" class="rc-setup">
+              <h3>Kumanda giriş kurulumu</h3>
+              <p>RC profili gerçek 0–100 gaz aralığını kullanır; orta stick hover değildir. PS/klavye/dokunmatik davranışı mevcut profilde kalır. TX15 donanım uyumu henüz fiziksel olarak doğrulanmadı.</p>
+              <fieldset id="rc-config"><legend>Giriş profili ve eşleme</legend>
+                <label>Giriş profili<select id="input-mode"><option value="gamepad">PS / klavye / dokunmatik</option><option value="rc">RC kumanda · USB Joystick</option></select></label>
+                <div id="rc-fields" hidden><label>RC cihazı<select id="rc-device"><option value="">Cihaz seç</option></select></label><p id="rc-connection" role="status"></p>
+                <p>Eksen sırası kumandadaki model ayarına bağlıdır. Dört farklı eksen seç; yönleri aşağıdaki göstergelerle kontrol et. PS tepkisi ve R2, RC profilinde kullanılmaz.</p>
+                <div class="rc-axis-row"><label>Roll · sağa pozitif<select id="rc-axis-roll" aria-label="Roll ekseni"></select></label><label class="tod"><input id="rc-invert-roll" type="checkbox" /> Yönü tersle</label><meter id="rc-meter-roll" min="0" max="1" value="0"></meter><output id="rc-value-roll">0</output></div><div class="rc-axis-row"><label>Pitch · ileri pozitif<select id="rc-axis-pitch" aria-label="Pitch ekseni"></select></label><label class="tod"><input id="rc-invert-pitch" type="checkbox" /> Yönü tersle</label><meter id="rc-meter-pitch" min="0" max="1" value="0"></meter><output id="rc-value-pitch">0</output></div><div class="rc-axis-row"><label>Yaw · sağa pozitif<select id="rc-axis-yaw" aria-label="Yaw ekseni"></select></label><label class="tod"><input id="rc-invert-yaw" type="checkbox" /> Yönü tersle</label><meter id="rc-meter-yaw" min="0" max="1" value="0"></meter><output id="rc-value-yaw">0</output></div><div class="rc-axis-row"><label>Gaz · alt %0 / üst %100<select id="rc-axis-throttle" aria-label="Throttle ekseni"></select></label><label class="tod"><input id="rc-invert-throttle" type="checkbox" /> Yönü tersle</label><meter id="rc-meter-throttle" min="0" max="1" value="0"></meter><output id="rc-value-throttle">0</output></div>
+                <p id="rc-raw" class="rc-raw"></p>
+                <p>1. Roll/pitch/yaw merkezde, gaz en altta iken başlangıcı al. 2. Aralığı ölç'e bas; dört saniye içinde tüm stick uçlarını gezdir. Gaz yönü başlangıç konumundan belirlenir.</p>
+                <div class="rc-actions"><button type="button" id="rc-centre">1 · Başlangıcı al</button><button type="button" id="rc-measure" disabled>2 · Aralığı ölç · 4 sn</button></div>
+                <p id="rc-ready" role="status"></p><p>ARM: <b>Space</b> veya ekran düğmesi. Kumanda butonlarına otomatik işlev atanmaz. Bağlantı kaybında DISARM; geri gelince yeniden ARM gerekir.</p>
+                <a href="https://manual.edgetx.org/color-radios/model-settings/model-setup/usb-joystick" target="_blank" rel="noopener">EdgeTX USB Joystick rehberi ↗</a></div>
+              </fieldset><p id="rc-status" role="status"></p>
+            </section>
             <div class="how-cols">
               <div>
                 <h3>Klavye</h3>
@@ -185,9 +211,9 @@
                   <li><b>W / S</b> tırman / in</li>
                   <li><b>A / D</b> yaw (sapma)</li>
                   <li><b>Oklar</b> veya <b>IJKL</b> pitch / roll</li>
-                  <li><b>Space</b> ARM · <b>F</b> veya tık ateş</li>
+                  <li><b>Space</b> ARM</li>
                   <li><b>T</b> açı/acro · <b>C</b> kamera · <b>R</b> reset</li>
-                  <li><b>H</b> bu liste · <b>M</b> ses · <b>Esc</b> (2x) hangar</li>
+                  <li><b>H</b> bu liste · <b>M</b> ses · <b>Esc</b> uçuş menüsü</li>
                 </ul>
               </div>
               <div>
@@ -196,7 +222,6 @@
                   <li>Telefonu <b>yatay</b> tut</li>
                   <li><b>Sol başparmak</b> gaz + yaw</li>
                   <li><b>Sağ başparmak</b> pitch + roll</li>
-                  <li><b>ATEŞ</b> basılı tut (üçüncü parmak)</li>
                   <li><b>ARM</b> daire · <b>☰</b> CAM / MOD / ÇIKIŞ</li>
                   <li>Safari veya Chrome aynı. iPhone’da Chrome da WebKit — fark yok</li>
                 <li>Sayfayı kaydırma; parmağı ekranda tut</li>
@@ -209,143 +234,31 @@
                   <li><b>Sol stick</b> yaw + irtifa (orta = hover)</li>
                   <li><b>Sağ stick</b> roll / pitch</li>
                   <li><b>Eğitim</b>: hassas merkez, kontrollü rate · <b>R2</b> gazı değiştirmez</li>
-                  <li><b>Standart/Yarış</b>: <b>R2</b> punch · <b>R1</b> ateş</li>
+                  <li><b>Standart/Yarış</b>: <b>R2</b> punch</li>
                   <li><b>✕</b> ARM · <b>○</b> reset · <b>△</b> açı/acro · <b>□</b> kamera</li>
                   <li><b>Options</b> kontrol paneli</li>
                 </ul>
               </div>
             </div>
           </section>
-
-          <section class="ops briefing" data-tab="operasyon" hidden>
-            <div class="bay-label">2 · Oyun modu</div>
-            <p class="why">Önce ne yapmak istediğini seç. Eğitim bölümleri aşağıda sırayla açılır; serbest uçuş ve özel görevler her zaman kullanılabilir.</p>
-            <div class="grid ops-grid" id="ops"></div>
-          </section>
-
-          <section class="pick briefing" data-tab="platform">
-            <div class="bay-label">1 · Drone</div>
-            <div class="pick-stage">
-              <div class="model-stage">
-                <canvas id="hangar-preview"></canvas>
-                <div class="model-meta">
-                  <p id="model-caption">Tiny Whoop</p>
-                  <dl class="hero-meta" id="spec-sheet">
-                    <div><dt>Sınıf</dt><dd id="spec-class">Indoor</dd></div>
-                    <div><dt>Açıklık</dt><dd id="spec-span">65 mm</dd></div>
-                    <div><dt>Mod</dt><dd id="spec-mode">angle</dd></div>
-                    <div><dt>Hız</dt><dd id="spec-pace">Çok yavaş</dd></div>
-                  </dl>
-                </div>
-              </div>
-              <section class="briefing flight-briefing" id="flight-briefing" aria-live="polite">
-                <div class="bay-label" id="briefing-title">Uçuş brifingi</div>
-                <p class="briefing-kicker" id="briefing-kicker">Uçuş Okulu 2/6 · Kapılar</p>
-                <dl class="briefing-rows" id="briefing-rows"></dl>
-                <p class="briefing-note" id="briefing-note" hidden></p>
-              </section>
-               <section class="briefing workshop" id="fpv-workshop" hidden>
-                 <div class="bay-label">FPV Atölyesi</div>
-                 <p class="why" id="story-workshop-note" hidden></p>
-                 <p class="why">Parçalar itişi, çevikliği, sürüklenmeyi ve pack süresini değiştirir.</p>
-                 <div class="workshop-grid">
-                   <label>Çerçeve <select id="build-frame"></select></label>
-                   <label>Motor <select id="build-motors"></select></label>
-                   <label>Batarya <select id="build-battery"></select></label>
-                   <label>Pervane <select id="build-props"></select></label>
-                 </div>
-                 <dl class="build-stats" id="build-stats">
-                   <div><dt>İtiş / ağırlık</dt><dd id="build-thrust"></dd></div>
-                   <div><dt>Uçuş süresi</dt><dd id="build-endurance"></dd></div>
-                   <div><dt>Maks. rate</dt><dd id="build-rate"></dd></div>
-                   <div><dt>Uçuş ağırlığı</dt><dd id="build-mass"></dd></div>
-                 </dl>
-                 <footer class="workshop-foot"><small id="build-summary"></small><button type="button" id="build-reset">Bu gövdeyi sıfırla</button></footer>
-               </section>
-              <div class="grid pick-grid" id="cards"></div>
             </div>
           </section>
-
-          <div data-tab="arena" hidden>
-            <div class="arena-row">
-              <section class="maps briefing">
-                <div class="bay-label">3 · Harita</div>
-                <div class="grid maps-grid" id="maps"></div>
-              </section>
-              <section class="rooms briefing">
-                <div class="bay-label">3 · Oda</div>
-                <div class="grid" id="room-cards"></div>
-              </section>
-            </div>
-
-            <section class="join">
-              <div class="bay-label">Davet adresi</div>
-              <p class="why">Seçili oda için paylaşılacak adres. Arkadaşın bunu açınca aynı lobiye düşer.</p>
-              <div class="share-row">
-                <input id="share-url" readonly />
-                <button type="button" id="copy-share">Kopyala</button>
-              </div>
-              <p class="status-line"><span id="netstat">bağlanıyor…</span> · <span id="pilots">odada kimse yok</span></p>
-            </section>
-          </div>
-          </div>
-        </div>
-        <div class="start-dock">
-          <button type="button" class="fly" id="go-dock" data-start>
-            KALKIŞ YAP
-            <small id="go-where">Uçuş okulu · Kapalı hangar</small>
-          </button>
-        </div>
+          <footer class="start-dock"><span>Hazırsan, gökyüzü senin.</span><button type="button" class="fly" id="go-dock" data-start>Uçuşa başla <span>↗</span><small id="go-where"></small></button></footer>
+        </main>
       </section>
-
       <section id="flight" hidden>
         <canvas id="view"></canvas>
-        <section id="operations-console" data-ui hidden aria-label="Operasyon Masası">
-          <header class="operations-head">
-            <div><span class="bay-label">KİŞİSEL KOMUTA ALANI</span><h2>Operasyon Masası</h2></div>
-            <button type="button" data-operation-action="exit">Hangara dön</button>
-          </header>
-          <div class="operations-workspace">
-            <aside class="operations-panel operations-fleet-panel">
-              <h3>Filo</h3>
-              <div id="operations-controller" class="operations-warning" hidden></div>
-              <div id="operations-fleet"></div>
-            </aside>
-            <main id="operations-main-view" aria-label="Seçili araç görüntüsü">
-              <div class="operations-view-label">CANLI ARAÇ GÖRÜNTÜSÜ</div>
-            </main>
-            <aside id="operations-map" class="operations-panel">
-              <h3>Taktik Harita</h3>
-              <div id="operations-map-overlay" role="img" aria-label="Rota ve araç haritası"></div>
-              <div id="operations-route-error" class="operations-error" hidden></div>
-              <div class="operations-route-actions">
-                <button type="button" data-operation-action="route-apply">Rotayı uygula</button>
-                <button type="button" data-operation-action="route-clear">Temizle</button>
-              </div>
-              <h3>Senaryolar</h3>
-              <input id="operations-scenario-name" maxlength="48" value="Kıyı operasyonu" aria-label="Senaryo adı" />
-              <button type="button" data-operation-action="scenario-save">Mevcut düzeni kaydet</button>
-              <div id="operations-scenarios"></div>
-            </aside>
-          </div>
-          <footer id="operations-status">
-            <span><b>L1 / R1</b> araç değiştir</span>
-            <span><b>□</b> kamera</span>
-            <span><b>○</b> sıfırla</span>
-            <span><b>Options</b> yardım</span>
-            <span class="danger"><b>L2 + R2</b> 700 ms acil durdur</span>
-          </footer>
-          <div id="operations-emergency" hidden></div>
-          <button type="button" class="operations-reenable" data-operation-action="reenable">Sistemi yeniden etkinleştir</button>
-        </section>
+
+        <div id="map-attribution" hidden><b>Şile · veri tabanlı taslak</b><span><a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">© OpenStreetMap contributors · ODbL</a> · Copernicus DEM</span><a href="/sile.html" target="_blank" rel="noopener">Kaynaklar / yükseklik varsayımları ↗</a></div>
         <div id="hud">
           <div class="hud-left">
-            <div class="hp-wrap"><b>CAN</b><div class="hp-bar"><i id="hp-fill"></i></div><span id="hp-n">6</span></div>
             <div id="hud-speed">0 km/h</div>
             <div id="hud-alt">8 m</div>
             <div class="batt-wrap"><b>BAT</b><div class="batt-bar"><i id="batt-fill"></i></div></div>
           </div>
-          <div id="op-hud">
+          <div id="arcade-objects" hidden><b>KURGUSAL OYUN · SIRA SERBEST</b><span></span></div><div id="arcade-notice" hidden>YENİ DRONE<small>Kalkış noktasına dönülüyor · DISARM</small></div>
+      <section id="inspection-hud" hidden aria-label="İLKE Şile manuel uçuş yönlendirmesi"></section>
+      <div id="op-hud">
             <div id="op-title">Uçuş okulu</div>
             <div id="op-hint">1. kapı — içinden geç</div>
             <div id="op-prog"></div>
@@ -358,35 +271,16 @@
           </div>
           <div class="hud-right">
             <div id="hud-arm">ARM</div>
-            <div id="hud-score">SKOR 0</div>
-            <div id="hud-bots">BOT 5</div>
             <div id="hud-mode">ACRO</div>
             <div id="hud-wind" hidden></div>
             <div id="hud-fps"></div>
           </div>
-          <div class="reticle"></div>
-          <div id="hitmark"></div>
-          <div id="dmgflash"></div>
+          <section id="motor-hud" class="motor-hud" hidden aria-label="Dört motor komutu"><b>4 motor · model komutu</b><div id="motor-values"></div><div id="battery-values"></div><small id="motor-state"></small></section>
+          <section id="input-status" class="input-status" role="status" hidden><b id="input-status-title"></b><span id="input-status-detail"></span></section>
           <div class="crash" id="osd-crash" hidden></div>
           <div id="countdown" hidden><b id="countdown-n">3</b><span id="countdown-l">HAZIR OL</span></div>
         </div>
-        <section id="autonomy-panel" data-ui hidden>
-          <div class="autonomy-head">
-            <span class="bay-label">OTONOM OPERASYON</span>
-            <b id="autonomy-status">Hazır</b>
-            <time id="autonomy-time">00:00</time>
-          </div>
-          <p id="autonomy-reason"></p>
-          <div id="autonomy-vehicles"></div>
-          <div class="autonomy-actions">
-            <button type="button" data-action="pause">Duraklat</button>
-            <button type="button" data-action="resume" hidden>Devam</button>
-            <button type="button" data-action="take-air">İHA'yı devral</button>
-            <button type="button" data-action="take-sea">İDA'yı devral</button>
-            <button type="button" data-action="return" hidden>Otonomiye ver</button>
-            <button type="button" class="danger" data-action="abort">Görevi iptal et</button>
-          </div>
-        </section>
+
         <section id="result-card" data-ui hidden>
           <span class="bay-label" id="result-kicker">GÖREV TAMAM</span>
           <h2 id="result-title">Yarış</h2>
@@ -401,21 +295,8 @@
           </div>
           <p class="result-hint" id="result-hint"></p>
         </section>
-        <div id="osd" class="bodycam">
-          <div class="bc-top">
-            <div id="rec" class="rec">STBY</div>
-            <div id="tc">00:00:00:00</div>
-            <div id="clip">CAM-07</div>
-          </div>
-          <div class="bc-mid">
-            <div id="gps"></div>
-            <div id="tele"></div>
-          </div>
-          <div class="bc-bot" id="cam-meta"></div>
-        </div>
         <button type="button" id="menu-fab" data-ui aria-label="Menü">☰</button>
         <div id="flight-bar">
-          <button type="button" id="btn-fire" data-fire>ATEŞ</button>
           <button type="button" id="btn-arm" data-ui>ARM / RESET</button>
           <button type="button" id="btn-cam" data-ui>CAM</button>
           <button type="button" id="btn-mode" data-ui>MOD</button>
@@ -423,52 +304,62 @@
           <button type="button" class="ghost" id="btn-back" data-ui>MENÜ</button>
         </div>
         <dialog id="flight-menu" data-ui>
-          <span class="bay-label">UÇUŞ MENÜSÜ</span><h2>Uçuş kontrolü</h2>
-          <p>Çevrimiçi uçuş menü açıkken devam eder.</p>
+          <span class="bay-label">UÇUŞ MENÜSÜ</span><h2>Uçuş duraklatıldı.</h2>
+          <p id="flight-session" class="flight-session"></p>
+          <p>Fizik ve görev zamanı durdu. Başladıktan sonra duraklatılan görevler kişisel antrenman olarak kaydedilir; sıralamaya gönderilmez.</p>
+          <section id="inspection-menu" hidden><p>Yerel simülasyon kaydı · geçici kamera 0°. Kaydedilmiş FPV eğimin korunur. Kayıt durdurulunca uçuş durumun korunur.</p><p id="inspection-status"></p><div class="inspection-overview"><div id="inspection-map"></div><ol id="inspection-route" aria-label="İnceleme bölgeleri"></ol></div><label>Bekleyen bölge<select id="inspection-point"></select></label><button type="button" id="inspection-stop">Kaydı durdur</button><button type="button" id="inspection-export">Geçerli JSON indir</button><button type="button" id="inspection-previous">Önceki JSON indir</button><button type="button" id="inspection-replay">Yerel poz tekrarını izle</button></section>
+          <label class="tod" id="arcade-guides-control" hidden><input type="checkbox" id="arcade-guides" /> Arcade halkaları ve rota çizgileri</label>
           <button type="button" class="fly" id="flight-resume">Devam Et</button>
           <button type="button" id="flight-retry">Yeniden Başlat</button>
-          <details><summary>Ayarlar</summary><label>Görüntü <select id="flight-look"><option value="0">Net / doğal</option><option value="0.65">Doğal FPV</option><option value="1">Belirgin FPV</option></select></label></details>
-          <button type="button" id="flight-home">Hangara Dön</button>
+          <details><summary>Kamera & görüntü</summary>
+<label>Lens<select id="flight-look" data-visual="lens"><option value="0">Net / doğal</option><option value="0.65">Hafif FPV lens</option><option value="1">Belirgin FPV lens</option></select></label>
+<label>Yatay görüş açısı<input id="flight-fov" data-visual="fov" type="range" min="80" max="140" step="1" value="110" /></label>
+<label>Kamera eğimi<input id="flight-tilt" data-visual="tilt" type="range" min="0" max="60" step="1" value="25" /></label>
+<label class="tod"><input data-visual="vibration" type="checkbox" /> Kamera titreşimi</label>
+<label>Kalite<select id="flight-quality" data-visual="quality"><option value="low">Düşük</option><option value="medium">Orta</option><option value="high">Yüksek</option></select></label>
+</details>
+          <button type="button" id="flight-prepare">Drone / alan değiştir</button>
+          <button type="button" id="flight-home">Ana menüye dön</button>
         </dialog>
         <aside id="help" data-ui>
           <header>
             <strong>Kontrol</strong>
             <button type="button" id="help-close" data-ui>Kapat</button>
           </header>
-          <p class="help-lead">Operasyon sırası: okul → devriye → dalga → yarış → keşif → final. Görev bitince ARM hangar. Racer acro: sağ stick rate, sol yaw+gaz. R2 punch. Hangarda Gerçekçi acro: otomatik gaz yok, motor gecikmesi, batarya sag. Okul/angle aynı. Mobilde ☰ menü.</p>
+          <p class="help-lead" id="help-lead">Uçuş duraklatıldı. Kontrolleri ve canlı giriş göstergelerini burada kontrol edebilirsin.</p>
+          <section id="help-rc" hidden><h3>RC kumanda · Mode 2</h3><p id="help-rc-detail"></p><p>Bağlantı kesilirse DISARM olur. RC modunda dokunmatik ve klavye eksenleri kullanılmaz.</p></section>
           <div class="help-cols">
-            <div>
+            <div id="help-gamepad">
               <h3>DualSense / PS kol</h3>
               <ul>
                 <li><b>Sol stick</b> — sol/sağ yaw, yukarı/aşağı irtifa (orta = hover)</li>
                 <li><b>Sağ stick</b> — roll / pitch</li>
-                <li><b>R2</b> — Standart/Yarış profilinde punch · <b>R1</b> ateş</li>
+                <li><b>R2</b> — Standart/Yarış profilinde punch</li>
                 <li><b>✕</b> arm · <b>○</b> reset · <b>△</b> açı/acro · <b>□</b> kamera</li>
                 <li><b>Options</b> bu paneli aç/kapa</li>
               </ul>
             </div>
-            <div>
+            <div id="help-touch">
               <h3>Telefon</h3>
               <ul>
                 <li><b>Sol yarı</b> başparmak: gaz + yaw</li>
                 <li><b>Sağ yarı</b> başparmak: pitch + roll</li>
-                <li><b>ATEŞ</b> basılı tut (üçüncü parmak) — stick varken de ateş eder</li>
-                <li>Yatay tut. İki el + ATEŞ aynı anda çalışır</li>
+                <li>Yatay tut. İki stick aynı anda çalışır</li>
               </ul>
             </div>
             <div>
               <h3>Klavye</h3>
               <ul>
-                <li><b>W/S</b> irtifa · <b>A/D</b> yaw</li>
-                <li><b>Oklar</b> veya <b>IJKL</b> pitch / roll</li>
-                <li><b>F / tık</b> ateş · <b>Space</b> arm · <b>T</b> mod · <b>R</b> reset</li>
-                <li><b>M</b> ses · <b>Esc</b> (2x) hangar · <b>H</b> bu panel</li>
+                <li id="help-key-flight"><b>W/S</b> irtifa · <b>A/D</b> yaw</li>
+                <li id="help-key-flight-axes"><b>Oklar</b> veya <b>IJKL</b> pitch / roll</li>
+                <li><b>Space</b> arm · <b>T</b> mod · <b>R</b> reset</li>
+                <li><b>M</b> ses · <b>Esc</b> uçuş menüsü · <b>H</b> bu panel</li>
               </ul>
             </div>
           </div>
           <div class="pad-meters">
             <div class="meter"><span>L</span><div class="ring" id="m-l"><i></i></div></div>
-            <div class="thr"><span>R2</span><div class="bar"><i id="m-r2"></i></div></div>
+            <div class="thr"><span id="help-middle-label">R2</span><div class="bar"><i id="m-r2"></i></div></div>
             <div class="meter"><span>R</span><div class="ring" id="m-r"><i></i></div></div>
             <div class="pad-stat" id="pad-stat">kol yok</div>
           </div>
@@ -476,7 +367,6 @@
         <div id="sticks">
           <div class="stick" id="st-l"><div class="knob"></div><div class="lbl">YAW · GAZ</div></div>
           <div class="stick" id="st-r"><div class="knob"></div><div class="lbl">ROLL · PITCH</div></div>
-          <button type="button" id="btn-fire-touch" data-fire>ATEŞ</button>
           <button type="button" id="btn-arm-touch" data-ui>ARM</button>
         </div>
         <button type="button" id="rotate-hint" aria-label="İpucu">

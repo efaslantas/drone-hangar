@@ -283,9 +283,10 @@ test("realistic acro motors spool instead of jumping", () => {
   const s = createState(0, 8, 0);
   s.armed = true;
   const punch = { throttle: 1, yaw: 0, pitch: 0, roll: 0, angleMode: false };
-  step(s, punch, racer, 1 / 60, { real: true });
+  step(s, punch, racer, 1 / 60, { real: true, ceil: 10000 });
   assert.ok(s.motor > 0 && s.motor < 0.5, `motor ${s.motor}`);
-  for (let i = 0; i < 90; i++) step(s, punch, racer, 1 / 60, { real: true });
+  for (let i = 0; i < 90; i++) step(s, punch, racer, 1 / 60, { real: true, ceil: 10000 });
+  assert.equal(s.crashed, false, "actuator test must stay below the test ceiling");
   assert.ok(s.motor > 0.9, `spooled ${s.motor}`);
 });
 

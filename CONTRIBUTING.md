@@ -9,7 +9,7 @@
 
 ## Degisiklik Kurallari
 
-- Fizik, hedef, input, otonomi, rota ve takim mantigini saf modullerde tutun; `src/main.js` yalniz orkestrasyon yapmalidir.
+- Fizik, hedef, girdi ve uçuş değerlendirme mantığını saf modullerde tutun; `src/main.js` yalniz orkestrasyon yapmalidir.
 - Yeni davranisi en yakin `tests/*.test.js` dosyasinda koruyun.
 - Kullaniciya gorunen akisi degistiriyorsaniz `README.md`, `docs/OYUNCU-REHBERI.md` ve gerekirse `docs/URUN-ANALIZI.md` ile beraber guncelleyin.
 - Yeni ucuncu taraf varlikta lisansi ve kaynagi [CREDITS.md](CREDITS.md) ile envantere ekleyin.

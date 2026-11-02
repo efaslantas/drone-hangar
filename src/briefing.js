@@ -18,7 +18,6 @@ export function modeGuide(selectedId, dailyId, schoolId = "hover") {
     quick: [
       { id: schoolId, intent: "İlk kez uçuyorum", detail: "Adım adım öğren" },
       { id: "free", intent: "Serbest uçuş", detail: "Kural yok, hemen uç" },
-      { id: "autonomy-coast-response", intent: "İHA + İDA görevi", detail: "Ortak kıyı operasyonu" },
       { id: dailyId, intent: "Günün görevi", detail: "Bugünün rotasına katıl" },
     ].map((choice) => ({ ...choice, selected: choice.id === selectedId })),
   };
@@ -57,6 +56,7 @@ export function suggestDrone(op, mapId) {
 }
 
 export function objectiveText(op) {
+  if(op?.inspection)return "3 bölgeyi gözle → başlangıca dön ve in";
   if (!op || op.kind === "free") return "Hedef yok — serbest uçuş";
   if (op.kind === "school") {
     const steps = op.steps || [];
@@ -71,13 +71,10 @@ export function objectiveText(op) {
     if (n("pad")) parts.push(`${n("pad")} pil değişimi`);
     return `${parts.join(" · ")} → pad'e iniş`;
   }
-  if (op.kind === "patrol") return `${op.need || 6} hedef → pad'e iniş`;
-  if (op.kind === "waves") return `${(op.waves || []).length} dalga (${(op.waves || []).join("/")} bot)`;
+  if (op.kind === "arcade") return "4 hareketli nesne · her temastan sonra yeni drone · sıra serbest";
   if (op.kind === "race") return `${op.laps || 3} tur × ${(op.gates || []).length} kapı`;
   if (op.kind === "recon") return `${(op.marks || []).length} nokta → pad'e iniş`;
   if (op.kind === "cargo") return `${(op.parcels || []).length} koli teslim → pad'e iniş`;
-  if (op.kind === "team") return "20 sayı · 3 dakika · rakip pilotları vur";
-  if (op.kind === "final") return `${op.scoreNeed || 8} skor → pad'e iniş`;
   return op.blurb || "";
 }
 
@@ -96,15 +93,14 @@ export function objectiveText(op) {
  */
 export function briefingModel({ op, opIndex = 0, opTotal = 6, trackName = "Görev", map, drone, droneName = (id) => id, night = false, real = false, progress = null }) {
   const free = !op || op.kind === "free";
-  // Track rungs read "Yarış 2/4"; the daily names its day; room-bound modes
-  // (team match) sit outside the tracks and just say what they are.
+  // Track rungs read "Yarış 2/4"; daily and standalone flights name their activity.
   const standalone = !free && !op.daily && !opTotal;
   const rung = op?.daily
     ? `Günün görevi · ${op.dateLabel || ""}`.trim()
     : standalone
-      ? op.kind === "team" ? "Çok oyunculu" : "Görev"
+      ? "Görev"
       : `${trackName} ${opIndex}/${opTotal}`;
-  const rungSub = standalone ? (op.kind === "team" ? "team odası · en az 2 pilot" : "") : rung.toLowerCase();
+  const rungSub = standalone ? "" : rung.toLowerCase();
   // Missions bring their own wind; free flight takes the map breeze.
   const wind = windInfo(free ? map?.wind : op?.wind, { real, indoor: map?.id === "indoor" });
   const suggested = suggestDrone(op, map?.id);
@@ -113,7 +109,7 @@ export function briefingModel({ op, opIndex = 0, opTotal = 6, trackName = "Göre
   const hover = drone?.endurance ? Math.round(drone.endurance / drain) : null;
   const rows = [];
   rows.push({ k: "Harita", v: map?.name || "—", sub: night ? "gece" : "gündüz" });
-  rows.push({ k: "Oyun modu", v: free ? "Serbest uçuş" : op.name, sub: free ? (op?.bots === null ? "bot deathmatch" : "") : rungSub });
+  rows.push({ k: op?.inspection ? "Çalışma" : "Oyun modu", v: op?.inspection ? op.name : free ? "Serbest uçuş" : op.name, sub: free ? "" : rungSub });
   rows.push({ k: "Rüzgâr", v: wind.label, sub: wind.detail, tone: wind.level >= 2 ? "warn" : "" });
   rows.push({
     k: free ? "Drone" : "Önerilen drone",
@@ -131,16 +127,17 @@ export function briefingModel({ op, opIndex = 0, opTotal = 6, trackName = "Göre
   if (free) rows.push({ k: "Fizik", v: real ? "Gerçekçi acro" : "Arcade", sub: real ? "motor gecikmesi · sag · türbülans" : "otomatik gaz, affedici" });
   else if (op.real) rows.push({ k: "Fizik", v: "Gerçekçi acro", sub: "bu görevde zorunlu", tone: "warn" });
   if (op?.kind === "race" && progress?.bestLap?.[op.id] != null) rows.push({ k: "En iyi tur", v: fmtTime(progress.bestLap[op.id]), tone: "ok" });
+  if(op?.inspection){rows.push({k:"İnceleme",v:"3 bölge · yerel kayıt",sub:"12 m · ≤3 m/s · 3 sn kesintisiz · FPV ±15°"});rows.push({k:"Kamera",v:"Geçici 0° montaj",sub:"Kaydedilmiş FPV eğimin korunur; yalnız bu incelemede 0°."});}
   let note = "";
   if (!free && !match) note = `${op.name} için ${droneName(suggested)} önerilir; ${drone?.name || "seçili drone"} ile de uçabilirsin.`;
   else if (wind.level >= 1 && drone?.class === "Indoor") note = "Whoop sınıfı açık havada rüzgâra karşı zayıf kalır.";
   else if (wind.level >= 2) note = "Rüzgâr kapı yaklaşmalarını iter; yaw ile karşıla.";
   if (!note && op?.daily) note = "Bugün herkes aynı rotayı aynı gövdeyle uçar; sıralama günlük. Yeni rota 03:00'te (UTC gece yarısı).";
   return {
-    title: free ? "Uçuş koşulları" : "Uçuş brifingi",
-    kicker: free ? "Serbest uçuş" : op.daily ? rung : `${rung} · ${op.name}`,
+    title: op?.inspection ? "İLKE · Şile hazırlığı" : free ? "Uçuş koşulları" : "Uçuş brifingi",
+    kicker: op?.inspection ? op.name : free ? "Serbest uçuş" : op.daily ? rung : `${rung} · ${op.name}`,
     rows,
-    note,
+    note: op?.inspection ? "Simülasyon katmanı · yerel telemetri ve simüle JPEG; gerçek İLKE aracı veya saha doğrulaması değildir. 80 m AGL / 20 dk demo sınırı." : note,
     wind,
     suggested,
   };

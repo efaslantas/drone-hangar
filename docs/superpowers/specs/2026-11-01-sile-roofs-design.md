@@ -1,0 +1,8 @@
+# Şile roof silhouettes
+
+Intent: continue authorized visual realism by breaking the flat extruded-box skyline at close/medium range.
+Approaches: photograph reconstruction needs new licensed surveyed data; generic extra roof meshes above existing boxes mismatch height/collision. Chosen authored gables fit *within* the existing footprint and total height. This is an implementation choice under the user's established autonomous continuation preference, not a claim of surveyed roof shape.
+
+Eligible ordinary buildings: one convex near-rectangular four-corner ring, sides3..45m, aspect≤4, adjacent normalized dot≤.2, height4..20m. Skip landmarks/structures/holes/degenerate/irregular footprints. Deterministic one fifth retains flat roofs for variation. Eaves descend by min(1.8m,short width*.25,height*.2); ridge stays at old total height. Source snapshot and conservative full-height collision prism remain unchanged. No overhang/outside geometry; this is not new roof collision geometry.
+
+A pure sile-roofs.js returns eaves, roof triangles/metric UVs, outward-facing gable triangles. World builder removes upper flat cap only for eligible buildings, shortens walls to eaves, batches sloped roof in existing roof material and gables in same wall batch using plaster-only UV. Existing materials/resource lifecycle/quality draw budget preserved; no new material/texture dependency. Numeric test roof coverage, winding, UVs, transformed/reversed footprints, skip gates and integrated snapshot/budget. Browser WebGL/WebGPU/mobile layout and Azure/profile continuity. Existing physics/camera/RC/material source data unchanged.

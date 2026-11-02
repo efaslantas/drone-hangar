@@ -1,0 +1,15 @@
+{
+  "kind": "numerical-model-validation-not-hardware",
+  "assumedMassKg": 0.65,
+  "assumedInertiaKgM2": [
+    0.0021333203125,
+    0.0036816406250000005,
+    0.0016783203125
+  ],
+  "hover10SecondsAltitudeErrorM": 0,
+  "pitchStepTargetRadS": -1.7756459430051423,
+  "pitchSteadyErrorRadS": 0.013950352257003917,
+  "pitchPeakRadS": 1.9985632426372186,
+  "pitchReleaseResidualRadS": 0.004034803038754002,
+  "modelStepMeanMilliseconds": 0.0019281957999999996
+}

@@ -1,0 +1,37 @@
+{
+  "version": "2.23",
+  "sources": [
+    "existing source-osm.json",
+    "map.json",
+    "context-data.json",
+    "building-types.json"
+  ],
+  "license": "ODbL-1.0",
+  "sourceDataAndPhysicalTerrainUnchanged": true,
+  "roads": {
+    "sourceCentreLinesUnchanged": true,
+    "widths": "existing OSM values or existing derived defaults",
+    "joins": "union of segment rectangles and bounded node hulls, cut to source land and outside source building interiors",
+    "walkingKinds": [
+      "footway",
+      "path",
+      "steps",
+      "pedestrian"
+    ]
+  },
+  "coastalPaving": {
+    "sidewalkWidthM": 1.5,
+    "selection": "selected source road classes near supported coastal footprints, segment midpoint within45m",
+    "entranceWidthM": 1.25,
+    "entranceMaximumLengthM": 18,
+    "entrancePlacement": "authored facade door to existing source-road projection, sampled land/slope/building clearance",
+    "propClearance": "entrance corridors reserved before tree/rock/lamp/planter placement",
+    "inventoryAndDimensionsMeasured": false,
+    "texture": "authored shared512px paver pattern in metric world coordinates"
+  },
+  "limits": [
+    "No new street survey, imagery, curb height, traffic or physical steps",
+    "Paving and entrances are authored visual interpretation, not measured current district inventory",
+    "Original physical terrain, source buildings, shoreline, flight forces and selected input/profile retained"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "version": "2.17",
+  "castleOsmId": 643467902,
+  "reference": {
+    "url": "https://sile.bel.tr/tr/sile-rehberi/sile-tarihi-yapilari/",
+    "accessedDate": "2026-11-02",
+    "supports": [
+      "12m tower height",
+      "four levels",
+      "limestone"
+    ],
+    "photoReferenceOnly": "https://sile.bel.tr/uploads/cm/sn/cmsn4ol5s0038ddqp3jciqkza/cmsn4ol5s0038ddqp3jciqkza.jpeg",
+    "photoRedistributed": false
+  },
+  "geometry": {
+    "footprint": "existing OSM snapshot",
+    "towerHeightM": 12,
+    "openingsAndMerlons": "authored representative, not surveyed",
+    "collision": "conservative full source footprint prism"
+  },
+  "island": {
+    "boundary": "existing smallest containing OSM land polygon, no source edits",
+    "reliefM": 4.5,
+    "heightMeasured": false,
+    "reason": "native Copernicus DEM and resampled grid both zero over island",
+    "scope": "authored <=3m local heightfield; top mesh, coastline lip, normals and terrain/collision share triangle interpolation",
+    "reliefMeaning": "castle foundation elevation above water, retained from2.16; surrounding surface now varies",
+    "vegetation": "authored low green surface cover; no measured plant inventory"
+  },
+  "materials": "authored irregular coursed limestone, procedural fracture rock, vertex vegetation/wet-rock tints; no new image assets"
+}

@@ -1,0 +1,53 @@
+{
+  "date": "2026-11-01",
+  "release": "v2.11.0-c42d22efb783",
+  "tests": {
+    "passed": 345,
+    "failed": 0,
+    "build": "pass",
+    "diffCheck": "pass"
+  },
+  "upstream": {
+    "commit": "9ae65b1387f192fb90d07d483178169924b286b5",
+    "license": "GPL-3.0",
+    "verifiedFiles": 7,
+    "publicDerivedFilesVerified": 5,
+    "isolatedGeneratorReproducible": true
+  },
+  "review": {
+    "importantFindings": 0,
+    "deferredMinor": "Ghost material cloning before first render: disposal ownership hygiene, no demonstrated GPU leak."
+  },
+  "browser": [
+    "SOURCE ONE angle/top/bottom workshop",
+    "Whoop/Cinewhoop/Camera Quad workshop",
+    "390x844 iframe workshop",
+    "WebGL chase",
+    "WebGPU chase, warm 60fps",
+    "production workshop and saved TX15 calibration status"
+  ],
+  "production": {
+    "sourceManifestFiles": 230,
+    "candidateHealth": "pass",
+    "productionHealth": "pass",
+    "httpsAssetsSourcesHashes": "pass",
+    "appWarnErrorCount": 0,
+    "preserved": {
+      "profile": "f60-1750-6s",
+      "massG": 650,
+      "capacityMah": 1100,
+      "map": "sile",
+      "quality": "medium",
+      "tiltDegrees": 25,
+      "tx15Calibration": "saved"
+    },
+    "rollbackContainer": "preserved",
+    "dataBackup": "preserved"
+  },
+  "limits": [
+    "Cut outlines and thicknesses sourced; assembly/hardware approximate",
+    "Other nine families are visual approximations",
+    "No physical TX15/phone flight or real log validation",
+    "Physics and collision dimensions unchanged"
+  ]
+}

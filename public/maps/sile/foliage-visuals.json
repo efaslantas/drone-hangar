@@ -1,0 +1,24 @@
+{
+  "version": "2.30",
+  "authored": true,
+  "source": "Procedural geometry and leaf-sprig RGBA texture; existing mapped context placement",
+  "crowns": 3200,
+  "treeCrowns": 3164,
+  "planterCrowns": 36,
+  "cardsPerCrown": 32,
+  "trianglesPerCrown": 64,
+  "soilTrianglesPerPlanter": 2,
+  "newMeshes": 0,
+  "placementChanged": false,
+  "collidersChanged": false,
+  "alphaTest": 0.35,
+  "textureSize": 128,
+  "limits": [
+    "Not a photographic or botanical species reconstruction",
+    "Every replacement vertex lies inside previous local geometry bounds",
+    "Existing conservative foliage boxes remain solid; visible leaf gaps are not fly-through openings",
+    "No new tree/planter positions or terrain/road/building modifications",
+    "Soil patch is decorative at the existing solid planter top; no excavated pot interior",
+    "Existing30mDSM and authored placement limits remain"
+  ]
+}

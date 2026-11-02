@@ -1,0 +1,103 @@
+{
+  "date": "2026-11-02",
+  "release": "v2.20.0-0bbae6d8f741",
+  "url": "https://hangar.18-153-158-209.sslip.io/",
+  "status": "published",
+  "image": {
+    "release": "v2.20.0-0bbae6d8f741",
+    "imageId": "sha256:56d48bb5a4b156790e1d5ee20c189e76de9a013db2294be6109c6dd83749a013",
+    "archiveSha256": "52d06a81e92ac772f2af0ca7357ca3db9e06b8cc70ce0b25b4265ff2a80fac15",
+    "archiveBytes": 141286398,
+    "architecture": "arm64",
+    "sourceFiles": 252
+  },
+  "metrics": {
+    "rocks": 748,
+    "boxes": 6438,
+    "meshes": 32,
+    "pavedAreaM2": 27800.864375072742,
+    "maxTerrainHeightErrorM": 3.836840871018765e-06,
+    "waterRockCorners": 0,
+    "waterPavedTriangles": 0
+  },
+  "source": {
+    "mapOsmDemUnchanged": true,
+    "contextJsonUnchanged": true,
+    "license": "ODbL-1.0",
+    "coastline": "existing source vertices; selected western arm and near-harbour segments",
+    "apronWidthM": 10,
+    "surfaceExtentMeasured": false,
+    "rockGeometryAndPlacement": "authored; deterministic",
+    "reference": "AA2022-07-09 retained as reference-only; no redistributed photo"
+  },
+  "checks": {
+    "applicationTests": 410,
+    "failures": 0,
+    "infraTests": 11,
+    "viteBuild": "pass; existing >500KB chunk advisory",
+    "arm64Build": "pass",
+    "sourceManifestFiles": 252,
+    "partition": "overlapping masks/holes/reversed winding conserve projected area and arbitrary height attributes",
+    "independentPartitionRandomCases": 500,
+    "rockFootprintIndependentSamplesPerInstance": 49,
+    "rockWaterBeachPrismPropSpawnOverlaps": 0,
+    "worldLifecycle": "three cycles; rock geometry/material released, metadata cleared; identical colliders",
+    "runningImageSourceHashes": 97,
+    "httpsHealthAssetsSourceHashes": "pass",
+    "twoClientWssJoinStateLeave": "pass",
+    "adminUnauthorized": 401,
+    "uniqueUiIds": "pass",
+    "nginxSyntax": "pass",
+    "existingServiceIdentitiesUnchanged": 7,
+    "nginxBytesUnchanged": true,
+    "oldContainerAndConsistentDataBackupRetained": true
+  },
+  "review": {
+    "findings": "no Critical/Important; one Minor coverage gap",
+    "disposition": "required geometry contract: real-map area RED19.503m² to GREEN0.17m² rounded source outside actual land; zero-margin land union and Float32 collapsed triangles removed",
+    "secondIndependentReview": false
+  },
+  "browser": {
+    "webgl": "overview/near harbour, low/high/medium,390x844 render frame, three world rebuilds",
+    "experimentalWebgpu": "same near-harbour view inspected",
+    "observedFps": "warm60; rebuild/shader warmup5..26fps; no general performance guarantee",
+    "rebuildGeometryCount": 33,
+    "localErrorLogs": "empty after final checks",
+    "toolInterruption": "two stale HMR QA accessibility timeouts; fresh same-browser tab recovered, no reproduced product exception",
+    "live": {
+      "state": "FPV DISARM",
+      "errorLogs": "empty",
+      "profile": "f60-1750-6s",
+      "massG": 650,
+      "capacityMah": 1100,
+      "map": "sile",
+      "quality": "medium",
+      "tiltDegrees": 25,
+      "input": "gamepad; existing selection unchanged"
+    }
+  },
+  "limits": [
+    "Existing2x2km extent; no new survey, bathymetry or photogrammetry",
+    "Rock piles and concrete extent are authored; rock/rock interpenetration is allowed within rubble band; conservative AABBs approximate contact",
+    "Original terrain/prisms and flight forces/input/profile unchanged; new visible rock obstacles intentionally collide",
+    "No physical phone/TX15 flight or flight-log calibration; new-origin RC calibration remains user step"
+  ],
+  "proof": [
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-harbour-overview-2.20.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-harbour-detail-2.20.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-harbour-mobile-2.20.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-harbour-webgpu-2.20.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-harbour-live-2.20.png"
+  ],
+  "git": "codex/simulator-v2 dirty preserved; no commit/push/merge",
+  "runtime": {
+    "memoryObservedMiB": 19.22,
+    "limitMiB": 256,
+    "restarts": 0,
+    "uid": "1000:1000",
+    "readOnlyRoot": true,
+    "network": [
+      "drone-hangar-net"
+    ]
+  }
+}

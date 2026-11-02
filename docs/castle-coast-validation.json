@@ -1,0 +1,88 @@
+{
+  "date": "2026-11-02",
+  "release": "v2.17.0-a8bd5e74aa80",
+  "url": "https://hangar.18-153-158-209.sslip.io/",
+  "status": "AWS live",
+  "image": {
+    "release": "v2.17.0-a8bd5e74aa80",
+    "imageId": "sha256:f9cf4281b27b7831ac5c29704269dd489c5c82f56ef34aab4e565c2cb0f16a5c",
+    "archiveSha256": "c48f08ed1ac218c8591ec6fe9f182f07aff82fca03a94aec71e81547791ee521",
+    "archiveBytes": 141216438,
+    "architecture": "arm64",
+    "sourceFiles": 240
+  },
+  "tests": {
+    "application": 386,
+    "failed": 0,
+    "infra": 11,
+    "build": "pass",
+    "diffCheck": "pass",
+    "lipRegression": "old coarse split fails; fine split passes"
+  },
+  "island": {
+    "grid": [
+      43,
+      59
+    ],
+    "maxStepM": 2.98793103448276,
+    "triangles": 6408,
+    "minHeightAboveWaterM": 0.7758927035,
+    "maxHeightAboveWaterM": 5.2657286456,
+    "castleFoundationAboveWaterM": 4.5,
+    "heightsMeasured": false,
+    "sourceOsmDem": "unchanged",
+    "collision": "same grid triangles and normals as visible surface",
+    "sourcePolygonAreaErrorM2": 4.5e-10
+  },
+  "review": {
+    "critical": 0,
+    "importantGeometry": 0,
+    "fixed": [
+      "Lip interior regression missing; coarse split mutation RED→GREEN",
+      "Updater failed candidate cleanup must still recover old app; RED→GREEN",
+      "Snapshot must follow stopped writer; failed snapshot recovers old; RED→GREEN",
+      "Unique snapshot paths allow retries without overwriting recovery data"
+    ],
+    "deferredMinors": []
+  },
+  "browser": {
+    "checks": [
+      "WebGL near/overview/coast",
+      "low-high-medium textures",
+      "390x844 renderframe",
+      "WebGPU near/overview warm60fps",
+      "live reload profile and FPV DISARM"
+    ],
+    "liveAppErrors": [],
+    "extensionErrorsExcluded": true,
+    "profile": "SOURCEONE f60-1750-6s/650g/1100mAh/Şile/medium25°/RC",
+    "tx15Calibration": "still required on new origin"
+  },
+  "live": {
+    "httpsAssetsSourceHashes": "pass",
+    "entryAssets": 5,
+    "runningImageSourceHashes": 90,
+    "twoClientWssJoinStateLeave": "pass",
+    "restarts": 0,
+    "memoryMiB": 28.09,
+    "oldContainerAndDataBackup": "retained",
+    "existingSevenTenantIdentities": "unchanged",
+    "nginxBytes": "unchanged",
+    "zenthPublicWebAndApi": 200,
+    "gelisimTlsOrigin": 200
+  },
+  "limits": [
+    "Island height/green cover/materials authored from photo direction, not photogrammetry or surveyed data",
+    "Full castle collision prism remains; openings decorative",
+    "No physical phone/TX15 flight/log calibration",
+    "Azure legacy data still unavailable; AWS state preserved"
+  ],
+  "proof": [
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/castle-coast-near-2.17.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/castle-coast-side-2.17.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/castle-coast-webgpu-2.17.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/castle-coast-mobile-2.17.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/castle-coast-live-2.17.png"
+  ],
+  "git": "same dirty codex/simulator-v2; no commit/push/merge"
+}

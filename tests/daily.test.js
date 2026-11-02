@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { dailyId, isDailyId, dailyDate, dailyLabel, dailyOp, sortBoards, pruneDailyGhosts, DAILY_MAPS } from "../src/daily.js";
-import { opById, OPS, isOpOpen, trackOf, nextInTrack, wantsBots } from "../src/missions.js";
+import { opById, OPS, isOpOpen, trackOf, nextInTrack } from "../src/missions.js";
 import { briefingModel, objectiveText } from "../src/briefing.js";
 import { createRun, tickRun, nextGoal } from "../src/goals.js";
 import { CATALOG, droneById } from "../src/catalog.js";
@@ -67,8 +67,7 @@ test("each daily is a flyable, fair school run: locked airframe, 7-9 waypoints i
     assert.equal(op.countdown, 3);
     assert.equal(op.lockDrone, true);
     assert.equal(op.lockMap, true);
-    assert.equal(op.fire, false);
-    assert.equal(wantsBots(op), false);
+    assert.equal(Object.hasOwn(op, "fire"), false);
     assert.ok(DAILY_MAPS[op.map].drones.includes(op.drone), `${id}: ${op.drone} on ${op.map}`);
     const b = BOUNDS[op.map];
     const way = op.steps.filter((s) => s.t !== "land");

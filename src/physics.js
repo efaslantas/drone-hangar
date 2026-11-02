@@ -1,6 +1,12 @@
+import {groundHeight} from './airframe-contact.js';
+import {aerodynamicForce} from './aerodynamics.js';
+import {surfaceAt} from './geo-terrain.js';
+import { packSoc, solveBattery, integrateBattery } from './battery-model.js';
+import { createRateController, rateController, rateSetpoint, allocateRotorForces, rotorWrench, integrateAngularVelocity } from "./rigid-body.js";
+import { sampleReference, sampleReferenceAtVoltage, freshBatteryMetrics, throttleForForce, STANDARD_GRAVITY, REFERENCE_PROFILES } from "./propulsion-reference.js";
 import { applyWorld } from "./collide.js";
 
-const G = 9.81;
+const G = STANDARD_GRAVITY;
 const IDLE_THROTTLE = 0.035;
 
 export function createState(x = 0, y = 0.12, z = 0) {
@@ -19,6 +25,8 @@ export function createState(x = 0, y = 0.12, z = 0) {
     crashed: false,
     throttleOut: 0,
     motor: 0,
+    rotorThrottle: null,
+    rateController: null,
     sag: 1,
     gustX: 0,
     gustZ: 0,
@@ -119,8 +127,56 @@ function applyBodyRates(s, ox, oy, oz, dt) {
   s.qz = z;
 }
 
+function advanceReferenceRotors(state,spec,input,throttle,dt) {
+  const p=spec.dynamics,profile=spec.propulsion.profile;
+  const setup=spec.propulsion, rint=setup.battery?.mode==='rint';
+  const j=[p.inertiaX,p.inertiaY,p.inertiaZ];
+  if(!state.rotorThrottle)state.rotorThrottle=Array(4).fill(state.motor||0);
+  if(!state.rateController)state.rateController=createRateController([state.wx,state.wy,state.wz]);
+  const targets=[-rateSetpoint(input.pitch,spec.maxRate,p),-rateSetpoint(input.yaw,spec.yawRate,p),-rateSetpoint(input.roll,spec.maxRate,p)];
+  const count=Math.max(1,Math.ceil(dt*240-1e-10)),h=dt/count;
+  let totalForce=0,totalCurrent=0;
+  const worldForce=[0,0,0];
+  for(let n=0;n<count;n++) {
+    const powered=state.armed&&state.battery>0&&!state.packCutoff;
+    const idle=powered?IDLE_THROTTLE:0;
+    const predicted=rint?solveBattery(setup.battery,REFERENCE_PROFILES[profile].cells,packSoc(setup,state.battery),state.rotorThrottle.map(t=>sampleReference(profile,t)),setup.electronicsA,powered):null;
+    const voltage=predicted?.terminalV;
+    const sample=t=>rint?sampleReferenceAtVoltage(profile,t,voltage):sampleReference(profile,t);
+    const minForce=sample(idle).thrustN;
+    const maxForce=Math.max(...REFERENCE_PROFILES[profile].points.map(row=>sample((row[0]-1000)/1000).thrustN));
+    const collective=powered?4*sample(Math.max(idle,throttle)).thrustN:0;
+    const rates=[state.wx,state.wy,state.wz];
+    const torque=rateController(state.rateController,rates,targets,p,h,powered);
+    const allocation=powered?allocateRotorForces(collective,torque,p,minForce,maxForce):{forces:[0,0,0,0],saturated:false};
+    state.rateController.saturated=allocation.saturated;
+    let outputs=allocation.forces.map((force,i)=>{
+      const target=powered?(throttleForForce(profile,force,voltage)??1):0;
+      state.rotorThrottle[i]+=(target-state.rotorThrottle[i])*(1-Math.exp(-h/(p.motorTauMs/1000)));
+      return sampleReference(profile,state.rotorThrottle[i]);
+    });
+    if(rint) {
+      const power=solveBattery(setup.battery,REFERENCE_PROFILES[profile].cells,packSoc(setup,state.battery),outputs,setup.electronicsA,powered);
+      outputs=power.rotors;
+      integrateBattery(state,setup,power,h);
+      totalCurrent+=power.currentA/count;
+    }
+    const wrench=rotorWrench(outputs.map(o=>o.thrustN),p);
+    const applied=wrench.torqueNm.map((value,i)=>value-p.angularDamping*rates[i]);
+    const next=integrateAngularVelocity(rates,applied,j,h);
+    [state.wx,state.wy,state.wz]=next;
+    applyBodyRates(state,...next,h);
+    const direction=rotateVec(state.qw,state.qx,state.qy,state.qz,0,1,0);
+    for(let i=0;i<3;i++)worldForce[i]+=direction[i]*wrench.forceN/count;
+    totalForce+=wrench.forceN/count;
+    if(!rint)totalCurrent+=powered?outputs.reduce((sum,o)=>sum+o.currentA,0)/count:0;
+  }
+  state.motor=state.rotorThrottle.reduce((sum,v)=>sum+v,0)/4;
+  return {thrustN:totalForce/4,currentA:totalCurrent/4,packCurrentA:rint?totalCurrent:null,worldForce};
+}
+
 export function hoverThrottle(spec) {
-  return 1 / spec.maxThrustG;
+  return spec.propulsion?.battery?.mode==='rint' ? spec.referenceHoverThrottle ?? 1 : spec.propulsion ? throttleForForce(spec.propulsion.profile, spec.mass * G / 4) ?? 1 : 1 / spec.maxThrustG;
 }
 
 /**
@@ -130,19 +186,23 @@ export function hoverThrottle(spec) {
  */
 export function withPayload(spec, frac = 0.45) {
   const k = 1 + Math.max(0, Number(frac) || 0);
-  return {
+  const next = {
     ...spec,
     payload: k - 1,
+    ...(spec.aerodynamics?{aerodynamics:{...spec.aerodynamics,...Object.fromEntries(['cdaX','cdaY','cdaZ'].map(key=>[key,spec.aerodynamics[key]*1.2]))}}:{}),
     maxThrustG: Math.max(1.2, spec.maxThrustG / k),
     drag: spec.drag * 1.2,
-    maxRate: spec.maxRate * 0.8,
-    yawRate: spec.yawRate * 0.85,
+    maxRate: spec.propulsion ? spec.maxRate : spec.maxRate * 0.8,
+    yawRate: spec.propulsion ? spec.yawRate : spec.yawRate * 0.85,
     maxAngle: spec.maxAngle * 0.85,
     angleKp: (spec.angleKp || 8) * 0.8,
     brakeIdle: (spec.brakeIdle ?? 1.6) * 0.8,
     endurance: (spec.endurance ?? 300) / k,
     mass: (spec.mass || 0.4) * k,
+    ...(spec.dynamics ? { dynamics:{...spec.dynamics,inertiaX:spec.dynamics.inertiaX*k,inertiaY:spec.dynamics.inertiaY*k,inertiaZ:spec.dynamics.inertiaZ*k} } : {}),
   };
+  if(spec.propulsion?.battery?.mode==='rint')next.referenceHoverThrottle=freshBatteryMetrics(next).hoverThrottle;
+  return next;
 }
 
 export function collectiveToThrottle(lift, spec, r2 = 0) {
@@ -159,17 +219,38 @@ export function collectiveToThrottle(lift, spec, r2 = 0) {
   return l >= 0 ? h + l * (1 - h) : h * (1 + l);
 }
 
+function cutMotors(state,spec) {
+  state.motor=0;state.throttleOut=0;state.currentA=0;
+  state.rotorThrottle?.fill(0);state.rateController=null;
+  if(spec?.propulsion?.battery?.mode==='rint') {
+    const setup=spec.propulsion,soc=packSoc(setup,state.battery);
+    const power=solveBattery(setup.battery,REFERENCE_PROFILES[setup.profile].cells,soc,[],0,false);
+    state.packSoc=soc;state.packVoltageV=power.terminalV;state.packCellV=power.cellV;state.packOpenV=power.openCircuitV;state.packLowTime=0;
+  }
+}
+
 export function step(state, input, spec, dt, play) {
-  if (state.crashed) return state;
+  if (state.crashed) {cutMotors(state,spec);return state;}
   dt = Math.min(Math.max(dt, 0), 0.05);
+  if(!(dt>0))return state;
+  // Keep translation, attitude-dependent drag, motors and battery on the same
+  // reference Acro clock; averaging a rotated force over a long frame is biased.
+  const rigidReference=spec.aerodynamics&&spec.dynamics&&spec.propulsion&&!!(play?.real||input.real)&&!(input.angleMode??spec.defaultMode==='angle');
+  if(rigidReference&&dt>1/240+1e-10){const count=Math.ceil(dt*240-1e-10);for(let i=0;i<count&&!state.crashed;i++)step(state,input,spec,dt/count,play);return state;}
+  const rint=spec.propulsion?.battery?.mode==='rint';
+  if(rint&&state.packCutoff)state.armed=false;
   const wasGrounded = !!state.grounded;
+  const previousGroundedFor=state.groundedFor||0;state.worldTouchdown=null;
+  state.motionStart={x:state.x,y:state.y,z:state.z};
   state.grounded = false;
 
   const angleMode = input.angleMode ?? spec.defaultMode === "angle";
   const realAcro = !!(play?.real || input.real) && !angleMode;
-  const rollCmd = clamp(input.roll, -1, 1);
-  const pitchCmd = clamp(input.pitch, -1, 1);
-  const yawCmd = clamp(input.yaw, -1, 1);
+  const rigidAcro=realAcro&&!!spec.dynamics&&!!spec.propulsion;
+  if(!rigidAcro){state.rotorThrottle=null;state.rateController=null;}
+  const rollCmd = clamp(input.roll ?? 0, -1, 1);
+  const pitchCmd = clamp(input.pitch ?? 0, -1, 1);
+  const yawCmd = clamp(input.yaw ?? 0, -1, 1);
   const r2 = input.r2 || 0;
   const lift = typeof input.lift === "number" ? input.lift : 0;
   let thr =
@@ -194,7 +275,7 @@ export function step(state, input, spec, dt, play) {
     state.wx = 0;
     state.wy = 0;
     state.wz = 0;
-  } else if (state.armed) {
+  } else if (state.armed && !rigidAcro) {
     // Positive pitch input means nose-forward in both Angle and Acro modes.
     const tox = -pitchCmd * spec.maxRate;
     const toy = -yawCmd * spec.yawRate;
@@ -208,10 +289,10 @@ export function step(state, input, spec, dt, play) {
     applyBodyRates(state, state.wx, state.wy, state.wz, dt);
   }
 
-  const [ux, uy, uz] = rotateVec(state.qw, state.qx, state.qy, state.qz, 0, 1, 0);
+  let [ux, uy, uz] = rotateVec(state.qw, state.qx, state.qy, state.qz, 0, 1, 0);
   const maxAcc = spec.maxThrustG * G;
 
-  if (angleMode && state.armed && state.battery > 0 && spec.holdAlt !== false && play?.assists?.altitude !== false) {
+  if (typeof input.lift === "number" && angleMode && state.armed && state.battery > 0 && spec.holdAlt !== false && play?.assists?.altitude !== false) {
     const hold =
       Math.abs(lift) < 0.12 &&
       r2 <= 0.28 &&
@@ -222,36 +303,49 @@ export function step(state, input, spec, dt, play) {
       const desA = (state.altHold - state.y) * 2.2 - state.vy * 3.2;
       const vert = G + desA;
       const den = Math.max(uy, 0.42);
-      thr = clamp(vert / (den * maxAcc), 0, 1);
+      thr = spec.propulsion ? throttleForForce(spec.propulsion.profile, Math.max(0, vert) * spec.mass / (4 * den)) ?? 1 : clamp(vert / (den * maxAcc), 0, 1);
     } else {
       state.altHold = null;
-      if (uy > 0.38 && play?.assists?.tiltComp !== false) thr = clamp(thr / uy, 0, 1);
+      if (uy > 0.38 && play?.assists?.tiltComp !== false) thr = spec.propulsion ? throttleForForce(spec.propulsion.profile, sampleReference(spec.propulsion.profile, thr).thrustN / uy) ?? 1 : clamp(thr / uy, 0, 1);
     }
   } else {
     state.altHold = null;
-    if (state.armed && uy > 0.38 && !realAcro && play?.assists?.tiltComp !== false) thr = clamp(thr / uy, 0, 1);
+    if (typeof input.lift === "number" && state.armed && uy > 0.38 && !realAcro && play?.assists?.tiltComp !== false) thr = spec.propulsion ? throttleForForce(spec.propulsion.profile, sampleReference(spec.propulsion.profile, thr).thrustN / uy) ?? 1 : clamp(thr / uy, 0, 1);
   }
 
-  if (realAcro) {
+  let rigidOutput=null;
+  if(rigidAcro) {
+    rigidOutput=advanceReferenceRotors(state,spec,input,thr,dt);
+    [ux,uy,uz]=rotateVec(state.qw,state.qx,state.qy,state.qz,0,1,0);
+  } else if (realAcro) {
     const mass = Math.max(spec.mass || 0.4, 0.02);
     const tau = clamp(0.035 + mass * 0.08, 0.04, 0.18);
     const k = 1 - Math.exp(-dt / tau);
     // Real ESCs keep the motors turning over at a low idle whenever armed
     // (Betaflight's motor_idle) rather than letting them spin down to a full
     // stop at zero stick — armed acro never free-falls with silent props.
-    const target = state.armed ? Math.max(thr, IDLE_THROTTLE) : 0;
+    const target = state.armed && state.battery > 0 ? Math.max(thr, IDLE_THROTTLE) : 0;
     state.motor += (target - (state.motor || 0)) * k;
   } else {
     state.motor = thr;
   }
   const motor = state.motor || 0;
   let sag = 1;
-  if (realAcro) {
+  if (realAcro && !spec.propulsion) {
     const empty = 1 - state.battery;
     sag = clamp(1 - empty * 0.18 - motor * motor * empty * 0.42, 0.45, 1);
   }
   state.sag = sag;
-  const thrustAcc = motor * maxAcc * sag;
+  let referenceOutput = rigidOutput || (spec.propulsion ? sampleReference(spec.propulsion.profile, motor) : null);
+  let scalarPower=null;
+  if(rint&&!rigidOutput) {
+    scalarPower=solveBattery(spec.propulsion.battery,REFERENCE_PROFILES[spec.propulsion.profile].cells,packSoc(spec.propulsion,state.battery),Array(4).fill(referenceOutput),spec.propulsion.electronicsA,state.armed&&state.battery>0&&!state.packCutoff);
+    referenceOutput=scalarPower.rotors[0];
+    integrateBattery(state,spec.propulsion,scalarPower,dt);
+  }
+  const thrustAcc = referenceOutput ? 4 * referenceOutput.thrustN / spec.mass : motor * maxAcc * sag;
+  state.currentA = state.armed && state.battery > 0 && referenceOutput ? 4 * referenceOutput.currentA + spec.propulsion.electronicsA : 0;
+  if(rint)state.currentA=state.packCutoff?0:(rigidOutput?.packCurrentA??scalarPower.currentA);
   const wind = play?.wind;
   if (realAcro && state.armed) {
     // A bounded random walk represents gust velocity. Fixed simulation steps
@@ -264,15 +358,16 @@ export function step(state, input, spec, dt, play) {
     state.gustX = 0;
     state.gustZ = 0;
   }
-  const windX = state.armed ? (wind?.x || 0) + state.gustX : 0;
-  const windZ = state.armed ? (wind?.z || 0) + state.gustZ : 0;
+  const windX = state.armed || spec.aerodynamics ? (wind?.x || 0) + state.gustX : 0;
+  const windZ = state.armed || spec.aerodynamics ? (wind?.z || 0) + state.gustZ : 0;
   const airVx = state.vx - windX;
   const airVz = state.vz - windZ;
   const spd = Math.hypot(airVx, state.vy, airVz);
-  const damp = spec.drag * (1 + 0.035 * spd);
-  const ax = ux * thrustAcc - airVx * damp;
-  let ay = uy * thrustAcc - state.vy * damp - G;
-  const az = uz * thrustAcc - airVz * damp;
+  const damp = spec.aerodynamics ? 0 : spec.drag * (1 + 0.035 * spd);
+  const dragForce=spec.aerodynamics?aerodynamicForce([airVx,state.vy-(wind?.y||0),airVz],[state.qw,state.qx,state.qy,state.qz],spec.aerodynamics):[0,0,0];
+  const ax = (rigidOutput ? rigidOutput.worldForce[0]/spec.mass : ux * thrustAcc) - airVx * damp + dragForce[0]/spec.mass;
+  let ay = (rigidOutput ? rigidOutput.worldForce[1]/spec.mass : uy * thrustAcc) - state.vy * damp - G + dragForce[1]/spec.mass;
+  const az = (rigidOutput ? rigidOutput.worldForce[2]/spec.mass : uz * thrustAcc) - airVz * damp + dragForce[2]/spec.mass;
   state.vx += ax * dt;
   state.vy += ay * dt;
   state.vz += az * dt;
@@ -289,17 +384,20 @@ export function step(state, input, spec, dt, play) {
   }
 
   state.throttleOut = motor;
-  if (state.armed && motor > 0.02) {
+  if (!rint && state.armed && (motor > 0.02 || spec.propulsion)) {
     const drain = play?.drain ?? 1;
     // Draw is relative to the airframe's own hover point, so a 7" loafing at a
     // tenth of its thrust outlasts a racer punching at the same stick position.
     const load = motor / Math.max(hoverThrottle(spec), 0.05);
     const draw = 0.25 + 0.75 * Math.min(load, 4) ** 1.35;
-    state.battery = Math.max(0, state.battery - (dt / (spec.endurance ?? 300)) * draw * drain);
+    const consumption = spec.propulsion
+      ? state.currentA * dt / (spec.propulsion.capacityMah * spec.propulsion.usableFraction / 1000 * 3600)
+      : (dt / (spec.endurance ?? 300)) * draw;
+    state.battery = Math.max(0, state.battery - consumption * (spec.propulsion ? 1 : drain));
   }
 
-  const ground = spec.size * 0.45;
-  if (state.y < ground) {
+  const ground=groundHeight(spec,state,surfaceAt(play,state.x,state.z));
+  if (!play?.terrain && state.y < ground) {
     const impact = -state.vy;
     const horizontalSpeed = Math.hypot(state.vx, state.vz);
     state.y = ground;
@@ -339,8 +437,10 @@ export function step(state, input, spec, dt, play) {
   }
 
   applyWorld(state, spec, play);
+  if(state.worldTouchdown&&!state.crashed){state.groundedFor=(wasGrounded?previousGroundedFor:0)+dt;if(!wasGrounded)state.lastTouchdown=state.worldTouchdown;}
+  if(state.crashed)cutMotors(state,spec);
 
-  if (state.battery <= 0 && state.y <= ground + 0.02) {
+  if (state.battery <= 0 && state.grounded) {
     state.armed = false;
     state.altHold = null;
   }

@@ -1,0 +1,108 @@
+{
+  "date": "2026-11-02",
+  "release": "v2.21.0-395ad3ff12e2",
+  "url": "https://hangar.18-153-158-209.sslip.io/",
+  "status": "published",
+  "image": {
+    "release": "v2.21.0-395ad3ff12e2",
+    "imageId": "sha256:4db641d0b3a3201822f9b70db972f60c9bce675fe7b96f505aa74b5ddf034b54",
+    "archiveSha256": "a434af1486a1ad84ab4f78d43ab8cb37ec1f5fd0cb3a1aa603e6fea997f6d811",
+    "archiveBytes": 141312829,
+    "architecture": "arm64",
+    "sourceFiles": 257
+  },
+  "metrics": {
+    "buildings": 135,
+    "balconies": 160,
+    "authored": true,
+    "boxes": 8515,
+    "meshes": 36,
+    "apronAreaM2": 9190.040590331131,
+    "maxHeightErrorM": 1.9560631784543148e-05,
+    "apronWaterTriangles": 0,
+    "buildMs": 1121.284209
+  },
+  "source": {
+    "rawMapOsmDemUnchanged": true,
+    "sourceBuildingFootprintsHeightsRoofsUnchanged": true,
+    "sourceTypeRows": 1266,
+    "license": "ODbL-1.0",
+    "typeSourceAndPublicByteIdentical": true,
+    "reference": "AA2022aerial for town silhouette; Zach1055 Commons2025-06-07 boardwalk for surroundings only; not redistributed",
+    "facades": "procedural authored atlas; no measured facade/photo textures",
+    "entrance": "one residential entrance on nearest-source-road edge; commercial tiles only existing commercial/retail tags on that edge"
+  },
+  "checks": {
+    "applicationTests": 418,
+    "failures": 0,
+    "infraTests": 11,
+    "viteBuild": "pass; existing >500KB chunk advisory",
+    "arm64Build": "pass",
+    "sourceManifestFiles": 257,
+    "wallAreaNormalsUv": "oblique and reversed coverage/normal/tile-bound tests pass",
+    "apron": "real map projected area retained except source rounding outside land; exact physical terrain samples,0water triangles",
+    "solidBounds": "actual transformed geometry contained in corresponding conservative collider; height/land/mesh cap checks",
+    "lifecycle": "unique geometry/material/textures dispose once; building metadata cleared",
+    "runningImageSourceHashes": 100,
+    "httpsHealthAssetsSourceHashes": "pass",
+    "twoClientWssJoinStateLeave": "pass",
+    "uniqueUiIds": "pass",
+    "adminUnauthorized": 401,
+    "nginxSyntax": "pass",
+    "existingServiceIdentitiesUnchanged": 7,
+    "nginxBytesUnchanged": true,
+    "oldContainerAndConsistentDataBackupRetained": true
+  },
+  "review": {
+    "findings": "two Important, no Critical",
+    "fixes": [
+      "narrow1m opposing balcony gap RED to GREEN; current play.boxes includes accepted balconies",
+      "invalid collinear/self-intersecting rings RED to GREEN; nonzero simple-ring guard retains valid concave rings"
+    ],
+    "realDataBeforeFix": "135 buildings,160 balconies had0different-balcony intersections; targeted fixtures exposed invariant gaps",
+    "secondIndependentReview": false
+  },
+  "browser": {
+    "webgl": "close facade/neighbourhood,low/high/medium,390x844 render frame and3rebuilds",
+    "experimentalWebgpu": "close facade inspected; error logs empty",
+    "observedFps": "warm60; initial shader/rebuild5fps and resize41fps; no universal60fps claim",
+    "localLogs": "extension-style message-channel-close entries and explicit chrome-extension passkeys injection failure; no app shader/asset exception or visible failure",
+    "beforeProof": "exact2.20 source baseline, same camera preset; browser viewport may vary",
+    "live": {
+      "state": "FPV DISARM",
+      "errorLogs": "empty",
+      "profile": "f60-1750-6s",
+      "massG": 650,
+      "capacityMah": 1100,
+      "map": "sile",
+      "quality": "medium",
+      "tiltDegrees": 25,
+      "input": "gamepad; existing choice unchanged"
+    }
+  },
+  "limits": [
+    "Existing2x2km extent and source heights retained; no photogrammetry or complete1:1 town replica",
+    "Doors/windows/paint/balcony/apron positions and dimensions authored, not surveyed/current inventory",
+    "Original building prisms remain closed; no fly-through doors/windows or detailed contact mechanics",
+    "No physical phone/TX15 flight or flight-log calibration; new-origin RC calibration remains user step"
+  ],
+  "proof": [
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-buildings-before-2.21.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-buildings-detail-2.21.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-buildings-neighbourhood-2.21.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-buildings-mobile-2.21.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-buildings-webgpu-2.21.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-buildings-live-2.21.png"
+  ],
+  "git": "dirty codex/simulator-v2 retained; no commit/push/merge",
+  "runtime": {
+    "memoryObservedMiB": 18.44,
+    "limitMiB": 256,
+    "restarts": 0,
+    "uid": "1000:1000",
+    "readOnlyRoot": true,
+    "network": [
+      "drone-hangar-net"
+    ]
+  }
+}

@@ -118,5 +118,44 @@
     "md5": "8e87e04dcb2c15ac65dd3f2996f55452",
     "license": "CC0",
     "page": "https://polyhaven.com/a/sandy_gravel"
+  },
+  {
+    "asset": "grass_ground",
+    "channel": "color",
+    "file": "/materials/grass_ground/color.jpg",
+    "source": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/grass_ground/grass_ground_diff_1k.jpg",
+    "md5": "299047258586c762735b7284d3c662c3",
+    "sha256": "a79cc5ed65af0f80261b39a383b64a8c5272c5144d724deb43dbc29f0e4cd19b",
+    "bytes": 876584,
+    "license": "CC0",
+    "page": "https://polyhaven.com/a/grass_ground",
+    "author": "Charlotte Baglioni",
+    "checked": "2026-11-01"
+  },
+  {
+    "asset": "grass_ground",
+    "channel": "normal",
+    "file": "/materials/grass_ground/normal.jpg",
+    "source": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/grass_ground/grass_ground_nor_gl_1k.jpg",
+    "md5": "d518c5b2af6f2c0297bc807b351f511f",
+    "sha256": "7000e2ccd479bb7b66dcdf4faef7b47554324566886314ca620cbf03e274e826",
+    "bytes": 1310516,
+    "license": "CC0",
+    "page": "https://polyhaven.com/a/grass_ground",
+    "author": "Charlotte Baglioni",
+    "checked": "2026-11-01"
+  },
+  {
+    "asset": "grass_ground",
+    "channel": "roughness",
+    "file": "/materials/grass_ground/roughness.jpg",
+    "source": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/grass_ground/grass_ground_rough_1k.jpg",
+    "md5": "2e6afca246cf6b80bdb53f46fe7e5ce5",
+    "sha256": "111341f948b7e073edf7ac6add8777e1bf10df8959400df3863243e89bbc8c08",
+    "bytes": 328190,
+    "license": "CC0",
+    "page": "https://polyhaven.com/a/grass_ground",
+    "author": "Charlotte Baglioni",
+    "checked": "2026-11-01"
   }
 ]

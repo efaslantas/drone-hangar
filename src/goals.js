@@ -1,3 +1,4 @@
+import {createArcade,tickArcade} from './arcade.js';
 export function inSphere(s, x, y, z, r) {
   return Math.hypot(s.x - x, s.y - y, s.z - z) <= r;
 }
@@ -93,7 +94,7 @@ function raceGateFrom(run, gates) {
   return gates[(run.gatesDone - 1) % gates.length];
 }
 
-export function nextGoal(run, extra = {}) {
+export function nextGoal(run) {
   if (!run || run.won || run.lost) return null;
   const op = run.op;
   const pad = { x: 0, y: 0, z: 0, kind: "pad" };
@@ -112,10 +113,6 @@ export function nextGoal(run, extra = {}) {
     const m = (run.marks || []).find((x) => !x.done);
     return m ? { x: m.x, y: m.y, z: m.z, kind: "mark" } : pad;
   }
-  if (op.kind === "patrol") {
-    const t = (extra.targets || []).find((x) => x.alive);
-    return t ? { x: t.x, y: t.y, z: t.z, kind: "target" } : pad;
-  }
   if (op.kind === "cargo") {
     if (run.carrying != null) {
       const p = run.parcels[run.carrying];
@@ -124,14 +121,13 @@ export function nextGoal(run, extra = {}) {
     const p = (run.parcels || []).find((x) => !x.done);
     return p ? { x: p.from.x, y: p.from.y || 0, z: p.from.z, kind: "pickup" } : pad;
   }
-  if (op.kind === "final") return (extra.score || 0) >= (op.scoreNeed || 8) ? pad : null;
-  if (op.kind === "waves") return run.waveBreak > 0 ? pad : null;
   return null;
 }
 
 export function createRun(op) {
   return {
     op,
+    arcade: op.kind === "arcade" ? createArcade() : null,
     t: 0,
     step: 0,
     hoverAcc: 0,
@@ -141,16 +137,11 @@ export function createRun(op) {
     lapStart: 0,
     lastLap: null,
     bestLap: null,
-    shot: 0,
     marks: (op.marks || []).map((m) => ({ ...m, done: false })),
     parcels: (op.parcels || []).map((p) => ({ ...p, done: false })),
     carrying: null,
     delivered: 0,
     dropped: 0,
-    wave: 0,
-    waveBreak: 0,
-    waveClear: false,
-    recall: false,
     won: false,
     lost: false,
     reason: "",
@@ -186,6 +177,14 @@ export function tickRun(run, ctx) {
   const dt = ctx.dt || 0;
   run.t += dt;
   const op = run.op;
+  if (run.arcade) {
+    const a=run.arcade;
+    tickArcade(a,ctx.state,dt);
+    const done=a.targets.filter(t=>t.done).length;
+    run.hint=a.wait>0||a.needsSpawn ? 'Yeni drone hazırlanıyor…' : `${done}/${a.targets.length} tamam · sırayı sen seç · R: yeni drone`;
+    if(done===a.targets.length)win(run,'Tüm oyun nesneleri tamamlandı');
+    return run;
+  }
   if (op.requiredFlightMode && ctx.flightMode && ctx.flightMode !== op.requiredFlightMode) {
     fail(run, `bu ders ${op.requiredFlightMode.toUpperCase()} modu gerektiriyor`);
     return run;
@@ -201,11 +200,8 @@ export function tickRun(run, ctx) {
 
   tickKind(run, ctx, kind, s, dt);
 
-  // Checked AFTER the kind dispatch, and only as a fallback: a gate/mark/
-  // score that completes the mission, or a wave-clear that's about to
-  // teleport+refuel the player (run.recall), on the very same tick the pack
-  // empties must win/recall, not lose to a stale battery check that ran first.
-  if (!run.won && !run.lost && !run.recall && s.battery <= 0 && !onPad(s)) {
+  // A completed objective wins even when the battery empties on the same tick.
+  if (!run.won && !run.lost && s.battery <= 0 && !onPad(s)) {
     fail(run, "batarya bitti");
   }
   return run;
@@ -250,40 +246,6 @@ function tickKind(run, ctx, kind, s, dt) {
       if (landedSoft(s)) win(run);
     }
     run.prev = { x: s.x, y: s.y, z: s.z };
-    return;
-  }
-
-  if (kind === "patrol") {
-    const need = op.need || 6;
-    run.hint = `Hedef ${run.shot}/${need} · pade batarya`;
-    if (run.shot >= need && landedSoft(s)) win(run);
-    return;
-  }
-
-  if (kind === "waves") {
-    const waves = op.waves || [3, 5, 7];
-    if (run.wave >= waves.length) {
-      win(run);
-      return;
-    }
-    if (run.waveBreak > 0) {
-      run.waveBreak -= dt;
-      run.hint = `Dalga ${run.wave + 1} bitti · ARM ${Math.ceil(run.waveBreak)}s`;
-      if (run.waveBreak <= 0) {
-        run.wave += 1;
-        run.waveClear = false;
-        if (run.wave >= waves.length) win(run);
-        else run.hint = `Dalga ${run.wave + 1}/${waves.length}`;
-      }
-      return;
-    }
-    const alive = ctx.aliveBots ?? 0;
-    run.hint = `Dalga ${run.wave + 1}/${waves.length} · bot ${alive}`;
-    if (!run.waveClear && alive === 0 && ctx.waveSpawned) {
-      run.waveClear = true;
-      run.waveBreak = op.waveBreak || 20;
-      run.recall = true;
-    }
     return;
   }
 
@@ -360,10 +322,5 @@ function tickKind(run, ctx, kind, s, dt) {
 
   run.prev = { x: s.x, y: s.y, z: s.z };
 
-  if (kind === "final") {
-    const need = op.scoreNeed || 8;
-    const sc = ctx.score || 0;
-    run.hint = `Skor ${sc}/${need} · pade dön`;
-    if (sc >= need && landedSoft(s)) win(run);
-  }
+
 }

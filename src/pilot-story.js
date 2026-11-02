@@ -24,8 +24,8 @@ export const STORY_MISSIONS = Object.freeze([
     drone: "freestyle",
     lockDrone: true,
     lockMap: true,
-    fire: false,
-    bots: 0,
+
+
     limit: 240,
     drain: 0.35,
     spawn: { x: 0, y: 3, z: 8 },
@@ -45,8 +45,8 @@ export const STORY_MISSIONS = Object.freeze([
     drone: "freestyle",
     lockDrone: true,
     lockMap: true,
-    fire: false,
-    bots: 0,
+
+
     limit: 300,
     drain: 0.45,
     spawn: { x: 0, y: 3, z: 8 },
@@ -68,8 +68,8 @@ export const STORY_MISSIONS = Object.freeze([
     drone: "freestyle",
     lockDrone: true,
     lockMap: true,
-    fire: false,
-    bots: 0,
+
+
     limit: 420,
     drain: 0.5,
     spawn: { x: 0, y: 4, z: 8 },

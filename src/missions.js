@@ -1,7 +1,9 @@
+import {SILE_INSPECTION} from './sile-inspection.js';
+import {ARCADE} from './arcade.js';
 // Operations are grouped into independent tracks. Inside a track the order is
 // a ladder (win one to open the next); across tracks the only gate is the
-// school's gate lesson (`requires`), so a racer never has to shoot bots first.
-// Op ids that predate the tracks (school/patrol/waves/race/recon/final) are
+// school's gate lesson (`requires`).
+// Flight op ids that predate the tracks (school/race/recon) are
 // kept verbatim: `progress.done` and the server leaderboard key on them.
 import { dailyOp, isDailyId } from "./daily.js";
 import { MANUAL_LESSONS, ACRO_LESSONS, ENVIRONMENT_LESSONS, ADVANCED_RACES } from "./curriculum.js";
@@ -17,8 +19,6 @@ const SCHOOL = [
     drone: "whoop",
     lockMap: true,
     lockDrone: false,
-    fire: false,
-    bots: 0,
     limit: 300,
     drain: 0.35,
     wind: null,
@@ -39,8 +39,6 @@ const SCHOOL = [
     drone: "whoop",
     lockMap: true,
     lockDrone: false,
-    fire: false,
-    bots: 0,
     limit: 900,
     drain: 0.35,
     wind: null,
@@ -62,8 +60,6 @@ const SCHOOL = [
     drone: "toothpick",
     lockMap: true,
     lockDrone: false,
-    fire: false,
-    bots: 0,
     limit: 420,
     drain: 0.5,
     wind: { x: 0.7, z: 0.2 },
@@ -86,8 +82,6 @@ const SCHOOL = [
     drone: "cinewhoop",
     lockMap: true,
     lockDrone: false,
-    fire: false,
-    bots: 0,
     limit: 420,
     drain: 0.45,
     wind: null,
@@ -111,8 +105,6 @@ const SCHOOL = [
     drone: "freestyle",
     lockMap: true,
     lockDrone: false,
-    fire: false,
-    bots: 0,
     real: true,
     limit: 360,
     drain: 0.6,
@@ -136,8 +128,6 @@ const SCHOOL = [
     drone: "toothpick",
     lockMap: true,
     lockDrone: false,
-    fire: false,
-    bots: 0,
     night: true,
     limit: 480,
     drain: 0.6,
@@ -154,99 +144,6 @@ const SCHOOL = [
   },
 ];
 
-const COMBAT = [
-  {
-    id: "patrol",
-    kind: "patrol",
-    name: "Devriye",
-    blurb: "Depoda 6 hedef. Batarya bitince pade dön.",
-    map: "yard",
-    drone: "freestyle",
-    lockMap: true,
-    lockDrone: false,
-    fire: true,
-    bots: 0,
-    need: 6,
-    limit: 1500,
-    drain: 1.15,
-    targets: [
-      { x: 7, y: 1.1, z: -16 },
-      { x: -6, y: 1.1, z: -20 },
-      { x: 11, y: 1.1, z: -38 },
-      { x: -9, y: 1.1, z: -44 },
-      { x: 4, y: 1.1, z: -8 },
-      { x: -5, y: 1.1, z: -32 },
-    ],
-    steps: [{ t: "shoot", hint: "6 hedefi vur, pade in" }],
-  },
-  {
-    id: "waves",
-    kind: "waves",
-    name: "Köpek dövüşü",
-    blurb: "Pistte 3 dalga bot. Arada 20 sn ARM.",
-    map: "airfield",
-    drone: "racer",
-    lockMap: true,
-    lockDrone: false,
-    fire: true,
-    waves: [3, 5, 7],
-    waveBreak: 20,
-    limit: 1800,
-    drain: 0.7,
-    steps: [{ t: "waves", hint: "Dalgaları temizle" }],
-  },
-  {
-    id: "final",
-    kind: "final",
-    name: "Depo çatışması",
-    blurb: "8 isabet, pade dön. Kendi drone / depo.",
-    map: "yard",
-    drone: null,
-    lockMap: false,
-    lockDrone: false,
-    fire: true,
-    bots: 5,
-    scoreNeed: 8,
-    limit: 720,
-    drain: 0.85,
-    steps: [{ t: "score", hint: "8 skor + iniş" }],
-  },
-  {
-    id: "arena",
-    kind: "final",
-    name: "Arena",
-    blurb: "Pistte 8 bot, 15 skor, 7 dakika. Botlar geri doğar.",
-    map: "airfield",
-    drone: "racer",
-    lockMap: true,
-    lockDrone: false,
-    fire: true,
-    bots: 8,
-    scoreNeed: 15,
-    limit: 420,
-    drain: 0.8,
-    steps: [{ t: "score", hint: "15 skor + iniş" }],
-  },
-  {
-    id: "boss",
-    kind: "waves",
-    name: "Ağır tank",
-    blurb: "Heavy lift gövdeli zırhlı bot: önce 1, sonra 2. Her biri 10 isabet.",
-    map: "yard",
-    drone: "freestyle",
-    lockMap: true,
-    lockDrone: false,
-    fire: true,
-    waves: [1, 2],
-    waveBreak: 12,
-    botDrone: "heavy",
-    botHp: 10,
-    limit: 600,
-    drain: 0.7,
-    steps: [{ t: "waves", hint: "Tankı düşür" }],
-  },
-];
-
 const RACE = [
   {
     id: "race",
@@ -257,8 +154,6 @@ const RACE = [
     drone: "racer",
     lockMap: true,
     lockDrone: false,
-    fire: false,
-    bots: 0,
     laps: 3,
     countdown: 3,
     limit: 1500,
@@ -282,8 +177,6 @@ const RACE = [
     drone: "racer",
     lockMap: true,
     lockDrone: false,
-    fire: false,
-    bots: 0,
     laps: 4,
     countdown: 3,
     limit: 900,
@@ -307,8 +200,6 @@ const RACE = [
     drone: "freestyle",
     lockMap: true,
     lockDrone: false,
-    fire: false,
-    bots: 0,
     laps: 3,
     countdown: 3,
     limit: 900,
@@ -333,8 +224,6 @@ const RACE = [
     drone: "cinewhoop",
     lockMap: true,
     lockDrone: false,
-    fire: false,
-    bots: 0,
     laps: 3,
     countdown: 3,
     limit: 900,
@@ -361,8 +250,6 @@ const MISSION = [
     drone: "camera",
     lockMap: true,
     lockDrone: false,
-    fire: false,
-    bots: 0,
     limit: 900,
     drain: 0.5,
     spawn: { x: 0, y: 4, z: 6 },
@@ -383,8 +270,6 @@ const MISSION = [
     drone: "camera",
     lockMap: true,
     lockDrone: false,
-    fire: false,
-    bots: 0,
     night: true,
     limit: 600,
     drain: 0.6,
@@ -408,8 +293,6 @@ const MISSION = [
     drone: "seven",
     lockMap: true,
     lockDrone: false,
-    fire: false,
-    bots: 0,
     limit: 600,
     drain: 3.2,
     wind: { x: 0.4, z: 0.3 },
@@ -433,8 +316,6 @@ const MISSION = [
     drone: "heavy",
     lockMap: true,
     lockDrone: false,
-    fire: false,
-    bots: 0,
     limit: 600,
     drain: 0.9,
     // Parcel mass as a fraction of the airframe's own mass (see physics.withPayload).
@@ -457,8 +338,6 @@ const MISSION = [
     drone: "freestyle",
     lockMap: true,
     lockDrone: false,
-    fire: false,
-    bots: 0,
     limit: 360,
     drain: 0.55,
     wind: { x: 0.8, z: 0.15 },
@@ -480,8 +359,6 @@ const MISSION = [
     drone: "camera",
     lockMap: true,
     lockDrone: true,
-    fire: false,
-    bots: 0,
     limit: 540,
     drain: 0.65,
     wind: { x: 0.25, z: -0.15 },
@@ -557,101 +434,53 @@ export const TRACKS = [
 for (const t of TRACKS) {
   for (const op of t.ops) {
     op.track = t.id;
-    if (t.id !== "combat") {
-      op.academy = true;
-      op.version ??= 1;
-      op.physicsVersion ??= 2;
-      op.mapVersion ??= 1;
-      op.startGrounded = true;
-      op.requiredFlightMode ??= op.kind === "race" || op.real ? "acro" : "angle";
-      if (op.requiredFlightMode === "acro") op.real = true;
-    }
-    // Every campaign op starts on a 3-2-1 (physics, mission clock and bots wait for GO).
+    op.academy = true;
+    op.version ??= 1;
+    op.physicsVersion ??= 2;
+    op.mapVersion ??= 1;
+    op.startGrounded = true;
+    op.requiredFlightMode ??= op.kind === "race" || op.real ? "acro" : "angle";
+    if (op.requiredFlightMode === "acro") op.real = true;
+    // Every campaign op starts on a 3-2-1 (physics and mission clock wait for GO).
     op.countdown ??= 3;
   }
 }
 
 export const OPS = TRACKS.flatMap((t) => t.ops);
-export const LEGACY_OPS = COMBAT;
-
-export const AUTONOMY_COAST_RESPONSE = {
-  id: "autonomy-coast-response",
-  kind: "autonomy",
-  name: "Kıyı Gözetleme ve Müdahale",
-  blurb: "İHA kıyıyı tarar; tespitte en yakın uygun İDA olaya sevk edilir.",
-  map: "coast",
-  drone: "camera",
-  lockMap: true,
-  lockDrone: true,
-  fire: false,
-  bots: 0,
-  optional: true,
-  ranked: false,
-  limit: 300,
-  drain: 0.45,
-  detectRadius: 7,
-  verifyRadius: 5,
-  minSeaBattery: 30,
-  spawn: { x: 0, y: 8, z: -28 },
-  airRoute: [
-    { x: -18, y: 8, z: -43 },
-    { x: 0, y: 9, z: -36 },
-    { x: 18, y: 8, z: -43 },
-    { x: 0, y: 8, z: -32 },
-  ],
-  incidentCandidates: [
-    { id: "olay-bati", x: -18, y: 0, z: -43 },
-    { id: "olay-dogu", x: 18, y: 0, z: -43 },
-  ],
-  seaVehicles: [
-    { id: "ida-1", name: "Kıyı-1", x: -34, z: -44, heading: Math.PI / 2, battery: 100 },
-    { id: "ida-2", name: "Kıyı-2", x: 34, z: -44, heading: -Math.PI / 2, battery: 100 },
-  ],
-  phaseTimeouts: { AIR_SEARCH: 120, SEA_DISPATCH: 120, JOINT_VERIFY: 30 },
-  steps: [],
-};
-
 export const FREE = {
   id: "free",
   kind: "free",
   name: "Serbest çalışma",
+  startGrounded: true,
+  spawn: { x: 0, y: 0, z: 0 },
   blurb: "Amaç ve süre baskısı yok. Harita, drone ve uçuş ayarları serbest.",
   map: null,
   drone: null,
   lockMap: false,
   lockDrone: false,
-  fire: false,
-  bots: 0,
   optional: true,
   limit: 0,
   drain: 1,
   steps: [],
 };
 
-// Team deathmatch lives in the `team` room: the server assigns red/blue,
-// owns HP/deaths/scores and runs 3-minute matches to 20. No bots, no timer
-// on the client side (run stays null like free flight).
-export const TEAM = {
-  id: "team",
-  kind: "team",
-  name: "Takım savaşı",
-  blurb: "Kırmızı–Mavi, 3 dakika, 20 sayı. Rakip pilotları vur; düşünce 4 sn sonra yeniden doğ. En az 2 oyuncu.",
-  map: "airfield",
-  drone: null,
-  lockMap: true,
-  lockDrone: false,
-  fire: true,
-  bots: 0,
-  optional: true,
-  limit: 0,
-  drain: 0.8,
-  steps: [],
+export const FREESTYLE = { ...FREE, id: "freestyle", name: "Serbest stil", blurb: "Kendi çizgini bul. Süre ve puan baskısı olmadan Acro pratiği.", ranked: false };
+export const PRACTICE_RACE = {
+  ...RACE.find(op => op.id === "race-airfield"),
+  id: "race-practice", name: "Yarış antrenmanı", blurb: "Pistte üç tur. Akademiden bağımsız, kişisel antrenman.",
+  optional: true, academy: false, ranked: false, lockDrone: false, laps: 3,
+  steps: [{ t: "race", hint: "3 tur · kapılardan sırayla geç" }],
 };
+
+// Compatibility guard for old clients and archived scores; these are not playable modes.
+const RETIRED_OPERATION_IDS = new Set(["patrol", "waves", "final", "arena", "boss", "team", "autonomy-coast-response"]);
+export function isRetiredOperation(id) {
+  return RETIRED_OPERATION_IDS.has(id);
+}
 
 export const ROOM_OP = {
   hangar: "free",
   training: "free",
-  team: "team",
   race: "race",
   cine: "recon",
   lr: "range",
@@ -660,6 +489,7 @@ export const ROOM_OP = {
 
 /** Return the room's playable operation without bypassing campaign locks. */
 export function roomOperation(room, fallbackId, progress) {
+  if (/^team(?:-|$)/.test(room || "")) return FREE;
   const id = ROOM_OP[room];
   if (!id) return opById(fallbackId);
   const op = opById(id);
@@ -667,14 +497,16 @@ export function roomOperation(room, fallbackId, progress) {
 }
 
 export function opById(id) {
+  if(id===SILE_INSPECTION.id)return SILE_INSPECTION;
+  if (id === ARCADE.id) return ARCADE;
   if (id === "free") return FREE;
-  if (id === "team") return TEAM;
-  if (id === AUTONOMY_COAST_RESPONSE.id) return AUTONOMY_COAST_RESPONSE;
+  if (id === "freestyle") return FREESTYLE;
+  if (id === "race-practice") return PRACTICE_RACE;
   const story = STORY_MISSIONS.find((op) => op.id === id);
   if (story) return story;
   // `daily-YYYY-MM-DD` is synthesised from the date; it lives outside the tracks.
   if (isDailyId(id)) return dailyOp(id);
-  return OPS.find((o) => o.id === id) || LEGACY_OPS.find((o) => o.id === id) || FREE;
+  return OPS.find((o) => o.id === id) || FREE;
 }
 
 export function trackOf(opId) {
@@ -722,14 +554,4 @@ export function firstOpenOp(trackId, progress) {
   const t = trackById(trackId);
   if (!t) return null;
   return t.ops.find((o) => !progress?.done?.[o.id] && isOpOpen(o, progress)) || t.ops[0];
-}
-
-export function wantsBots(op) {
-  if (!op || op.kind === "free") return false;
-  return op.kind === "waves" || op.kind === "final";
-}
-
-export function playerCanBeHit(op) {
-  if (!op || op.kind === "free") return false;
-  return op.kind === "waves" || op.kind === "final";
 }

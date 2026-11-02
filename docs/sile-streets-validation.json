@@ -1,0 +1,139 @@
+{
+  "date": "2026-11-02",
+  "release": "v2.23.0-8f66e2a5a84a",
+  "url": "https://hangar.18-153-158-209.sslip.io/",
+  "status": "published",
+  "image": {
+    "release": "v2.23.0-8f66e2a5a84a",
+    "imageId": "sha256:034a46820876950299b915b56271edce788e7e910cf7e534447de63596cd73cd",
+    "archiveSha256": "46425679d65ad6d39dbb66135705f3b39c28ca7718ee7ca8deb0b01574d23c79",
+    "archiveBytes": 141323771,
+    "architecture": "arm64",
+    "sourceFiles": 263
+  },
+  "metrics": {
+    "streets": {
+      "sourceRoads": 340,
+      "driveRoads": 296,
+      "walkRoads": 44,
+      "entranceLinks": 104,
+      "authored": true
+    },
+    "neighbourhood": {
+      "lamps": 56,
+      "planters": 36,
+      "authored": true
+    },
+    "context": {
+      "trees": 1582,
+      "umbrellas": 72,
+      "boats": 28,
+      "bollards": 56,
+      "authoredPlacement": true
+    },
+    "boxes": 8867,
+    "meshes": 41,
+    "buildMs": 2652.714208,
+    "groundTriangles": 108883,
+    "surfaces": {
+      "sile-roads": {
+        "areaM2": 243026.27217926647,
+        "maxHeightErrorM": 2.6182945134678448e-05,
+        "waterTriangles": 0,
+        "triangles": 150606
+      },
+      "sile-street-paving": {
+        "areaM2": 17546.632362652294,
+        "maxHeightErrorM": 1.9560631784543148e-05,
+        "waterTriangles": 0,
+        "triangles": 38039
+      },
+      "sile-building-aprons": {
+        "areaM2": 8029.653500934937,
+        "maxHeightErrorM": 1.8372213126838233e-05,
+        "waterTriangles": 0,
+        "triangles": 15365
+      }
+    }
+  },
+  "source": {
+    "mapOsmDemBuildingsHeightsCoastUnchanged": true,
+    "license": "ODbL-1.0",
+    "roadWidths": "existing OSM values or existing derived defaults",
+    "sidewalksEntrancesPaverPattern": "authored; not measured/current street inventory",
+    "physicalTerrainOriginalPrismsForcesInputUnchanged": true
+  },
+  "checks": {
+    "applicationTests": 432,
+    "failures": 0,
+    "focusedTests": 14,
+    "infraTests": 11,
+    "viteBuild": "pass; existing >500KB chunk advisory",
+    "arm64Build": "pass",
+    "sourceManifestFiles": 263,
+    "union": "indexed versus legacy exact clipping/order, shared turns/junctions, area/terrain/land/source building exclusions",
+    "corridors": "104 accepted rectangles, sampled land/slope/length; independent exact building/water overlap0; low prop envelope regression pass",
+    "refinement": "interior centroid only, existing cut boundaries untouched, no new edge points; actual new road-cut input0new hanging vertex hits",
+    "lifecycle": "shared paver textures/material disposed once; street/neighbourhood metadata cleared",
+    "fallback": "old road renderer remains for incomplete/stale source fixtures",
+    "runningImageSourceHashes": 104,
+    "httpsHealthAssetsSourceHashes": "pass",
+    "twoClientWssJoinStateLeave": "pass",
+    "uniqueUiIds": "pass",
+    "adminUnauthorized": 401,
+    "nginxSyntax": "pass",
+    "existingServiceIdentitiesUnchanged": 7,
+    "nginxBytesUnchanged": true,
+    "oldContainerAndConsistentDataBackupRetained": true
+  },
+  "review": {
+    "findings": "no actionable Critical/Important/Minor",
+    "independentFocusedTests": 14,
+    "independentExactEntranceRectangles": 104,
+    "independentBuildingAndWaterOverlap": 0,
+    "secondIndependentReview": false
+  },
+  "browser": {
+    "webgl": "close entrance/wide coast/low-high-medium/390x844 renderframe/3rebuild",
+    "experimentalWebgpu": "same close view inspected,60fpswarm,error[]",
+    "observedFps": "GLwarm56-60; quality switch49; blocking rebuild1-3transient, no universal performance claim",
+    "logs": "application error logs empty; rebuild UI automation mouse dispatch acknowledgement3s timeout while scene synchronously rebuilt; fresh AX rendered afterward with44geometries stable",
+    "live": {
+      "state": "FPV DISARM",
+      "errorLogs": "empty",
+      "profile": "f60-1750-6s",
+      "massG": 650,
+      "capacityMah": 1100,
+      "map": "sile",
+      "quality": "medium",
+      "tiltDegrees": 25,
+      "input": "gamepad; current selection unchanged",
+      "initialLoad": "normal bootstrap; no reload needed"
+    }
+  },
+  "limits": [
+    "Existing2x2km extent and30mDSM; authored visual interpretation, no photogrammetry/1:1district claim",
+    "No new source data, raised curb, physical stairs or traffic",
+    "Original clipped partial edges retained; refinement adds triangle interior vertices only and leaves narrow cut fragments untouched",
+    "No physical phone/TX15 flight or flight-log calibration; origin RC calibration remains user step"
+  ],
+  "proof": [
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-streets-before-2.22.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-streets-detail-2.23.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-streets-overview-2.23.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-streets-mobile-2.23.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-streets-webgpu-2.23.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-streets-live-2.23.png"
+  ],
+  "git": "same dirty codex/simulator-v2 retained; no commit/push/merge",
+  "runtime": {
+    "memoryObservedMiB": 18.86,
+    "limitMiB": 256,
+    "restarts": 0,
+    "uid": "1000:1000",
+    "readOnlyRoot": true,
+    "network": [
+      "drone-hangar-net"
+    ]
+  }
+}

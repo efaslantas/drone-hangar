@@ -12,8 +12,8 @@ npm run build
 
 - `git status` ile yalniz hedef degisiklikleri kontrol edin.
 - `.env`, anahtar, sertifika ve `server/data/` icin yeni takip edilen dosya olmadigini dogrulayin.
-- Gercek gamepad kullaniliyorsa ARM/reset/mod/kamera, kalibrasyon ve Operasyon Masasi acil durusunu fiziksel cihazda deneyin.
-- WebGL ile ana ekran, akademi, serbest ucus, gunluk, takim odasi, otonomi ve Operasyon Masasi yuzeylerini kontrol edin.
+- Gercek gamepad kullaniliyorsa ARM/reset/mod/kamera ve kalibrasyonu fiziksel cihazda deneyin.
+- WebGL ile ana ekran, akademi, serbest ucus, gunluk, pilot hikâyesi ve çok oyunculu uçuş yüzeylerini kontrol edin.
 - Deneysel WebGPU etkinse desteklenen tarayicida acildigini, desteklenmeyende WebGL'e dustugunu kontrol edin.
 - Mobilde yatay ucus HUD'u, menu, sonuc karti ve dokunmatik hedefleri kontrol edin.
 
@@ -43,7 +43,7 @@ docker run --rm -p 8780:8780 \
 2. Hash'li `/assets/` dosyalari yuklenir; browser console'da uygulama hatasi yoktur.
 3. Bir odaya giris, ikinci istemcide pose gorunurlugu ve ayrilis kontrol edilir.
 4. Bir zamanli gorev tamamlanir; siralama API'sinde sonuc gorunur.
-5. Takim odasinda iki istemci ile mac, skor, dusme ve respawn kontrol edilir.
+5. Uçuş menüsünde zamanın durduğu, devam/reset ve drone/alan değiştirmenin çalıştığı kontrol edilir.
 6. Admin erisimi yetkisiz istekte 401, yetkili istekte beklenen veriyi verir.
 7. Ghost paylasimi boyut limiti, yukleme ve geri oynatma kontrol edilir.
 

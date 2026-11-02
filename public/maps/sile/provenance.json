@@ -1,0 +1,68 @@
+{
+  "generatedUtc": "2026-11-01T00:08:03.014164+00:00",
+  "bbox": [
+    29.60059,
+    41.1654,
+    29.62445,
+    41.18341
+  ],
+  "projection": {
+    "lat": 41.1744067,
+    "lon": 29.6125216,
+    "metresLat": 111057.28055917022,
+    "metresLon": 83913.01638061111,
+    "offsetX": -438.0811564219137,
+    "offsetZ": -82.8005069779328
+  },
+  "verticalDatum": "EGM2008 source; runtime relative to launch 1.6m",
+  "osm": {
+    "url": "https://api.openstreetmap.org/api/0.6/map.json?bbox=29.60059,41.1654,29.62445,41.18341",
+    "license": "ODbL-1.0",
+    "rawSha256": "ce0cabe7cceaf070c4f4d937ff600fb636830158711904a85b5cc4f8396a643b",
+    "retrievedDate": "2026-11-01"
+  },
+  "dem": {
+    "url": "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N41_00_E029_00_DEM/Copernicus_DSM_COG_10_N41_00_E029_00_DEM.tif",
+    "sourceSha256": "ae60579da4bcbc68cd853a22e70f46c2164a7360a4c53d7dc559a7434ad68e0d",
+    "release": "2021 public GLO-30 DSM",
+    "sampling": "native crop, bilinear to65x65, triangle interpolation; no bare-earth correction",
+    "notice": "produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved"
+  },
+  "lighthouse": {
+    "url": "https://www.kiyiemniyeti.gov.tr/yer-detay/612/SILE-FENERI",
+    "towerHeightM": 19,
+    "appearance": "authored schematic; not scanned"
+  },
+  "assumptions": [
+    "Most building heights7.5m; OSM levels converted at3m/level",
+    "Castle12m assumed; facades/roofs schematic",
+    "Road widths follow OSM width if numeric, otherwise class defaults",
+    "DSM includes roofs/vegetation; no bare-earth or centimetre collision accuracy",
+    "Synthetic launch pad in an OSM park; not a real designated flying site",
+    "No imagery, no bathymetry, no real-time or complete city replica"
+  ],
+  "stats": {
+    "buildings": 1266,
+    "roads": 340,
+    "marineStructures": 10,
+    "terrainTriangles": 6740,
+    "measuredBuildingHeights": 0,
+    "sourceBuildingLevels": 1,
+    "landFraction": 0.7225,
+    "spawnClearanceM": 13.8
+  },
+  "files": {
+    "source-dem.tif": {
+      "sha256": "4f827307929e118c578a3b03bdbb70438596ad041adf9b641cbe3145fcc78ed6",
+      "bytes": 16098
+    },
+    "map.json": {
+      "sha256": "3a27c6f0ca35c62da8a1dde9821eae3ec2fde6cedbd3adce70a4f50c813a27b1",
+      "bytes": 791980
+    },
+    "source-osm.json": {
+      "sha256": "6f470aa0a10ed28dad87247f8b3c50563acea599e5a215ba96ea76005b10e5ed",
+      "bytes": 1143102
+    }
+  }
+}

@@ -1,6 +1,6 @@
 const base = (id, name, blurb, map, drone, steps, extra = {}) => ({
   id, kind: "school", name, blurb, map, drone, steps,
-  lockMap: true, lockDrone: false, fire: false, bots: 0,
+  lockMap: true, lockDrone: false,
   limit: 360, drain: 0.5, spawn: { x: 0, y: 4, z: 7 }, ...extra,
 });
 const land = { t: "land", hint: "Pade yumuşak in ve DISARM" };
@@ -35,6 +35,6 @@ export const ENVIRONMENT_LESSONS = [
 ];
 
 export const ADVANCED_RACES = [
-  { id: "race-precision", kind: "race", name: "Hassas tur", blurb: "Dar kapılı teknik hangar devresi, 3 tur.", map: "indoor", drone: "toothpick", lockMap: true, lockDrone: false, fire: false, bots: 0, laps: 3, limit: 600, drain: 0.55, spawn: { x: 0, y: 4, z: 8 }, gates: [gate(0, 4, -8, ""), gate(12, 5, -24, ""), gate(0, 7, -48, ""), gate(-14, 4, -24, "")] },
-  { id: "race-endurance", kind: "race", name: "Dayanıklılık turu", blurb: "Uzun menzil gövdesiyle rüzgârlı orman devresi, 3 tur.", map: "forest", drone: "seven", lockMap: true, lockDrone: true, fire: false, bots: 0, laps: 3, limit: 900, drain: 0.8, wind: { x: 0.6, z: 0.25 }, spawn: { x: 0, y: 6, z: 7 }, gates: [gate(6, 7, -36, "", 3.2), gate(30, 10, -50, "", 3.2), gate(10, 9, -132, "", 3.2), gate(-30, 9, -120, "", 3.2), gate(-22, 7, -30, "", 3.2)] },
+  { id: "race-precision", kind: "race", name: "Hassas tur", blurb: "Dar kapılı teknik hangar devresi, 3 tur.", map: "indoor", drone: "toothpick", lockMap: true, lockDrone: false, laps: 3, limit: 600, drain: 0.55, spawn: { x: 0, y: 4, z: 8 }, gates: [gate(0, 4, -8, ""), gate(12, 5, -24, ""), gate(0, 7, -48, ""), gate(-14, 4, -24, "")] },
+  { id: "race-endurance", kind: "race", name: "Dayanıklılık turu", blurb: "Uzun menzil gövdesiyle rüzgârlı orman devresi, 3 tur.", map: "forest", drone: "seven", lockMap: true, lockDrone: true, laps: 3, limit: 900, drain: 0.8, wind: { x: 0.6, z: 0.25 }, spawn: { x: 0, y: 6, z: 7 }, gates: [gate(6, 7, -36, "", 3.2), gate(30, 10, -50, "", 3.2), gate(10, 9, -132, "", 3.2), gate(-30, 9, -120, "", 3.2), gate(-22, 7, -30, "", 3.2)] },
 ];

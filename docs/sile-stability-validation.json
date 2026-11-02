@@ -1,0 +1,81 @@
+{
+  "date": "2026-11-01",
+  "releaseCandidate": "v2.16.0-7f5130339846",
+  "tests": {
+    "passed": 382,
+    "failed": 0,
+    "focusedSite": 24,
+    "reviewRegressions": 9,
+    "build": "pass",
+    "diffCheck": "pass"
+  },
+  "depthReproduction": {
+    "nearM": 0.003,
+    "farM": 6500,
+    "distanceM": 700,
+    "surfaceGapM": 0.035,
+    "cameraSamples": 100,
+    "standardWebglWrongSurface": 67,
+    "productWebglWrongSurface": 0,
+    "productWebgpuWrongSurface": 0
+  },
+  "landmark": {
+    "towerHeightM": 12,
+    "heightSource": "https://sile.bel.tr/tr/sile-rehberi/sile-tarihi-yapilari/",
+    "islandReliefM": 4.5,
+    "islandReliefMeasured": false,
+    "sourceOsmAndDem": "unchanged",
+    "runtimeTerrain": "same plateau in island top/coast cliff/query and castle base/prism",
+    "unsupportedSite": "generic fallback for holed/concave/small/invalid bodies",
+    "openings": "decorative;full collision prism conservative"
+  },
+  "review": {
+    "fixed": [
+      "Missing common helper in WebGLflag reproduced shader compile error;RED→GREEN and real render now clean",
+      "Holed platform accepted with4.5m inner-cliff mismatch;regraded important and unsupported-site rejection RED→GREEN"
+    ],
+    "oneFixPass": true,
+    "deferredMinors": [],
+    "previousMinor": "Transformed/reversed roof gable outward-normal persistent assertion added",
+    "declinedScope": "unrelated changes,survey fidelity,browser/deploy not independently reviewed"
+  },
+  "browser": [
+    "Actual createGfx+composer WebGL Şile/Pist/Arcade/night/quality switches;flag visible after fix",
+    "WebGPU composer/GTAO render warm60fps,precision0/100",
+    "390x844renderframe,not physical phone",
+    "Full local app SOURCEONE6S650g1100mAh/Şile/medium/tilt0 preserved;RC input uncalibrated for local origin;FPV DISARM",
+    "No local app-origin console error on final checks;browser extension warnings excluded"
+  ],
+  "delivery": {
+    "status": "AWS published; earlier Azure attempt blocked",
+    "localUrl": "http://127.0.0.1:5173/",
+    "localBuiltServer": "http://127.0.0.1:8780/",
+    "localBuiltHttpAssetsHashes": "all checks pass",
+    "sourceFiles": 239,
+    "azureAttempt": "SCPconnectionclosed;SSH20.52.232.128timeout;hostnameDNSnotfound while threejs.org resolves",
+    "productionRolloutPerformed": true,
+    "productionProfileRecheck": "AWS SOURCEONE6S650g1100/Şile/medium25°/RC verified after reload; calibration required on new origin",
+    "pending": "User TX15 calibration and flight on new origin",
+    "package": "/Users/efa/projects/drone-hangar/.superpowers/sdd/2026-11-01-sile-stability/release/hangar-sile-release.tgz",
+    "packageSha256": "27eebf58e5702db9fe4830c47f00f2820693bf975ea9f7b6ed19b3ec8dffc6ad",
+    "git": "no commit/push/merge",
+    "azureAttemptStatus": "local ready;Azure blocked",
+    "awsUrl": "https://hangar.18-153-158-209.sslip.io/",
+    "awsValidation": "docs/aws-hosting-validation.json"
+  },
+  "limits": [
+    "4.5mrelief and model details authored,not surveyed digital twin",
+    "12m municipal source does not validate specific mesh/window/merlon dimensions",
+    "No actual phone/TX15 flight or flight-log calibration",
+    "Logdepth performance verified on currentdesktop;no universal FPSguarantee",
+    "Azure2.16 not published"
+  ],
+  "proof": [
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-castle-before-2.16.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-castle-after-2.16.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-stability-flag-2.16.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-stability-webgpu-2.16.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-stability-mobile-2.16.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-stability-local-2.16.png"
+  ]
+}

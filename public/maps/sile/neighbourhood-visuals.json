@@ -1,0 +1,43 @@
+{
+  "version": "2.22",
+  "sources": [
+    "existing source-osm.json",
+    "map.json",
+    "context-data.json",
+    "building-types.json"
+  ],
+  "license": "ODbL-1.0",
+  "sourceDataAndPhysicalTerrainUnchanged": true,
+  "garden": {
+    "extentM": 35,
+    "selection": "near supported coastal footprints; excludes source green/lawn/beach/paved/harbour and roads",
+    "palette": "authored summer colour modulation of existing microtexture; not satellite imagery or measured vegetation",
+    "sourceImageEdited": false,
+    "visualMeshRefinement": "interior centroid splits only, at most3localpasses,8m threshold,within46m; clipped edge endpoints and source physical height unchanged; narrow fragments remain untouched",
+    "maximumTerrainTriangles": 250000
+  },
+  "streetContext": {
+    "maximumLamps": 56,
+    "maximumPlanters": 64,
+    "lampPlacement": "source-road roadside candidates with existing derived/default widths; authored spacing and offset",
+    "planterPlacement": "beside authored residential entrance, terrain-normal frame",
+    "inventoryAndDimensionsMeasured": false,
+    "dynamicLightSources": false,
+    "collision": "every visible solid component uses actual transformed geometry world AABB; all qualities",
+    "benchVersion": "2.26",
+    "maximumBenches": 32,
+    "benchPlacement": "authored roadside pockets within30m of selected coastal buildings; terrain-normal frame, four supports checked against actual terrain; roads, entrance corridors, source buildings, shore and prior props excluded",
+    "benchDimensionsM": [
+      2,
+      0.64,
+      1.005
+    ],
+    "benchInventoryMeasured": false
+  },
+  "limits": [
+    "No new terrain/building/shore survey or measured yard inventory",
+    "Existing2x2km scope, source building geometry and flight/input profile retained",
+    "No new water/traffic/people dynamics",
+    "Small lamp lens emissive surface is visual only; no added point lights"
+  ]
+}

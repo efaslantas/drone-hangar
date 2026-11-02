@@ -1,17 +1,38 @@
+import {SILE_INSPECTION,createInspectionScenario,createInspection,tickInspection,selectInspectionPoint,stopInspection,attachInspectionImage,inspectionReport,inspectionTrace,saveInspectionReport,readInspectionReport} from './sile-inspection.js';
+import {createInspectionView,captureInspectionFrame,inspectionDownloadBlob} from './sile-inspection-view.js';
+import {createInspectionNavigation} from './sile-inspection-navigation.js';
+import {groundHeight} from './airframe-contact.js';
+import {createDroneStudio} from './drone-studio.js';
+import {chaseFraming,chaseOffset,fpvNearPlane,cameraClearance} from './airframe-view.js';
+import {applyArcadeAssets} from './arcade-assets.js';
+import {setArcadeSiteQuality} from './arcade-site.js';
+import {ARCADE,renewArcadeDrone} from './arcade.js';
+import {createArcadeView} from './arcade-view.js';
+import {armPresentation,controlPresentation,paintInputHelp} from './flight-ui.js';
+import {pinSourceOne,SOURCE_ONE_PRESET} from './flight-presets.js';
+import {createStartupGate} from './startup-gate.js';
+import {loadSileData,getSileData} from './sile-data.js';
+import {createMapSelector} from './map-selection.js';
+import {surfaceAt} from './geo-terrain.js';
+import {applyScannedMaterials} from './scanned-materials.js';
+import {bindRcSetup} from './rc-setup.js';
+import {canArmInput,disarmOnInputLoss,applyRcGroundStart} from './rc-input.js';
+import { resetBattery } from './battery-model.js';
+import { bindReferenceForm } from "./reference-form.js";
 import * as THREE from "three";
+import { VISUAL_KEY, readVisualSettings, normalizeVisualSettings, visualProfile, verticalFov, lensIntensity, applySceneDetail } from "./visual-settings.js";
+import { readSession, LOADOUT_KEY, isFlightPaused, isLocalOnlyRun, shouldRankRun, advanceWorldTime, getBrowserStorage } from "./session-preferences.js";
 import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
 import { CATALOG, droneById, paceInfo } from "./catalog.js";
 import { createState, step, rotateVec, hoverThrottle, yawErrTo, yawFromQ, withPayload } from "./physics.js";
-import { poll, consume, bindStick, bindHold, setHoldFire, bindFlightTouches, bindTap, setControlProfile, setGamepadCalibration, captureGamepadCalibration } from "./input.js";
-import { makeDrone, makeSurfaceVehicle, spinProps, makeNametag, droneSvg, setCamPodTilt } from "./models.js";
-import { buildWorld, clearWorld, MAPS, bakeEnv, tickWorld, windFor } from "./world.js";
+import { getInputSettings, poll, consume, bindStick, bindFlightTouches, bindTap, setControlProfile, setGamepadCalibration, captureGamepadCalibration } from "./input.js";
+import { makeDrone, disposeDrone, setDroneOpacity, spinProps, makeNametag, droneSvg, setCamPodTilt } from "./models.js";
+import { buildWorld, clearWorld, worldMatches, MAPS, bakeEnv, tickWorld, windFor } from "./world.js";
 import { ROOMS } from "./rooms.js";
 import { connect } from "./net.js";
 import { createGfx, wantsWebGPU, setGpuPreference, hasWebGPU, gfxLabel } from "./gfx.js";
-import { createShot, stepShots, applyHits, makeBot, stepBot, canFire, aimDir, PLAYER_HP, BOT_HP } from "./combat.js";
 import { startBillboard } from "./billboard.js";
-import { TRACKS, FREE, TEAM, AUTONOMY_COAST_RESPONSE, opById, roomOperation, wantsBots, playerCanBeHit, trackOf, trackDone, trackGate, isOpOpen, nextInTrack, firstOpenOp } from "./missions.js";
-import { TEAM_CSS, TEAM_SPAWN, scoreLine, matchStatus, enemyTargets, resultModel } from "./team.js";
+import { TRACKS, FREE, opById, roomOperation, trackOf, trackDone, trackGate, isOpOpen, nextInTrack, firstOpenOp } from "./missions.js";
 import { loadProgress, saveWin, saveLap, saveAssessment } from "./progress.js";
 import { createRun, tickRun, canSwapBattery, nextGoal } from "./goals.js";
 import { sfx } from "./sfx.js";
@@ -22,31 +43,32 @@ import { ambience } from "./ambience.js";
 import { createTrace, recordTrace, sampleTrace, traceCount, traceDuration, saveGhost, loadGhost, encodeTrace, decodeTrace } from "./ghost.js";
 import { createSimulationClock, advanceSimulationClock, resetSimulationClock } from "./simulation-clock.js";
 import { createAssessment, sampleAssessment, finalizeAssessment } from "./assessment.js";
-import { abortAutonomy, autonomyReport, createAutonomyRun, pauseAutonomy, returnToAutonomy, takeControl, tickAutonomy } from "./autonomy.js";
-import { airCommand, routeProgress, surfaceCommand } from "./autopilot.js";
-import { createSurfaceState, stepSurface } from "./surface.js";
-import { autonomyViewModel, clearAutonomyPanel, renderAutonomyPanel } from "./autonomy-view.js";
-import { VEHICLE_MODES, cycleVehicle, selectVehicle, setVehicleMode } from "./operations-console.js";
-import { clearRoute, appendWaypoint, createRoute, removeWaypoint } from "./route-editor.js";
-import { applyOperationsRoute, createOperationsRuntime, handleOperationsControlLoss, projectOperationsPoint, rebuildOperationsRuntime, resetOperationsVehicle, setOperationsEmergency, stepOperationsRuntime, toggleOperationsPower, toggleOperationsProfile } from "./operations-runtime.js";
-import { clearOperationsConsole, operationsViewModel, renderOperationsConsole } from "./operations-view.js";
-import { deleteScenario, listScenarios, loadScenario, saveScenario, scenarioFromSession } from "./scenarios.js";
 import { resolveOperationLoadout } from "./loadout-selection.js";
-import { BUILD_PARTS, DEFAULT_BUILD, applyFpvBuild, buildFor, buildMetrics, buildSummary, normalizeBuilds, setBuildFor } from "./fpv-build.js";
-import { STARTER_BUILD, availableParts, completeStoryFlight, loadPilotStory, savePilotStory, storyMission } from "./pilot-story.js";
+import { workshopChoices, workshopComparison } from "./workshop-view.js";
+import { BUILD_PARTS, DEFAULT_BUILD, applyFpvBuild, buildFor, buildSummary, normalizeBuilds, setBuildFor } from "./fpv-build.js";
+import { emptyPilotStory, completeStoryFlight, loadPilotStory, savePilotStory, storyMission } from "./pilot-story.js";
 
-const HOME_LAT = 41.1758;
-const HOME_LON = 29.6113;
+import { REFERENCE_KEY, REFERENCE_PROFILES, readReferences, normalizeReference, applyReference, referenceMetrics, freshBatteryMetrics } from "./propulsion-reference.js";
+const browserStorage = getBrowserStorage();
+const rcSetup=bindRcSetup(document.getElementById('rc-setup'),browserStorage);
+let referenceSetups = {
+  freestyle: normalizeReference({profile:'f60-1750-6s',battery:{mode:'rint'}}),
+  racer: normalizeReference({profile:'f60-2550-4s',battery:{mode:'rint'}}),
+  ...readReferences(browserStorage),
+};
+let visualSettings = readVisualSettings(browserStorage);
+let currentVisualProfile = visualProfile(visualSettings, devicePixelRatio);
 const CALIBRATION_KEY = "efa-hangar-gamepad-calibration-v1";
 
 try {
-  setGamepadCalibration(JSON.parse(localStorage.getItem(CALIBRATION_KEY) || "null"));
+  setGamepadCalibration(JSON.parse(browserStorage.getItem(CALIBRATION_KEY) || "null"));
 } catch {
   setGamepadCalibration(null);
 }
 
+const startupGate=createStartupGate();
 const q0 = new URLSearchParams(location.search);
-if (q0.get("room")) document.getElementById("room").value = q0.get("room");
+if (q0.get("room")) document.getElementById("room").value = /^team(?:-|$)/.test(q0.get("room")) ? "hangar" : q0.get("room");
 if (q0.get("name")) document.getElementById("pilot").value = q0.get("name");
 
 // "?ghost=<id>" challenge link: fetch the shared run and, once it resolves
@@ -56,13 +78,12 @@ let sharedGhost = null; // { opId, trace, meta }
 if (q0.get("ghost")) {
   fetch(`/api/ghost/${encodeURIComponent(q0.get("ghost"))}`)
     .then((r) => (r.ok ? r.json() : null))
-    .then((rec) => {
+    .then(async (rec) => {
       if (!rec) return;
       const tr = decodeTrace(rec.data);
       if (!tr || !traceDuration(tr)) return;
       if (opById(rec.op).id !== rec.op) return; // unknown/garbage op id in the link
-      sharedGhost = { opId: rec.op, trace: tr, meta: rec.meta || {} };
-      prepareFlight(rec.op);
+      await startupGate.run(()=>{sharedGhost = {opId:rec.op,trace:tr,meta:rec.meta||{}};prepareFlight(rec.op);});
     })
     .catch(() => {});
 }
@@ -71,41 +92,41 @@ const hangarEl = document.getElementById("hangar");
 const flightEl = document.getElementById("flight");
 const cardsEl = document.getElementById("cards");
 const canvas = document.getElementById("view");
-const recEl = document.getElementById("rec");
-const tcEl = document.getElementById("tc");
-const gpsEl = document.getElementById("gps");
-const teleEl = document.getElementById("tele");
-const metaEl = document.getElementById("cam-meta");
 const osdCrash = document.getElementById("osd-crash");
 
-let selected = "whoop";
-let selectedMap = "indoor";
+const initialSession = readSession(browserStorage);
+let selected = initialSession.drone;
+let selectedMap = initialSession.map;
+let initialMapError='';
+if(selectedMap==='sile')try{await loadSileData();}catch{selectedMap='airfield';initialMapError='Şile verisi yüklenemedi; Pist açıldı. Haritayı yeniden seçerek deneyebilirsin.';}
 let preferredLoadout = { drone: selected, map: selectedMap };
 const BUILD_KEY = "efa-hangar-fpv-build-v2";
 let fpvBuilds = {};
+let lastWorkshopDrone = null;
 let pilotStory = null;
 let progress = loadProgress();
 try {
   // Each daily keeps its own ghost (~100 KB); only today's and yesterday's are worth keeping.
-  pruneDailyGhosts(localStorage);
+  pruneDailyGhosts(browserStorage);
 } catch {
   /* storage unavailable */
 }
 // A room link may select an activity, but it cannot bypass campaign gates.
-const defaultOp = firstOpenOp("school", progress)?.id || "hover";
+const defaultOp = "free";
 let selectedOp = roomOperation(q0.get("room"), defaultOp, progress).id;
 let run = null;
-let targets = [];
+let inspection=null,inspectionView=null,inspectionSaved=false,inspectionTerminalMenu=false;
+let inspectionNavigationView=null;
+let previousInspectionReport=readInspectionReport(browserStorage),inspectionSaveMessage="",lastInspectionReport=null;
+let inspectionCaptures=[];
+let arcadeView = null;
 let cargo = []; // per parcel: { crate, ring, zone, beam } meshes (cargo op)
 let loadedSpec = null; // the selected airframe with the parcel slung under it
 let prevCargo = { delivered: 0, carrying: null, dropped: 0 };
-let lastWave = -1;
 let lastWonId = null;
 let prevStep = -1;
 let prevGates = 0;
 let prevMarks = 0;
-let prevShot = 0;
-let prevWaveClear = false;
 let prevLap = 0;
 let countdown = null;
 let goFlash = 0;
@@ -121,15 +142,14 @@ const replayPose = {};
 let swapChirp = false;
 let lowChirp = false;
 let deadPackTimer = 0;
-let autonomy = null;
-let operations = null;
 const simClock = createSimulationClock(120, 0.1, 16);
 const goalRoot = new THREE.Group();
 let myId = "";
 let angleOverride = null;
 let chase = false;
+const chaseHeading={x:0,z:-1};
 let netStatus = "bağlanıyor…";
-let recTime = 0;
+let worldTime = 0;
 const remotes = new Map();
 const hangarPilots = new Map();
 const _lerpP = new THREE.Vector3();
@@ -138,26 +158,18 @@ const _targetPos = new THREE.Vector3();
 const _targetQuat = new THREE.Quaternion();
 const _tiltQuat = new THREE.Quaternion();
 const _xAxis = new THREE.Vector3(1, 0, 0);
-const _aimTarget = new THREE.Vector3();
-const _aimScreen = new THREE.Vector3();
-const _chaseToCraft = new THREE.Vector3();
-const _chaseToAim = new THREE.Vector3();
-const _chaseLook = new THREE.Vector3();
-const AUTONOMY_SEA_SPEC = { maxSpeed: 8, acceleration: 3.6, drag: 0.62, turnRate: 1.05, batteryDrain: 0.018 };
-const OPERATIONS_SEA_SPEC = { maxSpeed: 9, maxReverseSpeed: 3, acceleration: 3.8, drag: 0.62, turnRate: 1.05, batteryDrain: 0.018 };
-
 function createTrainingRun(op) {
   const next = createRun(op);
   next.assessment = createAssessment();
+  next.reference = !!configuredSpec().propulsion;
   return next;
 }
 
 // FPV camera uptilt: the pod looks UP from the frame plane, so when the quad
 // pitches nose-down to fly forward the view still holds the horizon. One value
-// feeds the camera, the rounds (combat.aimDir) and the pod model
-// (setCamPodTilt) — barrel, reticle and shot cannot drift apart.
+// feeds both the camera and its visible model (setCamPodTilt).
 function camTiltRad() {
-  const tilt = Number(document.getElementById("cam-tilt")?.value || 30);
+  const tilt = opById(selectedOp).inspection ? 0 : visualSettings.tilt;
   return (tilt * Math.PI) / 180;
 }
 
@@ -172,20 +184,20 @@ const touchUi =
 // world is built so materials know which path they are on.
 const gfx = await createGfx(canvas, { touchUi, wantGpu: wantsWebGPU(touchUi) });
 const scene = new THREE.Scene();
-let play = buildWorld(scene, selectedMap, { lite: touchUi, gpu: gfx.node, sky: gfx.createSky, props: !touchUi });
+let play = buildWorld(scene, selectedMap, { lite: touchUi, gpu: gfx.node, sky: gfx.createSky, props: !touchUi, quality:visualSettings.quality });
 let loadedMap = selectedMap;
 const renderer = gfx.renderer;
-renderer.setPixelRatio(Math.min(devicePixelRatio, touchUi ? 1 : 2));
-renderer.shadowMap.enabled = !touchUi;
+renderer.setPixelRatio(currentVisualProfile.pixelRatio);
+renderer.shadowMap.enabled = currentVisualProfile.shadows;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
 renderer.toneMappingExposure = 1.0;
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 
 const fpvCam = new THREE.PerspectiveCamera(118, 1, 0.04, touchUi ? 260 : 520);
-// Wide enough to keep both the craft and the elevated FPV gun line visible.
+// Wide enough to keep both the craft and the elevated FPV camera visible.
 const chaseCam = new THREE.PerspectiveCamera(82, 1, 0.1, touchUi ? 260 : 520);
-// Node path gets a light bloom (lamps, sun glints, muzzle) — the classic
+// Node path gets a light bloom (lamps, sun glints) — the classic
 // composer keeps its old no-bloom setup.
 const { composer, renderPass, bodycam } = gfx.createComposer(scene, fpvCam, { bloom: gfx.node && !touchUi, ao: gfx.node && !touchUi, antialias: !touchUi, aa: !touchUi });
 bodycam.uniforms.quality.value = touchUi ? 0 : 1;
@@ -214,34 +226,13 @@ let crashFade = 0;
 let exitArmed = false;
 let exitArmedAt = 0;
 const EXIT_CONFIRM_MS = 1500;
-let helpOpen = !touchUi;
-let shots = [];
-let visShots = []; // other pilots' tracers: drawn, never tested for hits
-let team = null; // { mine, match, kills, deaths, downUntil } while in a team room
-const shotMeshes = [];
-let bots = [];
-let playerHp = PLAYER_HP;
-let score = 0;
-let fireCd = 0;
-const shotGeo = new THREE.CylinderGeometry(0.012, 0.018, 2.4, 5);
-shotGeo.rotateX(Math.PI / 2);
-const shotMat = new THREE.MeshBasicMaterial({ color: 0xffe08a, transparent: true, opacity: 0.95 });
-const botShotMat = new THREE.MeshBasicMaterial({ color: 0xff5533, transparent: true, opacity: 0.9 });
-const muzzle = new THREE.PointLight(0xffcc66, 0, 6, 2);
-fpvCam.add(muzzle);
-muzzle.position.set(0, -0.02, -0.25);
-let hitFlash = 0;
-let dmgFlash = 0;
-let camKick = 0;
+let helpOpen = false;
 const helpEl = document.getElementById("help");
-const meterL = document.querySelector("#m-l i");
-const meterR = document.querySelector("#m-r i");
-const meterR2 = document.getElementById("m-r2");
-const padStat = document.getElementById("pad-stat");
 
 function setHelp(on) {
   helpOpen = on;
   helpEl.hidden = !on;
+  flightEl.classList.toggle("help-open",on);
 }
 
 function toggleMute(force) {
@@ -274,25 +265,28 @@ CATALOG.forEach((d) => {
     hangarPreview?.show(d.id);
     paintFpvWorkshop();
     if (typeof hangarJoin === "function") hangarJoin();
+    persistLoadout();
     paintOps();
   };
   cardsEl.appendChild(b);
 });
 
 const mapsEl = document.getElementById("maps");
+let mapLoading=false;
+const mapStatus=document.getElementById('map-load-status');mapStatus.textContent=initialMapError;
+const selectMap=createMapSelector({load:loadSileData,busy(active){mapLoading=active;document.querySelectorAll('[data-start]').forEach(b=>b.disabled=active);if(active)mapStatus.textContent='Harita hazırlanıyor…';},error(error){mapStatus.textContent='Şile verisi yüklenemedi. Mevcut harita korundu; yeniden deneyebilirsin.';const feedback=document.getElementById('inspection-save-feedback');feedback.hidden=false;feedback.textContent=mapStatus.textContent;},commit(id,context){
+ selectedMap=id;if(!context?.inspection)preferredLoadout={...preferredLoadout,map:id};if(id==='sile'&&opById(selectedOp).kind!=='free')selectedOp=FREE.id;
+ mapsEl.classList.toggle('locked',!!opById(selectedOp).lockMap);
+ for(const c of mapsEl.children)c.classList.toggle('on',c.dataset.id===id);
+ billboard.setMap(id);persistLoadout();paintOpsCards();paintOps();mapStatus.textContent=id==='sile'?'Şile hazır · Serbest uçuş · Bina yükseklikleri çoğunlukla tahmindir.':'';
+}});
 MAPS.forEach((m) => {
   const b = document.createElement("button");
   b.className = "card map-card" + (m.id === selectedMap ? " on" : "");
   b.dataset.id = m.id;
   b.innerHTML = `<div class="thumb" style="--tint:${m.tint}"></div><div class="cls">Harita</div><h2>${m.name}</h2><p>${m.blurb}</p>`;
-  b.onclick = () => {
-    if (opById(selectedOp).lockMap) return;
-    selectedMap = m.id;
-    preferredLoadout = { ...preferredLoadout, map: selectedMap };
-    for (const c of mapsEl.children) c.classList.toggle("on", c.dataset.id === selectedMap);
-    billboard.setMap(m.id);
-    paintOps();
-  };
+  if(m.id==='sile')b.querySelector('.thumb').style.backgroundImage='url(/maps/sile/preview.svg)';
+  b.onclick=()=>{if(!opById(selectedOp).lockMap)selectMap(m.id);};
   mapsEl.appendChild(b);
 });
 
@@ -341,59 +335,37 @@ function createHangarPreview() {
     return { show() {} };
   }
   prev.toneMapping = THREE.ACESFilmicToneMapping;
-  prev.toneMappingExposure = 1.22;
+  prev.toneMappingExposure = 1.02;
+  prev.shadowMap.enabled=true;prev.shadowMap.type=THREE.PCFSoftShadowMap;
   prev.outputColorSpace = THREE.SRGBColorSpace;
   prev.setPixelRatio(Math.min(devicePixelRatio, touchUi ? 1.25 : 2));
-  const sc = new THREE.Scene();
+  const previewStudio=createDroneStudio({reduced:touchUi});
+  const sc=previewStudio.scene;
   const studio = new RoomEnvironment();
   const pmrem = new THREE.PMREMGenerator(prev);
   sc.environment = pmrem.fromScene(studio, .04).texture;
-  sc.environmentIntensity = .8;
   studio.dispose(); pmrem.dispose();
-  const deck = new THREE.Mesh(
-    new THREE.CircleGeometry(0.42, 48),
-    new THREE.MeshBasicMaterial({ color: 0x16303c, transparent: true, opacity: 0.72 }),
-  );
-  deck.rotation.x = -Math.PI / 2;
-  deck.position.y = -0.01;
-  sc.add(deck);
-  const ring = new THREE.Mesh(
-    new THREE.RingGeometry(0.86, 0.9, 48),
-    new THREE.MeshBasicMaterial({ color: 0x83c5d5, side: THREE.DoubleSide }),
-  );
-  ring.rotation.x = -Math.PI / 2;
-  ring.position.y = 0.001;
-  sc.add(ring);
-  sc.add(new THREE.HemisphereLight(0xfff8f0, 0x6a8ea0, 1.45));
-  const sun = new THREE.DirectionalLight(0xfff4e5, 3.1);
-  sun.position.set(0.8, 1.4, 1.1);
-  sc.add(sun);
-  const rimLight = new THREE.DirectionalLight(0xc3d9ee, 2.1);
-  rimLight.position.set(-1, .6, -.8);
-  sc.add(rimLight);
   const cam = new THREE.PerspectiveCamera(38, 1, 0.02, 8);
   cam.position.set(0.42, 0.32, 0.52);
   cam.lookAt(0, 0, 0);
   let mesh = null;
+  let previewPivot=null;
   let previewRadius = .3;
   function show(id) {
-    const d = droneById(id);
-    if (mesh) sc.remove(mesh);
+    const base = droneById(id);
+    const d = configuredSpec(id);
+    if (mesh) {
+      disposeDrone(mesh);previewPivot?.removeFromParent();
+    }
     mesh = makeDrone(d, camTiltRad());
     mesh.rotation.y = 0;
     const s = 0.22 / d.size;
     mesh.scale.setScalar(s);
-    mesh.updateMatrixWorld(true);
-    const bounds = new THREE.Box3().setFromObject(mesh);
-    previewRadius = bounds.getBoundingSphere(new THREE.Sphere()).radius;
-    const pad = previewRadius * 1.45;
-    deck.scale.setScalar(pad / 0.42);
-    ring.scale.setScalar(pad);
-    deck.position.y = bounds.min.y - 0.008;
-    ring.position.y = deck.position.y + 0.004;
-    mesh.rotation.y = Math.PI * .8;
-    sc.add(mesh);
+    const fitted=previewStudio.fit(mesh);previewRadius=fitted.radius;previewPivot=fitted.pivot;
+    previewPivot.rotation.y=Math.PI*.8;
+    sc.add(previewPivot);
     if (cap) cap.textContent = d.name;
+    const visualNote=document.getElementById('airframe-visual-note');if(visualNote){visualNote.textContent=mesh.userData.visual.evidence;visualNote.href=mesh.userData.visual.sourceMarker?'/airframes/source-one-v4/VISUAL-NOTES.txt':'/physics.html';}
     const set = (id, v) => {
       const el = document.getElementById(id);
       if (el) el.textContent = v;
@@ -404,6 +376,19 @@ function createHangarPreview() {
     set("spec-pace", paceInfo(d).label);
   }
   show(selected);
+  const direction = new THREE.Vector3(.42,.32,.52);
+  let manualRotation = false;
+  let lastPointerX = null;
+  canvas.style.touchAction = "none";
+  canvas.addEventListener("pointerdown", e => { lastPointerX=e.clientX;manualRotation=true;canvas.setPointerCapture(e.pointerId); });
+  canvas.addEventListener("pointermove", e => { if(lastPointerX==null||!mesh)return;previewPivot.rotation.y+=(e.clientX-lastPointerX)*.012;lastPointerX=e.clientX; });
+  for(const event of ["pointerup","pointercancel","lostpointercapture"]) canvas.addEventListener(event,()=>{lastPointerX=null;});
+  for(const button of document.querySelectorAll('[data-preview-view]')) button.addEventListener('click',()=>{
+    const view=button.dataset.previewView;
+    direction.set(...(view==='top'?[.01,1,.01]:view==='bottom'?[.3,-.8,.4]:[.42,.32,.52]));
+    manualRotation=true;
+    for(const b of document.querySelectorAll('[data-preview-view]')) b.setAttribute('aria-pressed',String(b===button));
+  });
   function tick() {
     requestAnimationFrame(tick);
     if (hangarEl.hidden || !mesh || !canvas.getClientRects().length) return;
@@ -412,10 +397,10 @@ function createHangarPreview() {
     prev.setSize(w, h, false);
     cam.aspect = w / Math.max(h, 1);
     const halfFov = Math.atan(Math.tan(THREE.MathUtils.degToRad(cam.fov*.5)) * Math.min(1,cam.aspect));
-    cam.position.set(.42,.32,.52).normalize().multiplyScalar(previewRadius / Math.sin(halfFov) * 1.08);
+    cam.position.copy(direction).normalize().multiplyScalar(previewRadius / Math.sin(halfFov) * 1.15 / Number(document.getElementById("preview-zoom")?.value || 1));
     cam.lookAt(0,0,0);
     cam.updateProjectionMatrix();
-    mesh.rotation.y += 0.003;
+    if(!manualRotation)previewPivot.rotation.y+=.003;
     // Stationary propellers expose the blade shape and motor hardware in the showroom.
     for (const disc of mesh.userData.discs || []) disc.visible = false;
     prev.render(sc, cam);
@@ -425,8 +410,10 @@ function createHangarPreview() {
 }
 const hangarPreview = createHangarPreview();
 const billboard = startBillboard(document.getElementById("hangar-live"), { reduced: touchUi });
+if(selectedMap!=='airfield')billboard.setMap(selectedMap);
 
 function applyOp(op) {
+  selectMap.cancel();
   const loadout = resolveOperationLoadout(preferredLoadout, op);
   if (selectedMap !== loadout.map) {
     selectedMap = loadout.map;
@@ -441,16 +428,6 @@ function applyOp(op) {
   }
   cardsEl.classList.toggle("locked", !!op.lockDrone);
   mapsEl.classList.toggle("locked", !!op.lockMap);
-  // The team match lives in the `team` room: picking the mode moves you there.
-  if (op.kind === "team") {
-    const roomEl = document.getElementById("room");
-    if (roomEl && roomEl.value !== "team") {
-      roomEl.value = "team";
-      // Only move the highlight; the head-counts come from the next server broadcast.
-      for (const c of roomCardsEl.children) c.classList.toggle("on", c.dataset.id === "team");
-      hangarJoin();
-    }
-  }
 }
 
 function paintOpsCards() {
@@ -476,6 +453,7 @@ function paintOpsCards() {
     };
     parent.appendChild(b);
   };
+  card(ARCADE, "Oyun · 4 hareketli nesne", " quick");
   const daily = dailyOp(dailyId());
   const schoolId = firstOpenOp("school", progress)?.id || "hover";
   const guide = modeGuide(selectedOp, daily.id, schoolId);
@@ -486,12 +464,11 @@ function paintOpsCards() {
   const quickOps = new Map([
     [schoolId, opById(schoolId)],
     [FREE.id, FREE],
-    [AUTONOMY_COAST_RESPONSE.id, AUTONOMY_COAST_RESPONSE],
     [daily.id, daily],
   ]);
   for (const choice of guide.quick) {
     const quickOp = quickOps.get(choice.id);
-    const extra = quickOp.daily ? " daily" : quickOp.kind === "autonomy" ? " autonomy" : "";
+    const extra = quickOp.daily ? " daily" : "";
     card(quickOp, choice.detail, extra + " quick", el, choice.intent);
   }
   const trainingTitle = document.createElement("div");
@@ -519,79 +496,159 @@ function paintOpsCards() {
 paintOpsCards();
 applyOp(opById(selectedOp));
 
-const LOAD_KEY = "efa-hangar-loadout-v1";
+const LOAD_KEY = LOADOUT_KEY;
 (function restoreFpvBuild() {
   try {
-    const stored = JSON.parse(localStorage.getItem(BUILD_KEY) || localStorage.getItem("efa-hangar-fpv-build-v1") || "null");
+    const stored = JSON.parse(browserStorage.getItem(BUILD_KEY) || browserStorage.getItem("efa-hangar-fpv-build-v1") || "null");
     fpvBuilds = normalizeBuilds(stored, CATALOG.filter((drone) => drone.fpv).map((drone) => drone.id));
   } catch {
     fpvBuilds = {};
   }
 })();
-pilotStory = loadPilotStory(localStorage, { progress, fpvBuilds });
-if (!pilotStory.complete) fpvBuilds = setBuildFor(fpvBuilds, "freestyle", pilotStory.build || STARTER_BUILD);
+pilotStory = loadPilotStory(browserStorage, { progress, fpvBuilds });
 function persistFpvBuild() {
   try {
-    localStorage.setItem(BUILD_KEY, JSON.stringify(fpvBuilds));
+    browserStorage.setItem(BUILD_KEY, JSON.stringify(fpvBuilds));
   } catch {
     /* storage unavailable */
   }
 }
+function configuredSpec(id=selected) {
+  const base=droneById(id);
+  const reference=applyReference(base, referenceSetups[id]);
+  return reference.propulsion ? reference : applyFpvBuild(base, buildFor(fpvBuilds,id));
+}
+const dynamicsFields={wheelbaseMm:'dyn-wheelbase',inertiaX:'dyn-inertia-x',inertiaY:'dyn-inertia-y',inertiaZ:'dyn-inertia-z',motorTauMs:'dyn-tau',yawTorqueM:'dyn-yaw',centerRateDps:'dyn-center',kp:'dyn-kp',ki:'dyn-ki',kd:'dyn-kd'};
+function paintReferenceWorkshop() {
+  const supported=['freestyle','racer'].includes(selected);
+  const settings=normalizeReference(referenceSetups[selected]);
+  document.getElementById('reference-panel').hidden=!supported;
+  document.getElementById('reference-profile').value=settings.profile;
+  document.getElementById('reference-mass').value=settings.massG;
+  document.getElementById('reference-capacity').value=settings.capacityMah;
+  document.getElementById('reference-usable').value=Math.round(settings.usableFraction*100);
+  document.getElementById('reference-electronics').value=settings.electronicsA;
+  const battery=settings.battery;
+  document.getElementById('battery-mode').value=battery.mode;
+  for(const [id,value] of [['battery-resistance',battery.cellResistanceMohm],['battery-soc',battery.initialSoc*100],['battery-cutoff',battery.cutoffCellV]]) {
+    document.getElementById(id).value=value;document.getElementById(id).disabled=battery.mode!=='rint';
+  }
+  document.getElementById('battery-summary').textContent=battery.mode==='rint'?`Model varsayımı: ${battery.cellResistanceMohm} mΩ / hücre · başlangıç SOC %${Math.round(battery.initialSoc*100)} · ${battery.cutoffCellV} V/hücre kesme. Gerilim tezgâh değerini aşsa bile itki artırılmaz.`:'Tezgâh modu: kaynak besleme eğrisi korunur; batarya sag modeli kapalıdır.';
+  const aero=settings.aerodynamics;
+  for(const [key,id] of Object.entries({density:'aero-density',cdaX:'aero-x',cdaY:'aero-y',cdaZ:'aero-z'}))document.getElementById(id).value=aero[key];
+  const pinned=settings.airframe===SOURCE_ONE_PRESET.id;
+  document.getElementById('source-one-status').innerHTML=pinned?`SOURCE ONE v4 tabanlı referans etkin · 226 mm kaynak ölçüsü; etkin geometri ${settings.dynamics.wheelbaseMm} mm / ${settings.massG} g. Simetrik X yerleşimi, kütle, atalet ve aerodinamik katsayılar varsayım. <a href="${SOURCE_ONE_PRESET.source}" target="_blank" rel="noopener">Resmî açık tasarım ↗</a>`:'Açık tasarımlı gövde + ölçülmüş motor eğrisi. Tam drone uçuş ölçümü değildir.';
+  const dynamics=settings.dynamics;
+  document.getElementById('dyn-inertia-mode').value=dynamics.inertiaMode;
+  for(const [key,id] of Object.entries(dynamicsFields)) {
+    document.getElementById(id).value=key.startsWith('inertia')?dynamics[key].toFixed(6):dynamics[key];
+    document.getElementById(id).disabled=key.startsWith('inertia')&&dynamics.inertiaMode!=='manual';
+  }
+  document.getElementById('dynamics-summary').textContent=`Dört ayrı motor · ${dynamics.motorTauMs} ms motor modeli · J ${dynamics.inertiaMode==='manual'?'elle girildi':'geometriden tahmin'} · PID ${dynamics.kp} / ${dynamics.ki} / ${dynamics.kd}. D filtresi 25 Hz; integral sınırlı. Bunlar model ayarlarıdır.`;
+  const tuned=configuredSpec(),metrics=referenceMetrics(tuned);
+  const profile=REFERENCE_PROFILES[tuned.propulsion?.profile];
+  const operating=battery.mode==='rint'&&metrics?freshBatteryMetrics(tuned):metrics;
+  document.getElementById('reference-inputs').hidden=!metrics;
+  document.getElementById('reference-apply').hidden=!metrics;
+  document.getElementById('dynamics-panel').hidden=!metrics;
+  document.getElementById('battery-panel').hidden=!metrics;
+  document.getElementById('reference-parts').hidden=!metrics;
+  if(metrics) {
+    const motorArt=workshopChoices('motors')[profile.cells===6?0:2].svg.replace('2450 KV','2550 KV');
+    const batteryArt=workshopChoices('battery')[profile.cells===6?1:0].svg.replace(/6S 1100|4S 1500/g,profile.cells+'S '+settings.capacityMah);
+    document.getElementById('reference-parts').innerHTML=[[motorArt,profile.motor],[workshopChoices('props')[1].svg,'HQ 5×4 · üç pal'],[batteryArt,profile.cells+'S · kapasite girdisi']].map(([svg,name])=>`<div><span class="part-art">${svg}</span><small>${name}</small></div>`).join('');
+  }
+  document.getElementById('workshop-parts').hidden=!!metrics;
+  document.getElementById('build-reset').hidden=!!metrics;
+  document.getElementById('reference-evidence').innerHTML=metrics?`<p class="evidence-tag">Statik tezgâh verisine bağlı · antrenman</p><p>${profile.motor} ×4 · ${profile.source.propeller} · ${profile.cells}S</p><dl><div><dt>${battery.mode==='rint'?'Başlangıç pil modeli':'Tezgâh'} hover gazı</dt><dd>${operating.hoverThrottle==null?'—':(operating.hoverThrottle*100).toFixed(1)}%</dd></div><div><dt>Hover toplam akımı</dt><dd>${operating.hoverCurrentA?.toFixed(2)??'—'} A</dd></div><div><dt>Tezgâh tepe akımı · 4 motor + aviyonik</dt><dd>${metrics.peakCurrentA.toFixed(2)} A</dd></div></dl><a href="${profile.source.url}" target="_blank" rel="noopener">Kaynak: DroneHiTech · 23 Mayıs 2020 ↗</a> · <a href="/physics.html" target="_blank" rel="noopener">Model kapsamı ve açık kaynaklar ↗</a><p class="why">AIKON 35A BLHeli32 ESC; ${profile.cells===6?'25.2':'16.8'} V ayarlı tezgâh beslemesi. ${battery.mode==='rint'?'Motorun tezgâh eğrisi ölçümdür; üzerine eklenen Rint, OCV ve gerilim ölçeklemesi varsayımdır.':'Gerilim eğrisi testten gelir; batarya sag modeli kapalıdır.'} Isı ve ileri uçuşta pervane verimi hesaplanmaz. %0–30 gaz ölçülmedi, uzatma kullanılır. Tepe akım, seçtiğin bataryanın bunu verebildiğini kanıtlamaz. Sonuçlar genel sıralamaya veya eski rekorlara yazılmaz.</p>`:'<p class="evidence-tag approximate">Genel profil · elle ayarlanmış çarpanlar, ölçüm doğrulaması yok</p>';
+  document.getElementById('build-comparison-title').textContent=metrics?'Referans kurulum hesapları':'Bu kurulum neyi değiştiriyor?';
+  document.getElementById('build-comparison-note').textContent=metrics?'Tezgâh eğrisinden türetilir; tam uçuş doğrulaması değildir. Süre sabit hover tahminidir.':'Aynı drone’un standart kurulumuna göre fark. Süreler simülasyon tahminidir.';
+  if(metrics) {
+    const rows=[['Tezgâh tepe itiş / ağırlık',metrics.peakThrustToWeight.toFixed(1)+':1','4 × ölçülen tek motor / girilen ağırlık'],['Tahmini hover süresi',(operating.hoverSeconds==null?'Yetersiz itki':Math.round(operating.hoverSeconds)+' sn'),'Başlangıç hover akımından tahmin · uçuş süresi değildir'],['Rate ayarı',Math.round(tuned.maxRate*180/Math.PI)+'°/sn','Kontrol ayarı · ölçüm değildir'],['Toplam ağırlık',settings.massG+' g','Kullanıcı girdisi · örnek varsayılan']];
+    document.getElementById('build-stats').innerHTML=rows.map(([k,v,n])=>`<div><dt>${k}</dt><dd>${v}</dd><small>${n}</small></div>`).join('');
+    document.getElementById('build-summary').textContent=profile.name;
+  }
+}
+function saveReferenceSettings() {
+  const manualRequested=document.getElementById('dyn-inertia-mode').value==='manual';
+  const previous=normalizeReference(referenceSetups[selected]);
+  const profile=document.getElementById('reference-profile').value;
+  referenceSetups[selected]=normalizeReference({airframe:previous.airframe,aerodynamics:Object.fromEntries(Object.entries({density:'aero-density',cdaX:'aero-x',cdaY:'aero-y',cdaZ:'aero-z'}).map(([key,id])=>[key,Number(document.getElementById(id).value)])),battery:{mode:document.getElementById('battery-mode').value,cellResistanceMohm:Number(document.getElementById('battery-resistance').value),initialSoc:Number(document.getElementById('battery-soc').value)/100,cutoffCellV:Number(document.getElementById('battery-cutoff').value)},profile,massG:Number(document.getElementById('reference-mass').value),capacityMah:profile!==previous.profile?REFERENCE_PROFILES[profile]?.capacityMah:Number(document.getElementById('reference-capacity').value),usableFraction:Number(document.getElementById('reference-usable').value)/100,electronicsA:Number(document.getElementById('reference-electronics').value),dynamics:{inertiaMode:document.getElementById('dyn-inertia-mode').value,...Object.fromEntries(Object.entries(dynamicsFields).map(([key,id])=>[key,Number(document.getElementById(id).value)]))}});
+  try{browserStorage?.setItem(REFERENCE_KEY,JSON.stringify(referenceSetups));}catch{}
+  paintFpvWorkshop();
+  const validation=document.getElementById('dynamics-validation');
+  validation.textContent=document.getElementById('dyn-inertia-mode').value==='estimated'&&manualRequested?'Manuel J geçersiz: pozitif değerler ve üçgen eşitsizliği gerekir. Geometrik tahmin uygulandı.':'Ayarlar uygulandı.';
+}
+bindReferenceForm(document,saveReferenceSettings);
+document.getElementById('source-one-preset').addEventListener('click',()=>{
+ const result=pinSourceOne(browserStorage,referenceSetups);referenceSetups=result.setups;
+ selectedOp="free";applyOp(opById("free"));paintOpsCards();
+ cardsEl.querySelector('[data-id="freestyle"]').click();
+ document.getElementById('real').checked=true;
+ persistLoadout();paintFpvWorkshop();paintOps();
+ document.getElementById('source-one-status').textContent=result.saved?'SOURCE ONE v4 referansın kaydedildi. 6S / 1750KV / HQ 5×4×3 · 650 g varsayımı. Gerçekçi Acro açık.':'Kurulum bu oturumda uygulandı; tarayıcı kaydı başarısız, yeniden açılışta korunmayabilir.';
+});
+document.getElementById('reference-use-generic').addEventListener('click',()=>{
+  referenceSetups[selected]=normalizeReference({...referenceSetups[selected],profile:'generic'});
+  try{browserStorage?.setItem(REFERENCE_KEY,JSON.stringify(referenceSetups));}catch{}
+  paintFpvWorkshop();
+});
 function paintFpvWorkshop() {
   const workshop = document.getElementById("fpv-workshop");
   const isFpv = !!droneById(selected).fpv;
   workshop.hidden = !isFpv;
+  document.getElementById('reference-flight-note').hidden=!configuredSpec().propulsion;
+
+  document.querySelector('.workshop-comparison').hidden = !isFpv;
+  document.getElementById('workshop-unavailable').hidden = isFpv;
+  if(lastWorkshopDrone!==selected)document.getElementById('workshop-feedback').textContent='';
+  lastWorkshopDrone=selected;
   if (!isFpv) return;
-  const allowed = pilotStory?.complete ? null : availableParts(pilotStory);
-  for (const [type, choices] of Object.entries(BUILD_PARTS)) {
-    const select = document.getElementById(`build-${type}`);
-    if (!select) continue;
-    const usable = allowed ? choices.filter((choice) => allowed[type].includes(choice.id)) : choices;
-    select.innerHTML = usable.map((choice) => `<option value="${choice.id}">${choice.name}</option>`).join("");
-    select.value = buildFor(fpvBuilds, selected)[type];
-  }
   const build = buildFor(fpvBuilds, selected);
-  const metrics = buildMetrics(droneById(selected), build);
+  const labels = { frame:"Çerçeve", motors:"Motor", battery:"Batarya", props:"Pervane" };
+  document.getElementById("workshop-parts").innerHTML = Object.keys(BUILD_PARTS).map(type=>`<fieldset class="part-group"><legend>${labels[type]}</legend><div class="part-choices">${workshopChoices(type).map(choice=>`<button type="button" class="part-choice ${build[type]===choice.id?'selected':''}" data-build-type="${type}" data-build-id="${choice.id}" aria-pressed="${build[type]===choice.id}"><span class="part-art">${choice.svg}</span><strong>${choice.name}</strong><small>${choice.description}</small><span class="part-state">${build[type]===choice.id?'✓ Takılı':'Seç'}</span></button>`).join('')}</div></fieldset>`).join('');
+  document.getElementById("build-stats").innerHTML = workshopComparison(droneById(selected),build).map(row=>`<div><dt>${row.label}</dt><dd id="build-${row.key}">${row.value}${row.unit}</dd><small>${row.delta===0?'Standart ile aynı':`${row.delta>0?'+':''}${row.delta}${row.unit} fark`}</small></div>`).join('');
   document.getElementById("build-summary").textContent = buildSummary(build);
-  document.getElementById("build-thrust").textContent = `${metrics.thrust}:1`;
-  document.getElementById("build-endurance").textContent = `${metrics.endurance} sn`;
-  document.getElementById("build-rate").textContent = `${metrics.rate}°/sn`;
-  document.getElementById("build-mass").textContent = `${metrics.mass} g`;
+  paintReferenceWorkshop();
+  hangarPreview.show(selected);
   const note = document.getElementById("story-workshop-note");
   if (note) {
     const mission = storyMission(pilotStory);
-    note.hidden = !mission || selected !== "freestyle";
+    note.hidden = !opById(selectedOp).story || !mission || selected !== "freestyle";
     note.textContent = mission ? `Kayıp çekim · sıradaki uçuş: ${mission.name}` : "";
   }
 }
-for (const type of Object.keys(BUILD_PARTS)) {
-  document.getElementById(`build-${type}`)?.addEventListener("change", (event) => {
-    fpvBuilds = setBuildFor(fpvBuilds, selected, { ...buildFor(fpvBuilds, selected), [type]: event.target.value });
-    if (!pilotStory?.complete && selected === "freestyle") pilotStory = savePilotStory({ ...pilotStory, build: buildFor(fpvBuilds, selected) }, localStorage);
-    persistFpvBuild();
-    paintFpvWorkshop();
-  });
-}
-document.getElementById("build-reset")?.addEventListener("click", () => {
-  fpvBuilds = setBuildFor(fpvBuilds, selected, !pilotStory?.complete && selected === "freestyle" ? STARTER_BUILD : DEFAULT_BUILD);
+document.getElementById("workshop-parts").addEventListener("click", event => {
+  const button=event.target.closest('[data-build-type]');
+  if(!button)return;
+  const {buildType:type,buildId:id}=button.dataset;
+  fpvBuilds = setBuildFor(fpvBuilds, selected, { ...buildFor(fpvBuilds, selected), [type]: id });
+  if (!pilotStory?.complete && selected === "freestyle") pilotStory = savePilotStory({ ...pilotStory, build: buildFor(fpvBuilds, selected) }, browserStorage);
   persistFpvBuild();
   paintFpvWorkshop();
+  document.querySelector(`[data-build-type="${type}"][data-build-id="${id}"]`)?.focus({preventScroll:true});
+  const choice=workshopChoices(type).find(c=>c.id===id);
+  document.getElementById("workshop-feedback").textContent=`${choice.name} takıldı. ${choice.description}${type==='motors'?' KV iç sargı özelliğidir; dış motor görünümü aynı kalır.':''}`;
+});
+document.getElementById("build-reset")?.addEventListener("click", () => {
+  fpvBuilds = setBuildFor(fpvBuilds, selected, DEFAULT_BUILD);
+  persistFpvBuild();
+  paintFpvWorkshop();
+  document.getElementById("workshop-feedback").textContent="Standart kurulum geri yüklendi.";
 });
 (function restoreLoadout() {
   try {
-    const o = JSON.parse(localStorage.getItem(LOAD_KEY) || "null");
+    const o = JSON.parse(browserStorage.getItem(LOAD_KEY) || "null");
     if (!o) return;
     const night = document.getElementById("night");
     const real = document.getElementById("real");
     const cam = document.getElementById("cam-tilt");
-    const gun = document.getElementById("gun");
     const look = document.getElementById("camera-look");
     const control = document.getElementById("control-profile");
     if (night) night.checked = !!o.night;
     // Existing players get the training default once; later choices persist.
     if (real) real.checked = o.trainingVersion ? !!o.real : true;
     if (cam && o.cam) cam.value = String(o.cam);
-    if (gun && o.gun) gun.value = String(o.gun);
     if (look && o.look && o.visualVersion === 2) look.value = String(o.look);
     if (control && o.control) control.value = String(o.control);
     const mute = document.getElementById("mute");
@@ -607,14 +664,15 @@ paintFpvWorkshop();
 setControlProfile(document.getElementById("control-profile")?.value || "training");
 function persistLoadout() {
   try {
-    localStorage.setItem(
+    browserStorage.setItem(
       LOAD_KEY,
       JSON.stringify({
+        drone: preferredLoadout.drone,
+        map: preferredLoadout.map,
         night: !!document.getElementById("night")?.checked,
         real: !!document.getElementById("real")?.checked,
         mute: !!document.getElementById("mute")?.checked,
         cam: document.getElementById("cam-tilt")?.value || "30",
-        gun: document.getElementById("gun")?.value || "std",
         look: document.getElementById("camera-look")?.value || "0",
         control: document.getElementById("control-profile")?.value || "training",
         trainingVersion: 1,
@@ -626,7 +684,7 @@ function persistLoadout() {
     /* ignore */
   }
 }
-for (const id of ["night", "real", "cam-tilt", "gun", "camera-look", "control-profile", "pilot"]) {
+for (const id of ["night", "real", "cam-tilt", "camera-look", "control-profile", "pilot"]) {
   document.getElementById(id)?.addEventListener("change", persistLoadout);
 }
 document.getElementById("control-profile")?.addEventListener("change", (event) => setControlProfile(event.target.value));
@@ -639,7 +697,7 @@ document.getElementById("calibrate-pad")?.addEventListener("click", async (event
       if (status) status.textContent = `İki stick'i tam daire gezdir · ${Math.ceil(4 * (1 - ratio))} sn`;
     });
     if (!calibration) throw new Error("Kol bağlantısı kesildi");
-    localStorage.setItem(CALIBRATION_KEY, JSON.stringify(calibration));
+    browserStorage.setItem(CALIBRATION_KEY, JSON.stringify(calibration));
     if (status) status.textContent = "Kalibrasyon kaydedildi ✓";
   } catch (error) {
     if (status) status.textContent = error?.message || "Kalibrasyon tamamlanamadı";
@@ -658,37 +716,24 @@ document.getElementById("mute")?.addEventListener("change", (e) => {
 });
 
 const preparationPanels = document.querySelector(".hangar-tabpanels");
-const homeFeatures = preparationPanels.querySelector('[data-tab="ozellikler"]');
-homeFeatures.hidden = false;
-homeFeatures.removeAttribute("data-tab");
-document.getElementById("home-hero").append(homeFeatures);
-const preparationLayout = document.createElement("section");
-preparationLayout.className = "preparation-layout";
-preparationLayout.dataset.tab = "platform";
-const preparationChoices = document.createElement("div");
-preparationChoices.className = "preparation-choices";
-// Grab it while the platform panel is still attached: the loop below moves that
-// panel into the (not yet inserted) choices column, out of getElementById's reach.
-const flightBriefing = document.getElementById("flight-briefing");
-preparationLayout.append(document.querySelector(".model-stage"), preparationChoices);
-for (const name of ["platform", "operasyon", "arena"]) {
-  const panel = preparationPanels.querySelector(`[data-tab="${name}"]`);
-  panel.removeAttribute("data-tab");
-  panel.hidden = false;
-  preparationChoices.append(panel);
-}
-// Briefing closes the right-hand column: read it last, then KALKIŞ YAP right below.
-preparationChoices.append(flightBriefing);
-preparationPanels.prepend(preparationLayout);
 function showPreparationTab(tab) {
+  hangarEl.dataset.tab = tab;
+  const preview=document.querySelector('.preview-column');
+  const target=tab==='atolye'?document.getElementById('workshop-preview'):document.querySelector('.preparation-layout');
+  if(preview && target && preview.parentElement!==target)target.prepend(preview);
+  if(tab==='atolye')paintFpvWorkshop();
+  for (const button of document.querySelectorAll("#hangar-tabs [data-tab]")) {
+    button.classList.toggle("on", button.dataset.tab === tab);
+    button.setAttribute("aria-pressed", String(button.dataset.tab === tab));
+  }
   for (const panel of document.querySelectorAll(".hangar-tabpanels > [data-tab]")) {
     panel.hidden = panel.dataset.tab !== tab;
   }
 }
 function prepareFlight(op, friends = false) {
-  // A shared ghost/old deep link must not let a new pilot bypass the rebuild
-  // story. Established pilots retain their existing direct-link behaviour.
-  if (!pilotStory?.complete) op = storyMission(pilotStory)?.id || "story-power-test";
+  hangarEl.classList.remove("more-open");
+  document.querySelector(".hangar-inner").scrollTop = 0;
+  billboard.pause();
   hangarEl.dataset.screen = "prepare";
   hangarEl.classList.toggle("with-friends", friends);
   document.getElementById("home-back").hidden = false;
@@ -696,26 +741,32 @@ function prepareFlight(op, friends = false) {
   document.querySelector('#hangar-tabs [data-tab="platform"]').click();
 }
 function paintStoryHome() {
-  const rebuilding = !!pilotStory && !pilotStory.complete;
-  const rebuild = document.getElementById("home-rebuild");
-  if (rebuild) rebuild.hidden = !rebuilding;
-  for (const id of ["home-school", "home-fly", "home-autonomy", "home-operations", "home-daily", "home-friends"]) {
-    const button = document.getElementById(id);
-    if (button) button.hidden = rebuilding;
-  }
   const mission = storyMission(pilotStory);
-  const sub = document.getElementById("home-rebuild-sub");
-  if (sub && mission) sub.textContent = `${mission.name} · ${mission.blurb}`;
+  document.getElementById("home-rebuild-sub").textContent = mission ? mission.name : "Üç kısa çekim uçuşu";
 }
 bindTap(document.getElementById("home-rebuild"), () => {
+  if (pilotStory.complete) pilotStory = emptyPilotStory();
   const mission = storyMission(pilotStory);
   if (mission) prepareFlight(mission.id);
 });
+bindTap(document.getElementById("home-inspection"),async()=>{if(await selectMap("sile",{inspection:true}))prepareFlight(SILE_INSPECTION.id);});
 bindTap(document.getElementById("home-fly"), () => prepareFlight("free"));
+bindTap(document.getElementById("home-quick"), () => { selectedOp = "free"; startFlight(); });
+bindTap(document.getElementById("home-more"), () => {
+  const open = hangarEl.classList.toggle("more-open");
+  document.getElementById("home-more").setAttribute("aria-expanded", String(open));
+});
+bindTap(document.getElementById("home-freestyle"), () => prepareFlight("freestyle"));
+bindTap(document.getElementById("home-arcade"), () => prepareFlight(ARCADE.id));
+bindTap(document.getElementById("home-race"), () => prepareFlight("race-practice"));
+bindTap(document.getElementById("home-workshop"), () => {
+  prepareFlight("free");
+  if (!droneById(selected).fpv) cardsEl.querySelector('[data-id="freestyle"]').click();
+  showPreparationTab("atolye");
+});
+bindTap(document.getElementById("home-settings"), () => { prepareFlight("free"); showPreparationTab("ayarlar"); });
 bindTap(document.getElementById("home-school"), () => prepareFlight(firstOpenOp("school", loadProgress())?.id || "hover"));
 bindTap(document.getElementById("home-daily"), () => prepareFlight(dailyId()));
-bindTap(document.getElementById("home-autonomy"), () => prepareFlight(AUTONOMY_COAST_RESPONSE.id));
-bindTap(document.getElementById("home-operations"), startOperations);
 {
   const d = dailyOp(dailyId());
   const sub = document.getElementById("home-daily-sub");
@@ -724,6 +775,8 @@ bindTap(document.getElementById("home-operations"), startOperations);
 bindTap(document.getElementById("home-friends"), () => prepareFlight("free", true));
 bindTap(document.getElementById("home-back"), () => {
   hangarEl.dataset.screen = "home";
+  document.querySelector(".hangar-inner").scrollTop = 0;
+  billboard.resume();
   document.getElementById("home-back").hidden = true;
 });
 paintStoryHome();
@@ -782,15 +835,11 @@ window.addEventListener("pageshow", () => {
 bindStick(document.getElementById("st-l"), "left");
 bindStick(document.getElementById("st-r"), "right");
 bindFlightTouches(flightEl);
-const fireBar = document.getElementById("btn-fire");
-if (fireBar) bindHold(fireBar, setHoldFire);
 bindTap(document.getElementById("btn-arm-touch"), () => {
   consume("arm");
   toggleArm();
 });
 if (!helpOpen) document.getElementById("help").hidden = true;
-const osdEl = document.getElementById("osd");
-if (osdEl) osdEl.hidden = touchUi;
 
 const net = connect({
   onStatus(s) {
@@ -804,47 +853,7 @@ const net = connect({
     renderPilots(msg.room, msg.peers, msg.id);
     for (const p of remotes.keys()) dropRemote(p);
     for (const p of msg.peers) upsertRemote(p.id, p.meta, p.state);
-    team = msg.team ? { mine: msg.team, match: null, kills: 0, deaths: 0, downUntil: 0 } : null;
-    if (msg.match) applyMatch(msg.match);
     paintOps();
-  },
-  onMatch(msg) {
-    applyMatch(msg);
-  },
-  onHit(msg) {
-    if (msg.to === myId && inTeamOp()) {
-      playerHp = Math.max(0, msg.hp | 0);
-      dmgFlash = 1;
-      sfx.hit();
-    }
-  },
-  onDown(msg) {
-    if (team?.match) team.match.scores = msg.scores || team.match.scores;
-    const r = remotes.get(msg.id);
-    if (r) r.alive = false;
-    if (!team) return;
-    if (msg.by === myId) {
-      team.kills += 1;
-      score += 1;
-    }
-    if (msg.id === myId) {
-      team.deaths += 1;
-      team.downUntil = performance.now() + 4000;
-      playerHp = 0;
-      if (flying && inTeamOp() && !state.crashed) {
-        state.crashed = true;
-        state.crashReason = "vuruldun";
-        state.armed = false;
-      }
-    }
-  },
-  onRespawn(msg) {
-    const r = remotes.get(msg.id);
-    if (r) r.alive = true;
-    if (msg.id === myId && team) {
-      team.downUntil = 0;
-      playerHp = msg.hp | 0 || PLAYER_HP;
-    }
   },
   onJoin(msg) {
     upsertRemote(msg.id, msg.meta, null);
@@ -876,6 +885,7 @@ function refreshShare() {
   if (el) el.value = shareUrl();
 }
 function hangarJoin() {
+  if(opById(selectedOp).inspection)return;
   net.join(
     document.getElementById("room").value || "hangar",
     document.getElementById("pilot").value || "pilot",
@@ -935,7 +945,7 @@ function dropPilot(id) {
 }
 
 function paintOps() {
-  const d = droneById(selected);
+  const d = configuredSpec();
   const m = MAPS.find((x) => x.id === selectedMap) || MAPS[0];
   const rid = document.getElementById("room")?.value || "hangar";
   const r = ROOMS.find((x) => x.id === rid) || ROOMS[0];
@@ -946,13 +956,19 @@ function paintOps() {
   };
   set("ops-drone", d.name);
   set("ops-pace", paceInfo(d).label);
-  set("ops-map", m.name);
+  set("ops-map", opById(selectedOp).mapName||m.name);
+  document.getElementById('geo-map-note').hidden=selectedMap!=='sile';
+  const caption=document.querySelector('.scene-caption h2');if(caption)caption.textContent=m.name;
+  const captionText=document.querySelector('.scene-caption p');if(captionText)captionText.textContent=m.id==='sile'?'Gerçek yerleşim. Temsili yapılar.':m.blurb;
+  document.getElementById('hangar-live')?.setAttribute('aria-label',m.name+' alanının temsili 3B önizlemesi');
   set("ops-room", r.name);
   set("ops-room-n", `${n} kişi`);
   set("ops-op", opById(selectedOp).name);
+  set("home-last-setup", `${configuredSpec(preferredLoadout.drone).name} · ${MAPS.find(map => map.id === preferredLoadout.map)?.name || m.name}`);
+  set("preparation-title", opById(selectedOp).name);
   const where = document.getElementById("go-where");
   const op = opById(selectedOp);
-  if (where) where.textContent = `${op.name} · ${m.name}`;
+  if (where) where.textContent = `${op.name} · ${op.mapName||m.name}`;
   set("spec-class", d.class);
   set("spec-span", d.span || "—");
   set("spec-mode", d.defaultMode || "angle");
@@ -974,8 +990,8 @@ function paintBriefing() {
     opIndex: track ? track.ops.indexOf(op) + 1 : 0,
     opTotal: track ? track.ops.length : 0,
     trackName: track ? track.name : "Görev",
-    map: MAPS.find((x) => x.id === selectedMap) || MAPS[0],
-    drone: droneById(selected),
+    map: {...(MAPS.find((x) => x.id === selectedMap) || MAPS[0]),...(op.mapName?{name:op.mapName}:{})},
+    drone: op.inspection ? configuredSpec() : droneById(selected),
     droneName: (id) => droneById(id).name,
     night: op.night ?? !!document.getElementById("night")?.checked,
     real: op.real ?? !!document.getElementById("real")?.checked,
@@ -1003,500 +1019,34 @@ function upsertRemote(id, meta, st) {
   dropRemote(id);
   const dspec = droneById(meta?.drone);
   const mesh = makeDrone(dspec, camTiltRad());
-  const side = meta?.team || null;
-  mesh.add(makeNametag(meta?.name || "pilot", side ? TEAM_CSS[side] : undefined));
+  mesh.visible=!inspection;
+  mesh.add(makeNametag(meta?.name || "pilot"));
   scene.add(mesh);
-  remotes.set(id, { mesh, spec: dspec, target: st, meta, team: side, alive: true, fireAcc: 0 });
-}
-
-function inTeamOp() {
-  return !!team?.mine && opById(selectedOp).kind === "team";
-}
-
-// Server snapshot of the team match: who is on which side, who is down, the
-// clock and the scores. A match starting clears the card; one ending shows it.
-function applyMatch(msg) {
-  if (!team) team = { mine: null, match: null, kills: 0, deaths: 0, downUntil: 0 };
-  const was = team.match;
-  team.match = msg;
-  for (const p of msg.players || []) {
-    const r = remotes.get(p.id);
-    if (r) {
-      r.alive = p.alive;
-      if (r.team !== p.team) {
-        r.team = p.team;
-        // Re-tint the nametag if the side only became known now.
-        for (const ch of [...r.mesh.children]) if (ch.isSprite) r.mesh.remove(ch);
-        r.mesh.add(makeNametag(r.meta?.name || "pilot", TEAM_CSS[p.team]));
-      }
-    }
-    if (p.id === myId) {
-      team.mine = p.team;
-      if (p.alive) playerHp = p.hp;
-    }
-  }
-  if (msg.running && !was?.running) {
-    team.kills = 0;
-    team.deaths = 0;
-    team.downUntil = 0;
-    playerHp = PLAYER_HP;
-    if (flying && inTeamOp()) hideResult();
-  }
-  if (msg.ended && !was?.ended && flying && inTeamOp()) showTeamResult();
-}
-
-function showTeamResult() {
-  const card = document.getElementById("result-card");
-  if (!card || !team) return;
-  const m = resultModel(team.match, team.mine, team.kills, team.deaths);
-  card.classList.toggle("lost", m.won === false);
-  document.getElementById("result-kicker").textContent = m.kicker;
-  document.getElementById("result-title").textContent = m.title;
-  document.getElementById("result-time").innerHTML = esc(m.score);
-  document.getElementById("result-rows").innerHTML = m.rows.map((x) => `<div><dt>${esc(x.k)}</dt><dd>${esc(x.v)}</dd></div>`).join("");
-  const laps = document.getElementById("result-laps");
-  if (laps) laps.hidden = true;
-  document.getElementById("result-hint").textContent = m.hint;
-  const rb = document.getElementById("result-replay");
-  if (rb) rb.hidden = true;
-  lastResult = null;
-  card.hidden = false;
-  flightEl.classList.add("has-result");
-  resultShown = true;
+  remotes.set(id, { mesh, spec: dspec, target: st, meta });
 }
 
 function dropRemote(id) {
   const r = remotes.get(id);
   if (!r) return;
-  scene.remove(r.mesh);
+  disposeDrone(r.mesh);
   remotes.delete(id);
 }
 
 function snapCam() {
   _targetQuat.set(state.qx, state.qy, state.qz, state.qw);
   if (!chase) _targetQuat.multiply(_tiltQuat.setFromAxisAngle(_xAxis, camTiltRad()));
-  const [ox, oy, oz] = rotateVec(state.qw, state.qx, state.qy, state.qz, 0, spec.size * 0.55, spec.size * 0.12);
+  const mount=craft?.userData.fpvAnchor||[0,spec.size*.55,spec.size*.12];
+  const [ox,oy,oz]=rotateVec(state.qw,state.qx,state.qy,state.qz,...mount);
   fpvCam.position.set(state.x + ox, state.y + oy, state.z + oz);
   fpvCam.quaternion.copy(_targetQuat);
 }
 
-function clearShots() {
-  for (const m of shotMeshes) scene.remove(m);
-  shotMeshes.length = 0;
-  shots = [];
-  visShots = [];
-}
-
 function clearGoals() {
+  arcadeView?.dispose();arcadeView=null;
   scene.remove(goalRoot);
   while (goalRoot.children.length) goalRoot.remove(goalRoot.children[0]);
-  for (const t of targets) if (t.mesh) scene.remove(t.mesh);
-  targets = [];
   for (const c of cargo) for (const m of [c.crate, c.ring, c.zone, c.beam]) scene.remove(m);
   cargo = [];
-}
-
-function disposeObject(root) {
-  root?.traverse?.((obj) => {
-    obj.geometry?.dispose?.();
-    const materials = Array.isArray(obj.material) ? obj.material : [obj.material];
-    for (const material of materials) material?.dispose?.();
-  });
-}
-
-function clearAutonomy() {
-  if (autonomy?.root) {
-    scene.remove(autonomy.root);
-    disposeObject(autonomy.root);
-  }
-  autonomy = null;
-  flightEl.classList.remove("autonomy-active", "autonomy-manual");
-  clearAutonomyPanel(document.getElementById("autonomy-panel"));
-}
-
-function operationsTelemetry() {
-  if (!operations) return {};
-  return Object.fromEntries(operations.runtime.vehicles.map((vehicle) => [vehicle.id, {
-    battery: vehicle.kind === "air" ? vehicle.state.battery : vehicle.state.battery / 100,
-    speed: vehicle.kind === "air"
-      ? Math.hypot(vehicle.state.vx, vehicle.state.vy, vehicle.state.vz)
-      : Math.abs(vehicle.state.speed),
-  }]));
-}
-
-function paintOperations() {
-  if (!operations) return;
-  if (operations.trailRevision !== operations.routeRevision) {
-    for (const line of operations.routeLines.values()) {
-      operations.root.remove(line);
-      disposeObject(line);
-    }
-    operations.routeLines.clear();
-    for (const [index, vehicle] of operations.runtime.vehicles.entries()) {
-      const points = operations.runtime.routes[vehicle.id]?.points || [];
-      if (!points.length) continue;
-      const line = routeLine([vehicle.state, ...points], [0x8ee7ff, 0xffb020, 0x65d6ff][index], vehicle.kind === "air" ? 0.3 : 0.14);
-      operations.root.add(line);
-      operations.routeLines.set(vehicle.id, line);
-    }
-    operations.trailRevision = operations.routeRevision;
-  }
-  const listed = operations.scenariosResult;
-  const tacticalBounds = { minx: -42, maxx: 42, minz: -140, maxz: 20 };
-  const tactical = {
-    shorelineY: projectOperationsPoint({ x: 0, z: play.water.shorelineZ }, tacticalBounds).y,
-    vehicles: operations.runtime.vehicles.map((vehicle) => ({
-      id: vehicle.id,
-      kind: vehicle.kind,
-      selected: vehicle.id === operations.runtime.session.selectedId,
-      ...projectOperationsPoint(vehicle.state, tacticalBounds),
-    })),
-    routes: Object.entries(operations.drafts).map(([id, route]) => ({
-      id,
-      selected: id === operations.runtime.session.selectedId,
-      points: route.points.map((point) => projectOperationsPoint(point, tacticalBounds)),
-    })),
-    trails: Object.entries(operations.tracks).map(([id, points]) => ({
-      id,
-      points: points.map((point) => projectOperationsPoint(point, tacticalBounds)),
-    })),
-  };
-  renderOperationsConsole(document.getElementById("operations-console"), operationsViewModel({
-    session: operations.runtime.session,
-    telemetry: operationsTelemetry(),
-    controller: operations.controller,
-    routes: operations.runtime.routes,
-    routeError: operations.runtime.routeError || (!listed.ok ? listed.error : ""),
-    scenarios: listed.ok ? listed.scenarios : [],
-    mapRevision: operations.mapRevision,
-    tactical,
-  }), operations.actions);
-}
-
-function operationsScenarioSession() {
-  return {
-    map: { id: "coast", wind: "calm", time: scene.userData.night ? "night" : "day" },
-    vehicles: operations.runtime.vehicles.map((vehicle) => ({
-      id: vehicle.id,
-      kind: vehicle.kind,
-      start: vehicle.kind === "air"
-        ? { x: vehicle.state.x, y: vehicle.state.y, z: vehicle.state.z, heading: yawFromQ(vehicle.state.qw, vehicle.state.qx, vehicle.state.qy, vehicle.state.qz) }
-        : { x: vehicle.state.x, z: vehicle.state.z, heading: vehicle.state.heading },
-    })),
-    routes: operations.runtime.routes,
-    camera: { vehicleId: operations.runtime.session.selectedId, view: chase ? "follow" : "deck" },
-  };
-}
-
-function clearOperationsRuntime() {
-  if (!operations) return;
-  operations.mapElement?.removeEventListener("click", operations.mapClick);
-  scene.remove(operations.root);
-  disposeObject(operations.root);
-  operations = null;
-  flightEl.classList.remove("operations-active");
-  clearOperationsConsole(document.getElementById("operations-console"));
-}
-
-function setupOperations() {
-  clearOperationsRuntime();
-  const root = new THREE.Group();
-  root.name = "operations-fleet";
-  const boats = play.seaSpawns.map((spawn, index) => {
-    const boatState = createSurfaceState(spawn.id, spawn.x, spawn.z, spawn.heading);
-    const mesh = makeSurfaceVehicle({ ...spawn, color: index ? 0x4a6475 : 0x284f68, accent: index ? 0x65d6ff : 0xffb020 });
-    mesh.position.set(spawn.x, play.water.surfaceY, spawn.z);
-    root.add(mesh);
-    return { id: spawn.id, kind: "sea", state: boatState, spec: OPERATIONS_SEA_SPEC, mesh };
-  });
-  scene.add(root);
-  const runtime = createOperationsRuntime({
-    air: { id: "iha-1", kind: "air", state, spec, mesh: craft },
-    sea: boats,
-    water: play.water,
-  });
-  const mapElement = document.getElementById("operations-map-overlay");
-  operations = {
-    runtime,
-    root,
-    controller: { connected: null, name: "" },
-    mapRevision: 1,
-    routeRevision: 1,
-    trailRevision: -1,
-    routeLines: new Map(),
-    scenariosResult: listScenarios(localStorage),
-    drafts: Object.fromEntries(Object.entries(runtime.routes).map(([id, route]) => [id, structuredClone(route)])),
-    tracks: Object.fromEntries(runtime.vehicles.map((vehicle) => [vehicle.id, [{ x: vehicle.state.x, z: vehicle.state.z }]])),
-    mapElement,
-    actions: {},
-  };
-  operations.actions = {
-    selectVehicle(id) {
-      operations.runtime.session = selectVehicle(operations.runtime.session, id);
-      operations.mapRevision += 1;
-      operations.routeRevision += 1;
-      paintOperations();
-    },
-    applyRoute() {
-      const id = operations.runtime.session.selectedId;
-      if (!operations.drafts[id]?.points.length) {
-        operations.runtime.routeError = "Önce haritaya rota noktası ekle";
-      } else {
-        operations.runtime.routeError = "";
-        applyOperationsRoute(operations.runtime, id, operations.drafts[id]);
-        operations.routeRevision += 1;
-      }
-      paintOperations();
-    },
-    clearRoute() {
-      const id = operations.runtime.session.selectedId;
-      operations.runtime.routes[id] = clearRoute(operations.runtime.routes[id]);
-      operations.drafts[id] = clearRoute(operations.drafts[id]);
-      operations.runtime.session = setVehicleMode(operations.runtime.session, id, VEHICLE_MODES.HOLD);
-      operations.mapRevision += 1;
-      operations.routeRevision += 1;
-      paintOperations();
-    },
-    removeWaypoint(index) {
-      const id = operations.runtime.session.selectedId;
-      operations.drafts[id] = removeWaypoint(operations.drafts[id], Number(index));
-      operations.mapRevision += 1;
-      paintOperations();
-    },
-    saveScenario() {
-      const name = document.getElementById("operations-scenario-name")?.value?.trim();
-      if (!name) return;
-      const result = saveScenario(localStorage, scenarioFromSession(name, operationsScenarioSession()));
-      operations.scenariosResult = listScenarios(localStorage);
-      operations.runtime.routeError = result.ok ? "" : result.error;
-      paintOperations();
-    },
-    loadScenario(id) {
-      const result = loadScenario(localStorage, id);
-      if (!result.ok) operations.runtime.routeError = result.error;
-      else {
-        const wantsNight = result.scenario.map.time === "night";
-        if (scene.userData.night !== wantsNight) {
-          clearWorld(scene);
-          play = buildWorld(scene, "coast", { lite: touchUi, night: wantsNight, gpu: gfx.node, sky: gfx.createSky, props: !touchUi });
-          if (!touchUi) bakeEnv(renderer, scene, gfx.PMREMGenerator);
-          loadedMap = "coast";
-          renderer.toneMappingExposure = wantsNight ? 1.04 : .93;
-          const nightControl = document.getElementById("night");
-          if (nightControl) nightControl.checked = wantsNight;
-        }
-        operations.runtime.water = play.water;
-        operations.runtime = rebuildOperationsRuntime(operations.runtime, result.scenario);
-        state = operations.runtime.vehicles.find((vehicle) => vehicle.kind === "air").state;
-        operations.drafts = Object.fromEntries(Object.entries(operations.runtime.routes).map(([routeId, route]) => [routeId, structuredClone(route)]));
-        operations.tracks = Object.fromEntries(operations.runtime.vehicles.map((vehicle) => [vehicle.id, [{ x: vehicle.state.x, z: vehicle.state.z }]]));
-        operations.runtime.session = selectVehicle(operations.runtime.session, result.scenario.camera.vehicleId);
-        chase = result.scenario.camera.view === "follow";
-        operations.mapRevision += 1;
-        operations.routeRevision += 1;
-        if (!operations.controller.connected) handleOperationsControlLoss(operations.runtime);
-      }
-      paintOperations();
-    },
-    deleteScenario(id) {
-      const result = deleteScenario(localStorage, id);
-      operations.scenariosResult = listScenarios(localStorage);
-      operations.runtime.routeError = result.ok ? "" : result.error;
-      paintOperations();
-    },
-    reenable() { setOperationsEmergency(operations.runtime, false); paintOperations(); },
-    exit() { backHangar(); },
-  };
-  operations.mapClick = (event) => {
-    if (event.target.closest?.("[data-waypoint-index]")) return;
-    const rect = mapElement.getBoundingClientRect();
-    const nx = THREE.MathUtils.clamp((event.clientX - rect.left) / rect.width, 0, 1);
-    const nz = THREE.MathUtils.clamp((event.clientY - rect.top) / rect.height, 0, 1);
-    const id = operations.runtime.session.selectedId;
-    const vehicle = operations.runtime.vehicles.find((item) => item.id === id);
-    const point = { x: -42 + nx * 84, z: -140 + nz * 160 };
-    const context = vehicle.kind === "air"
-      ? { kind: "air", bounds: { ...play.bounds, ceiling: play.ceil } }
-      : { kind: "sea", water: play.water };
-    const result = appendWaypoint(operations.drafts[id], point, context);
-    if (result.ok) {
-      operations.drafts[id] = result.route;
-      operations.runtime.routeError = "";
-      operations.mapRevision += 1;
-      operations.routeRevision += 1;
-    } else operations.runtime.routeError = result.error;
-    paintOperations();
-  };
-  mapElement.addEventListener("click", operations.mapClick);
-  flightEl.classList.add("operations-active");
-  paintOperations();
-}
-
-function startOperations() {
-  selectedOp = "free";
-  selectedMap = "coast";
-  selected = "camera";
-  startFlight();
-  setupOperations();
-}
-
-function routeLine(points, color, y = 0.2) {
-  const geometry = new THREE.BufferGeometry().setFromPoints(points.map((p) => new THREE.Vector3(p.x, p.y ?? y, p.z)));
-  return new THREE.Line(geometry, new THREE.LineBasicMaterial({ color, transparent: true, opacity: 0.78 }));
-}
-
-function setupAutonomy(op) {
-  clearAutonomy();
-  if (op.kind !== "autonomy") return;
-  const root = new THREE.Group();
-  root.name = "autonomy-operation";
-  const task = createAutonomyRun(op, 0);
-  const boats = op.seaVehicles.map((cfg) => {
-    const surface = createSurfaceState(cfg.id, cfg.x, cfg.z, cfg.heading);
-    surface.battery = cfg.battery;
-    const mesh = makeSurfaceVehicle(cfg);
-    mesh.position.set(surface.x, 0, surface.z);
-    root.add(mesh);
-    const trail = routeLine([{ x: surface.x, z: surface.z }, { x: surface.x, z: surface.z }], cfg.id === "ida-1" ? 0x65d6ff : 0xffb020, 0.12);
-    root.add(trail);
-    return { cfg, state: surface, mesh, trail, points: [{ x: surface.x, z: surface.z }], progress: null };
-  });
-  root.add(routeLine(op.airRoute, 0x8ee7ff, 0.32));
-  const airTrail = routeLine([{ x: state.x, y: state.y, z: state.z }, { x: state.x, y: state.y, z: state.z }], 0xffffff, 0.3);
-  root.add(airTrail);
-  for (const boat of boats) root.add(routeLine([boat.state, task.target], 0xffb020, 0.14));
-  const incident = new THREE.Mesh(
-    new THREE.TorusGeometry(op.verifyRadius, 0.16, 8, 36),
-    new THREE.MeshBasicMaterial({ color: 0xff553d, transparent: true, opacity: 0.82 }),
-  );
-  incident.rotation.x = -Math.PI / 2;
-  incident.position.set(task.target.x, 0.18, task.target.z);
-  root.add(incident);
-  scene.add(root);
-  autonomy = { task, root, boats, routeIndex: 0, now: 0, trailAcc: 0, incident, airTrail, airPoints: [{ x: state.x, y: state.y, z: state.z }], cameraVehicleId: "iha-1" };
-  flightEl.classList.add("autonomy-active");
-  if (touchUi) document.getElementById("flight-bar")?.append(document.getElementById("autonomy-panel"));
-  renderAutonomyPanel(document.getElementById("autonomy-panel"), autonomyViewModel(task, autonomyVehicles()));
-}
-
-function autonomyVehicles() {
-  if (!autonomy) return [];
-  return [
-    { id: "iha-1", role: "İHA", speed: Math.hypot(state.vx, state.vy, state.vz), battery: state.battery * 100 },
-    ...autonomy.boats.map((boat) => ({ id: boat.state.id, role: "İDA", speed: boat.state.speed, battery: boat.state.battery })),
-  ];
-}
-
-function autonomyAirTarget() {
-  if (!autonomy) return null;
-  if (["DETECTED", "SEA_DISPATCH", "JOINT_VERIFY", "COMPLETE"].includes(autonomy.task.phase)) {
-    return { ...autonomy.task.target, y: autonomy.task.op.spawn.y };
-  }
-  const route = autonomy.task.op.airRoute;
-  const target = route[autonomy.routeIndex % route.length];
-  if (Math.hypot(state.x - target.x, state.y - target.y, state.z - target.z) < 3) autonomy.routeIndex = (autonomy.routeIndex + 1) % route.length;
-  return target;
-}
-
-function stepAutonomyPhysics(simDt, input, activeSpec) {
-  if (["COMPLETE", "FAILED", "ABORTED"].includes(autonomy.task.phase)) return;
-  const controlled = autonomy.task.controlledByVehicle;
-  const flightInput = controlled === "iha-1" ? input : airCommand(state, autonomyAirTarget(), activeSpec);
-  step(state, flightInput, activeSpec, simDt, play);
-  for (const boat of autonomy.boats) {
-    let command = { throttle: 0, steer: 0 };
-    if (controlled === boat.state.id) command = { throttle: Math.max(0, input.lift || 0), steer: input.yaw || 0 };
-    else if (autonomy.task.returningSeaIds.includes(boat.state.id)) {
-      command = surfaceCommand(boat.state, boat.cfg, AUTONOMY_SEA_SPEC);
-    } else if (boat.state.id === autonomy.task.selectedSeaId && ["SEA_DISPATCH", "JOINT_VERIFY"].includes(autonomy.task.phase)) {
-      command = surfaceCommand(boat.state, autonomy.task.target, AUTONOMY_SEA_SPEC);
-    }
-    stepSurface(boat.state, command, AUTONOMY_SEA_SPEC, simDt, play.water);
-  }
-}
-
-function updateAutonomyScene(dt) {
-  if (!autonomy) return;
-  autonomy.trailAcc += dt;
-  for (const boat of autonomy.boats) {
-    boat.mesh.position.set(boat.state.x, 0, boat.state.z);
-    boat.mesh.rotation.y = -boat.state.heading;
-    boat.mesh.userData.rudder.rotation.y = -boat.state.turnRate * 0.45;
-    if (autonomy.trailAcc >= 0.5) {
-      const distanceToTarget = Math.hypot(boat.state.x - autonomy.task.target.x, boat.state.z - autonomy.task.target.z);
-      const shouldTrackProgress =
-        !autonomy.task.paused &&
-        autonomy.task.controlledByVehicle !== boat.state.id &&
-        boat.state.id === autonomy.task.selectedSeaId &&
-        ["SEA_DISPATCH", "JOINT_VERIFY"].includes(autonomy.task.phase) &&
-        distanceToTarget > autonomy.task.op.verifyRadius;
-      if (shouldTrackProgress) {
-        boat.progress = routeProgress(boat.state, autonomy.task.target, boat.progress, autonomy.trailAcc);
-        if (boat.progress.stuck) boat.state.available = false;
-      } else boat.progress = null;
-      boat.points.push({ x: boat.state.x, z: boat.state.z });
-      const cap = touchUi ? 80 : 240;
-      if (boat.points.length > cap) boat.points.shift();
-      boat.trail.geometry.dispose();
-      boat.trail.geometry = new THREE.BufferGeometry().setFromPoints(boat.points.map((p) => new THREE.Vector3(p.x, 0.12, p.z)));
-    }
-  }
-  if (autonomy.trailAcc >= 0.5) {
-    autonomy.airPoints.push({ x: state.x, y: state.y, z: state.z });
-    const cap = touchUi ? 80 : 240;
-    if (autonomy.airPoints.length > cap) autonomy.airPoints.shift();
-    autonomy.airTrail.geometry.dispose();
-    autonomy.airTrail.geometry = new THREE.BufferGeometry().setFromPoints(autonomy.airPoints.map((p) => new THREE.Vector3(p.x, p.y, p.z)));
-    autonomy.trailAcc = 0;
-  }
-  const pulse = 1 + Math.sin(autonomy.now * 4) * 0.08;
-  autonomy.incident.scale.setScalar(pulse);
-}
-
-function tickAutonomyFrame(dt) {
-  if (!autonomy || !run) return;
-  autonomy.now += dt;
-  tickAutonomy(autonomy.task, {
-    now: autonomy.now,
-    air: state,
-    sea: autonomy.boats.map((boat) => boat.state),
-  });
-  run.t = autonomy.task.elapsed;
-  if (autonomy.task.phase === "COMPLETE") {
-    run.won = true;
-    run.reason = autonomy.task.reason;
-  } else if (["FAILED", "ABORTED"].includes(autonomy.task.phase)) {
-    run.lost = true;
-    run.reason = autonomy.task.reason;
-  }
-  run.autonomyReport = autonomyReport(autonomy.task);
-  if (!autonomy.reported) {
-    renderAutonomyPanel(document.getElementById("autonomy-panel"), autonomyViewModel(autonomy.task, autonomyVehicles()));
-    document.querySelectorAll("#autonomy-vehicles [data-vehicle]").forEach((button) => {
-      button.classList.toggle("active", button.dataset.vehicle === autonomy.cameraVehicleId);
-    });
-    flightEl.classList.toggle("autonomy-manual", !!autonomy.task.controlledByVehicle);
-  }
-}
-
-function finishAutonomyResult() {
-  if (!autonomy || !run || autonomy.reported) return;
-  if (!["COMPLETE", "FAILED", "ABORTED"].includes(autonomy.task.phase)) return;
-  autonomy.reported = true;
-  const won = autonomy.task.phase === "COMPLETE";
-  run.won = won;
-  run.lost = !won;
-  run.reason = autonomy.task.reason;
-  run.t = autonomy.task.elapsed;
-  run.autonomyReport = autonomyReport(autonomy.task);
-  autonomy.task.controlledByVehicle = null;
-  flightEl.classList.remove("autonomy-manual");
-  net.sendResult(run.op.id, run.op.name, won, run.t, undefined, { ranked: false });
-  if (won) sfx.win();
-  else sfx.fail();
-  if (ghost) ghost.mesh.visible = false;
-  document.getElementById("autonomy-panel").hidden = true;
-  showResult(run, null);
 }
 
 function ringMesh(g, color, { from = null, stepIndex = -1 } = {}) {
@@ -1516,7 +1066,8 @@ function ringMesh(g, color, { from = null, stepIndex = -1 } = {}) {
 
 function buildGoals(op) {
   clearGoals();
-  if (!op || op.kind === "free") return;
+  if (op?.kind === "arcade") {arcadeView=createArcadeView(scene,run.arcade,{guides:document.getElementById('arcade-guides').checked});arcadeView.paint(run.arcade,fpvCam);return;}
+  if (!op || op.kind === "free" || op.kind === "arcade" || configuredSpec().propulsion) return;
   scene.add(goalRoot);
   if (op.kind === "school") {
     let from = op.spawn || { x: 0, y: 2, z: 0 };
@@ -1530,16 +1081,6 @@ function buildGoals(op) {
     for (let i = 0; i < op.gates.length; i++) ringMesh(op.gates[i], 0xffb020, { from: i ? op.gates[i - 1] : op.spawn, stepIndex: i });
   }
   if (op.kind === "recon") for (const g of op.marks) ringMesh(g, 0x3ec8e8);
-  if (op.kind === "patrol") {
-    const mat = new THREE.MeshStandardMaterial({ color: 0xc4321a, roughness: 0.5, metalness: 0.15, emissive: 0x4a1008, emissiveIntensity: 0.4 });
-    for (let i = 0; i < (op.targets || []).length; i++) {
-      const t = op.targets[i];
-      const mesh = new THREE.Mesh(new THREE.CylinderGeometry(0.55, 0.62, 1.15, 10), mat);
-      mesh.position.set(t.x, t.y, t.z);
-      scene.add(mesh);
-      targets.push({ id: `t${i}`, x: t.x, y: t.y, z: t.z, hp: 1, alive: true, mesh });
-    }
-  }
   if (op.kind === "cargo") {
     const tints = [0xc98a2b, 0x3f7fbf, 0xb0443a, 0x4f9a5a];
     const flat = (pt, color) => {
@@ -1604,85 +1145,48 @@ function paintCargo() {
   });
 }
 
-function spawnBots(nBot) {
-  for (const b of bots) if (b.mesh) scene.remove(b.mesh);
-  bots = [];
-  const n = Math.max(0, nBot | 0);
-  if (!n) return;
-  const op = run?.op || opById(selectedOp);
-  // Dogfight waves stay on quick 5"/3" frames; free-flight bots mix in the slower
-  // classes. An op can pin one frame for every bot (the armoured heavy in "Ağır tank").
-  const pool = op.botDrone
-    ? [op.botDrone]
-    : op.kind === "waves"
-      ? ["racer", "freestyle", "toothpick"]
-      : ["racer", "freestyle", "toothpick", "cinewhoop", "seven"];
-  for (let i = 0; i < n; i++) {
-    const botSpec = droneById(pool[i % pool.length]);
-    const a = (i / Math.max(n, 1)) * Math.PI * 2;
-    const bot = makeBot(`bot-${i}`, botSpec, Math.sin(a) * 10, 8, -32 + Math.cos(a) * 8, i);
-    bot.hp = op.botHp || BOT_HP;
-    bot.noRespawn = run?.op.kind === "waves";
-    bot.mesh = makeDrone(botSpec, camTiltRad());
-    const tag = makeNametag("BOT");
-    tag.scale.set(2.4, 0.6, 1);
-    tag.position.y = 0.7;
-    bot.mesh.add(tag);
-    scene.add(bot.mesh);
-    bots.push(bot);
-  }
-}
-
-function addShotMesh(shot) {
-  const m = new THREE.Mesh(shotGeo, shot.owner === "player" ? shotMat : botShotMat);
-  scene.add(m);
-  shotMeshes.push(m);
-  shot.mesh = m;
-}
-
 function spawn() {
+  finishInspection("reset");
+  inspectionView?.dispose();inspectionView=null;inspection=null;
+  inspectionNavigationView?.dispose();inspectionNavigationView=null;
   const op = opById(selectedOp);
-  spec = applyFpvBuild(droneById(selected), buildFor(fpvBuilds, selected));
+  spec = configuredSpec();
   loadedSpec = op.kind === "cargo" ? withPayload(spec, op.payload) : null;
   sfx.setVoice(spec);
   hideResult();
-  if (craft) scene.remove(craft);
+  if (craft)disposeDrone(craft);
   craft = makeDrone(spec, camTiltRad());
+  spec={...spec,contactBounds:craft.userData.contactBounds};
+  if(loadedSpec)loadedSpec={...loadedSpec,contactBounds:spec.contactBounds};
   scene.add(craft);
-  let sp = op.spawn || { x: 0, y: 8, z: -14 };
-  if (op.kind === "team" && team?.mine && TEAM_SPAWN[team.mine]) {
-    // Each side lifts off from its own end, a few metres apart so a squad doesn't stack.
-    const b = TEAM_SPAWN[team.mine];
-    sp = { x: b.x + (Math.random() - 0.5) * 8, y: b.y, z: b.z + (Math.random() - 0.5) * 8 };
-  }
+  let sp = play.spawn&&op.kind==='free'?{...play.spawn,y:surfaceAt(play,play.spawn.x,play.spawn.z).height+.12}:op.spawn || { x: 0, y: 8, z: -14 };
   state = createState(sp.x, sp.y, sp.z);
   if (op.startGrounded) {
-    state.y = spec.size * 0.45;
+    state.y = groundHeight(spec,state,surfaceAt(play,state.x,state.z));
     state.grounded = true;
     state.groundedFor = 1;
   }
-  state.armed = !op.startGrounded;
+  state.armed = !op.startGrounded&&!play.terrain;
   state.motor = state.armed ? hoverThrottle(spec) : 0;
   state.throttleOut = state.motor;
   state.altHold = state.armed ? state.y : null;
+  applyRcGroundStart(state,poll(),groundHeight(spec,state,surfaceAt(play,state.x,state.z)));
   angleOverride = op.requiredFlightMode ? op.requiredFlightMode === "angle" : spec.defaultMode === "angle";
   resetSimulationClock(simClock);
-  chase = false;
-  recTime = 0;
+  chase = false;chaseHeading.x=0;chaseHeading.z=-1;
   crashFade = 0;
-  playerHp = PLAYER_HP;
-  fireCd = 0;
   osdCrash.hidden = true;
-  fpvCam.fov = spec.fpv ? 118 : 88;
+  fpvCam.fov = verticalFov(visualSettings.fov, fpvCam.aspect);
   fpvCam.updateProjectionMatrix();
-  clearShots();
-  if (op.kind === "waves") {
-    lastWave = 0;
-    spawnBots(op.waves[0]);
-  } else if (wantsBots(op)) spawnBots(op.bots || (touchUi ? 3 : 5));
-  else spawnBots(0);
-  setupAutonomy(op);
   snapCam();
+  if(op.inspection){
+    previousInspectionReport=lastInspectionReport||readInspectionReport(browserStorage)||previousInspectionReport;
+    const scenario=createInspectionScenario(getSileData(),play);scenario.spawn={x:state.x,y:state.y,z:state.z};
+    inspection=createInspection(scenario,{createdAt:new Date().toISOString(),appVersion:document.querySelector('meta[name="app-version"]')?.content||'2.33',vehicle:JSON.parse(JSON.stringify(spec)),environment:{map:'sile',night:!!document.getElementById('night').checked,wind:play.wind,real:play.real},inputs:{profile:getInputSettings(),cameraTiltDegrees:0,savedTiltDegrees:visualSettings.tilt},ilkeVehicleValidated:false});
+    inspectionView=createInspectionView(scene,inspection);
+    inspectionNavigationView=createInspectionNavigation({hud:document.getElementById('inspection-hud'),map:document.getElementById('inspection-map'),route:document.getElementById('inspection-route')},inspection,getSileData());
+    inspectionSaved=false;inspectionTerminalMenu=false;inspectionCaptures=[];inspectionSaveMessage='';paintInspection();
+  }else paintInspection();
 }
 
 function resize() {
@@ -1699,11 +1203,10 @@ function resize() {
   renderer.setSize(w, h, false);
   composer.setSize(w, h);
   fpvCam.aspect = w / h;
+  fpvCam.fov = verticalFov(visualSettings.fov, fpvCam.aspect);
   chaseCam.aspect = w / h;
   fpvCam.updateProjectionMatrix();
   chaseCam.updateProjectionMatrix();
-  bodycam.uniforms.resolution.value.x = w;
-  bodycam.uniforms.resolution.value.y = h;
 }
 window.addEventListener("resize", resize);
 window.visualViewport?.addEventListener("resize", resize);
@@ -1714,6 +1217,8 @@ gfx.canvas.addEventListener("webglcontextlost", (e) => e.preventDefault());
 gfx.canvas.addEventListener("webglcontextrestored", resize);
 
 function startFlight() {
+  if(mapLoading)return;
+  if(opById(selectedOp).inspection&&!getSileData()){mapStatus.textContent="Şile yüklenmeden inceleme başlayamaz.";return;}
   const op = opById(selectedOp);
   // Use the same lock-aware rule as the preparation screen. A suggested
   // airframe must not replace the pilot's choice unless the op locks it.
@@ -1729,36 +1234,35 @@ function startFlight() {
   u.searchParams.set("room", room);
   u.searchParams.set("name", name);
   history.replaceState(null, "", u);
-  net.join(room, name, selected);
+  if(!op.inspection)net.join(room, name, selected);
   prevStep = -1;
   prevGates = 0;
   prevMarks = 0;
-  prevShot = 0;
-  prevWaveClear = false;
   swapChirp = false;
   lowChirp = false;
-  if (loadedMap !== selectedMap || scene.userData.night !== nightOn) {
+  if (!worldMatches(scene,selectedMap,{night:nightOn,variant:op.worldVariant})) {
     for (const id of [...remotes.keys()]) dropRemote(id);
     clearWorld(scene);
-    play = buildWorld(scene, selectedMap, { lite: touchUi, night: nightOn, gpu: gfx.node, sky: gfx.createSky, props: !touchUi });
+    play = buildWorld(scene, selectedMap, { lite: touchUi, night: nightOn, variant:op.worldVariant, gpu: gfx.node, sky: gfx.createSky, props: !touchUi, quality:visualSettings.quality });
     if (!touchUi) bakeEnv(renderer, scene, gfx.PMREMGenerator);
     loadedMap = selectedMap;
   }
+  for(const camera of [fpvCam,chaseCam]){camera.far=play.terrain?6500:(touchUi?260:520);camera.near=play.terrain ? .1 : camera===fpvCam ? .04 : .1;camera.updateProjectionMatrix();}
+  document.getElementById('map-attribution').hidden=!play.terrain;
   play.drain = op.drain ?? 1;
   play.wind = windFor(op, selectedMap);
   play.real = op.real ?? !!document.getElementById("real")?.checked;
   play.assists = op.assists || null;
-  run = op.kind === "free" || op.kind === "team" ? null : createTrainingRun(op);
+  run = op.kind === "free" ? null : createTrainingRun(op);
   prevLap = 0;
   countdown = run && op.countdown ? createCountdown(op.countdown) : null;
   goFlash = 0;
   showCountdown(null);
-  if (run && !countdown) net.sendStart(op.id, op.name);
+  if (run && !countdown && !run.arcade) net.sendStart(op.id, op.name);
   replay = null;
   lastResult = null;
-  trace = run && !countdown && op.kind !== "autonomy" ? createTrace() : null;
+  trace = run && !countdown && !run.arcade ? createTrace() : null;
   loadGhostFor(run ? op : null);
-  score = 0;
   buildGoals(op);
   hangarEl.hidden = true;
   flightEl.hidden = false;
@@ -1767,44 +1271,70 @@ function startFlight() {
   setHelp(false);
   setPlayMenu(false);
   sfx.unlock();
-  ambience.start(selectedMap, { night: nightOn });
+  ambience.start(op.worldVariant==='aftermath'?'aftermath':selectedMap==='sile'?'coast':selectedMap, { night: nightOn });
   lockWake();
   spawn();
+  applyVisualSettings();
   resize();
   requestAnimationFrame(resize);
   document.getElementById("rotate-hint")?.classList.remove("open");
 }
 
-function dropGhost() {
-  if (ghost?.mesh) {
-    scene.remove(ghost.mesh);
-    ghost.mesh.traverse((o) => {
-      // Geometries and the nametag canvas are per-mesh; the cloned materials
-      // are ours too. Their maps (carbon weave etc.) are shared — leave them.
-      if (o.isSprite) o.material?.map?.dispose?.();
-      o.geometry?.dispose?.();
-      o.material?.dispose?.();
-    });
+function inspectionTerminal(session){return session&&['completed','stopped','failed'].includes(session.status);}
+function finishInspection(reason){
+  if(!inspection)return;
+  if(!inspectionTerminal(inspection))stopInspection(inspection,reason||'operator');
+  if(!inspectionSaved){
+    const report=inspectionReport(inspection);lastInspectionReport=report;const saved=saveInspectionReport(report,browserStorage);
+    inspectionSaveMessage=saved?'Son rapor bu tarayıcıya kaydedildi.':'Tarayıcı kaydı başarısız; geçerli JSON indirerek raporu koru.';
+    // Keep an in-memory fallback when localStorage is unavailable.
+    const feedback=document.getElementById('inspection-save-feedback');feedback.hidden=false;feedback.textContent=inspectionSaveMessage;
+    inspectionSaved=true;paintInspection();
   }
-  ghost = null;
 }
+function paintInspection(){
+  const hud=document.getElementById('inspection-hud'),menu=document.getElementById('inspection-menu');hud.hidden=menu.hidden=!inspection;
+  if(!inspection)return;
+  const statusLabel={ready:"Hazır",active:"Kayıt sürüyor",returning:"Başlangıca dön",completed:"Tamamlandı",stopped:"Durduruldu",failed:"Başarısız"}[inspection.status]||inspection.status;
+  const status=`${statusLabel} · ${inspection.observations.length}/3 · ${inspection.t.toFixed(1)} sn`;
+  inspectionNavigationView?.paint(state,{replaying:!!replay?.inspection});
+  document.getElementById('inspection-status').textContent=`${status} · ${inspection.reason||inspection.hint||''} ${inspectionSaveMessage}`;
+  const select=document.getElementById('inspection-point'),pending=inspection.scenario.points.filter(p=>!inspection.observations.some(o=>o.pointId===p.id));
+  if(select.dataset.points!==pending.map(p=>p.id).join(',')){select.replaceChildren(...pending.map(p=>new Option(p.label,p.id)));select.dataset.points=pending.map(p=>p.id).join(',');}
+  select.value=inspection.activePointId||'';select.disabled=inspectionTerminal(inspection)||!pending.length;
+  document.getElementById('inspection-stop').disabled=inspectionTerminal(inspection);
+  document.getElementById('inspection-replay').disabled=!inspectionTerminal(inspection)||inspection.samples.length<2;
+  document.getElementById('inspection-previous').disabled=!previousInspectionReport;
+}
+function downloadInspection(report){
+  if(!report)return;const blob=inspectionDownloadBlob(report);
+  if(!blob){inspectionSaveMessage='JSON indirilemedi: rapor 2,5 MB sınırını aşıyor veya serileştirilemiyor.';paintInspection();return;}
+  const url=URL.createObjectURL(blob);
+  const anchor=document.createElement('a');anchor.href=url;anchor.download='ilke-sile-inspection.json';anchor.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+}
+bindTap(document.getElementById('inspection-stop'),()=>{finishInspection('operator');inspectionTerminalMenu=true;paintInspection();});
+document.getElementById('inspection-point').addEventListener('change',event=>{if(inspection)selectInspectionPoint(inspection,event.target.value);paintInspection();});
+bindTap(document.getElementById('inspection-export'),()=>{if(inspection)downloadInspection(inspectionReport(inspection));});
+bindTap(document.getElementById('inspection-previous'),()=>downloadInspection(previousInspectionReport));
+bindTap(document.getElementById('inspection-replay'),()=>{
+  if(!inspectionTerminal(inspection))return;const localTrace=inspectionTrace(inspection);if(localTrace.data.length<16)return;
+  replay={inspection:true,trace:localTrace,t:0,dur:traceDuration(localTrace),chaseBefore:chase,savedState:structuredClone(state),worldTime,heading:{...chaseHeading},fpvPosition:fpvCam.position.clone(),fpvQuaternion:fpvCam.quaternion.clone(),chasePosition:chaseCam.position.clone(),chaseQuaternion:chaseCam.quaternion.clone()};
+  document.getElementById('flight-menu').close();chase=true;sfx.nearby(null);
+});
+window.addEventListener('pagehide',()=>finishInspection('leave'));
+
+function dropGhost(){if(ghost?.mesh)disposeDrone(ghost.mesh);ghost=null;}
 
 // The pilot's best run on this op (or a shared "race my run" link's trace,
 // when one is loaded and matches), flown again as a translucent craft.
 function loadGhostFor(op) {
   dropGhost();
-  if (!op || op.kind === "free") return;
+  if (!op || op.kind === "free" || op.kind === "arcade" || configuredSpec().propulsion) return;
   const shared = sharedGhost?.opId === op.id ? sharedGhost : null;
   const tr = shared ? shared.trace : loadGhost(op.id);
   if (!tr || !traceDuration(tr)) return;
   const mesh = makeDrone(droneById(tr.meta?.drone || selected), camTiltRad());
-  mesh.traverse((o) => {
-    if (!o.material) return;
-    o.material = o.material.clone();
-    o.material.transparent = true;
-    o.material.opacity = 0.32;
-    o.material.depthWrite = false;
-  });
+  setDroneOpacity(mesh,.32);
   const tag = makeNametag(shared?.meta?.name ? `HAYALET: ${shared.meta.name}` : "HAYALET");
   tag.position.y = 0.5;
   mesh.add(tag);
@@ -1834,7 +1364,7 @@ function startReplay() {
   replay = { trace, t: 0, dur: traceDuration(trace), chaseBefore: chase };
   hideResult();
   chase = true;
-  sfx.nearby(null); // bots/remotes are not stepped during the replay
+  sfx.nearby(null); // remote pilots are not stepped during the replay
 }
 
 // Uploads this run's trace and copies a "?ghost=<id>" link that flies straight
@@ -1889,6 +1419,11 @@ function ambienceEnv() {
 function endReplay() {
   if (!replay) return;
   chase = replay.chaseBefore;
+  if(replay.inspection){
+    state=replay.savedState;worldTime=replay.worldTime;Object.assign(chaseHeading,replay.heading);
+    fpvCam.position.copy(replay.fpvPosition);fpvCam.quaternion.copy(replay.fpvQuaternion);chaseCam.position.copy(replay.chasePosition);chaseCam.quaternion.copy(replay.chaseQuaternion);
+    replay=null;applyPose(craft,state);craft.visible=chase;resetSimulationClock(simClock);document.getElementById('flight-menu').showModal();paintInspection();return;
+  }
   replay = null;
   if (lastResult) showResult(lastResult.run, lastResult.prevBest);
 }
@@ -1914,20 +1449,21 @@ function replayTick(dt, now, input) {
   sfx.motor(0.5, true, { speed: 8, alt: state.y, battery: 1, sag: 1, chase: true });
   ambience.tick(dt, ambienceEnv());
   followCam(dt, now);
-  tickWorld(scene, now * 0.001, dt, state);
+  worldTime = advanceWorldTime(worldTime, dt);
+  tickWorld(scene, worldTime, dt, state);
   for (const action of ["cam", "mode", "help", "mute"]) consume(action);
   if (replay.t > replay.dur + 1 || consume("arm") || consume("reset") || consume("hangar")) {
     endReplay();
     return;
   }
   bodycam.uniforms.time.value = now * 0.001;
-  bodycam.uniforms.intensity.value = .06 + .29 * Number(document.getElementById("camera-look")?.value ?? 0);
-  bodycam.enabled = true;
+  bodycam.uniforms.intensity.value = lensIntensity(visualSettings, true);
+  bodycam.enabled = bodycam.uniforms.intensity.value > 0;
   bodycam.uniforms.speed.value = 0;
   bodycam.uniforms.crash.value = 0;
   renderPass.camera = chaseCam;
   composer.render();
-  drawOsd(input, 0);
+  drawHud(input, 0);
   const opg = document.getElementById("op-prog");
   if (opg) opg.textContent = `TEKRAR ${fmtTime(Math.min(replay.t, replay.dur))} / ${fmtTime(replay.dur)}`;
   osdCrash.hidden = true;
@@ -1952,6 +1488,7 @@ function setExitArmed(on) {
 
 // Escape opens a menu; returning to the hangar requires an explicit choice.
 function requestExit() {
+  if (helpOpen) { setHelp(false); return; }
   const menu = document.getElementById("flight-menu");
   if (menu.open) menu.close();
   else {
@@ -1962,7 +1499,12 @@ function requestExit() {
 bindTap(document.getElementById("flight-resume"), () => document.getElementById("flight-menu").close());
 bindTap(document.getElementById("flight-retry"), () => {
   document.getElementById("flight-menu").close();
-  if (run) retryOp(); else spawn();
+  resetFlightDrone();
+});
+bindTap(document.getElementById("flight-prepare"), () => {
+  const activity = selectedOp;
+  document.getElementById("flight-menu").close();
+  backHangar(); prepareFlight(activity);
 });
 bindTap(document.getElementById("flight-home"), () => {
   document.getElementById("flight-menu").close(); backHangar();
@@ -1998,42 +1540,33 @@ function showResult(r, prevBest) {
   if (!card || !r) return;
   const won = !!r.won;
   const opId = r.op.id;
-  const autonomous = r.op.kind === "autonomy";
-  const record = !autonomous && won && (prevBest == null || r.t < prevBest);
+  const record = won && !isLocalOnlyRun(r) && (prevBest == null || r.t < prevBest);
   card.classList.toggle("lost", !won);
   document.getElementById("result-kicker").textContent = won ? "GÖREV TAMAM" : "BAŞARISIZ";
   document.getElementById("result-title").textContent = r.op.name;
   document.getElementById("result-time").innerHTML = `${esc(fmtTime(r.t))}${record ? "<small>KİŞİSEL REKOR</small>" : ""}`;
   const rows = [];
+  if(r.reference && !r.arcade)rows.push({k:"Tezgâh referansı",v:"Antrenman · rekor/ilerleme/sıralama dışı"});
+  if (r.paused) rows.push({ k: "Duraklatıldı", v: "Kişisel antrenman · sıralama dışı" });
+  if(r.arcade)rows.push({k:"Arcade",v:`${r.arcade.targets.filter(t=>t.done).length}/4 nesne · ${r.arcade.drones} drone · yerel oyun`});
   rows.push({ k: "Sonuç", v: won ? "Tamamlandı" : r.reason || "başarısız" });
-  const best = autonomous ? null : progress.best?.[opId];
-  if (!autonomous) rows.push({ k: "En iyi süre", v: best != null ? fmtTime(best) : "—", cls: record ? "record" : "" });
-  if (!autonomous && won && prevBest != null) {
+  const best = isLocalOnlyRun(r) ? null : progress.best?.[opId];
+  if(!r.arcade)rows.push({ k: "En iyi süre", v: best != null ? fmtTime(best) : "—", cls: record ? "record" : "" });
+  if (won && prevBest != null) {
     const d = r.t - prevBest;
     rows.push({ k: "Rekora fark", v: `${d >= 0 ? "+" : "−"}${fmtTime(Math.abs(d))}` });
   }
-  if (autonomous && r.autonomyReport) {
-    const report = r.autonomyReport;
-    const time = (value) => value == null ? "—" : fmtTime(value);
-    rows.push({ k: "Toplam", v: time(report.totalSeconds) });
-    rows.push({ k: "Tespit", v: time(report.detectionSeconds) });
-    rows.push({ k: "İDA sevk", v: time(report.dispatchSeconds) });
-    rows.push({ k: "Müdahale", v: time(report.interventionSeconds) });
-    rows.push({ k: "Görev İDA'sı", v: report.selectedSeaId || "—" });
-  } else if (r.op.kind === "race") {
+  if (r.op.kind === "race") {
     rows.push({ k: "Kapı", v: `${r.gatesDone}/${(r.op.gates?.length || 0) * (r.op.laps || 3)}` });
-    const bl = progress.bestLap?.[opId];
+    const bl = isLocalOnlyRun(r) ? null : progress.bestLap?.[opId];
     rows.push({ k: "En iyi tur", v: bl != null ? fmtTime(bl) : "—", cls: r.bestLap != null && bl != null && r.bestLap <= bl ? "record" : "" });
   } else if (r.op.kind === "school") rows.push({ k: "Adım", v: `${Math.min(r.step, r.op.steps.length)}/${r.op.steps.length}` });
   else if (r.op.kind === "recon") rows.push({ k: "İşaret", v: `${r.marks.filter((m) => m.done).length}/${r.marks.length}` });
-  else if (r.op.kind === "patrol") rows.push({ k: "Hedef", v: `${r.shot}/${r.op.need || 6}` });
-  else if (r.op.kind === "waves") rows.push({ k: "Dalga", v: `${Math.min(r.wave, r.op.waves.length)}/${r.op.waves.length}` });
-  else if (r.op.kind === "final") rows.push({ k: "Skor", v: `${score}/${r.op.scoreNeed || 8}` });
   else if (r.op.kind === "cargo") {
     rows.push({ k: "Koli", v: `${r.delivered}/${r.parcels.length}` });
     if (r.dropped) rows.push({ k: "Düşen", v: String(r.dropped) });
   }
-  if (r.report && !autonomous) {
+  if (r.report) {
     rows.push({ k: "Eğitim puanı", v: `${r.report.total}/100`, cls: r.report.total >= 80 ? "record" : "" });
     rows.push({ k: "Rota / kontrol", v: `${r.report.route} / ${r.report.control}` });
     rows.push({ k: "Stabilite / iniş", v: `${r.report.stability} / ${r.report.landing}` });
@@ -2053,13 +1586,13 @@ function showResult(r, prevBest) {
   if (rb) rb.hidden = !(trace && traceCount(trace) > 1);
   const sb = document.getElementById("result-share");
   if (sb) {
-    sb.hidden = !(trace && traceCount(trace) > 1);
+    sb.hidden = isLocalOnlyRun(r) || !(trace && traceCount(trace) > 1);
     sb.disabled = false;
     sb.textContent = "Uçuşu paylaş";
   }
   lastResult = { run: r, prevBest };
   card.hidden = false;
-  // Touch layer (sticks, fire/arm pads, compass) steps aside while the card is up.
+  // Touch layer (sticks and ARM button, compass) steps aside while the card is up.
   flightEl.classList.add("has-result");
   resultShown = true;
 }
@@ -2067,12 +1600,16 @@ bindTap(document.getElementById("result-retry"), () => retryOp());
 bindTap(document.getElementById("result-home"), () => backHangar());
 bindTap(document.getElementById("result-replay"), () => startReplay());
 bindTap(document.getElementById("result-share"), () => shareResult());
-document.getElementById("flight-look").addEventListener("change", (event) => {
-  document.getElementById("camera-look").value = event.target.value; persistLoadout();
-});
+
 
 function backHangar() {
+  if(replay?.inspection)endReplay();
+  finishInspection("leave");inspectionView?.dispose();inspectionView=null;inspection=null;inspectionNavigationView?.dispose();inspectionNavigationView=null;paintInspection();
   flying = false;
+  document.querySelector(".hangar-inner").scrollTop = 0;
+  hangarEl.dataset.screen = "home";
+  document.getElementById("home-back").hidden = true;
+  document.getElementById("flight-menu").close();
   setExitArmed(false);
   sfx.motor(0, false);
   sfx.nearby(null);
@@ -2091,13 +1628,8 @@ function backHangar() {
   flightEl.hidden = true;
   flightEl.style.height = "";
   flightEl.style.top = "";
-  clearShots();
   clearGoals();
-  clearAutonomy();
-  clearOperationsRuntime();
   run = null;
-  for (const b of bots) if (b.mesh) scene.remove(b.mesh);
-  bots = [];
   if (lastWonId) {
     const next = nextInTrack(lastWonId);
     lastWonId = null;
@@ -2138,70 +1670,44 @@ bindTap(document.getElementById("btn-help"), () => {
 bindTap(document.getElementById("help-close"), () => setHelp(false));
 bindTap(document.getElementById("rotate-hint"), (e) => e.currentTarget.classList.toggle("open"));
 
-const autonomyPanel = document.getElementById("autonomy-panel");
-bindTap(autonomyPanel?.querySelector('[data-action="pause"]'), () => autonomy && pauseAutonomy(autonomy.task, true));
-bindTap(autonomyPanel?.querySelector('[data-action="resume"]'), () => autonomy && pauseAutonomy(autonomy.task, false));
-bindTap(autonomyPanel?.querySelector('[data-action="take-air"]'), () => {
-  if (!autonomy) return;
-  takeControl(autonomy.task, "iha-1");
-  autonomy.cameraVehicleId = "iha-1";
-  if (touchUi) setPlayMenu(false);
-});
-bindTap(autonomyPanel?.querySelector('[data-action="take-sea"]'), () => {
-  if (!autonomy) return;
-  const observedSea = autonomy.cameraVehicleId !== "iha-1" ? autonomy.cameraVehicleId : null;
-  takeControl(autonomy.task, observedSea || autonomy.task.selectedSeaId || autonomy.boats[0]?.state.id);
-  autonomy.cameraVehicleId = autonomy.task.controlledByVehicle;
-  if (touchUi) setPlayMenu(false);
-});
-bindTap(autonomyPanel?.querySelector('[data-action="return"]'), () => {
-  if (autonomy?.task.controlledByVehicle) {
-    returnToAutonomy(autonomy.task, autonomy.task.controlledByVehicle);
-    flightEl.classList.remove("autonomy-manual");
-  }
-});
-bindTap(autonomyPanel?.querySelector('[data-action="abort"]'), () => autonomy && abortAutonomy(autonomy.task));
-autonomyPanel?.addEventListener("click", (event) => {
-  const button = event.target.closest?.("[data-vehicle]");
-  if (!button || !autonomy) return;
-  autonomy.cameraVehicleId = button.dataset.vehicle;
-});
-
 const flightBar = document.getElementById("flight-bar");
 const menuFab = document.getElementById("menu-fab");
 function setPlayMenu(on) {
   flightBar.classList.toggle("open", on);
-  // The open ☰ column sits where the fire/arm pads and sticks are on a phone.
+  // The open ☰ column sits where the ARM button and sticks are on a phone.
   flightEl.classList.toggle("menu-open", on);
   menuFab.textContent = on ? "×" : "☰";
 }
 bindTap(menuFab, () => setPlayMenu(!flightBar.classList.contains("open")));
 
+document.getElementById('arcade-guides').addEventListener('change',e=>arcadeView?.setGuides(e.target.checked));
+function resetFlightDrone() {
+  if(run?.arcade && !run.won && !run.lost){renewArcadeDrone(run.arcade);spawn();}
+  else if(run)retryOp();else spawn();
+}
 function retryOp() {
   const op = opById(selectedOp);
-  run = op.kind === "free" || op.kind === "team" ? null : createTrainingRun(op);
+  run = op.kind === "free" ? null : createTrainingRun(op);
   prevLap = 0;
   countdown = run && op.countdown ? createCountdown(op.countdown) : null;
   goFlash = 0;
   showCountdown(null);
-  if (run && !countdown) net.sendStart(op.id, op.name);
+  if (run && !countdown && !run.arcade) net.sendStart(op.id, op.name);
   replay = null;
   lastResult = null;
-  trace = run && !countdown && op.kind !== "autonomy" ? createTrace() : null;
+  trace = run && !countdown && !run.arcade ? createTrace() : null;
   loadGhostFor(run ? op : null);
   prevStep = -1;
   prevGates = 0;
   prevMarks = 0;
-  prevShot = 0;
-  prevWaveClear = false;
   swapChirp = false;
   lowChirp = false;
-  score = 0;
   buildGoals(op);
   spawn();
 }
 
 function toggleArm() {
+  if(run?.arcade && (run.arcade.wait>0 || run.arcade.needsSpawn))return;
   if (replay) {
     endReplay();
     return;
@@ -2218,11 +1724,11 @@ function toggleArm() {
     return;
   }
   if (state.crashed) {
-    // Shot down in a team match: the server revives after 4 s, not before.
-    if (inTeamOp() && performance.now() < (team.downUntil || 0)) return;
     spawn();
     return;
   }
+  if(state.packCutoff)return;
+  if(!state.armed&&!canArmInput(poll()))return;
   state.armed = !state.armed;
 }
 
@@ -2232,19 +1738,8 @@ function applyPose(obj, s) {
 }
 
 function followCam(dt, now) {
-  const cameraBoat = autonomy?.boats.find((boat) => boat.state.id === autonomy.cameraVehicleId);
-  if (cameraBoat) {
-    const boat = cameraBoat.state;
-    const fx = Math.sin(boat.heading);
-    const fz = -Math.cos(boat.heading);
-    fpvCam.position.set(boat.x - fx * 1.8, 1.35, boat.z - fz * 1.8);
-    fpvCam.lookAt(boat.x + fx * 16, 0.7, boat.z + fz * 16);
-    chaseCam.position.set(boat.x - fx * 7, 4.2, boat.z - fz * 7);
-    chaseCam.lookAt(boat.x + fx * 4, 0.5, boat.z + fz * 4);
-    _aimTarget.set(boat.x + fx * 80, 0.7, boat.z + fz * 80);
-    return;
-  }
-  const [ox, oy, oz] = rotateVec(state.qw, state.qx, state.qy, state.qz, 0, spec.size * 0.55, spec.size * 0.12);
+  const mount=craft?.userData.fpvAnchor||[0,spec.size*.55,spec.size*.12];
+  const [ox,oy,oz]=rotateVec(state.qw,state.qx,state.qy,state.qz,...mount);
   _targetPos.set(state.x + ox, state.y + oy, state.z + oz);
   _targetQuat.set(state.qx, state.qy, state.qz, state.qw);
   // Tilt is baked into the slerp TARGET, not re-applied to the camera's own
@@ -2252,48 +1747,33 @@ function followCam(dt, now) {
   // selected angle frame after frame with no steady state, so the visible
   // tilt never actually settled at the chosen 15/30/45°.
   if (!chase) _targetQuat.multiply(_tiltQuat.setFromAxisAngle(_xAxis, camTiltRad()));
+  const nextNear=fpvNearPlane(cameraClearance(play,_targetPos),!!play.terrain);
+  if(Math.abs(fpvCam.near-nextNear)>1e-4){fpvCam.near=nextNear;fpvCam.updateProjectionMatrix();}
   const lag = spec.camLag || 10;
   const k = 1 - Math.exp(-lag * dt);
   if (chase) {
     fpvCam.position.lerp(_targetPos, k);
     fpvCam.quaternion.slerp(_targetQuat, k);
   } else {
-    // The FPV lens and gun pod are one rigid assembly. Rotational camera lag
-    // made the centre reticle show an older heading while rounds already used
-    // the craft's current heading, especially during fast yaw/pitch inputs.
+    // Keep the FPV camera aligned with the current craft attitude.
     fpvCam.position.copy(_targetPos);
     fpvCam.quaternion.copy(_targetQuat);
   }
 
   const thr = state.armed ? state.throttleOut : 0;
-  const vib = (0.00025 + thr * 0.001) * (state.crashed ? 6 : 1);
+  const vib = visualSettings.vibration ? (0.00025 + thr * 0.001) * (state.crashed ? 6 : 1) : 0;
   const t = now * 0.001;
   fpvCam.rotateX(Math.sin(t * 91.3) * vib);
   fpvCam.rotateZ(Math.sin(t * 118.7) * vib * 0.7);
   fpvCam.rotateY(Math.sin(t * 37.1) * vib * 0.35);
 
-  const [fx, fy, fz] = rotateVec(state.qw, state.qx, state.qy, state.qz, 0, 0, -1);
-  void fy;
-  const back = 2.8 + spec.size * 3.2;
-  chaseCam.position.set(state.x - fx * back, state.y + 1.35, state.z - fz * back);
-  // Keep the craft and its actual gun line framed together. The reticle below
-  // is projected onto that gun line, so it remains truthful in chase view.
-  const [ax, ay, az] = aimDir(state.qw, state.qx, state.qy, state.qz, camTiltRad());
-  _aimTarget.set(state.x + ax * 80, state.y + ay * 80, state.z + az * 80);
-  _chaseToCraft.set(state.x, state.y, state.z).sub(chaseCam.position).normalize();
-  _chaseToAim.copy(_aimTarget).sub(chaseCam.position).normalize();
-  _chaseLook.copy(_chaseToCraft).add(_chaseToAim).normalize().add(chaseCam.position);
-  chaseCam.lookAt(_chaseLook);
-}
-
-function updateAimReticle() {
-  const camera = chase ? chaseCam : fpvCam;
-  camera.updateMatrixWorld(true);
-  _aimScreen.copy(_aimTarget).project(camera);
-  const x = THREE.MathUtils.clamp((_aimScreen.x * 0.5 + 0.5) * 100, 3, 97);
-  const y = THREE.MathUtils.clamp((-_aimScreen.y * 0.5 + 0.5) * 100, 8, 94);
-  flightEl.style.setProperty("--aim-x", `${x.toFixed(2)}%`);
-  flightEl.style.setProperty("--aim-y", `${y.toFixed(2)}%`);
+  if(chase){
+    const forward=rotateVec(state.qw,state.qx,state.qy,state.qz,0,0,-1);
+    const offset=chaseOffset(chaseFraming(spec,chaseCam.aspect),forward,chaseHeading);
+    chaseHeading.x=offset.heading.x;chaseHeading.z=offset.heading.z;
+    chaseCam.position.set(state.x+offset.x,state.y+offset.y,state.z+offset.z);
+    chaseCam.lookAt(state.x,state.y,state.z);
+  }
 }
 
 function loop(now) {
@@ -2305,6 +1785,14 @@ function loop(now) {
   const dt = Math.min(0.05, (now - last) / 1000);
   last = now;
   const input = poll();
+  rcSetup.update(now);
+  const controls=controlPresentation(getInputSettings(),input,state||{});
+  if(!flying){
+    const hint=document.getElementById('home-input-status'),text=controls.title+' · '+controls.detail;
+    if(hint.textContent!==text)hint.textContent=text;
+    hint.dataset.tone=controls.tone;
+  }
+  if(flying&&!replay)disarmOnInputLoss(state,input);
 
   if (flying) {
     if (!fpsAt) fpsAt = now;
@@ -2315,15 +1803,27 @@ function loop(now) {
       fpsAt = now;
       fpsN = 0;
     }
-    if (replay) {
-      replayTick(dt, now, input);
+    if (consume("hangar")){if(replay?.inspection){endReplay();return;}requestExit();}
+    if (consume("help")) setHelp(!helpOpen);
+    const menuOpen = document.getElementById("flight-menu").open;
+    const touchMenuOpen = flightBar.classList.contains("open");
+    if (resultShown && !menuOpen && !helpOpen) {
+      if (consume("arm")) toggleArm();
+      if (consume("reset")) retryOp();
+      if (!flying) return;
+    }
+    if (isFlightPaused({ menuOpen, touchMenuOpen, helpOpen, resultOpen: resultShown })) {
+      for (const action of ["arm", "reset", "cam", "mode"]) consume(action);
+      if (consume("mute")) toggleMute();
+      if (run && run.t > 0 && !run.won && !run.lost) run.paused = true;
+      resetSimulationClock(simClock);
+      sfx.motor(0, false); sfx.nearby(null);
+      drawHud(input,Math.hypot(state.vx,state.vy,state.vz));
+      renderPass.camera = chase ? chaseCam : fpvCam;
+      composer.render();
       return;
     }
-    if (consume("hangar")) requestExit();
-    if (document.getElementById("flight-menu").open) {
-      Object.assign(input, { lift: 0, r2: 0, yaw: 0, pitch: 0, roll: 0, fire: false });
-      for (const action of ["arm", "reset", "cam", "mode", "help", "mute", "vehiclePrev", "vehicleNext", "emergencyStop", "consoleHelp", "controlLost"]) consume(action);
-    }
+    if (replay) { replayTick(dt, now, input); return; }
     if (exitArmed && now - exitArmedAt >= EXIT_CONFIRM_MS) setExitArmed(false);
     let holding = false;
     if (countdown) {
@@ -2342,58 +1842,39 @@ function loop(now) {
       if (goFlash <= 0) showCountdown(null);
     }
     if (holding) {
-      Object.assign(input, { lift: 0, r2: 0, yaw: 0, pitch: 0, roll: 0, fire: false });
+      Object.assign(input, { lift: 0, r2: 0, yaw: 0, pitch: 0, roll: 0 });
       consume("arm");
       consume("mode");
     }
-    if (operations) {
-      if (consume("vehiclePrev")) operations.runtime.session = cycleVehicle(operations.runtime.session, -1);
-      if (consume("vehicleNext")) operations.runtime.session = cycleVehicle(operations.runtime.session, 1);
-      if (consume("emergencyStop")) setOperationsEmergency(operations.runtime, true);
-      if (consume("controlLost")) handleOperationsControlLoss(operations.runtime);
-      if (consume("reset")) resetOperationsVehicle(operations.runtime);
-      if (consume("cam")) chase = !chase;
-      if (consume("arm")) toggleOperationsPower(operations.runtime);
-      if (consume("mode")) {
-        const selectedVehicle = operations.runtime.vehicles.find((vehicle) => vehicle.id === operations.runtime.session.selectedId);
-        if (selectedVehicle?.kind === "air") angleOverride = !angleOverride;
-        else toggleOperationsProfile(operations.runtime);
-      }
-      const consoleHelp = consume("consoleHelp");
-      const generalHelp = consume("help");
-      if (consoleHelp || generalHelp) setHelp(!helpOpen);
-    } else {
-      if (consume("arm")) toggleArm();
-      if (consume("reset")) (run ? retryOp() : spawn());
-      if (consume("cam")) chase = !chase;
-      if (consume("mode") && !opById(selectedOp).requiredFlightMode) angleOverride = !angleOverride;
-      if (consume("help")) setHelp(!helpOpen);
-    }
+    if (consume("arm")) toggleArm();
+    if (consume("reset")) resetFlightDrone();
+    if (consume("cam")) chase = !chase;
+    if (consume("mode") && !opById(selectedOp).requiredFlightMode) angleOverride = !angleOverride;
     if (consume("mute")) toggleMute();
 
-    if (autonomy?.task.paused) holding = true;
     input.angleMode = angleOverride;
-    if (!state.armed && state.y <= spec.size * 0.5) {
+    if (!state.armed && state.grounded) {
       input.lift = -1;
       input.r2 = 0;
     }
+    let inspectionDt=0;
     // With a parcel slung underneath the airframe flies its loaded profile.
-    if (!holding) {
+    if (!holding && !(run?.arcade && (run.arcade.wait>0 || run.arcade.needsSpawn))) {
       const activeSpec = loadedSpec && run?.carrying != null ? loadedSpec : spec;
       advanceSimulationClock(simClock, dt, (simDt) => {
-        if (operations) stepOperationsRuntime(operations.runtime, input, simDt, play);
-        else if (autonomy) stepAutonomyPhysics(simDt, input, activeSpec);
-        else step(state, input, activeSpec, simDt, play);
+        step(state, input, activeSpec, simDt, play);
+        inspectionDt+=simDt;
       });
     } else {
       resetSimulationClock(simClock);
     }
-    if (canSwapBattery(state) && state.battery < 0.995) {
+    if (!inspection && canSwapBattery(state) && (state.battery < 0.995 || state.packCutoff)) {
       if (!swapChirp) {
         sfx.gate();
         swapChirp = true;
       }
-      state.battery = Math.min(1, state.battery + dt * 0.75);
+      if(spec.propulsion?.battery?.mode==='rint')resetBattery(state);
+      else state.battery = Math.min(1, state.battery + dt * 0.75);
     } else if (!canSwapBattery(state)) swapChirp = false;
 
     // A flat pack at rest is the end of the run: say so, so ARM/R recovers
@@ -2429,185 +1910,29 @@ function loop(now) {
         lowChirp = true;
       }
     } else if (state.battery > 0.28) lowChirp = false;
-    tickWorld(scene, now * 0.001, dt, state);
+    worldTime = advanceWorldTime(worldTime, dt);
+  tickWorld(scene, worldTime, dt, state);
     applyPose(craft, state);
-    if (operations) {
-      if (!input.connected && operations.controller.connected !== false) handleOperationsControlLoss(operations.runtime);
-      operations.controller = { connected: input.connected, name: input.gpName };
-      for (const vehicle of operations.runtime.vehicles.filter((item) => item.kind === "sea")) {
-        vehicle.mesh.position.set(vehicle.state.x, play.water.surfaceY, vehicle.state.z);
-        vehicle.mesh.rotation.y = -vehicle.state.heading;
-        vehicle.mesh.userData.rudder.rotation.y = -vehicle.state.turnRate * 0.45;
-      }
-      operations.uiElapsed = (operations.uiElapsed || 0) + dt;
-      if (operations.uiElapsed >= 0.2) {
-        operations.uiElapsed = 0;
-        for (const vehicle of operations.runtime.vehicles) {
-          const track = operations.tracks[vehicle.id];
-          const lastPoint = track.at(-1);
-          if (!lastPoint || Math.hypot(vehicle.state.x - lastPoint.x, vehicle.state.z - lastPoint.z) >= 0.5) {
-            track.push({ x: vehicle.state.x, z: vehicle.state.z });
-            if (track.length > 240) track.shift();
-          }
-        }
-        operations.mapRevision += 1;
-        paintOperations();
-      }
-    }
-    if (autonomy) {
-      tickAutonomyFrame(dt);
-      updateAutonomyScene(dt);
-      finishAutonomyResult();
-    }
-    spinProps(craft, state.armed ? state.throttleOut : 0.04, dt);
+    spinProps(craft,state.armed?state.throttleOut:0,dt,state.armed?state.rotorThrottle:null);
     craft.visible = chase;
     followCam(dt, now);
-    if (operations) {
-      const selectedVehicle = operations.runtime.vehicles.find((vehicle) => vehicle.id === operations.runtime.session.selectedId);
-      if (selectedVehicle?.kind === "sea") {
-        const anchor = selectedVehicle.mesh.userData[chase ? "followCamera" : "deckCamera"];
-        const target = selectedVehicle.mesh.userData.cameraTarget;
-        anchor.getWorldPosition(fpvCam.position);
-        target.getWorldPosition(_targetPos);
-        fpvCam.lookAt(_targetPos);
-        chaseCam.position.copy(fpvCam.position);
-        chaseCam.quaternion.copy(fpvCam.quaternion);
-      }
-      craft.visible = selectedVehicle?.kind === "air" && chase;
+    if(inspection){
+      const count=inspection.observations.length;
+      if(inspectionDt>0)tickInspection(inspection,{state,dt:inspectionDt,sensor:inspectionView.sensor(fpvCam,!chase),flightMode:angleOverride?"angle":"acro",input});
+      inspectionCaptures=inspection.observations.slice(count).map(o=>o.pointId);inspectionView.paint();
     }
-
-    fireCd -= dt;
-    muzzle.intensity = THREE.MathUtils.lerp(muzzle.intensity, 0, 1 - Math.exp(-18 * dt));
-    hitFlash = Math.max(0, hitFlash - dt * 4);
-    dmgFlash = Math.max(0, dmgFlash - dt * 3);
-    camKick = Math.max(0, camKick - dt * 8);
-    if (camKick) fpvCam.rotateX(-camKick * 0.04);
-
-    const allowFire = !operations && opById(selectedOp).fire === true;
-    if (allowFire && input.fire && state.armed && !state.crashed && canFire(fireCd)) {
-      const [fx, fy, fz] = aimDir(state.qw, state.qx, state.qy, state.qz, camTiltRad());
-      const shot = createShot(state.x + fx * 0.55, state.y + fy * 0.55, state.z + fz * 0.55, fx, fy, fz, "player", 160);
-      shots.push(shot);
-      addShotMesh(shot);
-      fireCd = document.getElementById("gun")?.value === "rapid" ? 0.05 : 0.09;
-      muzzle.intensity = 8;
-      camKick = 1;
-    }
-    const tsec = now * 0.001;
-    const combat = playerCanBeHit(run?.op);
-    if (!combat && bots.length) spawnBots(0);
-    for (const bot of bots) {
-      // Bots also wait for GO.
-      const enemyShot = holding ? null : stepBot(bot, state, tsec, dt, play);
-      if (bot.mesh) {
-        bot.mesh.visible = bot.alive;
-        if (bot.alive) {
-          applyPose(bot.mesh, bot.state);
-          spinProps(bot.mesh, 0.6, dt);
-        }
-      }
-      if (enemyShot) {
-        shots.push(enemyShot);
-        addShotMesh(enemyShot);
-      }
-    }
-    shots = stepShots(shots, dt);
-    visShots = stepShots(visShots, dt);
-    const botTargets = bots.filter((b) => b.alive).map((b) => ({
-      id: b.id,
-      x: b.state.x,
-      y: b.state.y,
-      z: b.state.z,
-      hp: b.hp,
-      alive: b.alive,
-      ref: b,
-    }));
-    const playerT = { id: "player", x: state.x, y: state.y, z: state.z, hp: playerHp, alive: playerHp > 0 };
-    const hpBefore = playerHp;
-    if (run && targets.length) {
-      applyHits(shots, targets, 2.1);
-      run.shot = targets.filter((t) => !t.alive).length;
-      for (const t of targets) if (t.mesh) t.mesh.visible = t.alive;
-    }
-    const hitList = combat ? [...botTargets, playerT] : botTargets;
-    const hits = applyHits(shots, hitList);
-    if (hits.some((h) => h.owner === "player" && h.target !== "player")) {
-      hitFlash = 1;
-      sfx.hit();
-    }
-    // Team match: my shots against the other side's pilots. The shot stops
-    // here; whether it counts (range, cadence, alive) is the server's call.
-    if (inTeamOp()) {
-      for (const h of applyHits(shots, enemyTargets(remotes, team.mine))) {
-        if (h.owner !== "player") continue;
-        net.sendHit(h.target);
-        hitFlash = 1;
-        sfx.hit();
-      }
-    }
-    playerHp = playerT.hp;
-    if (playerHp < hpBefore) {
-      dmgFlash = 1;
-      sfx.hit();
-    }
-    if (!playerT.alive && !state.crashed) {
-      state.crashed = true;
-      state.crashReason = "isabet";
-      state.armed = false;
-    }
-    for (const t of botTargets) {
-      t.ref.hp = t.hp;
-      if (!t.alive && t.ref.alive) {
-        t.ref.alive = false;
-        t.ref.respawn = 4;
-        score += 1;
-      }
-    }
-    for (let i = shotMeshes.length - 1; i >= 0; i--) {
-      const sh = shots.find((s) => s.mesh === shotMeshes[i]) || visShots.find((s) => s.mesh === shotMeshes[i]);
-      if (!sh) {
-        scene.remove(shotMeshes[i]);
-        shotMeshes.splice(i, 1);
-        continue;
-      }
-      shotMeshes[i].position.set(sh.x, sh.y, sh.z);
-      shotMeshes[i].lookAt(sh.x + sh.vx, sh.y + sh.vy, sh.z + sh.vz);
-    }
-
     let nearSpec = null;
     let nearD = 45;
     let nearThr = 0.6;
     let nearKey = null;
-    for (const b of bots) {
-      if (!b.alive) continue;
-      const d = Math.hypot(b.state.x - state.x, b.state.y - state.y, b.state.z - state.z);
-      if (d < nearD) {
-        nearD = d;
-        nearSpec = b.spec;
-        nearThr = b.state.throttleOut || 0.6;
-        nearKey = b.id;
-      }
-    }
     for (const [rid, r] of remotes) {
-      r.mesh.visible = (!run || run.op.kind === "free") && r.alive !== false;
+      r.mesh.visible = !inspection && (!run || run.op.kind === "free");
       if (!r.mesh.visible || !r.target) continue;
       _lerpP.set(r.target.x, r.target.y, r.target.z);
       _lerpQ.set(r.target.qx, r.target.qy, r.target.qz, r.target.qw);
       r.mesh.position.lerp(_lerpP, 0.25);
       r.mesh.quaternion.slerp(_lerpQ, 0.25);
       spinProps(r.mesh, r.target.thr || 0.1, dt);
-      // Their trigger is down: draw tracers from their gun pod (visual only).
-      if (r.target.fire) {
-        r.fireAcc = (r.fireAcc || 0) + dt;
-        if (r.fireAcc >= 0.1) {
-          r.fireAcc = 0;
-          const [fx, fy, fz] = aimDir(r.target.qw, r.target.qx, r.target.qy, r.target.qz, camTiltRad());
-          const p = r.mesh.position;
-          const vs = createShot(p.x + fx * 0.6, p.y + fy * 0.6, p.z + fz * 0.6, fx, fy, fz, `vis-${rid}`, 160);
-          visShots.push(vs);
-          addShotMesh(vs);
-        }
-      } else r.fireAcc = 0;
       const d = Math.hypot(r.target.x - state.x, r.target.y - state.y, r.target.z - state.z);
       if (d < nearD) {
         nearD = d;
@@ -2627,18 +1952,21 @@ function loop(now) {
     ambience.tick(dt, ambienceEnv());
     if (run && !run.won && !run.lost) poseGhost(run.t, dt);
 
-    if (run && run.op.kind !== "autonomy" && !run.won && !run.lost && !holding) {
+    if (run && !run.won && !run.lost && !holding) {
       if (trace) recordTrace(trace, run.t, state);
-      sampleAssessment(run.assessment, state, input, dt);
+      if(!run.arcade)sampleAssessment(run.assessment, state, input, dt);
       tickRun(run, {
         state,
         dt,
         flightMode: angleOverride ? "angle" : "acro",
-        score,
-        aliveBots: bots.filter((b) => b.alive).length,
-        waveSpawned: bots.length > 0,
       });
-      if ((run.won || run.lost) && !run.report) {
+      if(run.arcade){
+        const a=run.arcade;
+        if(a.wait>0 || a.needsSpawn || run.won){state.armed=false;state.vx=state.vy=state.vz=0;state.motor=state.throttleOut=0;}
+        if(a.needsSpawn){renewArcadeDrone(a);spawn();}
+        arcadeView?.paint(a,chase?chaseCam:fpvCam);
+      }
+      if (!run.arcade && (run.won || run.lost) && !run.report) {
         run.report = finalizeAssessment(run.assessment, run, state);
         if (run.won && run.op.academy && run.report.total < 70) {
           run.won = false;
@@ -2646,21 +1974,7 @@ function loop(now) {
           run.reason = `yeterlilik puanı ${run.report.total}/100 · gereken 70`;
           run.report.passed = false;
         }
-        if (!run.op.story) progress = saveAssessment(run.op.id, run.report);
-      }
-      if (run.recall) {
-        run.recall = false;
-        state.x = 0;
-        state.y = 2.2;
-        state.z = 0;
-        state.vx = state.vy = state.vz = 0;
-        state.armed = false;
-        state.battery = 1;
-        snapCam();
-      }
-      if (run.op.kind === "waves" && run.waveBreak <= 0 && run.wave !== lastWave && !run.won) {
-        lastWave = run.wave;
-        spawnBots(run.op.waves[run.wave] || 0);
+        if (!run.op.story && !isLocalOnlyRun(run)) progress = saveAssessment(run.op.id, run.report);
       }
       if (goalRoot.children.length) {
         let hi = -1;
@@ -2695,10 +2009,6 @@ function loop(now) {
       const marksN = run.marks?.filter((m) => m.done).length || 0;
       if (marksN > prevMarks) sfx.gate();
       prevMarks = marksN;
-      if (run.shot > prevShot) sfx.hit();
-      prevShot = run.shot || 0;
-      if (run.waveClear && !prevWaveClear) sfx.hit();
-      prevWaveClear = !!run.waveClear;
       if (run.op.kind === "cargo") {
         if (run.carrying != null && prevCargo.carrying == null) sfx.gate();
         if (run.delivered > prevCargo.delivered) sfx.lap();
@@ -2708,23 +2018,23 @@ function loop(now) {
       }
       if (run.won) {
         lastWonId = run.op.id;
-        const prevBest = progress.best?.[run.op.id];
-        if (run.op.story) {
-          pilotStory = savePilotStory(completeStoryFlight(pilotStory, run.op.id), localStorage);
+        const prevBest = isLocalOnlyRun(run) ? null : progress.best?.[run.op.id];
+        if (run.op.story && !isLocalOnlyRun(run)) {
+          pilotStory = savePilotStory(completeStoryFlight(pilotStory, run.op.id), browserStorage);
           persistFpvBuild();
           paintStoryHome();
-        } else progress = saveWin(run.op.id, run.t, undefined, run.bestLap);
-        net.sendResult(run.op.id, run.op.name, true, run.t, run.lapTimes, { ranked: run.op.ranked !== false });
+        } else if(!isLocalOnlyRun(run)) progress = saveWin(run.op.id, run.t, undefined, run.bestLap);
+        if(!run.arcade)net.sendResult(run.op.id, run.op.name, true, run.t, run.lapTimes, { ranked: shouldRankRun(run) });
         paintOpsCards();
         sfx.win();
         // A new personal best (or the first finish) becomes the ghost to chase next time.
-        if (!run.op.story && trace && (prevBest == null || run.t < prevBest)) saveGhost(run.op.id, trace, { drone: selected, t: run.t, at: Date.now() });
+        if (!run.op.story && !isLocalOnlyRun(run) && trace && (prevBest == null || run.t < prevBest)) saveGhost(run.op.id, trace, { drone: selected, t: run.t, at: Date.now() });
         if (ghost) ghost.mesh.visible = false;
         showResult(run, prevBest);
       }
       if (run.lost) {
-        if (!run.op.story && run.bestLap != null) progress = saveLap(run.op.id, run.bestLap).progress;
-        net.sendResult(run.op.id, run.op.name, false, run.t, run.lapTimes, { ranked: run.op.ranked !== false });
+        if (!run.op.story && !isLocalOnlyRun(run) && run.bestLap != null) progress = saveLap(run.op.id, run.bestLap).progress;
+        if(!run.arcade)net.sendResult(run.op.id, run.op.name, false, run.t, run.lapTimes, { ranked: shouldRankRun(run) });
         sfx.fail();
         if (ghost) ghost.mesh.visible = false;
         showResult(run, progress.best?.[run.op.id]);
@@ -2734,25 +2044,23 @@ function loop(now) {
     const spd = Math.hypot(state.vx, state.vy, state.vz);
     crashFade = THREE.MathUtils.lerp(crashFade, state.crashed ? 1 : 0, 1 - Math.exp(-6 * dt));
     bodycam.uniforms.time.value = now * 0.001;
-    const cameraLook = Number(document.getElementById("camera-look")?.value ?? 0);
-    bodycam.uniforms.intensity.value = (chase ? .06 : .14) + (chase ? .29 : .86) * cameraLook;
-    bodycam.enabled = true;
+    bodycam.uniforms.intensity.value = lensIntensity(visualSettings, chase);
+    bodycam.enabled = bodycam.uniforms.intensity.value > 0;
     bodycam.uniforms.speed.value = spd;
     bodycam.uniforms.crash.value = crashFade;
     renderPass.camera = chase ? chaseCam : fpvCam;
-    updateAimReticle();
     composer.render();
-    const hm = document.getElementById("hitmark");
-    const dm = document.getElementById("dmgflash");
-    if (hm) hm.style.opacity = String(hitFlash);
-    if (dm) dm.style.opacity = String(dmgFlash * 0.45);
-    if (state.armed) recTime += dt;
-    drawOsd(input, spd);
+    if(inspection){
+      for(const id of inspectionCaptures)attachInspectionImage(inspection,id,captureInspectionFrame(canvas));
+      inspectionCaptures=[];paintInspection();
+      if(inspectionTerminal(inspection)&&!inspectionTerminalMenu){finishInspection();inspectionTerminalMenu=true;const menu=document.getElementById('flight-menu');if(!menu.open)menu.showModal();}
+    }
+    drawHud(input, spd);
 
     netAcc += dt;
     if (netAcc > 0.05) {
       netAcc = 0;
-      if (!operations) net.sendState(state, allowFire && input.fire && state.armed && !state.crashed ? 1 : 0);
+      if(!inspection)net.sendState(state);
     }
   } else {
     consume("arm");
@@ -2765,18 +2073,6 @@ function loop(now) {
   }
 }
 
-function pad(n, w = 2) {
-  return String(Math.floor(n)).padStart(w, "0");
-}
-
-function timecode(t) {
-  const cs = Math.floor((t % 1) * 30);
-  const s = Math.floor(t) % 60;
-  const m = Math.floor(t / 60) % 60;
-  const h = Math.floor(t / 3600);
-  return `${pad(h)}:${pad(m)}:${pad(s)}:${pad(cs)}`;
-}
-
 function wantsPad() {
   if (state?.battery < 0.3 && !state.crashed) return true;
   if (!run || run.won || run.lost) return false;
@@ -2784,48 +2080,47 @@ function wantsPad() {
     const t = run.op.steps?.[run.step]?.t;
     return t === "land" || t === "pad";
   }
-  if (run.op.kind === "patrol") return run.shot >= (run.op.need || 6);
   if (run.op.kind === "recon") return run.marks?.every((m) => m.done);
-  if (run.op.kind === "final") return score >= (run.op.scoreNeed || 8);
-  if (run.op.kind === "waves") return run.waveBreak > 0;
   if (run.op.kind === "cargo") return run.carrying == null && run.parcels.every((p) => p.done);
   return false;
 }
 
-function drawOsd(input, spd) {
+function drawHud(input, spd) {
+  const control=controlPresentation(getInputSettings(),input,state),panel=document.getElementById('input-status');
+  flightEl.dataset.input=control.rc?'rc':'gamepad';
+  panel.hidden=!control.rc||!!replay||!!state.crashed||!!state.packCutoff||!!run?.won||!!run?.lost;
+  panel.dataset.tone=control.tone;
+  for(const [id,text] of [['input-status-title',control.title],['input-status-detail',control.detail]]){const el=document.getElementById(id);if(el.textContent!==text)el.textContent=text;}
+  const action=armPresentation({input,state,run,replay,countdown:countdown||(run?.arcade&&(run.arcade.wait>0||run.arcade.needsSpawn))});
+  for(const id of ['btn-arm','btn-arm-touch']){const button=document.getElementById(id),label=id==='btn-arm-touch'?action.touchLabel:action.label;if(button.textContent!==label)button.textContent=label;if(button.getAttribute('aria-label')!==action.label)button.setAttribute('aria-label',action.label);if(button.title!==action.label)button.title=action.label;button.disabled=action.disabled;}
+  document.getElementById('flight-session').textContent=`${spec.name} · ${opById(selectedOp).mapName||MAPS.find(m=>m.id===selectedMap)?.name||selectedMap} · ${angleOverride?'ANGLE':'ACRO'}${spec.propulsion?' · referans antrenmanı':''}`;
+  if(helpOpen){paintInputHelp(document,input);document.getElementById('help-lead').textContent='Uçuş duraklatıldı. Giriş göstergeleri canlı; fizik ve dünya zamanı durdu.';document.getElementById('help-rc-detail').textContent=control.help;}
+
   const realOn = !!play?.real && !angleOverride;
   const locked = !!opById(selectedOp).requiredFlightMode;
-  const mode = `${angleOverride ? "ANGLE" : realOn ? "ACRO · REAL" : "ACRO"}${locked ? " · DERS" : ""}`;
-  const aliveBots = bots.filter((b) => b.alive).length;
-  const hpFill = document.getElementById("hp-fill");
-  const hpN = document.getElementById("hp-n");
-  if (hpFill) hpFill.style.width = `${(100 * playerHp) / PLAYER_HP}%`;
-  if (hpN) hpN.textContent = String(playerHp);
+  const mode = `${spec?.propulsion ? (realOn ? "REF 4M · " : "REF · ") : ""}${angleOverride ? "ANGLE" : realOn ? "ACRO · REAL" : "ACRO"}${locked ? opById(selectedOp).academy ? " · DERS" : " · SABİT" : ""}`;
+  const motors=document.getElementById('motor-hud');
+  const rint=spec?.propulsion?.battery?.mode==='rint';
+  motors.hidden=(!state.rotorThrottle&&!rint)||!!replay;
+  motors.querySelector('b').textContent=rint?'Motorlar ve batarya · model':'4 motor · model komutu';
+  if(!motors.hidden) {
+    document.getElementById('motor-values').textContent=state.rotorThrottle?.map((value,i)=>`M${i+1} ${Math.round(value*100)}%`).join(' · ')||'';
+    document.getElementById('battery-values').textContent=rint&&state.packVoltageV!=null?`${state.packVoltageV.toFixed(2)} V · ${state.packCellV.toFixed(2)} V/hücre · ${(state.currentA||0).toFixed(1)} A\nSOC %${Math.round(state.packSoc*100)} · harcanan ${(state.packUsedMah||0).toFixed(0)} mAh\n${(state.packEnergyWh||0).toFixed(2)} Wh · kayıp ${(state.packLossWh||0).toFixed(3)} Wh`:'';
+    document.getElementById('motor-state').textContent=state.rateController?.saturated?'Motor sınırı · tork/collective tahsisi sınırlı':state.rotorThrottle?'Motorlar ayrı hesaplanıyor':'Ortak gaz modeli · Angle / Acro';
+  }
   const hs = document.getElementById("hud-speed");
   const ha = document.getElementById("hud-alt");
-  const hsc = document.getElementById("hud-score");
-  const hb = document.getElementById("hud-bots");
   const hm = document.getElementById("hud-mode");
   if (hs) hs.textContent = `${(spd * 3.6).toFixed(0)} km/h`;
-  if (ha) ha.textContent = `${state.y.toFixed(0)} m`;
-  if (hsc) hsc.textContent = `SKOR ${score}`;
-  if (hb) hb.textContent = `BOT ${aliveBots}`;
+  if (ha) ha.textContent = play.terrain?`${Math.max(0,state.y-surfaceAt(play,state.x,state.z).height).toFixed(0)} m AGL`:`${state.y.toFixed(0)} m`;
   if (hm) hm.textContent = mode;
-  const shoot = !operations && opById(selectedOp).fire === true;
-  const fireButton = document.getElementById("btn-fire");
-  if (fireButton) fireButton.hidden = !shoot;
   const haArm = document.getElementById("hud-arm");
   if (haArm) {
-    haArm.textContent = state.crashed ? "CRASH" : state.armed ? "ARM" : "DISARM";
+    haArm.textContent = state.crashed ? "CRASH" : state.packCutoff ? "LOW V" : state.armed ? "ARM" : "DISARM";
     haArm.classList.toggle("off", !state.armed || state.crashed);
   }
-  const hpWrap = document.querySelector(".hp-wrap");
-  if (hpWrap) hpWrap.hidden = !shoot;
-  if (hsc) hsc.hidden = !shoot;
-  if (hb) hb.hidden = run ? !wantsBots(run.op) : false;
-  const reticle = document.querySelector(".reticle");
-  if (reticle) reticle.style.display = shoot && !state.crashed ? "" : "none";
-  const goal = nextGoal(run, { score, targets });
+  inspectionNavigationView?.paint(state,{replaying:!!replay?.inspection});
+  const goal = inspection ? (!replay&&['ready','active','returning'].includes(inspection.status) ? (inspection.status==='returning' ? inspection.scenario.spawn : inspection.scenario.points.find(p=>p.id===inspection.activePointId)?.position) : null) : nextGoal(run);
   const nav = document.getElementById("nav");
   const needle = document.getElementById("compass-n");
   const nd = document.getElementById("nav-dist");
@@ -2855,6 +2150,7 @@ function drawOsd(input, spd) {
   const opg = document.getElementById("op-prog");
   const oti = document.getElementById("op-time");
   const op = opById(selectedOp);
+  document.getElementById("op-hud").hidden = !run;
   if (ot) ot.textContent = op.name;
   if (oh) oh.textContent = run?.hint || op.blurb || "";
   if (oti) {
@@ -2863,47 +2159,27 @@ function drawOsd(input, spd) {
       oti.textContent = `${Math.floor(left / 60)}:${String(Math.floor(left % 60)).padStart(2, "0")}`;
     } else oti.textContent = "";
   }
-  if (opg) opg.textContent = run?.won ? "TAMAM" : run?.lost ? "BAŞARISIZ" : "";
-  if (op.kind === "team") {
-    const st = matchStatus(team?.match, Date.now(), team?.mine);
-    if (oh) oh.textContent = st.line;
-    if (oti) oti.textContent = st.clock;
-    const downMs = (team?.downUntil || 0) - performance.now();
-    if (opg) opg.textContent = state.crashed && downMs > 0 ? `YENİDEN DOĞ ${Math.ceil(downMs / 1000)}` : "";
-    if (hsc) hsc.textContent = scoreLine(team?.match);
-    if (hb) hb.hidden = true;
-  }
+  if (opg) opg.textContent = run?.arcade && !run.won ? `${run.arcade.targets.filter(t=>t.done).length}/4 · DRONE ${run.arcade.drones}` : run?.won ? "TAMAM" : run?.lost ? "BAŞARISIZ" : "";
+  document.getElementById('arcade-guides-control').hidden=!run?.arcade;
+  const arena=document.getElementById('arcade-objects');arena.hidden=!run?.arcade||resultShown;
+  if(run?.arcade){
+    const labels=run.arcade.targets.map(t=>`${t.done?'✓':'○'} ${t.name}`).join(' · ');
+    arena.querySelector('span').textContent=labels;
+    document.getElementById('arcade-notice').hidden=!(run.arcade.wait>0||run.arcade.needsSpawn);
+  }else document.getElementById('arcade-notice').hidden=true;
   const ol = document.getElementById("op-lap");
   if (ol) {
     if (run && run.op.kind === "race" && !run.won && !run.lost) {
       ol.hidden = false;
-      const bestLap = run.bestLap ?? progress.bestLap?.[run.op.id];
+      const bestLap = run.bestLap ?? (isLocalOnlyRun(run) ? null : progress.bestLap?.[run.op.id]);
       ol.textContent = `TUR ${fmtTime(run.t - (run.lapStart || 0))} · SON ${run.lastLap != null ? fmtTime(run.lastLap) : "—"} · EN İYİ ${bestLap != null ? fmtTime(bestLap) : "—"}`;
     } else ol.hidden = true;
   }
   const padHint = scene.getObjectByName("padHint");
   if (padHint?.material) {
     const hot = wantsPad();
-    padHint.material.opacity = hot ? 0.55 + Math.sin(performance.now() * 0.008) * 0.35 : 0.28;
+    padHint.material.opacity = hot ? 0.55 + Math.sin(worldTime * 8) * 0.35 : 0.28;
     padHint.material.color.setHex(hot ? 0xffee55 : 0xc9a227);
-  }
-  recEl.classList.toggle("on", state.armed && !state.crashed);
-  recEl.textContent = state.armed ? "REC" : "STBY";
-  tcEl.textContent = timecode(recTime);
-  const lat = HOME_LAT - state.z * 9.0e-6;
-  const lon = HOME_LON + state.x * 1.2e-5;
-  gpsEl.textContent = `${Math.abs(lat).toFixed(5)}°N  ${Math.abs(lon).toFixed(5)}°E`;
-  const thrPct = Math.round((state.throttleOut || 0) * 100);
-  const sag = state.sag ?? 1;
-  const pack = state.battery < 0.22 ? "  LOW" : sag < 0.85 ? "  SAG" : "";
-  teleEl.textContent = `${spec.name}  ${mode}  THR ${thrPct}%${pack}${run?.carrying != null ? "  KARGO" : ""}`;
-  metaEl.textContent = input.connected ? "PAD" : "KB";
-  if (helpOpen) {
-    const v = input.viz || { lx: 0, ly: 0, rx: 0, ry: 0, r2: 0 };
-    meterL.style.transform = `translate(${v.lx * 18}px, ${v.ly * 18}px)`;
-    meterR.style.transform = `translate(${v.rx * 18}px, ${v.ry * 18}px)`;
-    meterR2.style.width = `${(v.r2 * 100).toFixed(0)}%`;
-    padStat.textContent = input.connected ? "kol bağlı" : "klavye";
   }
   if (run?.won) {
     osdCrash.hidden = resultShown;
@@ -2913,8 +2189,61 @@ function drawOsd(input, spd) {
     osdCrash.textContent = `BAŞARISIZ  ·  ${run.reason}  ·  ARM tekrar`;
   } else if (state.crashed) {
     osdCrash.hidden = false;
-    osdCrash.textContent = `SIGNAL LOSS  ·  ${state.crashReason}  ·  ARM devam · R baştan`;
+    osdCrash.textContent = `UÇUŞ DURDU  ·  ${state.crashReason}  ·  R veya Yeniden kur ile baştan`;
+  } else if(state.packCutoff) {
+    osdCrash.hidden=false;osdCrash.textContent="DÜŞÜK GERİLİM · GÜÇ KESİLDİ · Padde yeni pil veya R ile baştan";
   } else osdCrash.hidden = true;
 }
+
+function applyVisualSettings() {
+  currentVisualProfile = visualProfile(visualSettings, devicePixelRatio);
+  renderer.setPixelRatio(currentVisualProfile.pixelRatio);
+  composer.setPixelRatio?.(currentVisualProfile.pixelRatio);
+  renderer.shadowMap.enabled = currentVisualProfile.shadows;
+  for (const target of [composer.renderTarget1, composer.renderTarget2]) {
+    if (target && target.samples !== currentVisualProfile.samples) {
+      target.samples = Math.min(currentVisualProfile.samples, renderer.capabilities?.maxSamples || 0);
+      target.dispose();
+    }
+  }
+  scene.traverse(object => {
+    if (object.isDirectionalLight) {
+      object.castShadow = currentVisualProfile.shadows;
+      const size = currentVisualProfile.shadowSize;
+      if (object.shadow.mapSize.x !== size) {
+        object.shadow.map?.dispose(); object.shadow.map = null;
+        object.shadow.mapSize.set(size, size);
+      }
+    }
+  });
+  applySceneDetail(scene, currentVisualProfile.detailCount);
+  setArcadeSiteQuality(scene,visualSettings.quality);
+  applyArcadeAssets(scene,{quality:visualSettings.quality});
+  applyScannedMaterials(scene,{quality:visualSettings.quality});
+  bodycam.uniforms.quality.value = visualSettings.quality === "low" ? 0 : 1;
+  bodycam.uniforms.intensity.value = lensIntensity(visualSettings, chase);
+  bodycam.enabled = bodycam.uniforms.intensity.value > 0;
+  flightEl.dataset.hud = visualSettings.hud;
+  for (const input of document.querySelectorAll("[data-visual]")) {
+    const value = visualSettings[input.dataset.visual];
+    if (input.type === "checkbox") input.checked = value;
+    else input.value = String(value);
+  }
+  document.getElementById("fov-value").textContent = `${visualSettings.fov}°`;
+  document.getElementById("tilt-value").textContent = `${visualSettings.tilt}°`;
+  document.getElementById("scale-value").textContent = `${Math.round(visualSettings.renderScale * 100)}%`;
+  setCamPodTilt(craft, camTiltRad());
+  resize();
+}
+for (const input of document.querySelectorAll("[data-visual]")) {
+  input.addEventListener("input", () => {
+    const value = input.type === "checkbox" ? input.checked : input.value;
+    visualSettings = normalizeVisualSettings({ ...visualSettings, [input.dataset.visual]: value });
+    try { browserStorage.setItem(VISUAL_KEY, JSON.stringify(visualSettings)); } catch { /* session still works */ }
+    applyVisualSettings();
+  });
+}
+applyVisualSettings();
+startupGate.complete();
 
 requestAnimationFrame(loop);

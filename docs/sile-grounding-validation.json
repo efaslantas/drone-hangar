@@ -1,0 +1,96 @@
+{
+  "date": "2026-11-02",
+  "release": "v2.26.0-ccad8ed1f2c5",
+  "url": "https://hangar.18-153-158-209.sslip.io/",
+  "status": "published",
+  "image": {
+    "release": "v2.26.0-ccad8ed1f2c5",
+    "imageId": "sha256:c4b8775d877e772b1b330d11d768f4c66bb8e922c8981172b7e95a3ce3f02d97",
+    "archiveSha256": "f1e82fb42dda30c1b023d9bbabec8deae399478738fa9a8bb82e841be6b9e117",
+    "archiveBytes": 141339014,
+    "architecture": "arm64",
+    "sourceFiles": 266
+  },
+  "metrics": {
+    "foundations": 10,
+    "benches": 32,
+    "newBenchBoxes": 192,
+    "prisms": 1286,
+    "rawCliffTriangles": 38218,
+    "dryTriangles": 33094,
+    "wetTriangles": 18708,
+    "indexedVertices": 30872,
+    "cliffTriangles": 51802,
+    "meshes": 42,
+    "boxes": 9059,
+    "buildMs": 3091.35675
+  },
+  "checks": {
+    "focusedTests": 6,
+    "applicationTests": 448,
+    "fullTestRuntime": "Node22linux/ARM64Docker readonly/networknone,NODE_ENV=test,RELEASE_SHA=dev",
+    "failures": 0,
+    "infraTests": 11,
+    "viteBuild": "pass; existing chunk advisory",
+    "arm64Build": "pass",
+    "originalCollisionPrefix": "8867boxes/1276prisms combined baselineSHA unchanged; allsuffixes strictlytagged newbench/foundation",
+    "newGeometry": "10foundationprisms/46triangles,32benches,batching42meshes",
+    "supports": "embed1cm,rejectfloat>.5mm orburial>2cm;footcorners verified",
+    "clearance": "sourcefootprint/terrain/road/shore/entrance/oldprops; wet/shoreholefoundationfallback",
+    "lifecycle": "existing worldresourcecleanup",
+    "sourceManifestFiles": 266,
+    "runningImageSourceHashes": 107,
+    "httpsAssetsSourceHashes": "pass",
+    "wssTwoClients": "pass",
+    "uniqueUiIds": "pass",
+    "adminUnauthorized": 401,
+    "nginxBytesAnd7TenantIdentitiesUnchanged": true,
+    "oldContainerConsistentBackupRetained": true
+  },
+  "review": {
+    "specReview": "2findings supportfloat/prefixcontract; fixed and scopedre-review6/6pass",
+    "qualityFinalReview": "noactionablefindings,23/23independentfocused",
+    "remainingFindings": 0
+  },
+  "browser": {
+    "webgl": "foundationbeforeafter/benches/quality/390x844frame,error[]",
+    "webgpu": "benches inspected,error[]",
+    "observedFps": "GLwarm60,quality/view50-51,GPU50whileparalleltests/builds; no universal claim",
+    "live": {
+      "state": "FPV DISARM",
+      "profile": "f60-1750-6s",
+      "massG": 650,
+      "capacityMah": 1100,
+      "map": "sile",
+      "quality": "medium",
+      "tiltDegrees": 25,
+      "input": "gamepad",
+      "errors": []
+    }
+  },
+  "limits": [
+    "Authored foundation/furniture inventory, not measured current city",
+    "Closes exposed gaps>=3cm and<=2m; uphill facade burial remains where coarse terrain is higher than source wall base",
+    "Original source terrain/footprint/wallbase/height/roof/oldprops preserved; newvisiblefoundations/benches addexplicitcollision",
+    "No physical phone/TX15 flight or calibration"
+  ],
+  "proof": [
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-grounding-before-2.25.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-grounding-detail-2.26.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-grounding-benches-2.26.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-grounding-mobile-2.26.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-grounding-webgpu-2.26.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-grounding-live-2.26.png"
+  ],
+  "git": "same dirtycodex/simulator-v2,no commit/push/merge",
+  "runtime": {
+    "memoryObservedMiB": 19.9,
+    "limitMiB": 256,
+    "restarts": 0,
+    "uid": "1000:1000",
+    "readOnlyRoot": true,
+    "network": [
+      "drone-hangar-net"
+    ]
+  }
+}

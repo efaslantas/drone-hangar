@@ -1,8 +1,8 @@
+import { isRetiredOperation } from "../src/missions.js";
 import { logEvent, recordScore } from "./store.mjs";
-import { isTeamRoom, createMatch, addPlayer, removePlayer, applyHit, tick as tickMatch, snapshot } from "./team.mjs";
 
 const MAX_PEERS = 16;
-export const LOBBIES = ["hangar", "training", "team", "race", "cine", "lr", "indoor"];
+export const LOBBIES = ["hangar", "training", "race", "cine", "lr", "indoor"];
 
 function num(v, d = 0) {
   const n = +v;
@@ -21,9 +21,6 @@ export function plausibleBestLap(laps, seconds) {
 export function attachRooms(wss, { allowMessage } = {}) {
   const rooms = new Map();
   const sockets = new Set();
-  // Team rooms (`team`, `team-*`) carry a server-owned match: sides, HP, scores, clock.
-  const matches = new Map();
-
   wss.getOnline = function getOnline() {
     const list = [];
     for (const [roomId, peers] of rooms) {
@@ -33,7 +30,6 @@ export function attachRooms(wss, { allowMessage } = {}) {
           room: roomId,
           name: p.meta?.name || "pilot",
           drone: p.meta?.drone || "?",
-          team: matches.get(roomId)?.players.get(pid)?.team || null,
         });
       }
     }
@@ -44,17 +40,6 @@ export function attachRooms(wss, { allowMessage } = {}) {
     const key = name || "hangar";
     if (!rooms.has(key)) rooms.set(key, new Map());
     return rooms.get(key);
-  }
-
-  function matchFor(roomId) {
-    if (!matches.has(roomId)) matches.set(roomId, createMatch(Date.now()));
-    return matches.get(roomId);
-  }
-
-  /** Peer meta as others see it: the client's name/drone plus the server-assigned side. */
-  function metaOf(roomId, pid, p) {
-    const team = matches.get(roomId)?.players.get(pid)?.team;
-    return team ? { ...p.meta, team } : p.meta;
   }
 
   function send(ws, msg) {
@@ -88,20 +73,6 @@ export function attachRooms(wss, { allowMessage } = {}) {
     }
   }
 
-  // Match clock: start when two pilots are in, end on the timer, revive the fallen.
-  function tickTeams(now = Date.now()) {
-    for (const [roomId, m] of matches) {
-      if (!rooms.has(roomId)) {
-        matches.delete(roomId);
-        continue;
-      }
-      for (const ev of tickMatch(m, now)) broadcast(roomId, ev);
-    }
-  }
-  wss.tickTeams = tickTeams;
-  const ticker = setInterval(() => tickTeams(), 500);
-  ticker.unref?.();
-
   wss.on("connection", (ws, req) => {
     const id = crypto.randomUUID();
     let room = "hangar";
@@ -117,39 +88,31 @@ export function attachRooms(wss, { allowMessage } = {}) {
       peers.delete(id);
       broadcast(room, { t: "leave", id });
       logEvent({ type: "leave", id, room, name: meta.name });
-      const m = matches.get(room);
-      if (m) {
-        removePlayer(m, id);
-        if (peers.size === 0) matches.delete(room);
-        else broadcast(room, snapshot(m, Date.now()));
-      }
       if (peers.size === 0) rooms.delete(room);
       broadcastRooms();
     }
 
     function hello() {
       const peers = rooms.get(room) || new Map();
-      const m = matches.get(room);
       send(ws, {
         t: "hello",
         id,
         room,
-        team: m?.players.get(id)?.team || null,
-        match: m ? snapshot(m, Date.now()) : null,
         peers: [...peers.entries()]
           .filter(([pid]) => pid !== id)
-          .map(([pid, p]) => ({ id: pid, meta: metaOf(room, pid, p), state: p.state })),
+          .map(([pid, p]) => ({ id: pid, meta: p.meta, state: p.state })),
       });
     }
 
     function join(nextRoom, nextMeta, silent) {
-      const target = (nextRoom || "hangar").slice(0, 24);
+      const requested = (nextRoom || "hangar").slice(0, 24);
+      const target = /^team(?:-|$)/.test(requested) ? "hangar" : requested;
       meta = nextMeta || meta;
       const already = rooms.get(room)?.get(id);
       if (already && room === target) {
         already.meta = meta;
         hello();
-        broadcast(room, { t: "join", id, meta: metaOf(room, id, already) }, id);
+        broadcast(room, { t: "join", id, meta: already.meta }, id);
         logEvent({ type: "join", id, room, name: meta.name, drone: meta.drone });
         return;
       }
@@ -170,14 +133,8 @@ export function attachRooms(wss, { allowMessage } = {}) {
       const peers = roomMap(room);
       const peer = { ws, meta, state: null };
       peers.set(id, peer);
-      if (isTeamRoom(room)) {
-        const m = matchFor(room);
-        addPlayer(m, id, Date.now());
-        // Everyone already in the room learns the new count (waiting → 2/2 etc.).
-        broadcast(room, snapshot(m, Date.now()), id);
-      }
       hello();
-      broadcast(room, { t: "join", id, meta: metaOf(room, id, peer) }, id);
+      broadcast(room, { t: "join", id, meta: peer.meta }, id);
       broadcastRooms();
       if (!silent) logEvent({ type: "join", id, room, name: meta.name, drone: meta.drone });
     }
@@ -223,26 +180,13 @@ export function attachRooms(wss, { allowMessage } = {}) {
           qy: num(msg.qy),
           qz: num(msg.qz),
           thr: num(msg.thr),
-          fire: num(msg.fire) ? 1 : 0,
         };
         broadcast(room, { t: "state", id, ...me.state }, id);
         return;
       }
-      if (msg.t === "hit") {
-        // "My shot reached that pilot." Only meaningful in a team room; the
-        // match logic checks sides, range against both last known poses,
-        // cadence and whether either pilot is already down.
-        const m = matches.get(room);
-        const peers = rooms.get(room);
-        if (!m || !peers) return;
-        const states = {};
-        for (const [pid, p] of peers) states[pid] = p.state;
-        const r = applyHit(m, id, String(msg.to || "").slice(0, 64), states, Date.now());
-        for (const ev of r.events) broadcast(room, ev);
-        return;
-      }
       if (msg.t === "start") {
         const opId = String(msg.opId || "").slice(0, 32);
+        if (isRetiredOperation(opId)) { activeOp = null; return; }
         if (opId) activeOp = { opId, startedAt: Date.now() };
         return;
       }

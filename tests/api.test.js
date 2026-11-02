@@ -52,3 +52,13 @@ test("admin state requires a short-lived HttpOnly login session and logout revok
   const revoked = await request({ url: "/api/admin/state", headers: { cookie } });
   assert.equal(revoked.status, 401);
 });
+
+test('leaderboard hides archived retired scores while preserving flight scores', async () => {
+  const { recordScore, getLeaderboard } = await import('../server/store.mjs');
+  recordScore({ name: 'Archive', opId: 'patrol', opName: 'Eski görev', seconds: 10 });
+  recordScore({ name: 'Pilot', opId: 'school', opName: 'Kapılar', seconds: 20 });
+  const response = await request({ url: '/api/leaderboard' });
+  assert.ok(response.body.ops.some(board => board.opId === 'school'));
+  assert.ok(!response.body.ops.some(board => board.opId === 'patrol'));
+  assert.ok(getLeaderboard().some(board => board.opId === 'patrol'), 'archived data is retained');
+});

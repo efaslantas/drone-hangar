@@ -3,6 +3,6 @@
 export function resolveOperationLoadout(preferred, op) {
   return {
     drone: op.lockDrone && op.drone ? op.drone : preferred.drone,
-    map: op.lockMap && op.map ? op.map : preferred.map,
+    map: preferred.map==='sile'&&op.kind!=='free'?(op.map||'airfield'):op.lockMap && op.map ? op.map : preferred.map,
   };
 }

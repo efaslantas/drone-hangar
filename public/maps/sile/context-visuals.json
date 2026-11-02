@@ -1,0 +1,33 @@
+{
+  "version": "2.19",
+  "reference": {
+    "url": "https://www.aa.com.tr/tr/yesilhat/dogal-yasam/silede-denize-gireceklere-rip-akintisi-uyarisi/1816475",
+    "photoUrl": "https://cdnuploads.aa.com.tr/uploads/greenline/userFiles/412/sile2.jpg",
+    "photoDate": "2022-07-09",
+    "inspectedDate": "2026-11-02",
+    "redistributed": false,
+    "scope": "visual reference only; wooded hills, summer beach setup and harbour boats, not measured/current inventory"
+  },
+  "data": "/maps/sile/context-data.json",
+  "source": "/maps/sile/source-osm.json",
+  "license": "ODbL-1.0",
+  "placement": {
+    "green": "inside existing wood/forest/park/scrub masks; mapped tree points used where clear",
+    "summerSetup": "representative umbrellas/loungers in source beaches, not actual current positions",
+    "boats": "generic small fishing boats near source piers within mapped harbour water",
+    "sizesAndDensityMeasured": false,
+    "bounds": {
+      "trees": 1600,
+      "umbrellas": 72,
+      "boats": 28
+    }
+  },
+  "collision": "new visible hard parts use conservative world AABBs from their actual mesh transform; source terrain/prism order unchanged",
+  "ground": "authored summer macro tints from source landuse; no satellite imagery",
+  "extent": "existing2x2km; long western beach in reference continues outside current map",
+  "limits": [
+    "No measured tree species/heights or boat models/inventory",
+    "No complete aerial orthorectification, photogrammetry or facade survey",
+    "No new dynamic water/boat/traffic physics"
+  ]
+}

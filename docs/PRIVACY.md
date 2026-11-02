@@ -9,7 +9,7 @@ Asagidaki veriler localStorage'da, yalniz kullandiginiz tarayici profilinde tutu
 - Kampanya ilerlemesi, en iyi sure ve tur dereceleri.
 - Yerel ucus hayaletleri.
 - Gamepad kalibrasyonu ve goruntu/ses tercihleri.
-- Operasyon Masasi rotalari ve senaryolari.
+- Drone toplama tercihleri ve pilot hikâyesi ilerlemesi.
 
 Tarayici site verisini silmek bu verileri silebilir. Bu yerel veriler sunucu hesabiyla senkronize edilmez.
 
@@ -31,3 +31,8 @@ Sunucu baglanti, ayrilma ve sonuc olaylarini sinirli bir olay kaydinda tutar. IP
 Gorunen adinizda kisisel bilgi kullanmayin. URL'yi paylasirken oda ve gorunen adinizin baglantiya yazilabilecegini dikkate alin. Hassas bir guvenlik bulgusu icin [SECURITY.md](../SECURITY.md) yolunu izleyin.
 
 Uygulama hizmete sunulmadan once yayin sahibi, veri sorumlusu adi, erisim/silme talepleri icin gercek iletisim noktasi ve uygulanabilir hukuk kapsamindaki saklama politikasini tamamlamalidir.
+
+
+## İLKE · Şile inceleme yerel kaydı
+
+Bu modun telemetrisi, olayları ve en fazla üç simüle JPEG görüntüsü sunucuya yüklenmez; sıralama sonucu veya canlı uçuş pozu paylaşılmaz. Son tamamlanmış/durdurulmuş/başarısız rapor `efa-hangar-sile-inspection-v1` anahtarında yalnız bu tarayıcıda saklanır. Site verisini silmek kaydı kaldırır; yerel depolama kullanılamıyorsa rapor geçerli oturum belleğinde indirilebilir. Kullanıcı JSON dosyasını kendi cihazına indirebilir. İndirilen dosyada simülasyonun yaklaşık koordinatları ve kontrol örnekleri bulunur.

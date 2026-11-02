@@ -1,0 +1,106 @@
+{
+  "date": "2026-11-02",
+  "release": "v2.19.0-f442fab3123f",
+  "url": "https://hangar.18-153-158-209.sslip.io/",
+  "status": "published",
+  "image": {
+    "release": "v2.19.0-f442fab3123f",
+    "imageId": "sha256:6f4f1e581b91acc59af9e8c483030e9236545f29f55c000bc66b35e2cafc45a8",
+    "archiveSha256": "f8141114086184473ecc04ea99fdb38cc746172b6fcc8e76470eb433e289e7b6",
+    "archiveBytes": 141272189,
+    "architecture": "arm64",
+    "sourceFiles": 250
+  },
+  "metrics": {
+    "trees": 1582,
+    "umbrellas": 72,
+    "boats": 28,
+    "bollards": 56,
+    "authoredPlacement": true,
+    "boxes": 5690,
+    "meshes": 30,
+    "collision5000CallsMs": 252.740458
+  },
+  "reference": {
+    "url": "https://www.aa.com.tr/tr/yesilhat/dogal-yasam/silede-denize-gireceklere-rip-akintisi-uyarisi/1816475",
+    "photoUrl": "https://cdnuploads.aa.com.tr/uploads/greenline/userFiles/412/sile2.jpg",
+    "photoDate": "2022-07-09",
+    "inspectedDate": "2026-11-02",
+    "redistributed": false,
+    "scope": "visual reference only; wooded hills, summer beach setup and harbour boats, not measured/current inventory"
+  },
+  "source": {
+    "license": "ODbL-1.0",
+    "rawOsmUnchanged": true,
+    "mapDemUnchanged": true,
+    "greenMasks": 24,
+    "lawns": 4,
+    "paved": 9,
+    "treePoints": 12,
+    "beaches": 3,
+    "harbour": 1,
+    "sourceAndPublicByteIdentical": true
+  },
+  "checks": {
+    "applicationTests": 404,
+    "failures": 0,
+    "infraTests": 11,
+    "viteBuild": "pass; existing >500KB chunk advisory",
+    "arm64Build": "pass",
+    "localManifestHashCheck": 250,
+    "runningImageSourceHashes": 96,
+    "httpsVersionAssetsSourceHashes": "pass",
+    "twoClientWssJoinStateLeave": "pass",
+    "uniqueUiIds": "pass",
+    "adminUnauthorized": 401,
+    "nginxSyntax": "pass",
+    "existingServiceIdentitiesUnchanged": 7,
+    "nginxBytesUnchanged": true,
+    "oldContainerAndConsistentDataBackupRetained": true
+  },
+  "review": {
+    "freshIndependentReview": "no Critical/Important/Minor findings",
+    "independentResourceOwnership": "25 context resources independently owned/disposed across three build/clear cycles",
+    "postReviewFix": "western tree mask and >100m beach span regression RED to GREEN; deterministic candidate sorting; author acceptance and final404 tests, no second independent review"
+  },
+  "browser": {
+    "webgl": "photo-angle, harbour, beach, quality, rebuild, 390x844 render frame",
+    "experimentalWebgpu": "inspected",
+    "observedFps": "47..60 with several QA tabs;60 after closing baseline; no universal performance claim",
+    "live": "FPV DISARM; source error log empty",
+    "profile": "f60-1750-6s",
+    "massG": 650,
+    "capacityMah": 1100,
+    "map": "sile",
+    "quality": "medium",
+    "tiltDegrees": 25,
+    "inputObserved": "gamepad; current live selection left untouched; prior2.18 receipt observed rc",
+    "localQaConsole": "extension-style asynchronous message-channel-close entries; no shader/asset exception or visible failure"
+  },
+  "runtime": {
+    "memoryObservedMiB": 19.12,
+    "limitMiB": 256,
+    "restarts": 0,
+    "uid": "1000:1000",
+    "readOnlyRoot": true,
+    "network": [
+      "drone-hangar-net"
+    ]
+  },
+  "limits": [
+    "Existing2x2km area; long western reference beach continues beyond map",
+    "Tree species/heights, density, boat models and seasonal furniture positions are authored; no measured1:1 reconstruction",
+    "No satellite imagery, photogrammetry or new dynamic water/boat physics",
+    "No physical phone/TX15 flight or flight-log calibration; TX15 new-origin calibration remains user step"
+  ],
+  "proof": [
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-town-before-2.19.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-town-after-2.19.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-town-beach-clean-2.19.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-town-port-2.19.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-town-mobile-2.19.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-town-webgpu-2.19.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-town-live-2.19.png"
+  ],
+  "git": "codex/simulator-v2 dirty preserved; no commit/push/merge"
+}

@@ -1,3 +1,11 @@
+import {finishSileContext} from './sile-context-view.js';
+import {finishNeighbourhood} from './sile-neighbourhood-view.js';
+import {prepareGroundSurfaces} from './ground-surfaces.js';
+import {buildArcadeSite,tickArcadeSite} from './arcade-site.js';
+import {tickSileWater} from './sile-materials.js';
+import {buildSile} from './sile-world.js';
+import {getSileData} from './sile-data.js';
+import { addAirfieldDetail } from "./airfield-detail.js";
 import * as THREE from "three";
 import { mergeGeometries } from "three/addons/utils/BufferGeometryUtils.js";
 import { Sky } from "three/addons/objects/Sky.js";
@@ -222,6 +230,7 @@ function container(x, y, z, yaw, color) {
 // `wind` is the free-flight breeze for the map (m/s² push, see physics.js);
 // missions bring their own op.wind and override it.
 export const MAPS = [
+  {id:"sile",name:"Şile merkez",blurb:"2 × 2 km · OSM/Copernicus · temsili binalar.",tint:"#3c7181",wind:{x:.7,z:.3}},
   { id: "yard", name: "Depo sahası", blurb: "Konteyner koridoru, asfalt, hangar.", tint: "#6b7a52", wind: { x: 0.35, z: 0.15 } },
   { id: "airfield", name: "Pist", blurb: "Pist, rüzgâr tulumu, açık alan.", tint: "#8a8680", wind: { x: 0.9, z: 0.35 } },
   { id: "coast", name: "Kıyı", blurb: "Deniz, kayalık, seyir hattı.", tint: "#3d6a7a", wind: { x: 1.1, z: 0.4 } },
@@ -237,6 +246,11 @@ export function windFor(op, mapId) {
 }
 
 const DAY = {
+  aftermath: {
+    overcast:true, bg:0x9da6ab, fog:0xa0aaae, near:100, far:250,
+    hemi:[0xced7e2,0x60605c,1.15], sun:0xffebd8, sunInt:2.2,
+    elevation:.3,bounce:.25,ambient:.38,
+  },
   yard: {
     bg: 0xb4cce0, fog: 0xc2d4e4, near: 110, far: 220,
     hemi: [0xe8f0f5, 0x666353, 1.22], sun: 0xffe8c8, sunInt: 2.55,
@@ -244,8 +258,8 @@ const DAY = {
   },
   airfield: {
     bg: 0xc0d4e6, fog: 0xcadcea, near: 120, far: 240,
-    hemi: [0xeaf2f7, 0x747469, 1.25], sun: 0xffead0, sunInt: 2.65,
-    elevation: 0.7, bounce: 0.3, ambient: 0.3,
+    hemi: [0xdde9ef, 0x7b8262, 1.15], sun: 0xffe4bf, sunInt: 2.8,
+    elevation: 0.48, bounce: 0.28, ambient: 0.25,
   },
   coast: {
     bg: 0xb8d8ea, fog: 0xc5deec, near: 100, far: 200,
@@ -277,8 +291,8 @@ function sky(scene, profile) {
   const azimuth = 0.32;
   const sunDir = new THREE.Vector3().setFromSphericalCoords(1, Math.PI / 2 - elevation, azimuth);
 
-  if (p.indoor) {
-    scene.background = new THREE.Color(p.bg);
+  if (p.indoor || p.overcast) {
+    scene.background = new THREE.Color(night&&p.overcast?0x10171b:p.bg);
     scene.fog = new THREE.Fog(night ? 0x17232d : p.fog, p.near, p.far);
   } else if (night) {
     // The atmospheric daylight shader produces a clipped sunset disc when its
@@ -484,7 +498,8 @@ function padAt(scene) {
     new THREE.MeshStandardMaterial({ map: padTex(), roughness: 0.7, metalness: 0.08 }),
   );
   pad.rotation.x = -Math.PI / 2;
-  pad.position.y = 0.04;
+  pad.position.y=.0006;pad.name='launch-marking';
+  pad.material.polygonOffset=true;pad.material.polygonOffsetFactor=-3;pad.material.polygonOffsetUnits=-3;
   pad.receiveShadow = true;
   scene.add(pad);
   const ring = new THREE.Mesh(
@@ -652,6 +667,8 @@ function flag(scene, x, z) {
     side: THREE.DoubleSide,
     uniforms: { time: { value: 0 } },
     vertexShader: /* glsl */ `
+      #include <common>
+      #include <logdepthbuf_pars_vertex>
       uniform float time;
       varying vec2 vUv;
       void main() {
@@ -660,11 +677,14 @@ function flag(scene, x, z) {
         p.z += sin(uv.x * 6.0 + time * 4.0) * uv.x * 0.18;
         p.y += sin(uv.x * 4.0 + time * 3.2) * uv.x * 0.08;
         gl_Position = projectionMatrix * modelViewMatrix * vec4(p, 1.0);
+        #include <logdepthbuf_vertex>
       }
     `,
     fragmentShader: /* glsl */ `
+      #include <logdepthbuf_pars_fragment>
       varying vec2 vUv;
       void main() {
+        #include <logdepthbuf_fragment>
         vec3 a = vec3(0.85, 0.18, 0.12);
         vec3 b = vec3(0.95, 0.85, 0.2);
         gl_FragColor = vec4(mix(a, b, step(0.5, vUv.y)), 1.0);
@@ -742,6 +762,8 @@ function decorate(scene, play, mapId) {
 }
 
 export function tickWorld(scene, t, dt, flyer) {
+  tickArcadeSite(scene,t,flyer);
+  tickSileWater(scene,t);
   const objs = scene.userData.lifeObjs;
   if (objs) {
     for (const o of objs) {
@@ -826,7 +848,8 @@ function buildYard(scene) {
     new THREE.MeshStandardMaterial({ map: asphaltTex(), roughness: 0.9, metalness: 0 }),
   );
   road.rotation.x = -Math.PI / 2;
-  road.position.set(0, 0.02, (play.bounds.minz + play.bounds.maxz) / 2);
+  road.material.polygonOffset=true;road.material.polygonOffsetFactor=-1;road.material.polygonOffsetUnits=-1;
+  road.position.set(0, .0002, (play.bounds.minz + play.bounds.maxz) / 2);
   road.receiveShadow = true;
   scene.add(road);
   padAt(scene);
@@ -891,14 +914,15 @@ function buildYard(scene) {
 function buildAirfield(scene) {
   const play = makePlay(-48, 48, -88, 22, 50);
   sky(scene, "airfield");
-  groundFit(scene, play, new THREE.MeshStandardMaterial({ color: 0x4a4c48, roughness: 0.92 }));
-  fence(scene, play);
+  groundFit(scene, play, new THREE.MeshStandardMaterial({ color: 0xc3cfad, map: surfaceTexture("grass",24), roughness: 1 }));
+  fence(scene, play, 1.5);
   const runway = new THREE.Mesh(
     new THREE.PlaneGeometry(18, play.bounds.maxz - play.bounds.minz - 6),
     new THREE.MeshStandardMaterial({ map: asphaltTex(), roughness: 0.88 }),
   );
   runway.rotation.x = -Math.PI / 2;
-  runway.position.set(0, 0.03, (play.bounds.minz + play.bounds.maxz) / 2);
+  runway.material.polygonOffset=true;runway.material.polygonOffsetFactor=-1;runway.material.polygonOffsetUnits=-1;
+  runway.position.set(0, .0002, (play.bounds.minz + play.bounds.maxz) / 2);
   runway.receiveShadow = true;
   scene.add(runway);
   padAt(scene);
@@ -910,27 +934,18 @@ function buildAirfield(scene) {
   lamp(scene, 10, -40);
   lamp(scene, -10, -40);
   addVan(scene, play, 12, -8, 0.1, 0x3a4044);
+  addAirfieldDetail(scene, play);
   return play;
 }
 
 function buildCoast(scene) {
   const play = makePlay(-44, 44, -46, 20, 40);
-  play.water = {
-    shorelineZ: -40,
-    visualShorelineZ: -40,
-    surfaceY: 0.04,
-    contains: (x, z) => Number.isFinite(x) && Number.isFinite(z) && x >= -42 && x <= 42 && z >= -140 && z <= -40,
-  };
-  play.seaSpawns = [
-    { id: "ida-1", x: -22, z: -67, heading: Math.PI / 2 },
-    { id: "ida-2", x: 22, z: -67, heading: -Math.PI / 2 },
-  ];
   sky(scene, "coast");
   groundFit(scene, play, new THREE.MeshStandardMaterial({ color: 0xd9c8a4, map: surfaceTexture("sand", 32), roughness: 0.95 }));
   fence(scene, play, .75);
   const water = new THREE.Mesh(new THREE.PlaneGeometry(160, 100, 24, 16), waterMat());
   water.rotation.x = -Math.PI / 2;
-  water.position.set(0, play.water.surfaceY, -90);
+  water.position.set(0, 0.04, -90);
   live(scene, water, { type: "water", ...(scene.userData.gpu ? { base: Float32Array.from(water.geometry.attributes.position.array) } : {}) });
   scene.add(water);
   padAt(scene);
@@ -1063,7 +1078,8 @@ function buildForest(scene) {
   const dirtMat = new THREE.MeshStandardMaterial({ color: 0xa48a6d, map: surfaceTexture("forest", 20), roughness: 0.95 });
   const path = new THREE.Mesh(new THREE.PlaneGeometry(4.5, play.bounds.maxz - play.bounds.minz - 10), dirtMat);
   path.rotation.x = -Math.PI / 2;
-  path.position.set(6, 0.015, (play.bounds.minz + play.bounds.maxz) / 2);
+  path.material.polygonOffset=true;path.material.polygonOffsetFactor=-1;path.material.polygonOffsetUnits=-1;
+  path.position.set(6, .0002, (play.bounds.minz + play.bounds.maxz) / 2);
   path.receiveShadow = true;
   scene.add(path);
 
@@ -1117,18 +1133,40 @@ function buildIndoor(scene) {
 }
 
 export function clearWorld(scene) {
+  scene.environment=null;scene.background=null;scene.environmentIntensity=1;scene.backgroundIntensity=1;scene.backgroundBlurriness=0;
+  scene.backgroundRotation?.set(0,0,0);scene.environmentRotation?.set(0,0,0);
+  scene.userData.arcadeSite=null;scene.userData.variant=null;scene.userData.mapId=null;
   scene.userData.worldToken = null;
   scene.userData.surfaceRevision = null;
   scene.userData.ambient = null;
+  scene.userData.sileWater = null;
+  scene.userData.sileLandcover = null;
+  scene.userData.sileContextStats = null;
+  scene.userData.sileHarbourStats = null;
+  scene.userData.sileBuildingStats = null;
+  scene.userData.silePadStats = null;
+  scene.userData.sileArchitecturalStats = null;
+  scene.userData.sileFoliageStats = null;
+  scene.userData.sileNeighbourhood = null;
+  scene.userData.sileNeighbourhoodStats = null;
+  scene.userData.sileStreetStats = null;
   const resources = scene.userData.worldResources;
   if (resources) for (const resource of resources) resource.dispose();
   scene.userData.worldResources = null;
   scene.clear();
 }
 
+export function worldMatches(scene,mapId,{night=false,variant=''}={}){
+  const expected=mapId==='airfield'&&variant==='aftermath'?'aftermath':'';
+  return scene.userData.mapId===mapId && scene.userData.night===!!night && scene.userData.variant===expected;
+}
+
 export function buildWorld(scene, mapId = "yard", opts = {}) {
   const id = MAPS.some((m) => m.id === mapId) ? mapId : "yard";
+  const aftermath=id==='airfield'&&opts.variant==='aftermath';
   foliageMap = null;
+  scene.userData.variant=aftermath?'aftermath':'';
+  scene.userData.arcadeSite=null;scene.userData.ambient=null;
   scene.userData.mapId = id;
   scene.userData.perimeterHeight = null;
   scene.userData.lite = !!opts.lite;
@@ -1141,15 +1179,34 @@ export function buildWorld(scene, mapId = "yard", opts = {}) {
   scene.userData.worldToken = {};
   scene.userData.treePlacements = [];
   scene.userData.lifeObjs = [];
+  scene.userData.sileWater = null;
+  scene.userData.sileLandcover = null;
+  scene.userData.sileContextStats = null;
+  scene.userData.sileHarbourStats = null;
+  scene.userData.sileBuildingStats = null;
+  scene.userData.silePadStats = null;
+  scene.userData.sileArchitecturalStats = null;
+  scene.userData.sileFoliageStats = null;
+  scene.userData.sileNeighbourhood = null;
+  scene.userData.sileNeighbourhoodStats = null;
+  scene.userData.sileStreetStats = null;
   scene.userData.lampCount = 0;
   scene.userData.dust = null;
   let play;
-  if (id === "airfield") play = buildAirfield(scene);
+  if(aftermath){
+    sky(scene,'aftermath');play=buildArcadeSite(scene,{quality:opts.quality});
+  }else if(id==='sile'){
+    sky(scene,'coast');play=buildSile(scene,opts.sileData||getSileData());
+    if(scene.fog){scene.fog.near=400;scene.fog.far=2400;}
+    scene.getObjectByName('skyDome')?.scale.setScalar(5000);
+    const stars=scene.getObjectByName('night-stars');if(stars){stars.scale.setScalar(15);stars.material.size=8;}
+  }else if (id === "airfield") play = buildAirfield(scene);
   else if (id === "coast") play = buildCoast(scene);
   else if (id === "city") play = buildCity(scene);
   else if (id === "forest") play = buildForest(scene);
   else if (id === "indoor") play = buildIndoor(scene);
   else play = buildYard(scene);
+  if(id!=='sile' && !aftermath){
   const architecture = scene.children.filter(o => o.geometry?.type === "BoxGeometry" && o.geometry.parameters.width >= 8 && o.geometry.parameters.height >= 5 && o.geometry.parameters.depth >= 5);
   const trimMat = new THREE.MeshStandardMaterial({ color: 0x535b58, roughness: .72, metalness: .4 });
   if (!architecture.length) trimMat.dispose();
@@ -1173,8 +1230,11 @@ export function buildWorld(scene, mapId = "yard", opts = {}) {
   addStructuralDetail(scene, id);
   addEnvironmentDetails(scene, play, id);
   addAmbient(scene, play, id, { van });
-  finishSurfaces(scene);
-  if (opts.props) {
+  }
+  prepareGroundSurfaces(scene);
+  if(id==='sile'){finishSileContext(scene);finishNeighbourhood(scene);}
+  if(!aftermath)finishSurfaces(scene);
+  if (opts.props&&id!=='sile'&&!aftermath) {
     const token = scene.userData.worldToken;
     import("./props.js")
       .then((m) => m.placeProps(scene, play, id, token))
@@ -1188,6 +1248,7 @@ export function buildWorld(scene, mapId = "yard", opts = {}) {
   }
   const resources = new Set();
   scene.traverse(o => {
+    if (o.isInstancedMesh) resources.add(o);
     if (o.geometry) resources.add(o.geometry);
     for (const m of (Array.isArray(o.material) ? o.material : o.material ? [o.material] : [])) {
       resources.add(m);
@@ -1197,6 +1258,6 @@ export function buildWorld(scene, mapId = "yard", opts = {}) {
   });
   scene.userData.worldResources = resources;
   scene.userData.play = play;
-  applyScannedMaterials(scene);
+  applyScannedMaterials(scene,{quality:opts.quality||'medium'});
   return play;
 }

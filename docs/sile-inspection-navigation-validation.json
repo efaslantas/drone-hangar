@@ -1,0 +1,133 @@
+{
+  "date": "2026-11-02",
+  "status": "published",
+  "release": "v2.32.0-f52f89ea77ff",
+  "url": "https://hangar.18-153-158-209.sslip.io/",
+  "scope": "Sile manual inspection spatial awareness: compact FPV navigation metrics and paused source-derived2D map overview",
+  "behavior": {
+    "navigation": "horizontal and3D distance, signed height difference to viewpoint(not AGL), current speed/demo threshold, continuous dwell; true spawn forreturn; no terminal target",
+    "map": "north-up localx/z,4source land polygons including holes and340roads,3numbered viewpoints/home/current simulatedposition; no obstacle-free route claim",
+    "replay": "HUD and paused map explicitly label recordedpose; route states labeled finalrecordingsnapshot; exact pausedstate restoration preserved",
+    "responsive": "actual attribution bounds observed with ResizeObserver/resize; observer/listener disposed on reset/leave"
+  },
+  "verification": {
+    "newNavigationTests": 8,
+    "redGreen": "8missingAPI→8pass;39combinedinspectionfocusedpass",
+    "node22Full": {
+      "pass": 518,
+      "fail": 0,
+      "durationMs": 139636.716426,
+      "architecture": "linux/arm64",
+      "concurrency": 4,
+      "log": ".superpowers/sdd/2026-11-02-sile-inspection-navigation/sile-navigation-final-node22-tests.log"
+    },
+    "priorFullBeforeReviewFixes": {
+      "pass": 518,
+      "fail": 0,
+      "durationMs": 339570.893334,
+      "cpuLimit": 2
+    },
+    "infra": 11,
+    "viteBuild": "pass; existinglargechunkwarning",
+    "arm64Build": "pass",
+    "independentReview": {
+      "critical": 0,
+      "important": 2,
+      "minor": 0,
+      "fixed": [
+        "portrait attribution overlap",
+        "paused replay map current-position labeling"
+      ],
+      "fixPass": "single native pass; actualUIRED→GREEN and final518green suite",
+      "record": ".superpowers/sdd/2026-11-02-sile-inspection-navigation/review-findings.md"
+    },
+    "browserQa": {
+      "webgl": "actual UI preparation/FPV/menu/map/regionselection/stationaryARMstop/replay/MENÜ/finishrestore,error[]",
+      "portrait390x844": {
+        "beforeClearancePx": -70.78125,
+        "afterClearancePx": 8,
+        "pass": true
+      },
+      "landscape844x390": {
+        "clearancePx": 8,
+        "pass": true
+      },
+      "replayMap": {
+        "beforeHasReplayLabel": false,
+        "afterHasReplayLabel": true,
+        "visibleFinalSnapshotLabel": true,
+        "ariaRecordedPose": true
+      },
+      "stationaryRecordActiveSeconds": 19.8,
+      "observations": 0,
+      "restoration": "stopped19.8sec record+paused menu+normalmapnote; localRCprofile650g1100mediumtilt0restored; viewportreset",
+      "hardwareFlightTest": false,
+      "webgpu": "not rerun for this DOM/SVG-only increment; renderer and core unchanged",
+      "browserRecovery": "old HMR tab timeout then Chrome extension renumbered1→4; fresh same-browser tab recovered; no usertabs closed"
+    }
+  },
+  "invariants": {
+    "comparedTo": "v2.31.0-b2bdbccd35e4",
+    "scenarioInspectionCoreEvidencePhysicsAndMapFiles": "byte-identical manifest hashes",
+    "sourceData": "unchanged; no new measurement or3Dgeometry",
+    "networkAndStorage": "unchanged; local reports remain local",
+    "newDependencies": 0,
+    "savedProfile": "unchanged"
+  },
+  "image": {
+    "release": "v2.32.0-f52f89ea77ff",
+    "imageId": "sha256:17ccba044706f469cfa49fae22abfc63239d03df1b06bed14ae35827fa2676af",
+    "archiveSha256": "89ffb72bfd5502aaef7a320701345629ac51f68f0a58893e2000be286d50591d",
+    "archiveBytes": 141391856,
+    "architecture": "arm64",
+    "sourceFiles": 277
+  },
+  "live": {
+    "httpsHealth": "v2.32.0-f52f89ea77ff",
+    "manifestFiles": 277,
+    "runningSourceHashes": 113,
+    "publicHttpsAssetsAndSources": "pass; /tmp/sile-navigation-live-verification.log",
+    "uniqueUiIds": true,
+    "unauthorizedAdmin": 401,
+    "twoClientWssJoinStateLeave": "pass",
+    "browser": "newFPVpanelDISARMready0/3 and pausedsourceoverview,error[]; hangar-check-232room",
+    "profile": {
+      "reference": "f60-1750-6s",
+      "massG": 650,
+      "capacityMah": 1100,
+      "quality": "medium",
+      "tilt": 25,
+      "input": "gamepad"
+    },
+    "restarts": 0,
+    "memoryMiB": 25.05,
+    "limitMiB": 256,
+    "uid": "1000:1000",
+    "readonly": true,
+    "network": [
+      "drone-hangar-net"
+    ],
+    "otherSevenTenantsAndNginx": "unchanged",
+    "nginxSyntax": "pass",
+    "zenthWebAndApi": 200,
+    "gelisimTlsOrigin": 200,
+    "rollbackContainerAndConsistentDataBackup": "retained"
+  },
+  "limits": [
+    "Manual navigation, not an autopilot or certified safe path",
+    "Existing30mDSM/representative environment; no measured digital-twin claim",
+    "Existing FPV reference is not a validated real ILKE-1 model; no SITL/MAVLink/hardware integration",
+    "No physical phone/TX15 or full manual route flight in this QA",
+    "Existing main-thread Sile preview construction stall remains",
+    "Prior2.31 download-only lastreport semantic-validation minor remains outside this presentation increment; see previousvalidation"
+  ],
+  "proofDir": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1",
+  "proof": [
+    "sile-navigation-live-map-2.32.png",
+    "sile-navigation-live-fpv-2.32.png",
+    "sile-navigation-portrait-after-2.32.png",
+    "sile-navigation-landscape-after-2.32.png",
+    "sile-navigation-replay-map-after-2.32.png"
+  ],
+  "git": "same dirtycodex/simulator-v2; no commit/push/merge"
+}

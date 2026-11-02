@@ -1,0 +1,61 @@
+{
+  "date": "2026-11-01",
+  "release": "v2.14.0-cc8aebcaed9c",
+  "tests": {
+    "passed": 370,
+    "failed": 0,
+    "focused": 13,
+    "build": "pass",
+    "diffCheck": "pass"
+  },
+  "implementation": [
+    "World XZ metre ground UVs; transformed shared-wall material/geometry preserved",
+    "Artist tiles 2m grass/concrete/forest/sand,1.5m asphalt/earth",
+    "Ground1024px desktop medium/high,512px touch; other medium512px; low procedural",
+    "Device-clamped anisotropic filtering16desktop/4touch on ground",
+    "Bounded canonical-plane8m subdivision,deterministic mild macro vertex albedo",
+    "Terrain positions/normals,Shape holes,groups/drawRange/edited Plane data preserved",
+    "Shared material channels retained across all texture properties"
+  ],
+  "review": {
+    "freshReviewer": "review_close_ground",
+    "fixed": [
+      "Grouped/partial Plane preservation",
+      "Authored interior positions/normals preservation",
+      "Cross-channel AO texture reference retention"
+    ],
+    "redGreen": "all three regressions failed before fixes;13focused/370full green",
+    "deferredMinorFindings": [],
+    "limits": "Browser,mobile,GPU,release and earlier physics/RC author-verified; not independently reviewed"
+  },
+  "browser": [
+    "WebGL Şile/Pist/Arcade and low/high/medium quality transitions",
+    "390x844 iframe FPV; not physical phone",
+    "WebGPU Şile FPV renders correctly,warm60fps,no application-origin warn/error",
+    "Live Şile FPV DISARM60fps; saved SOURCE ONE6S650g1100mAh/medium/25degree/TX15 calibration"
+  ],
+  "production": {
+    "sourceFiles": 235,
+    "candidateHealth": "pass",
+    "productionHealth": "pass",
+    "externalHttpsAssetsHashes": "all checks pass",
+    "groundSourceHashes": 6,
+    "sourceManifestStillMatchesWorkspace": true,
+    "rollback": "previous container and0600data backup retained",
+    "browserNotes": "Four asynchronous message-channel-close errors attributed to root URL at reload timestamp,plus extension warnings. Application source contains no chrome/browser runtime messaging APIs; no asset-origin exception or visible failure. Source cannot be conclusively assigned from this log."
+  },
+  "limits": [
+    "Artist tile sizes and macro color are authored choices,not measured scan dimensions",
+    "No new imagery/source dataset or added geometric ground detail",
+    "Fourfold linear texel density target versus previous desktop medium4m/512px is resampling policy,not new real-world resolution",
+    "No changes to physics/contact/camera/RC/profile/source map data",
+    "No physical phone or TX15 flight/log calibration"
+  ],
+  "proof": [
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/closeground-sile-2.14.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/closeground-arcade-2.14.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/closeground-mobile-2.14.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/closeground-webgpu-2.14.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/closeground-live-2.14.png"
+  ]
+}

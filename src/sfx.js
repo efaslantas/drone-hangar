@@ -258,7 +258,7 @@ export const sfx = {
     driveVoice(voice, c, voiceTargets(voice.p, { ...env, thr, armed }));
   },
   /**
-   * Nearest other craft (bot or remote pilot): `spec` its airframe, `thr` its
+   * Nearest other pilot’s craft: `spec` its airframe, `thr` its
    * motor output, `dist` metres from the listener. `spec` null fades it out.
    */
   nearby(spec, thr = 0.6, dist = 100, doppler = 1) {

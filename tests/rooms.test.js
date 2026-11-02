@@ -171,75 +171,16 @@ test("lost result logs 'lost' and does not touch the leaderboard", () => {
   assert.equal(getLeaderboard().find((o) => o.opId === "op4"), undefined);
 });
 
-test("unranked autonomous result is logged but never enters the leaderboard", () => {
+test("unranked practice result is logged but never enters the leaderboard", () => {
   const hub = openRoom();
   const a = hub.connect();
-  const opId = `autonomy-unranked-${Date.now()}`;
+  const opId = `practice-unranked-${Date.now()}`;
   a.send(JSON.stringify({ t: "join", room: "hangar", name: "Ada", drone: "camera" }));
-  a.send(JSON.stringify({ t: "start", opId, opName: "Kıyı" }));
-  a.send(JSON.stringify({ t: "result", opId, opName: "Kıyı", won: true, ranked: false }));
+  a.send(JSON.stringify({ t: "start", opId, opName: "Antrenman" }));
+  a.send(JSON.stringify({ t: "result", opId, opName: "Antrenman", won: true, ranked: false }));
   assert.equal(getEvents(1)[0].type, "win");
   assert.equal(getEvents(1)[0].ranked, false);
   assert.equal(getLeaderboard().find((o) => o.opId === opId), undefined);
-});
-
-test("team room: hello carries the side and the match, a hit flows server → both pilots, other rooms ignore hits", () => {
-  const hub = openRoom();
-  const a = hub.connect();
-  const b = hub.connect();
-  a.send(JSON.stringify({ t: "join", room: "team", name: "ada", drone: "racer" }));
-  b.send(JSON.stringify({ t: "join", room: "team", name: "bob", drone: "racer" }));
-  const helloA = [...a.inbox].reverse().find((m) => m.t === "hello");
-  const helloB = [...b.inbox].reverse().find((m) => m.t === "hello");
-  assert.equal(helloA.team, "red");
-  assert.equal(helloB.team, "blue");
-  assert.equal(helloB.peers[0].meta.team, "red", "peers carry their side in meta");
-  assert.equal(helloB.match.n, 2);
-  assert.equal(helloB.match.running, false, "the clock starts on the next tick");
-  // The latest join for B: the first one was B's automatic hangar join, seen before A moved.
-  const joinSeenByA = [...a.inbox].reverse().find((m) => m.t === "join" && m.id === helloB.id);
-  assert.equal(joinSeenByA.meta.team, "blue");
-  hub.wss.tickTeams(Date.now());
-  const started = [...a.inbox].reverse().find((m) => m.t === "match");
-  assert.equal(started.running, true);
-  // Poses first (range check), then the claim.
-  a.send(JSON.stringify({ t: "state", x: 0, y: 5, z: 0, qw: 1, qx: 0, qy: 0, qz: 0, thr: 0.3, fire: 1 }));
-  b.send(JSON.stringify({ t: "state", x: 20, y: 5, z: 0, qw: 1, qx: 0, qy: 0, qz: 0, thr: 0.3 }));
-  const stateSeenByB = [...b.inbox].reverse().find((m) => m.t === "state");
-  assert.equal(stateSeenByB.fire, 1, "the trigger flag rides along with the pose");
-  a.inbox.length = 0;
-  b.inbox.length = 0;
-  a.send(JSON.stringify({ t: "hit", to: helloB.id }));
-  const hitA = a.inbox.find((m) => m.t === "hit");
-  const hitB = b.inbox.find((m) => m.t === "hit");
-  assert.ok(hitA && hitB, "both pilots hear the hit");
-  assert.equal(hitB.to, helloB.id);
-  assert.equal(hitB.hp, 5);
-  // Friendly fire is dropped silently.
-  const c = hub.connect();
-  c.send(JSON.stringify({ t: "join", room: "team", name: "cem", drone: "racer" }));
-  const helloC = [...c.inbox].reverse().find((m) => m.t === "hello");
-  assert.equal(helloC.team, "red");
-  c.send(JSON.stringify({ t: "state", x: 2, y: 5, z: 0, qw: 1, qx: 0, qy: 0, qz: 0, thr: 0.3 }));
-  a.inbox.length = 0;
-  c.send(JSON.stringify({ t: "hit", to: helloA.id }));
-  assert.equal(a.inbox.find((m) => m.t === "hit"), undefined);
-  // A plain room has no match: hits are ignored, hello has no side.
-  const x = hub.connect();
-  const y = hub.connect();
-  x.send(JSON.stringify({ t: "join", room: "hangar", name: "x", drone: "whoop" }));
-  y.send(JSON.stringify({ t: "join", room: "hangar", name: "y", drone: "whoop" }));
-  const helloY = [...y.inbox].reverse().find((m) => m.t === "hello");
-  assert.equal(helloY.team, null);
-  assert.equal(helloY.match, null);
-  y.inbox.length = 0;
-  x.send(JSON.stringify({ t: "hit", to: helloY.id }));
-  assert.equal(y.inbox.find((m) => m.t === "hit"), undefined);
-  // Leaving updates the count for the others.
-  b.inbox.length = 0;
-  c.close();
-  const after = [...b.inbox].reverse().find((m) => m.t === "match");
-  assert.equal(after.n, 2);
 });
 
 test("different rooms are isolated", () => {
@@ -271,4 +212,36 @@ test("lap splits are stored only when they add up to the server-timed run", asyn
   const board = getLeaderboard().find((o) => o.opId === "op-lap");
   assert.ok(board, "the win itself still counts");
   assert.equal(board.entries[0].bestLap, undefined, "but the impossible splits are dropped");
+});
+
+test('retired battle room links join the flight lobby without combat protocol', () => {
+  for (const room of ['team', 'team-friends']) {
+    const hub = openRoom();
+    const a = hub.connect();
+    const b = hub.connect();
+    a.send(JSON.stringify({ t: 'join', room, name: 'a' }));
+    b.send(JSON.stringify({ t: 'join', room, name: 'b' }));
+    const hello = b.inbox.findLast(m => m.t === 'hello');
+    assert.equal(hello.room, 'hangar');
+    assert.equal(Object.hasOwn(hello, 'team'), false);
+    assert.equal(Object.hasOwn(hello, 'match'), false);
+    b.inbox.length = 0;
+    a.send(JSON.stringify({ t: 'state', x: 3, y: 8, z: 1, fire: 1 }));
+    assert.equal(b.inbox[0].x, 3);
+    assert.equal(Object.hasOwn(b.inbox[0], 'fire'), false);
+    b.inbox.length = 0;
+    a.send(JSON.stringify({ t: 'hit', to: hello.id }));
+    assert.deepEqual(b.inbox, []);
+    assert.ok(!hub.wss.getOnline().some(p => Object.hasOwn(p, 'team')));
+  }
+});
+
+test('old clients cannot submit new retired activity results', () => {
+  for (const opId of ['patrol', 'waves', 'final', 'arena', 'boss', 'team', 'autonomy-coast-response']) {
+    const hub = openRoom();
+    const a = hub.connect();
+    a.send(JSON.stringify({ t: 'start', opId }));
+    a.send(JSON.stringify({ t: 'result', opId, won: true }));
+    assert.equal(getLeaderboard().some(board => board.opId === opId), false, opId);
+  }
 });

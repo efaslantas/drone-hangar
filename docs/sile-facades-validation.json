@@ -1,0 +1,107 @@
+{
+  "date": "2026-11-02",
+  "release": "v2.24.0-9660654a4365",
+  "url": "https://hangar.18-153-158-209.sslip.io/",
+  "status": "published",
+  "image": {
+    "release": "v2.24.0-9660654a4365",
+    "imageId": "sha256:c484e018e598384fddd037f6abae51cddc2f48a8a6aed20599375f9449544e1c",
+    "archiveSha256": "1df9e3bb7214f522bd16f52c5cf3f5b42eb7ccc8d6d05be1e2a5486d05e428fc",
+    "archiveBytes": 141335251,
+    "architecture": "arm64",
+    "sourceFiles": 264
+  },
+  "scope": {
+    "coastalBuildings": 135,
+    "atlasPixels": 1024,
+    "templates": 16,
+    "rgbaChannels": [
+      "sRGBcolor",
+      "linearheight",
+      "linearroughness"
+    ],
+    "imagesDownloaded": 0,
+    "newGeometry": 0,
+    "authored": "plaster grain/rain/splash marks, glass reflection/curtain/shutter/frame/sill templates; not measured current facade inventory or real interiors"
+  },
+  "baseline": {
+    "release": "v2.23.0-8f66e2a5a84a",
+    "facades": "9a1016bf4f73f5ea05b4db93f19611cea8e9e16043679e4b59b3d8e8b446e31f",
+    "collision": "d147d7d701cc0015b37fa1c7731c5e92bcd541c79741f8795e3a8d4dda24ad7d",
+    "meshes": 41
+  },
+  "checks": {
+    "focusedTests": 4,
+    "applicationTests": 436,
+    "failures": 0,
+    "infraTests": 11,
+    "viteBuild": "pass; existing >500KB chunk advisory",
+    "arm64Build": "pass",
+    "sourceManifestFiles": 264,
+    "exact2_23GeometryUvsColorsCollisionDigests": "pass, unchanged",
+    "meshes": 41,
+    "atlasGenerationObservedMs": 127.73,
+    "dataOrientation": "bottom-up RGBA rows match existing UVs; blank gable tile15 retained",
+    "material": "correct colour encoding, mipmap/linear filters,opaque/nonemissive; glass smoother and recessed relative to plaster",
+    "lifecycle": "three DataTextures/material owned/disposed exactly once; existing source/profile/physics untouched",
+    "runningImageSourceHashes": 105,
+    "httpsHealthAssetsSourceHashes": "pass",
+    "twoClientWssJoinStateLeave": "pass",
+    "uniqueUiIds": "pass",
+    "adminUnauthorized": 401,
+    "existingServiceIdentitiesUnchanged": 7,
+    "nginxSyntax": "pass",
+    "nginxBytesUnchanged": true,
+    "oldContainerAndConsistentDataBackupRetained": true
+  },
+  "review": {
+    "findings": "no actionable Critical/Important/Minor",
+    "independentFocusedTests": 4,
+    "independentAtlasGenerationMs": 133,
+    "secondIndependentReview": false,
+    "declinedToJudge": "browser/GPU/live accepted by author with rendered screenshots and production verification"
+  },
+  "browser": {
+    "webgl": "close entrance/coast/front/low-high-medium/390x844 renderframe,before comparison",
+    "experimentalWebgpu": "same close view inspected,error[]",
+    "observedFps": "warm GL57-60/GPU60; initialshaderGL11/quality49transient, no universal performance guarantee",
+    "logs": "application errors empty",
+    "live": {
+      "state": "FPV DISARM",
+      "errorLogs": "empty",
+      "profile": "f60-1750-6s",
+      "massG": 650,
+      "capacityMah": 1100,
+      "map": "sile",
+      "quality": "medium",
+      "tiltDegrees": 25,
+      "input": "gamepad; existing selection unchanged",
+      "initialLoad": "static generic HTML briefly, then normal source profile bootstrap; no reload needed"
+    }
+  },
+  "limits": [
+    "Existing2x2km/30mDSM unchanged; no photogrammetry/1:1district claim",
+    "Material templates and static curtain/reflection cues are authored; no measured facade inventory or building interiors",
+    "All physical geometry/flight forces/input/profile unchanged",
+    "No physical phone/TX15 flight or flight-log calibration"
+  ],
+  "proof": [
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-facades-before-2.23.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-facades-detail-2.24.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-facades-coast-2.24.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-facades-mobile-2.24.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-facades-webgpu-2.24.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-facades-live-2.24.png"
+  ],
+  "git": "same dirty codex/simulator-v2 retained; no commit/push/merge",
+  "runtime": {
+    "memoryObservedMiB": 18.98,
+    "limitMiB": 256,
+    "restarts": 0,
+    "uid": "1000:1000",
+    "readOnlyRoot": true,
+    "network": [
+      "drone-hangar-net"
+    ]
+  }
+}

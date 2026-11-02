@@ -1,6 +1,8 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import * as THREE from "three";
+import fs from "node:fs";
+const sileData=JSON.parse(fs.readFileSync(new URL("../public/maps/sile/map.json",import.meta.url)));
 
 // Same canvas shim as visual.test.js: no pixels in Node, only structure/motion.
 const context = new Proxy({
@@ -17,7 +19,7 @@ const { tickAmbient } = await import("../src/ambient.js");
 
 function world(id, opts = {}) {
   const scene = new THREE.Scene();
-  const play = buildWorld(scene, id, opts);
+  const play = buildWorld(scene, id, {...opts,sileData});
   return { scene, play };
 }
 
@@ -33,7 +35,8 @@ function finite(scene) {
 test("every map gets a living layer and survives a long tick without NaN", () => {
   for (const map of MAPS) for (const lite of [false, true]) {
     const { scene, play } = world(map.id, { lite });
-    assert.ok(scene.userData.ambient.length > 0, `${map.id}: ambient entries`);
+    if(map.id==='sile')assert.ok(!scene.userData.ambient?.length,'source map does not invent procedural traffic');
+    else assert.ok(scene.userData.ambient.length > 0, `${map.id}: ambient entries`);
     play.wind = map.id === "airfield" ? { x: 1.1, z: 0.4 } : null;
     for (let i = 0; i < 400; i++) tickWorld(scene, i / 60, 1 / 60, { x: 3, y: 6, z: -12, armed: true, throttleOut: 0.5 });
     finite(scene);

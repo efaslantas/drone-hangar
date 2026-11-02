@@ -21,45 +21,65 @@ function resetButtons() {
   for (const action of ["vehiclePrev", "vehicleNext", "emergencyStop", "consoleHelp"]) consume(action);
 }
 
-test("poll exposes raw triggers and L1/R1/Options as consumable edges", () => {
-  resetButtons();
-  Object.assign(buttons[6], { pressed: true, value: 0.7 });
-  Object.assign(buttons[7], { pressed: true, value: 0.8 });
-  buttons[4].pressed = true;
-  buttons[5].pressed = true;
-  buttons[9].pressed = true;
-  const value = poll(10_100);
-  assert.equal(value.l2, 0.7);
-  assert.equal(value.rawR2, 0.8);
-  assert.equal(consume("vehiclePrev"), true);
-  assert.equal(consume("vehicleNext"), true);
-  assert.equal(consume("consoleHelp"), true);
-  assert.equal(consume("vehiclePrev"), false, "held shoulder is not repeated");
-});
-
-test("emergency stop requires both triggers at 0.9 for 700 ms", () => {
-  resetButtons();
-  Object.assign(buttons[6], { pressed: true, value: 0.9 });
-  Object.assign(buttons[7], { pressed: true, value: 0.9 });
-  poll(20_000);
-  poll(20_699);
-  assert.equal(consume("emergencyStop"), false);
-  poll(20_700);
-  assert.equal(consume("emergencyStop"), true);
-  poll(21_500);
-  assert.equal(consume("emergencyStop"), false, "held chord fires once");
-
-  buttons[6].value = 0.89;
-  poll(21_600);
-  buttons[6].value = 0.9;
-  poll(22_000);
-  buttons[7].value = 0.89;
-  poll(23_000);
-  assert.equal(consume("emergencyStop"), false);
-});
-
 test("typing in an editable field never becomes a flight command", () => {
   resetButtons();
   listeners.get("keydown")({ code: "KeyW", target: { matches: () => true }, preventDefault() {} });
   assert.equal(Math.abs(poll(30_000).lift), 0);
+});
+
+test('flight buttons and trigger remain usable without weapon actions', () => {
+  resetButtons();
+  buttons[0].pressed = true;
+  buttons[9].pressed = true;
+  buttons[5].pressed = true;
+  const input = poll();
+  assert.equal(consume('arm'), true);
+  assert.equal(consume('help'), true);
+  assert.equal(Object.hasOwn(input, 'fire'), false);
+  poll();
+  assert.equal(consume('arm'), false);
+});
+
+test('two touch sticks keep independent axes and release on cancellation', async () => {
+  const { bindFlightTouches } = await import('../src/input.js');
+  const handlers = new Map();
+  window.innerWidth = 1000;
+  globalThis.document = { elementFromPoint: () => null, getElementById: () => null };
+  bindFlightTouches({ addEventListener(name, handler) { handlers.set(name, handler); } });
+  const event = touches => ({ changedTouches: touches, preventDefault() {}, target: {} });
+  handlers.get('touchstart')(event([
+    { identifier: 1, clientX: 200, clientY: 300 },
+    { identifier: 2, clientX: 800, clientY: 300 },
+  ]));
+  handlers.get('touchmove')(event([
+    { identifier: 1, clientX: 244, clientY: 256 },
+    { identifier: 2, clientX: 756, clientY: 256 },
+  ]));
+  const input = poll();
+  assert.ok(input.yaw > 0 && input.lift > 0);
+  assert.ok(input.roll < 0 && input.pitch > 0);
+  handlers.get('touchcancel')(event([{ identifier: 1 }, { identifier: 2 }]));
+  const released = poll();
+  assert.ok([released.lift, released.yaw, released.pitch, released.roll].every(v => Math.abs(v) === 0));
+});
+
+test('keyboard activation invokes a menu button once without a pointer event', async () => {
+  const { bindTap } = await import('../src/input.js');
+  const handlers = new Map(); let calls=0;
+  bindTap({ addEventListener(name,fn) { handlers.set(name,fn); } }, () => calls++);
+  const event={ detail:0, preventDefault(){}, stopPropagation(){} };
+  handlers.get('click')(event);
+  assert.equal(calls,1);
+  handlers.get('pointerdown')(event);
+  handlers.get('click')({ ...event, detail:1 });
+  assert.equal(calls,2,'a physical click is not invoked twice');
+});
+
+test('Space activates a focused UI button natively without also requesting flight ARM',()=>{
+ resetButtons();buttons[0].pressed=false;buttons[9].pressed=false;poll();consume('arm');
+ let prevented=false;listeners.get('keydown')({code:'Space',target:{matches:()=>false,closest:()=>({tagName:'BUTTON'})},preventDefault(){prevented=true}});
+ poll();assert.equal(consume('arm'),false);assert.equal(prevented,false);
+ listeners.get('keyup')({code:'Space'});poll();
+ listeners.get('keydown')({code:'Space',target:{matches:()=>false,closest:()=>null},preventDefault(){prevented=true}});
+ poll();assert.equal(consume('arm'),true);assert.equal(prevented,true);listeners.get('keyup')({code:'Space'});poll();
 });

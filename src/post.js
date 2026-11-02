@@ -54,6 +54,7 @@ const BodycamShader = {
     }
 
     void main() {
+      if (intensity <= 0.0001) { gl_FragColor = texture2D(tDiffuse, vUv); return; }
       float k = 0.055 * intensity;
       vec2 uv = barrel((vUv - 0.5) / (1.0 + k * 2.6) + 0.5, k);
       vec2 c = vUv * 2.0 - 1.0;
@@ -138,6 +139,10 @@ export function createComposer(renderer, scene, camera, { bloom = false, antiali
     composer.addPass(bloomPass);
   }
   const bodycam = new ShaderPass(BodycamShader);
+  // EffectComposer supplies target dimensions, including its pixel ratio.
+  bodycam.setSize = (width, height) => {
+    bodycam.uniforms.resolution.value.set(Math.max(1, Math.floor(width)), Math.max(1, Math.floor(height)));
+  };
   composer.addPass(bodycam);
   composer.addPass(new OutputPass());
   return { composer, renderPass, bodycam, bloomPass };

@@ -1,0 +1,52 @@
+{
+  "version": "2.18",
+  "source": "/maps/sile/source-osm.json",
+  "sourceSha256": "6f470aa0a10ed28dad87247f8b3c50563acea599e5a215ba96ea76005b10e5ed",
+  "license": "ODbL-1.0",
+  "beachWayIds": [
+    309193706,
+    426791953,
+    1285138759
+  ],
+  "bareRockWayId": 1485112029,
+  "bareRockRendering": "excluded: source mask lies wholly on water in current coastline snapshot; no island invented",
+  "surfaceGeometry": "mapped beaches clipped to land and draped on unchanged terrain; overlapping grass removed",
+  "cliffs": {
+    "horizontalStepMaxM": 2,
+    "verticalStepMaxM": 1,
+    "fractureRecessMaxM": 0.08,
+    "measured": false,
+    "collision": "original conservative coast/terrain boundary; fractures decorative",
+    "finishVersion": "2.25",
+    "normals": "shared indexed normals, outward faces; source lip/corners preserved",
+    "wetBandHeightAboveMeanWaterM": [
+      0.5,
+      0.8
+    ],
+    "wetBandMeasured": false,
+    "wetBandGeometry": "exclusive interpolated triangle partition, no overlapping wet sheet",
+    "naturalRockMaterial": "shared1024px periodic authored strata/fractures; sRGBalbedo/linear tangent normal and roughness; dry/wet material groups",
+    "largeScaleShape": "original sourcecoast and30mDSM retained; decorative face recess remains at most8cm inward",
+    "cropClosureRendered": false,
+    "verticalStepMeaning": "maximum spacing within each vertical column; triangles following a sloping lip can span a greater total elevation"
+  },
+  "water": {
+    "geometry": "flat original mean water level; visual normals only",
+    "normalTexture": "procedural warped periodic noise, not measured waves",
+    "foamWidthM": [
+      1.2,
+      3.4
+    ],
+    "nearshoreTintWidthM": [
+      8,
+      14
+    ],
+    "bathymetryMeasured": false,
+    "animation": "absolute simulation time; paused time produces same phase",
+    "nearshoreTintImplementation": "single opaque ocean albedo field; no overlapping transparent water sheets"
+  },
+  "reference": "https://sile.bel.tr/tr/sile-plajlari/",
+  "newRasterAssets": false,
+  "derivedData": "/maps/sile/coast-surfaces.json",
+  "foamRepeat": "integer tile count distributed along each closed ring, approximately11m per tile"
+}

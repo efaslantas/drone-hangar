@@ -1,6 +1,6 @@
 # Drone Hangar
 
-Tarayicida calisan FPV/stabilize drone simulasyonu ve operasyon konsolu. Mode 2 klavye, gamepad ve dokunmatik kontrolleri; arcade fizik, gorevler, yerel ilerleme ve hafif cok oyunculu odalari bir araya getirir.
+Tarayicida calisan FPV/stabilize İHA simülasyonu. Mode 2 klavye, gamepad ve dokunmatik kontrolleri; arcade fizik, gorevler, yerel ilerleme ve hafif cok oyunculu odalari bir araya getirir.
 
 Bu proje ArduPilot SITL, MAVLink koprusu veya gercek drone kumandasi degildir. Fiziksel PS kolu ile ucus kontrolu denemek icin tasarlanmistir; gercek ucus egitimi ya da sertifikasyon yerine gecmez.
 
@@ -23,17 +23,30 @@ npm start
 
 `npm start`, derlenmis `dist/` klasorunu ve WebSocket sunucusunu varsayilan olarak `8780` portunda calistirir. `PORT` ile degistirilebilir.
 
-## Neler Var?
+## Hangar 2.0
 
-- **Pilot hikâyesi:** Yeni pilot önce kendi 5 inç freestyle drone'unu toplar; üç kısa uçuşla yarım kalmış çekimi tamamladıktan sonra tüm modlar açılır. Mevcut ilerlemesi olan oyuncular bu açılışı otomatik tamamlanmış görür.
-- **Drone Akademisi:** Ucus Okulu, Manuel Gaz, Acro Kontrol, Cevre Yonetimi, Ileri Parkur ve Gorev pistlerinde 36 adim.
-- **Serbest ucus:** Drone ve haritayi secip ruzgarli/ruzgar siz ucus pratigi yapin.
-- **Gunluk gorev:** Her UTC gunu ayni rota ve drone ile olusan zamanli rota.
-- **Takim savasi:** Oda tabanli Kirmizi-Mavi mac; skor, can ve respawn sunucuda yonetilir.
-- **IHA + IDA otonom gorevi:** Kiyi arama, deniz araci sevki ve operator devralmasi.
-- **Operasyon Masasi:** Bir IHA ve iki IDA icin manuel, bekleme, rota ve acil durus kontrolleri.
+Koyu grafit ve yeşil vurgulu simülatör menüsü, büyük drone önizlemesi, drone/alan seçimi ve tek düğmeyle son kurulumdan uçuş. Yeni kullanıcı için hikâye veya atölye zorunluluğu yoktur. Serbest uçuş yerde, motorlar kapalı başlar; ARM ile uçuşa geçilir.
 
-Oyun, varsayilan olarak WebGL kullanir. Ayarlardaki WebGPU secenegi deneyseldir; desteklenmeyen tarayicida WebGL'e geri duser.
+- **Serbest uçuş / serbest stil:** 10 drone ve 7 harita; drone ve harita tercihi yeniden açılışta korunur.
+- **Yarış antrenmanı:** Akademiden bağımsız üç turluk Pist parkuru, sıralama dışı.
+- **Drone Akademisi:** Altı pistte 36 ders/görev; kazanılmış ilerleme korunur.
+- **Atölye:** 5 inç için kaynaklı F60 Pro IV / HQ 5×4×3 motor–pervane referansları, ayrıca genel parça modu. Çizimli parça kartları, döndürülebilir/yakınlaştırılabilir 3B kurulum ve standart kuruluma göre değer farkları. Mevcut FPV parçaları doğrudan kullanılabilir; pilot hikâyesi ayrı ve isteğe bağlıdır.
+- **Yüzey kalitesi:** Düşük profilde hafif üretilmiş dokular; orta/yüksek profilde yerel taranmış renk/normal/pürüzlülük haritaları. Çim kaynağı Poly Haven Grass Ground (CC0). Zeminlerde masaüstü orta/yüksek1024px; diğer yüzeylerde orta512/yüksek1024px, dokunmatikte en çok512px GPU dokusu; çim JPEG indirmesi her iki profilde1k kalır. Kalite değişikliği uçuşu sıfırlamaz.
+- **Pist sahnesi:** Asfalt pist, apron, çim, hangar kapı/çatı detayları ve uzak arazi. Diğer haritalar mevcut içerikleriyle korunur.
+- **Görüntü:** Düşük/orta/yüksek kalite, render çözünürlüğü, gölge ve dekoratif çevre yoğunluğu; 80–140° yatay FOV, 0–60° kamera eğimi, lens ve titreşim seçimi. Temiz görüntüde lens efekti ve varsayılan titreşim yoktur.
+- **Günlük rota ve birlikte uçuş:** Mevcut günlük görevler ve oda altyapısı korunur.
+
+Varsayılan WebGL; isteğe bağlı WebGPU deneyseldir. Görsel kalite fizik, çarpışma veya ders hedeflerini değiştirmez. Menü, kontroller ve sonuç ekranında yerel simülasyon durur. Başladıktan sonra duraklatılan görevler yerel kişisel antrenman olarak kalır, genel sıralamaya yazılmaz.
+
+## Ölçüm tabanlı itki referansı
+
+5 inç Freestyle/Racer için yayımlanmış iki statik tezgâh eğrisi kullanılır: F60 Pro IV 1750KV/6S ve 2550KV/4S, HQ 5×4 üç pal. İtiş ve akım fizik adımına bağlanır; hover gazı kuvvet dengesinden, tüketim amper-zaman integralinden hesaplanır. Kütle, kapasite ve kullanılabilir oran kullanıcı varsayımıdır. Kaynaklı referans, tam uçuş dinamiğinin doğrulandığı anlamına gelmez; açısal tepki ve hava direnci yaklaşık kalır. Diğer gövdeler/genel parça modu ölçüm doğrulamasına sahip değildir.
+
+Referans modunda koşular antrenmandır; ders ilerlemesi, eski rekor/ghost ve genel sıralama kayıtlarıyla karıştırılmaz. Genel profile dönüş Atölye veya hazırlık uyarısından yapılır. Mevcut ilerleme ve parça seçimleri korunur.
+
+Referans + Gerçekçi Acro, dört ayrı motor komutu ve tork/atalet denklemini kullanır. Atölyede J, motor zaman sabiti, yaw katsayısı ve model PID alanları vardır; bunlar ölçülmüş donanım ayarları değildir. Sayısal alanlar Değerleri uygula ile birlikte kaydedilir. Ayrıntılı HUD dört motor komutunu gösterir. Rint batarya seçeneği ortak yük altında gerilim düşüşü, SOC, mAh/Wh ve I²R kaybını hesaplar; pil parametreleri ve OCV eğrisi ölçülmemiş varsayımdır. Kesme kilidi yeni paket/reset gerektirir. Eski kayıtlar tezgâh modunda korunur.
+
+Kaynak, açık kaynak alternatifleri, lisanslar ve hata sınırları: [Fizik kanıtı](docs/PHYSICS-EVIDENCE.md). Veriyi tekrar kontrol etmek için `node tools/verify-propulsion-source.mjs`.
 
 ## Kontroller
 
@@ -42,21 +55,29 @@ Mode 2: sol stick yaw + gaz, sag stick roll + pitch.
 | Girdi | Ucus |
 |---|---|
 | Klavye | W/S gaz, A/D yaw, oklar veya IJKL pitch/roll, Space ARM, T mod, C kamera, R reset |
-| Gamepad | X ARM, Circle reset, Triangle mod, Square kamera, R1 ates; profil ve kalibrasyon Ayarlar'da |
-| Mobil | Iki sanal stick, ARM, Ates ve menu |
+| Gamepad | X ARM, Circle reset, Triangle mod, Square kamera; profil ve kalibrasyon Ayarlar'da |
+| Mobil | Iki sanal stick, ARM ve menu |
 
-Operasyon Masasi'nda L1/R1 arac secer, Square kamerayi degistirir, Circle calisma alanini sifirlar; L2+R2'yi 700 ms basili tutmak kilitli acil durus uygular. IDA'da sol dikey eksen ileri/geri, sag yatay eksen dumendir.
 
 Gamepad davranisi tarayici ve cihaz baglantisina baglidir. Fiziksel cihazla kontrol ve kalibrasyon yapmadan ucus hissinin dogrulandigi varsayilmamalidir.
 
+## RC USB kumanda profili
+
+Kontroller → Giriş profili → RC kumanda. EdgeTX USB Joystick ile tarayıcının gösterdiği cihazı seç; roll/pitch/yaw/gaz için dört farklı eksen eşle. Diğer stick'ler merkezde ve gaz en altta iken başlangıcı al, ardından dört saniye içinde tüm uçları gezdir. Canlı ham eksenler ve komut göstergelerinde yönleri kontrol et; tersliği ayrı değiştirebilirsin. Eşleme/cihaz değişirse kalibrasyon yenilenir.
+
+RC gazı doğrudan 0–100'dür; merkez hover değildir. PS profili ve R2 uygulanmaz, Angle irtifa yardımı gazın üzerine yazmaz. ARM için gaz ≤%5 ve geçerli cihaz/kalibrasyon gerekir. Bağlantı kaybı DISARM yapar; geri bağlanınca otomatik ARM olmaz. ARM Space veya ekran düğmesiyle yapılır; RC butonlarına otomatik işlev atanmaz. RC seçiliyken klavye/dokunmatik uçuş eksenlerine sessiz geçiş olmaz; menü tuşları kullanılabilir. PS/klavye/dokunmatiğe dönüş aynı profil seçicisindedir.
+
+Ayarlar `efa-hangar-rc-input-v1` anahtarında saklanır; eski kayıtlar PS profilinde kalır. Cihaz ID'si seri numarası değildir; aynı adlı cihazları tekil olarak ayırt ettiği varsayılmaz. [EdgeTX USB Joystick](https://manual.edgetx.org/color-radios/model-settings/model-setup/usb-joystick) ve [joystick eşleme bilgisi](https://manual.edgetx.org/edgetx-how-to/joystick-mapping-information-for-game-developers) yöntem kaynaklarıdır. Bu tarayıcı yolu RF alıcı bağlantısı değildir. Fiziksel TX15/USB/tarayıcı uyumu henüz doğrulanmadı.
+
 ## Veri ve Cok Oyunculu
 
-Kampanya ilerlemesi, kalibrasyon, hayalet kayitlari ve Operasyon Masasi senaryolari tarayicinin localStorage alaninda tutulur. Oda durumu, siralama sonuclari ve paylasilan tekrarlar sunucuya gider. Oyun IP adresi veya yaklasik konum kaydetmez. Ayrintilar: [Gizlilik ve Veri](docs/PRIVACY.md).
+Kampanya ilerlemesi, kalibrasyon, drone/harita seçimi, görüntü ayarları ve hayalet kayitlari tarayicinin localStorage alaninda tutulur. Oda durumu, siralama sonuclari ve paylasilan tekrarlar sunucuya gider. Oyun IP adresi veya yaklasik konum kaydetmez. Ayrintilar: [Gizlilik ve Veri](docs/PRIVACY.md).
 
 ## Belgeler
 
 - [Uctan Uca Urun Analizi](docs/URUN-ANALIZI.md)
 - [Oyuncu Rehberi](docs/OYUNCU-REHBERI.md)
+- [2.0 Teslim ve Doğrulama](docs/SIMULATOR-V2-DELIVERY.md)
 - [Dagitim ve Dogrulama](docs/DAGITIM.md)
 - [Gizlilik ve Veri](docs/PRIVACY.md)
 - [Varlik Kredileri](CREDITS.md)
@@ -66,3 +87,18 @@ Kampanya ilerlemesi, kalibrasyon, hayalet kayitlari ve Operasyon Masasi senaryol
 ## Lisans
 
 Kod [MIT Lisansi](LICENSE) ile sunulur. Ucuncu taraf varlik lisanslari [CREDITS.md](CREDITS.md) icindedir.
+
+
+## Şile merkez · 2.6
+
+Şile merkez–liman–fener çevresinde yaklaşık2×2km serbest uçuş.1.266 bina izi,340 yol parçası,10 iskele/mendirek ve6740 arazi üçgeni OSM/Copernicus snapshot'ından üretilir. Bina yüksekliklerinin çoğu7.5m varsayımı; Şile Feneri19m KEGM kaydı, kale12m varsayımıdır. Gerçek konum, temsili kütle/cephe/çatı; fotogrametri değildir.30m DSM çıplak arazi değildir. HUD AGL, kalkış parkı simülasyon işaretidir. İlk etapta dersler kendi haritalarında kalır.
+
+Veri yalnız harita seçilince yerelden yüklenir. Kaynaklar ve indirilebilir ODbL/Copernicus veri paketi `/sile.html`, `public/maps/sile/provenance.json` içindedir. `tools/prepare-sile-map.py` offline hazırlayıcıdır; bağımlılıklar `tools/requirements-sile.txt` içinde. Arayüzdeki kalite seçimi konum/fizik sıfırlamaz. İnişler üçgen araziye, bina çarpışmaları aynı ayak izli yaklaşık prizmalara dayanır; gerçek uçuş uygunluğu doğrulanmış değildir.
+
+Şile görsel ayrıntı 2.7: kaynak konumlarını ve çarpışmayı koruyan temsili pencere/sıva ve kiremit dokuları, kıyı kayası, su dalga ışığı ve köpük, kaynak yüksekliklerini değiştirmeyen yumuşak arazi normalleri. Ayrıntılar yerel çizimlerdir; binaya özel cephe taraması veya daha yüksek çözünürlüklü DEM değildir.
+
+2.8 SOURCE ONE v4 tabanlı 5inç/6S referansını atölyeden sabitleyebilirsin. Açık tasarım kaynağı ve ölçümlü motor eğrisi, varsayımsal gövde/paket/aerodinamik ayarlarından ayrı gösterilir. Referans uçuşta kuvvet tabanlı gövde direnci ve 240Hz fizik alt adımı; yük rate komutlarını yapay olarak azaltmaz. Detaylar /physics.html.
+
+2.8.1 UI denetimi: RC yardımında Mode2/mutlakgaz, canlı giriş göstergeleri ve bağlantı durumu; mevcut ARM kapılarını yansıtan düğmeler, nativeSpace erişimi, portrede ayrılan HUD satırları. Davranış sunumu src/flight-ui.js, fizik ve RC kalibrasyonu ayrı sahiplerinde kalır.
+
+Şile2.16: yakın/uzak yüzey karışması için logaritmik derinlik; kale adasında render/zeminle ortak temsili4.5m kabartma ve kaynaklı12m kule silüeti. Ham harita verisi ve uçuş/RC profili aynı; kapsam `/sile.html` ve `maps/sile/landmark-visuals.json`.

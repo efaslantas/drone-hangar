@@ -1,0 +1,71 @@
+{
+  "date": "2026-11-02",
+  "release": "v2.28.0-f3cbb587f514",
+  "url": "https://hangar.18-153-158-209.sslip.io/",
+  "status": "published",
+  "image": {
+    "release": "v2.28.0-f3cbb587f514",
+    "imageId": "sha256:0fb5d473c6d5d2c9c768d86e9c17910e0b30d1ecf3a21824f9c50a85760f82fa",
+    "archiveSha256": "c7f034ace81918593c37f32bfcc8bccd5f62e5bbf12f3dbb81648ad71ecf8d55",
+    "archiveBytes": 141346532,
+    "architecture": "arm64",
+    "sourceFiles": 268
+  },
+  "scope": {
+    "cameraFilterResolution": "Owned by postprocessing; physical target texels, create/resize/DPR",
+    "webgl": "ShaderPass.setSize from EffectComposer",
+    "nodeRenderer": "drawingBuffer dimensions initial/setSize/before-render",
+    "diagnosis": "QA-only default resolution1x1 caused band; main live previously supplied logical viewport size",
+    "mapGeometryChanged": false,
+    "physicsChanged": false,
+    "profileChanged": false
+  },
+  "verification": {
+    "regressionRed": "2/2 failed at resolution1x1 before fix",
+    "focused": 3,
+    "infra": 11,
+    "viteBuild": "pass",
+    "independentReview": "No Critical/Important/Minor",
+    "webgl": "castle/buildings/390x844 render frame; error[]",
+    "webgpu": "buildings/390x844 render frame; error[]",
+    "node22Full": {
+      "pass": 465,
+      "fail": 0,
+      "concurrency": 4,
+      "durationMs": 100291.689798
+    }
+  },
+  "limits": [
+    "No physical phone or TX15 test",
+    "No newly measured geographic data or extra map detail",
+    "Prior 30m DSM and remaining embedded facades unchanged"
+  ],
+  "proofDir": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1",
+  "localIncident": "Disk full interrupted first Node22 run and archive export; verified remote-backed generated archives removed, OrbStack restarted; full rerun required",
+  "live": {
+    "httpsHealth": "v2.28.0-f3cbb587f514",
+    "entryAssetsAndPublicSources": "pass; /tmp/sile-lighting-live-verification.log",
+    "sourceHashes": 108,
+    "twoClientWssJoinStateLeave": "pass",
+    "restartCount": 0,
+    "memoryMiB": 24.38,
+    "limitMiB": 256,
+    "uid": "1000:1000",
+    "readonly": true,
+    "network": [
+      "drone-hangar-net"
+    ],
+    "otherSevenTenantsAndNginx": "unchanged",
+    "rollbackContainerAndConsistentDataBackup": "retained",
+    "browser": "FPV DISARM; error[]",
+    "profile": {
+      "reference": "f60-1750-6s",
+      "massG": 650,
+      "capacityMah": 1100,
+      "quality": "medium",
+      "tilt": 25,
+      "input": "gamepad"
+    },
+    "proof": "sile-filter-live-2.28.png"
+  }
+}

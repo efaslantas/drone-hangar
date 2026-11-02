@@ -83,3 +83,9 @@ test("night maps keep the skyline clear of daylight decor", () => {
   assert.equal(scene.getObjectByName("skyDome"), undefined);
   clearWorld(scene);
 });
+
+test('WebGL flag resolves its perspective helper before logarithmic depth writes',()=>{
+ const scene=new THREE.Scene();buildWorld(scene,'airfield',{quality:'low'});let checked=0;
+ const expand=s=>s.replace(/#include <([\w\d_]+)>/g,(_,name)=>expand(THREE.ShaderChunk[name]));
+ scene.traverse(o=>{const m=o.material;if(m?.isShaderMaterial&&m.uniforms.time){const vertex=expand(m.vertexShader),definition=vertex.indexOf('bool isPerspectiveMatrix'),call=vertex.indexOf('vIsPerspective = float( isPerspectiveMatrix');assert.ok(call>=0);assert.ok(definition>=0&&definition<call,'log depth perspective helper must be defined before use');checked++;}});assert.ok(checked>0);clearWorld(scene);
+});

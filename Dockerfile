@@ -12,6 +12,7 @@ COPY package.json package-lock.json ./
 RUN npm ci --omit=dev
 COPY --from=build /app/dist ./dist
 COPY server ./server
+COPY src ./src
 ENV PORT=8780
 ENV RELEASE_SHA=$RELEASE_SHA
 EXPOSE 8780

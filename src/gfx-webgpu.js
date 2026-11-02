@@ -11,8 +11,8 @@ import { fxaa } from "three/addons/tsl/display/FXAANode.js";
 import { ao } from "three/addons/tsl/display/GTAONode.js";
 import { SkyMesh } from "three/addons/objects/SkyMesh.js";
 
-export async function createWebGPU(canvas, { antialias = true, powerPreference = "high-performance", forceWebGL = false } = {}) {
-  const renderer = new W.WebGPURenderer({ canvas, antialias, powerPreference, forceWebGL });
+export async function createWebGPU(canvas, { antialias = true, powerPreference = "high-performance", forceWebGL = false, logarithmicDepthBuffer = true } = {}) {
+  const renderer = new W.WebGPURenderer({ canvas, antialias, powerPreference, forceWebGL, logarithmicDepthBuffer });
   await renderer.init();
   const backend = renderer.backend?.isWebGPUBackend ? "webgpu" : "webgl2-node";
   return {
@@ -176,10 +176,12 @@ export function createComposer(renderer, scene, camera, { bloom: wantBloom = fal
         if (aoPass._cameraNear) aoPass._cameraNear.object = aoCam;
         if (aoPass._cameraFar) aoPass._cameraFar.object = aoCam;
       }
+      renderer.getDrawingBufferSize(u.resolution.value);
       post.render();
     },
-    // Pass targets follow renderer.setSize; nothing to do here.
-    setSize() {},
+    // Pass targets follow renderer size; keep camera-filter texels in sync too.
+    setSize() { renderer.getDrawingBufferSize(u.resolution.value); },
   };
+  composer.setSize();
   return { composer, renderPass, bodycam: { enabled: true, uniforms: u }, bloomPass: null };
 }

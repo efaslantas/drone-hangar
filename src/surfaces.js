@@ -7,7 +7,7 @@ export function surfaceTexture(kind, repeat = 12) {
   const size = 512, canvas = document.createElement("canvas");
   canvas.width = canvas.height = size;
   const ctx = canvas.getContext("2d");
-  const base = { sand: [174,160,128], asphalt: [57,59,58], concrete: [135,132,122], earth: [83,89,64], forest: [65,69,47], metal: [164,162,154] }[kind] || [120,120,115];
+  const base = { grass: [92,111,60], sand: [174,160,128], asphalt: [57,59,58], concrete: [135,132,122], earth: [83,89,64], forest: [65,69,47], metal: [164,162,154] }[kind] || [120,120,115];
   const pixels = ctx.createImageData(size, size);
   for (let y = 0; y < size; y++) for (let x = 0; x < size; x++) {
     const i = (y * size + x) * 4;
@@ -16,7 +16,7 @@ export function surfaceTexture(kind, repeat = 12) {
     const coarse = Math.sin(x * .029 + Math.sin(y * .013) * 1.8) * 4.2
       + Math.cos(y * .021 - Math.sin(x * .017)) * 3.4;
     const grain = (random() - .5) * (kind === "metal" ? 12 : 22);
-    for (let c = 0; c < 3; c++) pixels.data[i+c] = base[c] + coarse + grain;
+    for (let c = 0; c < 3; c++) pixels.data[i+c] = base[c] + coarse * (kind === "grass" ? .2 : 1) + grain * (kind === "grass" ? .35 : 1);
     pixels.data[i+3] = 255;
   }
   ctx.putImageData(pixels, 0, 0);
@@ -88,7 +88,7 @@ export function finishSurfaces(scene) {
         relief.colorSpace = THREE.NoColorSpace;
         relief.anisotropy = mat.map.anisotropy;
         mat.bumpMap = relief;
-        mat.bumpScale = { metal:.012, concrete:.026, asphalt:.021, sand:.032, earth:.035, forest:.04 }[surface] || .02;
+        mat.bumpScale = { grass:.003, metal:.012, concrete:.026, asphalt:.021, sand:.032, earth:.035, forest:.04 }[surface] || .02;
 
         const roughCanvas = document.createElement("canvas");
         roughCanvas.width = roughCanvas.height = 256;

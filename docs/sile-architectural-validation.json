@@ -1,0 +1,88 @@
+{
+  "date": "2026-11-02",
+  "status": "published",
+  "url": "https://hangar.18-153-158-209.sslip.io/",
+  "scope": "Authored attached architectural trim; no new measurements",
+  "metrics": {
+    "windows": 384,
+    "eaves": 160,
+    "parts": 1696,
+    "buildings": 134,
+    "newMeshes": 2,
+    "totalTraversedMeshes": 45,
+    "boxes": 10755,
+    "prisms": 1286,
+    "preservedPads": 4
+  },
+  "invariants": {
+    "old9059BoxPrefix": "exact JSON equal to2.28, independently compared",
+    "all1286Prisms": "exact JSON equal",
+    "allPreexistingMeshGeometryAttributes": "exact",
+    "sourceMap": "unchanged",
+    "originalFacadeRasterLayout": "shared metadata, same formulas",
+    "profileAndFlightForces": "unchanged",
+    "quality": "solid details and collider boxes retained all quality modes"
+  },
+  "verification": {
+    "newFocused": 8,
+    "independentReviewerFocused": 36,
+    "independentReview": "no actionable findings",
+    "infra": 11,
+    "viteBuild": "pass",
+    "webgl": "before/after detail, waterfront, quality and390x844frame; no app errors",
+    "webgpu": "detail and390x844render frame; no errors",
+    "observedWarmFps": {
+      "webgl": 60,
+      "webgpu": 52
+    },
+    "fpsLimit": "parallel test workload; observational, not guaranteed hardware performance",
+    "node22Full": {
+      "pass": 473,
+      "fail": 0,
+      "concurrency": 4,
+      "durationMs": 111007.219818
+    }
+  },
+  "limits": [
+    "No physical phone or TX15 flight tested",
+    "Windows/details are authored templates, not measured facade inventory",
+    "Not every window receives physical detail",
+    "Existing30mDSM/embedded unselected facade limits remain"
+  ],
+  "proofDir": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1",
+  "release": "v2.29.0-298729911b76",
+  "image": {
+    "release": "v2.29.0-298729911b76",
+    "imageId": "sha256:9befe1633c3ca69ba8729a8b0ab68bee6751a4d5aeb95721f03198c655f02211",
+    "archiveSha256": "4e35a9da4c7d477d273d0c7bc48a830bb909c40297b54be9fd36714e7ecbea92",
+    "archiveBytes": 141353672,
+    "architecture": "arm64",
+    "sourceFiles": 270
+  },
+  "live": {
+    "httpsHealth": "v2.29.0-298729911b76",
+    "publicAssetsAndSourceHashes": "pass; /tmp/sile-architectural-live-verification.log",
+    "runningSourceHashes": 109,
+    "twoClientWssJoinStateLeave": "pass",
+    "browser": "FPV DISARM; no application errors",
+    "restarts": 0,
+    "memoryMiB": 26.07,
+    "limitMiB": 256,
+    "uid": "1000:1000",
+    "readonly": true,
+    "network": [
+      "drone-hangar-net"
+    ],
+    "otherSevenTenantsAndNginx": "unchanged",
+    "rollbackContainerAndConsistentDataBackup": "retained",
+    "profile": {
+      "reference": "f60-1750-6s",
+      "massG": 650,
+      "capacityMah": 1100,
+      "quality": "medium",
+      "tilt": 25,
+      "input": "gamepad"
+    },
+    "proof": "sile-architectural-live-2.29.png"
+  }
+}

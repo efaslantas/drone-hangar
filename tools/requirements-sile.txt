@@ -1,0 +1,4 @@
+# Offline map preparation only; not browser/server runtime dependencies.
+numpy==2.5.4
+rasterio==1.5.2
+shapely==2.2.0

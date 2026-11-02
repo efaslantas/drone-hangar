@@ -6,6 +6,7 @@ import { audioBus } from "./sfx.js";
 // the roller-door motor when a door is moving nearby. All synthesized from the
 // shared noise buffer and a few oscillators; nothing is loaded.
 const PROFILES = {
+  aftermath: {wind:.8,sea:0,hum:0,traffic:.08,birds:0,gulls:false},
   yard: { wind: 0.55, sea: 0, hum: 0, traffic: 0.35, birds: 0.5, gulls: false },
   airfield: { wind: 1.0, sea: 0, hum: 0, traffic: 0.15, birds: 0.3, gulls: false },
   coast: { wind: 0.8, sea: 1.0, hum: 0, traffic: 0, birds: 0.2, gulls: true },

@@ -1,4 +1,4 @@
-export function connect({ onHello, onJoin, onLeave, onState, onStatus, onRooms, onMatch, onHit, onDown, onRespawn }) {
+export function connect({ onHello, onJoin, onLeave, onState, onStatus, onRooms }) {
   let ws = null;
   let alive = false;
   let timer = 0;
@@ -44,11 +44,6 @@ export function connect({ onHello, onJoin, onLeave, onState, onStatus, onRooms, 
       if (msg.t === "state") onState?.(msg);
       if (msg.t === "full") status("oda dolu");
       if (msg.t === "rooms") onRooms?.(msg.list || []);
-      // Team deathmatch: the server owns HP, deaths, scores and the clock.
-      if (msg.t === "match") onMatch?.(msg);
-      if (msg.t === "hit") onHit?.(msg);
-      if (msg.t === "down") onDown?.(msg);
-      if (msg.t === "respawn") onRespawn?.(msg);
     };
   }
 
@@ -77,7 +72,7 @@ export function connect({ onHello, onJoin, onLeave, onState, onStatus, onRooms, 
       if (Array.isArray(laps) && laps.length) msg.laps = laps.map((v) => Math.round(v * 100) / 100);
       ws.send(JSON.stringify(msg));
     },
-    sendState(s, fire = 0) {
+    sendState(s) {
       if (!alive || ws.readyState !== 1) return;
       ws.send(
         JSON.stringify({
@@ -90,14 +85,8 @@ export function connect({ onHello, onJoin, onLeave, onState, onStatus, onRooms, 
           qy: s.qy,
           qz: s.qz,
           thr: s.throttleOut,
-          fire: fire ? 1 : 0,
         }),
       );
-    },
-    /** My shot reached that pilot — the server decides whether it counts. */
-    sendHit(to) {
-      if (!alive || !ws || ws.readyState !== 1 || !to) return;
-      ws.send(JSON.stringify({ t: "hit", to }));
     },
     close() {
       clearTimeout(timer);

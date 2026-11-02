@@ -479,3 +479,18 @@ Final521/521Node22linuxARM64concurrency4 (151730.1ms),11infra,Vite/ARM64 geçti.
 Yerel175MiB alanla ilk Docker imageexport ENOSPC verdi; canlı2.32 o sırada değişmedi. LocalSHA/receipt/S3size/remoteStageSuccess doğrulanan2.29/2.30/2.31üretim arşivlerinin yalnız yerel kopyaları424095691bayt ve manifestin tüm dosyalarıyla birebir doğrulanan aynı3eski buildkopyası198093747bayt temizlendi;30bayt başarısız yeni export kaldırıldı. Asıl kaynak/beforekanıtları/manifest/receipt/current2.32paketi ve remote rollback korundu. Tekrar export ve yayın geçti.
 
 Canlı `v2.33.0-49b01ebfc1b8`:277manifest/113çalışan kaynak hash/HTTPS/source/uniqueIDs/admin401/WSS/FPVDISARM geçti.7diğer servis/nginx aynı; eski konteyner/tutarlı yedek korundu;0restart22.98MiB/256MiB. No commit/push/merge. `docs/sile-preview-reuse-validation.json`.
+
+
+## 2026-11-02 — 2.34 ana ekranda gizli uçuş sahnesini kurmayı erteleme
+
+Ana ekranın görünür billboard önizlemesi yanında gizli ana uçuş dünyası da başta tam kurulup ortamı pişiriliyordu. Ana dünya artık ilk Uçuşa başla isteğine kadar oluşturulmaz. Aynı mevcut dünya sahibi güncel harita/gece/kalite/lite/GPU/sky/props seçenekleriyle kurar; hazır bayrağı yalnız başarılı build+bake sonrası açılır. Tekrar uçuşu uygun dünyayı korur. Kamera, geometri, fizik, kaynak ve inceleme kuralları değişmez.
+
+İlk uçuşta görünür hazırlık katmanı ve etkileşimsiz hazırlık ekranı; doubleRAF ile çizime fırsat verdikten sonra mevcut senkron kurulum yapılır. İkinci başlatma beklerken reddedilir; hata/çizim hatasında kilit çözülür, yarım dünya temizlenir ve yeniden deneme mümkündür. Audio unlock kullanıcı hareketinde kalır. Uçuş rejoin/start dünya başarısından sonra; mevcut ana ekran oda bağlantısı değişmez. İlk uçuş maliyeti taşındı, yok edilmedi; önizleme ve dünya kurma hâlâ ana iş parçacığındadır.
+
+3RED→4GREENgate (eski startupgate1dahil), final524/524Node22linuxARM64concurrency4 (141406.4ms),11infra,Vite/ARM64 geçti. Freshreview0Critical/Important,1Minor: hata sonrası klavye odağı başlatan düğmeye dönmüyor;Tab ile geri erişilebilir, bu ek odak düzeltmesi ertelendi. Nullplay tüketicileri, kalite/gece/seçim, başarısız kısmi hazır durumu, temizlik ve ağ callbacks incelendi.
+
+GLanaekran/ilk dünya öncesi kalite low→medium/gerçek görünürloadingcapture/ilk ve tekrarDISARMhazır/error[];GPUquery1gerçekWebGPUilk+tekrar/60fpsgözlemi/error[];AkademiHavadaKal/Kapalıhangarilkbaşlat/duraklat/hazırlığadön,error[] geçti. Ders tamamlama veya fizikselTX15/telefon/tamrota uçuşu iddiası yok. YerelRC650g1100medium0veŞiletercihi korunur. Örnek cachedChrome reload→homeDOM gözlemi önce canlı2.33:10965ms, yerel2.34:6519ms, canlı2.34:9127ms; kontrollü benchmark/cihaz garantisi değil. Yerel tekrar uçuş249ms, canlı246ms. Yerel ilk-start görüntüsü loading’i gösterir; canlı first-start görüntüsü yakalandığında hazır uçuşa geçmişti, loadingkanıtı diye sunulmaz.
+
+Paket için273532050bayt doğrulanmış üretilmiş kopya temizlendi:2.32localarchive+build ve2.33build. LocalSHA/manifesttamdosyaeşleşmesi/S3size/stageSuccess doğrulandı; asıl kaynak/beforekanıt/receipt/manifest/current2.33archive/remoterollback korundu.
+
+Canlı `v2.34.0-86cadc92fbdd`:277manifest/113çalışan kaynak hash/HTTPS/source/uniqueIDs/admin401/WSS/ilk+tekrarFPVDISARM/error[] geçti. SOURCEONEf60-1750-6s650g1100medium25/gamepad korunur.7diğer servis/nginx aynı, oldapp/tutarlıbackup korunur;0restart24.01MiB/256MiB. Main üzerinden devam edildi, yeni çalışma dalı açılmadı; teslim commit'i Git geçmişinde tutulur. `docs/lazy-flight-start-validation.json`.

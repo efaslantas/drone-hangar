@@ -10,7 +10,7 @@ import {ARCADE,renewArcadeDrone} from './arcade.js';
 import {createArcadeView} from './arcade-view.js';
 import {armPresentation,controlPresentation,paintInputHelp} from './flight-ui.js';
 import {pinSourceOne,SOURCE_ONE_PRESET} from './flight-presets.js';
-import {createStartupGate} from './startup-gate.js';
+import {createStartupGate,createFlightStartGate} from './startup-gate.js';
 import {loadSileData,getSileData} from './sile-data.js';
 import {createMapSelector} from './map-selection.js';
 import {surfaceAt} from './geo-terrain.js';
@@ -184,8 +184,9 @@ const touchUi =
 // world is built so materials know which path they are on.
 const gfx = await createGfx(canvas, { touchUi, wantGpu: wantsWebGPU(touchUi) });
 const scene = new THREE.Scene();
-let play = buildWorld(scene, selectedMap, { lite: touchUi, gpu: gfx.node, sky: gfx.createSky, props: !touchUi, quality:visualSettings.quality });
-let loadedMap = selectedMap;
+// The homepage has its own visible billboard. Build the separate flight world
+// only after the pilot starts, never while that world is still hidden.
+let play=null,loadedMap=null,flightWorldReady=false;
 const renderer = gfx.renderer;
 renderer.setPixelRatio(currentVisualProfile.pixelRatio);
 renderer.shadowMap.enabled = currentVisualProfile.shadows;
@@ -201,7 +202,6 @@ const chaseCam = new THREE.PerspectiveCamera(82, 1, 0.1, touchUi ? 260 : 520);
 // composer keeps its old no-bloom setup.
 const { composer, renderPass, bodycam } = gfx.createComposer(scene, fpvCam, { bloom: gfx.node && !touchUi, ao: gfx.node && !touchUi, antialias: !touchUi, aa: !touchUi });
 bodycam.uniforms.quality.value = touchUi ? 0 : 1;
-if (!touchUi) bakeEnv(renderer, scene, gfx.PMREMGenerator);
 {
   const gpuBox = document.getElementById("gpu");
   const gpuStat = document.getElementById("gpu-status");
@@ -1182,7 +1182,7 @@ function spawn() {
   if(op.inspection){
     previousInspectionReport=lastInspectionReport||readInspectionReport(browserStorage)||previousInspectionReport;
     const scenario=createInspectionScenario(getSileData(),play);scenario.spawn={x:state.x,y:state.y,z:state.z};
-    inspection=createInspection(scenario,{createdAt:new Date().toISOString(),appVersion:document.querySelector('meta[name="app-version"]')?.content||'2.33',vehicle:JSON.parse(JSON.stringify(spec)),environment:{map:'sile',night:!!document.getElementById('night').checked,wind:play.wind,real:play.real},inputs:{profile:getInputSettings(),cameraTiltDegrees:0,savedTiltDegrees:visualSettings.tilt},ilkeVehicleValidated:false});
+    inspection=createInspection(scenario,{createdAt:new Date().toISOString(),appVersion:document.querySelector('meta[name="app-version"]')?.content||'2.34',vehicle:JSON.parse(JSON.stringify(spec)),environment:{map:'sile',night:!!document.getElementById('night').checked,wind:play.wind,real:play.real},inputs:{profile:getInputSettings(),cameraTiltDegrees:0,savedTiltDegrees:visualSettings.tilt},ilkeVehicleValidated:false});
     inspectionView=createInspectionView(scene,inspection);
     inspectionNavigationView=createInspectionNavigation({hud:document.getElementById('inspection-hud'),map:document.getElementById('inspection-map'),route:document.getElementById('inspection-route')},inspection,getSileData());
     inspectionSaved=false;inspectionTerminalMenu=false;inspectionCaptures=[];inspectionSaveMessage='';paintInspection();
@@ -1216,7 +1216,34 @@ screen.orientation?.addEventListener?.("change", () => setTimeout(resize, 280));
 gfx.canvas.addEventListener("webglcontextlost", (e) => e.preventDefault());
 gfx.canvas.addEventListener("webglcontextrestored", resize);
 
-function startFlight() {
+const flightLoading=document.getElementById('flight-loading');
+const startPreparedFlight=createFlightStartGate({
+  paint:()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))),
+  busy(active){
+    flightLoading.hidden=!active;hangarEl.inert=active;
+    hangarEl.setAttribute('aria-busy',String(active));
+    if(active){
+      const op=opById(selectedOp),loadout=resolveOperationLoadout(preferredLoadout,op);
+      const label=op.mapName||MAPS.find(m=>m.id===loadout.map)?.name||'Uçuş alanı';
+      flightLoading.querySelector('strong').textContent=`${label} hazırlanıyor…`;
+      flightLoading.focus();billboard.pause();
+    }else if(!flying&&hangarEl.dataset.screen==='home')billboard.resume();
+  },
+  start:()=>startFlightNow(),
+  error(cause){
+    console.error('[flight] Uçuş alanı hazırlanamadı:',cause);
+    if(flying)backHangar();
+    flightWorldReady=false;play=null;loadedMap=null;clearWorld(scene);
+    mapStatus.textContent='Uçuş alanı hazırlanamadı. Yeniden Uçuşa başla seçerek deneyebilirsin.';
+    const feedback=document.getElementById('inspection-save-feedback');feedback.hidden=false;feedback.textContent=mapStatus.textContent;
+  },
+});
+function startFlight(){
+  if(mapLoading||flying)return;
+  // Retain user activation for audio before yielding to paint the loading UI.
+  sfx.unlock();return startPreparedFlight();
+}
+function startFlightNow() {
   if(mapLoading)return;
   if(opById(selectedOp).inspection&&!getSileData()){mapStatus.textContent="Şile yüklenmeden inceleme başlayamaz.";return;}
   const op = opById(selectedOp);
@@ -1234,19 +1261,21 @@ function startFlight() {
   u.searchParams.set("room", room);
   u.searchParams.set("name", name);
   history.replaceState(null, "", u);
-  if(!op.inspection)net.join(room, name, selected);
   prevStep = -1;
   prevGates = 0;
   prevMarks = 0;
   swapChirp = false;
   lowChirp = false;
-  if (!worldMatches(scene,selectedMap,{night:nightOn,variant:op.worldVariant})) {
+  if (!flightWorldReady||!worldMatches(scene,selectedMap,{night:nightOn,variant:op.worldVariant})) {
+    flightWorldReady=false;
     for (const id of [...remotes.keys()]) dropRemote(id);
     clearWorld(scene);
     play = buildWorld(scene, selectedMap, { lite: touchUi, night: nightOn, variant:op.worldVariant, gpu: gfx.node, sky: gfx.createSky, props: !touchUi, quality:visualSettings.quality });
     if (!touchUi) bakeEnv(renderer, scene, gfx.PMREMGenerator);
     loadedMap = selectedMap;
+    flightWorldReady=true;
   }
+  if(!op.inspection)net.join(room, name, selected);
   for(const camera of [fpvCam,chaseCam]){camera.far=play.terrain?6500:(touchUi?260:520);camera.near=play.terrain ? .1 : camera===fpvCam ? .04 : .1;camera.updateProjectionMatrix();}
   document.getElementById('map-attribution').hidden=!play.terrain;
   play.drain = op.drain ?? 1;

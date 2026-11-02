@@ -1,0 +1,121 @@
+{
+  "date": "2026-11-02",
+  "status": "published",
+  "release": "v2.34.0-86cadc92fbdd",
+  "url": "https://hangar.18-153-158-209.sslip.io/",
+  "scope": "Lazy hidden flightworld construction and painted, duplicate-protected firstflight preparation",
+  "rootCause": "main eagerlybuilt/baked the hidden selectedflightworld onstartup while separatebillboard built visiblehomepage; flightworld unuseduntilstart",
+  "behavior": {
+    "initialMainWorld": "null/unbuilt untilflightstart; billboard remainsvisible",
+    "firstStart": "audio unlockedinusergesture; busyoverlay/inert hangar; doubleRAFpaint beforeexisting synchronousworldbuild; no fabricatedprogress",
+    "ready": "setonlyafter successfulbuild+bake; reuseonrepeat",
+    "failure": "gatefinallyclearsbusy; partialworldcleared/readinessreset; retryavailable",
+    "network": "flightrejoin/start afterworldsuccess; existinghomeconnectionunchanged",
+    "costTradeoff": "construction movedtofirstflight, noteliminated; firstpreviewandactualworld stillsynchronous"
+  },
+  "verification": {
+    "newGateTests": 3,
+    "focused": 4,
+    "redGreen": "3missinggateRED→4GREEN includingoldstartupgate;paintorder,duplicates,buildfailure/paintfailureandretry",
+    "node22Full": {
+      "pass": 524,
+      "fail": 0,
+      "durationMs": 141406.432264,
+      "architecture": "linux/arm64",
+      "concurrency": 4,
+      "log": ".superpowers/sdd/2026-11-02-lazy-flight-start/node22-tests.log"
+    },
+    "infra": 11,
+    "viteBuild": "pass; existinglargechunkwarning",
+    "arm64Build": "pass",
+    "freshReview": {
+      "critical": 0,
+      "important": 0,
+      "minorDeferred": [
+        "On startfailure, keyboardfocus is not restored to the initiatingbutton; usercanTabback. No blockingissue."
+      ],
+      "record": ".superpowers/sdd/2026-11-02-lazy-flight-start/review-findings.md"
+    },
+    "actualUi": {
+      "localWebgl": "home,qualitylow→medium beforefirstworld,visibleloadingcapture,firstinspectionFPVDISARMready0/3,loadinghiddenafterstart;repeat249ms,error[]",
+      "localWebgpu": "explicitgpu1actualWebGPU,first+repeatinspectionFPVDISARMready0/3,60fpsobserved,error[]; notdeviceguarantee",
+      "academy": "first Havada kal / Kapalıhangar startsDISARM,pauses/returns topreparation,error[]; no lessoncompletionclaim",
+      "profile": "localf60-1750-6s650g1100medium0RCretained;GPUqueryonlynotpersisted",
+      "loadingProof": "lazy-first-start-state-2.34.png actuallyshowsloading; livefirst-start-statecapturealreadyshowedreadyflight, notusedasloadingproof"
+    },
+    "illustrativeReloadObservationMs": {
+      "baselineLive2_33": 10965,
+      "local2_34": 6519,
+      "live2_34": 9127,
+      "method": "cachedsameChrome reload→DOMhomeobservation, oneobservationeach; includesautomationoverhead/backgroundload, notcontrolledbenchmark or universalstartupguarantee"
+    }
+  },
+  "invariants": {
+    "comparedTo": "v2.33.0-49b01ebfc1b8",
+    "worldBuilderSourceTerrainGeometryPhysicsAndInspectionCore": "allbyteidenticalmanifesthashes",
+    "firstWorldOptions": "existingcurrentloadout/night/quality/lite/GPU/sky/props",
+    "newDependencies": 0
+  },
+  "packagingCleanup": {
+    "verifiedDuplicatesRemoved": "2.32localarchive+buildcontext and2.33buildcontext",
+    "verification": "localSHA/manifestcompletefilematch/S3size/remoteStageSuccess",
+    "freedBytes": 273532050,
+    "preserved": "canonicalsource,beforeevidence,receipts/manifests,current2.33archiveandremoterollback"
+  },
+  "image": {
+    "release": "v2.34.0-86cadc92fbdd",
+    "imageId": "sha256:6f4e05881a1f3d1f42c93f84e4dd78ef2f65f50c77e216bc63afd498f6a410ef",
+    "archiveSha256": "b74ccd50edf7a1801a1f429b873d46fbdcef6d99be7688cba280dfd72c490d33",
+    "archiveBytes": 141391522,
+    "architecture": "arm64",
+    "sourceFiles": 277
+  },
+  "live": {
+    "httpsHealth": "v2.34.0-86cadc92fbdd",
+    "manifestFiles": 277,
+    "runningSourceHashes": 113,
+    "publicHttpsAssetsAndSources": "pass; /tmp/lazy-flight-live-verification.log",
+    "uniqueUiIds": true,
+    "unauthorizedAdmin": 401,
+    "twoClientWssJoinStateLeave": "pass",
+    "browser": "first+repeatinspectionready0/3DISARM,error[]; repeat246ms; isolatedhangar-check-234room",
+    "profile": {
+      "reference": "f60-1750-6s",
+      "massG": 650,
+      "capacityMah": 1100,
+      "quality": "medium",
+      "tilt": 25,
+      "input": "gamepad"
+    },
+    "restarts": 0,
+    "memoryMiB": 24.01,
+    "limitMiB": 256,
+    "uid": "1000:1000",
+    "readonly": true,
+    "network": [
+      "drone-hangar-net"
+    ],
+    "otherSevenTenantsAndNginx": "unchanged",
+    "nginxSyntax": "pass",
+    "zenthWebAndApi": 200,
+    "gelisimTlsOrigin": 200,
+    "rollbackContainerAndConsistentDataBackup": "retained"
+  },
+  "limits": [
+    "Firstpreview and firstflightworldconstruction stillmainthread; overlayisfeedback, notbackgroundparallelbuild",
+    "Firstflightcostmoved, noteliminated; reloadobservationsarenotcontrolledbenchmarks",
+    "No physicalTX15/phone/fullmanualroute flight validation",
+    "No changedmapmeasurement, physicsmodel, SITL/MAVLink orrealILKEvehicleintegration",
+    "Failurekeyboardfocusrestoration remainsminorpolish"
+  ],
+  "proofDir": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1",
+  "proof": [
+    "lazy-first-start-state-2.34.png",
+    "lazy-first-flight-ready-2.34.png",
+    "lazy-gpu-first-flight-ready-2.34.png",
+    "lazy-school-first-start-2.34.png",
+    "lazy-live-first-start-state-2.34.png",
+    "lazy-live-flight-ready-2.34.png"
+  ],
+  "git": "main; runtimehashes checked whenstaging; nofeaturebranchcreated; deliverycommit trackedinGithistory/session"
+}

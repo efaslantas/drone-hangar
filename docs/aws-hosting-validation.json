@@ -75,8 +75,8 @@
   ],
   "git": "no commit/push/merge",
   "latestUpdate": {
-    "release": "v2.33.0-49b01ebfc1b8",
-    "validation": "docs/sile-preview-reuse-validation.json",
+    "release": "v2.34.0-86cadc92fbdd",
+    "validation": "docs/lazy-flight-start-validation.json",
     "status": "published",
     "date": "2026-11-02"
   }

@@ -57,3 +57,8 @@ Manuel yaklaşma için yatay mesafe, kot farkı ve üç boyutlu bölge mesafesi 
 ### Hazır Şile önizlemesini koruma — 2.33
 
 Şile zaten seçiliyken inceleme hazırlığına geçişte aynı önizleme korunur; gereksiz tam sahne kurulumu kaldırılmıştır. İlk yükleme ve gerçek harita değişimi hâlâ hazırlık gerektirir. Bu düzeltme geometri, fizik, kumanda profili veya İLKE doğrulama kapsamını değiştirmez. [Doğrulama kaydı](sile-preview-reuse-validation.json).
+
+
+### Ana ekran ve ilk uçuş hazırlığı — 2.34
+
+Gizli ana uçuş sahnesi ilk başlatmaya kadar oluşturulmaz; ana ekran görünür önizlemeyi hazırlar. İlk uçuşta hazırlık durumu çizilir, yinelenen başlatma engellenir ve hata sonrası yeniden deneme açılır. Kurulum maliyeti yok edilmez; ilk uçuşa taşınır. Aynı uygun uçuş dünyası tekrar kullanılır. Harita/fizik/profil ve İLKE doğrulama sınırları değişmez. [Doğrulama kaydı](lazy-flight-start-validation.json).

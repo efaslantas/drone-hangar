@@ -21,9 +21,9 @@ export function harbourLayout(data){
   if(surfaceAt(play,x+nx*.8,z+nz*.8).water){nx=-nx;nz=-nz;}
   if(surfaceAt(play,x+nx*.8,z+nz*.8).water)continue;
   if(nearHarbour)masks.push([[a,b,[b[0]+nx*10,b[1]+nz*10],[a[0]+nx*10,a[1]+nz*10]]]);
-  edges.push({a,b,nx,nz,len,nearHarbour});
+  edges.push({a,b,nx,nz,len,nearHarbour,onArm});
  }
- return {masks,edges};
+ return {masks,edges,waterRings:source.harbour.map(f=>f.rings)};
 }
 export function harbourSurfaces(data,positions){
  const layout=harbourLayout(data);if(!layout)return {ground:positions,paved:[],valid:false};

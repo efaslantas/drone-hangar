@@ -42,7 +42,7 @@ export function waterMaterial(terrain){
 }
 export function foamMaterial(){
  const alpha=dataMap(512,(u,v)=>{const a=Math.round(foamDensity(u,v)*255);return [a,a,a];},{clampV:true,cacheId:'foam'});
- return new THREE.MeshBasicMaterial({color:0xd1dfd6,alphaMap:alpha,transparent:true,opacity:.48,depthWrite:false,side:THREE.DoubleSide,fog:true});
+ return new THREE.MeshBasicMaterial({vertexColors:true,color:0xd1dfd6,alphaMap:alpha,transparent:true,opacity:.48,depthWrite:false,side:THREE.DoubleSide,fog:true});
 }
 export function tickSileWater(scene,time){
  const water=scene.userData.sileWater;if(!water)return;

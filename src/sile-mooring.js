@@ -47,13 +47,14 @@ export function planMooringLinks(data,play){
  }
  return out;
 }
-function publishMesh(scene,play,name,positions,material,textureUv=null,landingTriangles=null){
+export function publishMesh(scene,play,name,positions,material,textureUv=null,landingTriangles=null){
  if(!positions.length){material.dispose();return;}
  const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute(positions,3));g.computeVertexNormals();
  const p=g.attributes.position,n=g.attributes.normal,uv=[];for(let i=0;i<p.count;i++)if(Math.abs(n.getY(i))>.5)uv.push(p.getX(i)/4,p.getZ(i)/4);else uv.push((Math.abs(n.getX(i))>Math.abs(n.getZ(i))?p.getZ(i):p.getX(i))/4,p.getY(i)/4);g.setAttribute('uv',new THREE.Float32BufferAttribute(textureUv||uv,2));
  const mesh=new THREE.Mesh(g,material);mesh.name=name;mesh.castShadow=true;mesh.receiveShadow=true;scene.add(mesh);
  play.terrainWalls??=[];
  for(let i=0;i<p.count;i+=3){const vertices=[0,1,2].map(j=>[p.getX(i+j),p.getY(i+j),p.getZ(i+j)]);const contactBounds=[0,1,2].flatMap(k=>[Math.min(...vertices.map(v=>v[k])),Math.max(...vertices.map(v=>v[k]))]);play.terrainWalls.push({vertices,contactBounds,landing:landingTriangles?.has(i/3)||false,mesh:name,authored:'harbour-link',reason:'iskele yapısına çarptı'});}
+ return mesh;
 }
 export function planSourceFootbridges(data,play){
  const out={bridges:[],rejected:[]};if(data?.id!=='sile'||!play?.terrain||!Array.isArray(data.roads))return out;

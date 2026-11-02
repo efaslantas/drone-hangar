@@ -18,8 +18,8 @@ export function sourceCoastPatches(data,terrain){
   result[feature.kind].push(...drapeTerrainTriangles(terrain,flat));
  }return result;
 }
-export function buildCoast(terrain){
- const cliffs={positions:[],uv:[],colors:[]},foam={positions:[],uv:[]},clip=createShoreClipper(terrain.land),play={terrain},wet=new Color(0x9aa294),dry=new Color(0xe2d7bd),tint=new Color();
+export function buildCoast(terrain,{sheltered=[]}={}){
+ const cliffs={positions:[],uv:[],colors:[]},foam={positions:[],uv:[],colors:[]},clip=createShoreClipper(terrain.land),play={terrain},wet=new Color(0x9aa294),dry=new Color(0xe2d7bd),tint=new Color();
  for(const rings of terrain.land)for(const ring of rings){
   const edges=ring.map((a,i)=>{const b=ring[(i+1)%ring.length],dx=b[0]-a[0],dz=b[1]-a[1],len=Math.hypot(dx,dz);let nx=len?-dz/len:0,nz=len?dx/len:0;const mx=(a[0]+b[0])/2,mz=(a[1]+b[1])/2;
    if(!surfaceAt(play,mx+nx*.8,mz+nz*.8).water){nx=-nx;nz=-nz;}const water=len>.001&&surfaceAt(play,mx+nx*.8,mz+nz*.8).water;
@@ -42,7 +42,7 @@ export function buildCoast(terrain){
       const wa=width(a),wb=width(b),q=[[a[0]+va[0]*.15,a[1]+va[1]*.15,(arc+da)*uvScale,0],[b[0]+vb[0]*.15,b[1]+vb[1]*.15,(arc+db)*uvScale,0],[a[0]+va[0]*wa,a[1]+va[1]*wa,(arc+da)*uvScale,1],[b[0]+vb[0]*wb,b[1]+vb[1]*wb,(arc+db)*uvScale,1]];
       for(const indices of [[0,2,1],[1,2,3]])for(const candidate of clip(indices.map(k=>q[k]))){
        const [a,b,c]=candidate,area=(b[0]-a[0])*(c[1]-a[1])-(b[1]-a[1])*(c[0]-a[0]),t=area>0?candidate.toReversed():candidate;
-       for(const [x,z,u,v] of t){target.positions.push(x,-terrain.datum+level,z);target.uv.push(u,v);}
+       for(const [x,z,u,v] of t){target.positions.push(x,-terrain.datum+level,z);target.uv.push(u,v);const calm=sheltered.some(r=>insidePolygon(x,z,r)),strength=(calm?.2:1)*(.55+.45*noise(x,z,19));target.colors.push(1,1,1,strength);}
       }
      }
     }

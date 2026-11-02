@@ -93,3 +93,8 @@ Eksik bağlantı yolu, adacık kıyısı ve kaynak yaya köprüsü düzeltildi.2
 ### Liman beton görünümü — 2.41
 
 Mevcut kıyı konumu ve uçuş temas geometrisi korunarak plaka derzleri, gözenekler, düzensiz aşınma ve deniz seviyesine bağlı rıhtım ıslaklığı eklendi. Görsel referans fotoğraf kaynak sayfasında bağlantılı; malzeme ölçülmüş yapı iddiası taşımaz. [Doğrulama](sile-concrete-validation.json).
+
+
+### Uzun kıyı ve koruma kayalıkları — 2.42
+
+Dış mendireğin yaklaşık606m hattına, kaynak kıyıyı ve yolları taşımadan suya kısmen gömülen383kaya/blok eklendi. Çizilen yüzeyler gerçek simülasyon temasına katılır. Kayalık doku ve açık/sakin kıyı köpüğü ayrışır. Batıdaki2×2km veri kesimi görünür; kaynak kapsamı sınırı sürer. [Doğrulama](sile-shore-armour-validation.json).

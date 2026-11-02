@@ -1,3 +1,4 @@
+import {addShoreArmour} from './sile-shore-armour.js';
 import {addMooringLinks} from './sile-mooring.js';
 import {finishSileFoliage} from './sile-foliage.js';
 import {addFacadeDepth} from './sile-architectural.js';
@@ -14,7 +15,7 @@ import {coastalRockMaterials,rockGeometry}from './sile-rock-view.js';
 import {castleSite,castleModel} from './sile-landmarks.js';
 import {surfaceTexture} from './surfaces.js';
 import {terrainHeight,surfaceAt,insidePolygon,drapeTerrainTriangles} from './geo-terrain.js';
-import {harbourSurfaces,addSileHarbour,harbourMaterial} from './sile-harbour.js';
+import {harbourSurfaces,harbourLayout,addSileHarbour,harbourMaterial} from './sile-harbour.js';
 import {coastalBuildings,buildingAprons} from './sile-buildings.js';
 import {addCoastalBuildings} from './sile-building-view.js';
 import {refineNeighbourhoodGround} from './sile-neighbourhood.js';
@@ -65,10 +66,10 @@ export function buildSile(scene,data){
  }
  const sea=new THREE.Mesh(new THREE.PlaneGeometry(10000,10000),waterMaterial(terrain));
  sea.rotation.x=-Math.PI/2;sea.position.y=-terrain.datum-.01;sea.name='sile-sea';sea.receiveShadow=true;scene.add(sea);
- const coast=buildCoast(terrain);
+ const coast=buildCoast(terrain,{sheltered:harbourLayout(data)?.waterRings});
  const cliffGeometry=rockGeometry(coast.dryCliffs,coast.wetCliffs);
  const cliff=new THREE.Mesh(cliffGeometry,[rockFinish.dry,rockFinish.wet]);cliff.name='sile-coast-cliffs';cliff.receiveShadow=true;scene.add(cliff);
- const foamGeometry=geometry(coast.foam.positions);foamGeometry.setAttribute('uv',new THREE.Float32BufferAttribute(coast.foam.uv,2));const shore=new THREE.Mesh(foamGeometry,foamMaterial());shore.name='sile-shore-foam';scene.add(shore);
+ const foamGeometry=geometry(coast.foam.positions);foamGeometry.setAttribute('uv',new THREE.Float32BufferAttribute(coast.foam.uv,2));foamGeometry.setAttribute('color',new THREE.Float32BufferAttribute(coast.foam.colors,4));const shore=new THREE.Mesh(foamGeometry,foamMaterial());shore.name='sile-shore-foam';scene.add(shore);
  scene.userData.sileWater={normalMap:sea.material.normalMap,roughnessMap:sea.material.roughnessMap,foamMaterial:shore.material};
  const patches=sourceCoastPatches(data,terrain);for(const kind of ['sand','rock']){patches[kind]=streetRemainder(patches[kind],streets);if(!patches[kind].length)continue;const material=kind==='sand'?new THREE.MeshStandardMaterial({map:surfaceTexture('sand',1),roughness:1}):rockMaterial();material.polygonOffset=true;material.polygonOffsetFactor=-1;material.polygonOffsetUnits=-2;
  const mesh=new THREE.Mesh(geometry(patches[kind],true),material);mesh.name='sile-source-'+kind;if(kind==='sand')mesh.userData.groundSurface=true;mesh.receiveShadow=true;scene.add(mesh);}
@@ -138,6 +139,7 @@ export function buildSile(scene,data){
  addBuildingFoundations(scene,play,coastal);
  applyBuildingPads(scene,data,play,coastal,streets);
  addMooringLinks(scene,data,play);
+ addShoreArmour(scene,data,play,rockFinish.dry);
  addFacadeDepth(scene,data,play,coastal);
  finishSileFoliage(scene);
  return play;

@@ -75,9 +75,9 @@
   ],
   "git": "no commit/push/merge",
   "latestUpdate": {
-    "date": "2026-11-02",
-    "release": "v2.41.0-26faf677f80f",
+    "release": "v2.42.0-f0d7d412b45f",
+    "validation": "docs/sile-shore-armour-validation.json",
     "status": "published",
-    "validation": "docs/sile-concrete-validation.json"
+    "date": "2026-11-02"
   }
 }

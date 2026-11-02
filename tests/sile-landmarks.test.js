@@ -19,7 +19,7 @@ test('rendered rock platform and castle collider agree while all other buildings
  const p=rock.geometry.attributes.position;for(let i=0;i<p.count;i++)assert.ok(Math.abs(p.getY(i)-terrainHeight(play.terrain,p.getX(i),p.getZ(i)))<.0001);
  const i=data.buildings.findIndex(b=>b.landmark==='castle');assert.equal(play.prisms[i].miny,s.castle.base);assert.equal(play.prisms[i].maxy,s.castle.base+12);assert.equal(play.prisms.filter(q=>q.authored!=='coastal-foundation').length,data.buildings.length+data.structures.length);
  for(let j=0;j<data.buildings.length;j++)if(j!==i){assert.equal(play.prisms[j].miny,data.buildings[j].base);assert.equal(play.prisms[j].maxy,data.buildings[j].base+data.buildings[j].height);}
- assert.equal(JSON.stringify(data),before);let meshes=0;scene.traverse(o=>{if(o.isMesh)meshes++});assert.ok(meshes<=49);
+ assert.equal(JSON.stringify(data),before);let meshes=0;scene.traverse(o=>{if(o.isMesh)meshes++});assert.ok(meshes<=50);
 });
 
 test('unsupported castle bodies retain the generic fallback instead of building invalid detail geometry',()=>{

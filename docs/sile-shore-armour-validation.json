@@ -1,0 +1,164 @@
+{
+  "date": "2026-11-02",
+  "release": "v2.42.0-f0d7d412b45f",
+  "status": "published",
+  "url": "https://hangar.18-153-158-209.sslip.io/",
+  "scope": "Existing2x2km Sile source coast: outer breakwater shoulder, natural rock material, offshore foam exposure",
+  "armour": {
+    "sourceEdgeLengthM": 605.7044382430373,
+    "pieces": 383,
+    "rocks": 281,
+    "blocks": 102,
+    "triangles": 6844,
+    "maxPieces": 480,
+    "maxTriangles": 9600,
+    "meshBatches": 1,
+    "materialGroups": 2,
+    "placement": "Seaward outer source breakwater; partly submerged, variable scale/rotation/offset; authored dimensions, not survey",
+    "contacts": "Exact uploaded Float32 triangles with cached bounds and upward landing flags; existing collision engine"
+  },
+  "coastAppearance": [
+    "Stronger irregular rock fractures and normal relief on existing cliff/island/rock surfaces",
+    "Continuous variable RGBA foam opacity along actual clipped coast",
+    "Source harbour interior foam strength reduced to20percent of exposed equivalent"
+  ],
+  "appearanceReference": {
+    "author": "Zach1055",
+    "date": "2025-06-07",
+    "url": "https://commons.wikimedia.org/wiki/File:%C5%9Eile_boardwalk_%26_Black_Sea_coast_June_2025.jpg",
+    "license": "CCBYSA4.0",
+    "usage": "Viewed in browser as material/armour appearance reference; no copied image asset or surveyed dimensions"
+  },
+  "preservation": {
+    "oldWorldComparison": {
+      "identicalShapesAndCollisions": true,
+      "results": [
+        {
+          "shape": "a6dec19109a0577be2e0d6cb023124465a77c3ce0144a93b8d55d7492e144f86",
+          "collision": "4da1960b9d2cb9f3beb1bc53f3d9c4648f725b6c7f879195887f0eac0e2b05ad"
+        },
+        {
+          "shape": "a6dec19109a0577be2e0d6cb023124465a77c3ce0144a93b8d55d7492e144f86",
+          "collision": "4da1960b9d2cb9f3beb1bc53f3d9c4648f725b6c7f879195887f0eac0e2b05ad"
+        }
+      ]
+    },
+    "comparisonExclusions": [
+      "New shore-armour mesh/contacts",
+      "New foam RGBA colour attribute"
+    ],
+    "sourceMap": "Canonical map/projection/coastline/heights/roads/buildings/piers unchanged",
+    "oldObjectCounts": {
+      "boxes": 10755,
+      "prisms": 1286
+    },
+    "meshCount": {
+      "buildSile": 50,
+      "buildWorld": 51
+    }
+  },
+  "checks": {
+    "node22": {
+      "passed": 548,
+      "failed": 0,
+      "durationMs": 131770.580964
+    },
+    "infra": 11,
+    "vite": "pass; existing chunk-size warning",
+    "arm64": "pass",
+    "redGreen": "Missing source armour and exposure assertions RED→GREEN; rock contrast target RED→GREEN; actual contact/lifecycle integration passed",
+    "physicalProbes": 20,
+    "review": {
+      "findings": "No actionable Critical/Important/Minor",
+      "finalFloat32Samples": 47908,
+      "landHarbourStructureViolations": 0,
+      "roadClearanceMinM": 10.841,
+      "mapBoundaryMarginMinM": 1.835,
+      "longEdge": {
+        "lengthM": 371.078,
+        "pieces": 310,
+        "firstAlongM": 1.92,
+        "lastAlongM": 368.644,
+        "maximumCentreGapM": 3.483
+      }
+    },
+    "visual": "ActualGL outer/west/east close/overview and WebGPU outer ready, error[]; static synthetic camera, not flight/FPS measurement",
+    "iteration": "Initial sparse shoulder and repeating sine bedding rejected visually; final denser shoulder/irregular noise texture rechecked. First full run had2stale mesh budgets; final548/548 after budget fixes. First package preserved under first-build, never deployed.",
+    "manifestFiles": 283,
+    "runningSourceHashes": 116,
+    "https": {
+      "health": {
+        "ok": true,
+        "version": "v2.42.0-f0d7d412b45f"
+      },
+      "uniqueIds": 252,
+      "entryAssets": "pass",
+      "changedSourcePageSha": "pass"
+    },
+    "wss": "two-clientjoin/state/leave pass",
+    "liveBrowser": {
+      "landPaths": 5,
+      "roadPaths": 341,
+      "settings": [
+        {
+          "id": "reference-profile",
+          "value": "f60-1750-6s"
+        },
+        {
+          "id": "reference-mass",
+          "value": "650"
+        },
+        {
+          "id": "reference-capacity",
+          "value": "1100"
+        },
+        {
+          "id": "quality-preset",
+          "value": "medium"
+        },
+        {
+          "id": "cam-tilt",
+          "value": "25"
+        },
+        {
+          "id": "input-mode",
+          "value": "gamepad"
+        }
+      ],
+      "version": "2.42.0",
+      "errors": []
+    },
+    "liveFlight": "DISARM0/3",
+    "container": {
+      "restarts": 0,
+      "memoryMiB": 24.28,
+      "user": "1000:1000",
+      "readonly": true
+    },
+    "sharedHost": "7other tenants and nginx bytes unchanged;Zenthweb/API200;GelisımTLSorigin200;oldapp/consistentbackupretained"
+  },
+  "image": {
+    "release": "v2.42.0-f0d7d412b45f",
+    "imageId": "sha256:548865ecab63327b12f55478693def99f7ef77dfff9774ca27c98c72659e8cdd",
+    "archiveSha256": "8dccda70addc51310220290a4e7d727dcf983336ed983bddff1268391934c672",
+    "archiveBytes": 141488991,
+    "architecture": "arm64",
+    "sourceFiles": 283
+  },
+  "limits": [
+    "Dimensions/placement/foam are authored appearance, not coastal engineering measurement",
+    "Existing2x2km crop remains visibly finite at western map limit; no invented shoreline beyond coverage",
+    "Native30mDSM/estimatedroadwidths/buildingheights persist",
+    "Service ways1485112031/1485112032 remain source-support uncertain",
+    "No physicalTX15 or realILKEflightvalidation"
+  ],
+  "evidence": {
+    "scratch": "/Users/efa/projects/drone-hangar/.superpowers/sdd/2026-11-02-sile-shore-armour",
+    "screenshots": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1",
+    "outerGl": "shore-outer-after-2.42.png",
+    "outerGpu": "shore-outer-gpu-2.42.png",
+    "east": "shore-east-close-2.42.png",
+    "west": "shore-west-2.42.png",
+    "overview": "shore-overview-2.42.png"
+  }
+}

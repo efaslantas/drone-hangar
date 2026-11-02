@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import source from './data/sile-context.json' with {type:'json'};
 import {insidePolygon,surfaceAt,drapeTerrainTriangles} from './geo-terrain.js';
 import {createSurfacePartition} from './sile-shore.js';
-import {surfaceTexture} from './surfaces.js';
+import {concreteMaterial} from './sile-concrete.js';
 const random=(n,s=0)=>{let h=(Math.imul(n|0,374761393)^Math.imul(s,668265263))>>>0;h=Math.imul(h^(h>>>13),1274126177);return ((h^(h>>>16))>>>0)/4294967295;};
 function distance(x,z,a,b){const dx=b[0]-a[0],dz=b[1]-a[1],l=dx*dx+dz*dz,t=l?Math.max(0,Math.min(1,((x-a[0])*dx+(z-a[1])*dz)/l)):0;return Math.hypot(x-a[0]-dx*t,z-a[1]-dz*t);}
 function boundaryDistance(x,z,rings){let d=Infinity;for(const ring of rings)for(let i=0;i<ring.length;i++)d=Math.min(d,distance(x,z,ring[i],ring[(i+1)%ring.length]));return d;}
@@ -62,4 +62,4 @@ export function addSileHarbour(scene,data,play){
  const mesh=new THREE.InstancedMesh(g,new THREE.MeshStandardMaterial({color:0xffffff,roughness:1}),matrices.length);mesh.name='sile-harbour-armour';mesh.userData.harbourBoxes=boxes;
  matrices.forEach((m,i)=>{mesh.setMatrixAt(i,m);mesh.setColorAt(i,colors[i]);});mesh.instanceMatrix.needsUpdate=true;mesh.instanceColor.needsUpdate=true;mesh.castShadow=true;mesh.receiveShadow=true;mesh.computeBoundingBox();mesh.computeBoundingSphere();scene.add(mesh);scene.userData.sileHarbourStats={rocks:matrices.length,authored:true};
 }
-export function harbourMaterial(){return new THREE.MeshStandardMaterial({map:surfaceTexture('concrete',1),roughness:.97});}
+export function harbourMaterial(options){return concreteMaterial(options);}

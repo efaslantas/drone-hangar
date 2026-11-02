@@ -552,3 +552,12 @@ Bütün yol genişlikleri sınıf tahmini; kaynakta0width etiketi var.30mDSM ada
 3GIS/541Node22/11infra,Vite/ARM64 geçti. Bağımsız inceleme temiz;93köprü temas probu geçti. GL/WebGPU kaynak sahne/error[] sabit kamera kanıtı tutulur. Canlıda yeniJS eskiönbellek haritasını yükleyebiliyordu: gerçek tarayıcıda340yol/4kara görüldü; loader cache:no-cache ve RED→GREEN testinden sonra önbelleği silmeden341yol/5kara,error[],DISARM0/3 doğrulandı.
 
 Canlı v2.40.0-6b3a5ede6c5a:281manifest/114runninghash,8değişenpublicSHA/HTTPS/uniqueIDs/entryassets/WSS geçti.0restart24.65MiB/256MiB;7diğer servis/nginx aynı,Zenthweb/API200,GelişimTLSorigin200;eskiapp/tutarlıbackupkorundu. [Doğrulama](sile-geography-validation.json).
+
+
+## 2026-11-02 — 2.41 liman beton yüzeyleri
+
+Mevcut rıhtım, mendirek kaplaması ve iskele bağlantılarında kodla üretilen plaka derzleri, mineral gözenekleri ve düzensiz aşınma kullanılır. Rıhtım duvarının koyu/ıslak kuşağı ortalama deniz seviyesine göreUV eşlenir; dikeyclamp tekrarlanan su bandını önler. Albedo sRGB, bump/roughness doğrusal; mipmap/anisotropy açık, dünya başına sahiplik ve temizleme var. Referans: Zach1055,7Haziran2025Şilemendireği, WikimediaCommonsCCBYSA4.0; fotoğraf yalnız tarayıcıda incelendi, varlıklara kopyalanmadı. Modelplaka2m ölçüsü görselvarsayım; yeni kıyı/yol ölçümü değil.
+
+2.40ve2.41dünyalarında position/normal/index/transform/instancecolour ve tüm çarpışma hashleri birebir. YalnızUV/malzeme ve generic harbour-pavingcolourattribute değişir; basegolden bu görünüm farkına güncellendi.3piksel regresyonuRED→GREEN,544/544Node22ARM64concurrency4(128109.319868ms),11infra,Vite/ARM64pass. Mevcut gerçektemas testi denizseviyeliUV ve10kaynakdisposeolayı için genişletildi. GL/WebGPU yakınkaynakdünya sabitkamerası/error[]; görüntü gerçekuçuş değil. Küçükmalzemediffi yazar scopedreview; yeni bağımsızreview yok.
+
+Canlı v2.41.0-26faf677f80f;282manifest115runninghash/odaklıHTTPS/changedpageSHA/WSSpass. Gerçektarayıcı341yol/5kara,DISARM0/3/error[];SOURCEONEf60-1750-6s650g1100medium25/gamepadkorunur.0restart25.75MiB/256MiB;7diğerservis/nginxaynı;oldapp/tutarlıbackupkorunur.2servisyolu1485112031/32belirsizliği ve30mDSMyükseklik/genişliktahminisınırlarısürer;gerçekTX15/İLKEuçuşkabulüyok. [Doğrulama](sile-concrete-validation.json).

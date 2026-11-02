@@ -88,3 +88,8 @@ Kullanıcı ayrı bağlantı elemanlarını istemedi. 2.38’in dar geçitleri v
 ### Şile kaynak geometrisi denetimi — 2.40
 
 Eksik bağlantı yolu, adacık kıyısı ve kaynak yaya köprüsü düzeltildi.2×2km alandaki339kaynak yol/7kıyı çizgisi denetlendi; kontrol haritası kaynak yollarına bağlanır. Genişlikler tahmini,30mDSM ve iki belirsiz sahil servis yolu açıkça belirtilir. Eski haritayı yükleyen tarayıcı önbellek sorunu da giderildi. [Doğrulama](sile-geography-validation.json).
+
+
+### Liman beton görünümü — 2.41
+
+Mevcut kıyı konumu ve uçuş temas geometrisi korunarak plaka derzleri, gözenekler, düzensiz aşınma ve deniz seviyesine bağlı rıhtım ıslaklığı eklendi. Görsel referans fotoğraf kaynak sayfasında bağlantılı; malzeme ölçülmüş yapı iddiası taşımaz. [Doğrulama](sile-concrete-validation.json).

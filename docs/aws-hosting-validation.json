@@ -75,9 +75,9 @@
   ],
   "git": "no commit/push/merge",
   "latestUpdate": {
-    "release": "v2.40.0-6b3a5ede6c5a",
-    "validation": "docs/sile-geography-validation.json",
+    "date": "2026-11-02",
+    "release": "v2.41.0-26faf677f80f",
     "status": "published",
-    "date": "2026-11-02"
+    "validation": "docs/sile-concrete-validation.json"
   }
 }

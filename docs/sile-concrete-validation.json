@@ -1,0 +1,111 @@
+{
+  "date": "2026-11-02",
+  "release": "v2.41.0-26faf677f80f",
+  "status": "published",
+  "url": "https://hangar.18-153-158-209.sslip.io/",
+  "scope": "Appearance of existing Şile harbour paving, pier connections/source footbridge and quay; no source or physical geometry change",
+  "changes": [
+    "Deterministic seamless concrete slab albedo, bump and roughness",
+    "Two-metre authored slab joints at existing horizontal surfaces",
+    "Quay wet/algae band relative to mean sea level, V-clamped to avoid stacked wet bands",
+    "Each world owns and disposes texture resources"
+  ],
+  "appearanceReference": {
+    "author": "Zach1055",
+    "date": "2025-06-07",
+    "url": "https://commons.wikimedia.org/wiki/File:%C5%9Eile_boardwalk_%26_Black_Sea_coast_June_2025.jpg",
+    "license": "CC BY-SA4.0",
+    "usage": "Viewed in browser, not copied into assets; procedural texture not photo texture or measured model"
+  },
+  "geometryComparison": {
+    "identicalShapesAndCollisions": true,
+    "results": [
+      {
+        "shape": "f08095043bdcbc901fdfbc23f2c80c7af49f13e587d6c953775ff39b0944ff5e",
+        "collision": "4da1960b9d2cb9f3beb1bc53f3d9c4648f725b6c7f879195887f0eac0e2b05ad"
+      },
+      {
+        "shape": "f08095043bdcbc901fdfbc23f2c80c7af49f13e587d6c953775ff39b0944ff5e",
+        "collision": "4da1960b9d2cb9f3beb1bc53f3d9c4648f725b6c7f879195887f0eac0e2b05ad"
+      }
+    ]
+  },
+  "appearanceFingerprintNote": "UV, materials and removed generic harbour-paving colour attribute are intentional appearance changes. All position/normal/index arrays, instance transforms/colours and physical collision data match2.40. Base golden updated only for these appearance changes.",
+  "checks": {
+    "node22": {
+      "pass": 544,
+      "fail": 0,
+      "durationMs": 128109.319868
+    },
+    "infra": 11,
+    "vite": "pass; existing chunk warning",
+    "arm64": "pass",
+    "pixelRegression": "3tests observedRED→GREEN:seams/jointrelief/wetband/texturechannels",
+    "sceneIntegration": "Existing contact test extended for sea-relative quay UV and all10geometry/material/texture disposal events",
+    "visual": "ActualGL+WebGPU close source-world view, ready/error[]; synthetic camera, not actualflight",
+    "review": "Author scoped diff review; no new independent reviewer for this small material change",
+    "manifestFiles": 282,
+    "runningSourceFiles": 115,
+    "https": "release/uniqueIDs/entryassets/changedsourcepageSHA pass",
+    "wss": "two-clientjoin/state/leave pass",
+    "liveBrowser": {
+      "landPaths": 5,
+      "roadPaths": 341,
+      "settings": [
+        {
+          "id": "reference-profile",
+          "value": "f60-1750-6s"
+        },
+        {
+          "id": "reference-mass",
+          "value": "650"
+        },
+        {
+          "id": "reference-capacity",
+          "value": "1100"
+        },
+        {
+          "id": "quality-preset",
+          "value": "medium"
+        },
+        {
+          "id": "cam-tilt",
+          "value": "25"
+        },
+        {
+          "id": "input-mode",
+          "value": "gamepad"
+        }
+      ],
+      "version": "2.41.0",
+      "errors": []
+    },
+    "liveFlight": "DISARM0/3",
+    "sharedHost": "7other tenant identities and nginx bytes unchanged;Zenthweb/API200,GelişimTLSorigin200;oldapp/consistentbackupretained",
+    "container": {
+      "restarts": 0,
+      "memoryMiB": 25.75,
+      "user": "1000:1000",
+      "readonly": true
+    }
+  },
+  "image": {
+    "release": "v2.41.0-26faf677f80f",
+    "imageId": "sha256:510cdf7a9d0a44acaeaeb3baa677579c81fde68cc2b572a2b2b59b28939618d2",
+    "archiveSha256": "0bb188d3f041bd4d49b5086639c997c5a9279f905507633b5de1852ac567ecf3",
+    "archiveBytes": 141482691,
+    "architecture": "arm64",
+    "sourceFiles": 282
+  },
+  "limits": [
+    "All previous2.40source map limitations persist",
+    "Two service routes1485112031/32 remain source-support uncertain",
+    "Native30mDSM and estimatedroadwidths/buildingheights",
+    "No physicalTX15/İLKEflightvalidation"
+  ],
+  "evidence": {
+    "scratch": "/Users/efa/projects/drone-hangar/.superpowers/sdd/2026-11-02-sile-concrete",
+    "glScreenshot": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-concrete-quay-gl-2.41.png",
+    "gpuScreenshot": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-concrete-quay-gpu-2.41.png"
+  }
+}

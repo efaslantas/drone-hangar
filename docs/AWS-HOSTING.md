@@ -1,6 +1,6 @@
 # Drone Hangar — AWS işletim kaydı
 
-2026-11-02: Kullanıcı Drone simülatörü 2.16 için mevcut Zenth AWS sunucusunu seçti. Canlı adres: https://hangar.18-153-158-209.sslip.io/ . İlk kurulum `v2.16.0-7f5130339846`; güncel sürüm `v2.36.0-0296056ce7e4` (2.36, 2026-11-02).
+2026-11-02: Kullanıcı Drone simülatörü 2.16 için mevcut Zenth AWS sunucusunu seçti. Canlı adres: https://hangar.18-153-158-209.sslip.io/ . İlk kurulum `v2.16.0-7f5130339846`; güncel sürüm `v2.37.0-89734fb23807` (2.37, 2026-11-02).
 
 ## Yerleşim
 
@@ -107,3 +107,5 @@ Regresyon paketi artık11test: snapshot sırası/hatası, candidate başlangıç
 2.35 yayını: `v2.35.0-c37c3a8426e3`, hazırlık hatası sonrası klavye odağını geri verme.277manifest/113runninghash/HTTPS/WSS/normalEnterstartFPVDISARM/error[];0restart24.48MiB/256MiB.7diğer servis/nginx aynı; eski app/tutarlı yedek korunur. SOURCEONE650g1100medium25/gamepad korunur. `start-focus-validation.json`.
 
 2.36 yayını: `v2.36.0-0296056ce7e4`, Şile zemin rengi yol sorgusunda yerel indeks. 529 uygulama/11 infra testi, GL/WebGPU, 277 manifest/113 çalışan kaynak hash ve HTTPS/WSS geçti. Diğer yedi servis ve nginx aynı; eski uygulama ve tutarlı veri yedeği korunur. 0 restart, 24.41 MiB/256 MiB. SOURCE ONE 650 g/1100 mAh/medium/25°/gamepad korunur. `sile-build-profile-validation.json`.
+
+2.37: `v2.37.0-89734fb23807`; bina tabanı sınır hesabı tek geçişe indirildi. 529 uygulama/11 infra, ARM64, 277 manifest/113 çalışan kaynak hash ve HTTPS/WSS geçti. Diğer yedi servis/nginx aynı, rollback ve veri yedeği korunur. `pad-bounds-validation.json`.

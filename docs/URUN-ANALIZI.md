@@ -71,3 +71,7 @@ Hazırlık hatası sonrasında odak önceki görünür düğmeye, o düğme gizl
 ### Şile kurulumunda yol sorgusu — 2.36
 
 Bina çevresi zemin rengi hesaplanırken yakın yol parçaları 48 m hücreli bir indeksle seçilir. Kaynak sırası ve son mesafe hesabı korunur; 83.025 Float64 örneği ile tam sahnenin geometri ve çarpışma özetleri önceki sürümle birebir aynıdır. Yerel iki kurulum ölçümünde yaklaşık %9 azalma görüldü; bu bir FPS veya cihaz yükleme süresi garantisi değildir. [Doğrulama](sile-build-profile-validation.json).
+
+### Bina tabanı hesaplaması — 2.37
+
+Kırpma parçalarının sınır hesabı dört geçici dizi yerine tek geçiş kullanır. Sayısal sahne/çarpışma kayıtları aynıdır; yerel iki kurulumda yaklaşık %6 azalma görüldü. Bu bir FPS garantisi değildir. [Doğrulama](pad-bounds-validation.json).

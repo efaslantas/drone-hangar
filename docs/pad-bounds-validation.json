@@ -1,0 +1,115 @@
+{
+  "date": "2026-11-02",
+  "status": "published",
+  "release": "v2.37.0-89734fb23807",
+  "scope": "Single-pass private building-pad bounds helper; avoids four coordinate arrays per clipping fragment",
+  "changedRuntimeFiles": [
+    "src/sile-pads.js",
+    "index.html",
+    "package.json",
+    "package-lock.json"
+  ],
+  "baselineCommit": "3d61e33d5e1f186af3f69344e4bc063518993708",
+  "measurement": {
+    "beforeWorldMs": [
+      4610.759833,
+      3962.985917
+    ],
+    "afterWorldMs": [
+      4348.448417,
+      3712.268375
+    ],
+    "reductionPercent": [
+      5.69,
+      6.33
+    ],
+    "profileOverTwoBuilds": {
+      "before": {
+        "applyBuildingPads": {
+          "selfMs": 797.262,
+          "inclusiveMs": 1387.488
+        },
+        "bounds": {
+          "selfMs": 369.323,
+          "inclusiveMs": 380.881
+        }
+      },
+      "after": {
+        "applyBuildingPads": {
+          "selfMs": 724.797,
+          "inclusiveMs": 955.375
+        },
+        "bounds": {
+          "selfMs": 27.991,
+          "inclusiveMs": 27.991
+        }
+      }
+    },
+    "limits": "Local Node/canvas-shim construction with CPU profiling, two builds per process; not device load or FPS benchmark. A prior contended after run was discarded and retained as such in scratch evidence."
+  },
+  "verification": {
+    "standaloneExactInputComparisons": 3240,
+    "inputCases": "source rings forward/reverse; empty array, signed zero, NaN, infinities",
+    "focusedExistingTests": 19,
+    "newTests": 0,
+    "reason": "Small private arithmetic refactor; existing pad, geometry, ground-normal and collision tests plus prior full-world golden provide meaningful coverage. No new implementation-mirroring tests.",
+    "review": "Author scoped self-review of private helper; no independent review for this small correction",
+    "infra": 11,
+    "vite": "pass; existing large chunk warning",
+    "arm64": "pass",
+    "node22": {
+      "pass": 529,
+      "fail": 0,
+      "durationMs": 155958.857024,
+      "architecture": "linux/arm64",
+      "concurrency": 4
+    },
+    "browser": "Real world rendered in local GL; fixed-camera harbour QA uses actual builder. No new live full-route/physical-controller check."
+  },
+  "invariants": {
+    "fieldSamples": 83025,
+    "fieldSha256": "b0be888b19f304edd9a696a75c4ac4c8feb0eae341cdb41b63f7403767212673",
+    "geometryMaterialSha256": "6cd4080934eb97cc56fd0402d5c5eec2df322d35f6b2498831ecf377e4b48216",
+    "collisionSha256": "4bc6080dfd3fd712bf527af96385cc9a1ab71c5f81c8affd36afcf62885dcd77",
+    "beforeAfter": "identical",
+    "meshes": 46,
+    "boxes": 10755,
+    "prisms": 1286,
+    "physicsMapAndProfileCode": "unchanged",
+    "dependenciesAdded": 0
+  },
+  "image": {
+    "release": "v2.37.0-89734fb23807",
+    "imageId": "sha256:ef7a96252b0647ad3b243360714e4a7d8816da3b375c89b5e993efc9127d4cc6",
+    "archiveSha256": "3ed38614d39a2118c16e28c0cdc8d48cc56c3c1f7addcb4f98f996cb55d08978",
+    "archiveBytes": 141393364,
+    "architecture": "arm64",
+    "sourceFiles": 277
+  },
+  "limits": [
+    "Initial scene build remains synchronous",
+    "Map retains 30m DSM and representative architecture",
+    "No physical TX15/real ILKE validation"
+  ],
+  "proofDir": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1",
+  "proof": [
+    "harbour-links-before-overview.png"
+  ],
+  "url": "https://hangar.18-153-158-209.sslip.io/",
+  "live": {
+    "httpsHealth": "v2.37.0-89734fb23807",
+    "manifestFiles": 277,
+    "runningSourceHashes": 113,
+    "publicHttpsAssetsAndSources": "pass",
+    "twoClientWssJoinStateLeave": "pass",
+    "restarts": 0,
+    "memoryMiB": 24.73,
+    "limitMiB": 256,
+    "uid": "1000:1000",
+    "readonly": true,
+    "otherSevenTenantsAndNginx": "unchanged; nginx syntax pass",
+    "zenthWebAndApi": 200,
+    "gelisimTlsOrigin": 200,
+    "rollbackContainerAndConsistentDataBackup": "retained"
+  }
+}

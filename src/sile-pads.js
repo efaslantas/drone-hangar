@@ -5,7 +5,8 @@ import {coastalBuildings,buildingFacade} from './sile-buildings.js';
 import {streetLayout,roadRibbonMasks} from './sile-streets.js';
 import {createSurfacePartition} from './sile-shore.js';
 import {terrainHeight,drapeTerrainTriangles,splitTerrainEdge,insidePolygon,partitionBuildingPads} from './geo-terrain.js';
-const bounds=ring=>[Math.min(...ring.map(p=>p[0])),Math.max(...ring.map(p=>p[0])),Math.min(...ring.map(p=>p[1])),Math.max(...ring.map(p=>p[1]))];
+// Avoid four temporary coordinate arrays for every clipping fragment.
+const bounds=ring=>{let minx=Infinity,maxx=-Infinity,minz=Infinity,maxz=-Infinity;for(const p of ring){minx=Math.min(minx,p[0]);maxx=Math.max(maxx,p[0]);minz=Math.min(minz,p[1]);maxz=Math.max(maxz,p[1]);}return [minx,maxx,minz,maxz];};
 const overlaps=(a,b)=>a[0]<=b[1]&&a[1]>=b[0]&&a[2]<=b[3]&&a[3]>=b[2];
 const faces=r=>[[r[0],r[1],r[2]],[r[0],r[2],r[3]]];
 const flat=r=>faces(r).flatMap(t=>t.flatMap(([x,z])=>[x,0,z]));

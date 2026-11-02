@@ -75,8 +75,8 @@
   ],
   "git": "no commit/push/merge",
   "latestUpdate": {
-    "release": "v2.36.0-0296056ce7e4",
-    "validation": "docs/sile-build-profile-validation.json",
+    "release": "v2.37.0-89734fb23807",
+    "validation": "docs/pad-bounds-validation.json",
     "status": "published",
     "date": "2026-11-02"
   }

@@ -5,8 +5,16 @@ const ctx=new Proxy({createImageData:(w,h)=>({data:new Uint8ClampedArray(w*h*4)}
 const data=JSON.parse(fs.readFileSync(new URL('../public/maps/sile/map.json',import.meta.url)));
 test('three disconnected source piers receive bounded landed connections without source mutation',()=>{
  assert.equal(typeof api.planMooringLinks,'function');const before=JSON.stringify(data),plan=api.planMooringLinks(data,{terrain:data.terrain});assert.equal(plan.links.length,3);
- for(const p of plan.links){assert.ok(p.length>3&&p.length<55);assert.ok(p.width>=2&&p.width<=4);const pier=data.structures.find(s=>s.id===p.sourceId);assert.ok(pier);for(const v of p.top.slice(0,2))assert.equal(surfaceAt({terrain:data.terrain},v[0],v[2]).water,false);for(const v of p.top.slice(2))assert.ok(insidePolygon(v[0],v[2],pier.rings));assert.ok(p.top.every(v=>v.every(Number.isFinite)));}
+ for(const p of plan.links){assert.ok(p.length>3&&p.length<55);assert.ok(p.width>=3.9&&p.width<=4.1);const pier=data.structures.find(s=>s.id===p.sourceId);assert.ok(pier);for(const v of p.top.slice(0,2))assert.equal(surfaceAt({terrain:data.terrain},v[0],v[2]).water,false);for(const v of p.top.slice(2))assert.ok(insidePolygon(v[0],v[2],pier.rings));assert.ok(p.top.every(v=>v.every(Number.isFinite)));}
  assert.equal(JSON.stringify(data),before);assert.equal(api.planMooringLinks({...data,id:'yard'},{terrain:data.terrain}).links.length,0);
+});
+test('pier extensions keep the source cap width and direction with no separate rails',()=>{
+ const scene=new THREE.Scene(),play={terrain:data.terrain,terrainWalls:[]},plan=api.addMooringLinks(scene,data,play),mesh=scene.getObjectByName('sile-mooring-links');
+ assert.equal(mesh.geometry.attributes.position.count,3*12*3,'only three closed pier extensions; no additional rail or post geometry');
+ for(const link of plan.links){assert.ok(link.width>3.9&&link.width<4.1);const p=data.structures.find(p=>p.id===link.sourceId),ring=p.rings[0];let matched=false;
+  for(let i=0;i<ring.length;i++){const a=ring[i],b=ring[(i+1)%ring.length],width=Math.hypot(b[0]-a[0],b[1]-a[1]);if(width<3.9||width>4.1)continue;const center=[(a[0]+b[0])/2,(a[1]+b[1])/2],end=link.top[2].map((v,k)=>(v+link.top[3][k])/2),shore=link.top[0].map((v,k)=>(v+link.top[1][k])/2),dx=shore[0]-end[0],dz=shore[2]-end[2],along=Math.abs(dx*(b[0]-a[0])+dz*(b[1]-a[1]))/Math.hypot(dx,dz)/width;if(Math.hypot(end[0]-center[0],end[2]-center[1])<1&&along<1e-8)matched=true;}
+  assert.ok(matched,'extension follows original pier axis '+link.sourceId);
+ }
 });
 const top=[[-2,1,-2],[2,1,-2],[2,2,2],[-2,2,2]],walls=[{vertices:[top[0],top[3],top[1]],reason:'iskele geçidine çarptı'},{vertices:[top[1],top[3],top[2]],reason:'iskele geçidine çarptı'}];
 const state=(x,y,z)=>({x,y,z,vx:0,vy:-1,vz:0,armed:false});
@@ -17,10 +25,6 @@ test('drawn sloping triangle stops deck contact without an invisible underpass s
 });
 test('fast contact stops on the first actual bridge face from either side',()=>{
  for(const sign of [-1,1]){const s={...state(.5,1.5-sign*2,0),vy:-sign*8,motionStart:{x:.5,y:1.5+sign*2,z:0}};applyWorld(s,{size:.5},{terrainWalls:walls});assert.ok(sign*(s.y-1.5)>.2);assert.equal(s.crashed,undefined);}
-});
-test('real water under each bridge stays flyable above the sea and below the visible deck',()=>{
- const scene=new THREE.Scene(),play={terrain:data.terrain,terrainWalls:[],boxes:[],prisms:[]},plan=api.addMooringLinks(scene,data,play);
- for(const link of plan.links){const shore=link.top[0].map((v,k)=>(v+link.top[1][k])/2),pier=link.top[2].map((v,k)=>(v+link.top[3][k])/2),point=shore.map((v,k)=>v*.2+pier[k]*.8);const s={...state(point[0],point[1]-.55,point[2]),vy:0};assert.equal(surfaceAt(play,s.x,s.z).water,true);applyWorld(s,{size:.5},play);assert.equal(s.crashed,undefined);assert.ok(Math.abs(s.y-(point[1]-.55))<1e-8);}
 });
 test('the quay covers the source shoreline behind each disconnected pier',()=>{
  const scene=new THREE.Scene(),play={terrain:data.terrain,terrainWalls:[],boxes:[],prisms:[]},plan=api.addMooringLinks(scene,data,play),quay=play.terrainWalls.filter(w=>w.mesh==='sile-harbour-quay');

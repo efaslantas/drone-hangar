@@ -1,0 +1,119 @@
+{
+  "date": "2026-11-02",
+  "status": "published",
+  "release": "v2.39.0-e8fe147865f3",
+  "scope": "User correction: remove intermediate narrow access ramps and rails, extend existing pier axis and model width directly to shore",
+  "supersedes": "2.38 ramp and railing interpretation",
+  "geometry": {
+    "links": [
+      {
+        "sourceId": 1485112033,
+        "length": 8.883795422402216,
+        "width": 3.976823738920685,
+        "shorePoint": [
+          68.34877822342601,
+          -259.88364920896294
+        ]
+      },
+      {
+        "sourceId": 1485112035,
+        "length": 26.214252363054225,
+        "width": 3.973619911809341,
+        "shorePoint": [
+          31.055447700694057,
+          -236.4853387834834
+        ]
+      },
+      {
+        "sourceId": 1485112037,
+        "length": 44.218518670431706,
+        "width": 3.9847596681948363,
+        "shorePoint": [
+          -29.392586324066116,
+          -208.72919087888033
+        ]
+      }
+    ],
+    "stats": {
+      "links": 3,
+      "quayTriangles": 234,
+      "authored": true,
+      "rejected": []
+    },
+    "contactTriangles": 270,
+    "landingTriangles": 6,
+    "meshes": 2
+  },
+  "invariants": {
+    "sourceData": "unchanged canonical coastline, terrain, pier and boat source placement",
+    "collisionEngine": "unchanged from2.38; actual uploaded triangles reused",
+    "legacyWorld": "Original geometry/material/collision golden and83025Float64field samples unchanged, excluding explicitly authored pier/quay meshes and records",
+    "newDependencies": 0
+  },
+  "verification": {
+    "redGreen": "New direct-geometry test observed2.38 failure2916vs108vertices and wrong width; now checks exactly36extension triangles, source-cap direction and width, landed endpoints and source overlap",
+    "focused": {
+      "pass": 12,
+      "fail": 0
+    },
+    "infra": 11,
+    "vite": "pass; existing large chunk warning",
+    "arm64": "pass",
+    "review": "Author scoped self-review; no new independent review for this geometry-only user correction.2.38collision engine unchanged.",
+    "GL": "Actual fixed-camera near-view, errors[]",
+    "WebGPU": "Not rerun for2.39; renderer unchanged,2.38actualGPU proof retained in prior validation",
+    "node22": {
+      "pass": 536,
+      "fail": 0,
+      "durationMs": 181560.266587,
+      "architecture": "linux/arm64",
+      "concurrency": 4
+    }
+  },
+  "image": {
+    "release": "v2.39.0-e8fe147865f3",
+    "imageId": "sha256:e22fc6bf3b602b5a0024ad5afc47976b02d03f79c4772760a4e82fb4621834c5",
+    "archiveSha256": "4e57ab9c12725118a05a279180600aded9d68424891bc2dfda4b7edf4f9c432f",
+    "archiveBytes": 141397045,
+    "architecture": "arm64",
+    "sourceFiles": 279
+  },
+  "proofDir": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1",
+  "proof": [
+    "direct-piers-close-2.39.png",
+    "direct-piers-live-ready-2.39.png"
+  ],
+  "limits": [
+    "Authored direct pier extensions, not surveyed harbour engineering",
+    "Model source cap width includes1cm inset per side for numerical boundary clearance",
+    "No new physical TX15 or realILKE/full route validation"
+  ],
+  "url": "https://hangar.18-153-158-209.sslip.io/",
+  "live": {
+    "release": "v2.39.0-e8fe147865f3",
+    "manifestFiles": 279,
+    "runningSourceHashes": 114,
+    "focusedHttpsChecks": "health/version/uniqueUIIDs/newpublicpage+metadataSHA256/entryassets pass; unchanged public assets not redundantly re-downloaded",
+    "twoClientWssJoinStateLeave": "pass",
+    "browser": "inspection readyDISARM0/3, errors[]",
+    "profile": {
+      "reference": "f60-1750-6s",
+      "massG": 650,
+      "capacityMah": 1100,
+      "quality": "medium",
+      "tiltDegrees": 25,
+      "input": "gamepad"
+    },
+    "restarts": 0,
+    "memoryMiB": 26.3,
+    "limitMiB": 256,
+    "uid": "1000:1000",
+    "readonly": true,
+    "otherSevenTenantsAndNginx": "unchanged; nginx syntax pass",
+    "zenthWebAndApi": 200,
+    "gelisimTlsOrigin": 200,
+    "rollbackContainerAndConsistentDataBackup": "retained",
+    "qaViewer": "49353 local server stopped; no QA in release"
+  },
+  "git": "main; final commit/remote identity in Git history/session"
+}

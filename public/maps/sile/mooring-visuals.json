@@ -1,5 +1,5 @@
 {
-  "version": "2.38",
+  "version": "2.39",
   "authored": true,
   "sourceMapUnchanged": true,
   "sourcePierIds": [
@@ -11,18 +11,21 @@
     "url": "https://commons.wikimedia.org/wiki/File:%C5%9Eile_Liman%C4%B1_A%C4%9Fustos_2024.jpg",
     "author": "Vikimedyahesap",
     "license": "CC0-1.0",
-    "purpose": "Visual evidence of shore-to-pier sloping access; image not redistributed"
+    "purpose": "Harbour visual reference; the user requested direct pier extensions in2.39, replacing2.38access ramps"
   },
   "links": {
-    "widthM": 2.4,
-    "deckThicknessM": 0.22,
+    "type": "direct-source-pier-extension",
+    "width": "existing source model cap width, minus1cm per side to avoid boundary rounding",
+    "direction": "existing pier axis projected directly to first landed source coastline crossing",
+    "bottom": "same source pier base; visible full-depth side faces",
+    "rails": false,
+    "separateAccessRamp": false,
     "shoreInsetM": [
       2,
       10
     ],
     "pierOverlapM": 0.7,
     "maxSpanM": 55,
-    "placement": "Nearest source-coast edge to the shore end of selected existing source pier; both shore corners on land and both deck corners inside original pier",
     "dimensionsMeasured": false
   },
   "quay": {
@@ -32,9 +35,10 @@
     "sourceTerrainHeightsChanged": false
   },
   "physics": {
-    "method": "Actual uploaded Float32 triangles for deck, rails and quay; existing swept sphere contact owner",
+    "method": "Actual uploaded Float32 pier extension and quay triangles; existing swept sphere contact owner",
     "invisibleUnderBridgeSolid": false,
-    "sourceCoastlineChanged": false
+    "sourceCoastlineChanged": false,
+    "openUnderpass": "removed: extension is a full-depth continuation of source pier, not a thin access bridge"
   },
   "limits": [
     "Authored reconstruction, not a surveyed marina or civil engineering model",

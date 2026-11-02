@@ -11,8 +11,17 @@ function closestShore(terrain,p){
   if(!best||distance<best.distance)best={q,distance};
  }return best;
 }
-// Source pier positions stay fixed. The missing shore links are authored
-// interpretations of the reference photo, not surveyed marina engineering.
+function shoreAlong(terrain,p,dx,dz){
+ let best=null;
+ for(const rings of terrain.land)for(const ring of rings)for(let i=0;i<ring.length;i++){
+  const a=ring[i],b=ring[(i+1)%ring.length],ex=b[0]-a[0],ez=b[1]-a[1],cross=dx*ez-dz*ex;if(Math.abs(cross)<1e-9)continue;
+  const t=((a[0]-p[0])*ez-(a[1]-p[1])*ex)/cross,u=((a[0]-p[0])*dz-(a[1]-p[1])*dx)/cross;
+  if(t<=0||t>52||u<0||u>1||best&&t>=best.distance)continue;
+  const q=[p[0]+dx*t,p[1]+dz*t];if(surfaceAt({terrain},q[0]+dx*.1,q[1]+dz*.1).water)continue;best={q,distance:t};
+ }return best;
+}
+// Extend the existing pier axis and width directly to land. Source data stays
+// intact; the added footprint remains authored rather than surveyed geometry.
 export function planMooringLinks(data,play){
  const out={links:[],rejected:[]},terrain=play?.terrain;
  if(data?.id!=='sile'||!terrain||!data.structures||!Object.entries(source.projection).every(([k,v])=>data.projection?.[k]===v))return out;
@@ -21,28 +30,27 @@ export function planMooringLinks(data,play){
   const ring=pier.rings[0];let anchor=null;
   for(let i=0;i<ring.length;i++){
    const a=ring[i],b=ring[(i+1)%ring.length];if(Math.hypot(b[0]-a[0],b[1]-a[1])>5)continue;
-   const p=[(a[0]+b[0])/2,(a[1]+b[1])/2],near=closestShore(terrain,p);if(near&&(!anchor||near.distance<anchor.distance))anchor={...near,p};
+   const p=[(a[0]+b[0])/2,(a[1]+b[1])/2],near=closestShore(terrain,p);if(near&&(!anchor||near.distance<anchor.distance))anchor={...near,p,a,b};
   }
   if(!anchor||anchor.distance<1||anchor.distance>48){out.rejected.push(sourceId);continue;}
-  const {p,q,distance}=anchor,dx=(p[0]-q[0])/distance,dz=(p[1]-q[1])/distance,nx=-dz,nz=dx,width=2.4,h=width/2,end=[p[0]+dx*.7,p[1]+dz*.7];let top=null,length=0;
+  const {p,a:capA,b:capB}=anchor,capWidth=Math.hypot(capB[0]-capA[0],capB[1]-capA[1]);let dx=-(capB[1]-capA[1])/capWidth,dz=(capB[0]-capA[0])/capWidth;
+  if(dx*(anchor.q[0]-p[0])+dz*(anchor.q[1]-p[1])<0){dx=-dx;dz=-dz;}
+  const shore=shoreAlong(terrain,p,dx,dz);if(!shore){out.rejected.push(sourceId);continue;}
+  const {q,distance}=shore,nx=dz,nz=-dx,width=capWidth-.02,h=width/2,end=[p[0]-dx*.7,p[1]-dz*.7];let top=null,length=0;
   for(let inset=2;inset<=10;inset++){
-   const a=[q[0]-dx*inset,q[1]-dz*inset],corners=[[a[0]+nx*h,a[1]+nz*h],[a[0]-nx*h,a[1]-nz*h],[end[0]-nx*h,end[1]-nz*h],[end[0]+nx*h,end[1]+nz*h]];
+   const a=[q[0]+dx*inset,q[1]+dz*inset],corners=[[a[0]+nx*h,a[1]+nz*h],[a[0]-nx*h,a[1]-nz*h],[end[0]-nx*h,end[1]-nz*h],[end[0]+nx*h,end[1]+nz*h]];
    if(corners.slice(0,2).some(v=>surfaceAt(play,...v).water)||corners.slice(2).some(v=>!insidePolygon(...v,pier.rings)))continue;
    top=corners.map((v,i)=>[v[0],i<2?terrainHeight(terrain,...v)+.015:pier.base+pier.height+.0005,v[1]]);length=distance+inset+.7;break;
   }
   if(!top||!top.every(v=>v.every(Number.isFinite))||length>55){out.rejected.push(sourceId);continue;}
-  out.links.push({sourceId,top,length,width,shorePoint:q,authored:true});
+  out.links.push({sourceId,top,length,width,base:pier.base,shorePoint:q,authored:true});
  }
  return out;
-}
-function addBox(positions,center,size,direction){
- const up=new THREE.Vector3(0,1,0),forward=direction.clone().normalize(),right=new THREE.Vector3().crossVectors(up,forward).normalize(),vertical=new THREE.Vector3().crossVectors(forward,right).normalize(),frame=new THREE.Matrix4().makeBasis(right,vertical,forward);frame.setPosition(center);
- const g=new THREE.BoxGeometry(...size);g.applyMatrix4(frame);const p=g.attributes.position,ids=g.index.array;for(const id of ids)positions.push(p.getX(id),p.getY(id),p.getZ(id));g.dispose();
 }
 function publishMesh(scene,play,name,positions,material,textureUv=null,landingTriangles=null){
  if(!positions.length){material.dispose();return;}
  const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute(positions,3));g.computeVertexNormals();
- const p=g.attributes.position,uv=[];for(let i=0;i<p.count;i++)uv.push(p.getX(i)/2,p.getZ(i)/2);g.setAttribute('uv',new THREE.Float32BufferAttribute(textureUv||uv,2));
+ const p=g.attributes.position,n=g.attributes.normal,uv=[];for(let i=0;i<p.count;i++)if(Math.abs(n.getY(i))>.5)uv.push(p.getX(i)/2,p.getZ(i)/2);else uv.push((Math.abs(n.getX(i))>Math.abs(n.getZ(i))?p.getZ(i):p.getX(i))/2,p.getY(i)/2);g.setAttribute('uv',new THREE.Float32BufferAttribute(textureUv||uv,2));
  const mesh=new THREE.Mesh(g,material);mesh.name=name;mesh.castShadow=true;mesh.receiveShadow=true;scene.add(mesh);
  play.terrainWalls??=[];
  for(let i=0;i<p.count;i+=3){const vertices=[0,1,2].map(j=>[p.getX(i+j),p.getY(i+j),p.getZ(i+j)]);const contactBounds=[0,1,2].flatMap(k=>[Math.min(...vertices.map(v=>v[k])),Math.max(...vertices.map(v=>v[k]))]);play.terrainWalls.push({vertices,contactBounds,landing:landingTriangles?.has(i/3)||false,mesh:name,authored:'harbour-link',reason:'iskele yapısına çarptı'});}
@@ -52,13 +60,8 @@ export function addMooringLinks(scene,data,play){
  const positions=[],landingTriangles=new Set();
  for(const link of plan.links){
   landingTriangles.add(positions.length/9);landingTriangles.add(positions.length/9+1);
-  const v=[...link.top,...link.top.map(([x,y,z])=>[x,y-.22,z])];
+  const v=[...link.top,...link.top.map(([x,y,z])=>[x,link.base,z])];
   for(const ids of [[0,2,1],[0,3,2],[4,5,6],[4,6,7],[0,1,4],[1,5,4],[1,2,5],[2,6,5],[2,3,6],[3,7,6],[3,0,7],[0,4,7]])positions.push(...ids.flatMap(i=>v[i]));
-  for(const [a,b]of [[link.top[0],link.top[3]],[link.top[1],link.top[2]]]){
-   const start=new THREE.Vector3(...a),end=new THREE.Vector3(...b),d=end.clone().sub(start),segments=Math.ceil(d.length()/2.5);
-   for(let i=0;i<=segments;i++){const p=start.clone().addScaledVector(d,i/segments);p.y+=.48;addBox(positions,p,[.065,.96,.065],new THREE.Vector3(0,0,1));}
-   const raised=d.clone(),center=start.clone().add(end).multiplyScalar(.5);center.y+=.96;addBox(positions,center,[.065,.065,d.length()],raised);
-  }
  }
  publishMesh(scene,play,'sile-mooring-links',positions,harbourMaterial(),null,landingTriangles);
  const quay=[],quayUv=[],layout=harbourLayout(data),t=play.terrain;

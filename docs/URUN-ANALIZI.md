@@ -79,3 +79,7 @@ Kırpma parçalarının sınır hesabı dört geçici dizi yerine tek geçiş ku
 ### Limanın kıyıyla bağlantısı — 2.38
 
 Teknelerin bulunduğu üç iskele kaynak kara sınırından kopuk görünüyordu. Kaynak iskeleleri ve tekneleri taşımadan, mevcut kıyıya ulaşan üç eğimli geçit, korkuluklar ve iç liman kıyısına rıhtım yüzeyi eklendi. 2024 liman fotoğrafıyla karşılaştırıldı; boyutlar ve yapı yorumu temsili, ölçülmüş liman mühendisliği değildir. Çarpışma çizilen yüzeylerle eşleşir ve alt geçişlerde görünmez dolgu yoktur. [Doğrulama](sile-mooring-validation.json).
+
+### İskeleleri doğrudan birleştirme — 2.39
+
+Kullanıcı ayrı bağlantı elemanlarını istemedi. 2.38’in dar geçitleri ve korkulukları kaldırıldı; üç iskele mevcut model genişliği ve doğrultusunda kıyıya doğrudan uzatıldı. Uzantıların gövde tabanı mevcut iskeleyle eşleşir, yüzeyleri çizilen geometriyle temas eder. [Doğrulama](direct-piers-validation.json).

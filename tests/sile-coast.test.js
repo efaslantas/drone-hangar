@@ -3,12 +3,12 @@ import {buildSile} from '../src/sile-world.js';import {surfaceAt,terrainHeight,i
 const coast=await import('../src/sile-coast.js').catch(()=>({}));
 const ctx=new Proxy({createImageData:(w,h)=>({data:new Uint8ClampedArray(w*h*4)}),createLinearGradient:()=>({addColorStop(){}}),createRadialGradient:()=>({addColorStop(){}})},{get:(o,k)=>k in o?o[k]:(()=>{})});globalThis.document={createElement:()=>({getContext:()=>ctx})};
 const data=JSON.parse(fs.readFileSync(new URL('../public/maps/sile/map.json',import.meta.url))),before=JSON.stringify(data);
-test('mapped beaches drape land while offshore rock is excluded without modifying map or colliders',()=>{
- const scene=new THREE.Scene(),play=buildSile(scene,data);for(const kind of ['sand']){
+test('mapped beaches and the recovered source islet rock drape land without mutating source or colliders',()=>{
+ const scene=new THREE.Scene(),play=buildSile(scene,data);for(const kind of ['sand','rock']){
   const mesh=scene.getObjectByName('sile-source-'+kind);assert.ok(mesh,'mapped '+kind+' was previously unused');const p=mesh.geometry.attributes.position;assert.ok(p.count>0);for(let i=0;i<p.count;i++){const x=p.getX(i),z=p.getZ(i);assert.equal(surfaceAt(play,x,z).water,false);assert.ok(Math.abs(p.getY(i)-terrainHeight(play.terrain,x,z)-.0005)<.0002);}
  const ray=new THREE.Raycaster(),ground=scene.getObjectByName('sile-terrain');scene.updateMatrixWorld(true);
   for(let j=0;j<p.count;j+=90){if(j+2>=p.count)continue;const x=(p.getX(j)+p.getX(j+1)+p.getX(j+2))/3,z=(p.getZ(j)+p.getZ(j+1)+p.getZ(j+2))/3;ray.set(new THREE.Vector3(x,100,z),new THREE.Vector3(0,-1,0));assert.equal(ray.intersectObject(ground).length,0,'grass under sourced beach must be removed to avoid triangular depth patches');}
- }assert.equal(scene.getObjectByName('sile-source-rock'),undefined,'source bare_rock entirely offshore is excluded rather than inventing an island');assert.equal(JSON.stringify(data),before);assert.equal(play.prisms.filter(q=>q.authored!=='coastal-foundation').length,data.buildings.length+data.structures.length);let meshes=0;scene.traverse(o=>{if(o.isMesh)meshes++});assert.ok(meshes<=47);
+ }assert.ok(scene.getObjectByName('sile-source-rock'),'mapped rock must cover the recovered closed source islet');assert.equal(JSON.stringify(data),before);assert.equal(play.prisms.filter(q=>q.authored!=='coastal-foundation').length,data.buildings.length+data.structures.length);let meshes=0;scene.traverse(o=>{if(o.isMesh)meshes++});assert.ok(meshes<=49);
 });
 test('new shoreline foam stay completely offshore after Float32 upload',()=>{
  const scene=new THREE.Scene(),play=buildSile(scene,data);for(const name of ['sile-shore-foam']){const mesh=scene.getObjectByName(name);assert.ok(mesh);const p=mesh.geometry.attributes.position;assert.ok(p.count>0);for(let i=0;i<p.count;i+=3)for(const [a,b] of [[0,0],[1,0],[0,1],[.2,.3],[.5,.5]]){const x=p.getX(i)*(1-a-b)+p.getX(i+1)*a+p.getX(i+2)*b,z=p.getZ(i)*(1-a-b)+p.getZ(i+1)*a+p.getZ(i+2)*b;assert.ok(surfaceAt(play,x,z).water);}}

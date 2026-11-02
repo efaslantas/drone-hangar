@@ -16,3 +16,7 @@ test('Şile loader is lazy, shares an inflight request and retries a failure',as
  let fail=true;const retry=api.createSileLoader(async()=>{if(fail)throw new Error('offline');return {ok:true,json:async()=>data}});await assert.rejects(retry.load());fail=false;assert.equal(await retry.load(),data);
  assert.throws(()=>api.validateSileData({...data,terrain:{...data.terrain,heights:[NaN]}}));
 });
+test('map reload revalidates a cached dataset while repeated loads reuse the fresh result',async()=>{
+ const calls=[],loader=api.createSileLoader(async(url,options)=>{calls.push({url,options});return {ok:true,json:async()=>data};});
+ assert.equal(await loader.load(),data);assert.equal(calls[0].url,'/maps/sile/map.json');assert.equal(calls[0].options?.cache,'no-cache');assert.equal(await loader.load(),data);assert.equal(calls.length,1);
+});

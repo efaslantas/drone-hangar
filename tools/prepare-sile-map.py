@@ -8,6 +8,7 @@ from rasterio.windows import from_bounds,Window
 from shapely.geometry import Polygon,LineString,Point,box,mapping
 from shapely.ops import polygonize,unary_union
 from shapely import constrained_delaunay_triangles
+from sile_geography import coast_land_classifier,road_features
 
 parser=argparse.ArgumentParser();parser.add_argument('--osm',required=True);parser.add_argument('--dem',required=True);parser.add_argument('--out',default='public/maps/sile');args=parser.parse_args()
 out=pathlib.Path(args.out);out.mkdir(parents=True,exist_ok=True)
@@ -20,13 +21,7 @@ area=box(*project(bbox[0],bbox[1]),*project(bbox[2],bbox[3]))
 def coords(e):return [project(nodes[n]['lon'],nodes[n]['lat']) for n in e['nodes'] if n in nodes]
 def polygons(g):return [g] if g.geom_type=='Polygon' else [p for p in getattr(g,'geoms',[]) if p.geom_type=='Polygon']
 coasts=[LineString(coords(e)) for e in ways.values() if e.get('tags',{}).get('natural')=='coastline']
-segments=[(a,b) for l in coasts for a,b in zip(list(l.coords),list(l.coords)[1:]) if a!=b]
-def on_land(point):
- nearest=(float('inf'),False)
- for a,b in segments:
-  dx,dy=b[0]-a[0],b[1]-a[1];s=dx*dx+dy*dy;t=max(0,min(1,((point.x-a[0])*dx+(point.y-a[1])*dy)/s));qx,qy=a[0]+t*dx,a[1]+t*dy;d=(point.x-qx)**2+(point.y-qy)**2
-  if d<nearest[0]:nearest=(d,dx*(point.y-a[1])-dy*(point.x-a[0])>0)
- return nearest[1]
+on_land=coast_land_classifier(coasts)
 faces=polygonize(unary_union([area.boundary,*[l.intersection(area) for l in coasts]]));land=unary_union([p for p in faces if on_land(p.representative_point())]).buffer(0)
 if not .3<land.area/area.area<.95:raise ValueError('Unexpected coastline polygonization')
 # Polygon ways and building multipolygons, excluding relation-member duplicates.
@@ -93,19 +88,7 @@ for j in range(rows-1):
      if not tri.exterior.is_ccw:pts.reverse()
      for x,y in pts:
       q=xz(x,y);positions.extend([q[0],round(gridheight(x,y)-datum,2),q[1]])
-roads=[]
-for e in ways.values():
- tags=e.get('tags',{});kind=tags.get('highway')
- if kind not in ['primary','secondary','tertiary','residential','unclassified','service','living_street','pedestrian','footway','path','steps','track','cycleway']:continue
- width={'primary':8,'secondary':7,'tertiary':6,'residential':5,'service':4,'pedestrian':3,'footway':1.5,'path':1.5,'steps':2}.get(kind,4)
- try:width=max(.8,min(15,float(tags.get('width',width))))
- except ValueError:pass
- g=LineString(coords(e)).intersection(area)
- for line in ([g] if g.geom_type=='LineString' else getattr(g,'geoms',[])):
-  if line.geom_type!='LineString' or line.length<1:continue
-  # Densify so strips follow the sampled terrain instead of cutting valleys.
-  line=line.segmentize(8)
-  roads.append({'id':e['id'],'kind':kind,'width':width,'points':[xz(x,y) for x,y in line.coords]})
+roads=road_features(ways,coords,area,xz)
 structures=[]
 for e in ways.values():
  kind=e.get('tags',{}).get('man_made')

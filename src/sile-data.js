@@ -11,10 +11,10 @@ export function createSileLoader(fetcher){
  let current=null,pending=null;
  return {get:()=>current,load(){
   if(current)return Promise.resolve(current);
-  if(!pending)pending=fetcher('/maps/sile/map.json').then(r=>{if(!r.ok)throw new Error('Şile verisi yüklenemedi.');return r.json();}).then(validateSileData).then(data=>(current=data)).catch(error=>{pending=null;throw error;});
+  if(!pending)pending=fetcher('/maps/sile/map.json',{cache:'no-cache'}).then(r=>{if(!r.ok)throw new Error('Şile verisi yüklenemedi.');return r.json();}).then(validateSileData).then(data=>(current=data)).catch(error=>{pending=null;throw error;});
   return pending;
  }};
 }
-const loader=createSileLoader(url=>fetch(url));
+const loader=createSileLoader((url,options)=>fetch(url,options));
 export const loadSileData=()=>loader.load();
 export const getSileData=()=>loader.get();

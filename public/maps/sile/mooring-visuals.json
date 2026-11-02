@@ -1,7 +1,7 @@
 {
-  "version": "2.39",
+  "version": "2.40",
   "authored": true,
-  "sourceMapUnchanged": true,
+  "sourceMapUnchanged": false,
   "sourcePierIds": [
     1485112033,
     1485112035,
@@ -44,5 +44,18 @@
     "Authored reconstruction, not a surveyed marina or civil engineering model",
     "No coastline landfill or bathymetry change",
     "Existing source 30m DSM and representative buildings remain"
-  ]
+  ],
+  "sourceFootbridges": {
+    "sourceIds": [
+      1531132593
+    ],
+    "horizontalGeometry": "Retained OSM footway bridge centerline, 2m endpoint overlaps to landed full-width support",
+    "width": "Source model road width (class estimate, not measured)",
+    "elevation": "Linear interpolation between native DSM endpoint supports; not surveyed bridge elevation",
+    "thicknessM": 0.18,
+    "railsAdded": false
+  },
+  "sourceOsmUnchanged": true,
+  "sourcePiersUnchanged": true,
+  "convertedMapCorrectedIn": "2.40"
 }

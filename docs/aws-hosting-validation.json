@@ -75,8 +75,8 @@
   ],
   "git": "no commit/push/merge",
   "latestUpdate": {
-    "release": "v2.39.0-e8fe147865f3",
-    "validation": "docs/direct-piers-validation.json",
+    "release": "v2.40.0-6b3a5ede6c5a",
+    "validation": "docs/sile-geography-validation.json",
     "status": "published",
     "date": "2026-11-02"
   }

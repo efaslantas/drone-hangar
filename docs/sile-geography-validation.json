@@ -1,0 +1,166 @@
+{
+  "date": "2026-11-02",
+  "status": "published",
+  "release": "v2.40.0-6b3a5ede6c5a",
+  "url": "https://hangar.18-153-158-209.sslip.io/",
+  "scope": "Existing approximately 2x2km Şile centre snapshot; source fidelity, not surveyed district-wide digital twin",
+  "fixes": [
+    "Include omitted primary_link way1025872605",
+    "Recover closed concave islet coast way256360436 via containment/winding",
+    "Render source footbridge1531132593 over water using source centreline and exact Float32 surface contacts",
+    "Revalidate map fetch across releases to avoid stale warm-browser geometry"
+  ],
+  "sourceAudit": {
+    "scope": "Existing2x2km snapshot source fidelity, not surveyed real-world accuracy",
+    "coast": {
+      "sourceWays": 7,
+      "sourceLengthM": 8220.503716272184,
+      "modelLengthM": 8220.556522623974,
+      "sourceConversionMaxDeviationM": 0.006700656348408702
+    },
+    "roads": {
+      "sourceWaysChecked": 339,
+      "modelPieces": 341,
+      "modelUniqueWayIds": 339,
+      "missing": [],
+      "maxSourceConversionDeviationM": 0.007021174124021941,
+      "worst": [
+        {
+          "id": 1531132593,
+          "maxSourceDeviationM": 0.007021174124021941,
+          "sourceLengthM": 183.94710763620725,
+          "modelLengthM": 183.95602747802528
+        },
+        {
+          "id": 371474919,
+          "maxSourceDeviationM": 0.006890071516215604,
+          "sourceLengthM": 248.8841618192196,
+          "modelLengthM": 248.88954283231897
+        },
+        {
+          "id": 643468071,
+          "maxSourceDeviationM": 0.006881344335907091,
+          "sourceLengthM": 161.42356492326647,
+          "modelLengthM": 161.41016906949366
+        },
+        {
+          "id": 1493330719,
+          "maxSourceDeviationM": 0.006792099922751291,
+          "sourceLengthM": 156.17129790795374,
+          "modelLengthM": 156.16771543998757
+        },
+        {
+          "id": 1493075496,
+          "maxSourceDeviationM": 0.006755981017749698,
+          "sourceLengthM": 85.97695959860086,
+          "modelLengthM": 85.97840266596818
+        }
+      ],
+      "overWaterNotOnSourcePier": [
+        {
+          "id": 1485112031,
+          "name": "",
+          "kind": "service",
+          "bridge": null,
+          "waterGapM": 35.23728825285255
+        },
+        {
+          "id": 1485112032,
+          "name": "",
+          "kind": "service",
+          "bridge": null,
+          "waterGapM": 107.77885557459605
+        },
+        {
+          "id": 1531132593,
+          "name": "",
+          "kind": "footway",
+          "bridge": "yes",
+          "waterGapM": 179.80477413396068
+        }
+      ],
+      "buildingCenterlineConflicts": [],
+      "namedModelPieces": 114,
+      "namedSourceWays": 114,
+      "waterBridgeSourceIds": [
+        1531132593
+      ],
+      "unresolvedSourceSupportIds": [
+        1485112031,
+        1485112032
+      ]
+    },
+    "sourceWidthTags": 0,
+    "sourceDate": "2026-11-01",
+    "limits": [
+      "Residuals are conversion rounding against OSM, NOT surveyed positional accuracy",
+      "All source road widths absent; model widths use class estimates",
+      "Native DSM is30m; missing islet has native elevation0m, no surveyed relief",
+      "Two service routes cross mapped water without bridge/support tags; no inferred landfill or invented bridges",
+      "Bayrak Caddesi source bridge is in the road network; underside/ground separation is not resolved by the DSM"
+    ]
+  },
+  "limits": [
+    "All road widths are class estimates: zero source width tags",
+    "Native30m DSM; recovered islet has0m source height; no invented surveyed relief",
+    "Service ways1485112031/1485112032 cross mapped water without bridge/support evidence; amber review markers",
+    "Bridge deck height uses endpoint interpolation; no surveyed clearance",
+    "Bayrak Caddesi underpass separation unresolved by DSM",
+    "No physical TX15 or real İLKE flight validation"
+  ],
+  "preserved": [
+    "Original OSM and DEM input hashes",
+    "340 old road piece geometries,1266buildings,10structures,spawn and projection",
+    "Native65x65 terrain heights",
+    "Three directly extended piers and general flight physics"
+  ],
+  "checks": {
+    "node22": {
+      "passed": 541,
+      "failed": 0,
+      "durationMs": 164743.278506
+    },
+    "gis": 3,
+    "infra": 11,
+    "vite": "pass; existing chunk size warning",
+    "arm64Image": "pass",
+    "independentReview": "No Critical/Important/Minor in scoped diff;93 bridge contact descent/seam probes passed",
+    "visual": "Actual GL and WebGPU source-world camera views; synthetic camera, not real flight",
+    "httpsChangedPublicSha256": 8,
+    "wssTwoClient": "join/state/leave pass",
+    "runningSourceHashes": 114,
+    "warmBrowser": {
+      "cacheCleared": false,
+      "before": {
+        "roads": 340,
+        "land": 4
+      },
+      "after": {
+        "roads": 341,
+        "land": 5
+      },
+      "consoleErrors": [],
+      "flight": "DISARM,0/3"
+    },
+    "sharedHost": "7 other services and nginx unchanged; Zenth web/API200; Gelişim TLS origin200; rollback container and consistent data backup retained",
+    "container": {
+      "restarts": 0,
+      "memoryMiB": 24.65,
+      "user": "1000:1000",
+      "readonly": true
+    }
+  },
+  "image": {
+    "release": "v2.40.0-6b3a5ede6c5a",
+    "imageId": "sha256:c8db59ec8764ad7ff54e3dc0b6ef764b3b9f2c11532c25f45005a89884e59fc7",
+    "archiveSha256": "37f194cf2a4ce323eca78f2eba0af464983b49b88e650712564be18964a4e087",
+    "archiveBytes": 141472971,
+    "architecture": "arm64",
+    "sourceFiles": 281
+  },
+  "evidence": {
+    "scratch": "/Users/efa/projects/drone-hangar/.superpowers/sdd/2026-11-02-sile-geography-audit",
+    "proofDirectory": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1",
+    "afterScreenshot": "geography-live-cache-after-2.40.png"
+  }
+}

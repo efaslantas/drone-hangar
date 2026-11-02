@@ -83,3 +83,8 @@ Teknelerin bulunduğu üç iskele kaynak kara sınırından kopuk görünüyordu
 ### İskeleleri doğrudan birleştirme — 2.39
 
 Kullanıcı ayrı bağlantı elemanlarını istemedi. 2.38’in dar geçitleri ve korkulukları kaldırıldı; üç iskele mevcut model genişliği ve doğrultusunda kıyıya doğrudan uzatıldı. Uzantıların gövde tabanı mevcut iskeleyle eşleşir, yüzeyleri çizilen geometriyle temas eder. [Doğrulama](direct-piers-validation.json).
+
+
+### Şile kaynak geometrisi denetimi — 2.40
+
+Eksik bağlantı yolu, adacık kıyısı ve kaynak yaya köprüsü düzeltildi.2×2km alandaki339kaynak yol/7kıyı çizgisi denetlendi; kontrol haritası kaynak yollarına bağlanır. Genişlikler tahmini,30mDSM ve iki belirsiz sahil servis yolu açıkça belirtilir. Eski haritayı yükleyen tarayıcı önbellek sorunu da giderildi. [Doğrulama](sile-geography-validation.json).

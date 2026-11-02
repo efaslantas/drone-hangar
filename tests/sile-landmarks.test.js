@@ -4,7 +4,7 @@ function boundaryDistance(x,z,ring){return Math.min(...ring.map((a,i)=>{const b=
 const data=JSON.parse(fs.readFileSync(new URL('../public/maps/sile/map.json',import.meta.url)));
 const ctx=new Proxy({createRadialGradient:()=>({addColorStop(){}}),createLinearGradient:()=>({addColorStop(){}}),createImageData:(w,h)=>({data:new Uint8ClampedArray(w*h*4)})},{get:(o,k)=>k in o?o[k]:(()=>{})});globalThis.document={createElement:()=>({getContext:()=>ctx})};
 test('castle site uses its actual bounded island and a labelled runtime plateau without changing source',()=>{
- const before=JSON.stringify(data),s=site.castleSite(data);assert.ok(s);assert.equal(s.reliefM,4.5);assert.equal(s.platform.height,2.9);assert.equal(s.castle.height,12);assert.equal(s.castle.base,s.platform.height);assert.equal(s.platform.authored,true);assert.ok(s.platform.rings===data.terrain.land[2]);assert.equal(JSON.stringify(data),before);
+ const before=JSON.stringify(data),s=site.castleSite(data);assert.ok(s);assert.equal(s.reliefM,4.5);assert.equal(s.platform.height,2.9);assert.equal(s.castle.height,12);assert.equal(s.castle.base,s.platform.height);assert.equal(s.platform.authored,true);assert.ok(data.terrain.land.includes(s.platform.rings));assert.ok(s.source.rings[0].every(p=>insidePolygon(...p,s.platform.rings)));assert.equal(JSON.stringify(data),before);
  for(const [x,z] of s.castle.rings[0])assert.equal(terrainHeight(s.terrain,x,z),s.platform.height);
  const play={terrain:s.terrain};assert.equal(surfaceAt(play,157.3,-715.46).height,s.platform.height);assert.equal(surfaceAt(play,0,0).height,surfaceAt({terrain:data.terrain},0,0).height);assert.deepEqual(surfaceAt(play,157.3,-715.46).normal,[0,1,0]);
  const absent={...data,buildings:data.buildings.filter(b=>!b.landmark)};assert.equal(site.castleSite(absent),null);
@@ -19,7 +19,7 @@ test('rendered rock platform and castle collider agree while all other buildings
  const p=rock.geometry.attributes.position;for(let i=0;i<p.count;i++)assert.ok(Math.abs(p.getY(i)-terrainHeight(play.terrain,p.getX(i),p.getZ(i)))<.0001);
  const i=data.buildings.findIndex(b=>b.landmark==='castle');assert.equal(play.prisms[i].miny,s.castle.base);assert.equal(play.prisms[i].maxy,s.castle.base+12);assert.equal(play.prisms.filter(q=>q.authored!=='coastal-foundation').length,data.buildings.length+data.structures.length);
  for(let j=0;j<data.buildings.length;j++)if(j!==i){assert.equal(play.prisms[j].miny,data.buildings[j].base);assert.equal(play.prisms[j].maxy,data.buildings[j].base+data.buildings[j].height);}
- assert.equal(JSON.stringify(data),before);let meshes=0;scene.traverse(o=>{if(o.isMesh)meshes++});assert.ok(meshes<=47);
+ assert.equal(JSON.stringify(data),before);let meshes=0;scene.traverse(o=>{if(o.isMesh)meshes++});assert.ok(meshes<=49);
 });
 
 test('unsupported castle bodies retain the generic fallback instead of building invalid detail geometry',()=>{

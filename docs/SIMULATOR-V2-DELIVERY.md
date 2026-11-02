@@ -541,3 +541,14 @@ Kullanıcı2.38’deki ayrı geçitleri istemedi; iskeleyi doğrudan bağlamayı
 Yeni doğrudan birleşim regresyonu eski2.38’de2916vs108vertex ve yanlış genişlikle RED; kaynak kesitine dik eksen, yaklaşık kaynak genişliği ve tam36kapalı uzantı üçgeniyle GREEN. Toplam yeni mooring/quay teması1206→270üçgene indi (234rıhtım+36uzantı;6üst iniş). 12odaklı ve536/536Node22ARM64concurrency4(181560.3ms),11infra,Vite/ARM64/diffcheck geçti. Eski dünya golden/83025Float64zemin verileri aynı. Dar geometrik müşteri düzeltmesi yazar scopedselfreview ile incelendi; yeni bağımsız inceleme veya2.39WebGPU tekrar koşusu yok, renderer/fizik motoru aynı. GerçekGL yakın sabit kamera/error[]; görsel sentetik kamera, fiziksel uçuş değil. QA49353kapatıldı ve pakete girmedi.
 
 Canlı v2.39.0-e8fe147865f3:279manifest114runninghash,odaklıHTTPS(version/uniqueIDs/newpage+metadataSHA/entryassets),WSS veinspectionDISARM0/3/error[] geçti. SOURCEONEf60-1750-6s650g1100medium25/gamepad korunur.0restart26.3MiB/256MiB;7diğer servis/nginxaynı,oldapp/tutarlıbackupkorunur. Değişmeyen public varlıklar tekrar indirilmedi; değişen sayfa ve metadata HTTPS hashleri kontrol edildi. `docs/direct-piers-validation.json`.
+
+
+## 2026-11-02 — 2.40 Şile kıyı ve sokak kaynak denetimi
+
+Yaklaşık2×2km kaynak alanı bağımsız GIS ile karşılaştırıldı. Eksik primary_link1025872605, içbükey adacık kıyısı256360436 ve karaya kırpıldığı için görünmeyen yaya köprüsü1531132593 düzeltildi.339kaynak yol/341parça,7kıyı çizgisi/5kara alanı;114adlı parçada isimler korunur. Kıyı0.0067m/yol0.0071m farkı yalnız OSM dönüşüm yuvarlamasıdır, saha doğruluğu değildir. Eski340yol geometrisi,1266bina,10yapı,özgünOSM/DEM ve65×65yükseklik aynı; eski4kara poligonu geometrik olarak aynıdır. Doğrudan3iskele birleşimi korunur. Köprü kaynak merkez çizgisinde, uç kotları arasında temsili yükseklikle çizilir; çizilenFloat32üçgenler temas yüzeyidir.
+
+Bütün yol genişlikleri sınıf tahmini; kaynakta0width etiketi var.30mDSM adacığı0m gösteriyor; yüksekliği uydurulmadı.1485112031/1485112032servis yollarının su/kıyı ilişkisi kaynakta belirsiz; doğrulanmış dolgu/köprü gibi sunulmadan amber işaretlendi. Bayrak Caddesi alt geçiş kot ayrımı da çözülmüş sayılmaz. Kontrol haritası /sile.html#geography-audit üzerinden339kaynak yoluna tıklanır. TümŞile/birebirölçüm/gerçekTX15 veyaİLKEuçuş kabulü değildir.
+
+3GIS/541Node22/11infra,Vite/ARM64 geçti. Bağımsız inceleme temiz;93köprü temas probu geçti. GL/WebGPU kaynak sahne/error[] sabit kamera kanıtı tutulur. Canlıda yeniJS eskiönbellek haritasını yükleyebiliyordu: gerçek tarayıcıda340yol/4kara görüldü; loader cache:no-cache ve RED→GREEN testinden sonra önbelleği silmeden341yol/5kara,error[],DISARM0/3 doğrulandı.
+
+Canlı v2.40.0-6b3a5ede6c5a:281manifest/114runninghash,8değişenpublicSHA/HTTPS/uniqueIDs/entryassets/WSS geçti.0restart24.65MiB/256MiB;7diğer servis/nginx aynı,Zenthweb/API200,GelişimTLSorigin200;eskiapp/tutarlıbackupkorundu. [Doğrulama](sile-geography-validation.json).

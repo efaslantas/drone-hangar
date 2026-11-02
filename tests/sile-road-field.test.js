@@ -35,13 +35,13 @@ test('real Şile field preserves all 83025 baseline Float64 samples',()=>{
  assert.equal(values.length,83025);assert.equal(createHash('sha256').update(Buffer.from(new Float64Array(values).buffer)).digest('hex'),'b0be888b19f304edd9a696a75c4ac4c8feb0eae341cdb41b63f7403767212673');
 });
 
-test('pre-existing world keeps baseline geometry and collision alongside new mooring geometry',async()=>{
+test('geography-corrected base world has a stable source mesh and collision fingerprint',async()=>{
  const THREE=await import('three'),{buildWorld,clearWorld}=await import('../src/world.js'),{sileWorldFingerprint}=await import('./helpers/sile-world-fingerprint.js');
  const data=JSON.parse(fs.readFileSync(new URL('../public/maps/sile/map.json',import.meta.url)));
 const context=new Proxy({createImageData:(w,h)=>({data:new Uint8ClampedArray(w*h*4)}),getImageData:(x,y,w,h)=>({data:new Uint8ClampedArray(w*h*4)}),createLinearGradient:()=>({addColorStop(){}}),createRadialGradient:()=>({addColorStop(){}}),measureText:()=>({width:20})},{get:(o,k)=>k in o?o[k]:()=>{}});
 globalThis.document={createElement:()=>({width:0,height:0,getContext:()=>context})};
 
  const scene=new THREE.Scene(),play=buildWorld(scene,'sile',{sileData:data,props:false,quality:'medium'});
- const added=scene.children.filter(o=>['sile-mooring-links','sile-harbour-quay'].includes(o.name));assert.equal(added.length,2);scene.remove(...added);
- assert.deepEqual(sileWorldFingerprint(scene,{...play,terrainWalls:play.terrainWalls.filter(w=>w.authored!=='harbour-link')}),{meshes:'6cd4080934eb97cc56fd0402d5c5eec2df322d35f6b2498831ecf377e4b48216',collision:'4bc6080dfd3fd712bf527af96385cc9a1ab71c5f81c8affd36afcf62885dcd77',meshCount:46,boxes:10755,prisms:1286});scene.add(...added);clearWorld(scene);
+ const added=scene.children.filter(o=>['sile-mooring-links','sile-harbour-quay','sile-source-footbridges'].includes(o.name));assert.equal(added.length,3);scene.remove(...added);
+ assert.deepEqual(sileWorldFingerprint(scene,{...play,terrainWalls:play.terrainWalls.filter(w=>w.authored!=='harbour-link')}),{meshes:'4e2a79649298a4119de0635fd8820fd5cccf472793549261bc5bdec9e18f6518',collision:'9baef0798946a68ab6a1465082cadadaaccc455cbe371f221c1d9b38da501f95',meshCount:47,boxes:10755,prisms:1286});scene.add(...added);clearWorld(scene);
 });

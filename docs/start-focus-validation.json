@@ -1,0 +1,120 @@
+{
+  "date": "2026-11-02",
+  "status": "published",
+  "release": "v2.35.0-c37c3a8426e3",
+  "url": "https://hangar.18-153-158-209.sslip.io/",
+  "scope": "Resolve2.34deferredminor: restorekeyboardfocus afterflightpreparationfailure",
+  "behavior": {
+    "capture": "document.activeElement beforeinert/overlayfocus",
+    "restore": "afterhangarunlocked, onlyif!flying; connectedvisibleenabledoriginalelement, elsevisiblehomequick/preparestartfallback",
+    "success": "do not focus hiddenhangar on successfulflight; clearcapturedreference",
+    "scroll": "preventScroll:true"
+  },
+  "verification": {
+    "newAutomatedTests": 0,
+    "existingNode22Full": {
+      "pass": 524,
+      "fail": 0,
+      "durationMs": 123369.655272,
+      "architecture": "linux/arm64",
+      "concurrency": 4,
+      "log": ".superpowers/sdd/2026-11-02-start-focus/start-focus-node22-tests.log"
+    },
+    "infra": 11,
+    "viteBuild": "pass; existinglargechunkwarning",
+    "arm64Build": "pass",
+    "review": "author scopedselfreview forsmallUIcorrection; follows priorfreshreviewminor, no newindependentreview",
+    "actualBrowserRegression": {
+      "method": "clearlySYNTHETIClabeledone-shotfailure in generatedmaincopy; isolatedloopback49351site storage; no QAcodeinproduction",
+      "before": {
+        "activeTag": "BODY",
+        "retryFocusPass": false,
+        "loadingHidden": true
+      },
+      "after": {
+        "activeId": "go-dock",
+        "retryFocusPass": true,
+        "enterRetry": "successfulinspectionflightDISARM/loadinghidden"
+      },
+      "partialStartFailure": {
+        "screen": "home",
+        "oldStartButton": "hidden",
+        "activeId": "home-quick",
+        "fallbackPass": true,
+        "enterRetry": "successfulfreeflightDISARM/loadinghidden"
+      },
+      "normalSuccess": "activeIdempty/body; no hiddenhangarfocus; loadinghidden",
+      "qaServer": "stoppedafterchecks",
+      "result": ".superpowers/sdd/2026-11-02-start-focus/ui-results.json"
+    }
+  },
+  "invariants": {
+    "comparedTo": "v2.34.0-86cadc92fbdd",
+    "worldBuilderPhysicsMapInspectionAndStartGate": "unchangedbytehashes",
+    "runtimeChangedFiles": [
+      "index.html",
+      "package-lock.json",
+      "package.json",
+      "src/main.js"
+    ],
+    "newDependencies": 0,
+    "syntheticQaInRelease": false
+  },
+  "packagingCleanup": {
+    "freedBytes": 207459732,
+    "removed": "verifiedold2.33localarchive+2.34generatedbuildcopy",
+    "verification": "localSHA/manifest/S3size/stageSuccess",
+    "preserved": "canonicalsource/evidence/receipts/current2.34archive/remotebackups"
+  },
+  "image": {
+    "release": "v2.35.0-c37c3a8426e3",
+    "imageId": "sha256:cbfd72d2c18000526c3d0f92029794cc143519a66c74e30f41d77b1f7cc75fb0",
+    "archiveSha256": "c4c3d57c3bdda864c2976e70a5291a41807415e974bb9129d316a01f9a54e66a",
+    "archiveBytes": 141392841,
+    "architecture": "arm64",
+    "sourceFiles": 277
+  },
+  "proofDir": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1",
+  "proof": [
+    "start-focus-after-failure-2.35.png",
+    "start-focus-home-fallback-2.35.png",
+    "start-focus-live-ready-2.35.png"
+  ],
+  "limits": [
+    "FailurecasesaresyntheticUIchecks, notspontaneousproductionfailures",
+    "No newvehicle/physics/map/initialloadingperformance change",
+    "No physicalTX15/phone/fullmanualroute flighttest"
+  ],
+  "git": "main; runtime manifest checked whenstaging; finalcommitrecordinGithistory/session",
+  "live": {
+    "httpsHealth": "v2.35.0-c37c3a8426e3",
+    "manifestFiles": 277,
+    "runningSourceHashes": 113,
+    "publicHttpsAssetsAndSources": "pass; /tmp/start-focus-live-verification.log",
+    "uniqueUiIds": true,
+    "unauthorizedAdmin": 401,
+    "twoClientWssJoinStateLeave": "pass",
+    "browser": "normalkeyboardEnterstart→inspectionready0/3DISARM,loadinghidden,activeIdempty/notoldhangarbutton,error[]; no failureinjectioninproduction",
+    "profile": {
+      "reference": "f60-1750-6s",
+      "massG": 650,
+      "capacityMah": 1100,
+      "quality": "medium",
+      "tilt": 25,
+      "input": "gamepad"
+    },
+    "restarts": 0,
+    "memoryMiB": 24.48,
+    "limitMiB": 256,
+    "uid": "1000:1000",
+    "readonly": true,
+    "network": [
+      "drone-hangar-net"
+    ],
+    "otherSevenTenantsAndNginx": "unchanged",
+    "nginxSyntax": "pass",
+    "zenthWebAndApi": 200,
+    "gelisimTlsOrigin": 200,
+    "rollbackContainerAndConsistentDataBackup": "retained"
+  }
+}

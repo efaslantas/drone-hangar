@@ -62,3 +62,8 @@ Manuel yaklaşma için yatay mesafe, kot farkı ve üç boyutlu bölge mesafesi 
 ### Ana ekran ve ilk uçuş hazırlığı — 2.34
 
 Gizli ana uçuş sahnesi ilk başlatmaya kadar oluşturulmaz; ana ekran görünür önizlemeyi hazırlar. İlk uçuşta hazırlık durumu çizilir, yinelenen başlatma engellenir ve hata sonrası yeniden deneme açılır. Kurulum maliyeti yok edilmez; ilk uçuşa taşınır. Aynı uygun uçuş dünyası tekrar kullanılır. Harita/fizik/profil ve İLKE doğrulama sınırları değişmez. [Doğrulama kaydı](lazy-flight-start-validation.json).
+
+
+### Hazırlık hatasından klavyeyle devam — 2.35
+
+Hazırlık hatası sonrasında odak önceki görünür düğmeye, o düğme gizlendiyse mevcut ekranın başlatma düğmesine döner. Enter ile yeniden denenebilir; başarılı uçuş gizli hazırlık ekranına odak taşımaz. [Doğrulama](start-focus-validation.json).

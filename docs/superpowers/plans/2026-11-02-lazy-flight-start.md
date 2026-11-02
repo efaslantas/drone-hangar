@@ -15,3 +15,6 @@
 Tradeoff: firstflightbuildmovesafterbutton, not eliminated; onlyhomepageworkreduced. Firstpreviewandactualworldbuildingaremainthread, stillcanblockbriefly. No physicalTX15/SITL/realILKE claims.
 
 Evidence: docs/lazy-flight-start-validation.json; main deliverycommit finalstage, samepublished277runtimehash. Minor failurefocusrestoration deferred; no blockingreviewfinding.
+
+
+2.35 follow-up: deferredfailurefocusminor resolved byboundedDOMcorrection andactualsyntheticUIRED→GREEN/Enterretry/homefallback checks; see docs/start-focus-validation.json. Existing524tests/11infra/buildpass; no newimplementationplanneeded forsmalllocalcorrection.

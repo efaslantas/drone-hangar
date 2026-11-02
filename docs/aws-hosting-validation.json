@@ -75,8 +75,8 @@
   ],
   "git": "no commit/push/merge",
   "latestUpdate": {
-    "release": "v2.34.0-86cadc92fbdd",
-    "validation": "docs/lazy-flight-start-validation.json",
+    "release": "v2.35.0-c37c3a8426e3",
+    "validation": "docs/start-focus-validation.json",
     "status": "published",
     "date": "2026-11-02"
   }

@@ -1182,7 +1182,7 @@ function spawn() {
   if(op.inspection){
     previousInspectionReport=lastInspectionReport||readInspectionReport(browserStorage)||previousInspectionReport;
     const scenario=createInspectionScenario(getSileData(),play);scenario.spawn={x:state.x,y:state.y,z:state.z};
-    inspection=createInspection(scenario,{createdAt:new Date().toISOString(),appVersion:document.querySelector('meta[name="app-version"]')?.content||'2.34',vehicle:JSON.parse(JSON.stringify(spec)),environment:{map:'sile',night:!!document.getElementById('night').checked,wind:play.wind,real:play.real},inputs:{profile:getInputSettings(),cameraTiltDegrees:0,savedTiltDegrees:visualSettings.tilt},ilkeVehicleValidated:false});
+    inspection=createInspection(scenario,{createdAt:new Date().toISOString(),appVersion:document.querySelector('meta[name="app-version"]')?.content||'2.35',vehicle:JSON.parse(JSON.stringify(spec)),environment:{map:'sile',night:!!document.getElementById('night').checked,wind:play.wind,real:play.real},inputs:{profile:getInputSettings(),cameraTiltDegrees:0,savedTiltDegrees:visualSettings.tilt},ilkeVehicleValidated:false});
     inspectionView=createInspectionView(scene,inspection);
     inspectionNavigationView=createInspectionNavigation({hud:document.getElementById('inspection-hud'),map:document.getElementById('inspection-map'),route:document.getElementById('inspection-route')},inspection,getSileData());
     inspectionSaved=false;inspectionTerminalMenu=false;inspectionCaptures=[];inspectionSaveMessage='';paintInspection();
@@ -1217,9 +1217,11 @@ gfx.canvas.addEventListener("webglcontextlost", (e) => e.preventDefault());
 gfx.canvas.addEventListener("webglcontextrestored", resize);
 
 const flightLoading=document.getElementById('flight-loading');
+let flightStartFocus=null;
 const startPreparedFlight=createFlightStartGate({
   paint:()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))),
   busy(active){
+    if(active)flightStartFocus=document.activeElement;
     flightLoading.hidden=!active;hangarEl.inert=active;
     hangarEl.setAttribute('aria-busy',String(active));
     if(active){
@@ -1227,7 +1229,16 @@ const startPreparedFlight=createFlightStartGate({
       const label=op.mapName||MAPS.find(m=>m.id===loadout.map)?.name||'Uçuş alanı';
       flightLoading.querySelector('strong').textContent=`${label} hazırlanıyor…`;
       flightLoading.focus();billboard.pause();
-    }else if(!flying&&hangarEl.dataset.screen==='home')billboard.resume();
+    }else{
+      if(!flying){
+        const home=hangarEl.dataset.screen==='home';
+        if(home)billboard.resume();
+        const fallback=document.getElementById(home?'home-quick':'go-dock');
+        const target=[flightStartFocus,fallback].find(el=>el&&el!==document.body&&el.isConnected&&el.getClientRects().length&&!el.matches(':disabled'));
+        target?.focus({preventScroll:true});
+      }
+      flightStartFocus=null;
+    }
   },
   start:()=>startFlightNow(),
   error(cause){

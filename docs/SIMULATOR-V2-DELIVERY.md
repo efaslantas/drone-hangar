@@ -494,3 +494,16 @@ GLanaekran/ilk dünya öncesi kalite low→medium/gerçek görünürloadingcaptu
 Paket için273532050bayt doğrulanmış üretilmiş kopya temizlendi:2.32localarchive+build ve2.33build. LocalSHA/manifesttamdosyaeşleşmesi/S3size/stageSuccess doğrulandı; asıl kaynak/beforekanıt/receipt/manifest/current2.33archive/remoterollback korundu.
 
 Canlı `v2.34.0-86cadc92fbdd`:277manifest/113çalışan kaynak hash/HTTPS/source/uniqueIDs/admin401/WSS/ilk+tekrarFPVDISARM/error[] geçti. SOURCEONEf60-1750-6s650g1100medium25/gamepad korunur.7diğer servis/nginx aynı, oldapp/tutarlıbackup korunur;0restart24.01MiB/256MiB. Main üzerinden devam edildi, yeni çalışma dalı açılmadı; teslim commit'i Git geçmişinde tutulur. `docs/lazy-flight-start-validation.json`.
+
+
+## 2026-11-02 — 2.35 hazırlık hatasında klavye odağını geri verme
+
+2.34 incelemesindeki küçük odak sorunu giderildi. Etkin öğe hangar inert olmadan önce tutulur; hazırlık bittiğinde hangar açıldıktan sonra uçuş başlamamışsa bağlı/görünür/etkin önceki öğeye preventScroll ile odak geri verilir. Önceki düğme artık görünmüyorsa mevcut ekrandaki Uçuşa başla veya Hızlı uçuş yedeği kullanılır. Başarılı uçuşta gizli hangara odak taşınmaz; tutulan referans temizlenir. Dünya kurma, fizik, harita, profil ve startgate aynı.
+
+Gerçek arayüzün üretilmiş kopyasında açıkça SENTETİK etiketli tek seferlik kurulum hatası, ayrı49351loopbackorigin/veri alanında çalıştırıldı. ÖnceBODY/boşactiveId/retryFocusPass=false RED; düzeltmeden sonra go-dock/true GREEN ve yalnız :focus Enter ile tekrar deneyinceDISARMhazır uçuş açıldı. Uçuş görünür olduktan sonraki sentetik hatada temizlik ana ekrana döndürdü; eski düğme gizliyken odak home-quick/true, yalnızEntertekrarıserbestuçuşDISARMilebitti. Başarılı durumdaactiveIdboş/normalbody,loadinghidden. Bunlar gerçek üretim hatası veya donanım uçuşu değildir. Test sunucusu durduruldu; üretim kaynağında QAthrow yok, QA dosyaları release’e girmedi.
+
+Yeni otomatik test eklenmedi; küçükDOMdüzeltmesi actualUIRED→GREEN/sınırdurumu/klavyeretri ile doğrulandı. Mevcut524/524Node22linuxARM64concurrency4(123369.7ms),11infra,Vite/ARM64 ve owned-diffcheck geçti. Bu dilim yazarın kapsamlı diff/selfreview kontrolünden geçti; yeni bağımsız inceleme yapılmadı.
+
+Paket alanı için SHA/manifest/S3size/stageSuccess doğrulanmış eski2.33yerelarchive ve2.34üretilmişbuildkopyası207459732bayt temizlendi. Asıl kaynak/beforekanıt/receipt/current2.34archive/remotebackupkorunur.
+
+Canlı `v2.35.0-c37c3a8426e3`:277manifest/113runninghash/HTTPS/source/uniqueIDs/admin401/WSS/normalEnterstartFPVDISARM/loadinghidden/error[] geçti. SOURCEONEf60-1750-6s650g1100medium25/gamepad korunur.7diğer servis/nginx aynı; eski app/tutarlıbackup korunur;0restart24.48MiB/256MiB. Main üzerinden çalışıldı, yeni dal açılmadı. `docs/start-focus-validation.json`.

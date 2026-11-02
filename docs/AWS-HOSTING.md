@@ -1,6 +1,6 @@
 # Drone Hangar — AWS işletim kaydı
 
-2026-11-02: Kullanıcı Drone simülatörü 2.16 için mevcut Zenth AWS sunucusunu seçti. Canlı adres: https://hangar.18-153-158-209.sslip.io/ . İlk kurulum `v2.16.0-7f5130339846`; güncel sürüm `v2.34.0-86cadc92fbdd` (2.34,2026-11-02).
+2026-11-02: Kullanıcı Drone simülatörü 2.16 için mevcut Zenth AWS sunucusunu seçti. Canlı adres: https://hangar.18-153-158-209.sslip.io/ . İlk kurulum `v2.16.0-7f5130339846`; güncel sürüm `v2.35.0-c37c3a8426e3` (2.35,2026-11-02).
 
 ## Yerleşim
 
@@ -102,3 +102,6 @@ Regresyon paketi artık11test: snapshot sırası/hatası, candidate başlangıç
 
 
 2.34 yayını: `v2.34.0-86cadc92fbdd`, gizli uçuş dünyasını ilk başlatmaya erteleme ve çizilen hazırlık ekranı.277manifest/113runninghash/HTTPS/WSS/ilk+tekrarFPVDISARM/error[];0restart24.01MiB/256MiB.7diğer servis/nginx aynı; eski app/tutarlı yedek korundu. SOURCEONE650g1100medium25/gamepad korunur. `lazy-flight-start-validation.json`.
+
+
+2.35 yayını: `v2.35.0-c37c3a8426e3`, hazırlık hatası sonrası klavye odağını geri verme.277manifest/113runninghash/HTTPS/WSS/normalEnterstartFPVDISARM/error[];0restart24.48MiB/256MiB.7diğer servis/nginx aynı; eski app/tutarlı yedek korunur. SOURCEONE650g1100medium25/gamepad korunur. `start-focus-validation.json`.

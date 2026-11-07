@@ -20,7 +20,7 @@ npm start
 
 - Ana ekran → hazırlık veya son drone/alan seçimiyle hızlı uçuş. Hikâye ve atölye zorunlu değildir.
 - Serbest uçuş yerde, DISARM başlar. Serbest stil ve üç turluk yarış antrenmanı akademiden bağımsızdır.
-- 10 drone, 6 alan ve 36 akademi adımı. Mevcut uçuş ilerlemesi korunur. Akademide `isOpOpen`, `trackGate`, `nextInTrack` kilitleri yönetir.
+- 10 drone, 7 alan ve 36 akademi adımı. Mevcut uçuş ilerlemesi korunur. Akademide `isOpOpen`, `trackGate`, `nextInTrack` kilitleri yönetir.
 - Menü, yardım, sonuç ve mobil araç çubuğu açıkken yerel fizik, görev, tekrar ve dünya zamanı durur. Başladıktan sonra duraklatılan görevler sıralama dışıdır.
 - Grafik kalitesi yalnız görüntüyü etkiler; fizik, çarpışma ve hedefleri değiştirmez. Temiz lens ve kapalı titreşim varsayılandır.
 - Mode 2: sol gaz/yaw, sağ roll/pitch. Space ARM, R reset, T mod, C kamera, Escape menü. Gamepad ve dokunmatik desteklenir; TX15 fiziksel doğrulaması henüz yapılmadı.

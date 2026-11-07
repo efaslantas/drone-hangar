@@ -31,6 +31,10 @@ export async function createWebGPU(canvas, { antialias = true, powerPreference =
  */
 export function createSky() {
   const mesh = new SkyMesh();
+  // Paint the backdrop before opaque geometry. At Şile distances the node
+  // sky can otherwise overwrite instanced leaf fragments with sky colour.
+  // SkyMesh already disables depth writes; retain foreground depth precision.
+  mesh.renderOrder = -1000;
   mesh.skyUniforms = {
     turbidity: mesh.turbidity,
     rayleigh: mesh.rayleigh,

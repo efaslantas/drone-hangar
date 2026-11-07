@@ -1,0 +1,103 @@
+{
+  "date": "2026-11-07",
+  "status": "published-and-verified",
+  "release": "v2.51.0-28f5c63c08a8",
+  "url": "https://hangar.18-153-158-209.sslip.io/",
+  "baseline": "v2.50.0-e90c470d8afd",
+  "change": {
+    "problem": "Experimental WebGPU sky painted over some distant opaque leaf fragments, producing white patches.",
+    "fix": "Node sky renderOrder=-1000, before ordinary opaque scenery; existing depthWrite=false preserved.",
+    "runtimeCodeChanges": [
+      "src/gfx-webgpu.js"
+    ],
+    "changedManifestFiles": [
+      "index.html",
+      "package-lock.json",
+      "package.json",
+      "src/gfx-webgpu.js",
+      "tests/sky-order.test.js"
+    ],
+    "unchangedCanonicalMapAssets": 26,
+    "geometryAndCollision": "Same2.50 world geometry, source grids and collision fingerprints; all relevant suite checks passed.",
+    "documentation": "Updated map count7 and current map coverage4.5x2km/1331buildings/468roadpieces/10879source triangles; added cave flight instructions."
+  },
+  "verification": {
+    "node22Arm64": {
+      "passed": 585,
+      "failed": 0,
+      "durationMs": 262098.866103
+    },
+    "focused": {
+      "passed": 6,
+      "failed": 0,
+      "skyOrderRegression": "RED before fix, GREEN after"
+    },
+    "infrastructure": {
+      "passed": 11,
+      "failed": 0
+    },
+    "build": "Node22 Vite ARM64 Docker build passed",
+    "review": "Fresh review_sky_delivery: no Critical/Important/Minor findings.",
+    "visual": {
+      "webgpuEast": "White foliage regression reproduced before; absent with production sky-order fix.",
+      "webgpuAirfieldNight": "Passed; sky dome omitted at night.",
+      "webglCave": "Passed;682/682 real solver route positions clear.",
+      "webgpuCaveRoutes": "682/682 solver route positions clear.",
+      "console": "Live app error[]. Local QA one chrome-extension passkeys-inject connection error recorded; no app error or suppression."
+    },
+    "liveUi": {
+      "freeFlight": "Şile/5 inch Freestyle/6S1750KV reference/Rint/Acro/REAL",
+      "initialState": "DISARM,0kmh,0mAGL",
+      "pauseResume": "Passed; menu says physics/time stopped; resume preserves disarmed state."
+    }
+  },
+  "deployment": {
+    "image": {
+      "release": "v2.51.0-28f5c63c08a8",
+      "imageId": "sha256:d32e2d2eff178074c90a20f16bd2434d6651cd14f538f1a80d81b97e881457ec",
+      "archiveSha256": "67a70f658ba6b95bf24f5e15a36cbab4d20a6f3a153a457d6e1b5bfaaaeb5b2c",
+      "archiveBytes": 141723958,
+      "architecture": "arm64",
+      "sourceFiles": 293
+    },
+    "https": {
+      "release": "v2.51.0-28f5c63c08a8",
+      "entryAssets": 5,
+      "uniqueIds": 252,
+      "appVersion": "2.51.0",
+      "lazyGpuChunks": [
+        "gfx-webgpu-CpQj_w57.js"
+      ],
+      "liveSkyOrderFix": true,
+      "mapAndSourceSha256": "pass"
+    },
+    "wss": {
+      "clients": 2,
+      "join": "pass",
+      "state": "pass",
+      "leave": "pass"
+    },
+    "update": {
+      "Status": "Success",
+      "StandardOutputContent": "HTTPS update healthy: v2.51.0-28f5c63c08a8\nOld container/data backup retained;7tenant identities and nginx bytes unchanged\n",
+      "StandardErrorContent": ""
+    },
+    "final": {
+      "Status": "Success",
+      "StandardOutputContent": "Running image source hashes: 122 OK\ndrone-hangar | 23.67MiB / 256MiB | 0.56%\n{\"running\": true, \"restarts\": 0, \"readonly\": true, \"user\": \"1000:1000\", \"image\": \"sha256:d32e2d2eff178074c90a20f16bd2434d6651cd14f538f1a80d81b97e881457ec\"}\nSeven tenants/nginx unchanged; old container/data backup retained\nhttps://zenth.finance/ 200\nhttps://api.zenth.finance/health 200\nGelisim TLS origin 200\n",
+      "StandardErrorContent": "nginx: the configuration file /etc/nginx/nginx.conf syntax is ok\nnginx: configuration file /etc/nginx/nginx.conf test is successful\n"
+    }
+  },
+  "acceptanceLimits": [
+    "Physical TX15 stick mapping and flight acceptance require the user device; not certified in this software run.",
+    "Cave dimensions and placement offsets remain photo-informed authored approximations, not surveyed interiors.",
+    "OSM/30mDSM geometry accuracy and three ambiguous source footway supports are source-data limits retained from2.49; no invented bridges or survey claims."
+  ],
+  "evidence": [
+    "sile-251-foliage-before.png",
+    "sile-251-east-webgpu-fixed.png",
+    "sile-251-airfield-night-webgpu.png",
+    "sile-251-cave-webgl.png",
+    "sile-251-live-webgl.png"
+  ]
+}

@@ -4,7 +4,7 @@
 
 ## Uçuş akışı
 
-Ana ekran son drone/alan seçimiyle hızlı uçuş veya hazırlık sunar. Serbest uçuş ve serbest stil 10 drone ile 6 alanda açılır. Başlangıç yerde ve motorlar kapalıdır. Üç turluk Pist yarış antrenmanı akademiden bağımsız ve sıralama dışıdır. Hikâye ve atölye isteğe bağlıdır.
+Ana ekran son drone/alan seçimiyle hızlı uçuş veya hazırlık sunar. Serbest uçuş ve serbest stil 10 drone ile 7 alanda açılır. Başlangıç yerde ve motorlar kapalıdır. Üç turluk Pist yarış antrenmanı akademiden bağımsız ve sıralama dışıdır. Hikâye ve atölye isteğe bağlıdır.
 
 Akademi 6 beceri pistinde 36 adım içerir: Uçuş Okulu, Manuel Gaz, Acro Kontrol, Çevre Yönetimi, İleri Parkur ve Görev. Günlük rota UTC tarihinden üretilir. Dersler geri sayım, hedef değerlendirmesi, sonuç ve tekrar akışıyla çalışır. Kazanılmış ilerleme korunur.
 
@@ -127,3 +127,10 @@ Köpük farklı kıyı noktalarında ilerler; alçak kum üzerinde yayılıp ger
 ## 2.49 — Ağlayankaya yönünde doğu kıyı kapsamı
 
 Alan yaklaşık4.5×2km/145×65oldu;doğu kıyı/koy/yollar yeniOSMkaydıyla devam eder. Eski6305nativeyükseklik/projeksiyon/kalkış/13136sourceprefix korunur.1331bina/468yolparçası;15yeni bina/85yolparçası. DoğubeachnativeDSM,tesviyeyalnızdoğrulanmışbatı309193706. Bütünkumköşeleri/üçgenmerkezleri0.2mmqueryguardgeçer.576/576Node22ARM64,7GIS,11infra,ViteARM64,bağımsızinceleme ve canlıHTTPS/WSS doğrulandı. Mağara/kemer boşlukları henüz modellenmedi;referans incelemesi `docs/sile-coastal-caves-evidence.md`. WebGPUuzakağaç renk farkı açık;WebGLdefault kontrol edildi. Ayrıntı `docs/sile-east-coast-validation.json`.
+
+
+## 2.50–2.51 — uçulabilir mağaralar ve son görüntü düzeltmesi
+
+Feneraltı/Zeki Müren Mağarası kapalı uçlu deniz hacmi ve temsili arka kum zemini; Su İçen Fil iki açık ağızlı geçit olarak modellenir. Görünen iç kaya ve kum üçgenleri fiziksel temasları da sahiplenir; üst arazi korunur. İç ölçüler fotoğrafa dayalı tasarım varsayımıdır. Geçişler [mağara doğrulamasında](sile-sea-caves-validation.json) kayıtlıdır.
+
+2.51, deneysel WebGPU’da uzak ağaçlar üzerine gökyüzünün çizilmesinden doğan beyazlık hatasını kapatır. Gökyüzü opak sahneden önce çizilir ve derinliğe yazmaz. Geometri, gövde temasları, kaynak veri ve kumanda profili korunur. Güncel teslim kontrolü [son doğrulama kaydındadır](sile-final-delivery-validation.json).

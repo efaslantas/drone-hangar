@@ -91,7 +91,7 @@ Kod [MIT Lisansi](LICENSE) ile sunulur. Ucuncu taraf varlik lisanslari [CREDITS.
 
 ## Şile merkez · 2.6
 
-Şile merkez–liman–fener çevresinde yaklaşık2×2km serbest uçuş.1.266 bina izi,340 yol parçası,10 iskele/mendirek ve6740 arazi üçgeni OSM/Copernicus snapshot'ından üretilir. Bina yüksekliklerinin çoğu7.5m varsayımı; Şile Feneri19m KEGM kaydı, kale12m varsayımıdır. Gerçek konum, temsili kütle/cephe/çatı; fotogrametri değildir.30m DSM çıplak arazi değildir. HUD AGL, kalkış parkı simülasyon işaretidir. İlk etapta dersler kendi haritalarında kalır.
+Şile merkez–liman–fener ve Ağlayankaya kıyısında yaklaşık4,5×2km serbest uçuş.1.331 bina izi,468 yol parçası,10 iskele/mendirek ve10.879 kaynak arazi üçgeni OSM/Copernicus snapshot'ından üretilir. Bina yüksekliklerinin çoğu7.5m varsayımı; Şile Feneri19m KEGM kaydı, kale12m varsayımıdır. Gerçek konum, temsili kütle/cephe/çatı; fotogrametri değildir.30m DSM çıplak arazi değildir. HUD AGL, kalkış parkı simülasyon işaretidir. İlk etapta dersler kendi haritalarında kalır.
 
 Veri yalnız harita seçilince yerelden yüklenir. Kaynaklar ve indirilebilir ODbL/Copernicus veri paketi `/sile.html`, `public/maps/sile/provenance.json` içindedir. `tools/prepare-sile-map.py` offline hazırlayıcıdır; bağımlılıklar `tools/requirements-sile.txt` içinde. Arayüzdeki kalite seçimi konum/fizik sıfırlamaz. İnişler üçgen araziye, bina çarpışmaları aynı ayak izli yaklaşık prizmalara dayanır; gerçek uçuş uygunluğu doğrulanmış değildir.
 
@@ -102,3 +102,6 @@ Veri yalnız harita seçilince yerelden yüklenir. Kaynaklar ve indirilebilir OD
 2.8.1 UI denetimi: RC yardımında Mode2/mutlakgaz, canlı giriş göstergeleri ve bağlantı durumu; mevcut ARM kapılarını yansıtan düğmeler, nativeSpace erişimi, portrede ayrılan HUD satırları. Davranış sunumu src/flight-ui.js, fizik ve RC kalibrasyonu ayrı sahiplerinde kalır.
 
 Şile2.16: yakın/uzak yüzey karışması için logaritmik derinlik; kale adasında render/zeminle ortak temsili4.5m kabartma ve kaynaklı12m kule silüeti. Ham harita verisi ve uçuş/RC profili aynı; kapsam `/sile.html` ve `maps/sile/landmark-visuals.json`.
+
+
+Şile 2.50–2.51: Feneraltı mağarasına denizden girip aynı ağızdan geri çıkılabilir; Su İçen Fil geçidinin iki ağzı açıktır. Kum, su, tavan ve kaya yüzleri mevcut uçuş fiziğiyle temas eder. İç boyutlar fotoğraflara dayalı temsili modeldir. 2.51, WebGPU uzak ağaç beyazlığını gökyüzü çizim sırasını düzelterek kapatır. Teslim kanıtı [son doğrulama kaydı](docs/sile-final-delivery-validation.json).

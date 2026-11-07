@@ -56,3 +56,8 @@ Kontroller sekmesinde ayrı RC profili vardır. Cihaz ve dört farklı ekseni se
 ## Yüzey kalitesi · 2.5
 
 Grafik kalitesi düşükken hafif üretilmiş zemin dokuları; orta/yüksekken taranmış yüzeyler kullanılır. Orta512px GPU, yüksek masaüstünde1024px/dokunmatikte512px; çim dosyasının indirme boyutu1k olarak kalır. Uçuş menüsünden kaliteyi değiştirmek drone konumunu sıfırlamaz. Yükleme olmazsa mevcut görünüm korunur. Bu seçim fizik ve çarpışmayı etkilemez.
+
+
+## Şile mağara uçuşu · 2.50–2.51
+
+Serbest uçuş hazırlığında Şile merkez haritasını seç. Feneraltı mağarasına sahilden deniz üzerindeyken yaklaş; içeride dönerek aynı girişten çıkılır. Ağlayankaya yönündeki Su İçen Fil geçidinde bir ağızdan girip diğerinden çıkılabilir. Duvar ve tavana yaklaşırken gövde boşluğunu koru; suya temas uçuşu sonlandırır. Modelin konumu ve iç boyutları fotoğrafa dayalı temsili tasarımdır. Kumanda kalibrasyonu Kontroller bölümünden yapılır; fiziksel TX15 kabulü pilotun cihazıyla denenir.

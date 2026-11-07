@@ -1,6 +1,6 @@
 # Drone Hangar — AWS işletim kaydı
 
-2026-11-02: Kullanıcı Drone simülatörü 2.16 için mevcut Zenth AWS sunucusunu seçti. Canlı adres: https://hangar.18-153-158-209.sslip.io/ . İlk kurulum `v2.16.0-7f5130339846`; güncel sürüm `v2.49.0-7737887e5d1c` (2.49, 2026-11-03).
+2026-11-02: Kullanıcı Drone simülatörü 2.16 için mevcut Zenth AWS sunucusunu seçti. Canlı adres: https://hangar.18-153-158-209.sslip.io/ . İlk kurulum `v2.16.0-7f5130339846`; güncel sürüm `v2.51.0-28f5c63c08a8` (2.51, 2026-11-07).
 
 ## Yerleşim
 
@@ -184,3 +184,8 @@ v2.49.0-7737887e5d1c: doğuya48sütun/~1.5km eklenir;145×65/~4.5×2km.6305eskiy
 ## 2026-11-03 — 2.50 uçulabilir mağara ve doğal geçit
 
 v2.50.0-e90c470d8afd: Feneraltı kapalı uçlu deniz mağarası/kum zemini ve Su İçen Fil iki ağızlı geçit. Kıyı yüzleri kırpılır; ortak Float32 iç yüzler ve korunmuş üst arazi temasları mevcut süpürülen gövde çözücüsünü kullanır. Fotoğrafa dayalı temsili konum/iç ölçüler;26kaynakvarlığı2.49ileSHAeşit. Tek ek çizim nesnesi,52tam dünya/51kaynak sahne bütçesi.584/584Node22ARM64,11infra,ViteARM64,GL/GPU682/682geçiş ve SOURCEONE240fizikadımı/hermağara geçti.292manifest/122runningSHA,HTTPS/5asset/252ID/WSS pass;0restart20.97MiB/256MiB,UID1000readonly.7tenant/nginx aynı;eskiapp/veriyedeği korunur,Zenthweb/API/GelişimTLSorigin200. DeneyselGPUuzakfoliagebeyazlığı önceki kayıt olarak kalır. Kanıt: `docs/sile-sea-caves-validation.json`.
+
+
+## 2026-11-07 — 2.51 son görüntü hatası ve teslim kontrolü
+
+v2.51.0-28f5c63c08a8: deneysel WebGPU’da gökyüzünün uzak ağaçların üzerine çizilmesinden kaynaklanan beyazlık giderildi. Gökyüzü opak sahneden önce çizilir, derinliğe yazmaz. Geometri, gövde temasları,26kaynakvarlığı ve uçuş/kumanda modelleri2.50ileaynı.585/585Node22ARM64(262098.866103ms),6focused,11infra,ViteARM64,freshreview bulgusuz;GPUdoğukıyı/gecepist,GLmağara682/682 ve canlımenu/pause/resume/DISARM0AGL/error[] doğrulandı.293manifest/122runningSHA,HTTPS5entry252IDvecanlılazyGPUchunktafix,WSS2clientjoinstateleavepass.0restart23.67MiB/256MiB,UID1000readonly.7tenant/nginx aynı;oldapp/databackupkorundu,Zenthweb/API/GelişimTLSorigin200. Sonrapor `docs/sile-final-delivery-validation.json`;fizikselTX15pilotkabulü ve ölçülmemişmağara/sourcebelirsizlikleri raporda açık.

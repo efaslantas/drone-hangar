@@ -1,0 +1,44 @@
+{
+  "date": "2026-11-08",
+  "purpose": "Source adequacy for close FPV realism; not a claim of surveyed accuracy.",
+  "mapSha256": "5564a34bbf1573152f5e1a93d1de4d01895eb4021483d2e03fae761341717a11",
+  "coverageM": {
+    "x": 4504.8825,
+    "z": 2000.1399999999999
+  },
+  "heightGrid": {
+    "cols": 145,
+    "rows": 65,
+    "spacingX": 31.283906249999998,
+    "spacingZ": 31.252187499999998,
+    "meaning": "Sampling distance, not vertical or positional accuracy."
+  },
+  "buildings": {
+    "count": 1331,
+    "heights": [
+      {
+        "heightM": 7.5,
+        "count": 1328
+      },
+      {
+        "heightM": 12,
+        "count": 2
+      },
+      {
+        "heightM": 19,
+        "count": 1
+      }
+    ],
+    "defaultHeightCount": 1328,
+    "defaultHeightPercent": 99.77460555972952,
+    "declaredMeasuredHeights": 0
+  },
+  "roads": 468,
+  "marineStructures": 10,
+  "sourceTerrainTriangles": 10879,
+  "limits": [
+    "DSM does not describe cave voids or bare earth reliably below buildings/vegetation.",
+    "Uniform assumed building heights prevent faithful neighbourhood skyline.",
+    "Passing collision/software tests does not measure resemblance to real Sile."
+  ]
+}

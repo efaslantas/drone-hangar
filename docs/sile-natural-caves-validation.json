@@ -1,0 +1,94 @@
+{
+  "date": "2026-11-08",
+  "release": "v2.52.0-738c03deaf55",
+  "status": "published",
+  "scope": "Authored natural cave geometry increment; not completion of the whole Şile realism audit",
+  "image": {
+    "release": "v2.52.0-738c03deaf55",
+    "imageId": "sha256:bed28cd9aedb97b8ea245ccefee38dfb6ce79a505c931e309e5fd61537fc3fd7",
+    "archiveSha256": "05ba0644ec0059485b2b7aa268817b10d387fe4a4c8d6a00e9830a0ca42495df",
+    "archiveBytes": 141733594,
+    "architecture": "arm64",
+    "sourceFiles": 293
+  },
+  "implementation": {
+    "feneralti": "Asymmetric convex profile, taper -0.006 per local metre; floor/roof/source land share clipping planes",
+    "suIcenFil": "Asymmetric opening and rough angular convex head/trunk exterior; native land and exterior form a union with complete cavity lining",
+    "contacts": "Uploaded Float32 triangles are the source for swept sphere contacts",
+    "sourceGisFilesUnchanged": 26,
+    "fingerprints": {
+      "full": {
+        "meshes": "2195fc730ce7d41cd6870bf99d567dabde13b9cb0918b1d508b7f7b78dabaa37",
+        "collision": "fba3ec7261cb010615b84b5ad16b0433c1417993ca47fd0863c51c170c9c18fc",
+        "meshCount": 52,
+        "boxes": 10810,
+        "prisms": 1351
+      },
+      "base": {
+        "meshes": "606132456bce8078a60c06fca3cdd33aa4ed624af9c00ab683d58ae78dcd404d",
+        "collision": "c2b1b0acf8d5dd70756081c6203dca35f5651a65d440bebafdc9432990e6ef6e",
+        "meshCount": 48,
+        "boxes": 10810,
+        "prisms": 1351
+      }
+    }
+  },
+  "verification": {
+    "node22Arm64": {
+      "tests": 588,
+      "pass": 588,
+      "fail": 0
+    },
+    "infraPython": {
+      "pass": 11
+    },
+    "regression": "New seaward lining collision test failed before fix and passed after fix",
+    "focusedTests": 11,
+    "browserRouteSamples": {
+      "pass": 682,
+      "blocked": 0
+    },
+    "nativeVisual": [
+      "WebGL Fil exterior",
+      "WebGPU Fil exterior",
+      "WebGPU Feneraltı interior",
+      "Live WebGL Şile quick flight DISARM 0km/h 0mAGL, pause/resume"
+    ],
+    "https": {
+      "release": "v2.52.0-738c03deaf55",
+      "entryAssets": 5,
+      "uniqueIds": 252,
+      "appVersion": "2.52.0",
+      "lazyGpuChunks": [
+        "gfx-webgpu-VjAwlBXM.js"
+      ],
+      "liveSkyOrderFix": true,
+      "mapAndSourceSha256": "pass"
+    },
+    "websocket": {
+      "clients": 2,
+      "join": "pass",
+      "state": "pass",
+      "leave": "pass"
+    },
+    "remote": {
+      "Status": "Success",
+      "StandardOutputContent": "Running image source hashes: 122 OK\ndrone-hangar | 23.96MiB / 256MiB | 6.22%\n{\"running\": true, \"restarts\": 0, \"readonly\": true, \"user\": \"1000:1000\", \"image\": \"sha256:bed28cd9aedb97b8ea245ccefee38dfb6ce79a505c931e309e5fd61537fc3fd7\"}\nSeven tenants/nginx unchanged; old container/data backup retained\nhttps://zenth.finance/ 200\nhttps://api.zenth.finance/health 200\nGelisim TLS origin 200\n",
+      "StandardErrorContent": "nginx: the configuration file /etc/nginx/nginx.conf syntax is ok\nnginx: configuration file /etc/nginx/nginx.conf test is successful\n"
+    }
+  },
+  "screenshots": [
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-252-fil-exterior-webgl.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-252-fil-webgpu.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-252-feneralti-webgpu.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-252-live-webgl.png"
+  ],
+  "limitations": [
+    "Cave coordinates, dimensions, taper and exterior are authored from photos/place references, not surveyed or photogrammetric.",
+    "Exterior remains faceted and approximate; no claim of matching the real elephant silhouette exactly.",
+    "Building heights remain largely assumed (1328 of 1331 at 7.5m); measured building heights 0.",
+    "Source terrain remains approximately 31m DSM spacing, not close-FPV microterrain.",
+    "No physical TX15 or real aircraft acceptance test performed."
+  ],
+  "audit": "sile-realism-audit-2026-11-08.md"
+}

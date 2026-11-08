@@ -18,3 +18,12 @@ Google Haritalar'da yalnız “Zeki Müren Mağarası” araması Antalya'daki a
 Kaynak kıyı kayalıkları ortak hacimle kırpılır; iç duvar/tavan/arka yüzler özgün kaynak kara katısına kırpılır. Yüklenen Float32 üçgenler mevcut süpürülen küre temas çözücüsüne verilir. Üstten düşüş için özgün çizilmiş üst arazi yüzlerinden yerel temas parçaları alınır; ek üst yüzey çizilmez. Yüksekliksiz yer sorgusu eski üst araziyi, yükseklikli dinamik sorgu hacim içinde alt su/kum yüzeyini döndürür. Su çizgisi ve kaynak OSM/DSM/CAD dosyaları değişmez.
 
 Feneraltı temsili konumu [1012.477558,-348.139691], iç ekseni [0.662917,0.748693]; Su İçen Fil [1245.811108,-439.429655], ekseni [0.642788,0.766044] yerelmetredir. Halk açık kaynakları giriş ağzını ve iç planı ölçmediğinden konum hassasiyeti iddia edilmez. Ekran görselleri simülasyondur; fotoğrafların dokusu uygulamaya kopyalanmadı.
+
+
+## 2.52 — asimetrik kesit ve dış kaya hacmi
+
+Feneraltı’nın eşit kesitli kemeri, asimetrik dışbükey profil ve yerel eksende metre başına -0,006 daralma ile değiştirildi. Su İçen Fil açıklığı asimetrik; denize çıkan açılı baş/hortum kaya hacmi eklendi. Yeni dış hacmin iç astarı kaynak kara ile birleşir; kara içindeki yinelenen yüzler kırpılır. Dış kaya su seviyesinin altına uzanır ve yakındaki mevcut dekorasyon kutularıyla kesişmez. Çizilen Float32 iç/dış yüzler temas çözücüsüne de verilir.
+
+Bu fotoğraftan esinlenen, köşeli ve yaklaşık bir modeldir. Baş/hortum biçimi, giriş kesiti, daralma ve boyutlar ölçülmüş değildir. Kaynak OSM/DSM/CAD dosyaları, bina yükseklikleri ve genel arazi çözünürlüğü değişmedi. “Tam Şile dijital ikizi” veya “fotogrametrik mağara” iddiası yoktur.
+
+Yeni dış hacimde eksik iç yan duvar teması incelemede bulundu; önce başarısız regresyon testiyle yeniden üretildi, sonra ortak kara/dış kaya birleşimiyle giderildi. 588/588 Node22 ARM64, 11 altyapı testi, 682/682 merkez hattı örneği ve native WebGL/WebGPU görsel kontrolü geçti. Ayrıntı: [2.52 doğrulaması](sile-natural-caves-validation.json).

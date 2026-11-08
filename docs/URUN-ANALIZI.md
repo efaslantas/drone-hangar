@@ -134,3 +134,7 @@ Alan yaklaşık4.5×2km/145×65oldu;doğu kıyı/koy/yollar yeniOSMkaydıyla dev
 Feneraltı/Zeki Müren Mağarası kapalı uçlu deniz hacmi ve temsili arka kum zemini; Su İçen Fil iki açık ağızlı geçit olarak modellenir. Görünen iç kaya ve kum üçgenleri fiziksel temasları da sahiplenir; üst arazi korunur. İç ölçüler fotoğrafa dayalı tasarım varsayımıdır. Geçişler [mağara doğrulamasında](sile-sea-caves-validation.json) kayıtlıdır.
 
 2.51, deneysel WebGPU’da uzak ağaçlar üzerine gökyüzünün çizilmesinden doğan beyazlık hatasını kapatır. Gökyüzü opak sahneden önce çizilir ve derinliğe yazmaz. Geometri, gövde temasları, kaynak veri ve kumanda profili korunur. Güncel teslim kontrolü [son doğrulama kaydındadır](sile-final-delivery-validation.json).
+
+## 2.52 — doğal mağara biçimi
+
+Feneraltı asimetrik daralan kesitle, Su İçen Fil açılı dış baş/hortum kaya hacmi ve asimetrik açıklıkla güncellendi. İç/dış yüzler aynı Float32 temas geometrisini kullanır; kaynak harita değişmedi. v2.52.0-738c03deaf55 canlı;588/588 Node22 ARM64,11infra,682/682 merkez hattı örneği,WebGL/WebGPU ve canlı HTTPS/WSS geçti. Bu etap tamamlandı; tüm Şile gerçekçilik denetimi kapanmadı. Bina yükseklikleri,31m DSM ve ölçülmemiş mağara şekilleri sınırdır. [Kanıt](sile-natural-caves-validation.json).

@@ -1,6 +1,6 @@
 # Drone Hangar — AWS işletim kaydı
 
-2026-11-02: Kullanıcı Drone simülatörü 2.16 için mevcut Zenth AWS sunucusunu seçti. Canlı adres: https://hangar.18-153-158-209.sslip.io/ . İlk kurulum `v2.16.0-7f5130339846`; güncel sürüm `v2.51.0-28f5c63c08a8` (2.51, 2026-11-07).
+2026-11-02: Kullanıcı Drone simülatörü 2.16 için mevcut Zenth AWS sunucusunu seçti. Canlı adres: https://hangar.18-153-158-209.sslip.io/ . İlk kurulum `v2.16.0-7f5130339846`; güncel sürüm `v2.52.0-738c03deaf55` (2.52, 2026-11-08).
 
 ## Yerleşim
 
@@ -189,3 +189,7 @@ v2.50.0-e90c470d8afd: Feneraltı kapalı uçlu deniz mağarası/kum zemini ve Su
 ## 2026-11-07 — 2.51 son görüntü hatası ve teslim kontrolü
 
 v2.51.0-28f5c63c08a8: deneysel WebGPU’da gökyüzünün uzak ağaçların üzerine çizilmesinden kaynaklanan beyazlık giderildi. Gökyüzü opak sahneden önce çizilir, derinliğe yazmaz. Geometri, gövde temasları,26kaynakvarlığı ve uçuş/kumanda modelleri2.50ileaynı.585/585Node22ARM64(262098.866103ms),6focused,11infra,ViteARM64,freshreview bulgusuz;GPUdoğukıyı/gecepist,GLmağara682/682 ve canlımenu/pause/resume/DISARM0AGL/error[] doğrulandı.293manifest/122runningSHA,HTTPS5entry252IDvecanlılazyGPUchunktafix,WSS2clientjoinstateleavepass.0restart23.67MiB/256MiB,UID1000readonly.7tenant/nginx aynı;oldapp/databackupkorundu,Zenthweb/API/GelişimTLSorigin200. Sonrapor `docs/sile-final-delivery-validation.json`;fizikselTX15pilotkabulü ve ölçülmemişmağara/sourcebelirsizlikleri raporda açık.
+
+## 2026-11-08 — 2.52 doğal mağara biçimi
+
+v2.52.0-738c03deaf55 ARM64 yayımlandı. Image `sha256:bed28cd9aedb97b8ea245ccefee38dfb6ce79a505c931e309e5fd61537fc3fd7`; arşiv SHA256 `05ba0644ec0059485b2b7aa268817b10d387fe4a4c8d6a00e9830a0ca42495df`. 293 paket manifesti/122 çalışan kaynak SHA doğrulandı. HTTPS,2 istemcili WSS,0restart,UID1000/salt okunur kök,7 komşu servis kimliği ve nginx dosya bütünlüğü doğrulandı. Eski konteyner/veri yedeği korundu. Zenth web/API ve Gelişim TLS origin200. Kanıt: `docs/sile-natural-caves-validation.json`.

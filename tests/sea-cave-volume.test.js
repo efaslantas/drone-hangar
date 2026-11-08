@@ -12,3 +12,10 @@ test('convex subtraction removes a mouth centre and preserves outside triangles 
 test('flying within a cavity is not snapped onto the old terrain and camera near plane sees floor and roof',()=>{
  const{play}=fixture(),s={x:0,y:2,z:0,vx:0,vy:0,vz:3,armed:true};applyWorld(s,{size:.22},play);assert.equal(s.y,2);assert.equal(s.crashed,undefined);assert.ok(cameraClearance(play,{x:0,y:2,z:0})>1);assert.ok(cameraClearance(play,{x:0,y:4.95,z:0})<.1);
 });
+
+test('authored irregular tapered sections share the same exact boundary in geometry and point queries',()=>{
+ const c=api.caveVolume({id:'taper',origin:[10,20],axis:[.6,.8],halfWidth:4,sideHeight:1,rise:4,minD:-5,maxD:10,sea:-2,taper:-.02,profile:[[-4,-1.2],[4,-1.2],[4,.5],[2,3],[0,4],[-3,2],[-4,.5]]});
+ assert.equal(c.section.length,7);for(const d of [-5,0,10])for(const [u,y]of c.section){const p=api.cavePoint(c,u,y,d);assert.equal(api.insideCave(c,...p),true);assert.ok(c.planes.some(plane=>Math.abs(api.planeDistance(plane,p))<1e-8));}
+ const a=api.cavePoint(c,4,c.sea+1,-5),b=api.cavePoint(c,4,c.sea+1,10);assert.ok(Math.hypot(a[0]-10,a[2]-20)>0);assert.ok(Math.abs((a[0]-10)*c.side[0]+(a[2]-20)*c.side[1])>Math.abs((b[0]-10)*c.side[0]+(b[2]-20)*c.side[1]));
+ assert.equal(api.insideCave(c,...api.cavePoint(c,4.2,c.sea+1,0)),false);
+});

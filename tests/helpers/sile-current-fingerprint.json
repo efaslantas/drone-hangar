@@ -1,16 +1,1 @@
-{
-  "full": {
-    "meshes": "482d4f20b9475a1c39f296a11ce7bc7f4fc9866969c702b2849d370338162abb",
-    "collision": "2baa45536d8bfb3f0ae01a504227193033d710faa7ce18f8abb3242074ec18b8",
-    "meshCount": 52,
-    "boxes": 10810,
-    "prisms": 1351
-  },
-  "base": {
-    "meshes": "1629a32a78895fa5ee01b274f15dca1e8a285c5752623985c3a382fa4c63fc3a",
-    "collision": "c1ffd08f26e911ad2ac2665f5c76c3eaa2e4db571dee6a7321919697be30f956",
-    "meshCount": 48,
-    "boxes": 10810,
-    "prisms": 1351
-  }
-}
+{"full":{"meshes":"2195fc730ce7d41cd6870bf99d567dabde13b9cb0918b1d508b7f7b78dabaa37","collision":"fba3ec7261cb010615b84b5ad16b0433c1417993ca47fd0863c51c170c9c18fc","meshCount":52,"boxes":10810,"prisms":1351},"base":{"meshes":"606132456bce8078a60c06fca3cdd33aa4ed624af9c00ab683d58ae78dcd404d","collision":"c2b1b0acf8d5dd70756081c6203dca35f5651a65d440bebafdc9432990e6ef6e","meshCount":48,"boxes":10810,"prisms":1351}}

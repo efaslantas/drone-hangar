@@ -1,6 +1,6 @@
 # Drone Hangar — AWS işletim kaydı
 
-2026-11-02: Kullanıcı Drone simülatörü 2.16 için mevcut Zenth AWS sunucusunu seçti. Canlı adres: https://hangar.18-153-158-209.sslip.io/ . İlk kurulum `v2.16.0-7f5130339846`; güncel sürüm `v2.52.0-738c03deaf55` (2.52, 2026-11-08).
+2026-11-02: Kullanıcı Drone simülatörü 2.16 için mevcut Zenth AWS sunucusunu seçti. Canlı adres: https://hangar.18-153-158-209.sslip.io/ . İlk kurulum `v2.16.0-7f5130339846`; güncel sürüm `v2.53.0-adbdc325a24c` (2.53, 2026-11-08).
 
 ## Yerleşim
 
@@ -193,3 +193,7 @@ v2.51.0-28f5c63c08a8: deneysel WebGPU’da gökyüzünün uzak ağaçların üze
 ## 2026-11-08 — 2.52 doğal mağara biçimi
 
 v2.52.0-738c03deaf55 ARM64 yayımlandı. Image `sha256:bed28cd9aedb97b8ea245ccefee38dfb6ce79a505c931e309e5fd61537fc3fd7`; arşiv SHA256 `05ba0644ec0059485b2b7aa268817b10d387fe4a4c8d6a00e9830a0ca42495df`. 293 paket manifesti/122 çalışan kaynak SHA doğrulandı. HTTPS,2 istemcili WSS,0restart,UID1000/salt okunur kök,7 komşu servis kimliği ve nginx dosya bütünlüğü doğrulandı. Eski konteyner/veri yedeği korundu. Zenth web/API ve Gelişim TLS origin200. Kanıt: `docs/sile-natural-caves-validation.json`.
+
+## 2026-11-08 — 2.53 eğimli bina temasları
+
+v2.53.0-adbdc325a24c ARM64 yayımlandı. Image `sha256:9cdde7a6d76d891ccbc2f0d8d05634f535503980b80296b241bdd30205b2d0ca`; arşiv SHA256 `eca185413008456220de46d7bd6273228fdae8f6fb6cedfeaff67d3f72883bb2`.294manifest/122çalışan kaynak SHA,HTTPS/lazyGPUskyfix/WSS/liveUI;0restart,UID1000readonly,7tenant/nginxkimliğiaynı. Eskiapp/veriyedeği korundu. Kanıt `docs/sile-roof-contact-validation.json`.

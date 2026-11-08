@@ -61,3 +61,7 @@ Grafik kalitesi düşükken hafif üretilmiş zemin dokuları; orta/yüksekken t
 ## Şile mağara uçuşu · 2.50–2.51
 
 Serbest uçuş hazırlığında Şile merkez haritasını seç. Feneraltı mağarasına sahilden deniz üzerindeyken yaklaş; içeride dönerek aynı girişten çıkılır. Ağlayankaya yönündeki Su İçen Fil geçidinde bir ağızdan girip diğerinden çıkılabilir. Duvar ve tavana yaklaşırken gövde boşluğunu koru; suya temas uçuşu sonlandırır. Modelin konumu ve iç boyutları fotoğrafa dayalı temsili tasarımdır. Kumanda kalibrasyonu Kontroller bölümünden yapılır; fiziksel TX15 kabulü pilotun cihazıyla denenir.
+
+## Şile çatı yaklaşması · 2.53
+
+Eğimli binalarda temas çatı eğimini izler; saçak üstündeki boşlukta görünmez düz engel yoktur. Yavaş inişte destek eğimli yüzeyden gelir, sert çatı/duvar çarpması uçuşu bitirebilir. Model küresel gövde teması kullanır; binaların boyutları gerçek ölçüm değildir.

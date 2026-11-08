@@ -1,0 +1,114 @@
+{
+  "date": "2026-11-08",
+  "release": "v2.53.0-adbdc325a24c",
+  "status": "published",
+  "scope": "Pitched-building contact correction, not a measured building-height update",
+  "image": {
+    "release": "v2.53.0-adbdc325a24c",
+    "imageId": "sha256:9cdde7a6d76d891ccbc2f0d8d05634f535503980b80296b241bdd30205b2d0ca",
+    "archiveSha256": "eca185413008456220de46d7bd6273228fdae8f6fb6cedfeaff67d3f72883bb2",
+    "archiveBytes": 141728607,
+    "architecture": "arm64",
+    "sourceFiles": 294
+  },
+  "implementation": {
+    "gabledBuildings": 589,
+    "roofTriangles": 2356,
+    "gableTriangles": 1178,
+    "wallTriangles": 4712,
+    "totalShellTriangles": 8246,
+    "geometry": "Identical uploaded Float32 roof/gable vertices; source envelope remains for layout. Body prism stops at uploaded eave. Triangle solver intercepts high-speed roof/gable/body crossings.",
+    "support": "Project and resweep tangential remainder after time-zero support contact, at most three iterations; shared squared-distance tolerance avoids false tangent collisions.",
+    "pads": "Append retaining-wall contacts instead of replacing earlier building contacts.",
+    "sourceGisFilesUnchanged": 26,
+    "visualMeshHashesUnchanged": true,
+    "fingerprints": {
+      "full": {
+        "meshes": "2195fc730ce7d41cd6870bf99d567dabde13b9cb0918b1d508b7f7b78dabaa37",
+        "collision": "17cf4116361c2713884ce9f247cd39e298527538e2a77f8966f02ff14210beef",
+        "meshCount": 52,
+        "boxes": 10810,
+        "prisms": 1351
+      },
+      "base": {
+        "meshes": "606132456bce8078a60c06fca3cdd33aa4ed624af9c00ab683d58ae78dcd404d",
+        "collision": "378d0d28db5fd2747de377141a403052ee4e877e4d842fa8a89b3b356beca6f5",
+        "meshCount": 48,
+        "boxes": 10810,
+        "prisms": 1351
+      }
+    }
+  },
+  "verification": {
+    "node22Arm64": {
+      "pass": 595,
+      "fail": 0
+    },
+    "infraPython": {
+      "pass": 11
+    },
+    "focused": 31,
+    "regressions": [
+      "Invisible ridge-height box: RED then GREEN",
+      "Multi-frame roof landing tangential movement: RED then GREEN",
+      "Actual Şile pad installation discarded roof contacts: RED0 vs2356, then GREEN"
+    ],
+    "boundaries": [
+      "High-speed roof/gable/body crossing",
+      "Soft sloped landing and repeated support",
+      "Slide into adjacent wall re-swept",
+      "Flat building and body interior retain support",
+      "Actual 589 source roofs preserve contact batches and exact Float32 roof vertices"
+    ],
+    "independentReview": "P2 tangential freeze fixed and rechecked; no remaining findings",
+    "nativeBrowser": [
+      "WebGL actual source building549911731 clear eave probe",
+      "WebGPU same view,589 buildings/8246 contacts,console error[]",
+      "Live quick Şile flight DISARM 0km/h0mAGL"
+    ],
+    "https": {
+      "release": "v2.53.0-adbdc325a24c",
+      "entryAssets": 5,
+      "uniqueIds": 252,
+      "appVersion": "2.53.0",
+      "lazyGpuChunks": [
+        "gfx-webgpu-VjAwlBXM.js"
+      ],
+      "liveSkyOrderFix": true,
+      "mapAndSourceSha256": "pass"
+    },
+    "websocket": {
+      "clients": 2,
+      "join": "pass",
+      "state": "pass",
+      "leave": "pass"
+    },
+    "remote": {
+      "Status": "Success",
+      "StandardOutputContent": "Running image source hashes: 122 OK\ndrone-hangar | 23.35MiB / 256MiB | 0.92%\n{\"running\": true, \"restarts\": 0, \"readonly\": true, \"user\": \"1000:1000\", \"image\": \"sha256:9cdde7a6d76d891ccbc2f0d8d05634f535503980b80296b241bdd30205b2d0ca\"}\nSeven tenants/nginx unchanged; old container/data backup retained\nhttps://zenth.finance/ 200\nhttps://api.zenth.finance/health 200\nGelisim TLS origin 200\n",
+      "StandardErrorContent": "nginx: the configuration file /etc/nginx/nginx.conf syntax is ok\nnginx: configuration file /etc/nginx/nginx.conf test is successful\n"
+    }
+  },
+  "screenshots": [
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-253-roof-webgl.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-253-roof-webgpu.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-253-live-webgl.png"
+  ],
+  "sourceResearch": [
+    {
+      "url": "https://kentrehberi.sile.bel.tr/rehber/",
+      "result": "Public municipal map inspected; no verified open measured-height export/reuse license established. No municipal assets copied."
+    },
+    {
+      "source": "public/maps/sile/source-osm.json",
+      "result": "Existing1331building records contain0height tags and1building:levels=4 tag. No invented per-building heights."
+    }
+  ],
+  "limitations": [
+    "Roof shapes and most heights remain authored/assumed; no new survey or photogrammetry.",
+    "Contact radius uses the existing sphere approximation; this is not rotor-by-rotor contact.",
+    "Other flat buildings retain existing prism behavior.",
+    "Physical TX15 and measured aircraft-flight acceptance not performed.",
+    "Overall Şile audit remains open for source heights, microterrain, coastal verification and long-session performance."
+  ]
+}

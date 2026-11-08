@@ -67,7 +67,7 @@ export function buildingPadWalls(terrain){
 }
 export function addBuildingPadWalls(scene,play,plan){
  scene.userData.silePadStats={authored:true,pads:plan.pads.length,rejected:plan.rejected};if(!plan.pads.length)return;
- const out=buildingPadWalls(play.terrain),g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute(out.positions,3));g.computeVertexNormals();const mesh=new THREE.Mesh(g,new THREE.MeshStandardMaterial({color:0x928b7b,roughness:1,side:THREE.DoubleSide}));mesh.name='sile-building-retaining-walls';mesh.castShadow=true;mesh.receiveShadow=true;scene.add(mesh);play.terrainWalls=out.segments;
+ const out=buildingPadWalls(play.terrain),g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute(out.positions,3));g.computeVertexNormals();const mesh=new THREE.Mesh(g,new THREE.MeshStandardMaterial({color:0x928b7b,roughness:1,side:THREE.DoubleSide}));mesh.name='sile-building-retaining-walls';mesh.castShadow=true;mesh.receiveShadow=true;scene.add(mesh);play.terrainWalls??=[];play.terrainWalls.push(...out.segments);
 }
 
 // Existing prop transforms and collision remain byte-for-byte stable. Reject

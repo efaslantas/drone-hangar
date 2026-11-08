@@ -95,12 +95,19 @@ export function buildSile(scene,data){
  if(streets.valid)scene.userData.sileStreetStats=streets.stats;
  const batches=Array.from({length:8},()=>[]),materials=buildingMaterials();
  let gabled=0;
- for(const item of sourceItems){
+ for(const [itemIndex,item]of sourceItems.entries()){
   if(site&&item===site.castle)continue;
   const roof=buildingRoof(item),wallHeight=roof?roof.eaves-item.base:item.height;
   const g=new THREE.ExtrudeGeometry(shapeFor(item.rings),{depth:wallHeight,bevelEnabled:false,steps:1});g.rotateX(-Math.PI/2);g.translate(0,item.base,0);
   const wallIndex=item.kind||item.landmark==='castle'?6:item.landmark==='lighthouse'?7:1+(item.id%5);
   const source=g.attributes.position;
+  const contacts=(part,role,mesh)=>{play.terrainWalls??=[];for(const c of coastCliffContacts(part))play.terrainWalls.push({...c,mesh,authored:'building-shell',sourceId:item.id,role,landing:role==='roof',reason:'binaya çarptı'});};
+  if(roof){
+   // Keep the full source envelope for layout/broadphase consumers; the body
+   // ends at the uploaded eave and the drawn shell owns the sloped top.
+   play.prisms[itemIndex].roofEaves=Math.fround(roof.eaves);
+   for(const group of g.groups)if(group.materialIndex===1){const p=[];for(let i=group.start;i<group.start+group.count;i++)p.push(source.getX(i),source.getY(i),source.getZ(i));const wall=geometry(p);contacts(wall,'wall',coastal.has(item.id)?'sile-coastal-facades':'sile-buildings-'+wallIndex);wall.dispose();}
+  }
   for(const group of g.groups){
    if(coastal.has(item.id)&&group.materialIndex===1)continue;
    if(contextPlan.valid&&item.kind==='pier'&&group.materialIndex===0)continue;
@@ -115,8 +122,8 @@ export function buildSile(scene,data){
   if(roof){
    const part=geometry(roof.positions),tint=new THREE.Color([0x9e6a50,0xa77c61,0x986c53,0xb18b70,0x8f7060][Math.abs(item.id)%5]),colors=[];
    part.setAttribute('uv',new THREE.Float32BufferAttribute(roof.uv,2));for(let i=0;i<roof.positions.length;i+=3)colors.push(tint.r,tint.g,tint.b);
-   part.setAttribute('color',new THREE.Float32BufferAttribute(colors,3));batches[0].push(part);
-   if(!coastal.has(item.id)){const end=geometry(roof.gables);end.setAttribute('uv',new THREE.Float32BufferAttribute(Array(roof.gables.length/3).fill([.03,.03]).flat(),2));batches[wallIndex].push(end);}gabled++;
+   part.setAttribute('color',new THREE.Float32BufferAttribute(colors,3));contacts(part,'roof','sile-buildings-0');batches[0].push(part);
+   const end=geometry(roof.gables);contacts(end,'gable',coastal.has(item.id)?'sile-coastal-facades':'sile-buildings-'+wallIndex);if(!coastal.has(item.id)){end.setAttribute('uv',new THREE.Float32BufferAttribute(Array(roof.gables.length/3).fill([.03,.03]).flat(),2));batches[wallIndex].push(end);}else end.dispose();gabled++;
   }
   g.dispose();
  }

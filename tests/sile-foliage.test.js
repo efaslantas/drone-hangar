@@ -1,3 +1,5 @@
+// Legacy envelope fingerprints omit only the intentional 2.53 roof body cap;
+// exact roof-shell contacts are covered by sile-roof-contact.test.js.
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import * as THREE from 'three';
@@ -23,7 +25,7 @@ test('expanded world keeps source collision fingerprints and all foliage vertice
  const fs=await import('node:fs'),crypto=await import('node:crypto');
  const ctx=new Proxy({getImageData:(x,y,w,h)=>({data:new Uint8ClampedArray(w*h*4)}),createImageData:(w,h)=>({data:new Uint8ClampedArray(w*h*4)}),createLinearGradient:()=>({addColorStop(){}}),createRadialGradient:()=>({addColorStop(){}})},{get:(o,k)=>k in o?o[k]:(()=>{})});globalThis.document={createElement:()=>({getContext:()=>ctx})};
  const {buildWorld,clearWorld}=await import('../src/world.js'),data=JSON.parse(fs.readFileSync(new URL('../public/maps/sile/map.json',import.meta.url))),before=JSON.stringify(data),scene=new THREE.Scene(),play=buildWorld(scene,'sile',{sileData:data,props:false});
- const hash=crypto.createHash('sha256').update(JSON.stringify({boxes:play.boxes,prisms:play.prisms,pads:play.terrain.buildingPads})).digest('hex');assert.equal(hash,'1d8e242766d410a3087654c026b1c78b5b5aa74fd60c86e9b2ed69d4e00c03f4');assert.equal(JSON.stringify(data),before);
+ const hash=crypto.createHash('sha256').update(JSON.stringify({boxes:play.boxes,prisms:play.prisms.map(({roofEaves,...q})=>q),pads:play.terrain.buildingPads})).digest('hex');assert.equal(hash,'1d8e242766d410a3087654c026b1c78b5b5aa74fd60c86e9b2ed69d4e00c03f4');assert.equal(JSON.stringify(data),before);
  const resources=new Set(),point=new THREE.Vector3(),matrix=new THREE.Matrix4();let crowns=0,meshes=0;
  scene.traverse(o=>{if(o.isMesh)meshes++;if(!['sile-context-leaf:leaf','sile-neighbourhood-leaf:solid'].includes(o.name))return;resources.add(o.geometry);for(const m of Array.isArray(o.material)?o.material:[o.material]){resources.add(m);if(m.map)resources.add(m.map);}const records=o.userData.contextBoxes||o.userData.neighbourhoodBoxes,p=o.geometry.attributes.position;for(let i=0;i<o.count;i++){o.getMatrixAt(i,matrix);const box=records[i];for(let j=0;j<p.count;j++){point.fromBufferAttribute(p,j).applyMatrix4(matrix);assert.ok(point.x>=box.minx&&point.x<=box.maxx&&point.y>=box.miny&&point.y<=box.maxy&&point.z>=box.minz&&point.z<=box.maxz);}crowns++;}});
  assert.equal(meshes,52);assert.equal(crowns,3202);assert.deepEqual(scene.userData.sileFoliageStats,{batches:2,crowns:3202,cardsPerCrown:32,trianglesPerCrown:64,soilPatches:36,authored:true});

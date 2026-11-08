@@ -138,3 +138,7 @@ Feneraltı/Zeki Müren Mağarası kapalı uçlu deniz hacmi ve temsili arka kum 
 ## 2.52 — doğal mağara biçimi
 
 Feneraltı asimetrik daralan kesitle, Su İçen Fil açılı dış baş/hortum kaya hacmi ve asimetrik açıklıkla güncellendi. İç/dış yüzler aynı Float32 temas geometrisini kullanır; kaynak harita değişmedi. v2.52.0-738c03deaf55 canlı;588/588 Node22 ARM64,11infra,682/682 merkez hattı örneği,WebGL/WebGPU ve canlı HTTPS/WSS geçti. Bu etap tamamlandı; tüm Şile gerçekçilik denetimi kapanmadı. Bina yükseklikleri,31m DSM ve ölçülmemiş mağara şekilleri sınırdır. [Kanıt](sile-natural-caves-validation.json).
+
+## 2.53 — eğimli çatı ile eşleşen temas
+
+589 eğimli binada8246 çatı/alın/duvar üçgeni mevcut süpürülen küre çözücüsüne girer; saçak altı gövde prizması ve orijinal yerleşim zarfı ayrı tutulur. Yeni gövde/çatı kaydı bina zemin duvarları kurulurken korunur. Başlangıç destek temasından sonra teğetsel yer değiştirme yeniden süpürülerek yana hareket kaybı giderilir. Görsel geometri ve26kaynak GIS dosyası2.52ile aynıdır. v2.53.0-adbdc325a24c canlı;595/595Node22ARM64,31focused,11infra,bağımsız inceleme,nativeGL/GPU/liveUI ve HTTPS/WSS doğrulandı. Bina yüksekliği/çatı türü hâlâ çoğunlukla varsayım;ölçülmüş Şile veya fizikselTX15kabulü değildir. [Kanıt](sile-roof-contact-validation.json).

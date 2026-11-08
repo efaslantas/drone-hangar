@@ -105,8 +105,8 @@ function hitAabb(state, box, r) {
 }
 
 function hitPrism(state,prism,r) {
- const [minx,maxx,minz,maxz]=prism.bounds;
- if(state.x<minx-r||state.x>maxx+r||state.z<minz-r||state.z>maxz+r||state.y<prism.miny-r||state.y>prism.maxy+r)return;
+ const [minx,maxx,minz,maxz]=prism.bounds,maxy=prism.roofEaves??prism.maxy;
+ if(state.x<minx-r||state.x>maxx+r||state.z<minz-r||state.z>maxz+r||state.y<prism.miny-r||state.y>maxy+r)return;
  const inside=insidePolygon(state.x,state.z,prism.rings);
  let best=Infinity,qx=0,qz=0,edgeX=0,edgeZ=0;
  for(const ring of prism.rings)for(let i=0;i<ring.length;i++){
@@ -116,8 +116,8 @@ function hitPrism(state,prism,r) {
   if(d<best){best=d;qx=x;qz=z;edgeX=dx;edgeZ=dz;}
  }
  const side=Math.sqrt(best);let nx=0,ny=0,nz=0,pen=0;
- if(inside&&state.y>=prism.miny&&state.y<=prism.maxy){
-  const roof=prism.maxy-state.y,floor=state.y-prism.miny;
+ if(inside&&state.y>=prism.miny&&state.y<=maxy){
+  const roof=maxy-state.y,floor=state.y-prism.miny;
   if(roof<=side&&roof<=floor){ny=1;pen=r+roof;}
   else if(floor<=side){ny=-1;pen=r+floor;}
   else {
@@ -126,7 +126,7 @@ function hitPrism(state,prism,r) {
    pen=r+side;
   }
  }else{
-  const qy=clamp(state.y,prism.miny,prism.maxy),dx=inside?0:state.x-qx,dz=inside?0:state.z-qz,dy=state.y-qy,d=Math.hypot(dx,dy,dz);
+  const qy=clamp(state.y,prism.miny,maxy),dx=inside?0:state.x-qx,dz=inside?0:state.z-qz,dy=state.y-qy,d=Math.hypot(dx,dy,dz);
   if(d>=r)return;
   if(d>1e-8){nx=dx/d;ny=dy/d;nz=dz/d;pen=r-d;}
   else{
@@ -156,16 +156,16 @@ function sweptTriangleSphere(start,end,triangle,r){
  let minimum=(left+right)/2;if(distance(1)<distance(minimum))minimum=1;
  if(distance(minimum)>radius2+1e-12)return null;
  let lo=0,hi=minimum;
- if(d0>radius2)for(let i=0;i<40;i++){const mid=(lo+hi)/2;if(distance(mid)>radius2)lo=mid;else hi=mid;}
+ if(d0>radius2+1e-12)for(let i=0;i<40;i++){const mid=(lo+hi)/2;if(distance(mid)>radius2)lo=mid;else hi=mid;}
  else hi=0;
  distance(hi);const centre=point.clone(),normal=centre.clone().sub(nearest),length=normal.length();
  if(length>1e-9)normal.multiplyScalar(1/length);else{triangle.getNormal(normal);if(normal.dot(delta)>0)normal.negate();}
  // An existing overlap that is separating needs no swept stop; its final
  // position still receives the exact discrete triangle contact below.
- if(hi===0&&normal.dot(delta)>=0)return null;
+ if(hi===0&&normal.dot(delta)>=-1e-9*Math.max(1,delta.length()))return null;
  return {time:hi,centre,normal,penetration:Math.max(0,r-length)};
 }
-function hitTerrainWalls(state,walls,r){
+function hitTerrainWalls(state,walls,r,slides=0){
  if(!walls?.length)return;
  const end=new Vector3(state.x,state.y,state.z),start=state.motionStart?new Vector3(state.motionStart.x,state.motionStart.y,state.motionStart.z):null,triangles=[];let earliest=null;
  for(const w of terrainWallCandidates(walls,[Math.min(end.x,start?.x??end.x)-r,Math.max(end.x,start?.x??end.x)+r,Math.min(end.z,start?.z??end.z)-r,Math.max(end.z,start?.z??end.z)+r])){
@@ -175,10 +175,19 @@ function hitTerrainWalls(state,walls,r){
   const faces=vertices?[vertices.map(v=>new Vector3(...v))]:(()=>{const a=new Vector3(w.a[0],w.height,w.a[1]),b=new Vector3(w.b[0],w.height,w.b[1]),c=new Vector3(w.a[0],w.ya,w.a[1]),d=new Vector3(w.b[0],w.yb,w.b[1]);return [[a,b,c],[b,d,c]];})();
   for(const face of faces){const triangle=new Triangle(...face);if(triangle.getNormal(new Vector3()).lengthSq()<1e-20)continue;triangle.contactReason=w.reason||'istinat duvarına çarptı';triangle.landing=w.landing===true;triangles.push(triangle);if(start){const hit=sweptTriangleSphere(start,end,triangle,r);if(hit&&(!earliest||hit.time<earliest.time))earliest={...hit,reason:triangle.contactReason,landing:triangle.landing};}}
  }
- if(earliest){const {centre,normal,penetration}=earliest;state.x=centre.x;state.y=centre.y;state.z=centre.z;const landing=earliest.landing&&normal.y>.5;if(landing)state.worldTouchdown={verticalSpeed:Math.max(0,-state.vx*normal.x-state.vy*normal.y-state.vz*normal.z),horizontalSpeed:Math.hypot(state.vx,state.vz)};hitNormal(state,normal.x,normal.y,normal.z,penetration,earliest.reason);if(landing&&!state.crashed)state.grounded=true;if(state.crashed)return;}
+ if(earliest){const {centre,normal,penetration}=earliest;state.x=centre.x;state.y=centre.y;state.z=centre.z;const landing=earliest.landing&&normal.y>.5;if(landing)state.worldTouchdown={verticalSpeed:Math.max(0,-state.vx*normal.x-state.vy*normal.y-state.vz*normal.z),horizontalSpeed:Math.hypot(state.vx,state.vz)};hitNormal(state,normal.x,normal.y,normal.z,penetration,earliest.reason);if(landing&&!state.crashed)state.grounded=true;if(state.crashed)return;
+  // Gravity into an existing support must not cancel the same step's travel
+  // along that support. Sweep the projected remainder again so another wall
+  // or roof edge still intercepts it; bound iterations at corners.
+  if(landing&&earliest.time<1e-6&&slides<3){
+   const remaining=end.clone().sub(centre);remaining.addScaledVector(normal,-Math.min(0,remaining.dot(normal)));
+   if(remaining.lengthSq()>1e-16){const previous=state.motionStart;state.motionStart={x:state.x,y:state.y,z:state.z};state.x+=remaining.x;state.y+=remaining.y;state.z+=remaining.z;hitTerrainWalls(state,walls,r,slides+1);state.motionStart=previous;return;}
+  }
+ }
  const centre=new Vector3(),nearest=new Vector3();
  for(const triangle of triangles){centre.set(state.x,state.y,state.z);triangle.closestPointToPoint(centre,nearest);const distance=centre.distanceTo(nearest);if(distance>=r)continue;const normal=centre.clone().sub(nearest);if(distance>1e-8)normal.multiplyScalar(1/distance);else triangle.getNormal(normal);const landing=triangle.landing&&normal.y>.5;if(landing&&!state.worldTouchdown)state.worldTouchdown={verticalSpeed:Math.max(0,-state.vx*normal.x-state.vy*normal.y-state.vz*normal.z),horizontalSpeed:Math.hypot(state.vx,state.vz)};hitNormal(state,normal.x,normal.y,normal.z,r-distance,triangle.contactReason);if(landing&&!state.crashed)state.grounded=true;if(state.crashed)return;}
 }
+
 function hitTerrain(state,spec,play){
  const surface=surfaceAt(play,state.x,state.z,state.y),r=groundSupport(spec,state,surface.normal,.06),[nx,ny,nz]=surface.normal;
  const distance=(state.y-surface.height)*ny;

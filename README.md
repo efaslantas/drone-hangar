@@ -107,3 +107,5 @@ Veri yalnız harita seçilince yerelden yüklenir. Kaynaklar ve indirilebilir OD
 Şile 2.50–2.51: Feneraltı mağarasına denizden girip aynı ağızdan geri çıkılabilir; Su İçen Fil geçidinin iki ağzı açıktır. Kum, su, tavan ve kaya yüzleri mevcut uçuş fiziğiyle temas eder. İç boyutlar fotoğraflara dayalı temsili modeldir. 2.51, WebGPU uzak ağaç beyazlığını gökyüzü çizim sırasını düzelterek kapatır. Teslim kanıtı [son doğrulama kaydı](docs/sile-final-delivery-validation.json).
 
 Şile 2.52: Feneraltı asimetrik ve içeride daralan kesite; Su İçen Fil dış kaya hacmine ve asimetrik açıklığa sahip. Görünen kaya ve çarpışma yüzleri birlikte oluşturulur. Bunlar ölçülmemiş temsili modellerdir. [Doğrulama](docs/sile-natural-caves-validation.json).
+
+Şile 2.53: 589 temsili eğimli binanın çatısı ve alın yüzleri görünen yüzeyde temas verir. Saçak üzerinde mahya yüksekliğine kadar uzanan görünmez kutu kaldırıldı; çatıya iniş sonrası yana hareket ve hızlı çatı/duvar geçişleri düzeltildi. Yeni bina yüksekliği ölçümü eklenmedi. [Doğrulama](docs/sile-roof-contact-validation.json).

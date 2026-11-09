@@ -50,6 +50,8 @@ Oda adi ve gorunen ad URL'ye yazilir. Ayni oda diger pilotlarin konumunu gosteri
 
 ## RC kumanda · USB Joystick
 
+Tamamlanmış kalibrasyon aynı tarayıcı profili ve site adresinde saklanır. Aynı kumandayı veya aynı ekseni tekrar seçtiğinde korunur; USB cihaz sırası değişse de yeniden kalibrasyon gerekmez. Farklı cihaz veya farklı eksen eşlemesi seçersen kalibrasyonu yenile. Localhost ve canlı site kayıtları ayrıdır.
+
 Kontroller sekmesinde ayrı RC profili vardır. Cihaz ve dört farklı ekseni seç; merkez/gaz minimum başlangıcını alıp dört saniye tüm uçları gezdir. Yönleri canlı çubuklardan kontrol et. RC gazı %0–100, orta konum %50'dir; hover merkezleme ve PS/R2 çarpanları yoktur. ARM, Space/ekran düğmesiyle ve gaz %5 altındayken yapılır. Eksik kalibrasyon/bağlantı kaybında DISARM; geri dönüş otomatik ARM etmez. Eski kullanıcı profili değişmez. Fiziksel TX15 testi yapılmadı. EdgeTX tarafında USB Joystick modu kullanılır; kanal sırası eşleme gerektirir. RF veya gerçek drone bağlantısı yapılmaz.
 
 

@@ -22,13 +22,14 @@ export function bindRcSetup(root,storage) {
  for(const role of RC_ROLES){
   const select=el('rc-axis-'+role);
   for(let i=0;i<32;i++){const option=document.createElement('option');option.value=String(i);option.textContent='Eksen '+(i+1);select.append(option);}
-  select.addEventListener('change',()=>{config.axes[role].index=Number(select.value);changed();});
+  select.addEventListener('change',()=>{const index=Number(select.value),different=index!==config.axes[role].index;config.axes[role].index=index;changed(different);});
   el('rc-invert-'+role).addEventListener('change',()=>{config.axes[role].invert=el('rc-invert-'+role).checked;changed(false);});
  }
  el('input-mode').addEventListener('change',()=>{config.mode=el('input-mode').value;changed(false);});
  el('rc-device').addEventListener('change',()=>{
   const gp=el('rc-device').value===''?null:readInputDevices().find(p=>p.index===Number(el('rc-device').value));
-  config.deviceId=gp?.id||'';config.deviceIndex=gp?.index||0;changed();
+  const deviceId=gp?.id||'',different=deviceId!==config.deviceId;
+  config.deviceId=deviceId;config.deviceIndex=gp?.index||0;changed(different);
  });
  el('rc-centre').addEventListener('click',()=>{
   const gp=selectRcDevice(readInputDevicesByIndex(),config);

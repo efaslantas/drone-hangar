@@ -63,6 +63,8 @@ Gamepad davranisi tarayici ve cihaz baglantisina baglidir. Fiziksel cihazla kont
 
 ## RC USB kumanda profili
 
+Aynı kumandayı tekrar seçmek, USB cihaz sırasının değişmesi veya aynı ekseni yeniden seçmek kayıtlı kalibrasyonu bozmaz. Farklı cihaz kimliği veya farklı eksen eşlemesi yeni kalibrasyon gerektirir. Kayıt aynı tarayıcı profili ve site adresi için geçerlidir; localhost ile canlı adres arasında otomatik taşınmaz.
+
 Kontroller → Giriş profili → RC kumanda. EdgeTX USB Joystick ile tarayıcının gösterdiği cihazı seç; roll/pitch/yaw/gaz için dört farklı eksen eşle. Diğer stick'ler merkezde ve gaz en altta iken başlangıcı al, ardından dört saniye içinde tüm uçları gezdir. Canlı ham eksenler ve komut göstergelerinde yönleri kontrol et; tersliği ayrı değiştirebilirsin. Eşleme/cihaz değişirse kalibrasyon yenilenir.
 
 RC gazı doğrudan 0–100'dür; merkez hover değildir. PS profili ve R2 uygulanmaz, Angle irtifa yardımı gazın üzerine yazmaz. ARM için gaz ≤%5 ve geçerli cihaz/kalibrasyon gerekir. Bağlantı kaybı DISARM yapar; geri bağlanınca otomatik ARM olmaz. ARM Space veya ekran düğmesiyle yapılır; RC butonlarına otomatik işlev atanmaz. RC seçiliyken klavye/dokunmatik uçuş eksenlerine sessiz geçiş olmaz; menü tuşları kullanılabilir. PS/klavye/dokunmatiğe dönüş aynı profil seçicisindedir.

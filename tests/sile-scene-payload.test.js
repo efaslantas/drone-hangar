@@ -8,3 +8,19 @@ test('the actual prepared Şile world round-trips all rendered meshes and physic
  const data=await prepareBuildingSupplement(JSON.parse(fs.readFileSync(new URL('../public/maps/sile/map.json',import.meta.url)))),scene=new THREE.Scene(),play=buildSile(scene,data),packet=packSileScene(scene,play),out=await unpackSileScene(packet,async()=>{}),source=[],result=[];scene.traverse(o=>{if(o.isMesh)source.push(o)});out.scene.traverse(o=>{if(o.isMesh)result.push(o)});assert.equal(result.length,source.length);for(let i=0;i<source.length;i++){assert.equal(result[i].name,source[i].name);for(const [name,a]of Object.entries(source[i].geometry.attributes))assert.deepEqual(result[i].geometry.attributes[name].array,a.array,source[i].name+':'+name);assert.deepEqual(result[i].geometry.index?.array,source[i].geometry.index?.array,source[i].name+':index');if(source[i].isInstancedMesh)assert.deepEqual(result[i].instanceMatrix.array,source[i].instanceMatrix.array);}
  assert.equal(out.play.terrainWalls.length,play.terrainWalls.length);for(let i=0;i<play.terrainWalls.length;i++){assert.deepEqual(out.play.terrainWalls[i].vertices,play.terrainWalls[i].vertices);assert.equal(out.play.terrainWalls[i].sourceId,play.terrainWalls[i].sourceId);assert.equal(out.play.terrainWalls[i].reason,play.terrainWalls[i].reason);}assert.deepEqual(out.play.prisms,play.prisms);
 });
+
+test('cancelling on the first preparation frame prevents scene allocation',async()=>{
+ const source=new THREE.Scene();source.add(new THREE.Mesh(new THREE.BoxGeometry(),new THREE.MeshStandardMaterial()));
+ const packet=packSileScene(source,{terrainWalls:[{vertices:[[0,0,0],[1,0,0],[0,1,0]]}],prisms:[],boxes:[]}),json=packet.json,controller=new AbortController();let reads=0;
+ Object.defineProperty(packet,'json',{get(){reads++;return json;}});
+ await assert.rejects(unpackSileScene(packet,async()=>controller.abort(),controller.signal),{name:'AbortError'});
+ assert.equal(reads,0,'a cancelled preparation must not allocate the large scene before the first browser frame');
+});
+
+test('cancellation after scene reconstruction prevents the subsequent physical-data clone',async()=>{
+ const source=new THREE.Scene();source.add(new THREE.Mesh(new THREE.BoxGeometry(),new THREE.MeshStandardMaterial()));
+ const packet=packSileScene(source,{terrainWalls:[{vertices:[[0,0,0],[1,0,0],[0,1,0]]}],prisms:[],boxes:[]}),json=packet.json,play=packet.play,controller=new AbortController();let sceneRead=false,playReads=0;
+ Object.defineProperty(packet,'json',{get(){sceneRead=true;return json;}});Object.defineProperty(packet,'play',{get(){playReads++;return play;}});
+ await assert.rejects(unpackSileScene(packet,async()=>{if(sceneRead)controller.abort();},controller.signal),{name:'AbortError'});
+ assert.equal(playReads,0,'abort must be observed between reconstruction and cloning the physical world');
+});

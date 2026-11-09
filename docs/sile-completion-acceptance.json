@@ -1285,5 +1285,102 @@
       "physicalTX15": "not-run",
       "userAcceptance": "not-run"
     }
+  },
+  "followups": {
+    "loading257": {
+      "status": "verified-awaiting-release",
+      "version": "2.57.0",
+      "scope": "Same map/render/physics data; split main-thread scene reconstruction, physical data clone and final index into separate existing frame checkpoints.",
+      "rootCause": [
+        {
+          "name": "ObjectLoader.parse",
+          "ms": 21.5
+        },
+        {
+          "name": "resource-map",
+          "ms": 0.4000000059604645
+        },
+        {
+          "name": "restore-userdata",
+          "ms": 4
+        },
+        {
+          "name": "clone-play",
+          "ms": 26.200000017881393
+        },
+        {
+          "name": "wall-hydration-including-yields",
+          "ms": 994.0999999940395
+        },
+        {
+          "name": "wall-index",
+          "ms": 20.099999994039536
+        }
+      ],
+      "beforeObservedPreparationLongTaskMs": 73,
+      "afterNative": {
+        "loadStages": {
+          "startedAt": 157.90000000596046,
+          "worldReadyAt": 34240.90000000596,
+          "assetsReadyAt": 34273.40000000596
+        },
+        "longTasks": [
+          {
+            "start": 26.69999998807907,
+            "duration": 67
+          },
+          {
+            "start": 34273.29999998212,
+            "duration": 241
+          }
+        ],
+        "region": "S1",
+        "camera": "0",
+        "backend": "webgl",
+        "renderSize": [
+          1280,
+          720
+        ],
+        "quality": "medium",
+        "scope": "Single actual whole composer frame, all passes aggregated; not sustained frame-time benchmark",
+        "render": {
+          "frame": 40,
+          "calls": 46,
+          "triangles": 1265642,
+          "points": 0,
+          "lines": 0
+        },
+        "memory": {
+          "geometries": 32,
+          "textures": 46
+        },
+        "jsHeapUsedBytes": 397187174
+      },
+      "afterObservedPreparationLongTasksOver50ms": [],
+      "nativeUI": {
+        "state": "- text: ✓ ✓ ✓ ✓\n- generic: Şile · veri tabanlı taslak\n- link \"© OpenStreetMap contributors · ODbL\":\n  - /url: https://www.openstreetmap.org/copyright\n- text: · Copernicus DEM ·\n- link \"Microsoft / Overture Maps · ODbL\":\n  - /url: https://overturemaps.org/\n- link \"Kaynaklar / yükseklik varsayımları ↗\":\n  - /url: /sile.html\n- generic: 0 km/h\n- generic: 0 m AGL\n- generic: BAT\n- generic: DISARM\n- generic: REF 4M · ACRO · REAL\n- button \"ARM\"\n- button \"CAM\"\n- button \"MOD\"\n- button \"KONTROL\"\n- button \"MENÜ\"",
+        "errors": [],
+        "cancel": "Loading overlay closed and focus returned to quick-flight button",
+        "retry": "Flight opened DISARM,0kmh,0AGL,REF4MACROREAL"
+      },
+      "focusedTests": {
+        "pass": 7,
+        "fail": 0,
+        "red": "Two early-cancel regressions failed on original code because scene and play were read before observing abort."
+      },
+      "independentReview": "Narrow reviewer found no actionable regressions; lightweight cancellation/payload checks3/3pass.",
+      "limits": [
+        "FirstGPU/composer initialization still241ms and earlier page initialization67ms in this session; whole first-load50ms target remains open.",
+        "Cold prepared-world+assets about34s in both native sessions; no wall-clock load-speed guarantee or measured cold-load reduction.",
+        "2.56 fifteen-minute static-camera rendering benchmark retained as historical evidence; not rerun or relabeled2.57.",
+        "PhysicalTX15 and human map/flight acceptance remain not-run."
+      ],
+      "fullTests": {
+        "platform": "Node22Alpine linux/arm64",
+        "passed": 628,
+        "failed": 0,
+        "durationMs": 307387.379151
+      }
+    }
   }
 }

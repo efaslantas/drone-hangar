@@ -161,3 +161,8 @@ CPU sahne hazırlığı arka plan worker'da aynı geometriyle yapılır; önizle
 626/626Node22ARM64,son9geometri/worker/gölge,11altyapı/11coğrafya testi ve bağımsız inceleme geçti.12/12iki yönlü3/25mps süpürülen temas rotası geçer; bu kapalı çevrim uçuş/RC kalibrasyonu değildir. NativeWebGL/WebGPU6bölge görüntüleri kontrol edildi. AppleM4/Chrome, WebGL1280×720medium,900.00s görünür sabitbölge kaydı: ortalama60.0–60.0FPS,1%düşük en az53.7FPS. Bu tam uygulamada manuel uçuş ölçümü değildir.
 
 31mDSM, ölçülmemiş bina/mağara ayrıntıları ve kaya dibi balıkçı izlerinin veri açığı sürer. FizikselTX15 ve kullanıcının görsel/uçuş kabulü yapılmadı. [Tek kabul raporu](sile-completion-acceptance.json), [ham performans](sile-completion-performance.json), [rota izi](sile-completion-routes.json).
+
+
+## 2.57 — Şile hazırlığında işlem sınırları
+
+Sahne çözümleme21.5ms,metadata4ms ve fizik verisi kopyalama26.2ms aynı tarayıcı işinde birikerek73ms blok oluşturuyordu. Mevcut kare/iptal sınırları ilk allocationöncesine,sahneilefizikverisiarasına ve son temas indeksiöncesine eklendi. Son native kayıtta yalnız sahne hazırlığı aralığında50msüzeri iş görülmedi;ilkGPU/composer241ms ve başlangıçmodülü67ms ayrı kalır. Soğuk hazırlık~34s olarak ölçüldü, yükleme hızgarantisi verilmez. İptal/tekraraçma ve aynı görünür/fizikselbufferlar doğrulandı;harita verisi/fizik/kumanda ayarları korunur. Tek kabul kaydı `docs/sile-completion-acceptance.json` içindeki `followups.loading257`;TX15/kullanıcı kabulü yapılmadı.

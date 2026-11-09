@@ -156,3 +156,8 @@ Task3–7 işaretleri temsili yazılım/model teslimini ifade eder.149aday kayna
 FizikselTX15 ve kullanıcı kabulü **not-run**; ilgili Task6 cihaz maddesi kontrol prosedürünün ayrılıp kaydedildiğini ifade eder, cihaz testinin geçtiğini ifade etmez. Son rapor docs/sile-completion-acceptance.json. Ölçülü saha modeline dönüşüm ek veri gerektirir.
 
 Canlı teslim: v2.56.0-618a82e72259; kullanıcı/TX15 kabulü raporda not-run kalır.
+
+
+## 2.57 devamı — hazırlık bloklarını ayırma
+
+Kullanıcı devam istedi. İlk native profil: ObjectLoader21.5ms+metadata4ms+fizik clone26.2ms aynı task içinde73msblok. Mevcut yieldFrame/AbortSignal sınırları, ilk allocationöncesi, sahne/fizikverisiarasında ve sonwallindexöncesine eklenir. Geometri/veri/fizik değişmez. Önce ikiiptalregresyonu eskiyolda başarısız,sonra7payload/cachetesti geçti. Bağımsız dar inceleme bulgusuz. Native ölçümde hazırlıkaralığında50msüzeri iş yok;ilkGPU/composer241msvebaşlangıç67msayrıkalır. İptal/tekraraçmaDISARM0hızdoğrulandı;yayınbekleniyor. FizikselTX15/kullanıcıkabulünot-run kalır.

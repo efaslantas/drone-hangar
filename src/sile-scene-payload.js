@@ -24,14 +24,19 @@ export function packSileScene(scene,play){
 }
 export async function unpackSileScene(packet,yieldFrame=()=>new Promise(r=>setTimeout(r,0)),signal){
  const aborted=()=>{if(signal?.aborted)throw new DOMException('Şile preparation cancelled','AbortError');};aborted();
+ // Keep message delivery, resource reconstruction and the physical-data clone
+ // in separate browser tasks so cancel/paint can run between expensive stages.
+ await yieldFrame();aborted();
  const scene=new THREE.ObjectLoader().parse(packet.json),resources=new Map();scene.traverse(o=>{resources.set(o.uuid,o);if(o.geometry)resources.set(o.geometry.uuid,o.geometry);for(const m of Array.isArray(o.material)?o.material:o.material?[o.material]:[]){resources.set(m.uuid,m);for(const t of Object.values(m))if(t?.isTexture)resources.set(t.uuid,t);}});
- scene.userData=references(scene.userData,resources,true);const play=structuredClone(packet.play),{vertices,metaIds,hasBounds,faces,metadata,special}=packet.walls,terrainWalls=[];
+ scene.userData=references(scene.userData,resources,true);
+ await yieldFrame();aborted();
+ const play=structuredClone(packet.play),{vertices,metaIds,hasBounds,faces,metadata,special}=packet.walls,terrainWalls=[];
  for(let i=0;i<metaIds.length;i++){
   if(i%1500===0){await yieldFrame();aborted();}
   if(metaIds[i]===0xffffffff){terrainWalls.push(null);continue;}
   const v=[0,3,6].map(k=>Array.from(vertices.subarray(i*9+k,i*9+k+3))),contactBounds=[0,1,2].flatMap(k=>[Math.min(...v.map(p=>p[k])),Math.max(...v.map(p=>p[k]))]);terrainWalls.push({...metadata[metaIds[i]],vertices:v,...(hasBounds[i]?{contactBounds}:{}),...(faces[i]>=0?{face:faces[i]}:{})});
  }
- for(const [i,w]of special)terrainWalls[i]=structuredClone(w);play.terrainWalls=terrainWalls;prepareTerrainWallIndex(terrainWalls);aborted();return{scene,play};
+ for(const [i,w]of special)terrainWalls[i]=structuredClone(w);play.terrainWalls=terrainWalls;await yieldFrame();aborted();prepareTerrainWallIndex(terrainWalls);aborted();return{scene,play};
 }
 export function sileTransferBuffers(value,result=new Set()){
  if(ArrayBuffer.isView(value)){result.add(value.buffer);return result;}

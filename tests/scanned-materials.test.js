@@ -55,3 +55,7 @@ test('metre-normalized ground keeps desktop source resolution and aligned channe
  await api.applyScannedMaterials(f.scene,{quality:'low',loadTexture:loader});assert.equal(f.mat.map,f.map);assert.deepEqual(f.mat.map.repeat.toArray(),[.5,.5]);assert.equal(f.mat.normalMap,null);
  f.scene.userData.lite=true;const touch=[];await api.applyScannedMaterials(f.scene,{quality:'high',loadTexture:async(a,c,size)=>{touch.push(size);return new THREE.Texture();}});assert.deepEqual(touch,[512,512,512]);assert.equal(f.mat.map.anisotropy,4);assert.equal(f.mat.normalMap.colorSpace,THREE.NoColorSpace);
 });
+
+test('sourced coastal rock preserves the authored wet-height roughness map and restores its original maps on low quality',async()=>{
+ const f=fixture('unclassified'),rough=f.rough;f.mat.userData.scannedSurface='coastalRock';f.mat.userData.keepCoastalRoughness=true;const calls=[];await api.applyScannedMaterials(f.scene,{quality:'medium',loadTexture:async(...a)=>{calls.push(a);return new THREE.Texture()}});assert.equal(f.mat.userData.scannedAsset,'rock_face_03');assert.deepEqual(calls.map(a=>a[1]),['color','normal']);assert.equal(f.mat.roughnessMap,rough);assert.equal(f.mat.map.colorSpace,THREE.SRGBColorSpace);await api.applyScannedMaterials(f.scene,{quality:'low',loadTexture:loader});assert.equal(f.mat.map,f.map);assert.equal(f.mat.roughnessMap,rough);
+});

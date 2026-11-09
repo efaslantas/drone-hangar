@@ -10,5 +10,5 @@ export function buildingSnapshotKey(data){
 // base data cannot silently receive roofprints from a different snapshot.
 export async function prepareBuildingSupplement(data){
  if(buildingSnapshotKey(data)!==source.baseMapSnapshotKey)throw new Error('Şile ek bina kaynak eşleşmesi geçersiz.');
- return {...data,supplementalBuildings:source.records,supplementalSource:{release:source.release,license:source.license,attribution:source.attribution,notice:source.notice}};
+ return {...data,completionLayer:1,supplementalBuildings:source.records,supplementalSource:{release:source.release,license:source.license,attribution:source.attribution,notice:source.notice}};
 }

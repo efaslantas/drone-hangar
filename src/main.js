@@ -27,7 +27,7 @@ import { CATALOG, droneById, paceInfo } from "./catalog.js";
 import { createState, step, rotateVec, hoverThrottle, yawErrTo, yawFromQ, withPayload } from "./physics.js";
 import { getInputSettings, poll, consume, bindStick, bindFlightTouches, bindTap, setControlProfile, setGamepadCalibration, captureGamepadCalibration } from "./input.js";
 import { makeDrone, disposeDrone, setDroneOpacity, spinProps, makeNametag, droneSvg, setCamPodTilt } from "./models.js";
-import { buildWorld, clearWorld, worldMatches, MAPS, bakeEnv, tickWorld, windFor } from "./world.js";
+import { buildWorldAsync, clearWorld, worldMatches, MAPS, bakeEnv, tickWorld, windFor } from "./world.js";
 import { ROOMS } from "./rooms.js";
 import { connect } from "./net.js";
 import { createGfx, wantsWebGPU, setGpuPreference, hasWebGPU, gfxLabel } from "./gfx.js";
@@ -1254,7 +1254,7 @@ function startFlight(){
   // Retain user activation for audio before yielding to paint the loading UI.
   sfx.unlock();return startPreparedFlight();
 }
-function startFlightNow() {
+async function startFlightNow() {
   if(mapLoading)return;
   if(opById(selectedOp).inspection&&!getSileData()){mapStatus.textContent="Şile yüklenmeden inceleme başlayamaz.";return;}
   const op = opById(selectedOp);
@@ -1281,7 +1281,7 @@ function startFlightNow() {
     flightWorldReady=false;
     for (const id of [...remotes.keys()]) dropRemote(id);
     clearWorld(scene);
-    play = buildWorld(scene, selectedMap, { lite: touchUi, night: nightOn, variant:op.worldVariant, gpu: gfx.node, sky: gfx.createSky, props: !touchUi, quality:visualSettings.quality });
+    play = await buildWorldAsync(scene, selectedMap, { lite: touchUi, night: nightOn, variant:op.worldVariant, gpu: gfx.node, sky: gfx.createSky, props: !touchUi, quality:visualSettings.quality });
     if (!touchUi) bakeEnv(renderer, scene, gfx.PMREMGenerator);
     loadedMap = selectedMap;
     flightWorldReady=true;

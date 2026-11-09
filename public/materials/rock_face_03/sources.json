@@ -1,0 +1,50 @@
+[
+  {
+    "asset": "rock_face_03",
+    "channel": "color",
+    "source": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rock_face_03/rock_face_03_diff_1k.jpg",
+    "path": "color.jpg",
+    "md5": "e4c34abb1aad5befe12754fad507147a",
+    "sha256": "ea48e0e47ad42c8bd312476178b1248ec66f0eb19156a26a1c222f2a40caaf2d",
+    "bytes": 927082,
+    "license": "CC0",
+    "page": "https://polyhaven.com/a/rock_face_03",
+    "authors": [
+      "Dario Barresi",
+      "Rico Cilliers"
+    ],
+    "meaning": "Generic scanned rock; not \u015eile geology or geometry measurement. UV tile scale authored."
+  },
+  {
+    "asset": "rock_face_03",
+    "channel": "normal",
+    "source": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rock_face_03/rock_face_03_nor_gl_1k.jpg",
+    "path": "normal.jpg",
+    "md5": "cbd30858439ece391480c5e67e09de89",
+    "sha256": "c6423169583f31715cf0636954bad524e806848a5f2861fcea6794275f726ff0",
+    "bytes": 1146788,
+    "license": "CC0",
+    "page": "https://polyhaven.com/a/rock_face_03",
+    "authors": [
+      "Dario Barresi",
+      "Rico Cilliers"
+    ],
+    "meaning": "Generic scanned rock; not \u015eile geology or geometry measurement. UV tile scale authored."
+  },
+  {
+    "asset": "rock_face_03",
+    "channel": "roughness",
+    "source": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rock_face_03/rock_face_03_rough_1k.jpg",
+    "path": "roughness.jpg",
+    "md5": "bbb2c7dafde3f81808fa7404d4527a56",
+    "sha256": "9e3d9a2fd75244892e7acb6bab2eaed1279299510a7970672c0ee27ff1c19fea",
+    "bytes": 638904,
+    "license": "CC0",
+    "page": "https://polyhaven.com/a/rock_face_03",
+    "authors": [
+      "Dario Barresi",
+      "Rico Cilliers"
+    ],
+    "meaning": "Generic scanned rock; not \u015eile geology or geometry measurement. UV tile scale authored."
+  }
+]

@@ -46,3 +46,5 @@ Eğimli çatı biçimleri ve kiremit UV yerleşimi uygulama için üretilen tems
 
 ## Kale görsel referansı · 2.16
 [Şile Belediyesi](https://sile.bel.tr/tr/sile-rehberi/sile-tarihi-yapilari/):12m/dört kat/kireç taşı bilgisi ve fotoğraf yalnız referans; görsel dosya dağıtılmaz. OSM ayak izi/ada kıyısı mevcut ODbL snapshot. Ada4.5m kabartması ve taş/açıklık/mazgallar özgün temsili model, ölçüm değil. Mevcut CC0 gravel_floor malzemesi yeniden kullanılır; yeni fotoğraf/doku indirilmedi.
+
+- Şile kıyı kaya yüzeyi: [Rock Face 03](https://polyhaven.com/a/rock_face_03), Dario Barresi (fotoğraf) ve Rico Cilliers (işleme), Poly Haven, CC0. Renk/OpenGL normal/pürüzlülük1K kaynakları değişmeden saklanır; GPU kopyaları kaliteye göre ölçeklenir. Şile’den alınmış tarama veya kaya türü doğrulaması değildir. Kaynak ve SHA256: `public/materials/rock_face_03/sources.json`.

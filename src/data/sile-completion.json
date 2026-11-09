@@ -126,6 +126,19 @@
             8,
             -690
           ]
+        },
+        {
+          "id": "castle-close",
+          "eye": [
+            120,
+            16,
+            -790
+          ],
+          "target": [
+            157,
+            9,
+            -716
+          ]
         }
       ],
       "status": "open"
@@ -165,6 +178,32 @@
             2,
             -348
           ]
+        },
+        {
+          "id": "cave-entry",
+          "eye": [
+            990,
+            3,
+            -374
+          ],
+          "target": [
+            1015,
+            0.2,
+            -345
+          ]
+        },
+        {
+          "id": "lighthouse-close",
+          "eye": [
+            800,
+            53,
+            -350
+          ],
+          "target": [
+            774,
+            51,
+            -302
+          ]
         }
       ],
       "status": "open"
@@ -203,6 +242,19 @@
             1246,
             2,
             -439
+          ]
+        },
+        {
+          "id": "passage-entry",
+          "eye": [
+            1226,
+            2,
+            -463
+          ],
+          "target": [
+            1250,
+            0.2,
+            -435
           ]
         }
       ],
@@ -274,14 +326,14 @@
       "region": "S1",
       "sourceId": null,
       "title": "Yapı/zemin ve kaya dibi kotları",
-      "evidence": "unknown",
-      "status": "open",
+      "evidence": "assumed",
+      "status": "fixed",
       "severity": "critical",
       "references": [
         "docs/sile-realism-audit-2026-11-08.md",
         "docs/sile-pavilion-validation.json"
       ],
-      "note": "Audit acceptance item; requires region inspection, not an assertion that every defect exists."
+      "note": "Prepared coastal profiles align104entrances to current terrain and add roof clearance to24records only where necessary. Original source map unchanged. Native final acceptance pending; source DSM is not bare-earth survey."
     },
     {
       "id": "S1-architecture",
@@ -295,7 +347,7 @@
         "docs/sile-realism-audit-2026-11-08.md",
         "docs/sile-pavilion-validation.json"
       ],
-      "note": "Audit acceptance item; requires region inspection, not an assertion that every defect exists."
+      "note": "All149source candidates inventoried.24terrain-clearance height assumptions,104derived entry placements, known pavilion preserved. Individual measured heights/photo associations remain unavailable; generic buildings remain explicitly representative."
     },
     {
       "id": "S1-appearance",
@@ -364,14 +416,14 @@
       "region": "S2",
       "sourceId": null,
       "title": "Yapı/zemin ve kaya dibi kotları",
-      "evidence": "unknown",
-      "status": "open",
+      "evidence": "assumed",
+      "status": "fixed",
       "severity": "critical",
       "references": [
         "docs/sile-realism-audit-2026-11-08.md",
         "docs/sile-pavilion-validation.json"
       ],
-      "note": "Audit acceptance item; requires region inspection, not an assertion that every defect exists."
+      "note": "Prepared coastal profiles align104entrances to current terrain and add roof clearance to24records only where necessary. Original source map unchanged. Native final acceptance pending; source DSM is not bare-earth survey."
     },
     {
       "id": "S2-architecture",
@@ -385,7 +437,7 @@
         "docs/sile-realism-audit-2026-11-08.md",
         "docs/sile-pavilion-validation.json"
       ],
-      "note": "Audit acceptance item; requires region inspection, not an assertion that every defect exists."
+      "note": "All149source candidates inventoried.24terrain-clearance height assumptions,104derived entry placements, known pavilion preserved. Individual measured heights/photo associations remain unavailable; generic buildings remain explicitly representative."
     },
     {
       "id": "S2-appearance",
@@ -454,14 +506,14 @@
       "region": "S3",
       "sourceId": null,
       "title": "Yapı/zemin ve kaya dibi kotları",
-      "evidence": "unknown",
-      "status": "open",
+      "evidence": "assumed",
+      "status": "fixed",
       "severity": "critical",
       "references": [
         "docs/sile-realism-audit-2026-11-08.md",
         "docs/sile-pavilion-validation.json"
       ],
-      "note": "Audit acceptance item; requires region inspection, not an assertion that every defect exists."
+      "note": "Prepared coastal profiles align104entrances to current terrain and add roof clearance to24records only where necessary. Original source map unchanged. Native final acceptance pending; source DSM is not bare-earth survey."
     },
     {
       "id": "S3-architecture",
@@ -475,7 +527,7 @@
         "docs/sile-realism-audit-2026-11-08.md",
         "docs/sile-pavilion-validation.json"
       ],
-      "note": "Audit acceptance item; requires region inspection, not an assertion that every defect exists."
+      "note": "All149source candidates inventoried.24terrain-clearance height assumptions,104derived entry placements, known pavilion preserved. Individual measured heights/photo associations remain unavailable; generic buildings remain explicitly representative."
     },
     {
       "id": "S3-appearance",
@@ -544,14 +596,14 @@
       "region": "S4",
       "sourceId": null,
       "title": "Yapı/zemin ve kaya dibi kotları",
-      "evidence": "unknown",
-      "status": "open",
+      "evidence": "assumed",
+      "status": "fixed",
       "severity": "critical",
       "references": [
         "docs/sile-realism-audit-2026-11-08.md",
         "docs/sile-pavilion-validation.json"
       ],
-      "note": "Source roof/door burial risk on steep DSM: building550130671 has approx9.13m vertex terrain range. Source base is minimum corner; several lower doors are buried in the land camera. Resolve entry elevation/ground locally without inventing measured heights."
+      "note": "Prepared coastal profiles align104entrances to current terrain and add roof clearance to24records only where necessary. Original source map unchanged. Native final acceptance pending; source DSM is not bare-earth survey."
     },
     {
       "id": "S4-architecture",
@@ -565,7 +617,7 @@
         "docs/sile-realism-audit-2026-11-08.md",
         "docs/sile-pavilion-validation.json"
       ],
-      "note": "Audit acceptance item; requires region inspection, not an assertion that every defect exists."
+      "note": "All149source candidates inventoried.24terrain-clearance height assumptions,104derived entry placements, known pavilion preserved. Individual measured heights/photo associations remain unavailable; generic buildings remain explicitly representative."
     },
     {
       "id": "S4-appearance",
@@ -634,14 +686,14 @@
       "region": "S5",
       "sourceId": null,
       "title": "Yapı/zemin ve kaya dibi kotları",
-      "evidence": "unknown",
-      "status": "open",
+      "evidence": "assumed",
+      "status": "fixed",
       "severity": "critical",
       "references": [
         "docs/sile-realism-audit-2026-11-08.md",
         "docs/sile-pavilion-validation.json"
       ],
-      "note": "Audit acceptance item; requires region inspection, not an assertion that every defect exists."
+      "note": "Prepared coastal profiles align104entrances to current terrain and add roof clearance to24records only where necessary. Original source map unchanged. Native final acceptance pending; source DSM is not bare-earth survey."
     },
     {
       "id": "S5-architecture",
@@ -655,7 +707,7 @@
         "docs/sile-realism-audit-2026-11-08.md",
         "docs/sile-pavilion-validation.json"
       ],
-      "note": "Audit acceptance item; requires region inspection, not an assertion that every defect exists."
+      "note": "All149source candidates inventoried.24terrain-clearance height assumptions,104derived entry placements, known pavilion preserved. Individual measured heights/photo associations remain unavailable; generic buildings remain explicitly representative."
     },
     {
       "id": "S5-appearance",
@@ -724,14 +776,14 @@
       "region": "S6",
       "sourceId": null,
       "title": "Yapı/zemin ve kaya dibi kotları",
-      "evidence": "unknown",
-      "status": "open",
+      "evidence": "assumed",
+      "status": "fixed",
       "severity": "critical",
       "references": [
         "docs/sile-realism-audit-2026-11-08.md",
         "docs/sile-pavilion-validation.json"
       ],
-      "note": "Audit acceptance item; requires region inspection, not an assertion that every defect exists."
+      "note": "Prepared coastal profiles align104entrances to current terrain and add roof clearance to24records only where necessary. Original source map unchanged. Native final acceptance pending; source DSM is not bare-earth survey."
     },
     {
       "id": "S6-architecture",
@@ -745,7 +797,7 @@
         "docs/sile-realism-audit-2026-11-08.md",
         "docs/sile-pavilion-validation.json"
       ],
-      "note": "Audit acceptance item; requires region inspection, not an assertion that every defect exists."
+      "note": "All149source candidates inventoried.24terrain-clearance height assumptions,104derived entry placements, known pavilion preserved. Individual measured heights/photo associations remain unavailable; generic buildings remain explicitly representative."
     },
     {
       "id": "S6-appearance",
@@ -820,7 +872,8 @@
         -0.5850720293703573,
         -0.35938714305082065
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-550135339",
@@ -838,7 +891,8 @@
         0.23568576117201623,
         1.4665171143085098
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-549911734",
@@ -856,7 +910,8 @@
         -0.4074827355486246,
         -0.29284904744781315
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-550130659",
@@ -874,7 +929,8 @@
         0.9963615255303617,
         3.4875483146872663
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-550135337",
@@ -892,7 +948,8 @@
         3.0400497863784417,
         6.986046421330117
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-550135336",
@@ -910,7 +967,8 @@
         3.402443618810183,
         6.2369381884738395
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-550135338",
@@ -928,7 +986,8 @@
         1.5775458419863786,
         6.96824543464022
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-549917810",
@@ -946,7 +1005,8 @@
         1.7678804243688382,
         3.4852034879756784
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-550135334",
@@ -964,7 +1024,8 @@
         2.4731068534932574,
         3.969209084716215
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-549917808",
@@ -982,7 +1043,8 @@
         0.9815632458298449,
         1.432751453086706
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-550135335",
@@ -1000,7 +1062,8 @@
         3.245925790478451,
         5.931888294315662
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-549917809",
@@ -1018,7 +1081,8 @@
         1.457954977015374,
         1.899937395177826
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-560660581",
@@ -1036,7 +1100,8 @@
         0.7689685842365459,
         1.0086127225118613
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-549917807",
@@ -1054,7 +1119,8 @@
         1.9641409657815454,
         5.120065192167628
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-549911728",
@@ -1072,7 +1138,8 @@
         0.33756404539807505,
         0.5702033341506119
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-549911724",
@@ -1090,7 +1157,8 @@
         0.6713599531548176,
         1.1280782709540067
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-549911736",
@@ -1108,7 +1176,8 @@
         -0.7352205604826381,
         -0.29284904744781315
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-549917813",
@@ -1126,7 +1195,8 @@
         3.646046090704013,
         7.712694109428474
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-342474200",
@@ -1144,7 +1214,8 @@
         27.46878929839477,
         32.100552260038256
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-550130670",
@@ -1162,7 +1233,8 @@
         29.94515723510222,
         32.97066245186183
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-550130827",
@@ -1180,7 +1252,8 @@
         27.004529741335755,
         29.661176164971124
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-342474201",
@@ -1198,7 +1271,8 @@
         28.23616789051053,
         29.572893008976965
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-342474183",
@@ -1216,7 +1290,8 @@
         28.055364491639665,
         31.04821004341234
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-550130826",
@@ -1234,7 +1309,8 @@
         28.489981675849293,
         31.52064478235541
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-342474184",
@@ -1252,7 +1328,8 @@
         27.72750050945693,
         31.424923328187106
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-549911722",
@@ -1270,7 +1347,8 @@
         0.6188317369740277,
         1.4378340499473201
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-550130674",
@@ -1288,7 +1366,8 @@
         30.130316706568898,
         39.54229218279039
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-550130671",
@@ -1306,7 +1385,8 @@
         22.756667840675643,
         31.884888638641108
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-550135333",
@@ -1324,7 +1404,8 @@
         4.203987607146383,
         7.4011286113146895
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-342474186",
@@ -1342,7 +1423,8 @@
         30.745263201179895,
         32.41938390254533
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-549917811",
@@ -1360,7 +1442,8 @@
         5.063050028803053,
         6.009543774240884
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-549911720",
@@ -1378,7 +1461,8 @@
         1.1038837520913618,
         3.106708722088458
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-342504232",
@@ -1396,7 +1480,8 @@
         31.71632793454546,
         33.85000537850195
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-549911739",
@@ -1414,7 +1499,8 @@
         -0.7224495593029592,
         1.4957414402889104
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-550130658",
@@ -1432,7 +1518,8 @@
         21.89619705593371,
         23.477660705579204
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-549911748",
@@ -1450,7 +1537,8 @@
         4.039896834854112,
         8.276294099626925
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-550130657",
@@ -1468,7 +1556,8 @@
         20.107256202425667,
         22.660168418219673
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-550130839",
@@ -1486,7 +1575,8 @@
         25.029279892735094,
         26.091901711524258
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-550130675",
@@ -1504,7 +1594,8 @@
         30.206000661053313,
         43.81384735319994
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-342474189",
@@ -1522,7 +1613,8 @@
         31.857748902946135,
         34.070677963546096
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-550130831",
@@ -1540,7 +1632,8 @@
         25.380994240474745,
         27.217643033419378
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-550130825",
@@ -1558,7 +1651,8 @@
         31.18002028569054,
         32.67966000330251
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-550130656",
@@ -1576,7 +1670,8 @@
         20.200452673087682,
         22.198718204518716
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-550130837",
@@ -1594,7 +1689,8 @@
         24.461413699415317,
         25.659127348498266
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-550130841",
@@ -1612,7 +1708,8 @@
         24.74951655978962,
         28.475169367170817
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-549911745",
@@ -1630,7 +1727,8 @@
         4.77413873160968,
         8.013458634551458
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-550130828",
@@ -1648,7 +1746,8 @@
         26.099283521271353,
         28.479027074624216
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-550130672",
@@ -1666,7 +1765,8 @@
         35.15442365963768,
         39.07940842861437
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-342474208",
@@ -1684,7 +1784,8 @@
         34.99284739002779,
         36.978941447907104
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-549917812",
@@ -1702,7 +1803,8 @@
         4.699969400041278,
         6.548632505138947
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-342474199",
@@ -1720,7 +1822,8 @@
         27.479045541363732,
         31.231893158059727
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-342515888",
@@ -1738,7 +1841,8 @@
         24.44410124506205,
         28.591970458381937
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-550130802",
@@ -1756,7 +1860,8 @@
         34.794694535355625,
         39.1828702335333
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-550130832",
@@ -1774,7 +1879,8 @@
         24.41493673861146,
         26.974926713151604
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-550130829",
@@ -1792,7 +1898,8 @@
         23.739724225746233,
         26.265372276400754
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-550130676",
@@ -1810,7 +1917,8 @@
         38.88028737778742,
         45.350156023997435
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-550130824",
@@ -1828,7 +1936,8 @@
         32.19244910637264,
         33.44325397059981
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-342474203",
@@ -1846,7 +1955,8 @@
         26.87439301602385,
         28.591970458381937
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-549917814",
@@ -1864,7 +1974,8 @@
         13.976046702828507,
         21.991020011935273
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-342474187",
@@ -1882,7 +1993,8 @@
         29.617492443384364,
         34.128179584071184
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-550130677",
@@ -1900,7 +2012,8 @@
         43.06353130029854,
         45.68389287656939
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-550130655",
@@ -1918,7 +2031,8 @@
         20.206713719567514,
         22.032923747842208
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-342474209",
@@ -1936,7 +2050,8 @@
         35.482454829482045,
         37.1672366365876
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-550130840",
@@ -1954,7 +2069,8 @@
         25.915106058222943,
         27.509767567493697
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-549911742",
@@ -1972,7 +2088,8 @@
         5.172623135384438,
         7.287027962180408
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-550130835",
@@ -1990,7 +2107,8 @@
         23.140731441761208,
         25.77960176438036
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-342474190",
@@ -2008,7 +2126,8 @@
         33.862149778398184,
         35.49996235521609
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-342504061",
@@ -2026,7 +2145,8 @@
         26.40452237797895,
         30.885415315291517
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-550130673",
@@ -2044,7 +2164,8 @@
         37.736044075011826,
         38.23476194017594
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-550130660",
@@ -2062,7 +2183,8 @@
         9.2138690297313,
         16.072917253787832
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-550130830",
@@ -2080,7 +2202,8 @@
         26.55017448107362,
         28.165722778509174
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-342502274",
@@ -2098,7 +2221,8 @@
         41.422595164515386,
         43.500890868466755
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-550130838",
@@ -2116,7 +2240,8 @@
         25.789209319742252,
         26.57960732520671
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-550130833",
@@ -2134,7 +2259,8 @@
         27.374499155446767,
         28.184312993351107
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-342474195",
@@ -2152,7 +2278,8 @@
         34.73095569188276,
         36.469217240173535
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-550130654",
@@ -2170,7 +2297,8 @@
         20.90906619413974,
         22.257100024240742
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-342502272",
@@ -2188,7 +2316,8 @@
         38.01105088279455,
         40.25819867198818
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-550116788",
@@ -2206,7 +2335,8 @@
         24.429622064335327,
         26.960758936144757
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-342474198",
@@ -2224,7 +2354,8 @@
         28.616071014392794,
         31.706177890486764
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-549917818",
@@ -2242,7 +2373,8 @@
         15.350231761094312,
         21.298885993463177
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-550116786",
@@ -2260,7 +2392,8 @@
         24.407774272839386,
         28.275805915941675
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-550130803",
@@ -2278,7 +2411,8 @@
         38.500405622552144,
         40.5428551279294
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-342474205",
@@ -2296,7 +2430,8 @@
         35.50988294750403,
         37.316492727147526
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-342474191",
@@ -2314,7 +2449,8 @@
         30.97021170493572,
         33.95966773639418
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-342474193",
@@ -2332,7 +2468,8 @@
         34.18508541151547,
         36.15089215101231
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-550130653",
@@ -2350,7 +2487,8 @@
         21.929842876669362,
         22.496911533813527
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-550130693",
@@ -2368,7 +2506,8 @@
         46.338352404102935,
         52.26558838684927
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-550116789",
@@ -2386,7 +2525,8 @@
         21.20435754002682,
         27.636215774671168
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-550130807",
@@ -2404,7 +2544,8 @@
         36.218768226681746,
         38.13522578048017
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-550130680",
@@ -2422,7 +2563,8 @@
         45.95801924542849,
         47.90831181775571
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-550130678",
@@ -2440,7 +2582,8 @@
         45.68781862080464,
         46.86027284702846
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-550130805",
@@ -2458,7 +2601,8 @@
         38.44768227273252,
         39.50666916295226
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-550130661",
@@ -2476,7 +2620,8 @@
         13.5183067305648,
         19.253998321850123
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-550135332",
@@ -2494,7 +2639,8 @@
         41.70439930644588,
         47.05086275485312
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-342473981",
@@ -2512,7 +2658,8 @@
         20.572235186240253,
         26.2907411973813
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-342474194",
@@ -2530,7 +2677,8 @@
         26.475749859345715,
         29.172462941832173
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-550130692",
@@ -2548,7 +2696,8 @@
         47.946960932374935,
         52.2503557442364
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-549917815",
@@ -2566,7 +2715,8 @@
         22.93395690410974,
         26.097676584329577
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-550130834",
@@ -2584,7 +2734,8 @@
         26.738238972013058,
         28.02910819516881
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-550130691",
@@ -2602,7 +2753,8 @@
         46.96894883413444,
         51.890172164170814
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-550130679",
@@ -2620,7 +2772,8 @@
         47.14143472850112,
         48.32112050237915
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-549917816",
@@ -2638,7 +2791,8 @@
         20.656731531770053,
         25.71731874453571
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-342473980",
@@ -2656,7 +2810,8 @@
         21.110823263040185,
         24.965456310752735
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-550116787",
@@ -2674,7 +2829,8 @@
         23.133797349545336,
         27.576095087456622
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-550130695",
@@ -2692,7 +2848,8 @@
         49.42056731875776,
         50.336606502934885
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-550130694",
@@ -2710,7 +2867,8 @@
         49.95780910357171,
         51.03979684601626
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-549917817",
@@ -2728,7 +2886,8 @@
         15.587906642710207,
         21.36547606148613
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-342502269",
@@ -2746,7 +2905,8 @@
         42.5791526250155,
         45.38531537742588
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-550130843",
@@ -2764,7 +2924,8 @@
         29.669349462876767,
         31.821128568635025
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-550130844",
@@ -2782,7 +2943,8 @@
         28.68578720874387,
         31.60206234608711
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-342474196",
@@ -2800,7 +2962,8 @@
         28.653128592341183,
         30.69469806610988
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-342502276",
@@ -2818,7 +2981,8 @@
         38.71095662736176,
         40.89504725881673
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-550130836",
@@ -2836,7 +3000,8 @@
         25.98493348783785,
         26.856441130335753
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-550130842",
@@ -2854,7 +3019,8 @@
         28.779341907113288,
         31.170298866614395
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-550130690",
@@ -2872,7 +3038,8 @@
         48.89751367133691,
         52.21047700858036
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-550130801",
@@ -2890,7 +3057,8 @@
         40.80082695688301,
         42.3648275473192
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-550130681",
@@ -2908,7 +3076,8 @@
         47.95977877806463,
         48.852116262126515
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-550130804",
@@ -2926,7 +3095,8 @@
         39.841472071141034,
         40.83725698534326
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-550130699",
@@ -2944,7 +3114,8 @@
         45.81096003930674,
         50.92296057369603
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-550130806",
@@ -2962,7 +3133,8 @@
         38.39828066957623,
         39.4970161795053
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-342474197",
@@ -2980,7 +3152,8 @@
         26.775001693025676,
         28.76694259859981
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-550130821",
@@ -2998,7 +3171,8 @@
         31.92573560338048,
         33.634213528353214
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-342473978",
@@ -3016,7 +3190,8 @@
         20.47050082491573,
         23.209570541952147
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-342502279",
@@ -3034,7 +3209,8 @@
         45.38854517201332,
         47.27255866148612
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-342473979",
@@ -3052,7 +3228,8 @@
         21.29586765465624,
         24.93945480390191
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-550130696",
@@ -3070,7 +3247,8 @@
         52.51558259179395,
         53.21529769964804
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-550130688",
@@ -3088,7 +3266,8 @@
         50.30952064100355,
         50.59935760112548
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-342502277",
@@ -3106,7 +3285,8 @@
         38.98786903499496,
         40.973490635558356
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-342518980",
@@ -3124,7 +3304,8 @@
         32.425916759837065,
         36.64371368414829
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-342502282",
@@ -3142,7 +3323,8 @@
         46.52891516076923,
         47.99775995238814
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-342474207",
@@ -3160,7 +3342,8 @@
         29.8873374734954,
         32.053343104908954
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-550130683",
@@ -3178,7 +3361,8 @@
         48.39275661231492,
         49.16746414554652
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-342473977",
@@ -3196,7 +3380,8 @@
         19.197305424201172,
         22.18252610888444
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-550130682",
@@ -3214,7 +3399,8 @@
         48.15768902590011,
         49.13794019786844
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "osm-342518982",
@@ -3232,7 +3418,8 @@
         36.184626942641806,
         37.90522458153355
       ],
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "overture-01932027-ee64-4270-93be-4f69193fd0e2",
@@ -3245,7 +3432,8 @@
       "heightM": 7.5,
       "evidence": "assumed",
       "heightSource": "assumed-7.5m",
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "overture-19523577-0288-44e7-aa86-ac6ba007cd56",
@@ -3258,7 +3446,8 @@
       "heightM": 7.5,
       "evidence": "assumed",
       "heightSource": "assumed-7.5m",
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "overture-2da9f7f9-622e-46b7-86bf-f0a0a4e44c6c",
@@ -3271,7 +3460,8 @@
       "heightM": 7.5,
       "evidence": "assumed",
       "heightSource": "assumed-7.5m",
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "overture-3361e3a2-e71f-4451-b745-a959088fdba8",
@@ -3284,7 +3474,8 @@
       "heightM": 7.5,
       "evidence": "assumed",
       "heightSource": "assumed-7.5m",
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "overture-338aff51-06d4-41e0-a32a-0afb31312aff",
@@ -3297,7 +3488,8 @@
       "heightM": 7.5,
       "evidence": "assumed",
       "heightSource": "assumed-7.5m",
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "overture-4f5275d3-5a2a-410c-94ac-5376d3b70c98",
@@ -3310,7 +3502,8 @@
       "heightM": 7.5,
       "evidence": "assumed",
       "heightSource": "assumed-7.5m",
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "overture-75c540e3-6685-4a8d-8f31-862faa77c85e",
@@ -3323,7 +3516,8 @@
       "heightM": 7.5,
       "evidence": "assumed",
       "heightSource": "assumed-7.5m",
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "overture-96d95dec-c5db-4d2c-a131-90a9295fd23f",
@@ -3336,7 +3530,8 @@
       "heightM": 7.5,
       "evidence": "assumed",
       "heightSource": "assumed-7.5m",
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "overture-981bf9d0-b754-4c6a-91e5-eacde1d78c39",
@@ -3349,7 +3544,8 @@
       "heightM": 7.5,
       "evidence": "assumed",
       "heightSource": "assumed-7.5m",
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "overture-a28234ef-c6f0-4569-a6a5-9d6532cf6fdb",
@@ -3362,7 +3558,8 @@
       "heightM": 7.5,
       "evidence": "assumed",
       "heightSource": "assumed-7.5m",
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "overture-b3217320-a457-4416-8130-f0f97277b7d4",
@@ -3375,7 +3572,8 @@
       "heightM": 7.5,
       "evidence": "assumed",
       "heightSource": "assumed-7.5m",
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "overture-dc383caf-36a3-4598-b16e-459b1bea49bf",
@@ -3388,7 +3586,8 @@
       "heightM": 7.5,
       "evidence": "assumed",
       "heightSource": "assumed-7.5m",
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "overture-f689ab38-7641-482f-b817-53662377965e",
@@ -3401,7 +3600,8 @@
       "heightM": 7.5,
       "evidence": "assumed",
       "heightSource": "assumed-7.5m",
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     },
     {
       "id": "overture-fe8238a8-fd91-4211-bd00-72a1e952cc06",
@@ -3414,7 +3614,8 @@
       "heightM": 7.5,
       "evidence": "assumed",
       "heightSource": "assumed-7.5m",
-      "review": "pending"
+      "review": "source-and-terrain-audited; individual photo association unavailable except documented pavilion",
+      "measuredHeightAvailable": false
     }
   ],
   "baselineScreenshots": [
@@ -3430,5 +3631,6 @@
     "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S5-land-before.png",
     "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S6-before.png",
     "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S6-land-before.png"
-  ]
+  ],
+  "sourceSnapshotKey": "1147718:d3dd4d94:81685aaa"
 }

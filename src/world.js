@@ -1152,6 +1152,8 @@ export function clearWorld(scene) {
   scene.userData.sileArchitecturalStats = null;
   scene.userData.sileFoliageStats = null;
   scene.userData.sileSupplementStats = null;
+  scene.userData.sileCompletionStats = null;
+  scene.userData.sileBuildTimings = null;
   scene.userData.sileNeighbourhood = null;
   scene.userData.sileNeighbourhoodStats = null;
   scene.userData.sileStreetStats = null;
@@ -1197,6 +1199,8 @@ export function buildWorld(scene, mapId = "yard", opts = {}) {
   scene.userData.sileArchitecturalStats = null;
   scene.userData.sileFoliageStats = null;
   scene.userData.sileSupplementStats = null;
+  scene.userData.sileCompletionStats = null;
+  scene.userData.sileBuildTimings = null;
   scene.userData.sileNeighbourhood = null;
   scene.userData.sileNeighbourhoodStats = null;
   scene.userData.sileStreetStats = null;
@@ -1206,7 +1210,7 @@ export function buildWorld(scene, mapId = "yard", opts = {}) {
   if(aftermath){
     sky(scene,'aftermath');play=buildArcadeSite(scene,{quality:opts.quality});
   }else if(id==='sile'){
-    sky(scene,'coast');play=buildSile(scene,opts.sileData||getSileData());
+    sky(scene,'coast');if(opts.prebuiltSile){for(const child of [...opts.prebuiltSile.scene.children])scene.add(child);Object.assign(scene.userData,opts.prebuiltSile.scene.userData);play=opts.prebuiltSile.play;}else play=buildSile(scene,opts.sileData||getSileData());
     if(scene.fog){scene.fog.near=400;scene.fog.far=2400;}
     scene.getObjectByName('skyDome')?.scale.setScalar(5000);
     const stars=scene.getObjectByName('night-stars');if(stars){stars.scale.setScalar(15);stars.material.size=8;}
@@ -1243,7 +1247,7 @@ export function buildWorld(scene, mapId = "yard", opts = {}) {
   }
   prepareGroundSurfaces(scene);
   if(id==='sile'){finishSileContext(scene);finishNeighbourhood(scene);}
-  if(!aftermath)finishSurfaces(scene);
+  if(!aftermath&&!opts.prebuiltSile)finishSurfaces(scene);
   if (opts.props&&id!=='sile'&&!aftermath) {
     const token = scene.userData.worldToken;
     import("./props.js")
@@ -1270,4 +1274,14 @@ export function buildWorld(scene, mapId = "yard", opts = {}) {
   scene.userData.play = play;
   applyScannedMaterials(scene,{quality:opts.quality||'medium'});
   return play;
+}
+
+// Keep the synchronous builder for deterministic tests and other fields. Şile
+// CPU geometry is prepared off-thread, then installed with the same owners.
+export async function buildWorldAsync(scene,mapId='yard',opts={}){
+ if(mapId!=='sile'||typeof Worker!=='function'||typeof OffscreenCanvas!=='function')return buildWorld(scene,mapId,opts);
+ const data=opts.sileData||getSileData();if(!data)throw Error('Şile data must finish loading before preparation.');
+ const {prepareSileWorld}=await import('./sile-scene-preparation.js'),prepared=await prepareSileWorld(data,{signal:opts.signal});
+ if(opts.signal?.aborted)throw new DOMException('Şile preparation cancelled','AbortError');
+ return buildWorld(scene,mapId,{...opts,prebuiltSile:prepared});
 }

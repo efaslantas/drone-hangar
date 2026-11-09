@@ -1,3 +1,5 @@
+import {addCompletedLighthouse} from './sile-lighthouse.js';
+import {completedSileData,finishCompletionTerrain} from './sile-completion-world.js';
 import {addSupplementalBuildings} from './sile-building-supplement.js';
 import {sileSeaCaves,carveCaveCliffs,addSeaCaveInteriors} from './sile-sea-caves.js';
 import {prepareFoamMotion} from './sile-water.js';
@@ -47,10 +49,14 @@ function prismRecord(item){
 }
 export function buildSile(scene,data){
  if(!data)throw new Error('Şile verisi önce yüklenmeli.');
+ const timings=[];let stamp=performance.now();const mark=name=>{const now=performance.now();timings.push({name,ms:now-stamp});stamp=now;};
+ data=completedSileData(data);
  const coastal=coastalBuildings(data),streets=streetLayout(data,coastal);
  const site=castleSite(data),sourceTerrain=site?.terrain||data.terrain,patches=sourceCoastPatches(data,sourceTerrain,{exactSand:true}),sand=streetRemainder(patches.sand,streets),beach=buildBeachApproach(data,sourceTerrain,sand),terrain=beach?{...sourceTerrain,beachSurface:beach.surface}:sourceTerrain,sourceItems=[...data.buildings,...data.structures].map(item=>site&&item===site.source?site.castle:item),play={bounds:{minx:terrain.bounds[0],maxx:terrain.bounds[1],minz:terrain.bounds[2],maxz:terrain.bounds[3]},ceil:Math.max(...terrain.heights)-terrain.datum+160,terrain,prisms:sourceItems.map(prismRecord),boxes:[],spawn:{x:0,z:0},trainingOnly:true};
  if(beach){patches.sand=beach.surface.positions;scene.userData.sileBeachStats=beach.stats;}
+ mark('source-partitions');
  const rockFinish=coastalRockMaterials({shoreline:true});
+ if(data.completionLayer===1){for(const m of [rockFinish.dry,rockFinish.wet])m.userData.scannedSurface='coastalRock';rockFinish.wet.userData.keepCoastalRoughness=true;}
  play.groundCorridors=streets.groundCorridors;
  const contextPlan=planSileContext(data,play);
  const soil=[];
@@ -73,6 +79,7 @@ export function buildSile(scene,data){
  }
  const sea=new THREE.Mesh(new THREE.PlaneGeometry(10000,10000),waterMaterial(terrain));
  sea.rotation.x=-Math.PI/2;sea.position.y=-terrain.datum-.01;sea.name='sile-sea';sea.receiveShadow=true;scene.add(sea);
+ mark('terrain-mesh');
  const coast=buildCoast(terrain,{sheltered:harbourLayout(data)?.waterRings});
  const offshoreVertexCount=coast.foam.positions.length/3;
  if(beach)for(const k of ['positions','uv','colors'])coast.foam[k].push(...beach.swash[k]);
@@ -94,10 +101,11 @@ export function buildSile(scene,data){
  }
  const roads=new THREE.Mesh(geometry(streets.valid?street.asphalt:drapeTerrainTriangles(terrain,roadPositions),true),new THREE.MeshStandardMaterial({map:surfaceTexture('asphalt',1),roughness:.95,side:THREE.DoubleSide,polygonOffset:!streets.valid,polygonOffsetFactor:-1,polygonOffsetUnits:-2}));roads.name='sile-roads';roads.userData.groundSurface=true;roads.receiveShadow=true;scene.add(roads);
  if(streets.valid)scene.userData.sileStreetStats=streets.stats;
+ mark('shore-road-meshes');
  const batches=Array.from({length:8},()=>[]),materials=buildingMaterials();
  let gabled=0;
  for(const [itemIndex,item]of sourceItems.entries()){
-  if(site&&item===site.castle)continue;
+  if(site&&item===site.castle||data.completionLayer===1&&item.landmark==='lighthouse')continue;
   const roof=buildingRoof(item),wallHeight=roof?roof.eaves-item.base:item.height;
   const g=new THREE.ExtrudeGeometry(shapeFor(item.rings),{depth:wallHeight,bevelEnabled:false,steps:1});g.rotateX(-Math.PI/2);g.translate(0,item.base,0);
   const wallIndex=item.kind||item.landmark==='castle'?6:item.landmark==='lighthouse'?7:1+(item.id%5);
@@ -143,25 +151,36 @@ export function buildSile(scene,data){
  const marker=new THREE.Mesh(padGeometry,launchMaterial());marker.name='sile-launch-pad';marker.receiveShadow=true;scene.add(marker);
  // Landmark bands are decorative overlays on the same source footprint.
  const lighthouse=data.buildings.find(b=>b.landmark==='lighthouse');
- if(lighthouse){
+ if(lighthouse&&data.completionLayer!==1){
   const g=new THREE.ExtrudeGeometry(shapeFor(lighthouse.rings),{depth:1.2,bevelEnabled:false});g.rotateX(-Math.PI/2);g.translate(0,lighthouse.base+7,0);
   const m=new THREE.Mesh(g,new THREE.MeshStandardMaterial({color:0x272c2c,roughness:.9,polygonOffset:true,polygonOffsetFactor:-2,polygonOffsetUnits:-2}));m.name='sile-lighthouse-band';scene.add(m);
  }
+ mark('building-meshes');
  scene.userData.sileStats=data.stats;
  scene.userData.sileRoofStats={gabled,flat:data.buildings.length+data.structures.length-gabled,authored:true};
  addSileContext(scene,data,play,contextPlan);
  addSileHarbour(scene,data,play);
+ mark('context-harbour');
  addCoastalBuildings(scene,data,play,coastal);
  addNeighbourhood(scene,data,play,coastal);
  addBuildingFoundations(scene,play,coastal);
+ mark('coastal-facades-neighbourhood');
  applyBuildingPads(scene,data,play,coastal,streets);
+ mark('building-pads');
  addMooringLinks(scene,data,play);
  addShoreArmour(scene,data,play,rockFinish.dry);
  play.terrainWalls??=[];for(const contact of coastCliffContacts(cliffGeometry))play.terrainWalls.push(contact);
+ mark('moorings-armour');
  addSeaCaveInteriors(scene,data,play,caves,rockFinish.wet);
+ mark('cave-geometry');
  addFacadeDepth(scene,data,play,coastal);
  addSupplementalBuildings(scene,play,data);
+ addCompletedLighthouse(scene,play,data);
+ mark('architectural-supplement-lighthouse');
+ finishCompletionTerrain(scene,play,data,rockFinish.dry);
  prepareTerrainWallIndex(play.terrainWalls);
+ mark('exposure-contact-index');
  finishSileFoliage(scene);
+ mark('foliage');scene.userData.sileBuildTimings=timings;
  return play;
 }

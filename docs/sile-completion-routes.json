@@ -1,0 +1,346 @@
+{
+  "date": "2026-11-09T14:54:55.332Z",
+  "scope": "Prepared actual Şile collision world, geometric route checks only; not manual flight, controller or flight-model calibration",
+  "routes": [
+    {
+      "region": "S1",
+      "direction": "forward",
+      "kind": "swept-contact path replay; no manual or closed-loop aircraft flight",
+      "path": [
+        [
+          -1150,
+          4,
+          400
+        ],
+        [
+          -1050,
+          4,
+          420
+        ],
+        [
+          -950,
+          4,
+          450
+        ]
+      ],
+      "speedsMps": [
+        3,
+        25
+      ],
+      "airframeSizeM": 0.22,
+      "samples": 826,
+      "status": "pass",
+      "failures": []
+    },
+    {
+      "region": "S1",
+      "direction": "reverse",
+      "kind": "swept-contact path replay; no manual or closed-loop aircraft flight",
+      "path": [
+        [
+          -950,
+          4,
+          450
+        ],
+        [
+          -1050,
+          4,
+          420
+        ],
+        [
+          -1150,
+          4,
+          400
+        ]
+      ],
+      "speedsMps": [
+        3,
+        25
+      ],
+      "airframeSizeM": 0.22,
+      "samples": 826,
+      "status": "pass",
+      "failures": []
+    },
+    {
+      "region": "S2",
+      "direction": "forward",
+      "kind": "swept-contact path replay; no manual or closed-loop aircraft flight",
+      "path": [
+        [
+          -250,
+          5,
+          -450
+        ],
+        [
+          -200,
+          5,
+          -350
+        ],
+        [
+          -100,
+          5,
+          -300
+        ]
+      ],
+      "speedsMps": [
+        3,
+        25
+      ],
+      "airframeSizeM": 0.22,
+      "samples": 896,
+      "status": "pass",
+      "failures": []
+    },
+    {
+      "region": "S2",
+      "direction": "reverse",
+      "kind": "swept-contact path replay; no manual or closed-loop aircraft flight",
+      "path": [
+        [
+          -100,
+          5,
+          -300
+        ],
+        [
+          -200,
+          5,
+          -350
+        ],
+        [
+          -250,
+          5,
+          -450
+        ]
+      ],
+      "speedsMps": [
+        3,
+        25
+      ],
+      "airframeSizeM": 0.22,
+      "samples": 896,
+      "status": "pass",
+      "failures": []
+    },
+    {
+      "region": "S3",
+      "direction": "forward",
+      "kind": "swept-contact path replay; no manual or closed-loop aircraft flight",
+      "path": [
+        [
+          90,
+          18,
+          -800
+        ],
+        [
+          150,
+          18,
+          -800
+        ],
+        [
+          220,
+          18,
+          -780
+        ]
+      ],
+      "speedsMps": [
+        3,
+        25
+      ],
+      "airframeSizeM": 0.22,
+      "samples": 532,
+      "status": "pass",
+      "failures": []
+    },
+    {
+      "region": "S3",
+      "direction": "reverse",
+      "kind": "swept-contact path replay; no manual or closed-loop aircraft flight",
+      "path": [
+        [
+          220,
+          18,
+          -780
+        ],
+        [
+          150,
+          18,
+          -800
+        ],
+        [
+          90,
+          18,
+          -800
+        ]
+      ],
+      "speedsMps": [
+        3,
+        25
+      ],
+      "airframeSizeM": 0.22,
+      "samples": 532,
+      "status": "pass",
+      "failures": []
+    },
+    {
+      "region": "S4",
+      "direction": "forward",
+      "kind": "swept-contact path replay; no manual or closed-loop aircraft flight",
+      "path": [
+        [
+          1004.5225596093361,
+          0.3296000000000001,
+          -357.12401038348276
+        ],
+        [
+          1025.7358892314664,
+          -0.016000000000000014,
+          -333.1658250109874
+        ]
+      ],
+      "speedsMps": [
+        3,
+        25
+      ],
+      "airframeSizeM": 0.22,
+      "samples": 130,
+      "status": "pass",
+      "failures": []
+    },
+    {
+      "region": "S4",
+      "direction": "reverse",
+      "kind": "swept-contact path replay; no manual or closed-loop aircraft flight",
+      "path": [
+        [
+          1025.7358892314664,
+          -0.016000000000000014,
+          -333.1658250109874
+        ],
+        [
+          1004.5225596093361,
+          0.3296000000000001,
+          -357.12401038348276
+        ]
+      ],
+      "speedsMps": [
+        3,
+        25
+      ],
+      "airframeSizeM": 0.22,
+      "samples": 130,
+      "status": "pass",
+      "failures": []
+    },
+    {
+      "region": "S5",
+      "direction": "forward",
+      "kind": "swept-contact path replay; no manual or closed-loop aircraft flight",
+      "path": [
+        [
+          1234.2409309576046,
+          0.19999999999999996,
+          -453.21845545136455
+        ],
+        [
+          1257.3812849063202,
+          0.19999999999999996,
+          -425.64085549908134
+        ]
+      ],
+      "speedsMps": [
+        3,
+        25
+      ],
+      "airframeSizeM": 0.22,
+      "samples": 146,
+      "status": "pass",
+      "failures": []
+    },
+    {
+      "region": "S5",
+      "direction": "reverse",
+      "kind": "swept-contact path replay; no manual or closed-loop aircraft flight",
+      "path": [
+        [
+          1257.3812849063202,
+          0.19999999999999996,
+          -425.64085549908134
+        ],
+        [
+          1234.2409309576046,
+          0.19999999999999996,
+          -453.21845545136455
+        ]
+      ],
+      "speedsMps": [
+        3,
+        25
+      ],
+      "airframeSizeM": 0.22,
+      "samples": 146,
+      "status": "pass",
+      "failures": []
+    },
+    {
+      "region": "S6",
+      "direction": "forward",
+      "kind": "swept-contact path replay; no manual or closed-loop aircraft flight",
+      "path": [
+        [
+          1760,
+          5,
+          -220
+        ],
+        [
+          1850,
+          5,
+          -230
+        ],
+        [
+          1950,
+          5,
+          -250
+        ]
+      ],
+      "speedsMps": [
+        3,
+        25
+      ],
+      "airframeSizeM": 0.22,
+      "samples": 772,
+      "status": "pass",
+      "failures": []
+    },
+    {
+      "region": "S6",
+      "direction": "reverse",
+      "kind": "swept-contact path replay; no manual or closed-loop aircraft flight",
+      "path": [
+        [
+          1950,
+          5,
+          -250
+        ],
+        [
+          1850,
+          5,
+          -230
+        ],
+        [
+          1760,
+          5,
+          -220
+        ]
+      ],
+      "speedsMps": [
+        3,
+        25
+      ],
+      "airframeSizeM": 0.22,
+      "samples": 772,
+      "status": "pass",
+      "failures": []
+    }
+  ]
+}

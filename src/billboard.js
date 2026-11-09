@@ -3,8 +3,10 @@ import { makeDrone, disposeDrone, spinProps } from "./models.js";
 import { droneById } from "./catalog.js";
 import { buildWorld, clearWorld, tickWorld, worldMatches } from "./world.js";
 
+import {getSileData}from './sile-data.js';
+import {prepareSileWorld}from './sile-scene-preparation.js';
 const previewWorlds=new WeakMap();
-export function updateBillboardMap(scene,cam,id,{reduced=false,crafts=[]}={}){
+export function updateBillboardMap(scene,cam,id,{reduced=false,crafts=[],prebuiltSile}={}){
   const mapId=id||'yard',previous=previewWorlds.get(scene);
   if(previous?.id===mapId&&previous.reduced===!!reduced&&previous.camera===cam&&previous.token===scene.userData.worldToken&&worldMatches(scene,mapId))return mapId;
   // Only completed builds can be reused; clearWorld or a failed build invalidates
@@ -14,7 +16,7 @@ export function updateBillboardMap(scene,cam,id,{reduced=false,crafts=[]}={}){
   for(const item of keep)scene.remove(item);
   try{
     clearWorld(scene);
-    buildWorld(scene,mapId,{lite:reduced,quality:'medium'});
+    buildWorld(scene,mapId,{lite:reduced,quality:'medium',prebuiltSile});
     cam.far=mapId==='sile'?6500:220;cam.fov=mapId==='sile'?58:44;cam.updateProjectionMatrix();
     scene.add(new THREE.HemisphereLight(0xdce6da,0x7d8666,.85));
     scene.traverse(o=>{if(o.castShadow)o.castShadow=false;if(o.receiveShadow)o.receiveShadow=false;});
@@ -121,8 +123,16 @@ export function startBillboard(canvas, { reduced = false } = {}) {
   const hangar = canvas.closest("#hangar") || canvas.parentElement;
   let mapId = "airfield";
 
-  function setMap(id) {
-    mapId=updateBillboardMap(scene,cam,id,{reduced,crafts});
+  let preparation=null,stopped=false;
+  async function setMap(id) {
+    if(stopped)return;
+    preparation?.abort();preparation=null;
+    if(id==='sile'&&typeof Worker==='function'&&typeof OffscreenCanvas==='function'&&!worldMatches(scene,'sile')){
+      const controller=new AbortController();preparation=controller;canvas.setAttribute('aria-busy','true');canvas.style.visibility='hidden';
+      try{const prebuiltSile=await prepareSileWorld(getSileData(),{signal:controller.signal});if(controller.signal.aborted||stopped)return;mapId=updateBillboardMap(scene,cam,id,{reduced,crafts,prebuiltSile});}
+      catch(error){if(error.name!=='AbortError')console.warn('[preview] Şile preparation unavailable:',error);}
+      finally{if(preparation===controller){preparation=null;canvas.setAttribute('aria-busy','false');canvas.style.visibility='';}}
+    }else{canvas.setAttribute('aria-busy','false');canvas.style.visibility='';mapId=updateBillboardMap(scene,cam,id,{reduced,crafts});}
   }
 
   function size() {
@@ -176,6 +186,7 @@ export function startBillboard(canvas, { reduced = false } = {}) {
   }
 
   function stop() {
+    stopped=true;preparation?.abort();
     pause();
     window.removeEventListener("resize", size);
     document.removeEventListener("visibilitychange", onVis);

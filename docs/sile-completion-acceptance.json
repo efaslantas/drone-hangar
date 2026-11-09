@@ -954,7 +954,16 @@
     },
     "review": "Three P2 issues reproduced and fixed; targeted re-review clean. Final light-space shadow P2 fixed and reviewer confirmed two tests pass.",
     "workerRoundtrip": "Every mesh attribute/index/instance matrix and all physical triangle coordinates roundtrip checked; resource ownership separately tested.",
-    "nativeUI": "Local app launch, cancellation, retry, REF4M REAL DISARM0AGL/0kmh observed. Physical TX15 not exercised."
+    "nativeUI": "Local app launch, cancellation, retry, REF4M REAL DISARM0AGL/0kmh observed. Physical TX15 not exercised.",
+    "shippedTreeNode22": {
+      "passed": 626,
+      "failed": 0,
+      "durationMs": 740284.655404,
+      "platform": "Node22Alpine linux/arm64, isolated local container2GiB/2CPU",
+      "testedMain": "59fda1963ac8e64a700d579df5c604ca5d852c74",
+      "evidence": ".superpowers/releases/v2.56.0-618a82e72259/node22-shipped-tree.log",
+      "scope": "Final packaged runtime/source tree. Subsequent commit adds only this verification metadata."
+    }
   },
   "screenshots": {
     "S1": [

@@ -30,3 +30,9 @@ Sayısal sonuç `node tools/audit-sile-realism.mjs` ile yeniden üretilebilir; [
 4. Aynı6uçuş koridorunda yakın/uzak ve iki yönde görüntü/çarpışma kabulü;WebGL/WebGPU ve kalite farkları geometri/fiziği değiştirmemeli. Gerçek TX15 kabulü cihazla ayrıca yapılır.
 
 Bu rapor yeni geometri yayımlandığı anlamına gelmez; canlı2.51değişmedi. Amaç sonraki modelleme işini gerçek eksiklere bağlamak; yalnız test sayısı veya doku eklenmesini gerçek Şile doğrulaması saymamak.
+
+## 9 Kasım devamı — 2.54
+
+2.52mağara biçimi ve2.53çatı temaslarından sonra bina kaynağı kontrol edildi. Güncel135kıyıOSMkaydında yükseklik/kat/çatı etiketi yok. Overture2026-10-21.0kesitindeki2898kayıtta yükseklik0,katbilgisi1ve zaten mevcut kayıttır. Dolayısıyla ölçülü bina yüksekliği açığı kapanmadı.
+
+Microsoft/OvertureMLroofprint verisinden8ek ayak izi sahneye katıldı;14adayın6sı eğimden ertelendi. Eklerin7,5m yüksekliği/düz çatısı varsayım;MLpuanı saha doğrulaması değildir. OSM/DSM korunur. [Araştırma ve teslim kanıtı](sile-building-supplement-validation.json).

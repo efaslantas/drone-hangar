@@ -1,0 +1,178 @@
+{
+  "date": "2026-11-09",
+  "release": "v2.54.0-de2756816913",
+  "status": "published",
+  "scope": "Add8source-reportedMLroofprints as an additive map layer; no newly measured building heights",
+  "image": {
+    "release": "v2.54.0-de2756816913",
+    "imageId": "sha256:e8ec840de6d03cc6c9b225a90a384e2e9daeb4b39c762e8b3bfb7cd50d398ebb",
+    "archiveSha256": "989999ad2654eefe6956cfe7cd8bb45bd36a619270181b211d8d8a2e9efbf461",
+    "archiveBytes": 141738025,
+    "architecture": "arm64",
+    "sourceFiles": 302
+  },
+  "research": {
+    "currentCoastalOsm": {
+      "ways": 135,
+      "heightTags": 0,
+      "levelTags": 0,
+      "roofShapeTags": 0,
+      "sha256": "11b1eb8d76f7bf4acc4ad4a7a5a96d36d4e732d1ceeafacbe48b1a7f4cb6a06f"
+    },
+    "overture": {
+      "release": "2026-10-21.0",
+      "bbox": [
+        29.58866,
+        41.1654,
+        29.642345,
+        41.18341
+      ],
+      "features": 2898,
+      "heightFields": 0,
+      "floorFields": 1,
+      "floorFieldAddsNewInformation": false,
+      "rawSha256": "5691cf651d7ffb3e734a45d09125cd7bea46d17a2a55cac8364642d5be8a2366",
+      "docs": "https://docs.overturemaps.org/guides/buildings/",
+      "schema": "https://docs.overturemaps.org/schema/reference/buildings/building/"
+    },
+    "rejectedHeightAlternative": "GHSL100m aggregated height is not individual close-FPV building measurement; not assigned to buildings",
+    "ghslSource": "https://human-settlement.emergency.copernicus.eu/download.php?ds=builtH"
+  },
+  "implementation": {
+    "license": "ODbL-1.0",
+    "attribution": "© Microsoft, Overture Maps Foundation",
+    "publishedSourceSubset": "/maps/sile/source-overture-buildings.geojson",
+    "publishedSelection": "/maps/sile/building-supplement.json",
+    "selectedCandidates": 14,
+    "runtime": {
+      "candidates": 14,
+      "buildings": 8,
+      "added": [
+        "01932027-ee64-4270-93be-4f69193fd0e2",
+        "19523577-0288-44e7-aa86-ac6ba007cd56",
+        "2da9f7f9-622e-46b7-86bf-f0a0a4e44c6c",
+        "3361e3a2-e71f-4451-b745-a959088fdba8",
+        "338aff51-06d4-41e0-a32a-0afb31312aff",
+        "981bf9d0-b754-4c6a-91e5-eacde1d78c39",
+        "b3217320-a457-4416-8130-f0f97277b7d4",
+        "dc383caf-36a3-4598-b16e-459b1bea49bf"
+      ],
+      "rejected": [
+        {
+          "id": "4f5275d3-5a2a-410c-94ac-5376d3b70c98",
+          "reason": "steep-ground"
+        },
+        {
+          "id": "75c540e3-6685-4a8d-8f31-862faa77c85e",
+          "reason": "steep-ground"
+        },
+        {
+          "id": "96d95dec-c5db-4d2c-a131-90a9295fd23f",
+          "reason": "steep-ground"
+        },
+        {
+          "id": "a28234ef-c6f0-4569-a6a5-9d6532cf6fdb",
+          "reason": "steep-ground"
+        },
+        {
+          "id": "f689ab38-7641-482f-b817-53662377965e",
+          "reason": "steep-ground"
+        },
+        {
+          "id": "fe8238a8-fd91-4211-bd00-72a1e952cc06",
+          "reason": "steep-ground"
+        }
+      ],
+      "assumedHeightM": 7.5,
+      "measuredHeights": 0
+    },
+    "assumedHeightM": 7.5,
+    "assumedRoofShape": "flat",
+    "newMeasuredHeights": 0,
+    "sourcePin": {
+      "sha256Offline": "dd1e30116944d5ded3315efea54fb478fd4ed2dc63d8425f7b4a3f7deec47e72",
+      "runtimeCompatibilityKey": "1147718:d3dd4d94:81685aaa",
+      "meaning": "Canonical data compatibility checksum; not authentication. Works onHTTP LAN without WebCrypto."
+    },
+    "selection": "confidence>=.99,30..600m²,actual coast<=100m,landbuffer1m,sourcebuilding/structurebuffer2m,roadbuffer width/2+1.5m,excludeparks/beaches/spawn30m,stableIDorderanddeduplicate",
+    "runtimeGuards": "Existing physical props/prismAABBs kept; defer terrain range>1.2m. Float32drawn shell owns swept contacts; solidprism same footprint.",
+    "originalGisFilesUnchanged": 26,
+    "originalWorldFingerprint": {
+      "full": {
+        "meshes": "2195fc730ce7d41cd6870bf99d567dabde13b9cb0918b1d508b7f7b78dabaa37",
+        "collision": "17cf4116361c2713884ce9f247cd39e298527538e2a77f8966f02ff14210beef",
+        "meshCount": 52,
+        "boxes": 10810,
+        "prisms": 1351
+      },
+      "base": {
+        "meshes": "606132456bce8078a60c06fca3cdd33aa4ed624af9c00ab683d58ae78dcd404d",
+        "collision": "378d0d28db5fd2747de377141a403052ee4e877e4d842fa8a89b3b356beca6f5",
+        "meshCount": 48,
+        "boxes": 10810,
+        "prisms": 1351
+      }
+    },
+    "augmentedWorld": {
+      "meshes": "55d1f892d5c7dad972cfc7e972640d6e7a37cd4ec671f679a64fea2e81b00539",
+      "collision": "41923d6df31d60f58deb3fc816b2fd3d4222535b60b5ee48a665e9084f69acb2",
+      "meshCount": 53,
+      "boxes": 10810,
+      "prisms": 1359
+    }
+  },
+  "verification": {
+    "node22Arm64": {
+      "pass": 601,
+      "fail": 0,
+      "durationMs": 221556.214433
+    },
+    "infraPython": 11,
+    "selectionPython": 4,
+    "focusedNode": 9,
+    "independentReview": "P1HTTPsubtleunavailable fixed RED→GREEN; rereview and independent6tests pass; no remaining findings",
+    "regeneration": "PublishedGeoJSONsubset exactly reproduces source/runtime/publicselection assets",
+    "native": [
+      "WebGLbefore/afterharbor",
+      "WebGPUafterharbor,error[]",
+      "WebGLwestgrounding",
+      "LiveŞileDISARM0kmh0AGL,error[]"
+    ],
+    "https": {
+      "release": "v2.54.0-de2756816913",
+      "entryAssets": 5,
+      "uniqueIds": 252,
+      "appVersion": "2.54.0",
+      "lazyGpuChunks": [
+        "gfx-webgpu-BdgInmta.js"
+      ],
+      "liveSkyOrderFix": true,
+      "mapAndSourceSha256": "pass"
+    },
+    "websocket": {
+      "clients": 2,
+      "join": "pass",
+      "state": "pass",
+      "leave": "pass"
+    },
+    "remote": {
+      "Status": "Success",
+      "StandardOutputContent": "Running image source hashes: 125 OK\ndrone-hangar | 25.55MiB / 256MiB | 0.96%\n{\"running\": true, \"restarts\": 0, \"readonly\": true, \"user\": \"1000:1000\", \"image\": \"sha256:e8ec840de6d03cc6c9b225a90a384e2e9daeb4b39c762e8b3bfb7cd50d398ebb\"}\nSeven tenants/nginx unchanged; old container/data backup retained\nhttps://zenth.finance/ 200\nhttps://api.zenth.finance/health 200\nGelisim TLS origin 200\n",
+      "StandardErrorContent": "nginx: the configuration file /etc/nginx/nginx.conf syntax is ok\nnginx: configuration file /etc/nginx/nginx.conf test is successful\n"
+    }
+  },
+  "screenshots": [
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-254-before-webgl.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-254-after-webgl.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-254-after-webgpu.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-254-west-webgl.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-254-live-webgl.png"
+  ],
+  "limits": [
+    "MLroofprints can include false detections or out-of-date structures; model confidence is not a field accuracy percentage.",
+    "No height measurements found; height7.5m, facade andflat roof are authored assumptions.",
+    "Six steep-terrain candidates are deferred, not arbitrarily graded.",
+    "Terrain remains~31mDSM; overall Şile realism audit and measured aircraft/TX15acceptance remain open.",
+    "FixedQA cameras/outline markers are not manual flight evidence."
+  ]
+}

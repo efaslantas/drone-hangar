@@ -1,3 +1,4 @@
+import {prepareBuildingSupplement} from './sile-building-supplement-data.js';
 const pairs=ring=>Array.isArray(ring)&&ring.length>=3&&ring.every(p=>Array.isArray(p)&&p.length===2&&p.every(Number.isFinite));
 const rings=value=>Array.isArray(value)&&value.length>0&&value.every(pairs);
 export function validateSileData(data){
@@ -7,14 +8,14 @@ export function validateSileData(data){
  if(!Array.isArray(data.structures)||!data.structures.every(b=>rings(b.rings)&&Number.isFinite(b.base)&&Number.isFinite(b.height)&&b.height>0)||!data.landmarks.every(l=>typeof l.name==='string'&&Number.isFinite(l.x)&&Number.isFinite(l.z))||!data.projection||!['lat','lon','metresLat','metresLon','offsetX','offsetZ'].every(k=>Number.isFinite(data.projection[k]))||!data.stats||data.stats.buildings!==data.buildings.length||data.stats.roads!==data.roads.length)throw new Error('Şile kaynak sözleşmesi geçersiz.');
  return data;
 }
-export function createSileLoader(fetcher){
+export function createSileLoader(fetcher,prepare=data=>data){
  let current=null,pending=null;
  return {get:()=>current,load(){
   if(current)return Promise.resolve(current);
-  if(!pending)pending=fetcher('/maps/sile/map.json',{cache:'no-cache'}).then(r=>{if(!r.ok)throw new Error('Şile verisi yüklenemedi.');return r.json();}).then(validateSileData).then(data=>(current=data)).catch(error=>{pending=null;throw error;});
+  if(!pending)pending=fetcher('/maps/sile/map.json',{cache:'no-cache'}).then(r=>{if(!r.ok)throw new Error('Şile verisi yüklenemedi.');return r.json();}).then(validateSileData).then(prepare).then(data=>(current=data)).catch(error=>{pending=null;throw error;});
   return pending;
  }};
 }
-const loader=createSileLoader((url,options)=>fetch(url,options));
+const loader=createSileLoader((url,options)=>fetch(url,options),prepareBuildingSupplement);
 export const loadSileData=()=>loader.load();
 export const getSileData=()=>loader.get();

@@ -142,3 +142,7 @@ Feneraltı asimetrik daralan kesitle, Su İçen Fil açılı dış baş/hortum k
 ## 2.53 — eğimli çatı ile eşleşen temas
 
 589 eğimli binada8246 çatı/alın/duvar üçgeni mevcut süpürülen küre çözücüsüne girer; saçak altı gövde prizması ve orijinal yerleşim zarfı ayrı tutulur. Yeni gövde/çatı kaydı bina zemin duvarları kurulurken korunur. Başlangıç destek temasından sonra teğetsel yer değiştirme yeniden süpürülerek yana hareket kaybı giderilir. Görsel geometri ve26kaynak GIS dosyası2.52ile aynıdır. v2.53.0-adbdc325a24c canlı;595/595Node22ARM64,31focused,11infra,bağımsız inceleme,nativeGL/GPU/liveUI ve HTTPS/WSS doğrulandı. Bina yüksekliği/çatı türü hâlâ çoğunlukla varsayım;ölçülmüş Şile veya fizikselTX15kabulü değildir. [Kanıt](sile-roof-contact-validation.json).
+
+## 2.54 — kaynaklı ek kıyı bina izleri
+
+Güncel135kıyıOSM kaydında yükseklik/kat/çatı bilgisi yok;Overture2026-10-21.0Şilekesitindeki2898kayıtta0yükseklik/1mevcutkatbilgisi. Yeni ölçüm bulunmadı. Ek MicrosoftMLizlerinden14aday seçildi;8bina sahneye eklendi,6aday eğimden ertelendi. Yükseklik7,5m ve düz çatı varsayım;modelpuanı saha doğruluğu değildir. Aynı çizilen Float32shell temasları ve katıprizma kullanılır.26eskiGISveaugmentasyonsuzdünya çizim/temas hashleri korunur;ekkatmanla53mesh/10810box/1359prizma. HTTP/LANWebCrypto bağımlılığı kaldırıldı. v2.54.0-de2756816913 canlı;601Node22ARM64,4selectionPython,11infra,9focusedNode,nativeGL/GPU/liveUI,HTTPS/WSS ve bağımsız inceleme doğrulandı. [Kanıt](sile-building-supplement-validation.json).

@@ -1,3 +1,4 @@
+import {addSupplementalBuildings} from './sile-building-supplement.js';
 import {sileSeaCaves,carveCaveCliffs,addSeaCaveInteriors} from './sile-sea-caves.js';
 import {prepareFoamMotion} from './sile-water.js';
 import {prepareTerrainWallIndex} from './terrain-wall-index.js';
@@ -158,8 +159,9 @@ export function buildSile(scene,data){
  addShoreArmour(scene,data,play,rockFinish.dry);
  play.terrainWalls??=[];for(const contact of coastCliffContacts(cliffGeometry))play.terrainWalls.push(contact);
  addSeaCaveInteriors(scene,data,play,caves,rockFinish.wet);
- prepareTerrainWallIndex(play.terrainWalls);
  addFacadeDepth(scene,data,play,coastal);
+ addSupplementalBuildings(scene,play,data);
+ prepareTerrainWallIndex(play.terrainWalls);
  finishSileFoliage(scene);
  return play;
 }

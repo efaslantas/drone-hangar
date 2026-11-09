@@ -1,6 +1,6 @@
 {
   "date": "2026-11-10",
-  "status": "software-verified within source uncertainty; user visual/flight acceptance pending",
+  "status": "software-verified and published within source uncertainty; user visual/flight acceptance pending",
   "inventoryVersion": 1,
   "sourceSnapshotKey": "1147718:d3dd4d94:81685aaa",
   "baseline": "v2.57.0-e89963741523",
@@ -937,7 +937,8 @@
         "feedback": "Sahil bölgesi hâlâ boş; tam Şile değil.",
         "scope": "User visual feedback; prior automated software acceptance is not visual approval."
       }
-    ]
+    ],
+    "release": "v2.58.0-47520f3ee55f"
   },
   "limits": [
     "31mDSM and most building heights remain unmeasured; representative scene, not surveyed digital twin.",
@@ -1269,8 +1270,62 @@
     }
   ],
   "delivery": {
-    "status": "pending",
-    "baseline": "v2.57.0-e89963741523"
+    "status": "published",
+    "release": "v2.58.0-47520f3ee55f",
+    "image": {
+      "release": "v2.58.0-47520f3ee55f",
+      "imageId": "sha256:c3323d44340e95bed74a66924acf2368b42ae50152610ae74a614894094605ea",
+      "archiveSha256": "cea007b947df2a27f247487abe4bef765016098d2c63d9394860056301ab3bed",
+      "archiveBytes": 144831560,
+      "architecture": "arm64",
+      "sourceFiles": 460
+    },
+    "sourceFiles": 460,
+    "preservedSourceFiles": {
+      "public/maps/sile/map.json": "5564a34bbf1573152f5e1a93d1de4d01895eb4021483d2e03fae761341717a11",
+      "public/maps/sile/source-osm.json": "b860868c8cbc075b2d7b8936aa95d95b452eb244c47d8e03d66bd98f1e87f59a",
+      "public/maps/sile/source-dem.tif": "c1d9b4576412ef8f3e791ee23eff2db1a4c6ac1684b98c92bbafbc3cde380743",
+      "src/rc-setup.js": "1bb07e0d440d54cd2006763b108386b22115651ec1e57ceba6c2d94964814c26",
+      "tests/rc-setup.test.js": "7a038dfcbf536ac3b18c3ac74f146b32007f9aa132cd889da440d8eed4082880"
+    },
+    "derivedDataChanged": [
+      "129footprint supplement",
+      "ESA WorldCover native crop and categories",
+      "809candidate source eligibility inventory"
+    ],
+    "https": {
+      "release": "v2.58.0-47520f3ee55f",
+      "entryAssets": 5,
+      "uniqueIds": 253,
+      "appVersion": "2.58.0",
+      "lazyGpuChunks": [
+        "gfx-webgpu-BPv6_-0D.js"
+      ],
+      "sceneWorkerChunks": [
+        "sile-scene-worker-yMAZCA2T.js"
+      ],
+      "liveSkyOrderFix": true,
+      "mapAndSourceSha256": "pass"
+    },
+    "websocket": {
+      "clients": 2,
+      "join": "pass",
+      "state": "pass",
+      "leave": "pass"
+    },
+    "remote": {
+      "Status": "Success",
+      "StandardOutputContent": "Running image source hashes: 137 OK\ndrone-hangar | 27.79MiB / 256MiB | 0.80%\n{\"running\": true, \"restarts\": 0, \"readonly\": true, \"user\": \"1000:1000\", \"image\": \"sha256:c3323d44340e95bed74a66924acf2368b42ae50152610ae74a614894094605ea\"}\nSeven tenants/nginx unchanged; old container/data backup retained\nhttps://zenth.finance/ 200\nhttps://api.zenth.finance/health 200\nGelisim TLS origin 200\n",
+      "StandardErrorContent": "nginx: the configuration file /etc/nginx/nginx.conf syntax is ok\nnginx: configuration file /etc/nginx/nginx.conf test is successful\n"
+    },
+    "nativeLive": {
+      "release": "v2.58.0-47520f3ee55f",
+      "state": "- text: ✓ ✓ ✓ ✓\n- generic: Şile · veri tabanlı taslak\n- link \"© OpenStreetMap contributors · ODbL\":\n  - /url: https://www.openstreetmap.org/copyright\n- text: · Copernicus DEM ·\n- link \"Microsoft / Overture Maps · ODbL\":\n  - /url: https://overturemaps.org/\n- text: ·\n- link \"ESA WorldCover 2021 · CC BY 4.0\":\n  - /url: /sile.html\n- link \"Kaynaklar / yükseklik varsayımları ↗\":\n  - /url: /sile.html\n- generic: 0 km/h\n- generic: 0 m AGL\n- generic: BAT\n- generic: DISARM\n- generic: REF 4M · ACRO · REAL\n- button \"ARM\"\n- button \"CAM\"\n- button \"MOD\"\n- button \"KONTROL\"\n- button \"MENÜ\"",
+      "errors": [],
+      "screenshot": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-258-live.png",
+      "verifiedDisarmGroundZero": true,
+      "scope": "Live new release opens5inch reference profile DISARM0AGL0speed; not physical TX15 or user visual acceptance."
+    }
   },
   "followups": {
     "loading257": {
@@ -1428,7 +1483,7 @@
       }
     },
     "waterfront258": {
-      "status": "software-verified; publication pending",
+      "status": "published; user resemblance/flight acceptance pending",
       "date": "2026-11-10",
       "baseline": "v2.57.0-e89963741523",
       "userFeedback": {
@@ -1709,7 +1764,65 @@
         "Native fixed paired cameras all6regions WebGL/WebGPU; additional4landmarks both backends.",
         "Feneraltı wooded slopes and coastal street facades visibly improved over baseline. Ayazma/harbour empty source gaps and coarse cliff slopes remain; not a complete photographic replica.",
         "Single-frame calls/heap are diagnostics, not VRAM. First GPU/composer362ms remains;43.02s load observed under concurrent CPU tests is not a controlled speed comparison."
-      ]
+      ],
+      "delivery": {
+        "status": "published",
+        "release": "v2.58.0-47520f3ee55f",
+        "image": {
+          "release": "v2.58.0-47520f3ee55f",
+          "imageId": "sha256:c3323d44340e95bed74a66924acf2368b42ae50152610ae74a614894094605ea",
+          "archiveSha256": "cea007b947df2a27f247487abe4bef765016098d2c63d9394860056301ab3bed",
+          "archiveBytes": 144831560,
+          "architecture": "arm64",
+          "sourceFiles": 460
+        },
+        "sourceFiles": 460,
+        "preservedSourceFiles": {
+          "public/maps/sile/map.json": "5564a34bbf1573152f5e1a93d1de4d01895eb4021483d2e03fae761341717a11",
+          "public/maps/sile/source-osm.json": "b860868c8cbc075b2d7b8936aa95d95b452eb244c47d8e03d66bd98f1e87f59a",
+          "public/maps/sile/source-dem.tif": "c1d9b4576412ef8f3e791ee23eff2db1a4c6ac1684b98c92bbafbc3cde380743",
+          "src/rc-setup.js": "1bb07e0d440d54cd2006763b108386b22115651ec1e57ceba6c2d94964814c26",
+          "tests/rc-setup.test.js": "7a038dfcbf536ac3b18c3ac74f146b32007f9aa132cd889da440d8eed4082880"
+        },
+        "derivedDataChanged": [
+          "129footprint supplement",
+          "ESA WorldCover native crop and categories",
+          "809candidate source eligibility inventory"
+        ],
+        "https": {
+          "release": "v2.58.0-47520f3ee55f",
+          "entryAssets": 5,
+          "uniqueIds": 253,
+          "appVersion": "2.58.0",
+          "lazyGpuChunks": [
+            "gfx-webgpu-BPv6_-0D.js"
+          ],
+          "sceneWorkerChunks": [
+            "sile-scene-worker-yMAZCA2T.js"
+          ],
+          "liveSkyOrderFix": true,
+          "mapAndSourceSha256": "pass"
+        },
+        "websocket": {
+          "clients": 2,
+          "join": "pass",
+          "state": "pass",
+          "leave": "pass"
+        },
+        "remote": {
+          "Status": "Success",
+          "StandardOutputContent": "Running image source hashes: 137 OK\ndrone-hangar | 27.79MiB / 256MiB | 0.80%\n{\"running\": true, \"restarts\": 0, \"readonly\": true, \"user\": \"1000:1000\", \"image\": \"sha256:c3323d44340e95bed74a66924acf2368b42ae50152610ae74a614894094605ea\"}\nSeven tenants/nginx unchanged; old container/data backup retained\nhttps://zenth.finance/ 200\nhttps://api.zenth.finance/health 200\nGelisim TLS origin 200\n",
+          "StandardErrorContent": "nginx: the configuration file /etc/nginx/nginx.conf syntax is ok\nnginx: configuration file /etc/nginx/nginx.conf test is successful\n"
+        },
+        "nativeLive": {
+          "release": "v2.58.0-47520f3ee55f",
+          "state": "- text: ✓ ✓ ✓ ✓\n- generic: Şile · veri tabanlı taslak\n- link \"© OpenStreetMap contributors · ODbL\":\n  - /url: https://www.openstreetmap.org/copyright\n- text: · Copernicus DEM ·\n- link \"Microsoft / Overture Maps · ODbL\":\n  - /url: https://overturemaps.org/\n- text: ·\n- link \"ESA WorldCover 2021 · CC BY 4.0\":\n  - /url: /sile.html\n- link \"Kaynaklar / yükseklik varsayımları ↗\":\n  - /url: /sile.html\n- generic: 0 km/h\n- generic: 0 m AGL\n- generic: BAT\n- generic: DISARM\n- generic: REF 4M · ACRO · REAL\n- button \"ARM\"\n- button \"CAM\"\n- button \"MOD\"\n- button \"KONTROL\"\n- button \"MENÜ\"",
+          "errors": [],
+          "screenshot": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-258-live.png",
+          "verifiedDisarmGroundZero": true,
+          "scope": "Live new release opens5inch reference profile DISARM0AGL0speed; not physical TX15 or user visual acceptance."
+        }
+      }
     }
   }
 }

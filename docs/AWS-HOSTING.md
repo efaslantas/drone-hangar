@@ -1,6 +1,6 @@
 # Drone Hangar — AWS işletim kaydı
 
-2026-11-02: Kullanıcı Drone simülatörü 2.16 için mevcut Zenth AWS sunucusunu seçti. Canlı adres: https://hangar.18-153-158-209.sslip.io/ . İlk kurulum `v2.16.0-7f5130339846`; güncel sürüm `v2.57.0-e89963741523` (2.57, 2026-11-09).
+2026-11-02: Kullanıcı Drone simülatörü 2.16 için mevcut Zenth AWS sunucusunu seçti. Canlı adres: https://hangar.18-153-158-209.sslip.io/ . İlk kurulum `v2.16.0-7f5130339846`; güncel sürüm `v2.58.0-47520f3ee55f` (2.58, 2026-11-10).
 
 ## Yerleşim
 
@@ -215,3 +215,8 @@ v2.56.0-618a82e72259 ARM64 app-only yayımlandı. Image `sha256:ee037f8ddd72603a
 ## 2026-11-09 — 2.57 hazırlık kare sınırları
 
 v2.57.0-e89963741523 ARM64app-only yayımlandı. Image`sha256:fc8adb753f47cea6bbe95e0318a1e2474458c31ce52b1d27b7cc8c74623bbab2`;archiveSHA`356b97bc24fd85d005df7dba74a7ddf97867ef519ea4c21b3d308982a25e76bc`. 445manifest/134runningSHA,HTTPS2.57/253ID/lazyGPUskyfix/worker/assetSHA veWSS2client doğrulandı.7tenant/nginxaynı,UID1000readonly/0restart,oldcontainer/databackupkorundu,Zenthweb/API/GelişimTLSorigin200.628/628Node22ARM64 ve11infra geçti. Fizik/haritaverisideğişmedi;GPU241msilkçizimkalır. Tekrapor docs/sile-completion-acceptance.json followups.loading257.
+
+
+## 2026-11-10 — Şile kıyı yerleşimi 2.58
+
+v2.58.0-47520f3ee55f ARM64 app-only yayımlandı. Image `sha256:c3323d44340e95bed74a66924acf2368b42ae50152610ae74a614894094605ea`; archive SHA `cea007b947df2a27f247487abe4bef765016098d2c63d9394860056301ab3bed`. 460 HEAD/worktree/package SHA eşleşti; çalışan kaynaklar ve HTTPS/worker/GPU/harita/ESA veri SHA kontrolü, 2 istemcili WSS, canlı DISARM/0AGL/0hız doğrulandı. 7 tenant/nginx aynı; UID1000 readonly/0restart, eski uygulama ve veri yedeği korundu. 642/642 Node22ARM64,13GIS,11infra geçti. Yeni900s görünür medium1280×720 koşusunda tüm bölgeler ~60FPS, en düşük1%53.444FPS.119ek kaynak yapı,680görsel OSMcephe,1600ağaç bütçesi,420temsili plaj takımı; ana OSM/DSM ve kullanıcıRCfix korunur, türetilmiş kaynaklar değişti. Birebir ölçülmüş Şile değildir; yeni kullanıcı/TX15 kabulü yapılmadı. Kanonik rapor: docs/sile-completion-acceptance.json followups.waterfront258.

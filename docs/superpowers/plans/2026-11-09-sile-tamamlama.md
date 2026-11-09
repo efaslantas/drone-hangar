@@ -184,6 +184,9 @@ MevcutThree.js/OSM/DSMüstünde:500m kıyı mahalle bandındaki aynıMicrosoft/O
 - [x] Kaynak15otoparkmaskesini kalan zeminden ayır;görünenaynıeğim/kot/renkdeğişimi,delik/çiftyüzeyolmasın. Beyazyerçizgilerivarsayımsaldır,yeniçarpışmaengelideğildir.
 
 ### Task 12: Bütün kıyı görsel/işlev kabulü ve tek canlı teslim
-- [ ] S1–S6aynıkameraGL/GPUönce/sonra,kaynak/crop/doğruluk/temas/12rotakontrolü;tamNode22/ilgiliPython/bağımsızinceleme.
-- [ ] Yeni1280×720medium15dk görünürbenchmark;eskiFPSyenisürümdiyeetiketlenmez.
-- [ ] Kanonikkabul/provenans/krediler/ürünbelgeleri;RCcommitkorunur;app-onlyAWS/mainhash/HTTPS/WSS/canlıaçılış;fizikselTX15vekullanıcısonkabulüyapılmadıolarakkalır.
+- [x] S1–S6aynıkameraGL/GPUönce/sonra,kaynak/crop/doğruluk/temas/12rotakontrolü;tamNode22/ilgiliPython/bağımsızinceleme.
+- [x] Yeni1280×720medium15dk görünürbenchmark;eskiFPSyenisürümdiyeetiketlenmez.
+- [x] Kanonikkabul/provenans/krediler/ürünbelgeleri;RCcommitkorunur;app-onlyAWS/mainhash/HTTPS/WSS/canlıaçılış;fizikselTX15vekullanıcısonkabulüyapılmadıolarakkalır.
+
+
+2.58 teslim kanıtı: v2.58.0-47520f3ee55f canlı;642Node22/13GIS/11infra/12rota,900.0039s görünür~60FPS/min1%53.444,460SHA ve HTTPS/WSS/nativeUI geçti. Kullanıcının2.57görselreddi korunur;2.58görsel/uçuş kabulü henüz yapılmadı. Kaynak eksik sahil yapıları ve31mDSM sınırı nedeniyle birebir dijital ikiz tamamlandı iddiası yok.

@@ -1,6 +1,6 @@
 # Drone Hangar — AWS işletim kaydı
 
-2026-11-02: Kullanıcı Drone simülatörü 2.16 için mevcut Zenth AWS sunucusunu seçti. Canlı adres: https://hangar.18-153-158-209.sslip.io/ . İlk kurulum `v2.16.0-7f5130339846`; güncel sürüm `v2.56.0-618a82e72259` (2.56, 2026-11-09).
+2026-11-02: Kullanıcı Drone simülatörü 2.16 için mevcut Zenth AWS sunucusunu seçti. Canlı adres: https://hangar.18-153-158-209.sslip.io/ . İlk kurulum `v2.16.0-7f5130339846`; güncel sürüm `v2.57.0-e89963741523` (2.57, 2026-11-09).
 
 ## Yerleşim
 
@@ -210,3 +210,8 @@ v2.55.0-6f8e573f64c1 ARM64 app-only yayımlandı. Image `sha256:9c221782f0a3bd11
 ## 2026-11-09 — 2.56 altı bölgeli Şile teslimi
 
 v2.56.0-618a82e72259 ARM64 app-only yayımlandı. Image `sha256:ee037f8ddd72603aa9514e22f8e1ad80ff02fa42fd43aaaf0ac3cabdff06ad46`,archiveSHA256 `6d95112f50143d53d5021ccfdd24eeea081da2f4484e66e7e5fde8ebeb9a4b79`. 445paket kaynağı ve çalışan src/server kaynaklarıSHA ile doğrulandı. HTTPS/meta2.56/tekilHTMLID/lazyGPUskyfix/yeniworkerchunk/CC0rockassetSHA ve2istemciliWSSjoin/state/leave geçti. UID1000readonly/0restart,7tenantve nginxaynı;eskiapp/veriyedeğikorundu. Zenthweb/API/GelişimTLSorigin200. Kanıt `docs/sile-completion-acceptance.json`.
+
+
+## 2026-11-09 — 2.57 hazırlık kare sınırları
+
+v2.57.0-e89963741523 ARM64app-only yayımlandı. Image`sha256:fc8adb753f47cea6bbe95e0318a1e2474458c31ce52b1d27b7cc8c74623bbab2`;archiveSHA`356b97bc24fd85d005df7dba74a7ddf97867ef519ea4c21b3d308982a25e76bc`. 445manifest/134runningSHA,HTTPS2.57/253ID/lazyGPUskyfix/worker/assetSHA veWSS2client doğrulandı.7tenant/nginxaynı,UID1000readonly/0restart,oldcontainer/databackupkorundu,Zenthweb/API/GelişimTLSorigin200.628/628Node22ARM64 ve11infra geçti. Fizik/haritaverisideğişmedi;GPU241msilkçizimkalır. Tekrapor docs/sile-completion-acceptance.json followups.loading257.

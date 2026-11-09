@@ -1288,7 +1288,7 @@
   },
   "followups": {
     "loading257": {
-      "status": "verified-awaiting-release",
+      "status": "published",
       "version": "2.57.0",
       "scope": "Same map/render/physics data; split main-thread scene reconstruction, physical data clone and final index into separate existing frame checkpoints.",
       "rootCause": [
@@ -1380,6 +1380,65 @@
         "passed": 628,
         "failed": 0,
         "durationMs": 307387.379151
+      },
+      "verification": {
+        "node22Arm64": {
+          "passed": 628,
+          "failed": 0,
+          "durationMs": 307387.379151
+        },
+        "focused": {
+          "passed": 7,
+          "failed": 0
+        },
+        "infrastructure": {
+          "passed": 11,
+          "failed": 0
+        },
+        "native": "Same buffers/contacts, fixed-camera hydration no observed>50ms task, cancel/retry and final liveDISARM0 verified. GPU initialization241ms remains."
+      },
+      "delivery": {
+        "release": "v2.57.0-e89963741523",
+        "image": {
+          "release": "v2.57.0-e89963741523",
+          "imageId": "sha256:fc8adb753f47cea6bbe95e0318a1e2474458c31ce52b1d27b7cc8c74623bbab2",
+          "archiveSha256": "356b97bc24fd85d005df7dba74a7ddf97867ef519ea4c21b3d308982a25e76bc",
+          "archiveBytes": 144645984,
+          "architecture": "arm64",
+          "sourceFiles": 445
+        },
+        "sourceFiles": 445,
+        "https": {
+          "release": "v2.57.0-e89963741523",
+          "entryAssets": 5,
+          "uniqueIds": 253,
+          "appVersion": "2.57.0",
+          "lazyGpuChunks": [
+            "gfx-webgpu-BPv6_-0D.js"
+          ],
+          "sceneWorkerChunks": [
+            "sile-scene-worker-DbPcViaZ.js"
+          ],
+          "liveSkyOrderFix": true,
+          "mapAndSourceSha256": "pass"
+        },
+        "websocket": {
+          "clients": 2,
+          "join": "pass",
+          "state": "pass",
+          "leave": "pass"
+        },
+        "remote": {
+          "Status": "Success",
+          "StandardOutputContent": "Running image source hashes: 134 OK\ndrone-hangar | 23.76MiB / 256MiB | 0.88%\n{\"running\": true, \"restarts\": 0, \"readonly\": true, \"user\": \"1000:1000\", \"image\": \"sha256:fc8adb753f47cea6bbe95e0318a1e2474458c31ce52b1d27b7cc8c74623bbab2\"}\nSeven tenants/nginx unchanged; old container/data backup retained\nhttps://zenth.finance/ 200\nhttps://api.zenth.finance/health 200\nGelisim TLS origin 200\n",
+          "StandardErrorContent": "nginx: the configuration file /etc/nginx/nginx.conf syntax is ok\nnginx: configuration file /etc/nginx/nginx.conf test is successful\n"
+        },
+        "nativeUI": {
+          "state": "- text: ✓ ✓ ✓ ✓\n- generic: Şile · veri tabanlı taslak\n- link \"© OpenStreetMap contributors · ODbL\":\n  - /url: https://www.openstreetmap.org/copyright\n- text: · Copernicus DEM ·\n- link \"Microsoft / Overture Maps · ODbL\":\n  - /url: https://overturemaps.org/\n- link \"Kaynaklar / yükseklik varsayımları ↗\":\n  - /url: /sile.html\n- generic: 0 km/h\n- generic: 0 m AGL\n- generic: BAT\n- generic: DISARM\n- generic: REF 4M · ACRO · REAL\n- button \"ARM\"\n- button \"CAM\"\n- button \"MOD\"\n- button \"KONTROL\"\n- button \"MENÜ\"",
+          "errors": [],
+          "screenshot": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-loading-257-live.png",
+          "result": "Live2.57Sile opened REF4MACROREAL DISARM0kmh0AGL. Local cancel/retry verified. A later live cancel click found no button because preparation had already completed; this attempt is not counted as live cancellation success."
+        }
       }
     }
   }

@@ -5,3 +5,5 @@ test('inventory covers all six regions, finite paired cameras and immutable sour
 test('inventory rejects missing regions, duplicate IDs, absent references and invented measured evidence',()=>{
  for(const mutate of [d=>d.regions.pop(),d=>d.issues.push(d.issues[0]),d=>d.issues[0].references=[],d=>{d.issues[0].evidence='measured';delete d.issues[0].measurement;}]){const copy=structuredClone(inventory);mutate(copy);assert.ok(validateSileInventory(copy).length);}
 });
+
+test('a malformed inventory is rejected rather than crashing the acceptance checker',()=>{for(const d of [null,{}, {regions:[null],issues:[null]}])assert.ok(validateSileInventory(d).length);});

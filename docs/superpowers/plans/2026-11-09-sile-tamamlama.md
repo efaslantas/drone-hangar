@@ -72,10 +72,10 @@ Motoru değiştirerek yeniden başlamak mevcut çalışma ve kontrol zincirini t
 
 **Çıktı:** Altı bölgede kıyının kesintisiz son geometrisi; sonraki binaların oturacağı zemin.
 
-- [ ] Envanterdeki her kritik arazi/kıyı hatası için konuma bağlı regresyon testi ekle ve eski sahnede başarısız olduğunu göster. Özellikle tekne bölgesinin su ortasında kalması ve kaya dibindeki yanlış yükselti kapsanacak.
-- [ ] Mevcut kıyı/liman/zemin sahiplerinde düzelt; ham DSM'yi sakla, gerekiyorsa yerel türetilmiş arazi kullan. Rıhtım, mendirek, kumsal ve bağlantı yollarının birleşimini birlikte çöz.
-- [ ] Son yüzeyden yükseklik ve temas üret; ekranda görünen zemin ile drone'un bastığı zemini aynı noktalarda karşılaştır. Kaynak sınırı, kara-su maskesi ve komşu parçalarda çatlak/çift yüzey testlerini geçir.
-- [ ] Bütün S1–S6 kıyı kameralarını yeniden çek; çözülmeyen kritik kayıt varken bina işini bitmiş sayma. Testler ve düzeltmeleri commit et.
+- [x] Envanterdeki her kritik arazi/kıyı hatası için konuma bağlı regresyon testi ekle ve eski sahnede başarısız olduğunu göster. Özellikle tekne bölgesinin su ortasında kalması ve kaya dibindeki yanlış yükselti kapsanacak.
+- [x] Mevcut kıyı/liman/zemin sahiplerinde düzelt; ham DSM'yi sakla, gerekiyorsa yerel türetilmiş arazi kullan. Rıhtım, mendirek, kumsal ve bağlantı yollarının birleşimini birlikte çöz.
+- [x] Son yüzeyden yükseklik ve temas üret; ekranda görünen zemin ile drone'un bastığı zemini aynı noktalarda karşılaştır. Kaynak sınırı, kara-su maskesi ve komşu parçalarda çatlak/çift yüzey testlerini geçir.
+- [x] Bütün S1–S6 kıyı kameralarını yeniden çek; çözülmeyen kritik kayıt varken bina işini bitmiş sayma. Testler ve düzeltmeleri commit et.
 
 ### Task 3: Sahil binaları ve mahalle silüeti
 

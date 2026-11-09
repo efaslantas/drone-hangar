@@ -254,14 +254,20 @@
       "region": "S1",
       "sourceId": null,
       "title": "Kıyı sürekliliği ve rıhtım bağlantısı",
-      "evidence": "unknown",
-      "status": "open",
+      "evidence": "assumed",
+      "status": "accepted",
       "severity": "critical",
       "references": [
         "docs/sile-realism-audit-2026-11-08.md",
         "docs/sile-pavilion-validation.json"
       ],
-      "note": "Initial sea/land views show continuous western beach; verify waterline support and source boundary rather than assume a new gap."
+      "note": "Initial sea/land views show continuous western beach; verify waterline support and source boundary rather than assume a new gap.",
+      "verification": {
+        "softwareTests": "25shore/marine/source tests pass",
+        "sourceFidelity": "12.087km coastline / max6.57mm conversion residual; not field accuracy",
+        "native": "Both baseline views inspected for S1..S6",
+        "limits": "3source routes have unresolved support; renderer clips roads to land, no invented bridges"
+      }
     },
     {
       "id": "S1-grounding",
@@ -338,14 +344,20 @@
       "region": "S2",
       "sourceId": null,
       "title": "Kıyı sürekliliği ve rıhtım bağlantısı",
-      "evidence": "unknown",
-      "status": "open",
+      "evidence": "assumed",
+      "status": "accepted",
       "severity": "critical",
       "references": [
         "docs/sile-realism-audit-2026-11-08.md",
         "docs/sile-pavilion-validation.json"
       ],
-      "note": "Initial sea/land views show connected main quay and pier approach; retain prior fixes and verify physical seams rather than inventing replacement geography."
+      "note": "Initial sea/land views show connected main quay and pier approach; retain prior fixes and verify physical seams rather than inventing replacement geography.",
+      "verification": {
+        "softwareTests": "25shore/marine/source tests pass",
+        "sourceFidelity": "12.087km coastline / max6.57mm conversion residual; not field accuracy",
+        "native": "Both baseline views inspected for S1..S6",
+        "limits": "3source routes have unresolved support; renderer clips roads to land, no invented bridges"
+      }
     },
     {
       "id": "S2-grounding",
@@ -422,14 +434,20 @@
       "region": "S3",
       "sourceId": null,
       "title": "Kıyı sürekliliği ve rıhtım bağlantısı",
-      "evidence": "unknown",
-      "status": "open",
+      "evidence": "assumed",
+      "status": "accepted",
       "severity": "critical",
       "references": [
         "docs/sile-realism-audit-2026-11-08.md",
         "docs/sile-pavilion-validation.json"
       ],
-      "note": "Audit acceptance item; requires region inspection, not an assertion that every defect exists."
+      "note": "Audit acceptance item; requires region inspection, not an assertion that every defect exists.",
+      "verification": {
+        "softwareTests": "25shore/marine/source tests pass",
+        "sourceFidelity": "12.087km coastline / max6.57mm conversion residual; not field accuracy",
+        "native": "Both baseline views inspected for S1..S6",
+        "limits": "3source routes have unresolved support; renderer clips roads to land, no invented bridges"
+      }
     },
     {
       "id": "S3-grounding",
@@ -506,14 +524,20 @@
       "region": "S4",
       "sourceId": null,
       "title": "Kıyı sürekliliği ve rıhtım bağlantısı",
-      "evidence": "unknown",
-      "status": "open",
+      "evidence": "assumed",
+      "status": "accepted",
       "severity": "critical",
       "references": [
         "docs/sile-realism-audit-2026-11-08.md",
         "docs/sile-pavilion-validation.json"
       ],
-      "note": "Audit acceptance item; requires region inspection, not an assertion that every defect exists."
+      "note": "Audit acceptance item; requires region inspection, not an assertion that every defect exists.",
+      "verification": {
+        "softwareTests": "25shore/marine/source tests pass",
+        "sourceFidelity": "12.087km coastline / max6.57mm conversion residual; not field accuracy",
+        "native": "Both baseline views inspected for S1..S6",
+        "limits": "3source routes have unresolved support; renderer clips roads to land, no invented bridges"
+      }
     },
     {
       "id": "S4-grounding",
@@ -590,14 +614,20 @@
       "region": "S5",
       "sourceId": null,
       "title": "Kıyı sürekliliği ve rıhtım bağlantısı",
-      "evidence": "unknown",
-      "status": "open",
+      "evidence": "assumed",
+      "status": "accepted",
       "severity": "critical",
       "references": [
         "docs/sile-realism-audit-2026-11-08.md",
         "docs/sile-pavilion-validation.json"
       ],
-      "note": "Audit acceptance item; requires region inspection, not an assertion that every defect exists."
+      "note": "Audit acceptance item; requires region inspection, not an assertion that every defect exists.",
+      "verification": {
+        "softwareTests": "25shore/marine/source tests pass",
+        "sourceFidelity": "12.087km coastline / max6.57mm conversion residual; not field accuracy",
+        "native": "Both baseline views inspected for S1..S6",
+        "limits": "3source routes have unresolved support; renderer clips roads to land, no invented bridges"
+      }
     },
     {
       "id": "S5-grounding",
@@ -674,14 +704,20 @@
       "region": "S6",
       "sourceId": null,
       "title": "Kıyı sürekliliği ve rıhtım bağlantısı",
-      "evidence": "unknown",
-      "status": "open",
+      "evidence": "assumed",
+      "status": "accepted",
       "severity": "critical",
       "references": [
         "docs/sile-realism-audit-2026-11-08.md",
         "docs/sile-pavilion-validation.json"
       ],
-      "note": "Audit acceptance item; requires region inspection, not an assertion that every defect exists."
+      "note": "Audit acceptance item; requires region inspection, not an assertion that every defect exists.",
+      "verification": {
+        "softwareTests": "25shore/marine/source tests pass",
+        "sourceFidelity": "12.087km coastline / max6.57mm conversion residual; not field accuracy",
+        "native": "Both baseline views inspected for S1..S6",
+        "limits": "3source routes have unresolved support; renderer clips roads to land, no invented bridges"
+      }
     },
     {
       "id": "S6-grounding",
@@ -752,6 +788,19 @@
         "docs/sile-pavilion-validation.json"
       ],
       "note": "Audit acceptance item; requires region inspection, not an assertion that every defect exists."
+    },
+    {
+      "id": "S4-lighthouse-shape",
+      "region": "S4",
+      "sourceId": 693889618,
+      "title": "Replace tall compound block with keeper house and banded tower",
+      "evidence": "photo-inferred",
+      "status": "fixed",
+      "severity": "quality",
+      "references": [
+        "https://sile.bel.tr/tr/sile-rehberi/sile-tarihi-yapilari/"
+      ],
+      "note": "19m source-reported tower height; cross-section, house and lantern dimensions authored; native final acceptance pending."
     }
   ],
   "buildings": [

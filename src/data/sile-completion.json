@@ -1,0 +1,3385 @@
+{
+  "schema": 1,
+  "date": "2026-11-09",
+  "baseline": "v2.55.0-6f8e573f64c1",
+  "bounds": [
+    -1564.225,
+    2940.6575000000003,
+    -917.08,
+    1083.06
+  ],
+  "limits": [
+    "31m DSM; no new elevation survey",
+    "Building associations/heights unmeasured unless individually sourced"
+  ],
+  "regions": [
+    {
+      "id": "S1",
+      "name": "Ayazma / batı sahili",
+      "bounds": [
+        -1564.225,
+        -400,
+        -250,
+        1083.06
+      ],
+      "cameras": [
+        {
+          "id": "sea",
+          "eye": [
+            -1120,
+            25,
+            310
+          ],
+          "target": [
+            -1060,
+            8,
+            550
+          ]
+        },
+        {
+          "id": "land",
+          "eye": [
+            -950,
+            73,
+            680
+          ],
+          "target": [
+            -1060,
+            8,
+            550
+          ]
+        }
+      ],
+      "status": "open"
+    },
+    {
+      "id": "S2",
+      "name": "Liman / rıhtım / mendirek",
+      "bounds": [
+        -400,
+        260,
+        -900,
+        200
+      ],
+      "cameras": [
+        {
+          "id": "sea",
+          "eye": [
+            -600,
+            70,
+            -470
+          ],
+          "target": [
+            -180,
+            0,
+            -220
+          ]
+        },
+        {
+          "id": "land",
+          "eye": [
+            -70,
+            65,
+            -90
+          ],
+          "target": [
+            -180,
+            0,
+            -220
+          ]
+        }
+      ],
+      "status": "open"
+    },
+    {
+      "id": "S3",
+      "name": "Kale / kaya dibi balıkçılar",
+      "bounds": [
+        -100,
+        500,
+        -917.08,
+        80
+      ],
+      "cameras": [
+        {
+          "id": "sea",
+          "eye": [
+            -140,
+            32,
+            -900
+          ],
+          "target": [
+            120,
+            8,
+            -690
+          ]
+        },
+        {
+          "id": "land",
+          "eye": [
+            230,
+            73,
+            -560
+          ],
+          "target": [
+            120,
+            8,
+            -690
+          ]
+        }
+      ],
+      "status": "open"
+    },
+    {
+      "id": "S4",
+      "name": "Fener / Feneraltı",
+      "bounds": [
+        500,
+        1150,
+        -650,
+        250
+      ],
+      "cameras": [
+        {
+          "id": "sea",
+          "eye": [
+            1060,
+            26,
+            -480
+          ],
+          "target": [
+            1012,
+            2,
+            -348
+          ]
+        },
+        {
+          "id": "land",
+          "eye": [
+            1122,
+            67,
+            -218
+          ],
+          "target": [
+            1012,
+            2,
+            -348
+          ]
+        }
+      ],
+      "status": "open"
+    },
+    {
+      "id": "S5",
+      "name": "Su İçen Fil",
+      "bounds": [
+        1150,
+        1500,
+        -650,
+        250
+      ],
+      "cameras": [
+        {
+          "id": "sea",
+          "eye": [
+            1260,
+            15,
+            -500
+          ],
+          "target": [
+            1246,
+            2,
+            -439
+          ]
+        },
+        {
+          "id": "land",
+          "eye": [
+            1356,
+            67,
+            -309
+          ],
+          "target": [
+            1246,
+            2,
+            -439
+          ]
+        }
+      ],
+      "status": "open"
+    },
+    {
+      "id": "S6",
+      "name": "Ağlayankaya / doğu kıyı",
+      "bounds": [
+        1500,
+        2940.6575,
+        -917.08,
+        1083.06
+      ],
+      "cameras": [
+        {
+          "id": "sea",
+          "eye": [
+            2060,
+            75,
+            -450
+          ],
+          "target": [
+            2040,
+            12,
+            -40
+          ]
+        },
+        {
+          "id": "land",
+          "eye": [
+            2150,
+            77,
+            90
+          ],
+          "target": [
+            2040,
+            12,
+            -40
+          ]
+        }
+      ],
+      "status": "open"
+    }
+  ],
+  "issues": [
+    {
+      "id": "S1-shore",
+      "region": "S1",
+      "sourceId": null,
+      "title": "Kıyı sürekliliği ve rıhtım bağlantısı",
+      "evidence": "unknown",
+      "status": "open",
+      "severity": "critical",
+      "references": [
+        "docs/sile-realism-audit-2026-11-08.md",
+        "docs/sile-pavilion-validation.json"
+      ],
+      "note": "Initial sea/land views show continuous western beach; verify waterline support and source boundary rather than assume a new gap."
+    },
+    {
+      "id": "S1-grounding",
+      "region": "S1",
+      "sourceId": null,
+      "title": "Yapı/zemin ve kaya dibi kotları",
+      "evidence": "unknown",
+      "status": "open",
+      "severity": "critical",
+      "references": [
+        "docs/sile-realism-audit-2026-11-08.md",
+        "docs/sile-pavilion-validation.json"
+      ],
+      "note": "Audit acceptance item; requires region inspection, not an assertion that every defect exists."
+    },
+    {
+      "id": "S1-architecture",
+      "region": "S1",
+      "sourceId": null,
+      "title": "Ön sıra bina ölçeği ve silüeti",
+      "evidence": "unknown",
+      "status": "open",
+      "severity": "quality",
+      "references": [
+        "docs/sile-realism-audit-2026-11-08.md",
+        "docs/sile-pavilion-validation.json"
+      ],
+      "note": "Audit acceptance item; requires region inspection, not an assertion that every defect exists."
+    },
+    {
+      "id": "S1-appearance",
+      "region": "S1",
+      "sourceId": null,
+      "title": "Deniz/kum/kaya ve çevre görünümü",
+      "evidence": "unknown",
+      "status": "open",
+      "severity": "quality",
+      "references": [
+        "docs/sile-realism-audit-2026-11-08.md",
+        "docs/sile-pavilion-validation.json"
+      ],
+      "note": "Audit acceptance item; requires region inspection, not an assertion that every defect exists."
+    },
+    {
+      "id": "S1-flight",
+      "region": "S1",
+      "sourceId": null,
+      "title": "İki yönlü uçuş ve yakın temas",
+      "evidence": "unknown",
+      "status": "open",
+      "severity": "critical",
+      "references": [
+        "docs/sile-realism-audit-2026-11-08.md",
+        "docs/sile-pavilion-validation.json"
+      ],
+      "note": "Audit acceptance item; requires region inspection, not an assertion that every defect exists."
+    },
+    {
+      "id": "S1-performance",
+      "region": "S1",
+      "sourceId": null,
+      "title": "Native tarayıcı performansı",
+      "evidence": "unknown",
+      "status": "open",
+      "severity": "quality",
+      "references": [
+        "docs/sile-realism-audit-2026-11-08.md",
+        "docs/sile-pavilion-validation.json"
+      ],
+      "note": "Audit acceptance item; requires region inspection, not an assertion that every defect exists."
+    },
+    {
+      "id": "S2-shore",
+      "region": "S2",
+      "sourceId": null,
+      "title": "Kıyı sürekliliği ve rıhtım bağlantısı",
+      "evidence": "unknown",
+      "status": "open",
+      "severity": "critical",
+      "references": [
+        "docs/sile-realism-audit-2026-11-08.md",
+        "docs/sile-pavilion-validation.json"
+      ],
+      "note": "Initial sea/land views show connected main quay and pier approach; retain prior fixes and verify physical seams rather than inventing replacement geography."
+    },
+    {
+      "id": "S2-grounding",
+      "region": "S2",
+      "sourceId": null,
+      "title": "Yapı/zemin ve kaya dibi kotları",
+      "evidence": "unknown",
+      "status": "open",
+      "severity": "critical",
+      "references": [
+        "docs/sile-realism-audit-2026-11-08.md",
+        "docs/sile-pavilion-validation.json"
+      ],
+      "note": "Audit acceptance item; requires region inspection, not an assertion that every defect exists."
+    },
+    {
+      "id": "S2-architecture",
+      "region": "S2",
+      "sourceId": null,
+      "title": "Ön sıra bina ölçeği ve silüeti",
+      "evidence": "unknown",
+      "status": "open",
+      "severity": "quality",
+      "references": [
+        "docs/sile-realism-audit-2026-11-08.md",
+        "docs/sile-pavilion-validation.json"
+      ],
+      "note": "Audit acceptance item; requires region inspection, not an assertion that every defect exists."
+    },
+    {
+      "id": "S2-appearance",
+      "region": "S2",
+      "sourceId": null,
+      "title": "Deniz/kum/kaya ve çevre görünümü",
+      "evidence": "unknown",
+      "status": "open",
+      "severity": "quality",
+      "references": [
+        "docs/sile-realism-audit-2026-11-08.md",
+        "docs/sile-pavilion-validation.json"
+      ],
+      "note": "Audit acceptance item; requires region inspection, not an assertion that every defect exists."
+    },
+    {
+      "id": "S2-flight",
+      "region": "S2",
+      "sourceId": null,
+      "title": "İki yönlü uçuş ve yakın temas",
+      "evidence": "unknown",
+      "status": "open",
+      "severity": "critical",
+      "references": [
+        "docs/sile-realism-audit-2026-11-08.md",
+        "docs/sile-pavilion-validation.json"
+      ],
+      "note": "Audit acceptance item; requires region inspection, not an assertion that every defect exists."
+    },
+    {
+      "id": "S2-performance",
+      "region": "S2",
+      "sourceId": null,
+      "title": "Native tarayıcı performansı",
+      "evidence": "unknown",
+      "status": "open",
+      "severity": "quality",
+      "references": [
+        "docs/sile-realism-audit-2026-11-08.md",
+        "docs/sile-pavilion-validation.json"
+      ],
+      "note": "Audit acceptance item; requires region inspection, not an assertion that every defect exists."
+    },
+    {
+      "id": "S3-shore",
+      "region": "S3",
+      "sourceId": null,
+      "title": "Kıyı sürekliliği ve rıhtım bağlantısı",
+      "evidence": "unknown",
+      "status": "open",
+      "severity": "critical",
+      "references": [
+        "docs/sile-realism-audit-2026-11-08.md",
+        "docs/sile-pavilion-validation.json"
+      ],
+      "note": "Audit acceptance item; requires region inspection, not an assertion that every defect exists."
+    },
+    {
+      "id": "S3-grounding",
+      "region": "S3",
+      "sourceId": null,
+      "title": "Yapı/zemin ve kaya dibi kotları",
+      "evidence": "unknown",
+      "status": "open",
+      "severity": "critical",
+      "references": [
+        "docs/sile-realism-audit-2026-11-08.md",
+        "docs/sile-pavilion-validation.json"
+      ],
+      "note": "Audit acceptance item; requires region inspection, not an assertion that every defect exists."
+    },
+    {
+      "id": "S3-architecture",
+      "region": "S3",
+      "sourceId": null,
+      "title": "Ön sıra bina ölçeği ve silüeti",
+      "evidence": "unknown",
+      "status": "open",
+      "severity": "quality",
+      "references": [
+        "docs/sile-realism-audit-2026-11-08.md",
+        "docs/sile-pavilion-validation.json"
+      ],
+      "note": "Audit acceptance item; requires region inspection, not an assertion that every defect exists."
+    },
+    {
+      "id": "S3-appearance",
+      "region": "S3",
+      "sourceId": null,
+      "title": "Deniz/kum/kaya ve çevre görünümü",
+      "evidence": "unknown",
+      "status": "open",
+      "severity": "quality",
+      "references": [
+        "docs/sile-realism-audit-2026-11-08.md",
+        "docs/sile-pavilion-validation.json"
+      ],
+      "note": "Sea/land cameras show a broad low grass island and abrupt rock/soil boundaries; compare island relief and exposed surface to reference before accepting."
+    },
+    {
+      "id": "S3-flight",
+      "region": "S3",
+      "sourceId": null,
+      "title": "İki yönlü uçuş ve yakın temas",
+      "evidence": "unknown",
+      "status": "open",
+      "severity": "critical",
+      "references": [
+        "docs/sile-realism-audit-2026-11-08.md",
+        "docs/sile-pavilion-validation.json"
+      ],
+      "note": "Audit acceptance item; requires region inspection, not an assertion that every defect exists."
+    },
+    {
+      "id": "S3-performance",
+      "region": "S3",
+      "sourceId": null,
+      "title": "Native tarayıcı performansı",
+      "evidence": "unknown",
+      "status": "open",
+      "severity": "quality",
+      "references": [
+        "docs/sile-realism-audit-2026-11-08.md",
+        "docs/sile-pavilion-validation.json"
+      ],
+      "note": "Audit acceptance item; requires region inspection, not an assertion that every defect exists."
+    },
+    {
+      "id": "S4-shore",
+      "region": "S4",
+      "sourceId": null,
+      "title": "Kıyı sürekliliği ve rıhtım bağlantısı",
+      "evidence": "unknown",
+      "status": "open",
+      "severity": "critical",
+      "references": [
+        "docs/sile-realism-audit-2026-11-08.md",
+        "docs/sile-pavilion-validation.json"
+      ],
+      "note": "Audit acceptance item; requires region inspection, not an assertion that every defect exists."
+    },
+    {
+      "id": "S4-grounding",
+      "region": "S4",
+      "sourceId": null,
+      "title": "Yapı/zemin ve kaya dibi kotları",
+      "evidence": "unknown",
+      "status": "open",
+      "severity": "critical",
+      "references": [
+        "docs/sile-realism-audit-2026-11-08.md",
+        "docs/sile-pavilion-validation.json"
+      ],
+      "note": "Source roof/door burial risk on steep DSM: building550130671 has approx9.13m vertex terrain range. Source base is minimum corner; several lower doors are buried in the land camera. Resolve entry elevation/ground locally without inventing measured heights."
+    },
+    {
+      "id": "S4-architecture",
+      "region": "S4",
+      "sourceId": null,
+      "title": "Ön sıra bina ölçeği ve silüeti",
+      "evidence": "unknown",
+      "status": "open",
+      "severity": "quality",
+      "references": [
+        "docs/sile-realism-audit-2026-11-08.md",
+        "docs/sile-pavilion-validation.json"
+      ],
+      "note": "Audit acceptance item; requires region inspection, not an assertion that every defect exists."
+    },
+    {
+      "id": "S4-appearance",
+      "region": "S4",
+      "sourceId": null,
+      "title": "Deniz/kum/kaya ve çevre görünümü",
+      "evidence": "unknown",
+      "status": "open",
+      "severity": "quality",
+      "references": [
+        "docs/sile-realism-audit-2026-11-08.md",
+        "docs/sile-pavilion-validation.json"
+      ],
+      "note": "Near Feneraltı camera shows broad triangulated soil faces above pale cliff walls; no continuous exposed-rock treatment on steep shore slopes."
+    },
+    {
+      "id": "S4-flight",
+      "region": "S4",
+      "sourceId": null,
+      "title": "İki yönlü uçuş ve yakın temas",
+      "evidence": "unknown",
+      "status": "open",
+      "severity": "critical",
+      "references": [
+        "docs/sile-realism-audit-2026-11-08.md",
+        "docs/sile-pavilion-validation.json"
+      ],
+      "note": "Audit acceptance item; requires region inspection, not an assertion that every defect exists."
+    },
+    {
+      "id": "S4-performance",
+      "region": "S4",
+      "sourceId": null,
+      "title": "Native tarayıcı performansı",
+      "evidence": "unknown",
+      "status": "open",
+      "severity": "quality",
+      "references": [
+        "docs/sile-realism-audit-2026-11-08.md",
+        "docs/sile-pavilion-validation.json"
+      ],
+      "note": "Audit acceptance item; requires region inspection, not an assertion that every defect exists."
+    },
+    {
+      "id": "S5-shore",
+      "region": "S5",
+      "sourceId": null,
+      "title": "Kıyı sürekliliği ve rıhtım bağlantısı",
+      "evidence": "unknown",
+      "status": "open",
+      "severity": "critical",
+      "references": [
+        "docs/sile-realism-audit-2026-11-08.md",
+        "docs/sile-pavilion-validation.json"
+      ],
+      "note": "Audit acceptance item; requires region inspection, not an assertion that every defect exists."
+    },
+    {
+      "id": "S5-grounding",
+      "region": "S5",
+      "sourceId": null,
+      "title": "Yapı/zemin ve kaya dibi kotları",
+      "evidence": "unknown",
+      "status": "open",
+      "severity": "critical",
+      "references": [
+        "docs/sile-realism-audit-2026-11-08.md",
+        "docs/sile-pavilion-validation.json"
+      ],
+      "note": "Audit acceptance item; requires region inspection, not an assertion that every defect exists."
+    },
+    {
+      "id": "S5-architecture",
+      "region": "S5",
+      "sourceId": null,
+      "title": "Ön sıra bina ölçeği ve silüeti",
+      "evidence": "unknown",
+      "status": "open",
+      "severity": "quality",
+      "references": [
+        "docs/sile-realism-audit-2026-11-08.md",
+        "docs/sile-pavilion-validation.json"
+      ],
+      "note": "Audit acceptance item; requires region inspection, not an assertion that every defect exists."
+    },
+    {
+      "id": "S5-appearance",
+      "region": "S5",
+      "sourceId": null,
+      "title": "Deniz/kum/kaya ve çevre görünümü",
+      "evidence": "unknown",
+      "status": "open",
+      "severity": "quality",
+      "references": [
+        "docs/sile-realism-audit-2026-11-08.md",
+        "docs/sile-pavilion-validation.json"
+      ],
+      "note": "Headland uses uniform soil cap and abrupt pale cliff boundary; entrance inspection needs additional axis-aligned close camera."
+    },
+    {
+      "id": "S5-flight",
+      "region": "S5",
+      "sourceId": null,
+      "title": "İki yönlü uçuş ve yakın temas",
+      "evidence": "unknown",
+      "status": "open",
+      "severity": "critical",
+      "references": [
+        "docs/sile-realism-audit-2026-11-08.md",
+        "docs/sile-pavilion-validation.json"
+      ],
+      "note": "Audit acceptance item; requires region inspection, not an assertion that every defect exists."
+    },
+    {
+      "id": "S5-performance",
+      "region": "S5",
+      "sourceId": null,
+      "title": "Native tarayıcı performansı",
+      "evidence": "unknown",
+      "status": "open",
+      "severity": "quality",
+      "references": [
+        "docs/sile-realism-audit-2026-11-08.md",
+        "docs/sile-pavilion-validation.json"
+      ],
+      "note": "Audit acceptance item; requires region inspection, not an assertion that every defect exists."
+    },
+    {
+      "id": "S6-shore",
+      "region": "S6",
+      "sourceId": null,
+      "title": "Kıyı sürekliliği ve rıhtım bağlantısı",
+      "evidence": "unknown",
+      "status": "open",
+      "severity": "critical",
+      "references": [
+        "docs/sile-realism-audit-2026-11-08.md",
+        "docs/sile-pavilion-validation.json"
+      ],
+      "note": "Audit acceptance item; requires region inspection, not an assertion that every defect exists."
+    },
+    {
+      "id": "S6-grounding",
+      "region": "S6",
+      "sourceId": null,
+      "title": "Yapı/zemin ve kaya dibi kotları",
+      "evidence": "unknown",
+      "status": "open",
+      "severity": "critical",
+      "references": [
+        "docs/sile-realism-audit-2026-11-08.md",
+        "docs/sile-pavilion-validation.json"
+      ],
+      "note": "Audit acceptance item; requires region inspection, not an assertion that every defect exists."
+    },
+    {
+      "id": "S6-architecture",
+      "region": "S6",
+      "sourceId": null,
+      "title": "Ön sıra bina ölçeği ve silüeti",
+      "evidence": "unknown",
+      "status": "open",
+      "severity": "quality",
+      "references": [
+        "docs/sile-realism-audit-2026-11-08.md",
+        "docs/sile-pavilion-validation.json"
+      ],
+      "note": "Audit acceptance item; requires region inspection, not an assertion that every defect exists."
+    },
+    {
+      "id": "S6-appearance",
+      "region": "S6",
+      "sourceId": null,
+      "title": "Deniz/kum/kaya ve çevre görünümü",
+      "evidence": "unknown",
+      "status": "open",
+      "severity": "quality",
+      "references": [
+        "docs/sile-realism-audit-2026-11-08.md",
+        "docs/sile-pavilion-validation.json"
+      ],
+      "note": "East headland has broad bare uniform ground, no close reference match yet."
+    },
+    {
+      "id": "S6-flight",
+      "region": "S6",
+      "sourceId": null,
+      "title": "İki yönlü uçuş ve yakın temas",
+      "evidence": "unknown",
+      "status": "open",
+      "severity": "critical",
+      "references": [
+        "docs/sile-realism-audit-2026-11-08.md",
+        "docs/sile-pavilion-validation.json"
+      ],
+      "note": "Audit acceptance item; requires region inspection, not an assertion that every defect exists."
+    },
+    {
+      "id": "S6-performance",
+      "region": "S6",
+      "sourceId": null,
+      "title": "Native tarayıcı performansı",
+      "evidence": "unknown",
+      "status": "open",
+      "severity": "quality",
+      "references": [
+        "docs/sile-realism-audit-2026-11-08.md",
+        "docs/sile-pavilion-validation.json"
+      ],
+      "note": "Audit acceptance item; requires region inspection, not an assertion that every defect exists."
+    }
+  ],
+  "buildings": [
+    {
+      "id": "osm-549911731",
+      "sourceId": 549911731,
+      "region": "S3",
+      "center": [
+        135.64499999999998,
+        -533.375
+      ],
+      "baseM": -0.59,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        -0.5850720293703573,
+        -0.35938714305082065
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-550135339",
+      "sourceId": 550135339,
+      "region": "S3",
+      "center": [
+        123.5375,
+        -406.41499999999996
+      ],
+      "baseM": 0.24,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        0.23568576117201623,
+        1.4665171143085098
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-549911734",
+      "sourceId": 549911734,
+      "region": "S3",
+      "center": [
+        144.5275,
+        -532.4825000000001
+      ],
+      "baseM": -0.41,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        -0.4074827355486246,
+        -0.29284904744781315
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-550130659",
+      "sourceId": 550130659,
+      "region": "S3",
+      "center": [
+        365.90874999999994,
+        -515.0175
+      ],
+      "baseM": 1,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        0.9963615255303617,
+        3.4875483146872663
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-550135337",
+      "sourceId": 550135337,
+      "region": "S3",
+      "center": [
+        161.915,
+        -367.93000000000006
+      ],
+      "baseM": 3.04,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        3.0400497863784417,
+        6.986046421330117
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-550135336",
+      "sourceId": 550135336,
+      "region": "S3",
+      "center": [
+        156.1325,
+        -374.66499999999996
+      ],
+      "baseM": 3.4,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        3.402443618810183,
+        6.2369381884738395
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-550135338",
+      "sourceId": 550135338,
+      "region": "S3",
+      "center": [
+        180.9675,
+        -339.37249999999995
+      ],
+      "baseM": 1.58,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        1.5775458419863786,
+        6.96824543464022
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-549917810",
+      "sourceId": 549917810,
+      "region": "S2",
+      "center": [
+        -64.40833333333333,
+        -708.615
+      ],
+      "baseM": 1.77,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        1.7678804243688382,
+        3.4852034879756784
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-550135334",
+      "sourceId": 550135334,
+      "region": "S3",
+      "center": [
+        142.3425,
+        -401.145
+      ],
+      "baseM": 2.47,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        2.4731068534932574,
+        3.969209084716215
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-549917808",
+      "sourceId": 549917808,
+      "region": "S2",
+      "center": [
+        -78.04249999999999,
+        -694.655
+      ],
+      "baseM": 0.98,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        0.9815632458298449,
+        1.432751453086706
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-550135335",
+      "sourceId": 550135335,
+      "region": "S3",
+      "center": [
+        148.16500000000002,
+        -388.58500000000004
+      ],
+      "baseM": 3.24,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        3.245925790478451,
+        5.931888294315662
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-549917809",
+      "sourceId": 549917809,
+      "region": "S2",
+      "center": [
+        -71.38,
+        -699.5825
+      ],
+      "baseM": 1.46,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        1.457954977015374,
+        1.899937395177826
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-560660581",
+      "sourceId": 560660581,
+      "region": "S2",
+      "center": [
+        58.3675,
+        -606.1324999999999
+      ],
+      "baseM": 0.77,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        0.7689685842365459,
+        1.0086127225118613
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-549917807",
+      "sourceId": 549917807,
+      "region": "S3",
+      "center": [
+        147.46571428571428,
+        -420.0285714285714
+      ],
+      "baseM": 1.96,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        1.9641409657815454,
+        5.120065192167628
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-549911728",
+      "sourceId": 549911728,
+      "region": "S2",
+      "center": [
+        50.542500000000004,
+        -587.8625
+      ],
+      "baseM": 0.34,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        0.33756404539807505,
+        0.5702033341506119
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-549911724",
+      "sourceId": 549911724,
+      "region": "S2",
+      "center": [
+        48.45222222222222,
+        -611.2633333333333
+      ],
+      "baseM": 0.67,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        0.6713599531548176,
+        1.1280782709540067
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-549911736",
+      "sourceId": 549911736,
+      "region": "S3",
+      "center": [
+        156.35750000000002,
+        -521.5425
+      ],
+      "baseM": -0.74,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        -0.7352205604826381,
+        -0.29284904744781315
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-549917813",
+      "sourceId": 549917813,
+      "region": "S2",
+      "center": [
+        -4.901999999999999,
+        -685.3979999999999
+      ],
+      "baseM": 3.65,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        3.646046090704013,
+        7.712694109428474
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-342474200",
+      "sourceId": 342474200,
+      "region": "S4",
+      "center": [
+        534.495,
+        -403.3525
+      ],
+      "baseM": 27.47,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        27.46878929839477,
+        32.100552260038256
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-550130670",
+      "sourceId": 550130670,
+      "region": "S4",
+      "center": [
+        603.17,
+        -341.642
+      ],
+      "baseM": 29.95,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        29.94515723510222,
+        32.97066245186183
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-550130827",
+      "sourceId": 550130827,
+      "region": "S4",
+      "center": [
+        1084.995,
+        -381.4275
+      ],
+      "baseM": 27,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        27.004529741335755,
+        29.661176164971124
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-342474201",
+      "sourceId": 342474201,
+      "region": "S4",
+      "center": [
+        529.555,
+        -413.6975
+      ],
+      "baseM": 28.24,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        28.23616789051053,
+        29.572893008976965
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-342474183",
+      "sourceId": 342474183,
+      "region": "S4",
+      "center": [
+        550.8275000000001,
+        -368.21
+      ],
+      "baseM": 28.05,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        28.055364491639665,
+        31.04821004341234
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-550130826",
+      "sourceId": 550130826,
+      "region": "S4",
+      "center": [
+        1083.7050000000002,
+        -365.3325
+      ],
+      "baseM": 28.49,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        28.489981675849293,
+        31.52064478235541
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-342474184",
+      "sourceId": 342474184,
+      "region": "S4",
+      "center": [
+        538.765,
+        -382.04749999999996
+      ],
+      "baseM": 27.73,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        27.72750050945693,
+        31.424923328187106
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-549911722",
+      "sourceId": 549911722,
+      "region": "S2",
+      "center": [
+        27.813333333333333,
+        -615.8283333333333
+      ],
+      "baseM": 0.62,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        0.6188317369740277,
+        1.4378340499473201
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-550130674",
+      "sourceId": 550130674,
+      "region": "S4",
+      "center": [
+        688.7875,
+        -302.21000000000004
+      ],
+      "baseM": 30.13,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        30.130316706568898,
+        39.54229218279039
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-550130671",
+      "sourceId": 550130671,
+      "region": "S4",
+      "center": [
+        632.228,
+        -338.322
+      ],
+      "baseM": 22.76,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        22.756667840675643,
+        31.884888638641108
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-550135333",
+      "sourceId": 550135333,
+      "region": "S3",
+      "center": [
+        157.20600000000002,
+        -404.81600000000003
+      ],
+      "baseM": 4.2,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        4.203987607146383,
+        7.4011286113146895
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-342474186",
+      "sourceId": 342474186,
+      "region": "S4",
+      "center": [
+        557.905,
+        -354.1775
+      ],
+      "baseM": 30.74,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        30.745263201179895,
+        32.41938390254533
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-549917811",
+      "sourceId": 549917811,
+      "region": "S2",
+      "center": [
+        -34.152499999999996,
+        -704.5075
+      ],
+      "baseM": 5.06,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        5.063050028803053,
+        6.009543774240884
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-549911720",
+      "sourceId": 549911720,
+      "region": "S2",
+      "center": [
+        -48.35666666666667,
+        -680.0933333333332
+      ],
+      "baseM": 1.1,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        1.1038837520913618,
+        3.106708722088458
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-342504232",
+      "sourceId": 342504232,
+      "region": "S4",
+      "center": [
+        580.025,
+        -336.5375
+      ],
+      "baseM": 31.72,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        31.71632793454546,
+        33.85000537850195
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-549911739",
+      "sourceId": 549911739,
+      "region": "S3",
+      "center": [
+        186.0614285714286,
+        -485.57714285714286
+      ],
+      "baseM": -0.72,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        -0.7224495593029592,
+        1.4957414402889104
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-550130658",
+      "sourceId": 550130658,
+      "region": "S3",
+      "center": [
+        472.37800000000004,
+        -532.342
+      ],
+      "baseM": 21.9,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        21.89619705593371,
+        23.477660705579204
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-549911748",
+      "sourceId": 549911748,
+      "region": "S3",
+      "center": [
+        188.465,
+        -437.945
+      ],
+      "baseM": 4.04,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        4.039896834854112,
+        8.276294099626925
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-550130657",
+      "sourceId": 550130657,
+      "region": "S3",
+      "center": [
+        466.49399999999997,
+        -524.25
+      ],
+      "baseM": 20.11,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        20.107256202425667,
+        22.660168418219673
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-550130839",
+      "sourceId": 550130839,
+      "region": "S5",
+      "center": [
+        1242.5425,
+        -378.96750000000003
+      ],
+      "baseM": 25.03,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        25.029279892735094,
+        26.091901711524258
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-550130675",
+      "sourceId": 550130675,
+      "region": "S4",
+      "center": [
+        708.625,
+        -300.5475
+      ],
+      "baseM": 30.2,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        30.206000661053313,
+        43.81384735319994
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-342474189",
+      "sourceId": 342474189,
+      "region": "S4",
+      "center": [
+        571.4083333333333,
+        -337.1633333333333
+      ],
+      "baseM": 31.86,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        31.857748902946135,
+        34.070677963546096
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-550130831",
+      "sourceId": 550130831,
+      "region": "S5",
+      "center": [
+        1150.5375,
+        -402.035
+      ],
+      "baseM": 25.38,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        25.380994240474745,
+        27.217643033419378
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-550130825",
+      "sourceId": 550130825,
+      "region": "S4",
+      "center": [
+        1086.3525,
+        -345.245
+      ],
+      "baseM": 31.18,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        31.18002028569054,
+        32.67966000330251
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-550130656",
+      "sourceId": 550130656,
+      "region": "S3",
+      "center": [
+        465.615,
+        -514.7175
+      ],
+      "baseM": 20.2,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        20.200452673087682,
+        22.198718204518716
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-550130837",
+      "sourceId": 550130837,
+      "region": "S5",
+      "center": [
+        1224.3775,
+        -384.66499999999996
+      ],
+      "baseM": 24.46,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        24.461413699415317,
+        25.659127348498266
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-550130841",
+      "sourceId": 550130841,
+      "region": "S5",
+      "center": [
+        1252.0075000000002,
+        -365.625
+      ],
+      "baseM": 24.75,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        24.74951655978962,
+        28.475169367170817
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-549911745",
+      "sourceId": 549911745,
+      "region": "S3",
+      "center": [
+        199.2475,
+        -445.28999999999996
+      ],
+      "baseM": 4.77,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        4.77413873160968,
+        8.013458634551458
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-550130828",
+      "sourceId": 550130828,
+      "region": "S4",
+      "center": [
+        1102.3174999999999,
+        -395.14500000000004
+      ],
+      "baseM": 26.1,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        26.099283521271353,
+        28.479027074624216
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-550130672",
+      "sourceId": 550130672,
+      "region": "S4",
+      "center": [
+        657.05,
+        -295.3275
+      ],
+      "baseM": 35.15,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        35.15442365963768,
+        39.07940842861437
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-342474208",
+      "sourceId": 342474208,
+      "region": "S4",
+      "center": [
+        588.355,
+        -325.72249999999997
+      ],
+      "baseM": 34.99,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        34.99284739002779,
+        36.978941447907104
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-549917812",
+      "sourceId": 549917812,
+      "region": "S2",
+      "center": [
+        -24.334999999999997,
+        -696.3325
+      ],
+      "baseM": 4.7,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        4.699969400041278,
+        6.548632505138947
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-342474199",
+      "sourceId": 342474199,
+      "region": "S4",
+      "center": [
+        514.545,
+        -398.94999999999993
+      ],
+      "baseM": 27.48,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        27.479045541363732,
+        31.231893158059727
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-342515888",
+      "sourceId": 342515888,
+      "region": "S4",
+      "center": [
+        510.80899999999997,
+        -430.878
+      ],
+      "baseM": 24.45,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        24.44410124506205,
+        28.591970458381937
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-550130802",
+      "sourceId": 550130802,
+      "region": "S4",
+      "center": [
+        1015.7639999999999,
+        -283.036
+      ],
+      "baseM": 34.79,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        34.794694535355625,
+        39.1828702335333
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-550130832",
+      "sourceId": 550130832,
+      "region": "S5",
+      "center": [
+        1170.7649999999999,
+        -396.17
+      ],
+      "baseM": 24.41,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        24.41493673861146,
+        26.974926713151604
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-550130829",
+      "sourceId": 550130829,
+      "region": "S4",
+      "center": [
+        1108.0049999999999,
+        -413.16999999999996
+      ],
+      "baseM": 23.74,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        23.739724225746233,
+        26.265372276400754
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-550130676",
+      "sourceId": 550130676,
+      "region": "S4",
+      "center": [
+        716.29,
+        -291.45166666666665
+      ],
+      "baseM": 38.88,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        38.88028737778742,
+        45.350156023997435
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-550130824",
+      "sourceId": 550130824,
+      "region": "S4",
+      "center": [
+        1080.8575,
+        -329.21
+      ],
+      "baseM": 32.19,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        32.19244910637264,
+        33.44325397059981
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-342474203",
+      "sourceId": 342474203,
+      "region": "S4",
+      "center": [
+        508.84000000000003,
+        -421.675
+      ],
+      "baseM": 26.87,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        26.87439301602385,
+        28.591970458381937
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-549917814",
+      "sourceId": 549917814,
+      "region": "S3",
+      "center": [
+        301.225,
+        -458.72499999999997
+      ],
+      "baseM": 13.98,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        13.976046702828507,
+        21.991020011935273
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-342474187",
+      "sourceId": 342474187,
+      "region": "S4",
+      "center": [
+        558.105,
+        -328.5975
+      ],
+      "baseM": 29.62,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        29.617492443384364,
+        34.128179584071184
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-550130677",
+      "sourceId": 550130677,
+      "region": "S4",
+      "center": [
+        731.0571428571428,
+        -290.17
+      ],
+      "baseM": 43.06,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        43.06353130029854,
+        45.68389287656939
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-550130655",
+      "sourceId": 550130655,
+      "region": "S3",
+      "center": [
+        467.312,
+        -501.94200000000006
+      ],
+      "baseM": 20.21,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        20.206713719567514,
+        22.032923747842208
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-342474209",
+      "sourceId": 342474209,
+      "region": "S4",
+      "center": [
+        592.771111111111,
+        -317.85
+      ],
+      "baseM": 35.48,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        35.482454829482045,
+        37.1672366365876
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-550130840",
+      "sourceId": 550130840,
+      "region": "S5",
+      "center": [
+        1236.5725,
+        -364.1
+      ],
+      "baseM": 25.92,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        25.915106058222943,
+        27.509767567493697
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-549911742",
+      "sourceId": 549911742,
+      "region": "S3",
+      "center": [
+        209.255,
+        -453.81
+      ],
+      "baseM": 5.17,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        5.172623135384438,
+        7.287027962180408
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-550130835",
+      "sourceId": 550130835,
+      "region": "S5",
+      "center": [
+        1189.1225,
+        -389.99249999999995
+      ],
+      "baseM": 23.14,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        23.140731441761208,
+        25.77960176438036
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-342474190",
+      "sourceId": 342474190,
+      "region": "S4",
+      "center": [
+        580.72,
+        -317.1675
+      ],
+      "baseM": 33.86,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        33.862149778398184,
+        35.49996235521609
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-342504061",
+      "sourceId": 342504061,
+      "region": "S4",
+      "center": [
+        537.5414285714286,
+        -344.29714285714283
+      ],
+      "baseM": 26.4,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        26.40452237797895,
+        30.885415315291517
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-550130673",
+      "sourceId": 550130673,
+      "region": "S4",
+      "center": [
+        647.645,
+        -288.2975
+      ],
+      "baseM": 37.74,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        37.736044075011826,
+        38.23476194017594
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-550130660",
+      "sourceId": 550130660,
+      "region": "S3",
+      "center": [
+        348.498,
+        -463.03600000000006
+      ],
+      "baseM": 9.21,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        9.2138690297313,
+        16.072917253787832
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-550130830",
+      "sourceId": 550130830,
+      "region": "S4",
+      "center": [
+        1134.44,
+        -389.39666666666665
+      ],
+      "baseM": 26.55,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        26.55017448107362,
+        28.165722778509174
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-342502274",
+      "sourceId": 342502274,
+      "region": "S4",
+      "center": [
+        694.1000000000001,
+        -276.10833333333335
+      ],
+      "baseM": 41.42,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        41.422595164515386,
+        43.500890868466755
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-550130838",
+      "sourceId": 550130838,
+      "region": "S5",
+      "center": [
+        1219.0025,
+        -369.53999999999996
+      ],
+      "baseM": 25.79,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        25.789209319742252,
+        26.57960732520671
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-550130833",
+      "sourceId": 550130833,
+      "region": "S4",
+      "center": [
+        1148.146,
+        -384.25199999999995
+      ],
+      "baseM": 27.37,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        27.374499155446767,
+        28.184312993351107
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-342474195",
+      "sourceId": 342474195,
+      "region": "S4",
+      "center": [
+        603.4525000000001,
+        -311.67
+      ],
+      "baseM": 34.73,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        34.73095569188276,
+        36.469217240173535
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-550130654",
+      "sourceId": 550130654,
+      "region": "S3",
+      "center": [
+        470.645,
+        -495.37000000000006
+      ],
+      "baseM": 20.91,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        20.90906619413974,
+        22.257100024240742
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-342502272",
+      "sourceId": 342502272,
+      "region": "S4",
+      "center": [
+        662.454,
+        -275.804
+      ],
+      "baseM": 38.01,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        38.01105088279455,
+        40.25819867198818
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-550116788",
+      "sourceId": 550116788,
+      "region": "S3",
+      "center": [
+        496.1825,
+        -423.8425
+      ],
+      "baseM": 24.43,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        24.429622064335327,
+        26.960758936144757
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-342474198",
+      "sourceId": 342474198,
+      "region": "S4",
+      "center": [
+        550.29,
+        -322.015
+      ],
+      "baseM": 28.62,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        28.616071014392794,
+        31.706177890486764
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-549917818",
+      "sourceId": 549917818,
+      "region": "S3",
+      "center": [
+        208.19666666666666,
+        -398.20833333333337
+      ],
+      "baseM": 15.35,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        15.350231761094312,
+        21.298885993463177
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-550116786",
+      "sourceId": 550116786,
+      "region": "S4",
+      "center": [
+        513.054,
+        -361.33
+      ],
+      "baseM": 24.41,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        24.407774272839386,
+        28.275805915941675
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-550130803",
+      "sourceId": 550130803,
+      "region": "S4",
+      "center": [
+        1028.1799999999998,
+        -270.78
+      ],
+      "baseM": 38.5,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        38.500405622552144,
+        40.5428551279294
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-342474205",
+      "sourceId": 342474205,
+      "region": "S4",
+      "center": [
+        629.0725,
+        -293.505
+      ],
+      "baseM": 35.51,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        35.50988294750403,
+        37.316492727147526
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-342474191",
+      "sourceId": 342474191,
+      "region": "S4",
+      "center": [
+        569.585,
+        -309.1525
+      ],
+      "baseM": 30.97,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        30.97021170493572,
+        33.95966773639418
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-342474193",
+      "sourceId": 342474193,
+      "region": "S4",
+      "center": [
+        595.525,
+        -305.2125
+      ],
+      "baseM": 34.19,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        34.18508541151547,
+        36.15089215101231
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-550130653",
+      "sourceId": 550130653,
+      "region": "S3",
+      "center": [
+        474.9975,
+        -490.99
+      ],
+      "baseM": 21.93,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        21.929842876669362,
+        22.496911533813527
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-550130693",
+      "sourceId": 550130693,
+      "region": "S4",
+      "center": [
+        878.2759999999998,
+        -207.53400000000002
+      ],
+      "baseM": 46.34,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        46.338352404102935,
+        52.26558838684927
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-550116789",
+      "sourceId": 550116789,
+      "region": "S3",
+      "center": [
+        493.89599999999996,
+        -404.236
+      ],
+      "baseM": 21.2,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        21.20435754002682,
+        27.636215774671168
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-550130807",
+      "sourceId": 550130807,
+      "region": "S4",
+      "center": [
+        1060.2075,
+        -293.56250000000006
+      ],
+      "baseM": 36.22,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        36.218768226681746,
+        38.13522578048017
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-550130680",
+      "sourceId": 550130680,
+      "region": "S4",
+      "center": [
+        771.214,
+        -286.694
+      ],
+      "baseM": 45.96,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        45.95801924542849,
+        47.90831181775571
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-550130678",
+      "sourceId": 550130678,
+      "region": "S4",
+      "center": [
+        735.4649999999999,
+        -275.72
+      ],
+      "baseM": 45.69,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        45.68781862080464,
+        46.86027284702846
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-550130805",
+      "sourceId": 550130805,
+      "region": "S4",
+      "center": [
+        1048.5675,
+        -279.96999999999997
+      ],
+      "baseM": 38.45,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        38.44768227273252,
+        39.50666916295226
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-550130661",
+      "sourceId": 550130661,
+      "region": "S3",
+      "center": [
+        345.77500000000003,
+        -447.37000000000006
+      ],
+      "baseM": 13.52,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        13.5183067305648,
+        19.253998321850123
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-550135332",
+      "sourceId": 550135332,
+      "region": "S4",
+      "center": [
+        813.6333333333332,
+        -279.8411111111111
+      ],
+      "baseM": 41.71,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        41.70439930644588,
+        47.05086275485312
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-342473981",
+      "sourceId": 342473981,
+      "region": "S3",
+      "center": [
+        495.31500000000005,
+        -378.2325
+      ],
+      "baseM": 20.57,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        20.572235186240253,
+        26.2907411973813
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-342474194",
+      "sourceId": 342474194,
+      "region": "S4",
+      "center": [
+        542.5374999999999,
+        -316.2525
+      ],
+      "baseM": 26.47,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        26.475749859345715,
+        29.172462941832173
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-550130692",
+      "sourceId": 550130692,
+      "region": "S4",
+      "center": [
+        866.345,
+        -207.5275
+      ],
+      "baseM": 47.95,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        47.946960932374935,
+        52.2503557442364
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-549917815",
+      "sourceId": 549917815,
+      "region": "S3",
+      "center": [
+        301.355,
+        -437.67499999999995
+      ],
+      "baseM": 22.93,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        22.93395690410974,
+        26.097676584329577
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-550130834",
+      "sourceId": 550130834,
+      "region": "S5",
+      "center": [
+        1163.6575,
+        -370.7425
+      ],
+      "baseM": 26.74,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        26.738238972013058,
+        28.02910819516881
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-550130691",
+      "sourceId": 550130691,
+      "region": "S4",
+      "center": [
+        854.755,
+        -213.20499999999998
+      ],
+      "baseM": 46.97,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        46.96894883413444,
+        51.890172164170814
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-550130679",
+      "sourceId": 550130679,
+      "region": "S4",
+      "center": [
+        747.875,
+        -273.31
+      ],
+      "baseM": 47.14,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        47.14143472850112,
+        48.32112050237915
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-549917816",
+      "sourceId": 549917816,
+      "region": "S3",
+      "center": [
+        266.065,
+        -433.23
+      ],
+      "baseM": 20.66,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        20.656731531770053,
+        25.71731874453571
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-342473980",
+      "sourceId": 342473980,
+      "region": "S3",
+      "center": [
+        497.28999999999996,
+        -366.48249999999996
+      ],
+      "baseM": 21.11,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        21.110823263040185,
+        24.965456310752735
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-550116787",
+      "sourceId": 550116787,
+      "region": "S4",
+      "center": [
+        517.5516666666667,
+        -339.7066666666667
+      ],
+      "baseM": 23.13,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        23.133797349545336,
+        27.576095087456622
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-550130695",
+      "sourceId": 550130695,
+      "region": "S4",
+      "center": [
+        901.675,
+        -190.3
+      ],
+      "baseM": 49.42,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        49.42056731875776,
+        50.336606502934885
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-550130694",
+      "sourceId": 550130694,
+      "region": "S4",
+      "center": [
+        895.0150000000001,
+        -191.235
+      ],
+      "baseM": 49.96,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        49.95780910357171,
+        51.03979684601626
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-549917817",
+      "sourceId": 549917817,
+      "region": "S3",
+      "center": [
+        222.9316666666667,
+        -420.88166666666666
+      ],
+      "baseM": 15.59,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        15.587906642710207,
+        21.36547606148613
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-342502269",
+      "sourceId": 342502269,
+      "region": "S4",
+      "center": [
+        710.8725,
+        -262.7025
+      ],
+      "baseM": 42.58,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        42.5791526250155,
+        45.38531537742588
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-550130843",
+      "sourceId": 550130843,
+      "region": "S5",
+      "center": [
+        1257.004,
+        -324.06800000000004
+      ],
+      "baseM": 29.67,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        29.669349462876767,
+        31.821128568635025
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-550130844",
+      "sourceId": 550130844,
+      "region": "S5",
+      "center": [
+        1278.02,
+        -315.25
+      ],
+      "baseM": 28.69,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        28.68578720874387,
+        31.60206234608711
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-342474196",
+      "sourceId": 342474196,
+      "region": "S4",
+      "center": [
+        558.4975000000001,
+        -301.65500000000003
+      ],
+      "baseM": 28.65,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        28.653128592341183,
+        30.69469806610988
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-342502276",
+      "sourceId": 342502276,
+      "region": "S4",
+      "center": [
+        675.24,
+        -257.3225
+      ],
+      "baseM": 38.71,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        38.71095662736176,
+        40.89504725881673
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-550130836",
+      "sourceId": 550130836,
+      "region": "S5",
+      "center": [
+        1180.33,
+        -364.3675
+      ],
+      "baseM": 25.98,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        25.98493348783785,
+        26.856441130335753
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-550130842",
+      "sourceId": 550130842,
+      "region": "S5",
+      "center": [
+        1237.5924999999997,
+        -329.3525
+      ],
+      "baseM": 28.78,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        28.779341907113288,
+        31.170298866614395
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-550130690",
+      "sourceId": 550130690,
+      "region": "S4",
+      "center": [
+        837.1979999999999,
+        -216.428
+      ],
+      "baseM": 48.9,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        48.89751367133691,
+        52.21047700858036
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-550130801",
+      "sourceId": 550130801,
+      "region": "S4",
+      "center": [
+        1019.0525,
+        -244.41500000000002
+      ],
+      "baseM": 40.8,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        40.80082695688301,
+        42.3648275473192
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-550130681",
+      "sourceId": 550130681,
+      "region": "S4",
+      "center": [
+        756.455,
+        -265.7125
+      ],
+      "baseM": 47.96,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        47.95977877806463,
+        48.852116262126515
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-550130804",
+      "sourceId": 550130804,
+      "region": "S4",
+      "center": [
+        1051.255,
+        -264.16499999999996
+      ],
+      "baseM": 39.84,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        39.841472071141034,
+        40.83725698534326
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-550130699",
+      "sourceId": 550130699,
+      "region": "S4",
+      "center": [
+        953.68,
+        -188.0375
+      ],
+      "baseM": 45.81,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        45.81096003930674,
+        50.92296057369603
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-550130806",
+      "sourceId": 550130806,
+      "region": "S4",
+      "center": [
+        1064.7675000000002,
+        -275.50750000000005
+      ],
+      "baseM": 38.4,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        38.39828066957623,
+        39.4970161795053
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-342474197",
+      "sourceId": 342474197,
+      "region": "S4",
+      "center": [
+        552.3175000000001,
+        -295.84250000000003
+      ],
+      "baseM": 26.77,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        26.775001693025676,
+        28.76694259859981
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-550130821",
+      "sourceId": 550130821,
+      "region": "S4",
+      "center": [
+        1115.514,
+        -314.096
+      ],
+      "baseM": 31.93,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        31.92573560338048,
+        33.634213528353214
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-342473978",
+      "sourceId": 342473978,
+      "region": "S3",
+      "center": [
+        499.15749999999997,
+        -346.53249999999997
+      ],
+      "baseM": 20.47,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        20.47050082491573,
+        23.209570541952147
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-342502279",
+      "sourceId": 342502279,
+      "region": "S4",
+      "center": [
+        728.8575000000001,
+        -256.905
+      ],
+      "baseM": 45.39,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        45.38854517201332,
+        47.27255866148612
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-342473979",
+      "sourceId": 342473979,
+      "region": "S4",
+      "center": [
+        517.7766666666666,
+        -319.68000000000006
+      ],
+      "baseM": 21.29,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        21.29586765465624,
+        24.93945480390191
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-550130696",
+      "sourceId": 550130696,
+      "region": "S4",
+      "center": [
+        872.5225,
+        -187.245
+      ],
+      "baseM": 52.52,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        52.51558259179395,
+        53.21529769964804
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-550130688",
+      "sourceId": 550130688,
+      "region": "S4",
+      "center": [
+        822.3000000000001,
+        -224.265
+      ],
+      "baseM": 50.31,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        50.30952064100355,
+        50.59935760112548
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-342502277",
+      "sourceId": 342502277,
+      "region": "S4",
+      "center": [
+        683.5619999999999,
+        -245.026
+      ],
+      "baseM": 38.99,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        38.98786903499496,
+        40.973490635558356
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-342518980",
+      "sourceId": 342518980,
+      "region": "S4",
+      "center": [
+        627.6842857142858,
+        -262.65285714285716
+      ],
+      "baseM": 32.42,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        32.425916759837065,
+        36.64371368414829
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-342502282",
+      "sourceId": 342502282,
+      "region": "S4",
+      "center": [
+        736.31,
+        -251.75
+      ],
+      "baseM": 46.53,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        46.52891516076923,
+        47.99775995238814
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-342474207",
+      "sourceId": 342474207,
+      "region": "S4",
+      "center": [
+        588.715,
+        -279.25749999999994
+      ],
+      "baseM": 29.89,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        29.8873374734954,
+        32.053343104908954
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-550130683",
+      "sourceId": 550130683,
+      "region": "S4",
+      "center": [
+        778.0777777777777,
+        -262.70666666666665
+      ],
+      "baseM": 48.39,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        48.39275661231492,
+        49.16746414554652
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-342473977",
+      "sourceId": 342473977,
+      "region": "S4",
+      "center": [
+        500.47,
+        -331.20599999999996
+      ],
+      "baseM": 19.2,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        19.197305424201172,
+        22.18252610888444
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-550130682",
+      "sourceId": 550130682,
+      "region": "S4",
+      "center": [
+        769.1266666666667,
+        -257.81333333333333
+      ],
+      "baseM": 48.16,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        48.15768902590011,
+        49.13794019786844
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "osm-342518982",
+      "sourceId": 342518982,
+      "region": "S4",
+      "center": [
+        659.6233333333333,
+        -241.95833333333334
+      ],
+      "baseM": 36.18,
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "groundRangeM": [
+        36.184626942641806,
+        37.90522458153355
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "overture-01932027-ee64-4270-93be-4f69193fd0e2",
+      "sourceId": "01932027-ee64-4270-93be-4f69193fd0e2",
+      "region": "S2",
+      "center": [
+        -294.991346,
+        -30.044795999999998
+      ],
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "review": "pending"
+    },
+    {
+      "id": "overture-19523577-0288-44e7-aa86-ac6ba007cd56",
+      "sourceId": "19523577-0288-44e7-aa86-ac6ba007cd56",
+      "region": "S2",
+      "center": [
+        -309.4411675,
+        -171.57341775
+      ],
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "review": "pending"
+    },
+    {
+      "id": "overture-2da9f7f9-622e-46b7-86bf-f0a0a4e44c6c",
+      "sourceId": "2da9f7f9-622e-46b7-86bf-f0a0a4e44c6c",
+      "region": "S1",
+      "center": [
+        -1118.40460175,
+        563.93674
+      ],
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "review": "pending"
+    },
+    {
+      "id": "overture-3361e3a2-e71f-4451-b745-a959088fdba8",
+      "sourceId": "3361e3a2-e71f-4451-b745-a959088fdba8",
+      "region": "S6",
+      "center": [
+        1815.1986465,
+        176.40513575
+      ],
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "review": "pending"
+    },
+    {
+      "id": "overture-338aff51-06d4-41e0-a32a-0afb31312aff",
+      "sourceId": "338aff51-06d4-41e0-a32a-0afb31312aff",
+      "region": "S2",
+      "center": [
+        -253.550903,
+        -102.47913075
+      ],
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "review": "pending"
+    },
+    {
+      "id": "overture-4f5275d3-5a2a-410c-94ac-5376d3b70c98",
+      "sourceId": "4f5275d3-5a2a-410c-94ac-5376d3b70c98",
+      "region": "S6",
+      "center": [
+        2246.24932275,
+        501.675252
+      ],
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "review": "pending"
+    },
+    {
+      "id": "overture-75c540e3-6685-4a8d-8f31-862faa77c85e",
+      "sourceId": "75c540e3-6685-4a8d-8f31-862faa77c85e",
+      "region": "S1",
+      "center": [
+        -993.6091637500001,
+        500.062145
+      ],
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "review": "pending"
+    },
+    {
+      "id": "overture-96d95dec-c5db-4d2c-a131-90a9295fd23f",
+      "sourceId": "96d95dec-c5db-4d2c-a131-90a9295fd23f",
+      "region": "S6",
+      "center": [
+        2245.7843045,
+        481.8848446666667
+      ],
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "review": "pending"
+    },
+    {
+      "id": "overture-981bf9d0-b754-4c6a-91e5-eacde1d78c39",
+      "sourceId": "981bf9d0-b754-4c6a-91e5-eacde1d78c39",
+      "region": "S3",
+      "center": [
+        128.53443025,
+        -427.10789100000005
+      ],
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "review": "pending"
+    },
+    {
+      "id": "overture-a28234ef-c6f0-4569-a6a5-9d6532cf6fdb",
+      "sourceId": "a28234ef-c6f0-4569-a6a5-9d6532cf6fdb",
+      "region": "S6",
+      "center": [
+        2070.8459445,
+        221.43053375
+      ],
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "review": "pending"
+    },
+    {
+      "id": "overture-b3217320-a457-4416-8130-f0f97277b7d4",
+      "sourceId": "b3217320-a457-4416-8130-f0f97277b7d4",
+      "region": "S1",
+      "center": [
+        -1059.3256425,
+        555.476952
+      ],
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "review": "pending"
+    },
+    {
+      "id": "overture-dc383caf-36a3-4598-b16e-459b1bea49bf",
+      "sourceId": "dc383caf-36a3-4598-b16e-459b1bea49bf",
+      "region": "S6",
+      "center": [
+        1819.04186275,
+        162.542411
+      ],
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "review": "pending"
+    },
+    {
+      "id": "overture-f689ab38-7641-482f-b817-53662377965e",
+      "sourceId": "f689ab38-7641-482f-b817-53662377965e",
+      "region": "S3",
+      "center": [
+        451.4631845,
+        -511.22822825000003
+      ],
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "review": "pending"
+    },
+    {
+      "id": "overture-fe8238a8-fd91-4211-bd00-72a1e952cc06",
+      "sourceId": "fe8238a8-fd91-4211-bd00-72a1e952cc06",
+      "region": "S3",
+      "center": [
+        313.36124,
+        -434.64590375
+      ],
+      "heightM": 7.5,
+      "evidence": "assumed",
+      "heightSource": "assumed-7.5m",
+      "review": "pending"
+    }
+  ],
+  "baselineScreenshots": [
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S1-before.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S1-land-before.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S2-before.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S2-land-before.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S3-before.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S3-land-before.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S4-before.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S4-land-before.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S5-before.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S5-land-before.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S6-before.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S6-land-before.png"
+  ]
+}

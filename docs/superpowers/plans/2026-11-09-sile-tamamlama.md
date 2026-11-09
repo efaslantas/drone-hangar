@@ -10,7 +10,7 @@
 
 **Spec:** Bu belgedeki kapsam ve kabul sözleşmesi; başlangıç bulguları `docs/sile-realism-audit-2026-11-08.md`, güncel teslim `docs/sile-pavilion-validation.json`.
 
-**Durum:** Plan hazır; uygulama başlamadı. Başlangıç main `264a7725c533295c0103fc7fd661159439c3ab81`, canlı `v2.55.0-6f8e573f64c1`. Tamamlama sürümünün numarası uygulama sonunda belirlenir.
+**Durum:** Kullanıcı 9 Kasım 2026 tarihinde uygulamayı istedi; uygulama sürüyor. Başlangıç main `264a7725c533295c0103fc7fd661159439c3ab81`, canlı `v2.55.0-6f8e573f64c1`. Tamamlama sürümünün numarası uygulama sonunda belirlenir.
 
 ## Kapsam ve hazır tanımı
 
@@ -59,16 +59,16 @@ Motoru değiştirerek yeniden başlamak mevcut çalışma ve kontrol zincirini t
 
 ## Uygulama işleri
 
-### 1. Bütün haritanın envanteri ve kabul kameraları
+### Task 1: Bütün haritanın envanteri ve kabul kameraları
 
 **Çıktı:** Altı bölge için hata listesi, kaynak eşlemeleri ve aynı noktadan tekrar çekilebilir önce/sonra görüntüler. Envanter kaydı `{id, region, sourceId, references, evidence, status}`; `evidence` yalnız `measured`, `photo-inferred`, `assumed`, `unknown`; `status` yalnız `open`, `fixed`, `accepted`, `blocked`.
 
-- [ ] `node tools/audit-sile-realism.mjs` çıktısını başlangıç sürümüyle kaydet; S1–S6'yı kıyı boyunca ve mahalle bağlantılarında tarayarak hataları tek listede topla.
-- [ ] `src/data/sile-completion.json` dosyasında her bölgenin sınırını, en az iki sabit kamera konumunu ve kaynak/varsayım kayıtlarını sabitle. Kaynak fotoğrafı oyun varlığına kopyalamak için yeniden kullanım hakkı ayrıca gerekli.
-- [ ] `tests/sile-completion.test.js` içinde altı bölge kapsamı, benzersiz kimlik, eksik referans ve yanlış `measured` kaydını reddeden testleri önce başarısız çalıştır; envanter doğrulamasını ekleyip geçir.
-- [ ] Kritik yanlışları önce sırala: kopuk kıyı, yüzen/batık yapı, yanlış yapı ölçeği, geçilemeyen açıklık, görünmez engel. Envanteri commit et.
+- [x] `node tools/audit-sile-realism.mjs` çıktısını başlangıç sürümüyle kaydet; S1–S6'yı kıyı boyunca ve mahalle bağlantılarında tarayarak hataları tek listede topla.
+- [x] `src/data/sile-completion.json` dosyasında her bölgenin sınırını, en az iki sabit kamera konumunu ve kaynak/varsayım kayıtlarını sabitle. Kaynak fotoğrafı oyun varlığına kopyalamak için yeniden kullanım hakkı ayrıca gerekli.
+- [x] `tests/sile-completion.test.js` içinde altı bölge kapsamı, benzersiz kimlik, eksik referans ve yanlış `measured` kaydını reddeden testleri önce başarısız çalıştır; envanter doğrulamasını ekleyip geçir.
+- [x] Kritik yanlışları önce sırala: kopuk kıyı, yüzen/batık yapı, yanlış yapı ölçeği, geçilemeyen açıklık, görünmez engel. Envanteri commit et.
 
-### 2. Kıyı geometrisi, rıhtım ve yerel arazi
+### Task 2: Kıyı geometrisi, rıhtım ve yerel arazi
 
 **Çıktı:** Altı bölgede kıyının kesintisiz son geometrisi; sonraki binaların oturacağı zemin.
 
@@ -77,7 +77,7 @@ Motoru değiştirerek yeniden başlamak mevcut çalışma ve kontrol zincirini t
 - [ ] Son yüzeyden yükseklik ve temas üret; ekranda görünen zemin ile drone'un bastığı zemini aynı noktalarda karşılaştır. Kaynak sınırı, kara-su maskesi ve komşu parçalarda çatlak/çift yüzey testlerini geçir.
 - [ ] Bütün S1–S6 kıyı kameralarını yeniden çek; çözülmeyen kritik kayıt varken bina işini bitmiş sayma. Testler ve düzeltmeleri commit et.
 
-### 3. Sahil binaları ve mahalle silüeti
+### Task 3: Sahil binaları ve mahalle silüeti
 
 **Çıktı:** Ön sıradaki bütün kaynaklı yapıların gözden geçirilmiş profili; doğru yere oturan tabanlar, tutarlı kat/çatı/cephe ölçeği.
 
@@ -86,7 +86,7 @@ Motoru değiştirerek yeniden başlamak mevcut çalışma ve kontrol zincirini t
 - [ ] Yanlış kaynak kimliği/değişmiş bina izi, birbirine geçen ek yapılar, yüzen taban ve eğimli zemindeki kapılar için başarısız regresyon testlerini yaz; mevcut bina/zemin modüllerinde düzelt ve geçir.
 - [ ] Sokaktan ve denizden bakışlarda ön sıra ile arka mahalle silüetini birlikte kontrol et. Eğimli çatıda gövde saçakta biter, görünen çatı temas sahibidir. İlgili testleri geçir ve commit et.
 
-### 4. Kale, kaya dibi yapıları, fener ve doğal geçitler
+### Task 4: Kale, kaya dibi yapıları, fener ve doğal geçitler
 
 **Çıktı:** S3–S6'daki belirgin noktaların birbirleriyle tutarlı dış biçimi ve geçilebilir hacimleri.
 
@@ -95,7 +95,7 @@ Motoru değiştirerek yeniden başlamak mevcut çalışma ve kontrol zincirini t
 - [ ] Her değişen açıklıkta merkez hattı dışında kenar, tavan, ters yönde giriş, hızlı yanal yaklaşma ve girişte reset senaryolarını önce test et; çizilen Float32 yüzlerden temas üretip testleri geçir.
 - [ ] Açıklık genişliği ve kullanılan referans drone'un boyutlarıyla geçilebilirliği kaydet. Geçit uçuşu saha doğrulaması olarak sunulmaz. Görselleri karşılaştır, commit et.
 
-### 5. Deniz, malzemeler ve sahil çevresi
+### Task 5: Deniz, malzemeler ve sahil çevresi
 
 **Çıktı:** Bütün sahilde aynı görsel kalite; boşlukların yerin gerçek kullanımına uygun düzenlenmesi.
 
@@ -104,7 +104,7 @@ Motoru değiştirerek yeniden başlamak mevcut çalışma ve kontrol zincirini t
 - [ ] Yakın geçişe etki eden yeni engeller için temas, düşük/yüksek kalite eşitliği ve sahne temizliğinde kaynakların bir kez bırakılması testlerini yaz/geçir. Yalnız malzeme değişimine uygulamayı tekrarlayan test ekleme.
 - [ ] Her bölgenin yakın ve uzak görüntüsünü WebGL/WebGPU'da kontrol et; geometri kabulünden sonra malzeme işini commit et.
 
-### 6. Uçuş, yükleme ve performans kabulü
+### Task 6: Uçuş, yükleme ve performans kabulü
 
 **Çıktı:** Aynı profil ile altı rotanın yeniden çalıştırılabilir test kaydı ve gerçek tarayıcı performans ölçümü.
 
@@ -115,7 +115,7 @@ Motoru değiştirerek yeniden başlamak mevcut çalışma ve kontrol zincirini t
 - [ ] Soğuk/sıcak yükleme, harita değiştirme ve iptal, iki kez Şile'ye dönme testlerini yap. Önce ana ekran önizlemesindeki uzun senkron blokları ölç; hedef cihazda 50 ms üstü hazırlama bloklarını böl, yükleniyor/iptal davranışını doğrula. Uygulama süresi ölçülmeden hız sözü verme.
 - [ ] Kullanıcı TX15 ile yönler, merkezler, gaz, failsafe/DISARM ve kısa uçuşu dener. Cihaz erişimi yoksa bu alan `not-run` kalır; yazılım kabulü ve fiziksel kumanda kabulü ayrı raporlanır.
 
-### 7. Toplu düzeltme ve teslim kapısı
+### Task 7: Toplu düzeltme ve teslim kapısı
 
 **Çıktı:** Tek tamamlanma raporu; bütün bölgelere ait kanıt; açık kritik hata bulunmayan yayımlanabilir paket.
 
@@ -125,7 +125,7 @@ Motoru değiştirerek yeniden başlamak mevcut çalışma ve kontrol zincirini t
 - [ ] Bağımsız son kod incelemesini yaptır; görsel karşılaştırma ve uçuş sorunlarını kapat. Çözülemeyen kritik varsa tek teslim hazır değildir; hangi veri/işlem gerektiğini açıkça kaydet.
 - [ ] `public/sile.html`, `docs/URUN-ANALIZI.md`, README ve mevcut audit'i yeni kapsama göre güncelle; measured/temsili ayrımı korunur.
 
-### 8. Main, canlı ve kullanıcı kabulü
+### Task 8: Main, canlı ve kullanıcı kabulü
 
 - [ ] Kabul edilmiş commitlerden ARM64 sürüm üret; manifest ve kaynak hashlerini doğrula, main'e birleştir/gönder. Yerelde unutulmuş uygulanmamış dal veya değişiklik bırakma.
 - [ ] Mevcut AWS app-only yöntemiyle yayımla; komşu uygulamaları ve nginx'i koru. HTTPS, WebSocket, kaynak hashleri, canlı Şile açılışı ve kısa canlı rota kontrolü yap; eski sürüm/veri yedeği geri dönüş için dursun.

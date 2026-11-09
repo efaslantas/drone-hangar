@@ -1,3 +1,4 @@
+import {updateSileShadow}from './sile-shadow.js';
 import {finishSileContext} from './sile-context-view.js';
 import {finishNeighbourhood} from './sile-neighbourhood-view.js';
 import {prepareGroundSurfaces} from './ground-surfaces.js';
@@ -762,6 +763,7 @@ function decorate(scene, play, mapId) {
 }
 
 export function tickWorld(scene, t, dt, flyer) {
+  updateSileShadow(scene,flyer);
   tickArcadeSite(scene,t,flyer);
   tickSileWater(scene,t);
   const objs = scene.userData.lifeObjs;
@@ -1153,6 +1155,7 @@ export function clearWorld(scene) {
   scene.userData.sileFoliageStats = null;
   scene.userData.sileSupplementStats = null;
   scene.userData.sileCompletionStats = null;
+  scene.userData.sileSun = null;
   scene.userData.sileBuildTimings = null;
   scene.userData.sileNeighbourhood = null;
   scene.userData.sileNeighbourhoodStats = null;
@@ -1200,6 +1203,7 @@ export function buildWorld(scene, mapId = "yard", opts = {}) {
   scene.userData.sileFoliageStats = null;
   scene.userData.sileSupplementStats = null;
   scene.userData.sileCompletionStats = null;
+  scene.userData.sileSun = null;
   scene.userData.sileBuildTimings = null;
   scene.userData.sileNeighbourhood = null;
   scene.userData.sileNeighbourhoodStats = null;
@@ -1211,6 +1215,7 @@ export function buildWorld(scene, mapId = "yard", opts = {}) {
     sky(scene,'aftermath');play=buildArcadeSite(scene,{quality:opts.quality});
   }else if(id==='sile'){
     sky(scene,'coast');if(opts.prebuiltSile){for(const child of [...opts.prebuiltSile.scene.children])scene.add(child);Object.assign(scene.userData,opts.prebuiltSile.scene.userData);play=opts.prebuiltSile.play;}else play=buildSile(scene,opts.sileData||getSileData());
+    scene.userData.sileSun=scene.children.find(o=>o.isDirectionalLight);if(scene.userData.sileSun)scene.add(scene.userData.sileSun.target);
     if(scene.fog){scene.fog.near=400;scene.fog.far=2400;}
     scene.getObjectByName('skyDome')?.scale.setScalar(5000);
     const stars=scene.getObjectByName('night-stars');if(stars){stars.scale.setScalar(15);stars.material.size=8;}

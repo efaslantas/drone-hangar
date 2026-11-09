@@ -17,14 +17,14 @@ function simpleRing(ring){
  }
  return Math.abs(area)>.01;
 }
-export function coastalBuildings(data){
+export function coastalBuildings(data,{maxDistance=100}={}){
  const profiles=new Map();if(data?.id!=='sile'||data.buildings.length!==types.buildingCount||!Object.entries(types.projection).every(([k,v])=>data.projection?.[k]===v)||!data.terrain?.land?.length)return profiles;
  const edges=[];for(const rings of data.terrain.land)for(const ring of rings)for(let i=0;i<ring.length;i++){const a=ring[i],b=ring[(i+1)%ring.length];if(data.terrain.bounds.some((v,k)=>Math.abs(a[k<2?0:1]-v)<.05&&Math.abs(b[k<2?0:1]-v)<.05))continue;edges.push([a,b]);}
  const candidates=[];
  for(const item of data.buildings){
   if(item.kind||item.landmark||item.rings.length!==1||item.rings[0].length<3||item.height<4||item.height>30||!Number.isFinite(item.base)||!Number.isFinite(item.height))continue;
   const ring=item.rings[0];if(!ring.every(p=>p.length===2&&p.every(Number.isFinite))||!simpleRing(ring))continue;const center=ring.reduce((s,p)=>[s[0]+p[0]/ring.length,s[1]+p[1]/ring.length],[0,0]);let closest={distance:Infinity};for(const [a,b]of edges){const d=distance(center,a,b);if(d.distance<closest.distance)closest=d;}
-  if(closest.distance>100||surfaceAt({terrain:data.terrain},...center).water)continue;
+  if(closest.distance>maxDistance||surfaceAt({terrain:data.terrain},...center).water)continue;
   const type=types.types[item.id]||'yes';if(['mosque','school','hospital','industrial','government','public'].includes(type))continue;
   let entry={distance:Infinity,point:center};for(const road of data.roads)for(let i=1;i<road.points.length;i++){const d=distance(center,road.points[i-1],road.points[i]);if(d.distance<entry.distance)entry=d;}
   const roof=buildingRoof(item),eaves=roof?.eaves??item.base+item.height;candidates.push({item,distance:closest.distance,shore:closest.point,entry:entry.point,center,type,commercial:['commercial','retail'].includes(type),paint:paints[Math.abs(item.id)%paints.length],eaves,roof});

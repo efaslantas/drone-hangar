@@ -1,9 +1,9 @@
 {
-  "date": "2026-11-09",
-  "status": "software-accepted; physical controller and user visual/flight acceptance not run",
+  "date": "2026-11-10",
+  "status": "software-verified within source uncertainty; user visual/flight acceptance pending",
   "inventoryVersion": 1,
   "sourceSnapshotKey": "1147718:d3dd4d94:81685aaa",
-  "baseline": "v2.55.0-6f8e573f64c1",
+  "baseline": "v2.57.0-e89963741523",
   "regions": [
     {
       "id": "S1",
@@ -25,8 +25,8 @@
         "architecture": {
           "status": "pass",
           "evidence": [
-            "149 candidates individually inventoried for source/terrain eligibility; unavailable individual photo/height associations remain unknown.",
-            "Existing pavilion profile preserved once; source-specific lighthouse only in S4. Other silhouettes representative, not surveyed."
+            "809 source candidates inventoried:680 visual OSM profiles within350m,129Overture within500m;119accepted10deferred. Physical core135unchanged.",
+            "Heights and facade templates assumed; no individual building photo matching claimed. Existing low pavilion preserved."
           ]
         },
         "landmarks": {
@@ -39,10 +39,11 @@
         "appearance": {
           "status": "pass",
           "evidence": [
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S1-sea-webgl.png",
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S1-land-webgl.png",
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S1-sea-webgpu.png",
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S1-land-webgpu.png"
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-258-S1-sea-webgl.png",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-258-S1-sea-webgpu.png",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-258-S1-land-webgl.png",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-258-S1-land-webgpu.png",
+            "Technical rendering check, not human resemblance approval. Remaining source gaps disclosed."
           ]
         },
         "contacts": {
@@ -55,8 +56,11 @@
         "backend": {
           "status": "pass",
           "evidence": [
-            "Native WebGL and WebGPU same fixed camera scene; screenshot evidence.",
-            "Worker roundtrip preserves physical scene independent of visual backend/quality."
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-258-S1-sea-webgl.png",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-258-S1-sea-webgpu.png",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-258-S1-land-webgl.png",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-258-S1-land-webgpu.png",
+            "Native both backends render; full actual worker payload roundtrip tests preserve visible/physical contacts."
           ]
         }
       }
@@ -81,8 +85,8 @@
         "architecture": {
           "status": "pass",
           "evidence": [
-            "149 candidates individually inventoried for source/terrain eligibility; unavailable individual photo/height associations remain unknown.",
-            "Existing pavilion profile preserved once; source-specific lighthouse only in S4. Other silhouettes representative, not surveyed."
+            "809 source candidates inventoried:680 visual OSM profiles within350m,129Overture within500m;119accepted10deferred. Physical core135unchanged.",
+            "Heights and facade templates assumed; no individual building photo matching claimed. Existing low pavilion preserved."
           ]
         },
         "landmarks": {
@@ -95,10 +99,11 @@
         "appearance": {
           "status": "pass",
           "evidence": [
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S2-sea-webgl.png",
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S2-land-webgl.png",
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S2-sea-webgpu.png",
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S2-land-webgpu.png"
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-258-S2-sea-webgl.png",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-258-S2-sea-webgpu.png",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-258-S2-land-webgl.png",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-258-S2-land-webgpu.png",
+            "Technical rendering check, not human resemblance approval. Remaining source gaps disclosed."
           ]
         },
         "contacts": {
@@ -111,8 +116,11 @@
         "backend": {
           "status": "pass",
           "evidence": [
-            "Native WebGL and WebGPU same fixed camera scene; screenshot evidence.",
-            "Worker roundtrip preserves physical scene independent of visual backend/quality."
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-258-S2-sea-webgl.png",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-258-S2-sea-webgpu.png",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-258-S2-land-webgl.png",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-258-S2-land-webgpu.png",
+            "Native both backends render; full actual worker payload roundtrip tests preserve visible/physical contacts."
           ]
         }
       }
@@ -137,8 +145,8 @@
         "architecture": {
           "status": "pass",
           "evidence": [
-            "149 candidates individually inventoried for source/terrain eligibility; unavailable individual photo/height associations remain unknown.",
-            "Existing pavilion profile preserved once; source-specific lighthouse only in S4. Other silhouettes representative, not surveyed."
+            "809 source candidates inventoried:680 visual OSM profiles within350m,129Overture within500m;119accepted10deferred. Physical core135unchanged.",
+            "Heights and facade templates assumed; no individual building photo matching claimed. Existing low pavilion preserved."
           ]
         },
         "landmarks": {
@@ -151,10 +159,11 @@
         "appearance": {
           "status": "pass",
           "evidence": [
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S3-sea-webgl.png",
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S3-land-webgl.png",
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S3-sea-webgpu.png",
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S3-land-webgpu.png"
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-258-S3-sea-webgl.png",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-258-S3-sea-webgpu.png",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-258-S3-land-webgl.png",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-258-S3-land-webgpu.png",
+            "Technical rendering check, not human resemblance approval. Remaining source gaps disclosed."
           ]
         },
         "contacts": {
@@ -167,8 +176,11 @@
         "backend": {
           "status": "pass",
           "evidence": [
-            "Native WebGL and WebGPU same fixed camera scene; screenshot evidence.",
-            "Worker roundtrip preserves physical scene independent of visual backend/quality."
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-258-S3-sea-webgl.png",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-258-S3-sea-webgpu.png",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-258-S3-land-webgl.png",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-258-S3-land-webgpu.png",
+            "Native both backends render; full actual worker payload roundtrip tests preserve visible/physical contacts."
           ]
         }
       }
@@ -193,8 +205,8 @@
         "architecture": {
           "status": "pass",
           "evidence": [
-            "149 candidates individually inventoried for source/terrain eligibility; unavailable individual photo/height associations remain unknown.",
-            "Existing pavilion profile preserved once; source-specific lighthouse only in S4. Other silhouettes representative, not surveyed."
+            "809 source candidates inventoried:680 visual OSM profiles within350m,129Overture within500m;119accepted10deferred. Physical core135unchanged.",
+            "Heights and facade templates assumed; no individual building photo matching claimed. Existing low pavilion preserved."
           ]
         },
         "landmarks": {
@@ -207,10 +219,11 @@
         "appearance": {
           "status": "pass",
           "evidence": [
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S4-sea-webgl.png",
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S4-land-webgl.png",
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S4-sea-webgpu.png",
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S4-land-webgpu.png"
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-258-S4-sea-webgl.png",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-258-S4-sea-webgpu.png",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-258-S4-land-webgl.png",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-258-S4-land-webgpu.png",
+            "Technical rendering check, not human resemblance approval. Remaining source gaps disclosed."
           ]
         },
         "contacts": {
@@ -223,8 +236,11 @@
         "backend": {
           "status": "pass",
           "evidence": [
-            "Native WebGL and WebGPU same fixed camera scene; screenshot evidence.",
-            "Worker roundtrip preserves physical scene independent of visual backend/quality."
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-258-S4-sea-webgl.png",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-258-S4-sea-webgpu.png",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-258-S4-land-webgl.png",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-258-S4-land-webgpu.png",
+            "Native both backends render; full actual worker payload roundtrip tests preserve visible/physical contacts."
           ]
         }
       }
@@ -249,8 +265,8 @@
         "architecture": {
           "status": "pass",
           "evidence": [
-            "149 candidates individually inventoried for source/terrain eligibility; unavailable individual photo/height associations remain unknown.",
-            "Existing pavilion profile preserved once; source-specific lighthouse only in S4. Other silhouettes representative, not surveyed."
+            "809 source candidates inventoried:680 visual OSM profiles within350m,129Overture within500m;119accepted10deferred. Physical core135unchanged.",
+            "Heights and facade templates assumed; no individual building photo matching claimed. Existing low pavilion preserved."
           ]
         },
         "landmarks": {
@@ -263,10 +279,11 @@
         "appearance": {
           "status": "pass",
           "evidence": [
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S5-sea-webgl.png",
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S5-land-webgl.png",
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S5-sea-webgpu.png",
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S5-land-webgpu.png"
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-258-S5-sea-webgl.png",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-258-S5-sea-webgpu.png",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-258-S5-land-webgl.png",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-258-S5-land-webgpu.png",
+            "Technical rendering check, not human resemblance approval. Remaining source gaps disclosed."
           ]
         },
         "contacts": {
@@ -279,8 +296,11 @@
         "backend": {
           "status": "pass",
           "evidence": [
-            "Native WebGL and WebGPU same fixed camera scene; screenshot evidence.",
-            "Worker roundtrip preserves physical scene independent of visual backend/quality."
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-258-S5-sea-webgl.png",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-258-S5-sea-webgpu.png",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-258-S5-land-webgl.png",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-258-S5-land-webgpu.png",
+            "Native both backends render; full actual worker payload roundtrip tests preserve visible/physical contacts."
           ]
         }
       }
@@ -305,8 +325,8 @@
         "architecture": {
           "status": "pass",
           "evidence": [
-            "149 candidates individually inventoried for source/terrain eligibility; unavailable individual photo/height associations remain unknown.",
-            "Existing pavilion profile preserved once; source-specific lighthouse only in S4. Other silhouettes representative, not surveyed."
+            "809 source candidates inventoried:680 visual OSM profiles within350m,129Overture within500m;119accepted10deferred. Physical core135unchanged.",
+            "Heights and facade templates assumed; no individual building photo matching claimed. Existing low pavilion preserved."
           ]
         },
         "landmarks": {
@@ -319,10 +339,11 @@
         "appearance": {
           "status": "pass",
           "evidence": [
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S6-sea-webgl.png",
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S6-land-webgl.png",
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S6-sea-webgpu.png",
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S6-land-webgpu.png"
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-258-S6-sea-webgl.png",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-258-S6-sea-webgpu.png",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-258-S6-land-webgl.png",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-258-S6-land-webgpu.png",
+            "Technical rendering check, not human resemblance approval. Remaining source gaps disclosed."
           ]
         },
         "contacts": {
@@ -335,8 +356,11 @@
         "backend": {
           "status": "pass",
           "evidence": [
-            "Native WebGL and WebGPU same fixed camera scene; screenshot evidence.",
-            "Worker roundtrip preserves physical scene independent of visual backend/quality."
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-258-S6-sea-webgl.png",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-258-S6-sea-webgpu.png",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-258-S6-land-webgl.png",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-258-S6-land-webgpu.png",
+            "Native both backends render; full actual worker payload roundtrip tests preserve visible/physical contacts."
           ]
         }
       }
@@ -742,21 +766,21 @@
       720
     ],
     "quality": "medium",
-    "buildMs": 10969.699999988079,
-    "durationSeconds": 900.0036999999941,
+    "buildMs": 43021.10000002384,
+    "durationSeconds": 900.003900000006,
     "scope": "Actual scene + desktop medium shadows1024,AA and composer at fixed1280x720; static regional cameras; not full app/manual or physics flight acceptance",
     "mainThreadPreparationTasks": [
       {
-        "start": 10054.699999988079,
-        "duration": 76
+        "start": 22.399999976158142,
+        "duration": 55
       },
       {
-        "start": 11170.199999988079,
-        "duration": 217
+        "start": 43176,
+        "duration": 362
       },
       {
-        "start": 104743.40000000596,
-        "duration": 118
+        "start": 62900,
+        "duration": 139
       }
     ],
     "regions": [
@@ -764,527 +788,489 @@
         "id": "S1",
         "renderer": {
           "render": {
-            "frame": 27052,
+            "frame": 27172,
             "calls": 1,
             "triangles": 1,
             "points": 0,
             "lines": 0
           },
           "memory": {
-            "geometries": 58,
+            "geometries": 60,
             "textures": 74
           },
-          "jsHeapUsedBytes": 400181132
+          "jsHeapUsedBytes": 421372303
         },
-        "durationSeconds": 146.9997,
+        "durationSeconds": 147.00010000000003,
         "frames": 8820,
-        "fps": 60.000122449229494,
-        "low1PercentFps": 56.425537310563236,
-        "maxFrameMs": 17.800000000017462
+        "fps": 59.99995918370122,
+        "low1PercentFps": 53.45987506003774,
+        "maxFrameMs": 18.79999999998836
       },
       {
         "id": "S2",
         "renderer": {
           "render": {
-            "frame": 54055,
+            "frame": 54175,
             "calls": 1,
             "triangles": 1,
             "points": 0,
             "lines": 0
           },
           "memory": {
-            "geometries": 58,
+            "geometries": 60,
             "textures": 74
           },
-          "jsHeapUsedBytes": 401397450
+          "jsHeapUsedBytes": 423714853
         },
-        "durationSeconds": 150.00090000000003,
+        "durationSeconds": 150.0015,
         "frames": 9000,
-        "fps": 59.99964000215998,
-        "low1PercentFps": 54.5058139534755,
+        "fps": 59.99940000599994,
+        "low1PercentFps": 53.46322917902504,
         "maxFrameMs": 18.79999999998836
       },
       {
         "id": "S3",
         "renderer": {
           "render": {
-            "frame": 81058,
+            "frame": 81178,
             "calls": 1,
             "triangles": 1,
             "points": 0,
             "lines": 0
           },
           "memory": {
-            "geometries": 58,
+            "geometries": 60,
             "textures": 74
           },
-          "jsHeapUsedBytes": 406704101
+          "jsHeapUsedBytes": 423170104
         },
-        "durationSeconds": 149.99889999999996,
+        "durationSeconds": 149.99929999999992,
         "frames": 9000,
-        "fps": 60.00044000322671,
-        "low1PercentFps": 53.71210312724435,
-        "maxFrameMs": 18.79999999998836
+        "fps": 60.0002800013067,
+        "low1PercentFps": 53.447354355877344,
+        "maxFrameMs": 18.800000000046566
       },
       {
         "id": "S4",
         "renderer": {
           "render": {
-            "frame": 108061,
+            "frame": 108181,
             "calls": 1,
             "triangles": 1,
             "points": 0,
             "lines": 0
           },
           "memory": {
-            "geometries": 58,
+            "geometries": 60,
             "textures": 74
           },
-          "jsHeapUsedBytes": 403008886
+          "jsHeapUsedBytes": 420541229
         },
-        "durationSeconds": 149.999,
+        "durationSeconds": 149.99920000000006,
         "frames": 9000,
-        "fps": 60.00040000266669,
-        "low1PercentFps": 56.436947388052104,
-        "maxFrameMs": 17.800000000046566
+        "fps": 60.00032000170665,
+        "low1PercentFps": 53.447354355888436,
+        "maxFrameMs": 18.800000000046566
       },
       {
         "id": "S5",
         "renderer": {
           "render": {
-            "frame": 135064,
+            "frame": 135184,
             "calls": 1,
             "triangles": 1,
             "points": 0,
             "lines": 0
           },
           "memory": {
-            "geometries": 58,
+            "geometries": 60,
             "textures": 74
           },
-          "jsHeapUsedBytes": 405937657
+          "jsHeapUsedBytes": 424751956
         },
-        "durationSeconds": 150.00059999999996,
+        "durationSeconds": 150.00079999999994,
         "frames": 9000,
-        "fps": 59.99976000096,
-        "low1PercentFps": 56.447566482515484,
-        "maxFrameMs": 17.800000000046566
+        "fps": 59.999680001706686,
+        "low1PercentFps": 53.44418052254685,
+        "maxFrameMs": 18.800000000046566
       },
       {
         "id": "S6",
         "renderer": {
           "render": {
-            "frame": 162070,
+            "frame": 162190,
             "calls": 1,
             "triangles": 1,
             "points": 0,
             "lines": 0
           },
           "memory": {
-            "geometries": 58,
+            "geometries": 60,
             "textures": 74
           },
-          "jsHeapUsedBytes": 402097699
+          "jsHeapUsedBytes": 426414501
         },
-        "durationSeconds": 150.01640000000003,
+        "durationSeconds": 150.01630000000006,
         "frames": 9001,
-        "fps": 60.00010665500571,
-        "low1PercentFps": 56.45161290301789,
-        "maxFrameMs": 17.800000000046566
+        "fps": 60.0001466507306,
+        "low1PercentFps": 53.491652950815755,
+        "maxFrameMs": 18.800000000046566
       }
     ],
-    "rendererStatsScope": "renderer.info.render is the final composer render pass, not an aggregate full-frame draw-call count; memory is renderer geometry/texture counts, jsHeapUsedBytes is Chrome optional JS heap, not GPU bytes.",
     "evidence": [
       "docs/sile-completion-performance.json"
     ],
-    "coldLoadScope": "Includes real source preparation and scanned asset loading. GPU runs occurred under concurrent CPU load; no cold-load speed guarantee."
+    "rendererStatsScope": "Actual per-frame renderer counters; not full composer aggregate or VRAM measurement. Separate full-composer frame diagnostics retained."
   },
   "physicalTX15": {
     "status": "not-run",
-    "reason": "Requires user with physical TX15; no hardware flight signed by software tests."
+    "reason": "Physical user hardware is not connected/validated by this software release."
   },
   "humanAcceptance": {
     "status": "not-run",
-    "reason": "User has not yet accepted the new live release."
+    "scope": "New2.58 user resemblance and flight acceptance pending",
+    "previousResults": [
+      {
+        "status": "fail",
+        "release": "v2.57.0-e89963741523",
+        "date": "2026-11-10",
+        "feedback": "Sahil bölgesi hâlâ boş; tam Şile değil.",
+        "scope": "User visual feedback; prior automated software acceptance is not visual approval."
+      }
+    ]
   },
   "limits": [
-    "31mDSM and most building heights remain unmeasured; representative scene, not surveyed digital twin",
-    "Routes are geometric swept-contact replay, not closed-loop/manual flight",
-    "Generic CC0rock scan is not Şile geology measurement",
-    "Source building heights remain unknown except documented source-reported landmarks. The 24 derived height clearances and104 decorative entrance elevations are terrain/model assumptions, not measurements.",
-    "No reliable individual photo association for most of the149 inventoried building candidates; only documented pavilion/lighthouse forms received source-specific interpretation. Six steep Overture candidates remain excluded.",
-    "No new fish-market row placed without reliable footprints or local terrain. Existing castle/island and improved2.52 cave forms retained.",
-    "50ms main-thread preparation target not fully achieved: observed76ms hydration and217ms initialization plus118ms pre-benchmark interaction tasks in the final native WebGL session; CPU scene construction is off-thread and cancellation verified. Final benchmark cold build including assets was10.97s; an earlier separate view was12.3s.",
-    "15-minute performance is actual scene/composer with static regional cameras; not full-app flying or TX15 latency calibration. Geometry routes do not self-sign closed-loop aircraft or manual acceptance."
+    "31mDSM and most building heights remain unmeasured; representative scene, not surveyed digital twin.",
+    "Routes are geometric swept-contact replay, not closed-loop/manual flight or TX15 latency calibration.",
+    "Generic CC0rock scan is not Sile geology measurement; coarse slopes and source gaps remain visible.",
+    "680 OSM visual profiles and129 supplemental footprint candidates are source eligibility inventory, not individual photographic verification.119 supplemental structures rendered;10 deferred. Heights/styles are assumptions except documented source-reported landmarks.",
+    "ESA WorldCover2021v200 categorical land cover is not a current tree inventory. Authored spacing, species, heights, parking paint and420summer umbrella suites are representative.",
+    "No new fish-market row placed without reliable footprints or local bare-earth terrain; source missing coastal structures remain open.",
+    "Whole-load50ms target remains unmet:362ms first composer/GPU task observed.43.02s load was under concurrent CPU tests and is not a controlled comparison with older10.97s or33.7s captures.",
+    "New900s run uses fixed regional cameras, not full app flying. PhysicalTX15 and new user map/flight acceptance not run."
   ],
   "device": "Apple M4 Mac mini; native Chrome; browser version in performance.userAgent",
   "scopeDecisions": [
     {
-      "topic": "source freeze",
-      "decision": "End source search after inventoried official/OSM/Overture/DSM review; unmeasured building dimensions remain representative. Software appearance acceptance is not factual verification of each building."
+      "topic": "source evidence",
+      "decision": "Expand pinned source footprints and native ESA categories; do not invent individual measured building or tree positions."
     },
     {
       "topic": "existing geometry",
-      "decision": "Retain source-consistent shoreline, castle island and2.52 cave geometry where contact and continuity tests already pass; avoid inventing geography to create a change."
+      "decision": "Retain source-consistent shoreline/castle/caves and physical135frontage while widening visual district."
+    },
+    {
+      "topic": "vegetation budget",
+      "decision": "Explicit OSM use has priority; at most800mapped coastal forest candidates before raster gaps within1600total trees. Exact individual density is authored."
     },
     {
       "topic": "loading target",
-      "decision": "Worker eliminates multi-second synchronous construction. Residual initialization/hydration tasks up to217ms miss50ms target and is reported; visible loading/cancel/retry remains available."
+      "decision": "Worker retains cancellation path. Native first GPU/composer task and observed loaded43s reported separately from sustained FPS; no load-speed improvement claim."
     }
   ],
   "verification": {
     "node22Arm64": {
-      "passed": 626,
+      "passed": 642,
       "failed": 0,
-      "durationMs": 259134.906471,
-      "log": "node22-acceptance.log"
+      "durationMs": 225326.375796
     },
-    "postSuiteLightingGeometry": {
+    "gis": {
+      "passed": 13,
+      "failed": 0
+    },
+    "infrastructure": {
+      "passed": 11,
+      "failed": 0
+    },
+    "smallFinal": {
       "passed": 9,
-      "failed": 0,
-      "log": "final-lighting-geometry.log"
-    },
-    "pythonInfrastructure": {
-      "passed": 11,
       "failed": 0
     },
-    "pythonGeography": {
-      "passed": 11,
-      "failed": 0
-    },
-    "review": "Three P2 issues reproduced and fixed; targeted re-review clean. Final light-space shadow P2 fixed and reviewer confirmed two tests pass.",
-    "workerRoundtrip": "Every mesh attribute/index/instance matrix and all physical triangle coordinates roundtrip checked; resource ownership separately tested.",
-    "nativeUI": "Local app launch, cancellation, retry, REF4M REAL DISARM0AGL/0kmh observed. Physical TX15 not exercised.",
-    "shippedTreeNode22": {
-      "passed": 626,
-      "failed": 0,
-      "durationMs": 740284.655404,
-      "platform": "Node22Alpine linux/arm64, isolated local container2GiB/2CPU",
-      "testedMain": "59fda1963ac8e64a700d579df5c604ca5d852c74",
-      "evidence": ".superpowers/releases/v2.56.0-618a82e72259/node22-shipped-tree.log",
-      "scope": "Final packaged runtime/source tree. Subsequent commit adds only this verification metadata."
-    }
+    "review": "One important OSM vegetation priority finding fixed RED-to-GREEN; full suite green after fix."
   },
-  "screenshots": {
-    "S1": [
-      {
-        "path": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S1-sea-webgl.png",
-        "sha256": "d987165431c102ab185efc09cbc3819f9fd14bc58ad945e9eeda452853454b52"
+  "screenshots": [
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-258-S1-sea-webgl.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-258-S1-sea-webgpu.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-258-S1-land-webgl.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-258-S1-land-webgpu.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-258-S2-sea-webgl.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-258-S2-sea-webgpu.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-258-S2-land-webgl.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-258-S2-land-webgpu.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-258-S3-sea-webgl.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-258-S3-sea-webgpu.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-258-S3-land-webgl.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-258-S3-land-webgpu.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-258-S4-sea-webgl.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-258-S4-sea-webgpu.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-258-S4-land-webgl.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-258-S4-land-webgpu.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-258-S5-sea-webgl.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-258-S5-sea-webgpu.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-258-S5-land-webgl.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-258-S5-land-webgpu.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-258-S6-sea-webgl.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-258-S6-sea-webgpu.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-258-S6-land-webgl.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-258-S6-land-webgpu.png"
+  ],
+  "wholeFrameDiagnostics": [
+    {
+      "loadStages": {
+        "startedAt": 154.89999997615814,
+        "worldReadyAt": 43136.59999999404,
+        "assetsReadyAt": 43176
       },
-      {
-        "path": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S1-land-webgl.png",
-        "sha256": "a087791ab9d0f2fee7c24834024f966845676a4544ee26511b2b61f867914a5d"
-      },
-      {
-        "path": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S1-sea-webgpu.png",
-        "sha256": "6c8ea9d0201df280529618614f0072ed55e4459d8274f1dfb540601b6ed6e408"
-      },
-      {
-        "path": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S1-land-webgpu.png",
-        "sha256": "a0d68e21c6403f33b16007c6731e3ba197c4d6f65435ee0e42e0ad3dbd5a28b9"
-      }
-    ],
-    "S2": [
-      {
-        "path": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S2-sea-webgl.png",
-        "sha256": "23651fe7d7884e033f65cd5d3613ca85219929a1ae3f23b605c9552942d80f1a"
-      },
-      {
-        "path": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S2-land-webgl.png",
-        "sha256": "da3f530035beb6c1ff4239d9b80212edcc9c5c2c55323caa40f84aa15bbdf273"
-      },
-      {
-        "path": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S2-sea-webgpu.png",
-        "sha256": "0ac1d6a729ac37d5c51a2b7b79c142d543bff089354d10a647e009a1a55a42f6"
-      },
-      {
-        "path": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S2-land-webgpu.png",
-        "sha256": "54745142d96c33168d42d1085095322c39f72f40f9ca4fead1e99e652950c829"
-      }
-    ],
-    "S3": [
-      {
-        "path": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S3-sea-webgl.png",
-        "sha256": "14da892bfe134dba78423b9c02b8b807e323253975c91f870dcc8cf095f73ab1"
-      },
-      {
-        "path": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S3-land-webgl.png",
-        "sha256": "670a7c9a55035e953131f4d2247a75b8b90469a3dec4ff491da4c60e3ad9f450"
-      },
-      {
-        "path": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S3-sea-webgpu.png",
-        "sha256": "a7450ee71df2e1140257a3f3e3b8b3e7f2ac7d6f83d798ad2f1c9bae79c1eeb5"
-      },
-      {
-        "path": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S3-land-webgpu.png",
-        "sha256": "ef62e4bdac6690d9d086b2011d464e5c1b00fbcc69a50714ed3af144c4531014"
-      }
-    ],
-    "S4": [
-      {
-        "path": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S4-sea-webgl.png",
-        "sha256": "539cff8412647a0f6779a7c30b65cd196b864e7be1792ea65da46b75097f6852"
-      },
-      {
-        "path": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S4-land-webgl.png",
-        "sha256": "1a34f0c10d7bab69ef4c37434027f59be92dbf7e35b14bcc20537808796ff733"
-      },
-      {
-        "path": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S4-sea-webgpu.png",
-        "sha256": "4387db5c0f703b153013fb007e3626b54ba8cb960870b24617f6a04758abae38"
-      },
-      {
-        "path": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S4-land-webgpu.png",
-        "sha256": "425ec38f0334b92884c269008a872dfd7d13a4901468537ac537306a45b51924"
-      }
-    ],
-    "S5": [
-      {
-        "path": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S5-sea-webgl.png",
-        "sha256": "49f2c1cb84fff8bc214dd0ed51ff37b299e9e977978c0fefa8ecdb856675d5c1"
-      },
-      {
-        "path": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S5-land-webgl.png",
-        "sha256": "5f06e32f161c415aea089d679f2810be83704497525983a25302645430141b27"
-      },
-      {
-        "path": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S5-sea-webgpu.png",
-        "sha256": "d356ac013ae304fb313a67cb89fb348f34c4b0930d97edcfeeb8f17a56ede31a"
-      },
-      {
-        "path": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S5-land-webgpu.png",
-        "sha256": "5b1205f4a965c56b18bd1e149839472fb510e86e59b1e5ebe40f7e7f47a046ec"
-      }
-    ],
-    "S6": [
-      {
-        "path": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S6-sea-webgl.png",
-        "sha256": "3eaea04982c12d2c8bb50ad013600c368147e89f413c5ab9797dd26566398e53"
-      },
-      {
-        "path": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S6-land-webgl.png",
-        "sha256": "026850faf7bb228cd1cf288f1aa0b7d2e1c21135236315818131179b8f6f72b9"
-      },
-      {
-        "path": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S6-sea-webgpu.png",
-        "sha256": "00f2e2e3ad5cc4d7ef5855476b5a2de4189ab3efd0a71ff75ae619200d63b935"
-      },
-      {
-        "path": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S6-land-webgpu.png",
-        "sha256": "1a4abb786a54cdfa5f81bc41ede8aa22f31deb2a85bebcb93460f3b6f4dcd64b"
-      }
-    ]
-  },
-  "wholeFrameDiagnostics": {
-    "evidence": "docs/sile-completion-frame-diagnostics.json",
-    "scope": "Single whole composer frame including shadow/postprocessing passes; separate from900s sustained timing. Geometry/texture counts are resource counts, not GPU byte usage.",
-    "regions": [
-      {
-        "region": "S1",
-        "camera": "0",
-        "backend": "webgl",
-        "renderSize": [
-          1280,
-          720
-        ],
-        "quality": "medium",
-        "scope": "Single actual whole composer frame, all passes aggregated; not sustained frame-time benchmark",
-        "render": {
-          "frame": 43,
-          "calls": 46,
-          "triangles": 1265642,
-          "points": 0,
-          "lines": 0
-        },
-        "memory": {
-          "geometries": 32,
-          "textures": 46
-        },
-        "jsHeapUsedBytes": 420647527
-      },
-      {
-        "region": "S2",
-        "camera": "0",
-        "backend": "webgl",
-        "renderSize": [
-          1280,
-          720
-        ],
-        "quality": "medium",
-        "scope": "Single actual whole composer frame, all passes aggregated; not sustained frame-time benchmark",
-        "render": {
-          "frame": 49,
-          "calls": 108,
-          "triangles": 1514267,
-          "points": 0,
-          "lines": 0
-        },
-        "memory": {
-          "geometries": 58,
-          "textures": 74
-        },
-        "jsHeapUsedBytes": 430750837
-      },
-      {
-        "region": "S3",
-        "camera": "0",
-        "backend": "webgl",
-        "renderSize": [
-          1280,
-          720
-        ],
-        "quality": "medium",
-        "scope": "Single actual whole composer frame, all passes aggregated; not sustained frame-time benchmark",
-        "render": {
-          "frame": 55,
-          "calls": 120,
-          "triangles": 1585466,
-          "points": 0,
-          "lines": 0
-        },
-        "memory": {
-          "geometries": 58,
-          "textures": 74
-        },
-        "jsHeapUsedBytes": 403374148
-      },
-      {
-        "region": "S4",
-        "camera": "0",
-        "backend": "webgl",
-        "renderSize": [
-          1280,
-          720
-        ],
-        "quality": "medium",
-        "scope": "Single actual whole composer frame, all passes aggregated; not sustained frame-time benchmark",
-        "render": {
-          "frame": 61,
-          "calls": 105,
-          "triangles": 1496926,
-          "points": 0,
-          "lines": 0
-        },
-        "memory": {
-          "geometries": 58,
-          "textures": 74
-        },
-        "jsHeapUsedBytes": 404044521
-      },
-      {
-        "region": "S5",
-        "camera": "0",
-        "backend": "webgl",
-        "renderSize": [
-          1280,
-          720
-        ],
-        "quality": "medium",
-        "scope": "Single actual whole composer frame, all passes aggregated; not sustained frame-time benchmark",
-        "render": {
-          "frame": 67,
-          "calls": 77,
-          "triangles": 1423960,
-          "points": 0,
-          "lines": 0
-        },
-        "memory": {
-          "geometries": 58,
-          "textures": 74
-        },
-        "jsHeapUsedBytes": 404489425
-      },
-      {
-        "region": "S6",
-        "camera": "0",
-        "backend": "webgl",
-        "renderSize": [
-          1280,
-          720
-        ],
-        "quality": "medium",
-        "scope": "Single actual whole composer frame, all passes aggregated; not sustained frame-time benchmark",
-        "render": {
-          "frame": 73,
-          "calls": 43,
-          "triangles": 1268799,
-          "points": 0,
-          "lines": 0
-        },
-        "memory": {
-          "geometries": 58,
-          "textures": 74
-        },
-        "jsHeapUsedBytes": 404962623
-      }
-    ]
-  },
-  "delivery": {
-    "status": "published",
-    "release": "v2.56.0-618a82e72259",
-    "image": {
-      "release": "v2.56.0-618a82e72259",
-      "imageId": "sha256:ee037f8ddd72603aa9514e22f8e1ad80ff02fa42fd43aaaf0ac3cabdff06ad46",
-      "archiveSha256": "6d95112f50143d53d5021ccfdd24eeea081da2f4484e66e7e5fde8ebeb9a4b79",
-      "archiveBytes": 144649760,
-      "architecture": "arm64",
-      "sourceFiles": 445
-    },
-    "sourceFiles": 445,
-    "originalGisFilesUnchanged": 29,
-    "https": {
-      "release": "v2.56.0-618a82e72259",
-      "entryAssets": 5,
-      "uniqueIds": 253,
-      "appVersion": "2.56.0",
-      "lazyGpuChunks": [
-        "gfx-webgpu-BPv6_-0D.js"
-      ],
-      "sceneWorkerChunks": [
-        "sile-scene-worker-DbPcViaZ.js"
-      ],
-      "liveSkyOrderFix": true,
-      "mapAndSourceSha256": "pass"
-    },
-    "websocket": {
-      "clients": 2,
-      "join": "pass",
-      "state": "pass",
-      "leave": "pass"
-    },
-    "remote": {
-      "Status": "Success",
-      "StandardOutputContent": "Running image source hashes: 134 OK\ndrone-hangar | 26.6MiB / 256MiB | 0.78%\n{\"running\": true, \"restarts\": 0, \"readonly\": true, \"user\": \"1000:1000\", \"image\": \"sha256:ee037f8ddd72603aa9514e22f8e1ad80ff02fa42fd43aaaf0ac3cabdff06ad46\"}\nSeven tenants/nginx unchanged; old container/data backup retained\nhttps://zenth.finance/ 200\nhttps://api.zenth.finance/health 200\nGelisim TLS origin 200\n",
-      "StandardErrorContent": "nginx: the configuration file /etc/nginx/nginx.conf syntax is ok\nnginx: configuration file /etc/nginx/nginx.conf test is successful\n"
-    },
-    "nativeLive": {
-      "screenshot": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-live-256.png",
-      "shortKeyboardSmoke": "ARM, W1200ms yielded71kmh/14AGL; further lift/pitch, pause23kmh/65AGL stable; resume, later hard landing as expected; menu restart0/DISARM; ARM thenR150ms resets0/DISARM. This is smoke testing, not calibrated/manual regional flight or TX15 acceptance.",
-      "finalState": "DISARM,0kmh,0mAGL,REF4MACROREAL",
-      "console": [
+      "longTasks": [
         {
-          "level": "error",
-          "message": "Error: A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received",
-          "timestamp": "2026-11-09T16:03:47.098Z",
-          "url": "https://hangar.18-153-158-209.sslip.io/"
+          "start": 22.399999976158142,
+          "duration": 55
         },
         {
-          "level": "error",
-          "message": "Error: A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received",
-          "timestamp": "2026-11-09T16:03:47.098Z",
-          "url": "https://hangar.18-153-158-209.sslip.io/"
+          "start": 43176,
+          "duration": 362
         },
         {
-          "level": "error",
-          "message": "Error: A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received",
-          "timestamp": "2026-11-09T16:03:47.098Z",
-          "url": "https://hangar.18-153-158-209.sslip.io/"
+          "start": 62900,
+          "duration": 139
         }
       ],
-      "consoleScope": "Three browser asynchronous-listener IPC messages recorded; no scene, worker or renderer exception observed. Console is not claimed empty.",
-      "physicalTX15": "not-run",
-      "userAcceptance": "not-run"
+      "region": "S1",
+      "camera": "0",
+      "backend": "webgl",
+      "renderSize": [
+        1280,
+        720
+      ],
+      "quality": "medium",
+      "scope": "Single actual whole composer frame, all passes aggregated; not sustained frame-time benchmark",
+      "render": {
+        "frame": 124,
+        "calls": 48,
+        "triangles": 1498015,
+        "points": 0,
+        "lines": 0
+      },
+      "memory": {
+        "geometries": 60,
+        "textures": 74
+      },
+      "jsHeapUsedBytes": 419888362
+    },
+    {
+      "loadStages": {
+        "startedAt": 154.89999997615814,
+        "worldReadyAt": 43136.59999999404,
+        "assetsReadyAt": 43176
+      },
+      "longTasks": [
+        {
+          "start": 22.399999976158142,
+          "duration": 55
+        },
+        {
+          "start": 43176,
+          "duration": 362
+        },
+        {
+          "start": 62900,
+          "duration": 139
+        }
+      ],
+      "region": "S2",
+      "camera": "0",
+      "backend": "webgl",
+      "renderSize": [
+        1280,
+        720
+      ],
+      "quality": "medium",
+      "scope": "Single actual whole composer frame, all passes aggregated; not sustained frame-time benchmark",
+      "render": {
+        "frame": 133,
+        "calls": 109,
+        "triangles": 1734832,
+        "points": 0,
+        "lines": 0
+      },
+      "memory": {
+        "geometries": 60,
+        "textures": 74
+      },
+      "jsHeapUsedBytes": 419876677
+    },
+    {
+      "loadStages": {
+        "startedAt": 154.89999997615814,
+        "worldReadyAt": 43136.59999999404,
+        "assetsReadyAt": 43176
+      },
+      "longTasks": [
+        {
+          "start": 22.399999976158142,
+          "duration": 55
+        },
+        {
+          "start": 43176,
+          "duration": 362
+        },
+        {
+          "start": 62900,
+          "duration": 139
+        }
+      ],
+      "region": "S3",
+      "camera": "0",
+      "backend": "webgl",
+      "renderSize": [
+        1280,
+        720
+      ],
+      "quality": "medium",
+      "scope": "Single actual whole composer frame, all passes aggregated; not sustained frame-time benchmark",
+      "render": {
+        "frame": 142,
+        "calls": 120,
+        "triangles": 1791861,
+        "points": 0,
+        "lines": 0
+      },
+      "memory": {
+        "geometries": 60,
+        "textures": 74
+      },
+      "jsHeapUsedBytes": 419851143
+    },
+    {
+      "loadStages": {
+        "startedAt": 154.89999997615814,
+        "worldReadyAt": 43136.59999999404,
+        "assetsReadyAt": 43176
+      },
+      "longTasks": [
+        {
+          "start": 22.399999976158142,
+          "duration": 55
+        },
+        {
+          "start": 43176,
+          "duration": 362
+        },
+        {
+          "start": 62900,
+          "duration": 139
+        }
+      ],
+      "region": "S4",
+      "camera": "0",
+      "backend": "webgl",
+      "renderSize": [
+        1280,
+        720
+      ],
+      "quality": "medium",
+      "scope": "Single actual whole composer frame, all passes aggregated; not sustained frame-time benchmark",
+      "render": {
+        "frame": 151,
+        "calls": 105,
+        "triangles": 1703321,
+        "points": 0,
+        "lines": 0
+      },
+      "memory": {
+        "geometries": 60,
+        "textures": 74
+      },
+      "jsHeapUsedBytes": 419894027
+    },
+    {
+      "loadStages": {
+        "startedAt": 154.89999997615814,
+        "worldReadyAt": 43136.59999999404,
+        "assetsReadyAt": 43176
+      },
+      "longTasks": [
+        {
+          "start": 22.399999976158142,
+          "duration": 55
+        },
+        {
+          "start": 43176,
+          "duration": 362
+        },
+        {
+          "start": 62900,
+          "duration": 139
+        }
+      ],
+      "region": "S5",
+      "camera": "0",
+      "backend": "webgl",
+      "renderSize": [
+        1280,
+        720
+      ],
+      "quality": "medium",
+      "scope": "Single actual whole composer frame, all passes aggregated; not sustained frame-time benchmark",
+      "render": {
+        "frame": 160,
+        "calls": 77,
+        "triangles": 1630355,
+        "points": 0,
+        "lines": 0
+      },
+      "memory": {
+        "geometries": 60,
+        "textures": 74
+      },
+      "jsHeapUsedBytes": 419772722
+    },
+    {
+      "loadStages": {
+        "startedAt": 154.89999997615814,
+        "worldReadyAt": 43136.59999999404,
+        "assetsReadyAt": 43176
+      },
+      "longTasks": [
+        {
+          "start": 22.399999976158142,
+          "duration": 55
+        },
+        {
+          "start": 43176,
+          "duration": 362
+        },
+        {
+          "start": 62900,
+          "duration": 139
+        }
+      ],
+      "region": "S6",
+      "camera": "0",
+      "backend": "webgl",
+      "renderSize": [
+        1280,
+        720
+      ],
+      "quality": "medium",
+      "scope": "Single actual whole composer frame, all passes aggregated; not sustained frame-time benchmark",
+      "render": {
+        "frame": 169,
+        "calls": 49,
+        "triangles": 1498932,
+        "points": 0,
+        "lines": 0
+      },
+      "memory": {
+        "geometries": 60,
+        "textures": 74
+      },
+      "jsHeapUsedBytes": 419572107
     }
+  ],
+  "delivery": {
+    "status": "pending",
+    "baseline": "v2.57.0-e89963741523"
   },
   "followups": {
     "loading257": {
@@ -1440,6 +1426,290 @@
           "result": "Live2.57Sile opened REF4MACROREAL DISARM0kmh0AGL. Local cancel/retry verified. A later live cancel click found no button because preparation had already completed; this attempt is not counted as live cancellation success."
         }
       }
+    },
+    "waterfront258": {
+      "status": "software-verified; publication pending",
+      "date": "2026-11-10",
+      "baseline": "v2.57.0-e89963741523",
+      "userFeedback": {
+        "status": "fail",
+        "release": "v2.57.0-e89963741523",
+        "date": "2026-11-10",
+        "feedback": "Sahil bölgesi hâlâ boş; tam Şile değil.",
+        "scope": "User visual feedback; prior automated software acceptance is not visual approval."
+      },
+      "changes": [
+        "129 source footprint candidates in500m coastal district;119 eligible,10deferred. Roof clearance3m; low pavilion guard unchanged.",
+        "680 visual OSM facades within350m;135 physical frontage unchanged.",
+        "ESA WorldCover2021v200 native categorical crop; OSMvegetation priority,1600tree cap,420representative umbrella suites.",
+        "Mapped parking partitions actual residual ground; representative bay paint, unspecified pavement assumed.",
+        "User RC same joystick reselect calibration fix ff74280 preserved."
+      ],
+      "limits": [
+        "Not an individual building photo match or measured digital twin.",
+        "2021 land cover is not current tree inventory; placements/types/heights authored.",
+        "PhysicalTX15 and new user visual/flight acceptance pending."
+      ],
+      "previousPerformance": {
+        "status": "complete",
+        "hiddenMs": 0,
+        "backend": "webgl",
+        "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+        "renderSize": [
+          1280,
+          720
+        ],
+        "quality": "medium",
+        "buildMs": 10969.699999988079,
+        "durationSeconds": 900.0036999999941,
+        "scope": "Actual scene + desktop medium shadows1024,AA and composer at fixed1280x720; static regional cameras; not full app/manual or physics flight acceptance",
+        "mainThreadPreparationTasks": [
+          {
+            "start": 10054.699999988079,
+            "duration": 76
+          },
+          {
+            "start": 11170.199999988079,
+            "duration": 217
+          },
+          {
+            "start": 104743.40000000596,
+            "duration": 118
+          }
+        ],
+        "regions": [
+          {
+            "id": "S1",
+            "renderer": {
+              "render": {
+                "frame": 27052,
+                "calls": 1,
+                "triangles": 1,
+                "points": 0,
+                "lines": 0
+              },
+              "memory": {
+                "geometries": 58,
+                "textures": 74
+              },
+              "jsHeapUsedBytes": 400181132
+            },
+            "durationSeconds": 146.9997,
+            "frames": 8820,
+            "fps": 60.000122449229494,
+            "low1PercentFps": 56.425537310563236,
+            "maxFrameMs": 17.800000000017462
+          },
+          {
+            "id": "S2",
+            "renderer": {
+              "render": {
+                "frame": 54055,
+                "calls": 1,
+                "triangles": 1,
+                "points": 0,
+                "lines": 0
+              },
+              "memory": {
+                "geometries": 58,
+                "textures": 74
+              },
+              "jsHeapUsedBytes": 401397450
+            },
+            "durationSeconds": 150.00090000000003,
+            "frames": 9000,
+            "fps": 59.99964000215998,
+            "low1PercentFps": 54.5058139534755,
+            "maxFrameMs": 18.79999999998836
+          },
+          {
+            "id": "S3",
+            "renderer": {
+              "render": {
+                "frame": 81058,
+                "calls": 1,
+                "triangles": 1,
+                "points": 0,
+                "lines": 0
+              },
+              "memory": {
+                "geometries": 58,
+                "textures": 74
+              },
+              "jsHeapUsedBytes": 406704101
+            },
+            "durationSeconds": 149.99889999999996,
+            "frames": 9000,
+            "fps": 60.00044000322671,
+            "low1PercentFps": 53.71210312724435,
+            "maxFrameMs": 18.79999999998836
+          },
+          {
+            "id": "S4",
+            "renderer": {
+              "render": {
+                "frame": 108061,
+                "calls": 1,
+                "triangles": 1,
+                "points": 0,
+                "lines": 0
+              },
+              "memory": {
+                "geometries": 58,
+                "textures": 74
+              },
+              "jsHeapUsedBytes": 403008886
+            },
+            "durationSeconds": 149.999,
+            "frames": 9000,
+            "fps": 60.00040000266669,
+            "low1PercentFps": 56.436947388052104,
+            "maxFrameMs": 17.800000000046566
+          },
+          {
+            "id": "S5",
+            "renderer": {
+              "render": {
+                "frame": 135064,
+                "calls": 1,
+                "triangles": 1,
+                "points": 0,
+                "lines": 0
+              },
+              "memory": {
+                "geometries": 58,
+                "textures": 74
+              },
+              "jsHeapUsedBytes": 405937657
+            },
+            "durationSeconds": 150.00059999999996,
+            "frames": 9000,
+            "fps": 59.99976000096,
+            "low1PercentFps": 56.447566482515484,
+            "maxFrameMs": 17.800000000046566
+          },
+          {
+            "id": "S6",
+            "renderer": {
+              "render": {
+                "frame": 162070,
+                "calls": 1,
+                "triangles": 1,
+                "points": 0,
+                "lines": 0
+              },
+              "memory": {
+                "geometries": 58,
+                "textures": 74
+              },
+              "jsHeapUsedBytes": 402097699
+            },
+            "durationSeconds": 150.01640000000003,
+            "frames": 9001,
+            "fps": 60.00010665500571,
+            "low1PercentFps": 56.45161290301789,
+            "maxFrameMs": 17.800000000046566
+          }
+        ],
+        "rendererStatsScope": "renderer.info.render is the final composer render pass, not an aggregate full-frame draw-call count; memory is renderer geometry/texture counts, jsHeapUsedBytes is Chrome optional JS heap, not GPU bytes.",
+        "evidence": [
+          "docs/sile-completion-performance.json"
+        ],
+        "coldLoadScope": "Includes real source preparation and scanned asset loading. GPU runs occurred under concurrent CPU load; no cold-load speed guarantee."
+      },
+      "previousDelivery": {
+        "status": "published",
+        "release": "v2.56.0-618a82e72259",
+        "image": {
+          "release": "v2.56.0-618a82e72259",
+          "imageId": "sha256:ee037f8ddd72603aa9514e22f8e1ad80ff02fa42fd43aaaf0ac3cabdff06ad46",
+          "archiveSha256": "6d95112f50143d53d5021ccfdd24eeea081da2f4484e66e7e5fde8ebeb9a4b79",
+          "archiveBytes": 144649760,
+          "architecture": "arm64",
+          "sourceFiles": 445
+        },
+        "sourceFiles": 445,
+        "originalGisFilesUnchanged": 29,
+        "https": {
+          "release": "v2.56.0-618a82e72259",
+          "entryAssets": 5,
+          "uniqueIds": 253,
+          "appVersion": "2.56.0",
+          "lazyGpuChunks": [
+            "gfx-webgpu-BPv6_-0D.js"
+          ],
+          "sceneWorkerChunks": [
+            "sile-scene-worker-DbPcViaZ.js"
+          ],
+          "liveSkyOrderFix": true,
+          "mapAndSourceSha256": "pass"
+        },
+        "websocket": {
+          "clients": 2,
+          "join": "pass",
+          "state": "pass",
+          "leave": "pass"
+        },
+        "remote": {
+          "Status": "Success",
+          "StandardOutputContent": "Running image source hashes: 134 OK\ndrone-hangar | 26.6MiB / 256MiB | 0.78%\n{\"running\": true, \"restarts\": 0, \"readonly\": true, \"user\": \"1000:1000\", \"image\": \"sha256:ee037f8ddd72603aa9514e22f8e1ad80ff02fa42fd43aaaf0ac3cabdff06ad46\"}\nSeven tenants/nginx unchanged; old container/data backup retained\nhttps://zenth.finance/ 200\nhttps://api.zenth.finance/health 200\nGelisim TLS origin 200\n",
+          "StandardErrorContent": "nginx: the configuration file /etc/nginx/nginx.conf syntax is ok\nnginx: configuration file /etc/nginx/nginx.conf test is successful\n"
+        },
+        "nativeLive": {
+          "screenshot": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-live-256.png",
+          "shortKeyboardSmoke": "ARM, W1200ms yielded71kmh/14AGL; further lift/pitch, pause23kmh/65AGL stable; resume, later hard landing as expected; menu restart0/DISARM; ARM thenR150ms resets0/DISARM. This is smoke testing, not calibrated/manual regional flight or TX15 acceptance.",
+          "finalState": "DISARM,0kmh,0mAGL,REF4MACROREAL",
+          "console": [
+            {
+              "level": "error",
+              "message": "Error: A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received",
+              "timestamp": "2026-11-09T16:03:47.098Z",
+              "url": "https://hangar.18-153-158-209.sslip.io/"
+            },
+            {
+              "level": "error",
+              "message": "Error: A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received",
+              "timestamp": "2026-11-09T16:03:47.098Z",
+              "url": "https://hangar.18-153-158-209.sslip.io/"
+            },
+            {
+              "level": "error",
+              "message": "Error: A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received",
+              "timestamp": "2026-11-09T16:03:47.098Z",
+              "url": "https://hangar.18-153-158-209.sslip.io/"
+            }
+          ],
+          "consoleScope": "Three browser asynchronous-listener IPC messages recorded; no scene, worker or renderer exception observed. Console is not claimed empty.",
+          "physicalTX15": "not-run",
+          "userAcceptance": "not-run"
+        }
+      },
+      "verification": {
+        "node22Arm64": {
+          "passed": 642,
+          "failed": 0,
+          "durationMs": 225326.375796
+        },
+        "gis": {
+          "passed": 13,
+          "failed": 0
+        },
+        "infrastructure": {
+          "passed": 11,
+          "failed": 0
+        },
+        "smallFinal": {
+          "passed": 9,
+          "failed": 0
+        },
+        "review": "One important OSM vegetation priority finding fixed RED-to-GREEN; full suite green after fix."
+      },
+      "review": "One P2 explicit OSM park priority defect fixed with observed RED-to-GREEN regression and final full suite. No other important review findings.",
+      "visualFindings": [
+        "Native fixed paired cameras all6regions WebGL/WebGPU; additional4landmarks both backends.",
+        "Feneraltı wooded slopes and coastal street facades visibly improved over baseline. Ayazma/harbour empty source gaps and coarse cliff slopes remain; not a complete photographic replica.",
+        "Single-frame calls/heap are diagnostics, not VRAM. First GPU/composer362ms remains;43.02s load observed under concurrent CPU tests is not a controlled speed comparison."
+      ]
     }
   }
 }

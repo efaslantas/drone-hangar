@@ -1,16 +1,73 @@
 {
   "baseMapSnapshotKey": "1147718:d3dd4d94:81685aaa",
   "version": 1,
-  "date": "2026-11-09",
+  "date": "2026-11-10",
+  "coastalSearchDistanceM": 500.0,
   "license": "ODbL-1.0",
   "release": "2026-10-21.0",
   "attribution": "© Microsoft, Overture Maps Foundation",
   "baseMapCanonicalSha256": "dd1e30116944d5ded3315efea54fb478fd4ed2dc63d8425f7b4a3f7deec47e72",
-  "sourceSubsetSha256": "7ca2f80e8085a2414c154fbfdfac392bc9afee8477c505a97c3b291c1fe2ea74",
+  "sourceSubsetSha256": "69ed36bdc2f36bf16bd18137a119dcf4f7f72f436a264f738920116cecb0f213",
   "sourceUrl": "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-10-21.0/theme=buildings/type=building/",
   "sourceDocs": "https://docs.overturemaps.org/guides/buildings/",
   "notice": "ML-derived footprint candidates, not field-verified buildings. Height7.5m and flat roof are assumptions. Runtime also rejects occupied or steep locations.",
   "records": [
+    {
+      "id": "00c4a598-15b8-4706-803a-d290cb19eeac",
+      "rings": [
+        [
+          [
+            1734.856129,
+            553.816645
+          ],
+          [
+            1747.787125,
+            555.093804
+          ],
+          [
+            1748.59269,
+            547.008834
+          ],
+          [
+            1735.661694,
+            545.731675
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9922999739646912,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "00e87269-f6a2-4992-84c8-4210075a4c74",
+      "rings": [
+        [
+          [
+            -1022.827676,
+            841.743751
+          ],
+          [
+            -1015.367809,
+            845.586333
+          ],
+          [
+            -1012.430853,
+            839.922411
+          ],
+          [
+            -1019.882329,
+            836.07983
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9915000200271606,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
     {
       "id": "01932027-ee64-4270-93be-4f69193fd0e2",
       "rings": [
@@ -36,6 +93,310 @@
       "height": 7.5,
       "heightSource": "assumed-7.5m",
       "confidence": 0.9977999925613403,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "01bbe231-c06f-4ef0-9e89-d19d30e4a77d",
+      "rings": [
+        [
+          [
+            -1160.646414,
+            959.897592
+          ],
+          [
+            -1146.683288,
+            972.991245
+          ],
+          [
+            -1137.973117,
+            963.762385
+          ],
+          [
+            -1149.074809,
+            953.356318
+          ],
+          [
+            -1150.417418,
+            954.788957
+          ],
+          [
+            -1153.278851,
+            952.101371
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9955000281333923,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "04a1b4a6-2765-4890-a56f-25f62da31e3f",
+      "rings": [
+        [
+          [
+            -953.322525,
+            903.846982
+          ],
+          [
+            -945.929788,
+            910.599265
+          ],
+          [
+            -938.822355,
+            902.880784
+          ],
+          [
+            -946.223484,
+            896.117395
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9957000017166138,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "04fc4d83-abf6-41d7-89a7-a3b5528f8a38",
+      "rings": [
+        [
+          [
+            1739.488127,
+            390.151531
+          ],
+          [
+            1736.643476,
+            390.617972
+          ],
+          [
+            1737.524563,
+            395.937615
+          ],
+          [
+            1745.059952,
+            394.704879
+          ],
+          [
+            1743.507561,
+            385.320539
+          ],
+          [
+            1738.816823,
+            386.086834
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.993399977684021,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "08c131f8-1590-4fee-9b09-08678eb6677a",
+      "rings": [
+        [
+          [
+            2019.321254,
+            331.346701
+          ],
+          [
+            2012.096344,
+            337.810235
+          ],
+          [
+            2020.151993,
+            346.750346
+          ],
+          [
+            2027.376904,
+            340.275706
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9934999942779541,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "0bee53fb-777b-48a0-89ff-27edc2d029af",
+      "rings": [
+        [
+          [
+            -596.667031,
+            874.005891
+          ],
+          [
+            -606.140811,
+            869.79682
+          ],
+          [
+            -609.908505,
+            878.203856
+          ],
+          [
+            -600.434726,
+            882.424033
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9958000183105469,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "101fbd5b-9115-4d67-a781-ec84e84d2af0",
+      "rings": [
+        [
+          [
+            1845.285659,
+            677.967579
+          ],
+          [
+            1832.094532,
+            683.498232
+          ],
+          [
+            1836.340531,
+            693.526704
+          ],
+          [
+            1849.523266,
+            687.984946
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9958000183105469,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "1078d5e8-4c95-4eb7-b02b-3a02ede357d9",
+      "rings": [
+        [
+          [
+            1895.499208,
+            683.464915
+          ],
+          [
+            1892.109122,
+            693.193532
+          ],
+          [
+            1899.342424,
+            695.692321
+          ],
+          [
+            1902.73251,
+            685.963703
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9994000196456909,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "118f7689-f619-4f82-973b-78d244375d64",
+      "rings": [
+        [
+          [
+            1671.610889,
+            425.889764
+          ],
+          [
+            1682.049668,
+            437.028809
+          ],
+          [
+            1690.289926,
+            429.354751
+          ],
+          [
+            1679.851147,
+            418.215706
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9932000041007996,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "12c5f083-37f6-4784-8ec8-d407752a25a4",
+      "rings": [
+        [
+          [
+            1387.187719,
+            438.139382
+          ],
+          [
+            1396.384586,
+            444.403012
+          ],
+          [
+            1403.617888,
+            433.863677
+          ],
+          [
+            1394.421022,
+            427.600046
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9940000176429749,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "194ac6de-9f57-4f79-9e3e-d1a642a7f168",
+      "rings": [
+        [
+          [
+            1406.160453,
+            476.02102
+          ],
+          [
+            1409.374321,
+            471.634258
+          ],
+          [
+            1411.631581,
+            473.277905
+          ],
+          [
+            1416.884536,
+            466.125817
+          ],
+          [
+            1403.634671,
+            456.463833
+          ],
+          [
+            1395.167847,
+            468.002685
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.994700014591217,
       "source": "Microsoft ML Buildings / Overture Maps",
       "sourceHeightAvailable": false
     },
@@ -68,6 +429,294 @@
       "sourceHeightAvailable": false
     },
     {
+      "id": "19735fc1-0d63-4cd2-84f0-64b8f209fdb8",
+      "rings": [
+        [
+          [
+            1626.885251,
+            441.593263
+          ],
+          [
+            1636.140856,
+            450.011405
+          ],
+          [
+            1641.301507,
+            444.380801
+          ],
+          [
+            1632.03751,
+            435.973765
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9926000237464905,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "1d26d528-c6e2-4435-93dd-938090e5167e",
+      "rings": [
+        [
+          [
+            -1049.050494,
+            898.760559
+          ],
+          [
+            -1038.536193,
+            904.135731
+          ],
+          [
+            -1031.865108,
+            891.175346
+          ],
+          [
+            -1042.379409,
+            885.800174
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9900000095367432,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "23930106-13f1-462a-96c8-164945667490",
+      "rings": [
+        [
+          [
+            2081.156756,
+            683.031791
+          ],
+          [
+            2077.582062,
+            694.726123
+          ],
+          [
+            2088.499145,
+            698.03563
+          ],
+          [
+            2092.07384,
+            686.341298
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9901999831199646,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "2500a63c-6c4a-48da-a6ea-c0fc4be57185",
+      "rings": [
+        [
+          [
+            1525.753283,
+            224.55402
+          ],
+          [
+            1521.272328,
+            228.441025
+          ],
+          [
+            1529.294413,
+            237.636568
+          ],
+          [
+            1533.775368,
+            233.749563
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9937000274658203,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "25afe273-3e03-424c-a01a-9826a53c16f2",
+      "rings": [
+        [
+          [
+            -836.104432,
+            779.684942
+          ],
+          [
+            -827.268391,
+            792.889653
+          ],
+          [
+            -819.548394,
+            787.758807
+          ],
+          [
+            -828.376043,
+            774.565202
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9921000003814697,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "2679ea06-17d1-4a8d-9dd1-381791121f67",
+      "rings": [
+        [
+          [
+            31.908592,
+            356.645549
+          ],
+          [
+            36.825895,
+            360.732457
+          ],
+          [
+            41.214545,
+            355.479448
+          ],
+          [
+            36.297243,
+            351.403646
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9941999912261963,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "2892066a-39d6-4823-a15b-484ce73c1eab",
+      "rings": [
+        [
+          [
+            1870.988215,
+            431.575897
+          ],
+          [
+            1877.415952,
+            424.534865
+          ],
+          [
+            1879.018691,
+            425.989715
+          ],
+          [
+            1884.959733,
+            419.481759
+          ],
+          [
+            1875.343301,
+            410.774868
+          ],
+          [
+            1862.982914,
+            424.323856
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9919000267982483,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "28fc02ec-8978-4887-bc5a-8412e285910a",
+      "rings": [
+        [
+          [
+            -973.184736,
+            939.651849
+          ],
+          [
+            -979.948125,
+            933.277161
+          ],
+          [
+            -990.512774,
+            944.38289
+          ],
+          [
+            -983.749384,
+            950.757577
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9901000261306763,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "2a3f51dd-cdcc-428a-8074-2f980975ea17",
+      "rings": [
+        [
+          [
+            -1153.564156,
+            599.94984
+          ],
+          [
+            -1141.186986,
+            600.083108
+          ],
+          [
+            -1141.103073,
+            593.00876
+          ],
+          [
+            -1153.480243,
+            592.875491
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9965000152587891,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "2d554065-f506-4276-8dd0-bbaebaa5ff52",
+      "rings": [
+        [
+          [
+            1874.520953,
+            388.741103
+          ],
+          [
+            1868.168738,
+            395.504492
+          ],
+          [
+            1877.877474,
+            404.566766
+          ],
+          [
+            1884.238081,
+            397.803378
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9934999942779541,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
       "id": "2da9f7f9-622e-46b7-86bf-f0a0a4e44c6c",
       "rings": [
         [
@@ -92,6 +741,62 @@
       "height": 7.5,
       "heightSource": "assumed-7.5m",
       "confidence": 0.9954000115394592,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "2ea747f3-5b02-438e-9f3b-4c3576a92f2d",
+      "rings": [
+        [
+          [
+            1699.847619,
+            450.988709
+          ],
+          [
+            1704.731356,
+            456.352776
+          ],
+          [
+            1711.813615,
+            449.944771
+          ],
+          [
+            1706.929877,
+            444.59181
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9984999895095825,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "32e1570d-35aa-40e5-a6cf-d15cd65d41a2",
+      "rings": [
+        [
+          [
+            -982.851515,
+            932.03332
+          ],
+          [
+            -989.799513,
+            925.725266
+          ],
+          [
+            -1001.723553,
+            938.752285
+          ],
+          [
+            -994.775555,
+            945.060339
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9923999905586243,
       "source": "Microsoft ML Buildings / Overture Maps",
       "sourceHeightAvailable": false
     },
@@ -152,6 +857,246 @@
       "sourceHeightAvailable": false
     },
     {
+      "id": "351c7bdd-c358-41ea-8c3c-93e946052fe8",
+      "rings": [
+        [
+          [
+            -1179.812147,
+            673.114376
+          ],
+          [
+            -1187.867797,
+            669.771552
+          ],
+          [
+            -1190.343231,
+            675.690905
+          ],
+          [
+            -1182.287581,
+            679.033729
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9955000281333923,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "369b1f57-1fe2-46ca-bce8-62dae4569bb8",
+      "rings": [
+        [
+          [
+            -1186.827275,
+            685.53058
+          ],
+          [
+            -1189.302709,
+            691.294453
+          ],
+          [
+            -1181.398103,
+            694.670594
+          ],
+          [
+            -1178.914278,
+            688.906721
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9962999820709229,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "40c1687e-8fa2-4c23-9471-dbb142537bd6",
+      "rings": [
+        [
+          [
+            1848.541484,
+            304.515262
+          ],
+          [
+            1840.368356,
+            294.620058
+          ],
+          [
+            1829.233098,
+            303.748967
+          ],
+          [
+            1837.406226,
+            313.64417
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9909999966621399,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "433ca6ae-48e7-49a6-86ca-554bfbab46dd",
+      "rings": [
+        [
+          [
+            1862.966131,
+            519.666532
+          ],
+          [
+            1864.803826,
+            519.077928
+          ],
+          [
+            1866.289087,
+            523.675699
+          ],
+          [
+            1879.950126,
+            519.300042
+          ],
+          [
+            1878.573952,
+            515.035443
+          ],
+          [
+            1875.922301,
+            515.879478
+          ],
+          [
+            1874.285997,
+            510.804161
+          ],
+          [
+            1861.430523,
+            514.91328
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9962999820709229,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "4438a30c-c359-414e-994e-267a18e383b9",
+      "rings": [
+        [
+          [
+            2021.10021,
+            355.201805
+          ],
+          [
+            2015.133995,
+            360.554766
+          ],
+          [
+            2021.620471,
+            367.740172
+          ],
+          [
+            2027.586687,
+            362.387211
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9966999888420105,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "459b270c-6806-4733-925c-c47767a3066e",
+      "rings": [
+        [
+          [
+            1777.60142,
+            295.153133
+          ],
+          [
+            1779.271289,
+            302.871614
+          ],
+          [
+            1783.483722,
+            301.97205
+          ],
+          [
+            1781.813853,
+            294.253569
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9984999895095825,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "4c8221ea-bcf8-4641-a791-7a477a5f8d3c",
+      "rings": [
+        [
+          [
+            1851.151178,
+            435.274104
+          ],
+          [
+            1858.820828,
+            442.426193
+          ],
+          [
+            1865.601,
+            435.218575
+          ],
+          [
+            1857.93135,
+            428.066487
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9970999956130981,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "4e961265-28cf-4954-a805-c1f4dfd89148",
+      "rings": [
+        [
+          [
+            1649.717983,
+            280.771215
+          ],
+          [
+            1668.279542,
+            292.387807
+          ],
+          [
+            1672.433236,
+            285.791004
+          ],
+          [
+            1653.880068,
+            274.174413
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.991100013256073,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
       "id": "4f5275d3-5a2a-410c-94ac-5376d3b70c98",
       "rings": [
         [
@@ -180,6 +1125,494 @@
       "sourceHeightAvailable": false
     },
     {
+      "id": "4f947e78-b100-4b63-8afc-261393ecc02e",
+      "rings": [
+        [
+          [
+            1322.20548,
+            429.210376
+          ],
+          [
+            1330.689086,
+            435.096412
+          ],
+          [
+            1340.506908,
+            421.058772
+          ],
+          [
+            1332.023303,
+            415.172736
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9994000196456909,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "516f4f34-127e-4fc7-831f-a649a6c117be",
+      "rings": [
+        [
+          [
+            -1089.311959,
+            967.260689
+          ],
+          [
+            -1092.727219,
+            974.66821
+          ],
+          [
+            -1079.720701,
+            980.631986
+          ],
+          [
+            -1076.305442,
+            973.224465
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9922000169754028,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "520a5e79-5412-4d82-8563-777702faf50a",
+      "rings": [
+        [
+          [
+            -907.707409,
+            790.624085
+          ],
+          [
+            -916.342058,
+            782.761229
+          ],
+          [
+            -923.180969,
+            790.213173
+          ],
+          [
+            -914.54632,
+            798.076028
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9952999949455261,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "5406fc47-a5dc-47cd-b3b0-68f1c3af7e43",
+      "rings": [
+        [
+          [
+            1725.441089,
+            400.202215
+          ],
+          [
+            1718.593786,
+            401.745911
+          ],
+          [
+            1720.431481,
+            409.853092
+          ],
+          [
+            1727.287175,
+            408.309396
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9965000152587891,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "550261cf-8509-4019-88d0-b37f17596ff2",
+      "rings": [
+        [
+          [
+            1800.224369,
+            397.392466
+          ],
+          [
+            1799.108326,
+            386.519958
+          ],
+          [
+            1788.770242,
+            387.563896
+          ],
+          [
+            1789.886285,
+            398.436404
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9941999912261963,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "57732e6a-7b75-413a-9e5d-44075993ee25",
+      "rings": [
+        [
+          [
+            349.469011,
+            -40.883986
+          ],
+          [
+            359.630877,
+            -31.48854
+          ],
+          [
+            368.827744,
+            -41.372638
+          ],
+          [
+            358.674269,
+            -50.756979
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9914000034332275,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "5c64c994-77b0-48ed-9ead-cd1bd89cfc38",
+      "rings": [
+        [
+          [
+            1815.731494,
+            660.187309
+          ],
+          [
+            1808.598888,
+            663.352441
+          ],
+          [
+            1813.566538,
+            674.458169
+          ],
+          [
+            1820.707536,
+            671.293037
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9958000183105469,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "636791c6-69dd-4a9e-8cc4-b43b37dd7652",
+      "rings": [
+        [
+          [
+            1767.699684,
+            278.927664
+          ],
+          [
+            1760.122338,
+            280.415832
+          ],
+          [
+            1761.918077,
+            289.489212
+          ],
+          [
+            1769.503813,
+            287.989939
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9936000108718872,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "6413a0d6-3124-489f-b6d6-f5cc31c45512",
+      "rings": [
+        [
+          [
+            -1053.548231,
+            711.695675
+          ],
+          [
+            -1060.94936,
+            711.251446
+          ],
+          [
+            -1061.519968,
+            720.869007
+          ],
+          [
+            -1054.11884,
+            721.30213
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9950000047683716,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "67cc1c53-a550-4dc2-9df4-a51b5af93f88",
+      "rings": [
+        [
+          [
+            1879.169735,
+            407.498678
+          ],
+          [
+            1886.755471,
+            414.417547
+          ],
+          [
+            1896.061425,
+            404.300228
+          ],
+          [
+            1888.467297,
+            397.370254
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9961000084877014,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "685f7784-c1d0-4567-bda8-a25cf527f75c",
+      "rings": [
+        [
+          [
+            1405.766061,
+            341.419596
+          ],
+          [
+            1415.508363,
+            348.904857
+          ],
+          [
+            1421.382274,
+            341.308539
+          ],
+          [
+            1411.639972,
+            333.823278
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9919000267982483,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "68656408-5e8a-4721-928c-2d46111114b6",
+      "rings": [
+        [
+          [
+            -1129.380424,
+            833.1146
+          ],
+          [
+            -1124.991774,
+            837.479151
+          ],
+          [
+            -1117.112341,
+            829.638507
+          ],
+          [
+            -1121.500992,
+            825.26285
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9908000230789185,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "6b2b7255-3d71-4934-9188-663fd814c3df",
+      "rings": [
+        [
+          [
+            1369.532421,
+            462.949578
+          ],
+          [
+            1364.808118,
+            470.956808
+          ],
+          [
+            1375.683245,
+            477.32039
+          ],
+          [
+            1380.399156,
+            469.324266
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 1.0,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "6ed8d82e-2600-4a1a-ab25-a19e24c7c054",
+      "rings": [
+        [
+          [
+            1501.183552,
+            305.392614
+          ],
+          [
+            1507.116203,
+            311.9561
+          ],
+          [
+            1519.912938,
+            300.472777
+          ],
+          [
+            1513.988679,
+            293.909292
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9907000064849854,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "7173f7da-7051-4adb-8f77-c52d88ad9d44",
+      "rings": [
+        [
+          [
+            1859.299132,
+            543.455001
+          ],
+          [
+            1849.086918,
+            551.539971
+          ],
+          [
+            1855.447525,
+            559.513884
+          ],
+          [
+            1865.659739,
+            551.428914
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9904999732971191,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "74872f6b-7b83-48b8-aabe-0c6117b1e1f9",
+      "rings": [
+        [
+          [
+            1784.398374,
+            351.103791
+          ],
+          [
+            1784.138243,
+            348.438416
+          ],
+          [
+            1788.602416,
+            348.005293
+          ],
+          [
+            1787.511547,
+            336.810719
+          ],
+          [
+            1781.494983,
+            337.388217
+          ],
+          [
+            1781.72994,
+            339.831477
+          ],
+          [
+            1776.921724,
+            340.297918
+          ],
+          [
+            1777.425202,
+            345.495398
+          ],
+          [
+            1772.516291,
+            345.972945
+          ],
+          [
+            1772.885508,
+            349.748892
+          ],
+          [
+            1769.763944,
+            350.048747
+          ],
+          [
+            1770.359726,
+            356.267955
+          ],
+          [
+            1779.061506,
+            355.435025
+          ],
+          [
+            1778.692289,
+            351.659077
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9919000267982483,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
       "id": "75c540e3-6685-4a8d-8f31-862faa77c85e",
       "rings": [
         [
@@ -204,6 +1637,358 @@
       "height": 7.5,
       "heightSource": "assumed-7.5m",
       "confidence": 0.9994000196456909,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "75dd4e4f-6df7-4314-9682-e13b06166dde",
+      "rings": [
+        [
+          [
+            -765.281846,
+            815.289907
+          ],
+          [
+            -760.926761,
+            824.729775
+          ],
+          [
+            -752.569024,
+            820.898299
+          ],
+          [
+            -756.92411,
+            811.45843
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9921000003814697,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "7b9ed2b8-485b-45b7-b6a1-74da7a1b3fa2",
+      "rings": [
+        [
+          [
+            -683.911394,
+            818.777105
+          ],
+          [
+            -691.614609,
+            823.274925
+          ],
+          [
+            -687.49448,
+            830.28264
+          ],
+          [
+            -679.782874,
+            825.78482
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9922999739646912,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "7ca10615-482c-4b65-8a88-4bfc587f7d76",
+      "rings": [
+        [
+          [
+            2168.233293,
+            539.046027
+          ],
+          [
+            2161.167817,
+            535.96974
+          ],
+          [
+            2159.271383,
+            540.300974
+          ],
+          [
+            2166.336859,
+            543.377261
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9902999997138977,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "7fa7bff8-c26a-4d24-a5db-ad00a3ddc17a",
+      "rings": [
+        [
+          [
+            1860.885088,
+            723.601016
+          ],
+          [
+            1875.150301,
+            723.223421
+          ],
+          [
+            1874.781084,
+            708.963666
+          ],
+          [
+            1860.515871,
+            709.341261
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9940999746322632,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "7fbb9ddb-6b38-454d-9ae5-32ee6c19ce73",
+      "rings": [
+        [
+          [
+            1131.924324,
+            -298.50356
+          ],
+          [
+            1153.976664,
+            -287.764321
+          ],
+          [
+            1159.74988,
+            -299.525287
+          ],
+          [
+            1137.697539,
+            -310.264526
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9908999800682068,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "82143524-23d2-481b-938c-4c8060ed329f",
+      "rings": [
+        [
+          [
+            1287.650099,
+            411.607798
+          ],
+          [
+            1275.650538,
+            403.633885
+          ],
+          [
+            1268.383671,
+            414.495287
+          ],
+          [
+            1280.374841,
+            422.4692
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9901000261306763,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "8333ebb2-26ff-4afd-a07b-df203f0cde54",
+      "rings": [
+        [
+          [
+            -882.164287,
+            810.192377
+          ],
+          [
+            -891.680023,
+            801.352218
+          ],
+          [
+            -901.220933,
+            811.558382
+          ],
+          [
+            -891.705197,
+            820.398542
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9955999851226807,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "891adeb6-b267-40a9-97f4-c7a57c257ec6",
+      "rings": [
+        [
+          [
+            1837.699922,
+            452.276974
+          ],
+          [
+            1842.130529,
+            456.896957
+          ],
+          [
+            1840.015921,
+            458.907093
+          ],
+          [
+            1843.833963,
+            462.89405
+          ],
+          [
+            1857.604089,
+            449.789291
+          ],
+          [
+            1849.347049,
+            441.193457
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9916999936103821,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "892885da-8a8c-4a00-b636-4429c7e8ecb1",
+      "rings": [
+        [
+          [
+            -837.010693,
+            737.882982
+          ],
+          [
+            -845.292907,
+            743.691278
+          ],
+          [
+            -836.079258,
+            756.740508
+          ],
+          [
+            -827.797043,
+            750.932213
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9925000071525574,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "8d2e1219-7cdd-48de-9b3a-c79cd8fa9079",
+      "rings": [
+        [
+          [
+            1641.897289,
+            374.048225
+          ],
+          [
+            1656.162502,
+            382.610742
+          ],
+          [
+            1661.138544,
+            374.392503
+          ],
+          [
+            1646.873331,
+            365.829986
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9926999807357788,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "910a03b9-92b3-4eab-b8f0-c947ac009199",
+      "rings": [
+        [
+          [
+            1538.843714,
+            328.103828
+          ],
+          [
+            1532.994977,
+            321.018374
+          ],
+          [
+            1522.37998,
+            329.703053
+          ],
+          [
+            1519.619242,
+            326.360229
+          ],
+          [
+            1511.966375,
+            332.62386
+          ],
+          [
+            1520.57585,
+            343.063244
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9940000176429749,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "95b4058a-71dc-4a6d-b265-25a381eedf1c",
+      "rings": [
+        [
+          [
+            1684.843971,
+            198.233444
+          ],
+          [
+            1679.515495,
+            195.712444
+          ],
+          [
+            1676.9058,
+            201.20978
+          ],
+          [
+            1682.234276,
+            203.73078
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9901999831199646,
       "source": "Microsoft ML Buildings / Overture Maps",
       "sourceHeightAvailable": false
     },
@@ -244,6 +2029,34 @@
       "sourceHeightAvailable": false
     },
     {
+      "id": "97bcd4cb-0c9b-4c39-acb3-575dcaf1747c",
+      "rings": [
+        [
+          [
+            1745.471126,
+            561.235272
+          ],
+          [
+            1730.333217,
+            559.08076
+          ],
+          [
+            1729.099696,
+            567.654382
+          ],
+          [
+            1744.237604,
+            569.808894
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9926999807357788,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
       "id": "981bf9d0-b754-4c6a-91e5-eacde1d78c39",
       "rings": [
         [
@@ -268,6 +2081,182 @@
       "height": 7.5,
       "heightSource": "assumed-7.5m",
       "confidence": 0.9932000041007996,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "983f81db-d4c1-4fa7-912e-c244f2e3e210",
+      "rings": [
+        [
+          [
+            2166.445946,
+            571.35259
+          ],
+          [
+            2163.131382,
+            562.12373
+          ],
+          [
+            2150.561212,
+            566.599338
+          ],
+          [
+            2153.875776,
+            575.828198
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9937999844551086,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "992d851c-c2d5-407c-a151-34b0ed2f432a",
+      "rings": [
+        [
+          [
+            -877.842766,
+            803.362355
+          ],
+          [
+            -872.640159,
+            798.675737
+          ],
+          [
+            -874.880637,
+            796.210266
+          ],
+          [
+            -866.959248,
+            789.069283
+          ],
+          [
+            -877.263767,
+            777.730334
+          ],
+          [
+            -890.379371,
+            789.557935
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9926000237464905,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "9a6a831c-cf52-4e1c-baf2-8afd99a8a749",
+      "rings": [
+        [
+          [
+            -274.231266,
+            186.80565
+          ],
+          [
+            -277.478699,
+            162.450789
+          ],
+          [
+            -285.21548,
+            163.472516
+          ],
+          [
+            -281.976437,
+            187.827377
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.992900013923645,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "9b486202-cacf-442f-a7b5-df9c0a701286",
+      "rings": [
+        [
+          [
+            1834.880444,
+            320.418664
+          ],
+          [
+            1823.619318,
+            332.546119
+          ],
+          [
+            1834.293053,
+            342.374689
+          ],
+          [
+            1845.55418,
+            330.247234
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9962000250816345,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "9c4a1209-97c5-4441-88f2-573eb732a406",
+      "rings": [
+        [
+          [
+            1839.193574,
+            710.307459
+          ],
+          [
+            1839.537617,
+            723.534381
+          ],
+          [
+            1854.608395,
+            723.145681
+          ],
+          [
+            1854.264351,
+            709.918759
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.992900013923645,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "9ebc6e1e-82d9-475e-86de-ea444c8bf9d1",
+      "rings": [
+        [
+          [
+            1334.968649,
+            411.518952
+          ],
+          [
+            1345.759863,
+            418.293446
+          ],
+          [
+            1355.40986,
+            403.056387
+          ],
+          [
+            1344.618646,
+            396.281893
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9901000261306763,
       "source": "Microsoft ML Buildings / Overture Maps",
       "sourceHeightAvailable": false
     },
@@ -300,6 +2289,154 @@
       "sourceHeightAvailable": false
     },
     {
+      "id": "a5b3c301-1151-4df0-86a8-ba35b28f97c6",
+      "rings": [
+        [
+          [
+            2209.359063,
+            626.825702
+          ],
+          [
+            2205.297673,
+            630.112997
+          ],
+          [
+            2209.199628,
+            634.899566
+          ],
+          [
+            2213.261018,
+            631.601165
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9937000274658203,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "abadb6a8-6018-41c7-832c-189862ae84d6",
+      "rings": [
+        [
+          [
+            1868.613477,
+            561.435175
+          ],
+          [
+            1857.360742,
+            561.657289
+          ],
+          [
+            1857.654437,
+            576.228005
+          ],
+          [
+            1868.898781,
+            576.00589
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9962999820709229,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "b18ecbf0-0c57-4dea-83cd-52dfa8b83fde",
+      "rings": [
+        [
+          [
+            995.750281,
+            -73.879104
+          ],
+          [
+            1013.648927,
+            -57.520367
+          ],
+          [
+            1024.230358,
+            -69.00369
+          ],
+          [
+            1011.584667,
+            -80.564753
+          ],
+          [
+            1010.871406,
+            -79.787352
+          ],
+          [
+            1005.618451,
+            -84.585026
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9930999875068665,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "b1f6ad54-6e7f-46a9-a087-4539ed140000",
+      "rings": [
+        [
+          [
+            2128.836132,
+            673.547499
+          ],
+          [
+            2122.551047,
+            670.882125
+          ],
+          [
+            2118.330223,
+            680.755117
+          ],
+          [
+            2124.615307,
+            683.420492
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9916999936103821,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "b207da7b-9af0-4fde-94d0-cb18f7377b92",
+      "rings": [
+        [
+          [
+            1897.991424,
+            387.275147
+          ],
+          [
+            1891.2616,
+            394.471659
+          ],
+          [
+            1902.455597,
+            404.866621
+          ],
+          [
+            1909.193812,
+            397.670109
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.996999979019165,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
       "id": "b3217320-a457-4416-8130-f0f97277b7d4",
       "rings": [
         [
@@ -324,6 +2461,562 @@
       "height": 7.5,
       "heightSource": "assumed-7.5m",
       "confidence": 0.9987000226974487,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "b640111e-b460-4042-89d1-16eab30edd12",
+      "rings": [
+        [
+          [
+            2026.000731,
+            557.381584
+          ],
+          [
+            2021.444254,
+            546.49797
+          ],
+          [
+            2010.778909,
+            550.929156
+          ],
+          [
+            2015.335386,
+            561.812769
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9900000095367432,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "b7284a97-3eab-4de8-8eeb-6812c893cead",
+      "rings": [
+        [
+          [
+            1643.046898,
+            464.65986
+          ],
+          [
+            1634.236031,
+            457.341186
+          ],
+          [
+            1629.369076,
+            463.149481
+          ],
+          [
+            1638.171551,
+            470.479262
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9929999709129333,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "b978f4b1-d246-4001-996e-6bacfa4fe2fd",
+      "rings": [
+        [
+          [
+            2278.948127,
+            686.263558
+          ],
+          [
+            2271.009956,
+            679.911082
+          ],
+          [
+            2265.186392,
+            687.140911
+          ],
+          [
+            2273.124564,
+            693.493387
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9919999837875366,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "ba239286-a802-42fd-884d-0d59063ea643",
+      "rings": [
+        [
+          [
+            1569.287356,
+            293.176314
+          ],
+          [
+            1561.164576,
+            299.817539
+          ],
+          [
+            1569.278965,
+            309.657214
+          ],
+          [
+            1577.401745,
+            303.015989
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9951000213623047,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "bcad1217-b9cb-4635-a223-b4b191f89af5",
+      "rings": [
+        [
+          [
+            -1140.591203,
+            869.696868
+          ],
+          [
+            -1147.514027,
+            862.444828
+          ],
+          [
+            -1153.664851,
+            868.264229
+          ],
+          [
+            -1146.750419,
+            875.527376
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9976000189781189,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "bd822816-6673-4e52-85c8-03e6ab8f8f09",
+      "rings": [
+        [
+          [
+            1843.355659,
+            369.839154
+          ],
+          [
+            1835.333575,
+            362.398317
+          ],
+          [
+            1826.237404,
+            372.115829
+          ],
+          [
+            1834.259488,
+            379.567772
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9923999905586243,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "bdee06dc-d913-4de5-97fb-7c1e94945230",
+      "rings": [
+        [
+          [
+            1490.744773,
+            180.830769
+          ],
+          [
+            1481.782863,
+            188.86021
+          ],
+          [
+            1487.656774,
+            195.368167
+          ],
+          [
+            1496.618684,
+            187.338725
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.995199978351593,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "be48d8db-d9bc-44d1-b409-493453e64c78",
+      "rings": [
+        [
+          [
+            1487.430209,
+            237.336713
+          ],
+          [
+            1494.210381,
+            244.777551
+          ],
+          [
+            1504.086943,
+            235.848545
+          ],
+          [
+            1497.306771,
+            228.407708
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9984999895095825,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "be5f9c6b-7aed-429d-99e0-a228f30b5add",
+      "rings": [
+        [
+          [
+            -885.60472,
+            766.591289
+          ],
+          [
+            -895.254717,
+            754.130662
+          ],
+          [
+            -904.569062,
+            761.282751
+          ],
+          [
+            -894.919065,
+            773.743378
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.992900013923645,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "c3af2fde-8848-4cac-a4aa-21346cc289e3",
+      "rings": [
+        [
+          [
+            2192.005851,
+            692.760409
+          ],
+          [
+            2188.036765,
+            705.565313
+          ],
+          [
+            2202.218065,
+            709.929865
+          ],
+          [
+            2204.05576,
+            703.9883
+          ],
+          [
+            2201.7985,
+            703.299745
+          ],
+          [
+            2203.929891,
+            696.425299
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9997000098228455,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "ca26c4a0-529e-45c1-a730-14946e5970ca",
+      "rings": [
+        [
+          [
+            -951.644264,
+            916.662992
+          ],
+          [
+            -958.155914,
+            909.755229
+          ],
+          [
+            -965.691303,
+            916.796261
+          ],
+          [
+            -959.179653,
+            923.71513
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9927999973297119,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "cc1f87c0-9f9f-4df1-b036-54b050e67835",
+      "rings": [
+        [
+          [
+            1860.776001,
+            501.675252
+          ],
+          [
+            1857.09222,
+            502.830248
+          ],
+          [
+            1858.921524,
+            508.627438
+          ],
+          [
+            1871.751824,
+            504.607164
+          ],
+          [
+            1870.24139,
+            499.831701
+          ],
+          [
+            1874.134954,
+            498.621177
+          ],
+          [
+            1872.339215,
+            492.901727
+          ],
+          [
+            1859.299132,
+            496.988635
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9983999729156494,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "ccb02695-5de0-4a0c-bbc4-7bb72303bc9d",
+      "rings": [
+        [
+          [
+            1587.94122,
+            303.637909
+          ],
+          [
+            1591.096349,
+            315.354452
+          ],
+          [
+            1602.013433,
+            312.444752
+          ],
+          [
+            1598.866695,
+            300.728209
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9915000200271606,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "ce93be15-d7ae-4b07-8864-3a6a11f07923",
+      "rings": [
+        [
+          [
+            1860.440349,
+            444.225321
+          ],
+          [
+            1870.686129,
+            453.243172
+          ],
+          [
+            1877.499866,
+            445.558008
+          ],
+          [
+            1867.254086,
+            436.540157
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9905999898910522,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "d0807ddd-7f94-47ec-9d37-41782bb7e48c",
+      "rings": [
+        [
+          [
+            -694.467652,
+            882.412927
+          ],
+          [
+            -700.341563,
+            875.194204
+          ],
+          [
+            -707.205648,
+            880.735962
+          ],
+          [
+            -701.323345,
+            887.954685
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9908000230789185,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "d3899dba-53e0-4066-b950-19e284952f9a",
+      "rings": [
+        [
+          [
+            691.297075,
+            -93.924944
+          ],
+          [
+            702.071506,
+            -94.446913
+          ],
+          [
+            701.559637,
+            -105.186152
+          ],
+          [
+            690.776814,
+            -104.664183
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9926000237464905,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "d4eeace7-254e-4f6d-b2b9-66b1393583a1",
+      "rings": [
+        [
+          [
+            1969.065749,
+            540.722992
+          ],
+          [
+            1976.366181,
+            553.350205
+          ],
+          [
+            1984.312744,
+            548.796856
+          ],
+          [
+            1977.012312,
+            536.169643
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9988999962806702,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "da7a5f2e-e693-4ea5-acd5-29fea73a1866",
+      "rings": [
+        [
+          [
+            -1131.990119,
+            869.663551
+          ],
+          [
+            -1123.044992,
+            881.368989
+          ],
+          [
+            -1119.478688,
+            878.670297
+          ],
+          [
+            -1128.423816,
+            866.964859
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9945999979972839,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "daac53ac-e888-490c-b01b-cacf748ea8a9",
+      "rings": [
+        [
+          [
+            253.355042,
+            -225.916522
+          ],
+          [
+            252.348086,
+            -217.298477
+          ],
+          [
+            256.560519,
+            -216.809825
+          ],
+          [
+            257.567476,
+            -225.427869
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9973000288009644,
       "source": "Microsoft ML Buildings / Overture Maps",
       "sourceHeightAvailable": false
     },
@@ -356,6 +3049,610 @@
       "sourceHeightAvailable": false
     },
     {
+      "id": "dd2f7ec7-2d03-495a-b57b-63dd1cabba55",
+      "rings": [
+        [
+          [
+            1618.938688,
+            451.555101
+          ],
+          [
+            1614.390603,
+            456.896957
+          ],
+          [
+            1622.75673,
+            463.982411
+          ],
+          [
+            1627.304816,
+            458.640556
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9961000084877014,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "dd908e1c-039f-4c5c-9763-e0d4b3e37cb1",
+      "rings": [
+        [
+          [
+            1785.094852,
+            298.973504
+          ],
+          [
+            1789.928242,
+            298.22942
+          ],
+          [
+            1790.372981,
+            301.072486
+          ],
+          [
+            1793.007849,
+            300.661574
+          ],
+          [
+            1791.161763,
+            288.84508
+          ],
+          [
+            1783.685113,
+            290.000075
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9901000261306763,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "de54b10b-f897-48f6-b59d-1e9a48582224",
+      "rings": [
+        [
+          [
+            -46.994817,
+            421.40305
+          ],
+          [
+            -37.739212,
+            429.132636
+          ],
+          [
+            -35.456778,
+            426.422839
+          ],
+          [
+            -44.703992,
+            418.693252
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.992900013923645,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "ded89c1f-9a38-46bd-b72b-fe732e8ea631",
+      "rings": [
+        [
+          [
+            1730.106652,
+            337.188314
+          ],
+          [
+            1725.608915,
+            337.232737
+          ],
+          [
+            1725.701219,
+            346.772557
+          ],
+          [
+            1730.198957,
+            346.73924
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9965000152587891,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "e0b981d6-41ad-40f9-af0e-3f3aa7c326d2",
+      "rings": [
+        [
+          [
+            1558.54649,
+            544.076922
+          ],
+          [
+            1550.398536,
+            537.357956
+          ],
+          [
+            1540.345757,
+            549.452094
+          ],
+          [
+            1548.48532,
+            556.182165
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9900000095367432,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "e0ff9ebc-22a4-46b9-aa05-c0241a0ef2ba",
+      "rings": [
+        [
+          [
+            -264.144921,
+            470.612531
+          ],
+          [
+            -266.452529,
+            466.858795
+          ],
+          [
+            -279.719177,
+            474.932659
+          ],
+          [
+            -277.41996,
+            478.686395
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.993399977684021,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "e1019077-2b5b-43b7-bf7e-dd786cc738c5",
+      "rings": [
+        [
+          [
+            1661.642022,
+            342.596803
+          ],
+          [
+            1673.524105,
+            349.660046
+          ],
+          [
+            1678.080582,
+            342.052623
+          ],
+          [
+            1666.198499,
+            334.98938
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9951000213623047,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "e1a315f1-7279-41da-9fa3-bce468be328b",
+      "rings": [
+        [
+          [
+            -1306.092846,
+            938.552382
+          ],
+          [
+            -1298.012022,
+            945.149185
+          ],
+          [
+            -1291.894763,
+            937.697241
+          ],
+          [
+            -1299.975587,
+            931.100439
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.996999979019165,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "e26967c0-8a52-493d-8ce3-82f7d8a82935",
+      "rings": [
+        [
+          [
+            1569.623008,
+            402.179034
+          ],
+          [
+            1575.152876,
+            409.419969
+          ],
+          [
+            1585.700742,
+            401.423845
+          ],
+          [
+            1580.170875,
+            394.18291
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9904000163078308,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "e37b2d8e-b4d4-4704-bb70-724b60ca7662",
+      "rings": [
+        [
+          [
+            -776.710799,
+            938.918871
+          ],
+          [
+            -770.165584,
+            932.644135
+          ],
+          [
+            -778.934494,
+            923.559649
+          ],
+          [
+            -785.488101,
+            929.834386
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9937999844551086,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "e4ae3d92-629d-45fa-af05-1a9df9411622",
+      "rings": [
+        [
+          [
+            1519.526938,
+            268.010734
+          ],
+          [
+            1526.886109,
+            275.806955
+          ],
+          [
+            1535.59628,
+            267.633139
+          ],
+          [
+            1528.237109,
+            259.848024
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9925000071525574,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "e7017fd7-e2e9-4e60-939f-209d05a98763",
+      "rings": [
+        [
+          [
+            1843.959833,
+            274.885179
+          ],
+          [
+            1852.1917,
+            266.933478
+          ],
+          [
+            1840.041095,
+            254.45064
+          ],
+          [
+            1831.809228,
+            262.413447
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 1.0,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "ef5eaee8-4aa7-466c-91e8-c3e86cf083af",
+      "rings": [
+        [
+          [
+            2183.262115,
+            587.544741
+          ],
+          [
+            2188.145852,
+            593.908324
+          ],
+          [
+            2201.34537,
+            583.835428
+          ],
+          [
+            2196.453241,
+            577.482952
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9936000108718872,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "f002a8d1-e92c-4a88-9bd8-6f9369eb1906",
+      "rings": [
+        [
+          [
+            1694.95549,
+            279.116462
+          ],
+          [
+            1690.013013,
+            287.912198
+          ],
+          [
+            1705.327139,
+            296.463609
+          ],
+          [
+            1710.278006,
+            287.667872
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9959999918937683,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "f060880f-12d2-4c8b-b452-ee69637afaaf",
+      "rings": [
+        [
+          [
+            1862.999696,
+            293.931503
+          ],
+          [
+            1873.396519,
+            305.059443
+          ],
+          [
+            1883.642298,
+            295.552939
+          ],
+          [
+            1873.245476,
+            284.436106
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9900000095367432,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "f0d65950-4bfd-4ecb-96c5-2607290b8a68",
+      "rings": [
+        [
+          [
+            -923.139013,
+            890.46458
+          ],
+          [
+            -914.823233,
+            897.994263
+          ],
+          [
+            -912.247103,
+            895.173409
+          ],
+          [
+            -910.216408,
+            897.016959
+          ],
+          [
+            -906.406757,
+            892.841206
+          ],
+          [
+            -907.824887,
+            891.564047
+          ],
+          [
+            -904.753671,
+            888.210117
+          ],
+          [
+            -913.682016,
+            880.114041
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9980000257492065,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "f1799731-9ad1-4a2c-8c61-bed98de3ceef",
+      "rings": [
+        [
+          [
+            -1181.968712,
+            657.732943
+          ],
+          [
+            -1189.75584,
+            654.501176
+          ],
+          [
+            -1192.27323,
+            660.52048
+          ],
+          [
+            -1184.494494,
+            663.752247
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.998199999332428,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "f48ee1cb-9f2a-476a-a55d-b813ed28b7a8",
+      "rings": [
+        [
+          [
+            1717.3267,
+            349.671152
+          ],
+          [
+            1715.656831,
+            341.01979
+          ],
+          [
+            1711.754876,
+            341.763874
+          ],
+          [
+            1712.75344,
+            346.961355
+          ],
+          [
+            1713.399571,
+            346.839192
+          ],
+          [
+            1714.070875,
+            350.293073
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9907000064849854,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "f5525ff3-b77d-465c-824e-f7b79205512b",
+      "rings": [
+        [
+          [
+            2008.043345,
+            484.461374
+          ],
+          [
+            2005.391694,
+            481.051915
+          ],
+          [
+            2004.745564,
+            479.352739
+          ],
+          [
+            2002.823955,
+            476.876161
+          ],
+          [
+            1995.985045,
+            479.463796
+          ],
+          [
+            1991.436959,
+            482.973206
+          ],
+          [
+            1992.435524,
+            484.250365
+          ],
+          [
+            1993.736176,
+            487.670929
+          ],
+          [
+            1997.268914,
+            492.213172
+          ],
+          [
+            1999.089826,
+            496.977529
+          ],
+          [
+            2001.598825,
+            500.209296
+          ],
+          [
+            2006.474172,
+            498.365745
+          ],
+          [
+            2009.897823,
+            495.722582
+          ],
+          [
+            2012.029213,
+            494.911864
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.992900013923645,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
       "id": "f689ab38-7641-482f-b817-53662377965e",
       "rings": [
         [
@@ -384,6 +3681,90 @@
       "sourceHeightAvailable": false
     },
     {
+      "id": "f818b303-fb03-4b14-99ad-bc7b69179e9b",
+      "rings": [
+        [
+          [
+            2088.859971,
+            717.726086
+          ],
+          [
+            2076.608671,
+            714.194464
+          ],
+          [
+            2073.663324,
+            724.333994
+          ],
+          [
+            2085.914624,
+            727.865615
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9902999997138977,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "f95878c8-15bf-45ae-bd8e-3639e4c2ccf4",
+      "rings": [
+        [
+          [
+            -978.169169,
+            755.352292
+          ],
+          [
+            -987.928253,
+            765.858311
+          ],
+          [
+            -976.776213,
+            776.142215
+          ],
+          [
+            -967.017129,
+            765.636196
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9954000115394592,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "fd774458-70ae-4127-86f1-86e8d46f9a46",
+      "rings": [
+        [
+          [
+            1859.701915,
+            352.936236
+          ],
+          [
+            1850.253309,
+            344.051654
+          ],
+          [
+            1842.684355,
+            352.036672
+          ],
+          [
+            1852.124569,
+            360.921255
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9933000206947327,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
       "id": "fe8238a8-fd91-4211-bd00-72a1e952cc06",
       "rings": [
         [
@@ -408,6 +3789,62 @@
       "height": 7.5,
       "heightSource": "assumed-7.5m",
       "confidence": 0.9954000115394592,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "fe9a5e81-5efd-4313-88d6-5b6666d711ed",
+      "rings": [
+        [
+          [
+            -784.405623,
+            756.362914
+          ],
+          [
+            -792.427707,
+            744.468679
+          ],
+          [
+            -803.747573,
+            752.042785
+          ],
+          [
+            -795.717097,
+            763.93702
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9904000163078308,
+      "source": "Microsoft ML Buildings / Overture Maps",
+      "sourceHeightAvailable": false
+    },
+    {
+      "id": "ff25bd00-fcf5-4c45-bf9b-776f24107242",
+      "rings": [
+        [
+          [
+            -879.705635,
+            921.616147
+          ],
+          [
+            -888.071763,
+            911.354454
+          ],
+          [
+            -899.190238,
+            920.350094
+          ],
+          [
+            -890.82411,
+            930.611787
+          ]
+        ]
+      ],
+      "height": 7.5,
+      "heightSource": "assumed-7.5m",
+      "confidence": 0.9991999864578247,
       "source": "Microsoft ML Buildings / Overture Maps",
       "sourceHeightAvailable": false
     }

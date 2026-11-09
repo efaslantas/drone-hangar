@@ -3,6 +3,7 @@ import {mergeVertices,mergeGeometries} from 'three/addons/utils/BufferGeometryUt
 import {planSileContext} from './sile-context.js';
 import {insidePolygon,surfaceAt} from './geo-terrain.js';
 import {surfaceTexture} from './surfaces.js';
+import {landcoverSampler} from './sile-landcover.js';
 function leafGeometry(){
  const raw=new THREE.IcosahedronGeometry(1,1),p=raw.attributes.position;for(let i=0;i<p.count;i++){const x=p.getX(i),y=p.getY(i),z=p.getZ(i),scale=1+.045*Math.sin(x*17+y*29+z*23);p.setXYZ(i,x*scale,y*scale,z*scale);}
  raw.deleteAttribute('normal');raw.deleteAttribute('uv');const g=mergeVertices(raw,.00001);g.computeVertexNormals();raw.dispose();return g;
@@ -31,18 +32,19 @@ export function addSileContext(scene,data,play,plan=planSileContext(data,play)){
  for(const [name,b] of groups){const mesh=new THREE.InstancedMesh(b.g,b.m,b.parts.length);mesh.name='sile-context-'+name;mesh.userData.contextBoxes=b.parts.map(p=>p.box);for(let i=0;i<b.parts.length;i++){mesh.setMatrixAt(i,b.parts[i].matrix);mesh.setColorAt(i,b.parts[i].color);}mesh.instanceMatrix.needsUpdate=true;mesh.castShadow=true;mesh.receiveShadow=true;mesh.computeBoundingBox();mesh.computeBoundingSphere();scene.add(mesh);}
  const decks=[];for(const p of data.structures.filter(p=>p.kind==='pier')){const g=deckGeometry(p.rings,p.base+p.height+.0005),pos=g.attributes.position,uv=[];for(let i=0;i<pos.count;i++)uv.push(pos.getX(i)/2,pos.getZ(i)/2);g.setAttribute('uv',new THREE.Float32BufferAttribute(uv,2));decks.push(g);}
  if(decks.length){const g=mergeGeometries(decks,false);decks.forEach(p=>p.dispose());const mesh=new THREE.Mesh(g,new THREE.MeshStandardMaterial({map:surfaceTexture('concrete',1),roughness:.92,polygonOffset:true,polygonOffsetFactor:-1,polygonOffsetUnits:-2}));mesh.userData.groundSurface=true;mesh.name='sile-pier-deck';mesh.receiveShadow=true;scene.add(mesh);}
- scene.userData.sileLandcover=plan.source;scene.userData.sileContextStats={trees:plan.trees.length,umbrellas:plan.beach.length,boats:plan.boats.length,bollards:plan.bollards.length,authoredPlacement:true};return plan;
+ scene.userData.sileLandcover=plan.source;scene.userData.sileCoverCompatibility={completionLayer:data.completionLayer,supplementalSource:data.supplementalSource,projection:data.projection};scene.userData.sileContextStats={trees:plan.trees.length,umbrellas:plan.beach.length,boats:plan.boats.length,bollards:plan.bollards.length,authoredPlacement:true,sourceCanopyTrees:plan.sourceCanopyTrees||0};return plan;
 }
 
 // Macro colour follows mapped landuse; original source microtextures are kept.
 // This is an authored summer palette, not a sampled satellite colour product.
 export function finishSileContext(scene){
  const source=scene.userData.sileLandcover,ground=scene.getObjectByName('sile-terrain');if(!source||!ground||ground.userData.landcoverTint)return;
- const g=ground.geometry,p=g.attributes.position,c=g.attributes.color,paved=[...source.paved,...source.harbour];if(!c)return;
+ const g=ground.geometry,p=g.attributes.position,c=g.attributes.color,paved=[...source.paved,...source.harbour],cover=landcoverSampler(scene.userData.sileCoverCompatibility);if(!c)return;
  for(let i=0;i<p.count;i++){const x=p.getX(i),z=p.getZ(i);let tint=null;
   if(paved.some(f=>insidePolygon(x,z,f.rings)))tint=[.84,.88,.88];
   else if(source.green.some(f=>insidePolygon(x,z,f.rings)))tint=[.48,1,.46];
   else if(source.lawns.some(f=>insidePolygon(x,z,f.rings)))tint=[.64,1,.55];
+  else if(!source.beaches.some(f=>insidePolygon(x,z,f.rings))){const cls=cover(x,z);if([10,20].includes(cls))tint=[.48,1,.46];else if([30,40,90].includes(cls))tint=[.64,1,.55];}
   if(tint)for(let k=0;k<3;k++)c.array[i*3+k]*=tint[k];
  }c.needsUpdate=true;ground.userData.landcoverTint=true;
 }

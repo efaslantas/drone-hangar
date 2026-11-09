@@ -1,0 +1,3 @@
+import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';import {coastalBuildings} from '../src/sile-buildings.js';
+const raw=JSON.parse(fs.readFileSync(new URL('../public/maps/sile/map.json',import.meta.url)));
+test('a mapped inland coastal street gains façades while the existing physical frontage stays fixed',()=>{const before=JSON.stringify(raw),core=coastalBuildings(raw),district=coastalBuildings(raw,{maxDistance:350});assert.equal(core.size,135);assert.equal(core.has(342501373),false);assert.equal(district.has(342501373),true);for(const id of core.keys())assert.ok(district.has(id));assert.ok(district.size>core.size*4);assert.equal(JSON.stringify(raw),before);});

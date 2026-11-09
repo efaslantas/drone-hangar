@@ -1,0 +1,4 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {parkingSurfaces} from '../src/sile-parking.js';
+const area=p=>{let a=0;for(let i=0;i<p.length;i+=9)a+=Math.abs((p[i+3]-p[i])*(p[i+8]-p[i+2])-(p[i+5]-p[i+2])*(p[i+6]-p[i]))/2;return a;};
+test('mapped paved masks partition once and keep the terrain plane at every cut',()=>{const p=[0,0,0,10,2,0,0,3,10],m=[[[[0,0],[6,0],[6,10],[0,10]]],[[[4,0],[8,0],[8,10],[4,10]]]],out=parkingSurfaces(p,m);assert.ok(out.paved.length);assert.ok(out.ground.length);assert.ok(Math.abs(area(out.paved)+area(out.ground)-50)<1e-5);for(const a of [out.paved,out.ground])for(let i=0;i<a.length;i+=3)assert.ok(Math.abs(a[i+1]-(a[i]*.2+a[i+2]*.3))<1e-6);assert.deepEqual(p,[0,0,0,10,2,0,0,3,10]);});
+test('unmapped ground stays unchanged',()=>{const p=[0,0,0,10,2,0,0,3,10];assert.deepEqual(parkingSurfaces(p,[]),{ground:p,paved:[]});});

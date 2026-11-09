@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import {landcoverSampler} from './sile-landcover.js';
 import {terrainHeight} from './geo-terrain.js';
 import {refreshCoastalFacades}from './sile-building-view.js';
 import {coastalBuildings} from './sile-buildings.js';
@@ -35,8 +36,8 @@ export function coastalSlopeFace(t,terrain){
 // or move a vertex. Physics still samples exactly the same terrain planes.
 export function finishCompletionTerrain(scene,play,data,rockMaterial){
  if(data.completionLayer!==1)return;
- const mesh=scene.getObjectByName('sile-terrain'),original=mesh.geometry,g=original.index?original.toNonIndexed():original.clone(),p=g.attributes.position,parts=[[],[]];
- for(let i=0;i<p.count;i+=3){const t=[0,1,2].flatMap(k=>[p.getX(i+k),p.getY(i+k),p.getZ(i+k)]);parts[coastalSlopeFace(t,play.terrain)?1:0].push(i,i+1,i+2);}
+ const mesh=scene.getObjectByName('sile-terrain'),original=mesh.geometry,g=original.index?original.toNonIndexed():original.clone(),p=g.attributes.position,parts=[[],[]],cover=landcoverSampler(data);
+ for(let i=0;i<p.count;i+=3){const t=[0,1,2].flatMap(k=>[p.getX(i+k),p.getY(i+k),p.getZ(i+k)]);parts[coastalSlopeFace(t,play.terrain)&&![10,20,30,40,90].includes(cover((t[0]+t[3]+t[6])/3,(t[2]+t[5]+t[8])/3))?1:0].push(i,i+1,i+2);}
  function part(indices,rock){
   const out=new THREE.BufferGeometry();for(const [name,a]of Object.entries(g.attributes)){const values=[];for(const i of indices)for(let k=0;k<a.itemSize;k++)values.push(a.array[i*a.itemSize+k]);out.setAttribute(name,new THREE.Float32BufferAttribute(values,a.itemSize));}
   if(rock){const uv=out.attributes.uv;for(let j=0;j<indices.length;j+=3){const a=new THREE.Vector3().fromBufferAttribute(p,indices[j]),b=new THREE.Vector3().fromBufferAttribute(p,indices[j+1]),c=new THREE.Vector3().fromBufferAttribute(p,indices[j+2]),n=b.sub(a).cross(c.sub(a)),axis=Math.abs(n.y)>=Math.max(Math.abs(n.x),Math.abs(n.z))?'y':Math.abs(n.x)>=Math.abs(n.z)?'x':'z';for(let k=0;k<3;k++){const i=indices[j+k];uv.setXY(j+k,(axis==='x'?p.getZ(i):p.getX(i))/3,(axis==='y'?p.getZ(i):p.getY(i))/3);}}out.setAttribute('color',new THREE.Float32BufferAttribute(Float32Array.from({length:indices.length*3},(_,i)=>[.48,.47,.435][i%3]),3));}return out;
@@ -48,8 +49,8 @@ export function finishCompletionTerrain(scene,play,data,rockMaterial){
 
 // Terraces are selected after props exist. Reconcile decorative entries only
 // after that final grading; roof/body dimensions and source records stay fixed.
-export function alignCompletedEntries(scene,play,profiles,data){
+export function alignCompletedEntries(scene,play,profiles,data,visualProfiles=profiles){
  if(data.completionLayer!==1)return;let changed=false;
  for(const {item,...profile}of profiles.values())if(Number.isFinite(item.entryY)){const final=groundedEntryProfile(item,profile,play.terrain).entryY;if(Math.abs(final-item.entryY)>.0001){item.entryY=final;changed=true;}}
- if(changed)refreshCoastalFacades(scene,profiles);
+ if(changed)refreshCoastalFacades(scene,visualProfiles);
 }

@@ -161,3 +161,29 @@ Canlı teslim: v2.56.0-618a82e72259; kullanıcı/TX15 kabulü raporda not-run ka
 ## 2.57 devamı — hazırlık bloklarını ayırma
 
 Kullanıcı devam istedi. İlk native profil: ObjectLoader21.5ms+metadata4ms+fizik clone26.2ms aynı task içinde73msblok. Mevcut yieldFrame/AbortSignal sınırları, ilk allocationöncesi, sahne/fizikverisiarasında ve sonwallindexöncesine eklenir. Geometri/veri/fizik değişmez. Önce ikiiptalregresyonu eskiyolda başarısız,sonra7payload/cachetesti geçti. Bağımsız dar inceleme bulgusuz. Native ölçümde hazırlıkaralığında50msüzeri iş yok;ilkGPU/composer241msvebaşlangıç67msayrıkalır. İptal/tekraraçmaDISARM0hızdoğrulandı;v2.57.0-e89963741523 canlı.628/628Node22ARM64/11infra/HTTPS/WSS/nativeUIgeçti. FizikselTX15/kullanıcıkabulünot-run kalır.
+
+
+## 10 Kasım — kullanıcı görsel kabulü: sahil hâlâ boş
+
+Kullanıcı son commitleri gönderdi ve sahilin boş kaldığını, henüz Şile'ye benzemediğini bildirdi. ff74280 RCkalibrasyon düzeltmesi ff-onlyalındı ve korunur. Önceki yazılım testleri görsel kullanıcı kabulü sayılmaz;2.57için görsel kabul başarısız olarak kaydedilir. Kullanıcının önceki kesintisiz uygulama/main/canlı yetkisi sürer; mevcut planın3/5işleri yeniden açılır, yeni ana plan veya onay turu açılmaz.
+
+MevcutThree.js/OSM/DSMüstünde:500m kıyı mahalle bandındaki aynıMicrosoft/Overture.99+izler;7.5mvarsayımsal gövdeye en az3m üstkot açıklığı sağlanan eğimli izler;350m görsel cephe bandı(core135zemin/fizikprofilikorunur);ESAWC2021CCBY4yaklaşık10maraziörtüsüyle eksikvejetasyon;OSMpark/başlıkkıyı/yollaröncelikli;OSMotoparkyüzeylerivefotoğrafreferanslıtemsiliyazplajdüzeni. Raster2021ölçülmüş2026ağaç/binaenvanterideğil;fotoğraflar ürüne kopyalanmaz. Arazi ve bina yükseklikleri yeniölçüm sayılmaz. Rastgelebinaekleme/fizikileçizimiayırmayok.
+
+### Task 9: Kaynaklı kıyı mahalle izleri ve eğimli yapı desteği
+- [x] Mesafe parametresi/deduplikasyon/sahil kesim sınırı için Python RED; eğimli izde görünür çatı/kalan açıklık ve aşırıeğim RED.
+- [x] Açık500m seçimi,129aday/orijinal14korunumu;max-min<=height-3modelkriteri,diğertümoccupied/road/water/.99güven/lisanskapılarıkorunur.
+- [x] Kaynak/veri/provenansüret,render-temas/kot testlerini geçir;ölçüsüzlüketiketlerinikoru.
+
+### Task 10: Arazi örtüsü ve plaj dokusu
+- [x] ESA2021nativecropdönüşüm/kategori/yanlışsnapshot/kenartestleriRED→GREEN; kaynakpixelaynılığı,CCBYatıfvecropSHAkaydı.
+- [x] OSMdahaöncelikli,ESAağaç/çalı/çim boşlukdoldurur;1600ağaçbütçesikıyıyıönceler. Vejetasyonlu yamaçları otomatik çıplakkayaya dönüştürme.
+- [x] Hazırlanmış sahnede420üstlimitli temsiliyazşemsiye/şezlong; bütünsertparçalaraynıgörünenkontaktansahip,ham/rawdavranışıkorunur.
+
+### Task 11: Cepheler ve otopark
+- [x] Görsel350m680cephebandı(core100m135profilaynı);gövdeyiyenidençizmeyinenvepostpadrefresh'tekaybolmayıyakalayantest. Yeniuydurmabalkonengeli/yükseklikdeğişikliğiolmamalı.
+- [x] Kaynak15otoparkmaskesini kalan zeminden ayır;görünenaynıeğim/kot/renkdeğişimi,delik/çiftyüzeyolmasın. Beyazyerçizgilerivarsayımsaldır,yeniçarpışmaengelideğildir.
+
+### Task 12: Bütün kıyı görsel/işlev kabulü ve tek canlı teslim
+- [ ] S1–S6aynıkameraGL/GPUönce/sonra,kaynak/crop/doğruluk/temas/12rotakontrolü;tamNode22/ilgiliPython/bağımsızinceleme.
+- [ ] Yeni1280×720medium15dk görünürbenchmark;eskiFPSyenisürümdiyeetiketlenmez.
+- [ ] Kanonikkabul/provenans/krediler/ürünbelgeleri;RCcommitkorunur;app-onlyAWS/mainhash/HTTPS/WSS/canlıaçılış;fizikselTX15vekullanıcısonkabulüyapılmadıolarakkalır.

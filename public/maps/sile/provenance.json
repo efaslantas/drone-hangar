@@ -129,5 +129,26 @@
       ],
       "limit": "OSM/30mDSM do not define cave mouths or interior meshes. Geographical coverage is not cave geometry."
     }
+  },
+  "landcover": {
+    "source": "ESA WorldCover 2021 v200",
+    "url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N39E027_Map.tif",
+    "year": 2021,
+    "license": "CC-BY-4.0",
+    "attribution": "© ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium",
+    "doi": "https://doi.org/10.5281/zenodo.7254221",
+    "cropSha256": "2d6491a718d489d261467ca209f102a61fe904c9ee5480b8f7c277c48c4d1bd6",
+    "notice": "Native categorical pixels, not individual tree positions or a current ground survey. Tree spacing, species and dimensions are authored.",
+    "baseMapSnapshotKey": "1147718:d3dd4d94:81685aaa",
+    "cols": 648,
+    "rows": 220,
+    "origin": [
+      -1577.6437578666653,
+      -927.0766623311611
+    ],
+    "step": [
+      6.992751365050926,
+      9.254773379930851
+    ]
   }
 }

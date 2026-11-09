@@ -1143,6 +1143,8 @@ export function clearWorld(scene) {
   scene.userData.ambient = null;
   scene.userData.sileWater = null;
   scene.userData.sileLandcover = null;
+  scene.userData.sileCoverCompatibility = null;
+  scene.userData.sileParkingStats = null;
   scene.userData.sileContextStats = null;
   scene.userData.sileHarbourStats = null;
   scene.userData.sileMooringStats = null;
@@ -1191,6 +1193,8 @@ export function buildWorld(scene, mapId = "yard", opts = {}) {
   scene.userData.lifeObjs = [];
   scene.userData.sileWater = null;
   scene.userData.sileLandcover = null;
+  scene.userData.sileCoverCompatibility = null;
+  scene.userData.sileParkingStats = null;
   scene.userData.sileContextStats = null;
   scene.userData.sileHarbourStats = null;
   scene.userData.sileMooringStats = null;

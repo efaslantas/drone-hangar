@@ -18,4 +18,9 @@ class SupplementTest(unittest.TestCase):
   f=[feature('b',x=42),feature('a')];self.assertEqual(select_footprints(fixture(),{'features':f}),select_footprints(fixture(),{'features':list(reversed(f))}));self.assertEqual(len(select_footprints(fixture(),{'features':f})),1)
  def test_map_cut_border_is_not_a_coastline(self):
   m=fixture();m['terrain']['land']=[[[[-200,-200],[200,-200],[200,200],[-200,200]]]];self.assertEqual(select_footprints(m,{'features':[feature(x=170,z=0)]}),[])
+ def test_coastal_neighbourhood_expansion_keeps_real_coast_and_explicit_band(self):
+  m=fixture();m['terrain']['bounds']=[-200,200,-200,600];m['terrain']['land']=[[[[-200,-100],[200,-100],[200,600],[-200,600]]]];f=feature(x=40,z=70)
+  self.assertEqual(select_footprints(m,{'features':[f]}),[])
+  self.assertEqual(len(select_footprints(m,{'features':[f]},max_coast_distance=500)),1)
+  self.assertEqual(select_footprints(m,{'features':[feature(x=40,z=450)]},max_coast_distance=500),[])
 if __name__=='__main__':unittest.main()

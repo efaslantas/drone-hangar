@@ -12,6 +12,7 @@ import {finishSileFoliage} from './sile-foliage.js';
 import {addFacadeDepth} from './sile-architectural.js';
 import {applyBuildingPads} from './sile-pads.js';
 import * as THREE from 'three';
+import {mappedParkingSurfaces,addMappedParking} from './sile-parking.js';
 import {planSileContext} from './sile-context.js';
 import {addSileContext} from './sile-context-view.js';
 import {mergeGeometries,mergeVertices} from 'three/addons/utils/BufferGeometryUtils.js';
@@ -51,7 +52,7 @@ export function buildSile(scene,data){
  if(!data)throw new Error('Şile verisi önce yüklenmeli.');
  const timings=[];let stamp=performance.now();const mark=name=>{const now=performance.now();timings.push({name,ms:now-stamp});stamp=now;};
  data=completedSileData(data);
- const coastal=coastalBuildings(data),streets=streetLayout(data,coastal);
+ const coastal=coastalBuildings(data),district=data.completionLayer===1?coastalBuildings(data,{maxDistance:350}):coastal,streets=streetLayout(data,coastal);
  const site=castleSite(data),sourceTerrain=site?.terrain||data.terrain,patches=sourceCoastPatches(data,sourceTerrain,{exactSand:true}),sand=streetRemainder(patches.sand,streets),beach=buildBeachApproach(data,sourceTerrain,sand),terrain=beach?{...sourceTerrain,beachSurface:beach.surface}:sourceTerrain,sourceItems=[...data.buildings,...data.structures].map(item=>site&&item===site.source?site.castle:item),play={bounds:{minx:terrain.bounds[0],maxx:terrain.bounds[1],minz:terrain.bounds[2],maxz:terrain.bounds[3]},ceil:Math.max(...terrain.heights)-terrain.datum+160,terrain,prisms:sourceItems.map(prismRecord),boxes:[],spawn:{x:0,z:0},trainingOnly:true};
  if(beach){patches.sand=beach.surface.positions;scene.userData.sileBeachStats=beach.stats;}
  mark('source-partitions');
@@ -65,7 +66,8 @@ export function buildSile(scene,data){
  const street=streetSurfaces(data,soil,streets);
  const harbour=harbourSurfaces(data,coastGround(data,street.ground,{exactSand:true,terrain:sourceTerrain}));
  const aprons=buildingAprons(data,harbour.ground,coastal);
- const rawGround=geometry(refineNeighbourhoodGround(aprons.ground,coastal),true);rawGround.deleteAttribute('normal');
+ const parking=mappedParkingSurfaces(data,aprons.ground);addMappedParking(scene,parking.paved);
+ const rawGround=geometry(refineNeighbourhoodGround(parking.ground,coastal),true);rawGround.deleteAttribute('normal');
  const smoothGround=mergeVertices(rawGround,.001);smoothGround.computeVertexNormals();rawGround.dispose();
  const ground=new THREE.Mesh(smoothGround,groundMat);ground.name='sile-terrain';ground.userData.groundSurface=true;ground.receiveShadow=true;scene.add(ground);
  if(harbour.paved.length){const paved=new THREE.Mesh(geometry(harbour.paved,true),harbourMaterial());paved.name='sile-harbour-paved';paved.userData.groundSurface=true;paved.receiveShadow=true;scene.add(paved);}
@@ -115,10 +117,10 @@ export function buildSile(scene,data){
    // Keep the full source envelope for layout/broadphase consumers; the body
    // ends at the uploaded eave and the drawn shell owns the sloped top.
    play.prisms[itemIndex].roofEaves=Math.fround(roof.eaves);
-   for(const group of g.groups)if(group.materialIndex===1){const p=[];for(let i=group.start;i<group.start+group.count;i++)p.push(source.getX(i),source.getY(i),source.getZ(i));const wall=geometry(p);contacts(wall,'wall',coastal.has(item.id)?'sile-coastal-facades':'sile-buildings-'+wallIndex);wall.dispose();}
+   for(const group of g.groups)if(group.materialIndex===1){const p=[];for(let i=group.start;i<group.start+group.count;i++)p.push(source.getX(i),source.getY(i),source.getZ(i));const wall=geometry(p);contacts(wall,'wall',district.has(item.id)?'sile-coastal-facades':'sile-buildings-'+wallIndex);wall.dispose();}
   }
   for(const group of g.groups){
-   if(coastal.has(item.id)&&group.materialIndex===1)continue;
+   if(district.has(item.id)&&group.materialIndex===1)continue;
    if(contextPlan.valid&&item.kind==='pier'&&group.materialIndex===0)continue;
    if(roof&&group.materialIndex===0)continue;
    const p=[];for(let i=group.start;i<group.start+group.count;i++)p.push(source.getX(i),source.getY(i),source.getZ(i));
@@ -132,7 +134,7 @@ export function buildSile(scene,data){
    const part=geometry(roof.positions),tint=new THREE.Color([0x9e6a50,0xa77c61,0x986c53,0xb18b70,0x8f7060][Math.abs(item.id)%5]),colors=[];
    part.setAttribute('uv',new THREE.Float32BufferAttribute(roof.uv,2));for(let i=0;i<roof.positions.length;i+=3)colors.push(tint.r,tint.g,tint.b);
    part.setAttribute('color',new THREE.Float32BufferAttribute(colors,3));contacts(part,'roof','sile-buildings-0');batches[0].push(part);
-   const end=geometry(roof.gables);contacts(end,'gable',coastal.has(item.id)?'sile-coastal-facades':'sile-buildings-'+wallIndex);if(!coastal.has(item.id)){end.setAttribute('uv',new THREE.Float32BufferAttribute(Array(roof.gables.length/3).fill([.03,.03]).flat(),2));batches[wallIndex].push(end);}else end.dispose();gabled++;
+   const end=geometry(roof.gables);contacts(end,'gable',district.has(item.id)?'sile-coastal-facades':'sile-buildings-'+wallIndex);if(!district.has(item.id)){end.setAttribute('uv',new THREE.Float32BufferAttribute(Array(roof.gables.length/3).fill([.03,.03]).flat(),2));batches[wallIndex].push(end);}else end.dispose();gabled++;
   }
   g.dispose();
  }
@@ -161,12 +163,12 @@ export function buildSile(scene,data){
  addSileContext(scene,data,play,contextPlan);
  addSileHarbour(scene,data,play);
  mark('context-harbour');
- addCoastalBuildings(scene,data,play,coastal);
+ addCoastalBuildings(scene,data,play,district,{balconyProfiles:coastal});
  addNeighbourhood(scene,data,play,coastal);
  addBuildingFoundations(scene,play,coastal);
  mark('coastal-facades-neighbourhood');
  applyBuildingPads(scene,data,play,coastal,streets);
- alignCompletedEntries(scene,play,coastal,data);
+ alignCompletedEntries(scene,play,coastal,data,district);
  mark('building-pads');
  addMooringLinks(scene,data,play);
  addShoreArmour(scene,data,play,rockFinish.dry);

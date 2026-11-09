@@ -131,3 +131,6 @@ CPU sahne hazırlığı arka plan worker'da aynı geometriyle yapılır; önizle
 ## 2.57 — Şile hazırlığında işlem sınırları
 
 Sahne çözümleme21.5ms,metadata4ms ve fizik verisi kopyalama26.2ms aynı tarayıcı işinde birikerek73ms blok oluşturuyordu. Mevcut kare/iptal sınırları ilk allocationöncesine,sahneilefizikverisiarasına ve son temas indeksiöncesine eklendi. Son native kayıtta yalnız sahne hazırlığı aralığında50msüzeri iş görülmedi;ilkGPU/composer241ms ve başlangıçmodülü67ms ayrı kalır. Soğuk hazırlık~34s olarak ölçüldü, yükleme hızgarantisi verilmez. İptal/tekraraçma ve aynı görünür/fizikselbufferlar doğrulandı;harita verisi/fizik/kumanda ayarları korunur. Tek kabul kaydı `docs/sile-completion-acceptance.json` içindeki `followups.loading257`;TX15/kullanıcı kabulü yapılmadı.
+
+
+Şile 2.58 kıyı yerleşimi: 129 ek kaynak izinden 119 uygun yapı, 350 m kuşağında 680 temsili OSM cephesi. ESA WorldCover 2021 v200 (CC BY 4.0) özgün piksel kesiti bitki örtüsüne yön verir; OSM alanları önceliklidir. 1.600 ağaç bütçesi kıyıya öncelik verir; 420 temsili yaz şemsiyesi ve OSM otopark yüzeyleri eklenir. Park çizgileri varsayımsaldır. Ölçülmüş dijital ikiz veya fiziksel TX15 kabulü değildir. Kaynaklar ve lisanslar `/sile.html` sayfasındadır. Kullanıcının 2.57 görsel reddi tarihsel kabul raporunda korunur.

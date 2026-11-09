@@ -17,7 +17,7 @@ export function coastalFacadeGeometry(profiles){
  const geometry=new THREE.BufferGeometry();geometry.setAttribute('position',new THREE.Float32BufferAttribute(positions,3));geometry.setAttribute('uv',new THREE.Float32BufferAttribute(uv,2));geometry.setAttribute('color',new THREE.Float32BufferAttribute(colors,3));geometry.computeVertexNormals();return {geometry,facades};
 }
 export function refreshCoastalFacades(scene,profiles){const mesh=scene.getObjectByName('sile-coastal-facades');if(!mesh)return;const old=mesh.geometry;mesh.geometry=coastalFacadeGeometry(profiles).geometry;old.dispose();}
-export function addCoastalBuildings(scene,data,play,profiles){
+export function addCoastalBuildings(scene,data,play,profiles,{balconyProfiles=profiles}={}){
  if(!profiles.size)return;
  const {geometry:wallGeometry,facades}=coastalFacadeGeometry(profiles),walls=new THREE.Mesh(wallGeometry,wallMaterial());walls.name='sile-coastal-facades';walls.castShadow=true;walls.receiveShadow=true;scene.add(walls);
  const geometry=new THREE.BoxGeometry(1,1,1);geometry.computeBoundingBox();const groups=new Map();let balconies=0;
@@ -32,6 +32,7 @@ export function addCoastalBuildings(scene,data,play,profiles){
  }
  const overlap=(a,b)=>a.minx<b.maxx&&a.maxx>b.minx&&a.miny<b.maxy&&a.maxy>b.miny&&a.minz<b.maxz&&a.maxz>b.minz;
  for(const {profile:p,facade}of facades){
+  if(!balconyProfiles.has(p.item.id))continue;
   if(balconies>=160)break;const ownIndex=data.buildings.indexOf(p.item),vx=p.shore[0]-p.center[0],vz=p.shore[1]-p.center[1];let best=-Infinity,edge=-1;
   for(const c of facade.cells){const facing=c.nx*vx+c.nz*vz;if(facing>best){best=facing;edge=c.edge;}}
   for(const cell of facade.cells){

@@ -10,7 +10,7 @@
 
 **Spec:** Bu belgedeki kapsam ve kabul sözleşmesi; başlangıç bulguları `docs/sile-realism-audit-2026-11-08.md`, güncel teslim `docs/sile-pavilion-validation.json`.
 
-**Durum:** Kullanıcı 9 Kasım 2026 tarihinde uygulamayı istedi; yazılım uygulaması ve kabulü tamamlandı; canlı dağıtım doğrulaması bekleniyor. Başlangıç main `264a7725c533295c0103fc7fd661159439c3ab81`, canlı `v2.55.0-6f8e573f64c1`. Tamamlama sürümü2.56.0.
+**Durum:** Kullanıcı 9 Kasım 2026 tarihinde uygulamayı istedi; yazılım uygulaması ve kabulü tamamlandı; canlı dağıtım doğrulaması tamamlandı. Başlangıç main `264a7725c533295c0103fc7fd661159439c3ab81`, canlı `v2.55.0-6f8e573f64c1`. Tamamlama sürümü2.56.0.
 
 ## Kapsam ve hazır tanımı
 
@@ -127,10 +127,10 @@ Motoru değiştirerek yeniden başlamak mevcut çalışma ve kontrol zincirini t
 
 ### Task 8: Main, canlı ve kullanıcı kabulü
 
-- [ ] Kabul edilmiş commitlerden ARM64 sürüm üret; manifest ve kaynak hashlerini doğrula, main'e birleştir/gönder. Yerelde unutulmuş uygulanmamış dal veya değişiklik bırakma.
-- [ ] Mevcut AWS app-only yöntemiyle yayımla; komşu uygulamaları ve nginx'i koru. HTTPS, WebSocket, kaynak hashleri, canlı Şile açılışı ve kısa canlı rota kontrolü yap; eski sürüm/veri yedeği geri dönüş için dursun.
-- [ ] Kullanıcıya tek canlı adres, altı bölgeli kısa deneme rotası ve karşılaştırma görsellerini ver. Kullanıcının görsel/uçuş kabulünü ayrıca kaydet. Otomatik testler kullanıcının kabulü yerine imzalanmaz.
-- [ ] Kalan belirsizlikler yalnız veri doğruluğu/ölçülmemiş ayrıntılar ve yapılmamış fiziksel testler olabilir; bilinen geometri veya işlev hatası bunların arasına saklanmaz.
+- [x] Kabul edilmiş commitlerden ARM64 sürüm üret; manifest ve kaynak hashlerini doğrula, main'e birleştir/gönder. Yerelde unutulmuş uygulanmamış dal veya değişiklik bırakma.
+- [x] Mevcut AWS app-only yöntemiyle yayımla; komşu uygulamaları ve nginx'i koru. HTTPS, WebSocket, kaynak hashleri, canlı Şile açılışı ve kısa canlı rota kontrolü yap; eski sürüm/veri yedeği geri dönüş için dursun.
+- [x] Kullanıcıya tek canlı adres, altı bölgeli kısa deneme rotası ve karşılaştırma görsellerini ver. Kullanıcının görsel/uçuş kabulünü ayrıca kaydet. Otomatik testler kullanıcının kabulü yerine imzalanmaz.
+- [x] Kalan belirsizlikler yalnız veri doğruluğu/ölçülmemiş ayrıntılar ve yapılmamış fiziksel testler olabilir; bilinen geometri veya işlev hatası bunların arasına saklanmaz.
 
 ## İncelemede özellikle aranacak durumlar
 
@@ -154,3 +154,5 @@ Task3–7 işaretleri temsili yazılım/model teslimini ifade eder.149aday kayna
 12rota geometrik temas tekrarlarıdır; manuel/kapalıçevrim altı uçuşun yerine geçtiği iddia edilmez. Yan/tavan/kenar/hızlı temas, reset/pause/kalite eşitliği mevcut testlerle doğrulandı.15dakika kaydı sabitbölge kameralarında gerçek renderer/composer içindir, tam uygulama manuel uçuşu değildir.50ms hazırlık hedefi son native oturumda76/217ms initialization ve118ms ön-kayıt etkileşim bloklarıyla kaçırıldı; çok-saniyelik CPU hazırlığı worker'a alındı, iptal/retry doğrulandı. Bu istisnalar kabul raporunda saklanır.
 
 FizikselTX15 ve kullanıcı kabulü **not-run**; ilgili Task6 cihaz maddesi kontrol prosedürünün ayrılıp kaydedildiğini ifade eder, cihaz testinin geçtiğini ifade etmez. Son rapor docs/sile-completion-acceptance.json. Ölçülü saha modeline dönüşüm ek veri gerektirir.
+
+Canlı teslim: v2.56.0-618a82e72259; kullanıcı/TX15 kabulü raporda not-run kalır.

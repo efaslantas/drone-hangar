@@ -1209,5 +1209,72 @@
         "jsHeapUsedBytes": 404962623
       }
     ]
+  },
+  "delivery": {
+    "status": "published",
+    "release": "v2.56.0-618a82e72259",
+    "image": {
+      "release": "v2.56.0-618a82e72259",
+      "imageId": "sha256:ee037f8ddd72603aa9514e22f8e1ad80ff02fa42fd43aaaf0ac3cabdff06ad46",
+      "archiveSha256": "6d95112f50143d53d5021ccfdd24eeea081da2f4484e66e7e5fde8ebeb9a4b79",
+      "archiveBytes": 144649760,
+      "architecture": "arm64",
+      "sourceFiles": 445
+    },
+    "sourceFiles": 445,
+    "originalGisFilesUnchanged": 29,
+    "https": {
+      "release": "v2.56.0-618a82e72259",
+      "entryAssets": 5,
+      "uniqueIds": 253,
+      "appVersion": "2.56.0",
+      "lazyGpuChunks": [
+        "gfx-webgpu-BPv6_-0D.js"
+      ],
+      "sceneWorkerChunks": [
+        "sile-scene-worker-DbPcViaZ.js"
+      ],
+      "liveSkyOrderFix": true,
+      "mapAndSourceSha256": "pass"
+    },
+    "websocket": {
+      "clients": 2,
+      "join": "pass",
+      "state": "pass",
+      "leave": "pass"
+    },
+    "remote": {
+      "Status": "Success",
+      "StandardOutputContent": "Running image source hashes: 134 OK\ndrone-hangar | 26.6MiB / 256MiB | 0.78%\n{\"running\": true, \"restarts\": 0, \"readonly\": true, \"user\": \"1000:1000\", \"image\": \"sha256:ee037f8ddd72603aa9514e22f8e1ad80ff02fa42fd43aaaf0ac3cabdff06ad46\"}\nSeven tenants/nginx unchanged; old container/data backup retained\nhttps://zenth.finance/ 200\nhttps://api.zenth.finance/health 200\nGelisim TLS origin 200\n",
+      "StandardErrorContent": "nginx: the configuration file /etc/nginx/nginx.conf syntax is ok\nnginx: configuration file /etc/nginx/nginx.conf test is successful\n"
+    },
+    "nativeLive": {
+      "screenshot": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-live-256.png",
+      "shortKeyboardSmoke": "ARM, W1200ms yielded71kmh/14AGL; further lift/pitch, pause23kmh/65AGL stable; resume, later hard landing as expected; menu restart0/DISARM; ARM thenR150ms resets0/DISARM. This is smoke testing, not calibrated/manual regional flight or TX15 acceptance.",
+      "finalState": "DISARM,0kmh,0mAGL,REF4MACROREAL",
+      "console": [
+        {
+          "level": "error",
+          "message": "Error: A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received",
+          "timestamp": "2026-11-09T16:03:47.098Z",
+          "url": "https://hangar.18-153-158-209.sslip.io/"
+        },
+        {
+          "level": "error",
+          "message": "Error: A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received",
+          "timestamp": "2026-11-09T16:03:47.098Z",
+          "url": "https://hangar.18-153-158-209.sslip.io/"
+        },
+        {
+          "level": "error",
+          "message": "Error: A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received",
+          "timestamp": "2026-11-09T16:03:47.098Z",
+          "url": "https://hangar.18-153-158-209.sslip.io/"
+        }
+      ],
+      "consoleScope": "Three browser asynchronous-listener IPC messages recorded; no scene, worker or renderer exception observed. Console is not claimed empty.",
+      "physicalTX15": "not-run",
+      "userAcceptance": "not-run"
+    }
   }
 }

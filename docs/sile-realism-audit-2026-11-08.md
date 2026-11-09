@@ -40,3 +40,14 @@ Microsoft/OvertureMLroofprint verisinden8ek ayak izi sahneye katıldı;14adayın
 ## 9 Kasım devamı — 2.55
 
 Batı limandaki tek ek yapı, işletme fotoğrafı ve yaklaşık konumdan yorumlanan alçak pavyonla değiştirildi. Bina/işletme eşleştirmesi ve 3,15 m saçak/4,35 m tepe ölçülmemiş model varsayımlarıdır. Diğer yedi ek yapı ve kaynak OSM/DSM korunur. Belediye raporundaki balık satış yerleri ayrı kaya dibi yapılarıdır; bunlar pavyonla karıştırılmadı ve çözülmemiş kaya dibi arazi üzerine eklenmedi. Ölçülü bina/yerel arazi açığı sürer. [Teslim kanıtı](sile-pavilion-validation.json).
+
+
+## 2.56 — Şile altı bölgeli toplu teslim
+
+S1Ayazma–S6Ağlayankaya mevcut4.5×2km alanı tek envanter/kabul kaydına bağlandı.135OSM+14Overture aday tek tek kaynak/zemin uygunluğu açısından kaydedildi; fotoğraf eşleştirmesi olmayan bina yüksekliği varsayım kalır.104dekoratif kapı sonzemin kotuna bağlandı,24bina için yalnız gerekli açıklık yüksekliği türetildi. Kaynak OSM/DSM değiştirilmedi. Fener, düşük hizmet evi ve çizgili kuleyle değiştirildi;19m kaynak bildirimi, yatay ölçüler varsayımdır. Genel CC0RockFace03 malzemesi yerel kaya ölçümü değildir. Kaya UV/gölge konumu düzeltildi.
+
+CPU sahne hazırlığı arka plan worker'da aynı geometriyle yapılır; önizleme/uçuş hazırlığı paylaşır, iptal/tekrar açma desteklenir. Tam worker roundtrip bütün mesh bufferları/temas üçgenlerini korur. Bu performans oturumunda hazırlık10.97s; hazırlıkta ölçülen kısa ana iş parçacığı blokları50ms hedefini aşar (ham kayıt raporda). İlk ayrı WebGL görünümü12.3s ölçüldü. Hız garantisi verilmez.
+
+626/626Node22ARM64,son9geometri/worker/gölge,11altyapı/11coğrafya testi ve bağımsız inceleme geçti.12/12iki yönlü3/25mps süpürülen temas rotası geçer; bu kapalı çevrim uçuş/RC kalibrasyonu değildir. NativeWebGL/WebGPU6bölge görüntüleri kontrol edildi. AppleM4/Chrome, WebGL1280×720medium,900.00s görünür sabitbölge kaydı: ortalama60.0–60.0FPS,1%düşük en az53.7FPS. Bu tam uygulamada manuel uçuş ölçümü değildir.
+
+31mDSM, ölçülmemiş bina/mağara ayrıntıları ve kaya dibi balıkçı izlerinin veri açığı sürer. FizikselTX15 ve kullanıcının görsel/uçuş kabulü yapılmadı. [Tek kabul raporu](sile-completion-acceptance.json), [ham performans](sile-completion-performance.json), [rota izi](sile-completion-routes.json).

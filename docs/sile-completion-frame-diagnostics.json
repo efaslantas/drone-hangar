@@ -1,0 +1,140 @@
+[
+  {
+    "region": "S1",
+    "camera": "0",
+    "backend": "webgl",
+    "renderSize": [
+      1280,
+      720
+    ],
+    "quality": "medium",
+    "scope": "Single actual whole composer frame, all passes aggregated; not sustained frame-time benchmark",
+    "render": {
+      "frame": 43,
+      "calls": 46,
+      "triangles": 1265642,
+      "points": 0,
+      "lines": 0
+    },
+    "memory": {
+      "geometries": 32,
+      "textures": 46
+    },
+    "jsHeapUsedBytes": 420647527
+  },
+  {
+    "region": "S2",
+    "camera": "0",
+    "backend": "webgl",
+    "renderSize": [
+      1280,
+      720
+    ],
+    "quality": "medium",
+    "scope": "Single actual whole composer frame, all passes aggregated; not sustained frame-time benchmark",
+    "render": {
+      "frame": 49,
+      "calls": 108,
+      "triangles": 1514267,
+      "points": 0,
+      "lines": 0
+    },
+    "memory": {
+      "geometries": 58,
+      "textures": 74
+    },
+    "jsHeapUsedBytes": 430750837
+  },
+  {
+    "region": "S3",
+    "camera": "0",
+    "backend": "webgl",
+    "renderSize": [
+      1280,
+      720
+    ],
+    "quality": "medium",
+    "scope": "Single actual whole composer frame, all passes aggregated; not sustained frame-time benchmark",
+    "render": {
+      "frame": 55,
+      "calls": 120,
+      "triangles": 1585466,
+      "points": 0,
+      "lines": 0
+    },
+    "memory": {
+      "geometries": 58,
+      "textures": 74
+    },
+    "jsHeapUsedBytes": 403374148
+  },
+  {
+    "region": "S4",
+    "camera": "0",
+    "backend": "webgl",
+    "renderSize": [
+      1280,
+      720
+    ],
+    "quality": "medium",
+    "scope": "Single actual whole composer frame, all passes aggregated; not sustained frame-time benchmark",
+    "render": {
+      "frame": 61,
+      "calls": 105,
+      "triangles": 1496926,
+      "points": 0,
+      "lines": 0
+    },
+    "memory": {
+      "geometries": 58,
+      "textures": 74
+    },
+    "jsHeapUsedBytes": 404044521
+  },
+  {
+    "region": "S5",
+    "camera": "0",
+    "backend": "webgl",
+    "renderSize": [
+      1280,
+      720
+    ],
+    "quality": "medium",
+    "scope": "Single actual whole composer frame, all passes aggregated; not sustained frame-time benchmark",
+    "render": {
+      "frame": 67,
+      "calls": 77,
+      "triangles": 1423960,
+      "points": 0,
+      "lines": 0
+    },
+    "memory": {
+      "geometries": 58,
+      "textures": 74
+    },
+    "jsHeapUsedBytes": 404489425
+  },
+  {
+    "region": "S6",
+    "camera": "0",
+    "backend": "webgl",
+    "renderSize": [
+      1280,
+      720
+    ],
+    "quality": "medium",
+    "scope": "Single actual whole composer frame, all passes aggregated; not sustained frame-time benchmark",
+    "render": {
+      "frame": 73,
+      "calls": 43,
+      "triangles": 1268799,
+      "points": 0,
+      "lines": 0
+    },
+    "memory": {
+      "geometries": 58,
+      "textures": 74
+    },
+    "jsHeapUsedBytes": 404962623
+  }
+]

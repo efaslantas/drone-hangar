@@ -1,6 +1,6 @@
 {
   "date": "2026-11-09",
-  "status": "in-progress",
+  "status": "software-accepted; physical controller and user visual/flight acceptance not run",
   "inventoryVersion": 1,
   "sourceSnapshotKey": "1147718:d3dd4d94:81685aaa",
   "baseline": "v2.55.0-6f8e573f64c1",
@@ -9,32 +9,55 @@
       "id": "S1",
       "checks": {
         "geometry": {
-          "status": "not-run",
-          "evidence": []
+          "status": "pass",
+          "evidence": [
+            "Source-pinned shoreline audit:12087.326m, max conversion difference0.00657m; no new source geometry invented.",
+            "25 shoreline/marine tests; exact actual-worker mesh/physics roundtrip"
+          ]
         },
         "grounding": {
-          "status": "not-run",
-          "evidence": []
+          "status": "pass",
+          "evidence": [
+            "104 derived entries sampled at final padded surface; 3 reviewed post-pad door regressions below2cm.",
+            "sile-completion-world.test.js and final-lighting-geometry.log"
+          ]
         },
         "architecture": {
-          "status": "not-run",
-          "evidence": []
+          "status": "pass",
+          "evidence": [
+            "149 candidates individually inventoried for source/terrain eligibility; unavailable individual photo/height associations remain unknown.",
+            "Existing pavilion profile preserved once; source-specific lighthouse only in S4. Other silhouettes representative, not surveyed."
+          ]
         },
         "landmarks": {
-          "status": "not-run",
-          "evidence": []
+          "status": "pass",
+          "evidence": [
+            "Retained tested shoreline/castle/cave features; S4 banded19m source-reported lighthouse, low keeper house. Horizontal dimensions assumed.",
+            "sile-lighthouse.test.js, existing cave/contact regression suite"
+          ]
         },
         "appearance": {
-          "status": "not-run",
-          "evidence": []
+          "status": "pass",
+          "evidence": [
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S1-sea-webgl.png",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S1-land-webgl.png",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S1-sea-webgpu.png",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S1-land-webgpu.png"
+          ]
         },
         "contacts": {
-          "status": "not-run",
-          "evidence": []
+          "status": "pass",
+          "evidence": [
+            "docs/sile-completion-routes.json: both directions3/25mps,.5m samples,.22m airframe; geometric replay only.",
+            "Actual rendered Float32 triangle surfaces, fast side/ceiling/contact/reset/quality invariants in full test suite."
+          ]
         },
         "backend": {
-          "status": "not-run",
-          "evidence": []
+          "status": "pass",
+          "evidence": [
+            "Native WebGL and WebGPU same fixed camera scene; screenshot evidence.",
+            "Worker roundtrip preserves physical scene independent of visual backend/quality."
+          ]
         }
       }
     },
@@ -42,32 +65,55 @@
       "id": "S2",
       "checks": {
         "geometry": {
-          "status": "not-run",
-          "evidence": []
+          "status": "pass",
+          "evidence": [
+            "Source-pinned shoreline audit:12087.326m, max conversion difference0.00657m; no new source geometry invented.",
+            "25 shoreline/marine tests; exact actual-worker mesh/physics roundtrip"
+          ]
         },
         "grounding": {
-          "status": "not-run",
-          "evidence": []
+          "status": "pass",
+          "evidence": [
+            "104 derived entries sampled at final padded surface; 3 reviewed post-pad door regressions below2cm.",
+            "sile-completion-world.test.js and final-lighting-geometry.log"
+          ]
         },
         "architecture": {
-          "status": "not-run",
-          "evidence": []
+          "status": "pass",
+          "evidence": [
+            "149 candidates individually inventoried for source/terrain eligibility; unavailable individual photo/height associations remain unknown.",
+            "Existing pavilion profile preserved once; source-specific lighthouse only in S4. Other silhouettes representative, not surveyed."
+          ]
         },
         "landmarks": {
-          "status": "not-run",
-          "evidence": []
+          "status": "pass",
+          "evidence": [
+            "Retained tested shoreline/castle/cave features; S4 banded19m source-reported lighthouse, low keeper house. Horizontal dimensions assumed.",
+            "sile-lighthouse.test.js, existing cave/contact regression suite"
+          ]
         },
         "appearance": {
-          "status": "not-run",
-          "evidence": []
+          "status": "pass",
+          "evidence": [
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S2-sea-webgl.png",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S2-land-webgl.png",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S2-sea-webgpu.png",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S2-land-webgpu.png"
+          ]
         },
         "contacts": {
-          "status": "not-run",
-          "evidence": []
+          "status": "pass",
+          "evidence": [
+            "docs/sile-completion-routes.json: both directions3/25mps,.5m samples,.22m airframe; geometric replay only.",
+            "Actual rendered Float32 triangle surfaces, fast side/ceiling/contact/reset/quality invariants in full test suite."
+          ]
         },
         "backend": {
-          "status": "not-run",
-          "evidence": []
+          "status": "pass",
+          "evidence": [
+            "Native WebGL and WebGPU same fixed camera scene; screenshot evidence.",
+            "Worker roundtrip preserves physical scene independent of visual backend/quality."
+          ]
         }
       }
     },
@@ -75,32 +121,55 @@
       "id": "S3",
       "checks": {
         "geometry": {
-          "status": "not-run",
-          "evidence": []
+          "status": "pass",
+          "evidence": [
+            "Source-pinned shoreline audit:12087.326m, max conversion difference0.00657m; no new source geometry invented.",
+            "25 shoreline/marine tests; exact actual-worker mesh/physics roundtrip"
+          ]
         },
         "grounding": {
-          "status": "not-run",
-          "evidence": []
+          "status": "pass",
+          "evidence": [
+            "104 derived entries sampled at final padded surface; 3 reviewed post-pad door regressions below2cm.",
+            "sile-completion-world.test.js and final-lighting-geometry.log"
+          ]
         },
         "architecture": {
-          "status": "not-run",
-          "evidence": []
+          "status": "pass",
+          "evidence": [
+            "149 candidates individually inventoried for source/terrain eligibility; unavailable individual photo/height associations remain unknown.",
+            "Existing pavilion profile preserved once; source-specific lighthouse only in S4. Other silhouettes representative, not surveyed."
+          ]
         },
         "landmarks": {
-          "status": "not-run",
-          "evidence": []
+          "status": "pass",
+          "evidence": [
+            "Retained tested shoreline/castle/cave features; S4 banded19m source-reported lighthouse, low keeper house. Horizontal dimensions assumed.",
+            "sile-lighthouse.test.js, existing cave/contact regression suite"
+          ]
         },
         "appearance": {
-          "status": "not-run",
-          "evidence": []
+          "status": "pass",
+          "evidence": [
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S3-sea-webgl.png",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S3-land-webgl.png",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S3-sea-webgpu.png",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S3-land-webgpu.png"
+          ]
         },
         "contacts": {
-          "status": "not-run",
-          "evidence": []
+          "status": "pass",
+          "evidence": [
+            "docs/sile-completion-routes.json: both directions3/25mps,.5m samples,.22m airframe; geometric replay only.",
+            "Actual rendered Float32 triangle surfaces, fast side/ceiling/contact/reset/quality invariants in full test suite."
+          ]
         },
         "backend": {
-          "status": "not-run",
-          "evidence": []
+          "status": "pass",
+          "evidence": [
+            "Native WebGL and WebGPU same fixed camera scene; screenshot evidence.",
+            "Worker roundtrip preserves physical scene independent of visual backend/quality."
+          ]
         }
       }
     },
@@ -108,32 +177,55 @@
       "id": "S4",
       "checks": {
         "geometry": {
-          "status": "not-run",
-          "evidence": []
+          "status": "pass",
+          "evidence": [
+            "Source-pinned shoreline audit:12087.326m, max conversion difference0.00657m; no new source geometry invented.",
+            "25 shoreline/marine tests; exact actual-worker mesh/physics roundtrip"
+          ]
         },
         "grounding": {
-          "status": "not-run",
-          "evidence": []
+          "status": "pass",
+          "evidence": [
+            "104 derived entries sampled at final padded surface; 3 reviewed post-pad door regressions below2cm.",
+            "sile-completion-world.test.js and final-lighting-geometry.log"
+          ]
         },
         "architecture": {
-          "status": "not-run",
-          "evidence": []
+          "status": "pass",
+          "evidence": [
+            "149 candidates individually inventoried for source/terrain eligibility; unavailable individual photo/height associations remain unknown.",
+            "Existing pavilion profile preserved once; source-specific lighthouse only in S4. Other silhouettes representative, not surveyed."
+          ]
         },
         "landmarks": {
-          "status": "not-run",
-          "evidence": []
+          "status": "pass",
+          "evidence": [
+            "Retained tested shoreline/castle/cave features; S4 banded19m source-reported lighthouse, low keeper house. Horizontal dimensions assumed.",
+            "sile-lighthouse.test.js, existing cave/contact regression suite"
+          ]
         },
         "appearance": {
-          "status": "not-run",
-          "evidence": []
+          "status": "pass",
+          "evidence": [
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S4-sea-webgl.png",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S4-land-webgl.png",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S4-sea-webgpu.png",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S4-land-webgpu.png"
+          ]
         },
         "contacts": {
-          "status": "not-run",
-          "evidence": []
+          "status": "pass",
+          "evidence": [
+            "docs/sile-completion-routes.json: both directions3/25mps,.5m samples,.22m airframe; geometric replay only.",
+            "Actual rendered Float32 triangle surfaces, fast side/ceiling/contact/reset/quality invariants in full test suite."
+          ]
         },
         "backend": {
-          "status": "not-run",
-          "evidence": []
+          "status": "pass",
+          "evidence": [
+            "Native WebGL and WebGPU same fixed camera scene; screenshot evidence.",
+            "Worker roundtrip preserves physical scene independent of visual backend/quality."
+          ]
         }
       }
     },
@@ -141,32 +233,55 @@
       "id": "S5",
       "checks": {
         "geometry": {
-          "status": "not-run",
-          "evidence": []
+          "status": "pass",
+          "evidence": [
+            "Source-pinned shoreline audit:12087.326m, max conversion difference0.00657m; no new source geometry invented.",
+            "25 shoreline/marine tests; exact actual-worker mesh/physics roundtrip"
+          ]
         },
         "grounding": {
-          "status": "not-run",
-          "evidence": []
+          "status": "pass",
+          "evidence": [
+            "104 derived entries sampled at final padded surface; 3 reviewed post-pad door regressions below2cm.",
+            "sile-completion-world.test.js and final-lighting-geometry.log"
+          ]
         },
         "architecture": {
-          "status": "not-run",
-          "evidence": []
+          "status": "pass",
+          "evidence": [
+            "149 candidates individually inventoried for source/terrain eligibility; unavailable individual photo/height associations remain unknown.",
+            "Existing pavilion profile preserved once; source-specific lighthouse only in S4. Other silhouettes representative, not surveyed."
+          ]
         },
         "landmarks": {
-          "status": "not-run",
-          "evidence": []
+          "status": "pass",
+          "evidence": [
+            "Retained tested shoreline/castle/cave features; S4 banded19m source-reported lighthouse, low keeper house. Horizontal dimensions assumed.",
+            "sile-lighthouse.test.js, existing cave/contact regression suite"
+          ]
         },
         "appearance": {
-          "status": "not-run",
-          "evidence": []
+          "status": "pass",
+          "evidence": [
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S5-sea-webgl.png",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S5-land-webgl.png",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S5-sea-webgpu.png",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S5-land-webgpu.png"
+          ]
         },
         "contacts": {
-          "status": "not-run",
-          "evidence": []
+          "status": "pass",
+          "evidence": [
+            "docs/sile-completion-routes.json: both directions3/25mps,.5m samples,.22m airframe; geometric replay only.",
+            "Actual rendered Float32 triangle surfaces, fast side/ceiling/contact/reset/quality invariants in full test suite."
+          ]
         },
         "backend": {
-          "status": "not-run",
-          "evidence": []
+          "status": "pass",
+          "evidence": [
+            "Native WebGL and WebGPU same fixed camera scene; screenshot evidence.",
+            "Worker roundtrip preserves physical scene independent of visual backend/quality."
+          ]
         }
       }
     },
@@ -174,32 +289,55 @@
       "id": "S6",
       "checks": {
         "geometry": {
-          "status": "not-run",
-          "evidence": []
+          "status": "pass",
+          "evidence": [
+            "Source-pinned shoreline audit:12087.326m, max conversion difference0.00657m; no new source geometry invented.",
+            "25 shoreline/marine tests; exact actual-worker mesh/physics roundtrip"
+          ]
         },
         "grounding": {
-          "status": "not-run",
-          "evidence": []
+          "status": "pass",
+          "evidence": [
+            "104 derived entries sampled at final padded surface; 3 reviewed post-pad door regressions below2cm.",
+            "sile-completion-world.test.js and final-lighting-geometry.log"
+          ]
         },
         "architecture": {
-          "status": "not-run",
-          "evidence": []
+          "status": "pass",
+          "evidence": [
+            "149 candidates individually inventoried for source/terrain eligibility; unavailable individual photo/height associations remain unknown.",
+            "Existing pavilion profile preserved once; source-specific lighthouse only in S4. Other silhouettes representative, not surveyed."
+          ]
         },
         "landmarks": {
-          "status": "not-run",
-          "evidence": []
+          "status": "pass",
+          "evidence": [
+            "Retained tested shoreline/castle/cave features; S4 banded19m source-reported lighthouse, low keeper house. Horizontal dimensions assumed.",
+            "sile-lighthouse.test.js, existing cave/contact regression suite"
+          ]
         },
         "appearance": {
-          "status": "not-run",
-          "evidence": []
+          "status": "pass",
+          "evidence": [
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S6-sea-webgl.png",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S6-land-webgl.png",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S6-sea-webgpu.png",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S6-land-webgpu.png"
+          ]
         },
         "contacts": {
-          "status": "not-run",
-          "evidence": []
+          "status": "pass",
+          "evidence": [
+            "docs/sile-completion-routes.json: both directions3/25mps,.5m samples,.22m airframe; geometric replay only.",
+            "Actual rendered Float32 triangle surfaces, fast side/ceiling/contact/reset/quality invariants in full test suite."
+          ]
         },
         "backend": {
-          "status": "not-run",
-          "evidence": []
+          "status": "pass",
+          "evidence": [
+            "Native WebGL and WebGPU same fixed camera scene; screenshot evidence.",
+            "Worker roundtrip preserves physical scene independent of visual backend/quality."
+          ]
         }
       }
     }
@@ -231,6 +369,7 @@
         25
       ],
       "airframeSizeM": 0.22,
+      "sampleStepM": 0.5,
       "samples": 826,
       "status": "pass",
       "failures": [],
@@ -264,6 +403,7 @@
         25
       ],
       "airframeSizeM": 0.22,
+      "sampleStepM": 0.5,
       "samples": 826,
       "status": "pass",
       "failures": [],
@@ -297,6 +437,7 @@
         25
       ],
       "airframeSizeM": 0.22,
+      "sampleStepM": 0.5,
       "samples": 896,
       "status": "pass",
       "failures": [],
@@ -330,6 +471,7 @@
         25
       ],
       "airframeSizeM": 0.22,
+      "sampleStepM": 0.5,
       "samples": 896,
       "status": "pass",
       "failures": [],
@@ -363,6 +505,7 @@
         25
       ],
       "airframeSizeM": 0.22,
+      "sampleStepM": 0.5,
       "samples": 532,
       "status": "pass",
       "failures": [],
@@ -396,6 +539,7 @@
         25
       ],
       "airframeSizeM": 0.22,
+      "sampleStepM": 0.5,
       "samples": 532,
       "status": "pass",
       "failures": [],
@@ -424,6 +568,7 @@
         25
       ],
       "airframeSizeM": 0.22,
+      "sampleStepM": 0.5,
       "samples": 130,
       "status": "pass",
       "failures": [],
@@ -452,6 +597,7 @@
         25
       ],
       "airframeSizeM": 0.22,
+      "sampleStepM": 0.5,
       "samples": 130,
       "status": "pass",
       "failures": [],
@@ -480,6 +626,7 @@
         25
       ],
       "airframeSizeM": 0.22,
+      "sampleStepM": 0.5,
       "samples": 146,
       "status": "pass",
       "failures": [],
@@ -508,6 +655,7 @@
         25
       ],
       "airframeSizeM": 0.22,
+      "sampleStepM": 0.5,
       "samples": 146,
       "status": "pass",
       "failures": [],
@@ -541,6 +689,7 @@
         25
       ],
       "airframeSizeM": 0.22,
+      "sampleStepM": 0.5,
       "samples": 772,
       "status": "pass",
       "failures": [],
@@ -574,6 +723,7 @@
         25
       ],
       "airframeSizeM": 0.22,
+      "sampleStepM": 0.5,
       "samples": 772,
       "status": "pass",
       "failures": [],
@@ -583,17 +733,481 @@
     }
   ],
   "performance": {
-    "status": "not-run"
+    "status": "complete",
+    "hiddenMs": 0,
+    "backend": "webgl",
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+    "renderSize": [
+      1280,
+      720
+    ],
+    "quality": "medium",
+    "buildMs": 10969.699999988079,
+    "durationSeconds": 900.0036999999941,
+    "scope": "Actual scene + desktop medium shadows1024,AA and composer at fixed1280x720; static regional cameras; not full app/manual or physics flight acceptance",
+    "mainThreadPreparationTasks": [
+      {
+        "start": 10054.699999988079,
+        "duration": 76
+      },
+      {
+        "start": 11170.199999988079,
+        "duration": 217
+      },
+      {
+        "start": 104743.40000000596,
+        "duration": 118
+      }
+    ],
+    "regions": [
+      {
+        "id": "S1",
+        "renderer": {
+          "render": {
+            "frame": 27052,
+            "calls": 1,
+            "triangles": 1,
+            "points": 0,
+            "lines": 0
+          },
+          "memory": {
+            "geometries": 58,
+            "textures": 74
+          },
+          "jsHeapUsedBytes": 400181132
+        },
+        "durationSeconds": 146.9997,
+        "frames": 8820,
+        "fps": 60.000122449229494,
+        "low1PercentFps": 56.425537310563236,
+        "maxFrameMs": 17.800000000017462
+      },
+      {
+        "id": "S2",
+        "renderer": {
+          "render": {
+            "frame": 54055,
+            "calls": 1,
+            "triangles": 1,
+            "points": 0,
+            "lines": 0
+          },
+          "memory": {
+            "geometries": 58,
+            "textures": 74
+          },
+          "jsHeapUsedBytes": 401397450
+        },
+        "durationSeconds": 150.00090000000003,
+        "frames": 9000,
+        "fps": 59.99964000215998,
+        "low1PercentFps": 54.5058139534755,
+        "maxFrameMs": 18.79999999998836
+      },
+      {
+        "id": "S3",
+        "renderer": {
+          "render": {
+            "frame": 81058,
+            "calls": 1,
+            "triangles": 1,
+            "points": 0,
+            "lines": 0
+          },
+          "memory": {
+            "geometries": 58,
+            "textures": 74
+          },
+          "jsHeapUsedBytes": 406704101
+        },
+        "durationSeconds": 149.99889999999996,
+        "frames": 9000,
+        "fps": 60.00044000322671,
+        "low1PercentFps": 53.71210312724435,
+        "maxFrameMs": 18.79999999998836
+      },
+      {
+        "id": "S4",
+        "renderer": {
+          "render": {
+            "frame": 108061,
+            "calls": 1,
+            "triangles": 1,
+            "points": 0,
+            "lines": 0
+          },
+          "memory": {
+            "geometries": 58,
+            "textures": 74
+          },
+          "jsHeapUsedBytes": 403008886
+        },
+        "durationSeconds": 149.999,
+        "frames": 9000,
+        "fps": 60.00040000266669,
+        "low1PercentFps": 56.436947388052104,
+        "maxFrameMs": 17.800000000046566
+      },
+      {
+        "id": "S5",
+        "renderer": {
+          "render": {
+            "frame": 135064,
+            "calls": 1,
+            "triangles": 1,
+            "points": 0,
+            "lines": 0
+          },
+          "memory": {
+            "geometries": 58,
+            "textures": 74
+          },
+          "jsHeapUsedBytes": 405937657
+        },
+        "durationSeconds": 150.00059999999996,
+        "frames": 9000,
+        "fps": 59.99976000096,
+        "low1PercentFps": 56.447566482515484,
+        "maxFrameMs": 17.800000000046566
+      },
+      {
+        "id": "S6",
+        "renderer": {
+          "render": {
+            "frame": 162070,
+            "calls": 1,
+            "triangles": 1,
+            "points": 0,
+            "lines": 0
+          },
+          "memory": {
+            "geometries": 58,
+            "textures": 74
+          },
+          "jsHeapUsedBytes": 402097699
+        },
+        "durationSeconds": 150.01640000000003,
+        "frames": 9001,
+        "fps": 60.00010665500571,
+        "low1PercentFps": 56.45161290301789,
+        "maxFrameMs": 17.800000000046566
+      }
+    ],
+    "rendererStatsScope": "renderer.info.render is the final composer render pass, not an aggregate full-frame draw-call count; memory is renderer geometry/texture counts, jsHeapUsedBytes is Chrome optional JS heap, not GPU bytes.",
+    "evidence": [
+      "docs/sile-completion-performance.json"
+    ],
+    "coldLoadScope": "Includes real source preparation and scanned asset loading. GPU runs occurred under concurrent CPU load; no cold-load speed guarantee."
   },
   "physicalTX15": {
-    "status": "not-run"
+    "status": "not-run",
+    "reason": "Requires user with physical TX15; no hardware flight signed by software tests."
   },
   "humanAcceptance": {
-    "status": "not-run"
+    "status": "not-run",
+    "reason": "User has not yet accepted the new live release."
   },
   "limits": [
     "31mDSM and most building heights remain unmeasured; representative scene, not surveyed digital twin",
     "Routes are geometric swept-contact replay, not closed-loop/manual flight",
-    "Generic CC0rock scan is not Şile geology measurement"
-  ]
+    "Generic CC0rock scan is not Şile geology measurement",
+    "Source building heights remain unknown except documented source-reported landmarks. The 24 derived height clearances and104 decorative entrance elevations are terrain/model assumptions, not measurements.",
+    "No reliable individual photo association for most of the149 inventoried building candidates; only documented pavilion/lighthouse forms received source-specific interpretation. Six steep Overture candidates remain excluded.",
+    "No new fish-market row placed without reliable footprints or local terrain. Existing castle/island and improved2.52 cave forms retained.",
+    "50ms main-thread preparation target not fully achieved: observed76ms hydration and217ms initialization plus118ms pre-benchmark interaction tasks in the final native WebGL session; CPU scene construction is off-thread and cancellation verified. Final benchmark cold build including assets was10.97s; an earlier separate view was12.3s.",
+    "15-minute performance is actual scene/composer with static regional cameras; not full-app flying or TX15 latency calibration. Geometry routes do not self-sign closed-loop aircraft or manual acceptance."
+  ],
+  "device": "Apple M4 Mac mini; native Chrome; browser version in performance.userAgent",
+  "scopeDecisions": [
+    {
+      "topic": "source freeze",
+      "decision": "End source search after inventoried official/OSM/Overture/DSM review; unmeasured building dimensions remain representative. Software appearance acceptance is not factual verification of each building."
+    },
+    {
+      "topic": "existing geometry",
+      "decision": "Retain source-consistent shoreline, castle island and2.52 cave geometry where contact and continuity tests already pass; avoid inventing geography to create a change."
+    },
+    {
+      "topic": "loading target",
+      "decision": "Worker eliminates multi-second synchronous construction. Residual initialization/hydration tasks up to217ms miss50ms target and is reported; visible loading/cancel/retry remains available."
+    }
+  ],
+  "verification": {
+    "node22Arm64": {
+      "passed": 626,
+      "failed": 0,
+      "durationMs": 259134.906471,
+      "log": "node22-acceptance.log"
+    },
+    "postSuiteLightingGeometry": {
+      "passed": 9,
+      "failed": 0,
+      "log": "final-lighting-geometry.log"
+    },
+    "pythonInfrastructure": {
+      "passed": 11,
+      "failed": 0
+    },
+    "pythonGeography": {
+      "passed": 11,
+      "failed": 0
+    },
+    "review": "Three P2 issues reproduced and fixed; targeted re-review clean. Final light-space shadow P2 fixed and reviewer confirmed two tests pass.",
+    "workerRoundtrip": "Every mesh attribute/index/instance matrix and all physical triangle coordinates roundtrip checked; resource ownership separately tested.",
+    "nativeUI": "Local app launch, cancellation, retry, REF4M REAL DISARM0AGL/0kmh observed. Physical TX15 not exercised."
+  },
+  "screenshots": {
+    "S1": [
+      {
+        "path": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S1-sea-webgl.png",
+        "sha256": "d987165431c102ab185efc09cbc3819f9fd14bc58ad945e9eeda452853454b52"
+      },
+      {
+        "path": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S1-land-webgl.png",
+        "sha256": "a087791ab9d0f2fee7c24834024f966845676a4544ee26511b2b61f867914a5d"
+      },
+      {
+        "path": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S1-sea-webgpu.png",
+        "sha256": "6c8ea9d0201df280529618614f0072ed55e4459d8274f1dfb540601b6ed6e408"
+      },
+      {
+        "path": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S1-land-webgpu.png",
+        "sha256": "a0d68e21c6403f33b16007c6731e3ba197c4d6f65435ee0e42e0ad3dbd5a28b9"
+      }
+    ],
+    "S2": [
+      {
+        "path": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S2-sea-webgl.png",
+        "sha256": "23651fe7d7884e033f65cd5d3613ca85219929a1ae3f23b605c9552942d80f1a"
+      },
+      {
+        "path": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S2-land-webgl.png",
+        "sha256": "da3f530035beb6c1ff4239d9b80212edcc9c5c2c55323caa40f84aa15bbdf273"
+      },
+      {
+        "path": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S2-sea-webgpu.png",
+        "sha256": "0ac1d6a729ac37d5c51a2b7b79c142d543bff089354d10a647e009a1a55a42f6"
+      },
+      {
+        "path": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S2-land-webgpu.png",
+        "sha256": "54745142d96c33168d42d1085095322c39f72f40f9ca4fead1e99e652950c829"
+      }
+    ],
+    "S3": [
+      {
+        "path": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S3-sea-webgl.png",
+        "sha256": "14da892bfe134dba78423b9c02b8b807e323253975c91f870dcc8cf095f73ab1"
+      },
+      {
+        "path": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S3-land-webgl.png",
+        "sha256": "670a7c9a55035e953131f4d2247a75b8b90469a3dec4ff491da4c60e3ad9f450"
+      },
+      {
+        "path": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S3-sea-webgpu.png",
+        "sha256": "a7450ee71df2e1140257a3f3e3b8b3e7f2ac7d6f83d798ad2f1c9bae79c1eeb5"
+      },
+      {
+        "path": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S3-land-webgpu.png",
+        "sha256": "ef62e4bdac6690d9d086b2011d464e5c1b00fbcc69a50714ed3af144c4531014"
+      }
+    ],
+    "S4": [
+      {
+        "path": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S4-sea-webgl.png",
+        "sha256": "539cff8412647a0f6779a7c30b65cd196b864e7be1792ea65da46b75097f6852"
+      },
+      {
+        "path": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S4-land-webgl.png",
+        "sha256": "1a34f0c10d7bab69ef4c37434027f59be92dbf7e35b14bcc20537808796ff733"
+      },
+      {
+        "path": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S4-sea-webgpu.png",
+        "sha256": "4387db5c0f703b153013fb007e3626b54ba8cb960870b24617f6a04758abae38"
+      },
+      {
+        "path": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S4-land-webgpu.png",
+        "sha256": "425ec38f0334b92884c269008a872dfd7d13a4901468537ac537306a45b51924"
+      }
+    ],
+    "S5": [
+      {
+        "path": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S5-sea-webgl.png",
+        "sha256": "49f2c1cb84fff8bc214dd0ed51ff37b299e9e977978c0fefa8ecdb856675d5c1"
+      },
+      {
+        "path": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S5-land-webgl.png",
+        "sha256": "5f06e32f161c415aea089d679f2810be83704497525983a25302645430141b27"
+      },
+      {
+        "path": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S5-sea-webgpu.png",
+        "sha256": "d356ac013ae304fb313a67cb89fb348f34c4b0930d97edcfeeb8f17a56ede31a"
+      },
+      {
+        "path": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S5-land-webgpu.png",
+        "sha256": "5b1205f4a965c56b18bd1e149839472fb510e86e59b1e5ebe40f7e7f47a046ec"
+      }
+    ],
+    "S6": [
+      {
+        "path": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S6-sea-webgl.png",
+        "sha256": "3eaea04982c12d2c8bb50ad013600c368147e89f413c5ab9797dd26566398e53"
+      },
+      {
+        "path": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S6-land-webgl.png",
+        "sha256": "026850faf7bb228cd1cf288f1aa0b7d2e1c21135236315818131179b8f6f72b9"
+      },
+      {
+        "path": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S6-sea-webgpu.png",
+        "sha256": "00f2e2e3ad5cc4d7ef5855476b5a2de4189ab3efd0a71ff75ae619200d63b935"
+      },
+      {
+        "path": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-completion-S6-land-webgpu.png",
+        "sha256": "1a4abb786a54cdfa5f81bc41ede8aa22f31deb2a85bebcb93460f3b6f4dcd64b"
+      }
+    ]
+  },
+  "wholeFrameDiagnostics": {
+    "evidence": "docs/sile-completion-frame-diagnostics.json",
+    "scope": "Single whole composer frame including shadow/postprocessing passes; separate from900s sustained timing. Geometry/texture counts are resource counts, not GPU byte usage.",
+    "regions": [
+      {
+        "region": "S1",
+        "camera": "0",
+        "backend": "webgl",
+        "renderSize": [
+          1280,
+          720
+        ],
+        "quality": "medium",
+        "scope": "Single actual whole composer frame, all passes aggregated; not sustained frame-time benchmark",
+        "render": {
+          "frame": 43,
+          "calls": 46,
+          "triangles": 1265642,
+          "points": 0,
+          "lines": 0
+        },
+        "memory": {
+          "geometries": 32,
+          "textures": 46
+        },
+        "jsHeapUsedBytes": 420647527
+      },
+      {
+        "region": "S2",
+        "camera": "0",
+        "backend": "webgl",
+        "renderSize": [
+          1280,
+          720
+        ],
+        "quality": "medium",
+        "scope": "Single actual whole composer frame, all passes aggregated; not sustained frame-time benchmark",
+        "render": {
+          "frame": 49,
+          "calls": 108,
+          "triangles": 1514267,
+          "points": 0,
+          "lines": 0
+        },
+        "memory": {
+          "geometries": 58,
+          "textures": 74
+        },
+        "jsHeapUsedBytes": 430750837
+      },
+      {
+        "region": "S3",
+        "camera": "0",
+        "backend": "webgl",
+        "renderSize": [
+          1280,
+          720
+        ],
+        "quality": "medium",
+        "scope": "Single actual whole composer frame, all passes aggregated; not sustained frame-time benchmark",
+        "render": {
+          "frame": 55,
+          "calls": 120,
+          "triangles": 1585466,
+          "points": 0,
+          "lines": 0
+        },
+        "memory": {
+          "geometries": 58,
+          "textures": 74
+        },
+        "jsHeapUsedBytes": 403374148
+      },
+      {
+        "region": "S4",
+        "camera": "0",
+        "backend": "webgl",
+        "renderSize": [
+          1280,
+          720
+        ],
+        "quality": "medium",
+        "scope": "Single actual whole composer frame, all passes aggregated; not sustained frame-time benchmark",
+        "render": {
+          "frame": 61,
+          "calls": 105,
+          "triangles": 1496926,
+          "points": 0,
+          "lines": 0
+        },
+        "memory": {
+          "geometries": 58,
+          "textures": 74
+        },
+        "jsHeapUsedBytes": 404044521
+      },
+      {
+        "region": "S5",
+        "camera": "0",
+        "backend": "webgl",
+        "renderSize": [
+          1280,
+          720
+        ],
+        "quality": "medium",
+        "scope": "Single actual whole composer frame, all passes aggregated; not sustained frame-time benchmark",
+        "render": {
+          "frame": 67,
+          "calls": 77,
+          "triangles": 1423960,
+          "points": 0,
+          "lines": 0
+        },
+        "memory": {
+          "geometries": 58,
+          "textures": 74
+        },
+        "jsHeapUsedBytes": 404489425
+      },
+      {
+        "region": "S6",
+        "camera": "0",
+        "backend": "webgl",
+        "renderSize": [
+          1280,
+          720
+        ],
+        "quality": "medium",
+        "scope": "Single actual whole composer frame, all passes aggregated; not sustained frame-time benchmark",
+        "render": {
+          "frame": 73,
+          "calls": 43,
+          "triangles": 1268799,
+          "points": 0,
+          "lines": 0
+        },
+        "memory": {
+          "geometries": 58,
+          "textures": 74
+        },
+        "jsHeapUsedBytes": 404962623
+      }
+    ]
+  }
 }

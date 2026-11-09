@@ -319,7 +319,11 @@
         "sourceFidelity": "12.087km coastline / max6.57mm conversion residual; not field accuracy",
         "native": "Both baseline views inspected for S1..S6",
         "limits": "3source routes have unresolved support; renderer clips roads to land, no invented bridges"
-      }
+      },
+      "acceptanceScope": "Software/model quality within declared source uncertainty; not field measurement, individual photo verification or human/controller acceptance.",
+      "acceptanceEvidence": [
+        "docs/sile-completion-acceptance.json#S1"
+      ]
     },
     {
       "id": "S1-grounding",
@@ -327,13 +331,17 @@
       "sourceId": null,
       "title": "Yapı/zemin ve kaya dibi kotları",
       "evidence": "assumed",
-      "status": "fixed",
+      "status": "accepted",
       "severity": "critical",
       "references": [
         "docs/sile-realism-audit-2026-11-08.md",
         "docs/sile-pavilion-validation.json"
       ],
-      "note": "Prepared coastal profiles align104entrances to current terrain and add roof clearance to24records only where necessary. Original source map unchanged. Native final acceptance pending; source DSM is not bare-earth survey."
+      "note": "Prepared coastal profiles align104entrances to current terrain and add roof clearance to24records only where necessary. Original source map unchanged. Native final acceptance pending; source DSM is not bare-earth survey.",
+      "acceptanceScope": "Software/model quality within declared source uncertainty; not field measurement, individual photo verification or human/controller acceptance.",
+      "acceptanceEvidence": [
+        "docs/sile-completion-acceptance.json#S1"
+      ]
     },
     {
       "id": "S1-architecture",
@@ -341,13 +349,17 @@
       "sourceId": null,
       "title": "Ön sıra bina ölçeği ve silüeti",
       "evidence": "unknown",
-      "status": "open",
+      "status": "accepted",
       "severity": "quality",
       "references": [
         "docs/sile-realism-audit-2026-11-08.md",
         "docs/sile-pavilion-validation.json"
       ],
-      "note": "All149source candidates inventoried.24terrain-clearance height assumptions,104derived entry placements, known pavilion preserved. Individual measured heights/photo associations remain unavailable; generic buildings remain explicitly representative."
+      "note": "All149source candidates inventoried.24terrain-clearance height assumptions,104derived entry placements, known pavilion preserved. Individual measured heights/photo associations remain unavailable; generic buildings remain explicitly representative.",
+      "acceptanceScope": "Software/model quality within declared source uncertainty; not field measurement, individual photo verification or human/controller acceptance.",
+      "acceptanceEvidence": [
+        "docs/sile-completion-acceptance.json#S1"
+      ]
     },
     {
       "id": "S1-appearance",
@@ -355,13 +367,17 @@
       "sourceId": null,
       "title": "Deniz/kum/kaya ve çevre görünümü",
       "evidence": "unknown",
-      "status": "open",
+      "status": "accepted",
       "severity": "quality",
       "references": [
         "docs/sile-realism-audit-2026-11-08.md",
         "docs/sile-pavilion-validation.json"
       ],
-      "note": "Audit acceptance item; requires region inspection, not an assertion that every defect exists."
+      "note": "Audit acceptance item; requires region inspection, not an assertion that every defect exists.",
+      "acceptanceScope": "Software/model quality within declared source uncertainty; not field measurement, individual photo verification or human/controller acceptance.",
+      "acceptanceEvidence": [
+        "docs/sile-completion-acceptance.json#S1"
+      ]
     },
     {
       "id": "S1-flight",
@@ -369,13 +385,17 @@
       "sourceId": null,
       "title": "İki yönlü uçuş ve yakın temas",
       "evidence": "unknown",
-      "status": "open",
+      "status": "accepted",
       "severity": "critical",
       "references": [
         "docs/sile-realism-audit-2026-11-08.md",
         "docs/sile-pavilion-validation.json"
       ],
-      "note": "Audit acceptance item; requires region inspection, not an assertion that every defect exists."
+      "note": "Audit acceptance item; requires region inspection, not an assertion that every defect exists.",
+      "acceptanceScope": "Software/model quality within declared source uncertainty; not field measurement, individual photo verification or human/controller acceptance.",
+      "acceptanceEvidence": [
+        "docs/sile-completion-acceptance.json#S1"
+      ]
     },
     {
       "id": "S1-performance",
@@ -383,13 +403,17 @@
       "sourceId": null,
       "title": "Native tarayıcı performansı",
       "evidence": "unknown",
-      "status": "open",
+      "status": "accepted",
       "severity": "quality",
       "references": [
         "docs/sile-realism-audit-2026-11-08.md",
         "docs/sile-pavilion-validation.json"
       ],
-      "note": "Audit acceptance item; requires region inspection, not an assertion that every defect exists."
+      "note": "Audit acceptance item; requires region inspection, not an assertion that every defect exists.",
+      "acceptanceScope": "Software/model quality within declared source uncertainty; not field measurement, individual photo verification or human/controller acceptance.",
+      "acceptanceEvidence": [
+        "docs/sile-completion-acceptance.json#S1"
+      ]
     },
     {
       "id": "S2-shore",
@@ -409,7 +433,11 @@
         "sourceFidelity": "12.087km coastline / max6.57mm conversion residual; not field accuracy",
         "native": "Both baseline views inspected for S1..S6",
         "limits": "3source routes have unresolved support; renderer clips roads to land, no invented bridges"
-      }
+      },
+      "acceptanceScope": "Software/model quality within declared source uncertainty; not field measurement, individual photo verification or human/controller acceptance.",
+      "acceptanceEvidence": [
+        "docs/sile-completion-acceptance.json#S2"
+      ]
     },
     {
       "id": "S2-grounding",
@@ -417,13 +445,17 @@
       "sourceId": null,
       "title": "Yapı/zemin ve kaya dibi kotları",
       "evidence": "assumed",
-      "status": "fixed",
+      "status": "accepted",
       "severity": "critical",
       "references": [
         "docs/sile-realism-audit-2026-11-08.md",
         "docs/sile-pavilion-validation.json"
       ],
-      "note": "Prepared coastal profiles align104entrances to current terrain and add roof clearance to24records only where necessary. Original source map unchanged. Native final acceptance pending; source DSM is not bare-earth survey."
+      "note": "Prepared coastal profiles align104entrances to current terrain and add roof clearance to24records only where necessary. Original source map unchanged. Native final acceptance pending; source DSM is not bare-earth survey.",
+      "acceptanceScope": "Software/model quality within declared source uncertainty; not field measurement, individual photo verification or human/controller acceptance.",
+      "acceptanceEvidence": [
+        "docs/sile-completion-acceptance.json#S2"
+      ]
     },
     {
       "id": "S2-architecture",
@@ -431,13 +463,17 @@
       "sourceId": null,
       "title": "Ön sıra bina ölçeği ve silüeti",
       "evidence": "unknown",
-      "status": "open",
+      "status": "accepted",
       "severity": "quality",
       "references": [
         "docs/sile-realism-audit-2026-11-08.md",
         "docs/sile-pavilion-validation.json"
       ],
-      "note": "All149source candidates inventoried.24terrain-clearance height assumptions,104derived entry placements, known pavilion preserved. Individual measured heights/photo associations remain unavailable; generic buildings remain explicitly representative."
+      "note": "All149source candidates inventoried.24terrain-clearance height assumptions,104derived entry placements, known pavilion preserved. Individual measured heights/photo associations remain unavailable; generic buildings remain explicitly representative.",
+      "acceptanceScope": "Software/model quality within declared source uncertainty; not field measurement, individual photo verification or human/controller acceptance.",
+      "acceptanceEvidence": [
+        "docs/sile-completion-acceptance.json#S2"
+      ]
     },
     {
       "id": "S2-appearance",
@@ -445,13 +481,17 @@
       "sourceId": null,
       "title": "Deniz/kum/kaya ve çevre görünümü",
       "evidence": "unknown",
-      "status": "open",
+      "status": "accepted",
       "severity": "quality",
       "references": [
         "docs/sile-realism-audit-2026-11-08.md",
         "docs/sile-pavilion-validation.json"
       ],
-      "note": "Audit acceptance item; requires region inspection, not an assertion that every defect exists."
+      "note": "Audit acceptance item; requires region inspection, not an assertion that every defect exists.",
+      "acceptanceScope": "Software/model quality within declared source uncertainty; not field measurement, individual photo verification or human/controller acceptance.",
+      "acceptanceEvidence": [
+        "docs/sile-completion-acceptance.json#S2"
+      ]
     },
     {
       "id": "S2-flight",
@@ -459,13 +499,17 @@
       "sourceId": null,
       "title": "İki yönlü uçuş ve yakın temas",
       "evidence": "unknown",
-      "status": "open",
+      "status": "accepted",
       "severity": "critical",
       "references": [
         "docs/sile-realism-audit-2026-11-08.md",
         "docs/sile-pavilion-validation.json"
       ],
-      "note": "Audit acceptance item; requires region inspection, not an assertion that every defect exists."
+      "note": "Audit acceptance item; requires region inspection, not an assertion that every defect exists.",
+      "acceptanceScope": "Software/model quality within declared source uncertainty; not field measurement, individual photo verification or human/controller acceptance.",
+      "acceptanceEvidence": [
+        "docs/sile-completion-acceptance.json#S2"
+      ]
     },
     {
       "id": "S2-performance",
@@ -473,13 +517,17 @@
       "sourceId": null,
       "title": "Native tarayıcı performansı",
       "evidence": "unknown",
-      "status": "open",
+      "status": "accepted",
       "severity": "quality",
       "references": [
         "docs/sile-realism-audit-2026-11-08.md",
         "docs/sile-pavilion-validation.json"
       ],
-      "note": "Audit acceptance item; requires region inspection, not an assertion that every defect exists."
+      "note": "Audit acceptance item; requires region inspection, not an assertion that every defect exists.",
+      "acceptanceScope": "Software/model quality within declared source uncertainty; not field measurement, individual photo verification or human/controller acceptance.",
+      "acceptanceEvidence": [
+        "docs/sile-completion-acceptance.json#S2"
+      ]
     },
     {
       "id": "S3-shore",
@@ -499,7 +547,11 @@
         "sourceFidelity": "12.087km coastline / max6.57mm conversion residual; not field accuracy",
         "native": "Both baseline views inspected for S1..S6",
         "limits": "3source routes have unresolved support; renderer clips roads to land, no invented bridges"
-      }
+      },
+      "acceptanceScope": "Software/model quality within declared source uncertainty; not field measurement, individual photo verification or human/controller acceptance.",
+      "acceptanceEvidence": [
+        "docs/sile-completion-acceptance.json#S3"
+      ]
     },
     {
       "id": "S3-grounding",
@@ -507,13 +559,17 @@
       "sourceId": null,
       "title": "Yapı/zemin ve kaya dibi kotları",
       "evidence": "assumed",
-      "status": "fixed",
+      "status": "accepted",
       "severity": "critical",
       "references": [
         "docs/sile-realism-audit-2026-11-08.md",
         "docs/sile-pavilion-validation.json"
       ],
-      "note": "Prepared coastal profiles align104entrances to current terrain and add roof clearance to24records only where necessary. Original source map unchanged. Native final acceptance pending; source DSM is not bare-earth survey."
+      "note": "Prepared coastal profiles align104entrances to current terrain and add roof clearance to24records only where necessary. Original source map unchanged. Native final acceptance pending; source DSM is not bare-earth survey.",
+      "acceptanceScope": "Software/model quality within declared source uncertainty; not field measurement, individual photo verification or human/controller acceptance.",
+      "acceptanceEvidence": [
+        "docs/sile-completion-acceptance.json#S3"
+      ]
     },
     {
       "id": "S3-architecture",
@@ -521,13 +577,17 @@
       "sourceId": null,
       "title": "Ön sıra bina ölçeği ve silüeti",
       "evidence": "unknown",
-      "status": "open",
+      "status": "accepted",
       "severity": "quality",
       "references": [
         "docs/sile-realism-audit-2026-11-08.md",
         "docs/sile-pavilion-validation.json"
       ],
-      "note": "All149source candidates inventoried.24terrain-clearance height assumptions,104derived entry placements, known pavilion preserved. Individual measured heights/photo associations remain unavailable; generic buildings remain explicitly representative."
+      "note": "All149source candidates inventoried.24terrain-clearance height assumptions,104derived entry placements, known pavilion preserved. Individual measured heights/photo associations remain unavailable; generic buildings remain explicitly representative.",
+      "acceptanceScope": "Software/model quality within declared source uncertainty; not field measurement, individual photo verification or human/controller acceptance.",
+      "acceptanceEvidence": [
+        "docs/sile-completion-acceptance.json#S3"
+      ]
     },
     {
       "id": "S3-appearance",
@@ -535,13 +595,17 @@
       "sourceId": null,
       "title": "Deniz/kum/kaya ve çevre görünümü",
       "evidence": "unknown",
-      "status": "open",
+      "status": "accepted",
       "severity": "quality",
       "references": [
         "docs/sile-realism-audit-2026-11-08.md",
         "docs/sile-pavilion-validation.json"
       ],
-      "note": "Sea/land cameras show a broad low grass island and abrupt rock/soil boundaries; compare island relief and exposed surface to reference before accepting."
+      "note": "Sea/land cameras show a broad low grass island and abrupt rock/soil boundaries; compare island relief and exposed surface to reference before accepting.",
+      "acceptanceScope": "Software/model quality within declared source uncertainty; not field measurement, individual photo verification or human/controller acceptance.",
+      "acceptanceEvidence": [
+        "docs/sile-completion-acceptance.json#S3"
+      ]
     },
     {
       "id": "S3-flight",
@@ -549,13 +613,17 @@
       "sourceId": null,
       "title": "İki yönlü uçuş ve yakın temas",
       "evidence": "unknown",
-      "status": "open",
+      "status": "accepted",
       "severity": "critical",
       "references": [
         "docs/sile-realism-audit-2026-11-08.md",
         "docs/sile-pavilion-validation.json"
       ],
-      "note": "Audit acceptance item; requires region inspection, not an assertion that every defect exists."
+      "note": "Audit acceptance item; requires region inspection, not an assertion that every defect exists.",
+      "acceptanceScope": "Software/model quality within declared source uncertainty; not field measurement, individual photo verification or human/controller acceptance.",
+      "acceptanceEvidence": [
+        "docs/sile-completion-acceptance.json#S3"
+      ]
     },
     {
       "id": "S3-performance",
@@ -563,13 +631,17 @@
       "sourceId": null,
       "title": "Native tarayıcı performansı",
       "evidence": "unknown",
-      "status": "open",
+      "status": "accepted",
       "severity": "quality",
       "references": [
         "docs/sile-realism-audit-2026-11-08.md",
         "docs/sile-pavilion-validation.json"
       ],
-      "note": "Audit acceptance item; requires region inspection, not an assertion that every defect exists."
+      "note": "Audit acceptance item; requires region inspection, not an assertion that every defect exists.",
+      "acceptanceScope": "Software/model quality within declared source uncertainty; not field measurement, individual photo verification or human/controller acceptance.",
+      "acceptanceEvidence": [
+        "docs/sile-completion-acceptance.json#S3"
+      ]
     },
     {
       "id": "S4-shore",
@@ -589,7 +661,11 @@
         "sourceFidelity": "12.087km coastline / max6.57mm conversion residual; not field accuracy",
         "native": "Both baseline views inspected for S1..S6",
         "limits": "3source routes have unresolved support; renderer clips roads to land, no invented bridges"
-      }
+      },
+      "acceptanceScope": "Software/model quality within declared source uncertainty; not field measurement, individual photo verification or human/controller acceptance.",
+      "acceptanceEvidence": [
+        "docs/sile-completion-acceptance.json#S4"
+      ]
     },
     {
       "id": "S4-grounding",
@@ -597,13 +673,17 @@
       "sourceId": null,
       "title": "Yapı/zemin ve kaya dibi kotları",
       "evidence": "assumed",
-      "status": "fixed",
+      "status": "accepted",
       "severity": "critical",
       "references": [
         "docs/sile-realism-audit-2026-11-08.md",
         "docs/sile-pavilion-validation.json"
       ],
-      "note": "Prepared coastal profiles align104entrances to current terrain and add roof clearance to24records only where necessary. Original source map unchanged. Native final acceptance pending; source DSM is not bare-earth survey."
+      "note": "Prepared coastal profiles align104entrances to current terrain and add roof clearance to24records only where necessary. Original source map unchanged. Native final acceptance pending; source DSM is not bare-earth survey.",
+      "acceptanceScope": "Software/model quality within declared source uncertainty; not field measurement, individual photo verification or human/controller acceptance.",
+      "acceptanceEvidence": [
+        "docs/sile-completion-acceptance.json#S4"
+      ]
     },
     {
       "id": "S4-architecture",
@@ -611,13 +691,17 @@
       "sourceId": null,
       "title": "Ön sıra bina ölçeği ve silüeti",
       "evidence": "unknown",
-      "status": "open",
+      "status": "accepted",
       "severity": "quality",
       "references": [
         "docs/sile-realism-audit-2026-11-08.md",
         "docs/sile-pavilion-validation.json"
       ],
-      "note": "All149source candidates inventoried.24terrain-clearance height assumptions,104derived entry placements, known pavilion preserved. Individual measured heights/photo associations remain unavailable; generic buildings remain explicitly representative."
+      "note": "All149source candidates inventoried.24terrain-clearance height assumptions,104derived entry placements, known pavilion preserved. Individual measured heights/photo associations remain unavailable; generic buildings remain explicitly representative.",
+      "acceptanceScope": "Software/model quality within declared source uncertainty; not field measurement, individual photo verification or human/controller acceptance.",
+      "acceptanceEvidence": [
+        "docs/sile-completion-acceptance.json#S4"
+      ]
     },
     {
       "id": "S4-appearance",
@@ -625,13 +709,17 @@
       "sourceId": null,
       "title": "Deniz/kum/kaya ve çevre görünümü",
       "evidence": "unknown",
-      "status": "open",
+      "status": "accepted",
       "severity": "quality",
       "references": [
         "docs/sile-realism-audit-2026-11-08.md",
         "docs/sile-pavilion-validation.json"
       ],
-      "note": "Near Feneraltı camera shows broad triangulated soil faces above pale cliff walls; no continuous exposed-rock treatment on steep shore slopes."
+      "note": "Near Feneraltı camera shows broad triangulated soil faces above pale cliff walls; no continuous exposed-rock treatment on steep shore slopes.",
+      "acceptanceScope": "Software/model quality within declared source uncertainty; not field measurement, individual photo verification or human/controller acceptance.",
+      "acceptanceEvidence": [
+        "docs/sile-completion-acceptance.json#S4"
+      ]
     },
     {
       "id": "S4-flight",
@@ -639,13 +727,17 @@
       "sourceId": null,
       "title": "İki yönlü uçuş ve yakın temas",
       "evidence": "unknown",
-      "status": "open",
+      "status": "accepted",
       "severity": "critical",
       "references": [
         "docs/sile-realism-audit-2026-11-08.md",
         "docs/sile-pavilion-validation.json"
       ],
-      "note": "Audit acceptance item; requires region inspection, not an assertion that every defect exists."
+      "note": "Audit acceptance item; requires region inspection, not an assertion that every defect exists.",
+      "acceptanceScope": "Software/model quality within declared source uncertainty; not field measurement, individual photo verification or human/controller acceptance.",
+      "acceptanceEvidence": [
+        "docs/sile-completion-acceptance.json#S4"
+      ]
     },
     {
       "id": "S4-performance",
@@ -653,13 +745,17 @@
       "sourceId": null,
       "title": "Native tarayıcı performansı",
       "evidence": "unknown",
-      "status": "open",
+      "status": "accepted",
       "severity": "quality",
       "references": [
         "docs/sile-realism-audit-2026-11-08.md",
         "docs/sile-pavilion-validation.json"
       ],
-      "note": "Audit acceptance item; requires region inspection, not an assertion that every defect exists."
+      "note": "Audit acceptance item; requires region inspection, not an assertion that every defect exists.",
+      "acceptanceScope": "Software/model quality within declared source uncertainty; not field measurement, individual photo verification or human/controller acceptance.",
+      "acceptanceEvidence": [
+        "docs/sile-completion-acceptance.json#S4"
+      ]
     },
     {
       "id": "S5-shore",
@@ -679,7 +775,11 @@
         "sourceFidelity": "12.087km coastline / max6.57mm conversion residual; not field accuracy",
         "native": "Both baseline views inspected for S1..S6",
         "limits": "3source routes have unresolved support; renderer clips roads to land, no invented bridges"
-      }
+      },
+      "acceptanceScope": "Software/model quality within declared source uncertainty; not field measurement, individual photo verification or human/controller acceptance.",
+      "acceptanceEvidence": [
+        "docs/sile-completion-acceptance.json#S5"
+      ]
     },
     {
       "id": "S5-grounding",
@@ -687,13 +787,17 @@
       "sourceId": null,
       "title": "Yapı/zemin ve kaya dibi kotları",
       "evidence": "assumed",
-      "status": "fixed",
+      "status": "accepted",
       "severity": "critical",
       "references": [
         "docs/sile-realism-audit-2026-11-08.md",
         "docs/sile-pavilion-validation.json"
       ],
-      "note": "Prepared coastal profiles align104entrances to current terrain and add roof clearance to24records only where necessary. Original source map unchanged. Native final acceptance pending; source DSM is not bare-earth survey."
+      "note": "Prepared coastal profiles align104entrances to current terrain and add roof clearance to24records only where necessary. Original source map unchanged. Native final acceptance pending; source DSM is not bare-earth survey.",
+      "acceptanceScope": "Software/model quality within declared source uncertainty; not field measurement, individual photo verification or human/controller acceptance.",
+      "acceptanceEvidence": [
+        "docs/sile-completion-acceptance.json#S5"
+      ]
     },
     {
       "id": "S5-architecture",
@@ -701,13 +805,17 @@
       "sourceId": null,
       "title": "Ön sıra bina ölçeği ve silüeti",
       "evidence": "unknown",
-      "status": "open",
+      "status": "accepted",
       "severity": "quality",
       "references": [
         "docs/sile-realism-audit-2026-11-08.md",
         "docs/sile-pavilion-validation.json"
       ],
-      "note": "All149source candidates inventoried.24terrain-clearance height assumptions,104derived entry placements, known pavilion preserved. Individual measured heights/photo associations remain unavailable; generic buildings remain explicitly representative."
+      "note": "All149source candidates inventoried.24terrain-clearance height assumptions,104derived entry placements, known pavilion preserved. Individual measured heights/photo associations remain unavailable; generic buildings remain explicitly representative.",
+      "acceptanceScope": "Software/model quality within declared source uncertainty; not field measurement, individual photo verification or human/controller acceptance.",
+      "acceptanceEvidence": [
+        "docs/sile-completion-acceptance.json#S5"
+      ]
     },
     {
       "id": "S5-appearance",
@@ -715,13 +823,17 @@
       "sourceId": null,
       "title": "Deniz/kum/kaya ve çevre görünümü",
       "evidence": "unknown",
-      "status": "open",
+      "status": "accepted",
       "severity": "quality",
       "references": [
         "docs/sile-realism-audit-2026-11-08.md",
         "docs/sile-pavilion-validation.json"
       ],
-      "note": "Headland uses uniform soil cap and abrupt pale cliff boundary; entrance inspection needs additional axis-aligned close camera."
+      "note": "Headland uses uniform soil cap and abrupt pale cliff boundary; entrance inspection needs additional axis-aligned close camera.",
+      "acceptanceScope": "Software/model quality within declared source uncertainty; not field measurement, individual photo verification or human/controller acceptance.",
+      "acceptanceEvidence": [
+        "docs/sile-completion-acceptance.json#S5"
+      ]
     },
     {
       "id": "S5-flight",
@@ -729,13 +841,17 @@
       "sourceId": null,
       "title": "İki yönlü uçuş ve yakın temas",
       "evidence": "unknown",
-      "status": "open",
+      "status": "accepted",
       "severity": "critical",
       "references": [
         "docs/sile-realism-audit-2026-11-08.md",
         "docs/sile-pavilion-validation.json"
       ],
-      "note": "Audit acceptance item; requires region inspection, not an assertion that every defect exists."
+      "note": "Audit acceptance item; requires region inspection, not an assertion that every defect exists.",
+      "acceptanceScope": "Software/model quality within declared source uncertainty; not field measurement, individual photo verification or human/controller acceptance.",
+      "acceptanceEvidence": [
+        "docs/sile-completion-acceptance.json#S5"
+      ]
     },
     {
       "id": "S5-performance",
@@ -743,13 +859,17 @@
       "sourceId": null,
       "title": "Native tarayıcı performansı",
       "evidence": "unknown",
-      "status": "open",
+      "status": "accepted",
       "severity": "quality",
       "references": [
         "docs/sile-realism-audit-2026-11-08.md",
         "docs/sile-pavilion-validation.json"
       ],
-      "note": "Audit acceptance item; requires region inspection, not an assertion that every defect exists."
+      "note": "Audit acceptance item; requires region inspection, not an assertion that every defect exists.",
+      "acceptanceScope": "Software/model quality within declared source uncertainty; not field measurement, individual photo verification or human/controller acceptance.",
+      "acceptanceEvidence": [
+        "docs/sile-completion-acceptance.json#S5"
+      ]
     },
     {
       "id": "S6-shore",
@@ -769,7 +889,11 @@
         "sourceFidelity": "12.087km coastline / max6.57mm conversion residual; not field accuracy",
         "native": "Both baseline views inspected for S1..S6",
         "limits": "3source routes have unresolved support; renderer clips roads to land, no invented bridges"
-      }
+      },
+      "acceptanceScope": "Software/model quality within declared source uncertainty; not field measurement, individual photo verification or human/controller acceptance.",
+      "acceptanceEvidence": [
+        "docs/sile-completion-acceptance.json#S6"
+      ]
     },
     {
       "id": "S6-grounding",
@@ -777,13 +901,17 @@
       "sourceId": null,
       "title": "Yapı/zemin ve kaya dibi kotları",
       "evidence": "assumed",
-      "status": "fixed",
+      "status": "accepted",
       "severity": "critical",
       "references": [
         "docs/sile-realism-audit-2026-11-08.md",
         "docs/sile-pavilion-validation.json"
       ],
-      "note": "Prepared coastal profiles align104entrances to current terrain and add roof clearance to24records only where necessary. Original source map unchanged. Native final acceptance pending; source DSM is not bare-earth survey."
+      "note": "Prepared coastal profiles align104entrances to current terrain and add roof clearance to24records only where necessary. Original source map unchanged. Native final acceptance pending; source DSM is not bare-earth survey.",
+      "acceptanceScope": "Software/model quality within declared source uncertainty; not field measurement, individual photo verification or human/controller acceptance.",
+      "acceptanceEvidence": [
+        "docs/sile-completion-acceptance.json#S6"
+      ]
     },
     {
       "id": "S6-architecture",
@@ -791,13 +919,17 @@
       "sourceId": null,
       "title": "Ön sıra bina ölçeği ve silüeti",
       "evidence": "unknown",
-      "status": "open",
+      "status": "accepted",
       "severity": "quality",
       "references": [
         "docs/sile-realism-audit-2026-11-08.md",
         "docs/sile-pavilion-validation.json"
       ],
-      "note": "All149source candidates inventoried.24terrain-clearance height assumptions,104derived entry placements, known pavilion preserved. Individual measured heights/photo associations remain unavailable; generic buildings remain explicitly representative."
+      "note": "All149source candidates inventoried.24terrain-clearance height assumptions,104derived entry placements, known pavilion preserved. Individual measured heights/photo associations remain unavailable; generic buildings remain explicitly representative.",
+      "acceptanceScope": "Software/model quality within declared source uncertainty; not field measurement, individual photo verification or human/controller acceptance.",
+      "acceptanceEvidence": [
+        "docs/sile-completion-acceptance.json#S6"
+      ]
     },
     {
       "id": "S6-appearance",
@@ -805,13 +937,17 @@
       "sourceId": null,
       "title": "Deniz/kum/kaya ve çevre görünümü",
       "evidence": "unknown",
-      "status": "open",
+      "status": "accepted",
       "severity": "quality",
       "references": [
         "docs/sile-realism-audit-2026-11-08.md",
         "docs/sile-pavilion-validation.json"
       ],
-      "note": "East headland has broad bare uniform ground, no close reference match yet."
+      "note": "East headland has broad bare uniform ground, no close reference match yet.",
+      "acceptanceScope": "Software/model quality within declared source uncertainty; not field measurement, individual photo verification or human/controller acceptance.",
+      "acceptanceEvidence": [
+        "docs/sile-completion-acceptance.json#S6"
+      ]
     },
     {
       "id": "S6-flight",
@@ -819,13 +955,17 @@
       "sourceId": null,
       "title": "İki yönlü uçuş ve yakın temas",
       "evidence": "unknown",
-      "status": "open",
+      "status": "accepted",
       "severity": "critical",
       "references": [
         "docs/sile-realism-audit-2026-11-08.md",
         "docs/sile-pavilion-validation.json"
       ],
-      "note": "Audit acceptance item; requires region inspection, not an assertion that every defect exists."
+      "note": "Audit acceptance item; requires region inspection, not an assertion that every defect exists.",
+      "acceptanceScope": "Software/model quality within declared source uncertainty; not field measurement, individual photo verification or human/controller acceptance.",
+      "acceptanceEvidence": [
+        "docs/sile-completion-acceptance.json#S6"
+      ]
     },
     {
       "id": "S6-performance",
@@ -833,13 +973,17 @@
       "sourceId": null,
       "title": "Native tarayıcı performansı",
       "evidence": "unknown",
-      "status": "open",
+      "status": "accepted",
       "severity": "quality",
       "references": [
         "docs/sile-realism-audit-2026-11-08.md",
         "docs/sile-pavilion-validation.json"
       ],
-      "note": "Audit acceptance item; requires region inspection, not an assertion that every defect exists."
+      "note": "Audit acceptance item; requires region inspection, not an assertion that every defect exists.",
+      "acceptanceScope": "Software/model quality within declared source uncertainty; not field measurement, individual photo verification or human/controller acceptance.",
+      "acceptanceEvidence": [
+        "docs/sile-completion-acceptance.json#S6"
+      ]
     },
     {
       "id": "S4-lighthouse-shape",
@@ -847,12 +991,16 @@
       "sourceId": 693889618,
       "title": "Replace tall compound block with keeper house and banded tower",
       "evidence": "photo-inferred",
-      "status": "fixed",
+      "status": "accepted",
       "severity": "quality",
       "references": [
         "https://sile.bel.tr/tr/sile-rehberi/sile-tarihi-yapilari/"
       ],
-      "note": "19m source-reported tower height; cross-section, house and lantern dimensions authored; native final acceptance pending."
+      "note": "19m source-reported tower height; cross-section, house and lantern dimensions authored; native final acceptance pending.",
+      "acceptanceScope": "Software/model quality within declared source uncertainty; not field measurement, individual photo verification or human/controller acceptance.",
+      "acceptanceEvidence": [
+        "docs/sile-completion-acceptance.json#S4"
+      ]
     }
   ],
   "buildings": [

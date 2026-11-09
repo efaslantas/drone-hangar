@@ -1,5 +1,5 @@
 {
-  "date": "2026-11-09T14:54:55.332Z",
+  "date": "2026-11-09T15:17:02.816Z",
   "scope": "Prepared actual Şile collision world, geometric route checks only; not manual flight, controller or flight-model calibration",
   "routes": [
     {
@@ -28,9 +28,13 @@
         25
       ],
       "airframeSizeM": 0.22,
+      "sampleStepM": 0.5,
       "samples": 826,
       "status": "pass",
-      "failures": []
+      "failures": [],
+      "evidence": [
+        "docs/sile-completion-routes.json"
+      ]
     },
     {
       "region": "S1",
@@ -58,9 +62,13 @@
         25
       ],
       "airframeSizeM": 0.22,
+      "sampleStepM": 0.5,
       "samples": 826,
       "status": "pass",
-      "failures": []
+      "failures": [],
+      "evidence": [
+        "docs/sile-completion-routes.json"
+      ]
     },
     {
       "region": "S2",
@@ -88,9 +96,13 @@
         25
       ],
       "airframeSizeM": 0.22,
+      "sampleStepM": 0.5,
       "samples": 896,
       "status": "pass",
-      "failures": []
+      "failures": [],
+      "evidence": [
+        "docs/sile-completion-routes.json"
+      ]
     },
     {
       "region": "S2",
@@ -118,9 +130,13 @@
         25
       ],
       "airframeSizeM": 0.22,
+      "sampleStepM": 0.5,
       "samples": 896,
       "status": "pass",
-      "failures": []
+      "failures": [],
+      "evidence": [
+        "docs/sile-completion-routes.json"
+      ]
     },
     {
       "region": "S3",
@@ -148,9 +164,13 @@
         25
       ],
       "airframeSizeM": 0.22,
+      "sampleStepM": 0.5,
       "samples": 532,
       "status": "pass",
-      "failures": []
+      "failures": [],
+      "evidence": [
+        "docs/sile-completion-routes.json"
+      ]
     },
     {
       "region": "S3",
@@ -178,9 +198,13 @@
         25
       ],
       "airframeSizeM": 0.22,
+      "sampleStepM": 0.5,
       "samples": 532,
       "status": "pass",
-      "failures": []
+      "failures": [],
+      "evidence": [
+        "docs/sile-completion-routes.json"
+      ]
     },
     {
       "region": "S4",
@@ -203,9 +227,13 @@
         25
       ],
       "airframeSizeM": 0.22,
+      "sampleStepM": 0.5,
       "samples": 130,
       "status": "pass",
-      "failures": []
+      "failures": [],
+      "evidence": [
+        "docs/sile-completion-routes.json"
+      ]
     },
     {
       "region": "S4",
@@ -228,9 +256,13 @@
         25
       ],
       "airframeSizeM": 0.22,
+      "sampleStepM": 0.5,
       "samples": 130,
       "status": "pass",
-      "failures": []
+      "failures": [],
+      "evidence": [
+        "docs/sile-completion-routes.json"
+      ]
     },
     {
       "region": "S5",
@@ -253,9 +285,13 @@
         25
       ],
       "airframeSizeM": 0.22,
+      "sampleStepM": 0.5,
       "samples": 146,
       "status": "pass",
-      "failures": []
+      "failures": [],
+      "evidence": [
+        "docs/sile-completion-routes.json"
+      ]
     },
     {
       "region": "S5",
@@ -278,9 +314,13 @@
         25
       ],
       "airframeSizeM": 0.22,
+      "sampleStepM": 0.5,
       "samples": 146,
       "status": "pass",
-      "failures": []
+      "failures": [],
+      "evidence": [
+        "docs/sile-completion-routes.json"
+      ]
     },
     {
       "region": "S6",
@@ -308,9 +348,13 @@
         25
       ],
       "airframeSizeM": 0.22,
+      "sampleStepM": 0.5,
       "samples": 772,
       "status": "pass",
-      "failures": []
+      "failures": [],
+      "evidence": [
+        "docs/sile-completion-routes.json"
+      ]
     },
     {
       "region": "S6",
@@ -338,9 +382,13 @@
         25
       ],
       "airframeSizeM": 0.22,
+      "sampleStepM": 0.5,
       "samples": 772,
       "status": "pass",
-      "failures": []
+      "failures": [],
+      "evidence": [
+        "docs/sile-completion-routes.json"
+      ]
     }
   ]
 }

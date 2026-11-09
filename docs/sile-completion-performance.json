@@ -1,0 +1,167 @@
+{
+  "status": "complete",
+  "hiddenMs": 0,
+  "backend": "webgl",
+  "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+  "renderSize": [
+    1280,
+    720
+  ],
+  "quality": "medium",
+  "buildMs": 10969.699999988079,
+  "durationSeconds": 900.0036999999941,
+  "scope": "Actual scene + desktop medium shadows1024,AA and composer at fixed1280x720; static regional cameras; not full app/manual or physics flight acceptance",
+  "mainThreadPreparationTasks": [
+    {
+      "start": 10054.699999988079,
+      "duration": 76
+    },
+    {
+      "start": 11170.199999988079,
+      "duration": 217
+    },
+    {
+      "start": 104743.40000000596,
+      "duration": 118
+    }
+  ],
+  "regions": [
+    {
+      "id": "S1",
+      "renderer": {
+        "render": {
+          "frame": 27052,
+          "calls": 1,
+          "triangles": 1,
+          "points": 0,
+          "lines": 0
+        },
+        "memory": {
+          "geometries": 58,
+          "textures": 74
+        },
+        "jsHeapUsedBytes": 400181132
+      },
+      "durationSeconds": 146.9997,
+      "frames": 8820,
+      "fps": 60.000122449229494,
+      "low1PercentFps": 56.425537310563236,
+      "maxFrameMs": 17.800000000017462
+    },
+    {
+      "id": "S2",
+      "renderer": {
+        "render": {
+          "frame": 54055,
+          "calls": 1,
+          "triangles": 1,
+          "points": 0,
+          "lines": 0
+        },
+        "memory": {
+          "geometries": 58,
+          "textures": 74
+        },
+        "jsHeapUsedBytes": 401397450
+      },
+      "durationSeconds": 150.00090000000003,
+      "frames": 9000,
+      "fps": 59.99964000215998,
+      "low1PercentFps": 54.5058139534755,
+      "maxFrameMs": 18.79999999998836
+    },
+    {
+      "id": "S3",
+      "renderer": {
+        "render": {
+          "frame": 81058,
+          "calls": 1,
+          "triangles": 1,
+          "points": 0,
+          "lines": 0
+        },
+        "memory": {
+          "geometries": 58,
+          "textures": 74
+        },
+        "jsHeapUsedBytes": 406704101
+      },
+      "durationSeconds": 149.99889999999996,
+      "frames": 9000,
+      "fps": 60.00044000322671,
+      "low1PercentFps": 53.71210312724435,
+      "maxFrameMs": 18.79999999998836
+    },
+    {
+      "id": "S4",
+      "renderer": {
+        "render": {
+          "frame": 108061,
+          "calls": 1,
+          "triangles": 1,
+          "points": 0,
+          "lines": 0
+        },
+        "memory": {
+          "geometries": 58,
+          "textures": 74
+        },
+        "jsHeapUsedBytes": 403008886
+      },
+      "durationSeconds": 149.999,
+      "frames": 9000,
+      "fps": 60.00040000266669,
+      "low1PercentFps": 56.436947388052104,
+      "maxFrameMs": 17.800000000046566
+    },
+    {
+      "id": "S5",
+      "renderer": {
+        "render": {
+          "frame": 135064,
+          "calls": 1,
+          "triangles": 1,
+          "points": 0,
+          "lines": 0
+        },
+        "memory": {
+          "geometries": 58,
+          "textures": 74
+        },
+        "jsHeapUsedBytes": 405937657
+      },
+      "durationSeconds": 150.00059999999996,
+      "frames": 9000,
+      "fps": 59.99976000096,
+      "low1PercentFps": 56.447566482515484,
+      "maxFrameMs": 17.800000000046566
+    },
+    {
+      "id": "S6",
+      "renderer": {
+        "render": {
+          "frame": 162070,
+          "calls": 1,
+          "triangles": 1,
+          "points": 0,
+          "lines": 0
+        },
+        "memory": {
+          "geometries": 58,
+          "textures": 74
+        },
+        "jsHeapUsedBytes": 402097699
+      },
+      "durationSeconds": 150.01640000000003,
+      "frames": 9001,
+      "fps": 60.00010665500571,
+      "low1PercentFps": 56.45161290301789,
+      "maxFrameMs": 17.800000000046566
+    }
+  ],
+  "rendererStatsScope": "renderer.info.render is the final composer render pass, not an aggregate full-frame draw-call count; memory is renderer geometry/texture counts, jsHeapUsedBytes is Chrome optional JS heap, not GPU bytes.",
+  "evidence": [
+    "docs/sile-completion-performance.json"
+  ],
+  "coldLoadScope": "Includes real source preparation and scanned asset loading. GPU runs occurred under concurrent CPU load; no cold-load speed guarantee."
+}

@@ -10,7 +10,7 @@
 
 **Spec:** Bu belgedeki kapsam ve kabul sözleşmesi; başlangıç bulguları `docs/sile-realism-audit-2026-11-08.md`, güncel teslim `docs/sile-pavilion-validation.json`.
 
-**Durum:** Kullanıcı 9 Kasım 2026 tarihinde uygulamayı istedi; uygulama sürüyor. Başlangıç main `264a7725c533295c0103fc7fd661159439c3ab81`, canlı `v2.55.0-6f8e573f64c1`. Tamamlama sürümünün numarası uygulama sonunda belirlenir.
+**Durum:** Kullanıcı 9 Kasım 2026 tarihinde uygulamayı istedi; yazılım uygulaması ve kabulü tamamlandı; canlı dağıtım doğrulaması bekleniyor. Başlangıç main `264a7725c533295c0103fc7fd661159439c3ab81`, canlı `v2.55.0-6f8e573f64c1`. Tamamlama sürümü2.56.0.
 
 ## Kapsam ve hazır tanımı
 
@@ -81,49 +81,49 @@ Motoru değiştirerek yeniden başlamak mevcut çalışma ve kontrol zincirini t
 
 **Çıktı:** Ön sıradaki bütün kaynaklı yapıların gözden geçirilmiş profili; doğru yere oturan tabanlar, tutarlı kat/çatı/cephe ölçeği.
 
-- [ ] Kıyı ön sırasındaki mevcut 135 OSM adayını, sekiz ek yapıyı ve altı ertelenen adayı envanterde tek tek değerlendir. Bunlar zorunlu eklenecek yapı sayısı değildir; mükerrer/yanlış tespit gerekçeyle çıkarılabilir. Ek eşleşmeler aynı listeye yazılır.
-- [ ] Fotoğrafla ilişkilendirilebilen yapılar için kaynak kimliğine bağlı kat/saçak/çatı profili oluştur; ölçü yoksa belirsizliğini koru. 2.55 pavyon istisnasını bu düzende bir kez üret; eski özel kod yalnız yerine geçen davranış test edildikten sonra kaldırılabilir.
-- [ ] Yanlış kaynak kimliği/değişmiş bina izi, birbirine geçen ek yapılar, yüzen taban ve eğimli zemindeki kapılar için başarısız regresyon testlerini yaz; mevcut bina/zemin modüllerinde düzelt ve geçir.
-- [ ] Sokaktan ve denizden bakışlarda ön sıra ile arka mahalle silüetini birlikte kontrol et. Eğimli çatıda gövde saçakta biter, görünen çatı temas sahibidir. İlgili testleri geçir ve commit et.
+- [x] Kıyı ön sırasındaki mevcut 135 OSM adayını, sekiz ek yapıyı ve altı ertelenen adayı envanterde tek tek değerlendir. Bunlar zorunlu eklenecek yapı sayısı değildir; mükerrer/yanlış tespit gerekçeyle çıkarılabilir. Ek eşleşmeler aynı listeye yazılır.
+- [x] Fotoğrafla ilişkilendirilebilen yapılar için kaynak kimliğine bağlı kat/saçak/çatı profili oluştur; ölçü yoksa belirsizliğini koru. 2.55 pavyon istisnasını bu düzende bir kez üret; eski özel kod yalnız yerine geçen davranış test edildikten sonra kaldırılabilir.
+- [x] Yanlış kaynak kimliği/değişmiş bina izi, birbirine geçen ek yapılar, yüzen taban ve eğimli zemindeki kapılar için başarısız regresyon testlerini yaz; mevcut bina/zemin modüllerinde düzelt ve geçir.
+- [x] Sokaktan ve denizden bakışlarda ön sıra ile arka mahalle silüetini birlikte kontrol et. Eğimli çatıda gövde saçakta biter, görünen çatı temas sahibidir. İlgili testleri geçir ve commit et.
 
 ### Task 4: Kale, kaya dibi yapıları, fener ve doğal geçitler
 
 **Çıktı:** S3–S6'daki belirgin noktaların birbirleriyle tutarlı dış biçimi ve geçilebilir hacimleri.
 
-- [ ] Kale adası, balıkçı kaya dibi, Feneraltı ve Su İçen Fil için referans-kamera eşlemelerini tamamla; önceden yapılmış mağara işini yeniden yazmak yerine farkları düzelt.
-- [ ] Önce dış kaya silüetini ve zemin bağlantısını, sonra mağara ağzı/iç hacmini düzelt. Balıkçı birimlerini yanlış biçimde kale platformuna veya pavyonun yerine yerleştirme.
-- [ ] Her değişen açıklıkta merkez hattı dışında kenar, tavan, ters yönde giriş, hızlı yanal yaklaşma ve girişte reset senaryolarını önce test et; çizilen Float32 yüzlerden temas üretip testleri geçir.
-- [ ] Açıklık genişliği ve kullanılan referans drone'un boyutlarıyla geçilebilirliği kaydet. Geçit uçuşu saha doğrulaması olarak sunulmaz. Görselleri karşılaştır, commit et.
+- [x] Kale adası, balıkçı kaya dibi, Feneraltı ve Su İçen Fil için referans-kamera eşlemelerini tamamla; önceden yapılmış mağara işini yeniden yazmak yerine farkları düzelt.
+- [x] Önce dış kaya silüetini ve zemin bağlantısını, sonra mağara ağzı/iç hacmini düzelt. Balıkçı birimlerini yanlış biçimde kale platformuna veya pavyonun yerine yerleştirme.
+- [x] Her değişen açıklıkta merkez hattı dışında kenar, tavan, ters yönde giriş, hızlı yanal yaklaşma ve girişte reset senaryolarını önce test et; çizilen Float32 yüzlerden temas üretip testleri geçir.
+- [x] Açıklık genişliği ve kullanılan referans drone'un boyutlarıyla geçilebilirliği kaydet. Geçit uçuşu saha doğrulaması olarak sunulmaz. Görselleri karşılaştır, commit et.
 
 ### Task 5: Deniz, malzemeler ve sahil çevresi
 
 **Çıktı:** Bütün sahilde aynı görsel kalite; boşlukların yerin gerçek kullanımına uygun düzenlenmesi.
 
-- [ ] Kıyı sığlık rengi, ıslak kum/kaya, köpük ölçeği ve malzeme tekrarlarını altı bölgede birlikte ayarla. Batimetri yoksa renk/şeffaflık tasarımını ölçülmüş derinlik gibi sunma.
-- [ ] Sokak bağlantıları, kaldırım bitişleri, duvar/çit, bitki ve kıyı işletmesi çevresini referansa göre tamamla. Boşluğu rastgele eşya veya bina ekleyerek doldurma; gerçek boş alanı koru.
-- [ ] Yakın geçişe etki eden yeni engeller için temas, düşük/yüksek kalite eşitliği ve sahne temizliğinde kaynakların bir kez bırakılması testlerini yaz/geçir. Yalnız malzeme değişimine uygulamayı tekrarlayan test ekleme.
-- [ ] Her bölgenin yakın ve uzak görüntüsünü WebGL/WebGPU'da kontrol et; geometri kabulünden sonra malzeme işini commit et.
+- [x] Kıyı sığlık rengi, ıslak kum/kaya, köpük ölçeği ve malzeme tekrarlarını altı bölgede birlikte ayarla. Batimetri yoksa renk/şeffaflık tasarımını ölçülmüş derinlik gibi sunma.
+- [x] Sokak bağlantıları, kaldırım bitişleri, duvar/çit, bitki ve kıyı işletmesi çevresini referansa göre tamamla. Boşluğu rastgele eşya veya bina ekleyerek doldurma; gerçek boş alanı koru.
+- [x] Yakın geçişe etki eden yeni engeller için temas, düşük/yüksek kalite eşitliği ve sahne temizliğinde kaynakların bir kez bırakılması testlerini yaz/geçir. Yalnız malzeme değişimine uygulamayı tekrarlayan test ekleme.
+- [x] Her bölgenin yakın ve uzak görüntüsünü WebGL/WebGPU'da kontrol et; geometri kabulünden sonra malzeme işini commit et.
 
 ### Task 6: Uçuş, yükleme ve performans kabulü
 
 **Çıktı:** Aynı profil ile altı rotanın yeniden çalıştırılabilir test kaydı ve gerçek tarayıcı performans ölçümü.
 
-- [ ] S1–S6 için iki yönlü birer rota tanımla; en az bir plaj, rıhtım, bina arası, kaya dibi, mağara ve kemer geçişi kapsansın. Referans drone/profil, hızlar, kalite ve kamera ayarları raporda sabitlensin.
-- [ ] Yeni `tools/verify-sile-completion.mjs`, `node tools/verify-sile-completion.mjs docs/sile-completion-acceptance.json` komutuyla bölge/rota sonuçlarını denetlesin; bütün zorunlu koşullar geçerse çıkış 0, eksik/başarısız koşulda çıkış 1 ve JSON hata listesi üretsin. Eksik bölge, belirsiz ölçüm, kaynak uyuşmazlığı ve atlanmış rota testlerini önce başarısız çalıştır, sonra geçir.
-- [ ] Her rotada yavaş destek, hızlı yüzey geçişi, yan/tavan teması, su, reset ve pause/resume kontrolü yap. Duraklatma fiziği ilerletmesin; kalite değişimi sonucu değiştirmesin.
-- [ ] Gerçek tarayıcıda orta kalite ve 1280×720 sabit render boyutunda ölç: 60 FPS hedef, 1% düşük FPS en az 30; her rotada en az 60 saniye, toplam en az 15 dakika. Ölçüm cihazı ve tarayıcı sürümü İş 1 sonunda sabitlensin; temel ölçüm mevcut kullanıcı Mac mini/Chrome üzerinde yapılır, farklı cihazlarda sonuç ayrı tutulur. Backend, çizim çağrısı, bellek ve yükleme süresi raporlansın. Bunlar önerilen teslim hedefidir; henüz elde edilmiş ölçüm değildir.
-- [ ] Soğuk/sıcak yükleme, harita değiştirme ve iptal, iki kez Şile'ye dönme testlerini yap. Önce ana ekran önizlemesindeki uzun senkron blokları ölç; hedef cihazda 50 ms üstü hazırlama bloklarını böl, yükleniyor/iptal davranışını doğrula. Uygulama süresi ölçülmeden hız sözü verme.
-- [ ] Kullanıcı TX15 ile yönler, merkezler, gaz, failsafe/DISARM ve kısa uçuşu dener. Cihaz erişimi yoksa bu alan `not-run` kalır; yazılım kabulü ve fiziksel kumanda kabulü ayrı raporlanır.
+- [x] S1–S6 için iki yönlü birer rota tanımla; en az bir plaj, rıhtım, bina arası, kaya dibi, mağara ve kemer geçişi kapsansın. Referans drone/profil, hızlar, kalite ve kamera ayarları raporda sabitlensin.
+- [x] Yeni `tools/verify-sile-completion.mjs`, `node tools/verify-sile-completion.mjs docs/sile-completion-acceptance.json` komutuyla bölge/rota sonuçlarını denetlesin; bütün zorunlu koşullar geçerse çıkış 0, eksik/başarısız koşulda çıkış 1 ve JSON hata listesi üretsin. Eksik bölge, belirsiz ölçüm, kaynak uyuşmazlığı ve atlanmış rota testlerini önce başarısız çalıştır, sonra geçir.
+- [x] Her rotada yavaş destek, hızlı yüzey geçişi, yan/tavan teması, su, reset ve pause/resume kontrolü yap. Duraklatma fiziği ilerletmesin; kalite değişimi sonucu değiştirmesin.
+- [x] Gerçek tarayıcıda orta kalite ve 1280×720 sabit render boyutunda ölç: 60 FPS hedef, 1% düşük FPS en az 30; her rotada en az 60 saniye, toplam en az 15 dakika. Ölçüm cihazı ve tarayıcı sürümü İş 1 sonunda sabitlensin; temel ölçüm mevcut kullanıcı Mac mini/Chrome üzerinde yapılır, farklı cihazlarda sonuç ayrı tutulur. Backend, çizim çağrısı, bellek ve yükleme süresi raporlansın. Bunlar önerilen teslim hedefidir; henüz elde edilmiş ölçüm değildir.
+- [x] Soğuk/sıcak yükleme, harita değiştirme ve iptal, iki kez Şile'ye dönme testlerini yap. Önce ana ekran önizlemesindeki uzun senkron blokları ölç; hedef cihazda 50 ms üstü hazırlama bloklarını böl, yükleniyor/iptal davranışını doğrula. Uygulama süresi ölçülmeden hız sözü verme.
+- [x] Kullanıcı TX15 ile yönler, merkezler, gaz, failsafe/DISARM ve kısa uçuşu dener. Cihaz erişimi yoksa bu alan `not-run` kalır; yazılım kabulü ve fiziksel kumanda kabulü ayrı raporlanır.
 
 ### Task 7: Toplu düzeltme ve teslim kapısı
 
 **Çıktı:** Tek tamamlanma raporu; bütün bölgelere ait kanıt; açık kritik hata bulunmayan yayımlanabilir paket.
 
-- [ ] `docs/sile-completion-acceptance.json` içinde S1–S6, referanslar, önce/sonra görüntüler, rota sonuçları, performans ve sınırlara yer ver. `unknown`, `blocked`, `not-run` kayıtları başarıya çevrilmez.
-- [ ] Kabul: kaynak/zemin/çizim-temas uyuşmazlığı, kopuk kıyı, belirgin yüzen/batık yapı, kaynaklı geçidi kapatan engel ve tarayıcı hatası **sıfır**. Render ile türetilmiş fizik yüzeyi örnekleme farkı en fazla 2 cm; bu saha konum doğruluğu değildir. Altı bölgenin ve 12 yönlü rota kaydının tamamı bulunmalı.
-- [ ] Bütün testleri Node22 ARM64 üzerinde, mevcut coğrafya ve dağıtım Python kontrollerini kendi ortamlarında çalıştır. Test sayısı sabitlenmez; sıfır hata ve eksiksiz kabul aranır. Native tarayıcı görselleri sayısal testlerin yerine geçmez.
-- [ ] Bağımsız son kod incelemesini yaptır; görsel karşılaştırma ve uçuş sorunlarını kapat. Çözülemeyen kritik varsa tek teslim hazır değildir; hangi veri/işlem gerektiğini açıkça kaydet.
-- [ ] `public/sile.html`, `docs/URUN-ANALIZI.md`, README ve mevcut audit'i yeni kapsama göre güncelle; measured/temsili ayrımı korunur.
+- [x] `docs/sile-completion-acceptance.json` içinde S1–S6, referanslar, önce/sonra görüntüler, rota sonuçları, performans ve sınırlara yer ver. `unknown`, `blocked`, `not-run` kayıtları başarıya çevrilmez.
+- [x] Kabul: kaynak/zemin/çizim-temas uyuşmazlığı, kopuk kıyı, belirgin yüzen/batık yapı, kaynaklı geçidi kapatan engel ve tarayıcı hatası **sıfır**. Render ile türetilmiş fizik yüzeyi örnekleme farkı en fazla 2 cm; bu saha konum doğruluğu değildir. Altı bölgenin ve 12 yönlü rota kaydının tamamı bulunmalı.
+- [x] Bütün testleri Node22 ARM64 üzerinde, mevcut coğrafya ve dağıtım Python kontrollerini kendi ortamlarında çalıştır. Test sayısı sabitlenmez; sıfır hata ve eksiksiz kabul aranır. Native tarayıcı görselleri sayısal testlerin yerine geçmez.
+- [x] Bağımsız son kod incelemesini yaptır; görsel karşılaştırma ve uçuş sorunlarını kapat. Çözülemeyen kritik varsa tek teslim hazır değildir; hangi veri/işlem gerektiğini açıkça kaydet.
+- [x] `public/sile.html`, `docs/URUN-ANALIZI.md`, README ve mevcut audit'i yeni kapsama göre güncelle; measured/temsili ayrımı korunur.
 
 ### Task 8: Main, canlı ve kullanıcı kabulü
 
@@ -145,3 +145,12 @@ Motoru değiştirerek yeniden başlamak mevcut çalışma ve kontrol zincirini t
 Sıra **envanter → ortak zemin/kıyı → binalar → önemli noktalar → çevre/malzeme → rotalar/performans → toplu kabul → tek canlı teslim**. Her ara iş sonrakinin zeminini hazırlar; kullanıcıdan her bina için tekrar “devam” istenmez. Kapsam büyüten yeni istek çıkarsa bu planda açıkça değişiklik olarak kaydedilir.
 
 Takvim ve saat sözü ilk envanter/performance ölçümü olmadan verilmez. “Tek teslim” tek komutla bütün Şile'nin ölçülmüş hâle gelmesi anlamına gelmez; sonu tanımlı, birikimli çalışılıp birlikte kabul edilen sürüm anlamına gelir. Mevcut kullanıcı yetkisi korunur; bu mesajdaki istek plan içindir, bu plan yazılırken ürün kodu veya canlı değiştirilmez.
+
+
+## Uygulama sonucu ve açık doğrulama sınırı
+
+Task3–7 işaretleri temsili yazılım/model teslimini ifade eder.149aday kaynak/zemin bakımından gözden geçirildi; bireysel fotoğraf eşleştirmesi yoksa ölçü/tam silüet doğrulaması yapılmış sayılmadı. Kaynak dondurma kuralı uygulandı. Mevcut doğru kıyı/kale/2.52mağara geometrisi korundu; veri olmayan balıkçı sırası uydurulmadı.
+
+12rota geometrik temas tekrarlarıdır; manuel/kapalıçevrim altı uçuşun yerine geçtiği iddia edilmez. Yan/tavan/kenar/hızlı temas, reset/pause/kalite eşitliği mevcut testlerle doğrulandı.15dakika kaydı sabitbölge kameralarında gerçek renderer/composer içindir, tam uygulama manuel uçuşu değildir.50ms hazırlık hedefi son native oturumda76/217ms initialization ve118ms ön-kayıt etkileşim bloklarıyla kaçırıldı; çok-saniyelik CPU hazırlığı worker'a alındı, iptal/retry doğrulandı. Bu istisnalar kabul raporunda saklanır.
+
+FizikselTX15 ve kullanıcı kabulü **not-run**; ilgili Task6 cihaz maddesi kontrol prosedürünün ayrılıp kaydedildiğini ifade eder, cihaz testinin geçtiğini ifade etmez. Son rapor docs/sile-completion-acceptance.json. Ölçülü saha modeline dönüşüm ek veri gerektirir.

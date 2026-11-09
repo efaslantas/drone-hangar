@@ -42,6 +42,7 @@ export function finishCompletionTerrain(scene,play,data,rockMaterial){
   if(rock){const uv=out.attributes.uv;for(let j=0;j<indices.length;j+=3){const a=new THREE.Vector3().fromBufferAttribute(p,indices[j]),b=new THREE.Vector3().fromBufferAttribute(p,indices[j+1]),c=new THREE.Vector3().fromBufferAttribute(p,indices[j+2]),n=b.sub(a).cross(c.sub(a)),axis=Math.abs(n.y)>=Math.max(Math.abs(n.x),Math.abs(n.z))?'y':Math.abs(n.x)>=Math.abs(n.z)?'x':'z';for(let k=0;k<3;k++){const i=indices[j+k];uv.setXY(j+k,(axis==='x'?p.getZ(i):p.getX(i))/3,(axis==='y'?p.getZ(i):p.getY(i))/3);}}out.setAttribute('color',new THREE.Float32BufferAttribute(Float32Array.from({length:indices.length*3},(_,i)=>[.48,.47,.435][i%3]),3));}return out;
  }
  mesh.geometry=part(parts[0],false);if(parts[1].length){const rock=new THREE.Mesh(part(parts[1],true),rockMaterial);rock.name='sile-coastal-exposure';rock.receiveShadow=true;scene.add(rock);}original.dispose();g.dispose();
+ for(const name of ['sile-terrain','sile-coast-cliffs','sile-coastal-exposure','sile-sea-caves','sile-castle-island']){const m=scene.getObjectByName(name);if(m)m.castShadow=true;}
  scene.userData.sileCompletionStats={...data.completionDerived,exposedRockTriangles:parts[1].length/3,terrainTriangles:p.count/3,authored:true,heightsMeasured:false};
 }
 

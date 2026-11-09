@@ -1,5 +1,5 @@
 import {addCompletedLighthouse} from './sile-lighthouse.js';
-import {completedSileData,finishCompletionTerrain} from './sile-completion-world.js';
+import {completedSileData,finishCompletionTerrain,alignCompletedEntries} from './sile-completion-world.js';
 import {addSupplementalBuildings} from './sile-building-supplement.js';
 import {sileSeaCaves,carveCaveCliffs,addSeaCaveInteriors} from './sile-sea-caves.js';
 import {prepareFoamMotion} from './sile-water.js';
@@ -166,6 +166,7 @@ export function buildSile(scene,data){
  addBuildingFoundations(scene,play,coastal);
  mark('coastal-facades-neighbourhood');
  applyBuildingPads(scene,data,play,coastal,streets);
+ alignCompletedEntries(scene,play,coastal,data);
  mark('building-pads');
  addMooringLinks(scene,data,play);
  addShoreArmour(scene,data,play,rockFinish.dry);

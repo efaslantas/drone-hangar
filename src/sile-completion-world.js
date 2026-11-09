@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import {terrainHeight} from './geo-terrain.js';
+import {refreshCoastalFacades}from './sile-building-view.js';
 import {coastalBuildings} from './sile-buildings.js';
 import {roadFieldIndex,segmentDistance} from './sile-neighbourhood.js';
 // These are terrain-derived modeling choices, never height measurements.
@@ -42,4 +43,12 @@ export function finishCompletionTerrain(scene,play,data,rockMaterial){
  }
  mesh.geometry=part(parts[0],false);if(parts[1].length){const rock=new THREE.Mesh(part(parts[1],true),rockMaterial);rock.name='sile-coastal-exposure';rock.receiveShadow=true;scene.add(rock);}original.dispose();g.dispose();
  scene.userData.sileCompletionStats={...data.completionDerived,exposedRockTriangles:parts[1].length/3,terrainTriangles:p.count/3,authored:true,heightsMeasured:false};
+}
+
+// Terraces are selected after props exist. Reconcile decorative entries only
+// after that final grading; roof/body dimensions and source records stay fixed.
+export function alignCompletedEntries(scene,play,profiles,data){
+ if(data.completionLayer!==1)return;let changed=false;
+ for(const {item,...profile}of profiles.values())if(Number.isFinite(item.entryY)){const final=groundedEntryProfile(item,profile,play.terrain).entryY;if(Math.abs(final-item.entryY)>.0001){item.entryY=final;changed=true;}}
+ if(changed)refreshCoastalFacades(scene,profiles);
 }

@@ -1240,7 +1240,8 @@ const startPreparedFlight=createFlightStartGate({
       flightStartFocus=null;
     }
   },
-  start:()=>startFlightNow(),
+  start:signal=>startFlightNow(signal),
+  cancelled(){flightWorldReady=false;play=null;loadedMap=null;clearWorld(scene);mapStatus.textContent='Uçuş hazırlığı iptal edildi.';},
   error(cause){
     console.error('[flight] Uçuş alanı hazırlanamadı:',cause);
     if(flying)backHangar();
@@ -1249,12 +1250,14 @@ const startPreparedFlight=createFlightStartGate({
     const feedback=document.getElementById('inspection-save-feedback');feedback.hidden=false;feedback.textContent=mapStatus.textContent;
   },
 });
+bindTap(document.getElementById('flight-loading-cancel'),()=>startPreparedFlight.cancel());
 function startFlight(){
   if(mapLoading||flying)return;
   // Retain user activation for audio before yielding to paint the loading UI.
   sfx.unlock();return startPreparedFlight();
 }
-async function startFlightNow() {
+async function startFlightNow(signal) {
+  signal?.throwIfAborted();
   if(mapLoading)return;
   if(opById(selectedOp).inspection&&!getSileData()){mapStatus.textContent="Şile yüklenmeden inceleme başlayamaz.";return;}
   const op = opById(selectedOp);
@@ -1281,7 +1284,7 @@ async function startFlightNow() {
     flightWorldReady=false;
     for (const id of [...remotes.keys()]) dropRemote(id);
     clearWorld(scene);
-    play = await buildWorldAsync(scene, selectedMap, { lite: touchUi, night: nightOn, variant:op.worldVariant, gpu: gfx.node, sky: gfx.createSky, props: !touchUi, quality:visualSettings.quality });
+    play = await buildWorldAsync(scene, selectedMap, { lite: touchUi, night: nightOn, variant:op.worldVariant, gpu: gfx.node, sky: gfx.createSky, props: !touchUi, quality:visualSettings.quality, signal });
     if (!touchUi) bakeEnv(renderer, scene, gfx.PMREMGenerator);
     loadedMap = selectedMap;
     flightWorldReady=true;

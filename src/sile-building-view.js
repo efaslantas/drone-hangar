@@ -8,14 +8,18 @@ function wallMaterial(){
  }
  return new THREE.MeshStandardMaterial({map:maps.color,bumpMap:maps.height,bumpScale:.018,roughnessMap:maps.roughness,roughness:1,vertexColors:true});
 }
-export function addCoastalBuildings(scene,data,play,profiles){
- if(!profiles.size)return;
+export function coastalFacadeGeometry(profiles){
  const positions=[],uv=[],colors=[],facades=[];
  for(const profile of profiles.values()){
   const f=buildingFacade(profile.item,profile,profile.eaves);positions.push(...f.positions);uv.push(...f.uv);colors.push(...f.colors);facades.push({profile,facade:f});
   const roof=profile.roof;if(roof?.gables?.length){positions.push(...roof.gables);const color=new THREE.Color(profile.paint);for(let i=0;i<roof.gables.length;i+=3){uv.push(.875,.875);colors.push(color.r,color.g,color.b);}}
  }
- const wallGeometry=new THREE.BufferGeometry();wallGeometry.setAttribute('position',new THREE.Float32BufferAttribute(positions,3));wallGeometry.setAttribute('uv',new THREE.Float32BufferAttribute(uv,2));wallGeometry.setAttribute('color',new THREE.Float32BufferAttribute(colors,3));wallGeometry.computeVertexNormals();const walls=new THREE.Mesh(wallGeometry,wallMaterial());walls.name='sile-coastal-facades';walls.castShadow=true;walls.receiveShadow=true;scene.add(walls);
+ const geometry=new THREE.BufferGeometry();geometry.setAttribute('position',new THREE.Float32BufferAttribute(positions,3));geometry.setAttribute('uv',new THREE.Float32BufferAttribute(uv,2));geometry.setAttribute('color',new THREE.Float32BufferAttribute(colors,3));geometry.computeVertexNormals();return {geometry,facades};
+}
+export function refreshCoastalFacades(scene,profiles){const mesh=scene.getObjectByName('sile-coastal-facades');if(!mesh)return;const old=mesh.geometry;mesh.geometry=coastalFacadeGeometry(profiles).geometry;old.dispose();}
+export function addCoastalBuildings(scene,data,play,profiles){
+ if(!profiles.size)return;
+ const {geometry:wallGeometry,facades}=coastalFacadeGeometry(profiles),walls=new THREE.Mesh(wallGeometry,wallMaterial());walls.name='sile-coastal-facades';walls.castShadow=true;walls.receiveShadow=true;scene.add(walls);
  const geometry=new THREE.BoxGeometry(1,1,1);geometry.computeBoundingBox();const groups=new Map();let balconies=0;
  function partsFor(p,cell){
   const width=Math.min(2.05,cell.width*.72),slabY=cell.y0+.04,parts=[];

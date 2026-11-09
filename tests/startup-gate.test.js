@@ -22,3 +22,7 @@ test('paint failure never starts a hidden world and keeps the start gate retryab
  assert.equal(await begin(),false);assert.equal(starts,0);assert.deepEqual(busy,[true,false]);assert.deepEqual(errors,['frame unavailable']);
  assert.equal(await begin(),true);assert.equal(starts,1);
 });
+
+test('flight preparation can be cancelled before painting finishes without starting a world, and can retry',async()=>{
+ let release,starts=0,cancelled=0;const gate=startup.createFlightStartGate({paint:()=>new Promise(r=>release=r),busy(){},error(e){throw e},cancelled(){cancelled++},start:async()=>{starts++}});const first=gate();assert.equal(gate.cancel(),true);release();assert.equal(await first,false);assert.equal(starts,0);assert.equal(cancelled,1);const second=gate();release();assert.equal(await second,true);assert.equal(starts,1);
+});

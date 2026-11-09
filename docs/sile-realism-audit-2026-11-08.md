@@ -36,3 +36,7 @@ Bu rapor yeni geometri yayımlandığı anlamına gelmez; canlı2.51değişmedi.
 2.52mağara biçimi ve2.53çatı temaslarından sonra bina kaynağı kontrol edildi. Güncel135kıyıOSMkaydında yükseklik/kat/çatı etiketi yok. Overture2026-10-21.0kesitindeki2898kayıtta yükseklik0,katbilgisi1ve zaten mevcut kayıttır. Dolayısıyla ölçülü bina yüksekliği açığı kapanmadı.
 
 Microsoft/OvertureMLroofprint verisinden8ek ayak izi sahneye katıldı;14adayın6sı eğimden ertelendi. Eklerin7,5m yüksekliği/düz çatısı varsayım;MLpuanı saha doğrulaması değildir. OSM/DSM korunur. [Araştırma ve teslim kanıtı](sile-building-supplement-validation.json).
+
+## 9 Kasım devamı — 2.55
+
+Batı limandaki tek ek yapı, işletme fotoğrafı ve yaklaşık konumdan yorumlanan alçak pavyonla değiştirildi. Bina/işletme eşleştirmesi ve 3,15 m saçak/4,35 m tepe ölçülmemiş model varsayımlarıdır. Diğer yedi ek yapı ve kaynak OSM/DSM korunur. Belediye raporundaki balık satış yerleri ayrı kaya dibi yapılarıdır; bunlar pavyonla karıştırılmadı ve çözülmemiş kaya dibi arazi üzerine eklenmedi. Ölçülü bina/yerel arazi açığı sürer. [Teslim kanıtı](sile-pavilion-validation.json).

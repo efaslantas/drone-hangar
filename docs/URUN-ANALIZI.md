@@ -146,3 +146,7 @@ Feneraltı asimetrik daralan kesitle, Su İçen Fil açılı dış baş/hortum k
 ## 2.54 — kaynaklı ek kıyı bina izleri
 
 Güncel135kıyıOSM kaydında yükseklik/kat/çatı bilgisi yok;Overture2026-10-21.0Şilekesitindeki2898kayıtta0yükseklik/1mevcutkatbilgisi. Yeni ölçüm bulunmadı. Ek MicrosoftMLizlerinden14aday seçildi;8bina sahneye eklendi,6aday eğimden ertelendi. Yükseklik7,5m ve düz çatı varsayım;modelpuanı saha doğruluğu değildir. Aynı çizilen Float32shell temasları ve katıprizma kullanılır.26eskiGISveaugmentasyonsuzdünya çizim/temas hashleri korunur;ekkatmanla53mesh/10810box/1359prizma. HTTP/LANWebCrypto bağımlılığı kaldırıldı. v2.54.0-de2756816913 canlı;601Node22ARM64,4selectionPython,11infra,9focusedNode,nativeGL/GPU/liveUI,HTTPS/WSS ve bağımsız inceleme doğrulandı. [Kanıt](sile-building-supplement-validation.json).
+
+## 2.55 — batı limanda alçak kıyı pavyonu
+
+Tek bir GERS izi, bölgedeki işletme fotoğrafları ve konumuna dayanarak alçak pavyon biçiminde yorumlandı. İşletme eşleştirmesi, çatı ve cephe düzeni ile 3,15/4,35 m yükseklikler ölçülmemiş varsayımdır. Kaynak iz/zemin ve diğer yedi ek bina korunur; gövde saçakta biter, çatı Float32 yüzleri temas sahibidir. 603 Node22 ARM64,8 odaklı Node,4 seçim Python ve11 infra testi geçti. WebGL/WebGPU sabit kamera ve canlı Şile açılışı doğrulandı; fiziksel TX15 veya manuel uçuş kabulü yapılmadı. v2.55.0-6f8e573f64c1 canlı. [Kanıt](sile-pavilion-validation.json).

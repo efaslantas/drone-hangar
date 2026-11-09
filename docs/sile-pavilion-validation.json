@@ -1,0 +1,102 @@
+{
+  "date": "2026-11-09",
+  "release": "v2.55.0-6f8e573f64c1",
+  "status": "published",
+  "scope": "One photo-informed western harbor pavilion, not a surveyed replica or complete map realism pass",
+  "image": {
+    "release": "v2.55.0-6f8e573f64c1",
+    "imageId": "sha256:9c221782f0a3bd112460ef72c8472865367dfe04e02e9706fb58596c7939f30d",
+    "archiveSha256": "b1d0d3db8f6decbaedf70cfe9f2decba389467eb7f9917009cd8c7a27317b28d",
+    "archiveBytes": 141744779,
+    "architecture": "arm64",
+    "sourceFiles": 304
+  },
+  "sourceId": "19523577-0288-44e7-aa86-ac6ba007cd56",
+  "references": [
+    {
+      "url": "https://silefora.com/galeri/",
+      "role": "Operator photographs inform low waterfront pavilion character; no images copied into product"
+    },
+    {
+      "url": "https://silefora.com/iletisim/",
+      "role": "Business location; associated map marker about30m west of ML roofprint, association is inference"
+    },
+    {
+      "url": "https://sile.bel.tr/uploads/cm/8w/cm8w34isy000t07oeieyltui2/cm8w34isy000t07oeieyltui2.pdf",
+      "pages": [
+        161,
+        162
+      ],
+      "role": "Fish sales shops under rocky head are separate structures, not modeled as this pavilion; research only"
+    }
+  ],
+  "model": {
+    "eavesHeightM": 3.15,
+    "totalHeightM": 4.35,
+    "heightSource": "photo-informed-assumption",
+    "measuredHeights": 0,
+    "roof": "authored hipped/pyramidal grey-blue roof; shape not measured",
+    "facade": "authored single-level coastal atlas; white commercial frontage toward operator place marker; windows/doors are not surveyed",
+    "profileScope": "Exact GERS ID and exact pinned source ring only; mismatches use previous default",
+    "buildings": 8,
+    "candidates": 14,
+    "deferredSteep": 6,
+    "otherSeven": "Previous geometry/7.5m assumption retained",
+    "terrain": "Native source draped ground and source footprint preserved",
+    "collision": "Eaves-limited body prism and same Float32 drawn roof/wall triangles; high-speed roof sweep and absence of apex-height invisible box tested",
+    "render": "Same merged supplement mesh,4 material groups, existing coastal facade material shared, one new roof material",
+    "originalGisFilesUnchanged": 29
+  },
+  "verification": {
+    "node22Arm64": {
+      "pass": 603,
+      "fail": 0,
+      "durationMs": 227539.901427
+    },
+    "focusedNode": 8,
+    "selectionPython": 4,
+    "infraPython": 11,
+    "independentReview": "No actionable findings; all8targeted tests and diff check pass",
+    "native": [
+      "WebGLbefore/after fixed camera",
+      "WebGPUafter fixed camera, error[]",
+      "LiveŞile DISARM and0speed, error[]"
+    ],
+    "manualFlight": false,
+    "physicalTX15": false,
+    "https": {
+      "release": "v2.55.0-6f8e573f64c1",
+      "entryAssets": 5,
+      "uniqueIds": 252,
+      "appVersion": "2.55.0",
+      "lazyGpuChunks": [
+        "gfx-webgpu-BdgInmta.js"
+      ],
+      "liveSkyOrderFix": true,
+      "mapAndSourceSha256": "pass"
+    },
+    "websocket": {
+      "clients": 2,
+      "join": "pass",
+      "state": "pass",
+      "leave": "pass"
+    },
+    "remote": {
+      "Status": "Success",
+      "StandardOutputContent": "Running image source hashes: 126 OK\ndrone-hangar | 24.57MiB / 256MiB | 0.61%\n{\"running\": true, \"restarts\": 0, \"readonly\": true, \"user\": \"1000:1000\", \"image\": \"sha256:9c221782f0a3bd112460ef72c8472865367dfe04e02e9706fb58596c7939f30d\"}\nSeven tenants/nginx unchanged; old container/data backup retained\nhttps://zenth.finance/ 200\nhttps://api.zenth.finance/health 200\nGelisim TLS origin 200\n",
+      "StandardErrorContent": "nginx: the configuration file /etc/nginx/nginx.conf syntax is ok\nnginx: configuration file /etc/nginx/nginx.conf test is successful\n"
+    }
+  },
+  "screenshots": [
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-255-pavilion-before-webgl.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-255-pavilion-after-webgl.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-255-pavilion-after-webgpu.png",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-255-live-webgl.png"
+  ],
+  "limits": [
+    "Exact building/operator association, eaves/apex dimensions, roof shape and facade arrangement are modeling inferences, not survey observations.",
+    "Existing31mDSM and unmeasured building heights remain map-level limits.",
+    "Fish sales row under castle-side rocky head needs resolved cliff-foot ground/footprints before adding; municipal photos are not height measurements.",
+    "No whole-map accuracy, real flight calibration or physical controller acceptance claimed."
+  ]
+}

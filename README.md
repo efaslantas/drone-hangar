@@ -111,3 +111,5 @@ Veri yalnız harita seçilince yerelden yüklenir. Kaynaklar ve indirilebilir OD
 Şile 2.53: 589 temsili eğimli binanın çatısı ve alın yüzleri görünen yüzeyde temas verir. Saçak üzerinde mahya yüksekliğine kadar uzanan görünmez kutu kaldırıldı; çatıya iniş sonrası yana hareket ve hızlı çatı/duvar geçişleri düzeltildi. Yeni bina yüksekliği ölçümü eklenmedi. [Doğrulama](docs/sile-roof-contact-validation.json).
 
 Şile 2.54: Microsoft/Overture açık bina izlerinden8ek yapı;14adayın6sı eğimli zeminde ertelendi. Konum/iz ML kaynağına dayanır;7,5m yükseklik,cephe ve düz çatı varsayımdır. Kaynak OSM/DSM ve eski dünya korunur. [Kaynak ve doğrulama](docs/sile-building-supplement-validation.json).
+
+Şile 2.55: Batı limandaki tek ek yapı, aynı bina iziyle alçak pavyon olarak yorumlandı. Tek katlı cephe ve kırma çatının görünen yüzleri fiziksel temasa da katılır. 3,15 m saçak ve 4,35 m tepe yükseklikleri fotoğraf destekli varsayımdır. [Doğrulama ve sınırlar](docs/sile-pavilion-validation.json).

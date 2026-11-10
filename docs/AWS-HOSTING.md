@@ -1,6 +1,6 @@
 # Drone Hangar — AWS işletim kaydı
 
-2026-11-02: Kullanıcı Drone simülatörü 2.16 için mevcut Zenth AWS sunucusunu seçti. Canlı adres: https://hangar.18-153-158-209.sslip.io/ . İlk kurulum `v2.16.0-7f5130339846`; güncel sürüm `v2.58.0-47520f3ee55f` (2.58, 2026-11-10).
+2026-11-02: Kullanıcı Drone simülatörü 2.16 için mevcut Zenth AWS sunucusunu seçti. Canlı adres: https://hangar.18-153-158-209.sslip.io/ . İlk kurulum `v2.16.0-7f5130339846`; güncel sürüm `v2.59.0-01f8df881bcb` (2.59, 2026-11-10).
 
 ## Yerleşim
 
@@ -220,3 +220,8 @@ v2.57.0-e89963741523 ARM64app-only yayımlandı. Image`sha256:fc8adb753f47cea6bb
 ## 2026-11-10 — Şile kıyı yerleşimi 2.58
 
 v2.58.0-47520f3ee55f ARM64 app-only yayımlandı. Image `sha256:c3323d44340e95bed74a66924acf2368b42ae50152610ae74a614894094605ea`; archive SHA `cea007b947df2a27f247487abe4bef765016098d2c63d9394860056301ab3bed`. 460 HEAD/worktree/package SHA eşleşti; çalışan kaynaklar ve HTTPS/worker/GPU/harita/ESA veri SHA kontrolü, 2 istemcili WSS, canlı DISARM/0AGL/0hız doğrulandı. 7 tenant/nginx aynı; UID1000 readonly/0restart, eski uygulama ve veri yedeği korundu. 642/642 Node22ARM64,13GIS,11infra geçti. Yeni900s görünür medium1280×720 koşusunda tüm bölgeler ~60FPS, en düşük1%53.444FPS.119ek kaynak yapı,680görsel OSMcephe,1600ağaç bütçesi,420temsili plaj takımı; ana OSM/DSM ve kullanıcıRCfix korunur, türetilmiş kaynaklar değişti. Birebir ölçülmüş Şile değildir; yeni kullanıcı/TX15 kabulü yapılmadı. Kanonik rapor: docs/sile-completion-acceptance.json followups.waterfront258.
+
+
+## 2026-11-10 — Şile spor sahaları ve rıhtım 2.59
+
+v2.59.0-01f8df881bcb ARM64 app-only yayımlandı. Image `sha256:dd49a978fedbd8b2449b878a31b4f4ff607e60adacb112f9dfa8be04e8298cce`; archive SHA `5ce9380d4f6ea69c4788f09985d1a1ef2954615918ffd673869f741b740775b2`. 467 paket kaynak SHA eşleşti; çalışan kaynaklar/HTTPS/worker/GPU/yenilenen context/metadata SHA,2istemciWSS,canlıDISARM0AGL0hız doğrulandı.7tenant/nginxaynı;eskiuygulama/veriyedeğikorundu.649/649Node22ARM64,11infra,12geometrikrota;nativeGL/GPU6bölge+stadyum. Bu sürümün yeni180sgörünürperformanskontrolü followups.grounds259.performance içindedir; önceki900s2.58kaydıtarihseldir.5OSMpitchkaydı/temsiliçizgiler,varsayımsal30mkararıhtımbandı;kökenharita/OSM/DSM/RCfixaynı,ölçülmüşkot/tribüneklenmedi. Kullanıcı/TX15kabulünot-run.

@@ -1,6 +1,6 @@
 {
   "date": "2026-11-10",
-  "status": "Baseline map software acceptance plus verified2.59surface follow-up; publication and new human acceptance pending",
+  "status": "Published2.59surface follow-up verified;900s baseline remains2.58, new180sdelta verified; human acceptance pending",
   "inventoryVersion": 1,
   "sourceSnapshotKey": "1147718:d3dd4d94:81685aaa",
   "baseline": "v2.57.0-e89963741523",
@@ -39,10 +39,10 @@
         "appearance": {
           "status": "pass",
           "evidence": [
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S1-sea-webgl.png",
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S1-sea-webgpu.png",
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S1-land-webgl.png",
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S1-land-webgpu.png",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S1-sea-webgl.jpg",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S1-sea-webgpu.jpg",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S1-land-webgl.jpg",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S1-land-webgpu.jpg",
             "Native rendering/software inspection, not individual photographic resemblance or human acceptance."
           ]
         },
@@ -99,10 +99,10 @@
         "appearance": {
           "status": "pass",
           "evidence": [
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S2-sea-webgl.png",
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S2-sea-webgpu.png",
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S2-land-webgl.png",
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S2-land-webgpu.png",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S2-sea-webgl.jpg",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S2-sea-webgpu.jpg",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S2-land-webgl.jpg",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S2-land-webgpu.jpg",
             "Native rendering/software inspection, not individual photographic resemblance or human acceptance."
           ]
         },
@@ -159,10 +159,10 @@
         "appearance": {
           "status": "pass",
           "evidence": [
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S3-sea-webgl.png",
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S3-sea-webgpu.png",
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S3-land-webgl.png",
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S3-land-webgpu.png",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S3-sea-webgl.jpg",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S3-sea-webgpu.jpg",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S3-land-webgl.jpg",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S3-land-webgpu.jpg",
             "Native rendering/software inspection, not individual photographic resemblance or human acceptance."
           ]
         },
@@ -219,10 +219,10 @@
         "appearance": {
           "status": "pass",
           "evidence": [
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S4-sea-webgl.png",
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S4-sea-webgpu.png",
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S4-land-webgl.png",
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S4-land-webgpu.png",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S4-sea-webgl.jpg",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S4-sea-webgpu.jpg",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S4-land-webgl.jpg",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S4-land-webgpu.jpg",
             "Native rendering/software inspection, not individual photographic resemblance or human acceptance."
           ]
         },
@@ -279,10 +279,10 @@
         "appearance": {
           "status": "pass",
           "evidence": [
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S5-sea-webgl.png",
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S5-sea-webgpu.png",
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S5-land-webgl.png",
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S5-land-webgpu.png",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S5-sea-webgl.jpg",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S5-sea-webgpu.jpg",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S5-land-webgl.jpg",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S5-land-webgpu.jpg",
             "Native rendering/software inspection, not individual photographic resemblance or human acceptance."
           ]
         },
@@ -339,10 +339,10 @@
         "appearance": {
           "status": "pass",
           "evidence": [
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S6-sea-webgl.png",
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S6-sea-webgpu.png",
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S6-land-webgl.png",
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S6-land-webgpu.png",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S6-sea-webgl.jpg",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S6-sea-webgpu.jpg",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S6-land-webgl.jpg",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S6-land-webgpu.jpg",
             "Native rendering/software inspection, not individual photographic resemblance or human acceptance."
           ]
         },
@@ -946,7 +946,8 @@
         ],
         "release": "v2.58.0-47520f3ee55f"
       }
-    ]
+    ],
+    "release": "v2.59.0-01f8df881bcb"
   },
   "limits": [
     "31mDSM and most building heights remain unmeasured; representative scene, not surveyed digital twin.",
@@ -998,32 +999,32 @@
     "review": "Fresh review no actionable findings; native/perf/live remain root verification."
   },
   "screenshots": [
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S1-sea-webgl.png",
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S1-sea-webgpu.png",
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S1-land-webgl.png",
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S1-land-webgpu.png",
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S2-sea-webgl.png",
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S2-sea-webgpu.png",
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S2-land-webgl.png",
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S2-land-webgpu.png",
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S3-sea-webgl.png",
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S3-sea-webgpu.png",
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S3-land-webgl.png",
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S3-land-webgpu.png",
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S4-sea-webgl.png",
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S4-sea-webgpu.png",
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S4-land-webgl.png",
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S4-land-webgpu.png",
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S5-sea-webgl.png",
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S5-sea-webgpu.png",
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S5-land-webgl.png",
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S5-land-webgpu.png",
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S6-sea-webgl.png",
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S6-sea-webgpu.png",
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S6-land-webgl.png",
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S6-land-webgpu.png",
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-stadium-webgl.png",
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-stadium-webgpu.png"
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S1-sea-webgl.jpg",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S1-sea-webgpu.jpg",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S1-land-webgl.jpg",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S1-land-webgpu.jpg",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S2-sea-webgl.jpg",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S2-sea-webgpu.jpg",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S2-land-webgl.jpg",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S2-land-webgpu.jpg",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S3-sea-webgl.jpg",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S3-sea-webgpu.jpg",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S3-land-webgl.jpg",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S3-land-webgpu.jpg",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S4-sea-webgl.jpg",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S4-sea-webgpu.jpg",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S4-land-webgl.jpg",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S4-land-webgpu.jpg",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S5-sea-webgl.jpg",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S5-sea-webgpu.jpg",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S5-land-webgl.jpg",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S5-land-webgpu.jpg",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S6-sea-webgl.jpg",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S6-sea-webgpu.jpg",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S6-land-webgl.jpg",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S6-land-webgpu.jpg",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-stadium-webgl.jpg",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-stadium-webgpu.jpg"
   ],
   "wholeFrameDiagnostics": [
     {
@@ -1252,8 +1253,81 @@
     }
   ],
   "delivery": {
-    "status": "pending",
-    "baseline": "v2.58.0-47520f3ee55f"
+    "status": "published",
+    "release": "v2.59.0-01f8df881bcb",
+    "image": {
+      "release": "v2.59.0-01f8df881bcb",
+      "imageId": "sha256:dd49a978fedbd8b2449b878a31b4f4ff607e60adacb112f9dfa8be04e8298cce",
+      "archiveSha256": "5ce9380d4f6ea69c4788f09985d1a1ef2954615918ffd673869f741b740775b2",
+      "archiveBytes": 144843094,
+      "architecture": "arm64",
+      "sourceFiles": 467
+    },
+    "sourceFiles": 467,
+    "preservedSourceFiles": {
+      "public/maps/sile/map.json": "5564a34bbf1573152f5e1a93d1de4d01895eb4021483d2e03fae761341717a11",
+      "public/maps/sile/source-osm.json": "b860868c8cbc075b2d7b8936aa95d95b452eb244c47d8e03d66bd98f1e87f59a",
+      "public/maps/sile/source-dem.tif": "c1d9b4576412ef8f3e791ee23eff2db1a4c6ac1684b98c92bbafbc3cde380743",
+      "src/rc-setup.js": "1bb07e0d440d54cd2006763b108386b22115651ec1e57ceba6c2d94964814c26",
+      "tests/rc-setup.test.js": "7a038dfcbf536ac3b18c3ac74f146b32007f9aa132cd889da440d8eed4082880"
+    },
+    "changedDerivedData": [
+      "context sports footprints",
+      "sports and quay visual metadata",
+      "stadium QA camera"
+    ],
+    "https": {
+      "release": "v2.59.0-01f8df881bcb",
+      "entryAssets": 5,
+      "uniqueIds": 253,
+      "appVersion": "2.59.0",
+      "lazyGpuChunks": [
+        "gfx-webgpu-BPv6_-0D.js"
+      ],
+      "sceneWorkerChunks": [
+        "sile-scene-worker-BVKxR1zO.js"
+      ],
+      "liveSkyOrderFix": true,
+      "mapAndSourceSha256": "pass"
+    },
+    "websocket": {
+      "clients": 2,
+      "join": "pass",
+      "state": "pass",
+      "leave": "pass"
+    },
+    "remote": {
+      "Status": "Success",
+      "StandardOutputContent": "Running image source hashes: 139 OK\ndrone-hangar | 23.37MiB / 256MiB | 0.15%\n{\"running\": true, \"restarts\": 0, \"readonly\": true, \"user\": \"1000:1000\", \"image\": \"sha256:dd49a978fedbd8b2449b878a31b4f4ff607e60adacb112f9dfa8be04e8298cce\"}\nSeven tenants/nginx unchanged; old container/data backup retained\nhttps://zenth.finance/ 200\nhttps://api.zenth.finance/health 200\nGelisim TLS origin 200\n",
+      "StandardErrorContent": "nginx: the configuration file /etc/nginx/nginx.conf syntax is ok\nnginx: configuration file /etc/nginx/nginx.conf test is successful\n"
+    },
+    "nativeLive": {
+      "release": "v2.59.0-01f8df881bcb",
+      "state": "- text: ✓ ✓ ✓ ✓\n- generic: Şile · veri tabanlı taslak\n- link \"© OpenStreetMap contributors · ODbL\":\n  - /url: https://www.openstreetmap.org/copyright\n- text: · Copernicus DEM ·\n- link \"Microsoft / Overture Maps · ODbL\":\n  - /url: https://overturemaps.org/\n- text: ·\n- link \"ESA WorldCover 2021 · CC BY 4.0\":\n  - /url: /sile.html\n- link \"Kaynaklar / yükseklik varsayımları ↗\":\n  - /url: /sile.html\n- generic: 0 km/h\n- generic: 0 m AGL\n- generic: BAT\n- generic: DISARM\n- generic: REF 4M · ACRO · REAL\n- button \"ARM\"\n- button \"CAM\"\n- button \"MOD\"\n- button \"KONTROL\"\n- button \"MENÜ\"",
+      "screenshot": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-live.jpg",
+      "errors": [
+        {
+          "level": "error",
+          "message": "Error: A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received",
+          "timestamp": "2026-11-10T07:41:43.589Z",
+          "url": "https://hangar.18-153-158-209.sslip.io/"
+        },
+        {
+          "level": "error",
+          "message": "Error: A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received",
+          "timestamp": "2026-11-10T07:41:43.589Z",
+          "url": "https://hangar.18-153-158-209.sslip.io/"
+        },
+        {
+          "level": "error",
+          "message": "Error: A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received",
+          "timestamp": "2026-11-10T07:41:43.590Z",
+          "url": "https://hangar.18-153-158-209.sslip.io/"
+        }
+      ],
+      "verifiedDisarmGroundZero": true,
+      "scope": "Live new release opens5inchREF4MREALDISARM0speed0AGL; not physicalTX15 or human visual acceptance."
+    }
   },
   "followups": {
     "loading257": {
@@ -1753,7 +1827,7 @@
       }
     },
     "grounds259": {
-      "status": "software-verified; publication pending",
+      "status": "published; user visual/flight acceptance pending",
       "date": "2026-11-10",
       "baseline": "v2.58.0-47520f3ee55f",
       "sourceIds": [
@@ -2027,32 +2101,32 @@
         "release": "v2.58.0-47520f3ee55f"
       },
       "screenshots": [
-        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S1-sea-webgl.png",
-        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S1-sea-webgpu.png",
-        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S1-land-webgl.png",
-        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S1-land-webgpu.png",
-        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S2-sea-webgl.png",
-        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S2-sea-webgpu.png",
-        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S2-land-webgl.png",
-        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S2-land-webgpu.png",
-        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S3-sea-webgl.png",
-        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S3-sea-webgpu.png",
-        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S3-land-webgl.png",
-        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S3-land-webgpu.png",
-        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S4-sea-webgl.png",
-        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S4-sea-webgpu.png",
-        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S4-land-webgl.png",
-        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S4-land-webgpu.png",
-        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S5-sea-webgl.png",
-        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S5-sea-webgpu.png",
-        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S5-land-webgl.png",
-        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S5-land-webgpu.png",
-        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S6-sea-webgl.png",
-        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S6-sea-webgpu.png",
-        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S6-land-webgl.png",
-        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S6-land-webgpu.png",
-        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-stadium-webgl.png",
-        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-stadium-webgpu.png"
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S1-sea-webgl.jpg",
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S1-sea-webgpu.jpg",
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S1-land-webgl.jpg",
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S1-land-webgpu.jpg",
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S2-sea-webgl.jpg",
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S2-sea-webgpu.jpg",
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S2-land-webgl.jpg",
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S2-land-webgpu.jpg",
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S3-sea-webgl.jpg",
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S3-sea-webgpu.jpg",
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S3-land-webgl.jpg",
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S3-land-webgpu.jpg",
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S4-sea-webgl.jpg",
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S4-sea-webgpu.jpg",
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S4-land-webgl.jpg",
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S4-land-webgpu.jpg",
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S5-sea-webgl.jpg",
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S5-sea-webgpu.jpg",
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S5-land-webgl.jpg",
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S5-land-webgpu.jpg",
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S6-sea-webgl.jpg",
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S6-sea-webgpu.jpg",
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S6-land-webgl.jpg",
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S6-land-webgpu.jpg",
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-stadium-webgl.jpg",
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-stadium-webgpu.jpg"
       ],
       "wholeFrameDiagnostics": [
         {
@@ -2279,7 +2353,84 @@
           },
           "jsHeapUsedBytes": 429319985
         }
-      ]
+      ],
+      "delivery": {
+        "status": "published",
+        "release": "v2.59.0-01f8df881bcb",
+        "image": {
+          "release": "v2.59.0-01f8df881bcb",
+          "imageId": "sha256:dd49a978fedbd8b2449b878a31b4f4ff607e60adacb112f9dfa8be04e8298cce",
+          "archiveSha256": "5ce9380d4f6ea69c4788f09985d1a1ef2954615918ffd673869f741b740775b2",
+          "archiveBytes": 144843094,
+          "architecture": "arm64",
+          "sourceFiles": 467
+        },
+        "sourceFiles": 467,
+        "preservedSourceFiles": {
+          "public/maps/sile/map.json": "5564a34bbf1573152f5e1a93d1de4d01895eb4021483d2e03fae761341717a11",
+          "public/maps/sile/source-osm.json": "b860868c8cbc075b2d7b8936aa95d95b452eb244c47d8e03d66bd98f1e87f59a",
+          "public/maps/sile/source-dem.tif": "c1d9b4576412ef8f3e791ee23eff2db1a4c6ac1684b98c92bbafbc3cde380743",
+          "src/rc-setup.js": "1bb07e0d440d54cd2006763b108386b22115651ec1e57ceba6c2d94964814c26",
+          "tests/rc-setup.test.js": "7a038dfcbf536ac3b18c3ac74f146b32007f9aa132cd889da440d8eed4082880"
+        },
+        "changedDerivedData": [
+          "context sports footprints",
+          "sports and quay visual metadata",
+          "stadium QA camera"
+        ],
+        "https": {
+          "release": "v2.59.0-01f8df881bcb",
+          "entryAssets": 5,
+          "uniqueIds": 253,
+          "appVersion": "2.59.0",
+          "lazyGpuChunks": [
+            "gfx-webgpu-BPv6_-0D.js"
+          ],
+          "sceneWorkerChunks": [
+            "sile-scene-worker-BVKxR1zO.js"
+          ],
+          "liveSkyOrderFix": true,
+          "mapAndSourceSha256": "pass"
+        },
+        "websocket": {
+          "clients": 2,
+          "join": "pass",
+          "state": "pass",
+          "leave": "pass"
+        },
+        "remote": {
+          "Status": "Success",
+          "StandardOutputContent": "Running image source hashes: 139 OK\ndrone-hangar | 23.37MiB / 256MiB | 0.15%\n{\"running\": true, \"restarts\": 0, \"readonly\": true, \"user\": \"1000:1000\", \"image\": \"sha256:dd49a978fedbd8b2449b878a31b4f4ff607e60adacb112f9dfa8be04e8298cce\"}\nSeven tenants/nginx unchanged; old container/data backup retained\nhttps://zenth.finance/ 200\nhttps://api.zenth.finance/health 200\nGelisim TLS origin 200\n",
+          "StandardErrorContent": "nginx: the configuration file /etc/nginx/nginx.conf syntax is ok\nnginx: configuration file /etc/nginx/nginx.conf test is successful\n"
+        },
+        "nativeLive": {
+          "release": "v2.59.0-01f8df881bcb",
+          "state": "- text: ✓ ✓ ✓ ✓\n- generic: Şile · veri tabanlı taslak\n- link \"© OpenStreetMap contributors · ODbL\":\n  - /url: https://www.openstreetmap.org/copyright\n- text: · Copernicus DEM ·\n- link \"Microsoft / Overture Maps · ODbL\":\n  - /url: https://overturemaps.org/\n- text: ·\n- link \"ESA WorldCover 2021 · CC BY 4.0\":\n  - /url: /sile.html\n- link \"Kaynaklar / yükseklik varsayımları ↗\":\n  - /url: /sile.html\n- generic: 0 km/h\n- generic: 0 m AGL\n- generic: BAT\n- generic: DISARM\n- generic: REF 4M · ACRO · REAL\n- button \"ARM\"\n- button \"CAM\"\n- button \"MOD\"\n- button \"KONTROL\"\n- button \"MENÜ\"",
+          "screenshot": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-live.jpg",
+          "errors": [
+            {
+              "level": "error",
+              "message": "Error: A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received",
+              "timestamp": "2026-11-10T07:41:43.589Z",
+              "url": "https://hangar.18-153-158-209.sslip.io/"
+            },
+            {
+              "level": "error",
+              "message": "Error: A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received",
+              "timestamp": "2026-11-10T07:41:43.589Z",
+              "url": "https://hangar.18-153-158-209.sslip.io/"
+            },
+            {
+              "level": "error",
+              "message": "Error: A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received",
+              "timestamp": "2026-11-10T07:41:43.590Z",
+              "url": "https://hangar.18-153-158-209.sslip.io/"
+            }
+          ],
+          "verifiedDisarmGroundZero": true,
+          "scope": "Live new release opens5inchREF4MREALDISARM0speed0AGL; not physicalTX15 or human visual acceptance."
+        }
+      }
     }
   }
 }

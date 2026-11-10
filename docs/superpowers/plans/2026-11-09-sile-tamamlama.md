@@ -195,7 +195,9 @@ MevcutThree.js/OSM/DSMüstünde:500m kıyı mahalle bandındaki aynıMicrosoft/O
 
 Kullanıcı devam istedi. Mevcut OSM snapshot'ında Şile Stadyumu371472120, basketbol931728526, tenis931728527/931728528 ve türü belirtilmeyen1285138758 izleri var. İBB spor envanteri Şile Şehir Stadı'nı suni çim futbol sahası olarak doğruluyor; raporlanan68×105m ile OSM izi birebir uyuşmadığından kaynak izini uzatmayacağız. Saha çizgilerinin yerleşimi temsili kalır. Mevcut Three.js/OSM/DSM üstünde, yeni ölçülmüş yükseklik veya tribün eklemeyiz. Liman468573622 poligonu %96,47 su içerir; mevcut rıhtımın kaynak kıyı kenarlarındaki10m bandı, kara tarafına doğru varsayımsal30m sert zemin bandına genişletilir. Yollar/binalar/yeşil/plaj/spor alanları korunur; genişlik ve malzeme kapsamı ölçülmüş asfalt envanteri değildir.
 
-- [ ] Kaynak izlerini/projeksiyonu/etiketleri ve değişmeyen eski context'i doğrula; spor poligonlarını ağaç/plaj yerleşiminden koru.
-- [ ] Kalan araziden spor ve liman kara yüzeylerini tek kez ayır; suya ve yollara taşma, çift zemin veya kot değişikliği olmasın. Futbol/basketbol/tenis çizgileri kaynak izine ve mevcut yüzeye kırpılır; türü bilinmeyene çizgi uydurulmaz.
-- [ ] Kaynak/provenans etiketleri, regresyon ve actual-world temas/worker/lifecycle, native GL/GPU önce-sonra, uygun performans ve Node22/infra kontrolleri; önceki RC düzeltmesi korunur.
-- [ ] Main/app-only AWS canlı, kaynak SHA/HTTPS/WSS/native açılış, kanıt/notes kapanışı. Önceki kullanıcı reddi korunur; yeni kullanıcı/TX15 kabulü otomatik verilmez.
+- [x] Kaynak izlerini/projeksiyonu/etiketleri ve değişmeyen eski context'i doğrula; spor poligonlarını ağaç/plaj yerleşiminden koru.
+- [x] Kalan araziden spor ve liman kara yüzeylerini tek kez ayır; suya ve yollara taşma, çift zemin veya kot değişikliği olmasın. Futbol/basketbol/tenis çizgileri kaynak izine ve mevcut yüzeye kırpılır; türü bilinmeyene çizgi uydurulmaz.
+- [x] Kaynak/provenans etiketleri, regresyon ve actual-world temas/worker/lifecycle, native GL/GPU önce-sonra, uygun performans ve Node22/infra kontrolleri; önceki RC düzeltmesi korunur.
+- [x] Main/app-only AWS canlı, kaynak SHA/HTTPS/WSS/native açılış, kanıt/notes kapanışı. Önceki kullanıcı reddi korunur; yeni kullanıcı/TX15 kabulü otomatik verilmez.
+
+Task13 teslim: v2.59.0-01f8df881bcb canlı;649Node22/11infra/12rota/nativeGL-GPU/180sgörünürdelta/HTTPS/WSS/liveDISARM0 doğrulandı. Önceki900s2.58kaydıkorunur; yeni900s diye etiketlenmez. Çizgiler/30mbant/DSMkotu varsayım sınırları ve kullanıcı/TX15not-run korunur.

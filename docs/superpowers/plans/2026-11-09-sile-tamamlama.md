@@ -190,3 +190,12 @@ MevcutThree.js/OSM/DSMüstünde:500m kıyı mahalle bandındaki aynıMicrosoft/O
 
 
 2.58 teslim kanıtı: v2.58.0-47520f3ee55f canlı;642Node22/13GIS/11infra/12rota,900.0039s görünür~60FPS/min1%53.444,460SHA ve HTTPS/WSS/nativeUI geçti. Kullanıcının2.57görselreddi korunur;2.58görsel/uçuş kabulü henüz yapılmadı. Kaynak eksik sahil yapıları ve31mDSM sınırı nedeniyle birebir dijital ikiz tamamlandı iddiası yok.
+
+### Task 13: Kaynakta kayıtlı spor alanları ve liman kara zemini · 2.59
+
+Kullanıcı devam istedi. Mevcut OSM snapshot'ında Şile Stadyumu371472120, basketbol931728526, tenis931728527/931728528 ve türü belirtilmeyen1285138758 izleri var. İBB spor envanteri Şile Şehir Stadı'nı suni çim futbol sahası olarak doğruluyor; raporlanan68×105m ile OSM izi birebir uyuşmadığından kaynak izini uzatmayacağız. Saha çizgilerinin yerleşimi temsili kalır. Mevcut Three.js/OSM/DSM üstünde, yeni ölçülmüş yükseklik veya tribün eklemeyiz. Liman468573622 poligonu %96,47 su içerir; mevcut rıhtımın kaynak kıyı kenarlarındaki10m bandı, kara tarafına doğru varsayımsal30m sert zemin bandına genişletilir. Yollar/binalar/yeşil/plaj/spor alanları korunur; genişlik ve malzeme kapsamı ölçülmüş asfalt envanteri değildir.
+
+- [ ] Kaynak izlerini/projeksiyonu/etiketleri ve değişmeyen eski context'i doğrula; spor poligonlarını ağaç/plaj yerleşiminden koru.
+- [ ] Kalan araziden spor ve liman kara yüzeylerini tek kez ayır; suya ve yollara taşma, çift zemin veya kot değişikliği olmasın. Futbol/basketbol/tenis çizgileri kaynak izine ve mevcut yüzeye kırpılır; türü bilinmeyene çizgi uydurulmaz.
+- [ ] Kaynak/provenans etiketleri, regresyon ve actual-world temas/worker/lifecycle, native GL/GPU önce-sonra, uygun performans ve Node22/infra kontrolleri; önceki RC düzeltmesi korunur.
+- [ ] Main/app-only AWS canlı, kaynak SHA/HTTPS/WSS/native açılış, kanıt/notes kapanışı. Önceki kullanıcı reddi korunur; yeni kullanıcı/TX15 kabulü otomatik verilmez.

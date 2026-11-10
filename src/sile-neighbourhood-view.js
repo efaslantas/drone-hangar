@@ -1,6 +1,7 @@
 import * as THREE from 'three';
+import contextSource from './data/sile-context.json' with {type:'json'};
 import {planNeighbourhood,neighbourhoodField,segmentDistance}from './sile-neighbourhood.js';
-import {surfaceAt,terrainHeight}from './geo-terrain.js';
+import {surfaceAt,terrainHeight,insidePolygon}from './geo-terrain.js';
 function overlap(a,b){return a.minx<b.maxx&&a.maxx>b.minx&&a.miny<b.maxy&&a.maxy>b.miny&&a.minz<b.maxz&&a.maxz>b.minz;}
 export function addNeighbourhood(scene,data,play,profiles){
  const plan=planNeighbourhood(data,play,profiles);if(!plan.valid)return;const geometries={box:new THREE.BoxGeometry(1,1,1),post:new THREE.CylinderGeometry(.5,.5,1,8),leaf:new THREE.IcosahedronGeometry(.5,2)},groups=new Map(),lamps=[];
@@ -8,6 +9,7 @@ export function addNeighbourhood(scene,data,play,profiles){
  const leaf=geometries.leaf,lp=leaf.attributes.position,lc=[];for(let i=0;i<lp.count;i++){const x=lp.getX(i),y=lp.getY(i),z=lp.getZ(i),n=Math.sin(x*47+y*31+z*17)*Math.cos(z*39-x*23),f=.9+.08*n;lp.setXYZ(i,x*f,y*f,z*f);const shade=.83+.17*(n+1)/2;lc.push(shade,.9+.1*(n+1)/2,shade*.86);}leaf.setAttribute('color',new THREE.Float32BufferAttribute(lc,3));leaf.computeVertexNormals();for(const g of Object.values(geometries))g.computeBoundingBox();let lampCount=0,planterCount=0,benchCount=0;
  function clear(box){
   const x=(box.minx+box.maxx)/2,z=(box.minz+box.maxz)/2,r=Math.hypot((box.maxx-box.minx)/2,(box.maxz-box.minz)/2),t=play.terrain;
+  if(data.completionLayer===1&&contextSource.sports.some(f=>insidePolygon(x,z,f.rings)))return false;
   if(Math.hypot(x,z)<14+r||box.minx<t.bounds[0]||box.maxx>t.bounds[1]||box.minz<t.bounds[2]||box.maxz>t.bounds[3]||surfaceAt(play,x,z).water)return false;
   if((play.groundCorridors||[]).some(c=>segmentDistance(x,z,c.a,c.b)<c.width/2+r))return false;
   for(const rings of t.land)for(const ring of rings)for(let i=0;i<ring.length;i++)if(segmentDistance(x,z,ring[i],ring[(i+1)%ring.length])<r)return false;

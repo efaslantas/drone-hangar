@@ -14,7 +14,7 @@ const flat=r=>faces(r).flatMap(t=>t.flatMap(([x,z])=>[x,0,z]));
 export function planBuildingPads(data,profiles=coastalBuildings(data),layout=streetLayout(data,profiles)){
  const out={pads:[],rejected:[],authored:true};const terrain=data?.terrain;
  if(!terrain||!profiles.size||!terrain.heights?.every(Number.isFinite)||terrain.cols<2||terrain.rows<2||terrain.heights.length!==terrain.cols*terrain.rows)return out;
- const land=createSurfacePartition(terrain.land,{spatial:true}),excluded=createSurfacePartition([...roadRibbonMasks(data.roads,1.6),...roadRibbonMasks(terrain.land.flatMap(rings=>rings.map(r=>({points:[...r,r[0]],width:.3})))),...source.beaches.map(f=>f.rings),...source.harbour.map(f=>f.rings),...source.paved.map(f=>f.rings),...coast.features.map(f=>f.rings)],{spatial:true});
+ const land=createSurfacePartition(terrain.land,{spatial:true}),excluded=createSurfacePartition([...roadRibbonMasks(data.roads,1.6),...roadRibbonMasks(terrain.land.flatMap(rings=>rings.map(r=>({points:[...r,r[0]],width:.3})))),...source.beaches.map(f=>f.rings),...source.harbour.map(f=>f.rings),...source.paved.map(f=>f.rings),...(data.completionLayer===1?source.sports.map(f=>f.rings):[]),...coast.features.map(f=>f.rings)],{spatial:true});
  for(const profile of profiles.values()){
   const item=profile.item,ring=item.rings[0],reject=reason=>out.rejected.push({sourceId:item.id,reason});
   if(item.rings.length!==1||ring.length!==4||!ring.every(p=>p.every(Number.isFinite))){reject('unsupported-footprint');continue;}

@@ -134,3 +134,5 @@ Sahne çözümleme21.5ms,metadata4ms ve fizik verisi kopyalama26.2ms aynı taray
 
 
 Şile 2.58 kıyı yerleşimi: 129 ek kaynak izinden 119 uygun yapı, 350 m kuşağında 680 temsili OSM cephesi. ESA WorldCover 2021 v200 (CC BY 4.0) özgün piksel kesiti bitki örtüsüne yön verir; OSM alanları önceliklidir. 1.600 ağaç bütçesi kıyıya öncelik verir; 420 temsili yaz şemsiyesi ve OSM otopark yüzeyleri eklenir. Park çizgileri varsayımsaldır. Ölçülmüş dijital ikiz veya fiziksel TX15 kabulü değildir. Kaynaklar ve lisanslar `/sile.html` sayfasındadır. Kullanıcının 2.57 görsel reddi tarihsel kabul raporunda korunur.
+
+Şile 2.59 yüzey devamı: OSM’de kayıtlı beş spor alanı, futbol/basketbol/tenis için temsili çizgiler ve mevcut rıhtımın kara tarafında 30 m varsayımsal döşeme bandı. Saha ve döşeme mevcut yaklaşık araziyi izler; su doldurulmaz, ölçülmüş kot veya tribün eklenmez. Kaynak/varsayımlar `/maps/sile/sports-quay-visuals.json` içindedir.

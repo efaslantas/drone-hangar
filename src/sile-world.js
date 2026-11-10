@@ -13,6 +13,8 @@ import {addFacadeDepth} from './sile-architectural.js';
 import {applyBuildingPads} from './sile-pads.js';
 import * as THREE from 'three';
 import {mappedParkingSurfaces,addMappedParking} from './sile-parking.js';
+import {mappedSportsSurfaces,addSportsGrounds} from './sile-sports.js';
+import {mappedHarbourYard,addHarbourYard} from './sile-harbour-yard.js';
 import {planSileContext} from './sile-context.js';
 import {addSileContext} from './sile-context-view.js';
 import {mergeGeometries,mergeVertices} from 'three/addons/utils/BufferGeometryUtils.js';
@@ -66,8 +68,10 @@ export function buildSile(scene,data){
  const street=streetSurfaces(data,soil,streets);
  const harbour=harbourSurfaces(data,coastGround(data,street.ground,{exactSand:true,terrain:sourceTerrain}));
  const aprons=buildingAprons(data,harbour.ground,coastal);
- const parking=mappedParkingSurfaces(data,aprons.ground);addMappedParking(scene,parking.paved);
- const rawGround=geometry(refineNeighbourhoodGround(parking.ground,coastal),true);rawGround.deleteAttribute('normal');
+ const sports=mappedSportsSurfaces(data,aprons.ground);addSportsGrounds(scene,sports.sports);
+ const parking=mappedParkingSurfaces(data,sports.ground);addMappedParking(scene,parking.paved);
+ const yard=mappedHarbourYard(data,parking.ground);addHarbourYard(scene,yard.yard,yard);
+ const rawGround=geometry(refineNeighbourhoodGround(yard.ground,coastal),true);rawGround.deleteAttribute('normal');
  const smoothGround=mergeVertices(rawGround,.001);smoothGround.computeVertexNormals();rawGround.dispose();
  const ground=new THREE.Mesh(smoothGround,groundMat);ground.name='sile-terrain';ground.userData.groundSurface=true;ground.receiveShadow=true;scene.add(ground);
  if(harbour.paved.length){const paved=new THREE.Mesh(geometry(harbour.paved,true),harbourMaterial());paved.name='sile-harbour-paved';paved.userData.groundSurface=true;paved.receiveShadow=true;scene.add(paved);}

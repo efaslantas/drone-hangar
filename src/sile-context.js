@@ -17,6 +17,7 @@ export function planSileContext(data,play){
  function clear(x,z,r,{water=false,road=true,solids=true}={}){
   if(x-r<minx||x+r>maxx||z-r<minz||z+r>maxz||Math.hypot(x,z)<14+r)return false;
   const s=surfaceAt(play,x,z);if(s.water!==water||!water&&s.normal[1]<.7)return false;
+  if(!water&&data.completionLayer===1&&source.sports.some(f=>insidePolygon(x,z,f.rings)))return false;
   if(!water&&(play.groundCorridors||[]).some(c=>distance(x,z,c.a,c.b)<c.width/2+r))return false;
   for(const p of obstacles.near(x,z,r))if(p.kind==='solid'){if(solids&&x+r>p.minx&&x-r<p.maxx&&z+r>p.minz&&z-r<p.maxz)return false;}else if(road&&distance(x,z,p.a,p.b)<p.r+r*.45)return false;
   for(const p of reserved.near(x,z,r))if(Math.hypot(x-p.x,z-p.z)<(r+p.r)*.9)return false;

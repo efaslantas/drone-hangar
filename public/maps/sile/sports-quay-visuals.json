@@ -1,0 +1,54 @@
+{
+  "version": "2.59",
+  "source": "existing source-osm.json",
+  "sourceSha256": "b860868c8cbc075b2d7b8936aa95d95b452eb244c47d8e03d66bd98f1e87f59a",
+  "license": "ODbL-1.0",
+  "projection": {
+    "lat": 41.1744067,
+    "lon": 29.6125216,
+    "metresLat": 111057.28055917022,
+    "metresLon": 83913.01638061111,
+    "offsetX": -438.0811564219137,
+    "offsetZ": -82.8005069779328
+  },
+  "sports": {
+    "sourceIds": [
+      371472120,
+      931728526,
+      931728527,
+      931728528,
+      1285138758
+    ],
+    "mappedSport": [
+      "soccer",
+      "basketball",
+      "tennis",
+      "tennis",
+      "unknown"
+    ],
+    "lineLayouts": "representative inscribed game templates, not surveyed line positions",
+    "height": "unchanged approximate terrain/DSM; no grading",
+    "stadiumReference": {
+      "url": "https://sporenvanteri.ibb.istanbul/public/en/facility/sile-city-stadium",
+      "surface": "artificial grass",
+      "reportedDimensionsM": [
+        105,
+        68
+      ],
+      "dimensionsApplied": false,
+      "notice": "OSM polygon differs; no source footprint stretched, no invented grandstand"
+    }
+  },
+  "harbour": {
+    "sourceIds": [
+      468573622
+    ],
+    "existingApronM": 10,
+    "landwardBandM": 30,
+    "widthMeasured": false,
+    "materialMeasured": false,
+    "method": "same mapped harbour-adjacent coast edges, clipped to existing residual land and excluding green/beach/parking/sport/building/road surfaces",
+    "noWaterFill": true,
+    "noGrading": true
+  }
+}

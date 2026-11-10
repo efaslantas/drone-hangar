@@ -1,0 +1,4 @@
+import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';import{supportedLandFragments}from '../src/sile-harbour-yard.js';
+const land=JSON.parse(fs.readFileSync(new URL('../public/maps/sile/map.json',import.meta.url))).terrain.land;
+test('a real uploaded shoreline sliver rounded onto water is not emitted as harbour land',()=>{const p=[66.65007019042969,-.4797913730144501,-564.8789672851562,62.545799255371094,-.4400334358215332,-563.4239501953125,62.54574203491211,-.44003310799598694,-563.4238891601562],out=supportedLandFragments(p,land);assert.equal(out.positions.length,0);assert.equal(out.rejectedTriangles,1);assert.ok(out.rejectedAreaM2>0&&out.rejectedAreaM2<.0002);});
+test('supported land keeps its exact uploaded vertices and does not alter collision heights',()=>{const p=[1,4,1,3,5,1,1,7,3],out=supportedLandFragments(p,[[[[0,0],[10,0],[10,10],[0,10]]]]);assert.deepEqual(out.positions,p);assert.equal(out.rejectedAreaM2,0);});

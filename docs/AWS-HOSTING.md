@@ -1,6 +1,6 @@
 # Drone Hangar — AWS işletim kaydı
 
-2026-11-02: Kullanıcı Drone simülatörü 2.16 için mevcut Zenth AWS sunucusunu seçti. Canlı adres: https://hangar.18-153-158-209.sslip.io/ . İlk kurulum `v2.16.0-7f5130339846`; güncel sürüm `v2.64.0-0154e49e3dab` (2.64, 2026-11-13).
+2026-11-02: Kullanıcı Drone simülatörü 2.16 için mevcut Zenth AWS sunucusunu seçti. Canlı adres: https://hangar.18-153-158-209.sslip.io/ . İlk kurulum `v2.16.0-7f5130339846`; güncel sürüm `v2.65.0-7a57ec1eeba5` (2.65, 2026-11-13).
 
 ## Yerleşim
 
@@ -254,3 +254,8 @@ Bu yayında önce disk kontrolü yapıldı (20 GiB kökte 469 MiB boş). Yalnız
 ## 2026-11-13 — Şile sokak donatıları2.64
 
 v2.64.0-0154e49e3dab ARM64 app-only yayımlandı. Image `sha256:6ca520e7ec72b5a8fa587b7bb630a6b2b85bc317bcb3dd73315d22fb84e9e831`; archive SHA `085d721b6fc2c7dfc161369276b36d877a58b443e385898f587a3d72570a7896`. 482 paket kaynak SHA,çalışan kaynaklar/HTTPS/WSS/nativeDISARM0 doğrulandı;7tenant/nginxaynı,eskiuygulama/veriyedeğikorundu.675Node22/11infra/12geometrikrota,nativeGL/GPU6bölge+stadyum,yeni180sgörünürdelta.24lamps24planters6benches,204boxes2448sweptfaces;legacySHAretained;not municipal inventory. Kaynak ayakizi/taban/arazi/RCfixaynı;135core/104giriş/24eskiyükseklikvarsayımıkorundu. Önceki900s2.58tarihseldir;fizikselTX15/yeni kullanıcınot-run.
+
+
+## 2026-11-13 — Şile asfalt ve parke yüzeyleri2.65
+
+v2.65.0-7a57ec1eeba5 ARM64 app-only yayımlandı. Image `sha256:786e9edda9f452fea92864af6fc775c33c92acdc2bc998ef903118fdb7750635`; archive SHA `910c92970f0f9d6d8acb69d85b3392d07179973b005d202f70eec8ece83eacd3`. 485 paket kaynak SHA,çalışan kaynaklar/HTTPS/WSS/nativeDISARM0 doğrulandı;7tenant/nginxaynı,eskiuygulama/veriyedeğikorundu.682Node22/11infra/12geometrikrota,nativeGL/GPU6bölge+stadyum,yeni180sgörünürdelta.Asphalt shoulder/paver microdetail;full2.64physicsSHAretained;not survey. Kaynak ayakizi/taban/arazi/RCfixaynı;135core/104giriş/24eskiyükseklikvarsayımıkorundu. Önceki900s2.58tarihseldir;fizikselTX15/yeni kullanıcınot-run.

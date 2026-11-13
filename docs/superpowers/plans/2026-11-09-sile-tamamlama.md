@@ -234,3 +234,12 @@ Kullanıcı sokak/yol birleşimlerini geliştirip canlı yayın istedi. 2.61 mai
 - [x] Model sınırları/önceki insan reddi korunarak main/app-onlyAWS, kaynakSHA/HTTPS/WSS/nativeDISARM0, kayıtlar/notes ve sahipli scratch kapanışı. Yeni kullanıcı/TX15 kabulü yapılmadı kalır.
 
 Task16 teslim: v2.62.0-8e1675aa7a78 canlı;664Node22/11infra/12rota/nativeGL-GPU/180sgörünürdelta/HTTPS/WSS/liveDISARM0.213modelentrancelinks/318total/680roadsideprofiles;source468roadgeometry/widthunchanged;no surveyclaim. Önceki900s2.58veinsanreddikorunur,yeni kullanıcı/TX15not-run.
+
+### Task 17: Sokak ve kaldırım malzeme gerçekçiliği · 2.63
+
+Kullanıcı sokak/kaldırım/bina çevresine devam ve canlı yayın istedi. Mevcut 2.62 üzerinden aynı plan sürer. Bu tur görünüm sahibini geliştirir: mevcut yaya yüzeylerini kaynak yol/bağ yönünde, bina çevresini cephe yönünde metrik parke dokusuyla eşle; yönü ters çevrilen kaynak kenarda doku değişmesin. Bina diplerinde hafif ton/aşınma geçişi. Asfalt kenarında mevcut döşemeden ayrılan 26cm temsili taş bandı; son fiziksel yüzeyle aynı kot, yeni basamak veya çarpışma engeli eklenmez. Arazi, yol genişliği, kaynak izleri, 318bağ/367kapı/4teras ve temas hacimleri korunur. Taş için mevcut genel CC0 beton taraması kullanılır; Şile'de ölçülmüş bordür/döşeme iddiası yok.
+
+- [ ] Eğimli üçgenleri kot/alan koruyarak tek kez taş bandı ve parke olarak böl; kaynak/öznitelik sınırları, yönlenmiş UV ve ters kenar değişmezliği RED→GREEN.
+- [ ] Son teras yüzeyinden sonra uygula; tek ilave ortak band mesh/material, mevcut kaynak temizliği/worker/kalite davranışı. Gerçek sahnede eski fizik parmak izi, döşeme toplam alanı ve görünen kot korunur; 2.62bağ süreklilik testi yeni bandı da kapsar.
+- [ ] Tek freshreview; tamNode22/11infra/12rota, nativeGL/GPU6bölge+stadyum, yeni görünür180sdelta ve yakın sokak görünümü.
+- [ ] Main/app-onlyAWS; kaynakSHA/HTTPS/WSS/nativeDISARM0. 20GiB sunucuda önce disk kontrolü; gerekirse yalnız SHA/boyut doğrulanmış S3-yedekli eski Hangar paket önbelleği çıkarılır. Container/image/volume/veri/yedek/tenant/nginx korunur. Kaynak/model/TX15/insan kabul sınırları ve notes/kanıt/sahipli scratch kapanışı.

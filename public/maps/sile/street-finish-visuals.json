@@ -1,0 +1,35 @@
+{
+  "version": "2.63",
+  "date": "2026-11-13",
+  "source": "Existing source-road/building directions, final prepared paving triangles, generic concrete scan already in materials library",
+  "modelOnly": true,
+  "surveyed": false,
+  "terrainRoadAndBuildingDimensionsChanged": false,
+  "physicalWorldSha256": "60f7c49bf756bf227095431834bfb94a8dd3f2f5a89490acf77003ecd26254bd",
+  "stats": {
+    "bandWidthM": 0.26,
+    "stoneAreaM2": 6657.655650977217,
+    "pavingAreaBeforeM2": 89137.596177342,
+    "partitionAreaAfterM2": 89137.59614730257,
+    "oriented": true,
+    "flush": true,
+    "measured": false
+  },
+  "orientation": "One local direction per triangle; undirected source edge canonicalization; metre UVs. Roads/entrance paths for sidewalks,source facade edges for building aprons.",
+  "finish": "Mild template weathering at building feet;26cm flush roadside concrete/stone appearance split only from existing paving.",
+  "elevation": "Same physical plane, no raised curb or added obstacle. Existing Float32 terrace seams checked one-sided within0.2mm; ordinary physical/rendered height tolerance2cm.",
+  "material": "Existing generic CC0 concrete_floor_02 /2m artist tile; not surveyed Sile stone or pavement. Existing credits/materials/sources.json apply.",
+  "preserved": {
+    "sourceRoads": 468,
+    "entranceLinks": 318,
+    "backRowDoors": 367,
+    "corePads": 4,
+    "prisms": 1530,
+    "boxes": 14343,
+    "wallTriangles": 100227
+  },
+  "limits": [
+    "Material,band width,weathering and orientation are modeling choices.",
+    "Approximate DSM/source gaps and first-load composer budget remain;not a surveyed digital twin."
+  ]
+}

@@ -65,3 +65,14 @@ export function streetSurfaces(data,positions,layout){
  return{ground,asphalt:stableSurface(data.terrain,asphalt),paving:stableSurface(data.terrain,paving)};
 }
 export function streetRemainder(positions,layout){if(!layout.valid||!positions.length)return positions;const clip=createSurfacePartition(layout.coverage,{spatial:true}),out=[];for(let i=0;i<positions.length;i+=9){const t=[0,3,6].map(k=>[positions[i+k],positions[i+k+2],positions[i+k+1]]);for(const q of clip(t).outside)for(const[x,z,y]of q)out.push(x,y,z);}return out;}
+
+// Split only already-rendered paving at its current physical elevation.
+// The26cm stone edge is a flush material interpretation, not a raised curb.
+export function streetBandPartition(positions,roads){
+ const drive=roads.filter(r=>['residential','service','living_street','tertiary','secondary'].includes(r.kind));
+ if(!drive.length)return {paving:positions,stone:[]};
+ const outer=createSurfacePartition(roadRibbonMasks(drive,.26),{spatial:true}),inner=createSurfacePartition(roadRibbonMasks(drive),{spatial:true}),paving=[],stone=[];
+ const append=(target,triangles)=>{for(const t of triangles)for(const[x,z,y]of t)target.push(x,y,z);};
+ for(let i=0;i<positions.length;i+=9){const t=[0,3,6].map(k=>[positions[i+k],positions[i+k+2],positions[i+k+1]]),parts=outer(t);append(paving,parts.outside);for(const q of parts.inside){const p=inner(q);append(paving,p.inside);append(stone,p.outside);}}
+ return {paving,stone};
+}

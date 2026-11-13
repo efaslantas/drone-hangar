@@ -33,7 +33,7 @@ import {refineNeighbourhoodGround} from './sile-neighbourhood.js';
 import {addBuildingFoundations} from './sile-grounding.js';
 import {addNeighbourhood} from './sile-neighbourhood-view.js';
 import {streetLayout,streetSurfaces,streetRemainder} from './sile-streets.js';
-import {pavingGeometry,streetPavingMaterial} from './sile-street-view.js';
+import {pavingGeometry,streetPavingMaterial,finishStreetAppearance} from './sile-street-view.js';
 
 function geometry(positions,uv=false){
  const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute(positions,3));g.computeVertexNormals();
@@ -173,6 +173,7 @@ export function buildSile(scene,data){
  mark('coastal-facades-neighbourhood');
  applyBuildingPads(scene,data,play,coastal,streets);
  alignCompletedEntries(scene,play,coastal,data,district);
+ finishStreetAppearance(scene,data,play,streets,district);
  mark('building-pads');
  addMooringLinks(scene,data,play);
  addShoreArmour(scene,data,play,rockFinish.dry);

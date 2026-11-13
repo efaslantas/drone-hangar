@@ -1,0 +1,15 @@
+# Şile 2.63 — Sokak yüzeyleri
+
+Parke dokularının metrik yönü, kaldırımlarda mevcut kaynak yol ve giriş bağlarına; bina çevresinde kaynak cephe kenarlarına uyarlandı. Bir kaynak çizgisinin yönü ters çevrildiğinde doku yönü ve fazı değişmez. Bina diplerine hafif temsili ton ve aşınma geçişi eklendi. Bunlar ölçülmüş yerel döşeme desenleri değildir.
+
+Mevcut yaya döşemesinden asfaltın dış kenarında 26 santimetrelik taş görünümlü bir malzeme bandı ayrıldı. Bandın bütün köşeleri mevcut son yüzeyin kotunda kalır. Yeni basamak, yükseltilmiş bordür veya çarpışma engeli yoktur. İki parke yüzeyiyle ortak tek bir ek band mesh'i kullanılır. Genel CC0 `concrete_floor_02` taraması mevcut malzeme kütüphanesinden gelir; Şile'deki gerçek taşın taraması değildir. İki metrelik doku ölçeği sanatçı yorumudur ve başlangıç, taranmış malzeme ve düşük kalite geçişlerinde korunur.
+
+Yaklaşık 89.137,596 m² döşeme toplamı korunur; bunun 6.657,656 m²'si taş bandı olarak görünür. Değerler model geometrisinin hesaplanan alanıdır, saha ölçümü değildir. 2.62 sürümünün arazi, prizmalar, kutular, koridorlar ve temas duvarlarını içeren tam fiziksel parmak izi değişmedi. 318 giriş bağı, 367 desteklenen arka kapı, dört teras, 1.530 prizma, 14.343 kutu ve 100.227 temas duvarı korunur.
+
+Teras sınırlarında mevcut Float32 yüklemesi mikroskobik yatay taraf farkı oluşturabilir. Kontrol, yalnız teras kenarının 0,2 milimetre yakınında içerideki teras ile dışarıdaki özgün arazi kotunu ayrı değerlendirir; diğer noktalarda 2 santimetrelik görünen/fiziksel kot sınırı kullanılır. Görüntü düzenlemesi fiziksel yüzeyleri taşımadığı için bu mevcut sınır davranışı değişmez.
+
+Beş saf regresyon ve bir gerçek sahne testi önce başarısız olup düzeltmeyle geçti. Gerçek sahnede fiziksel parmak izi, alan korunumu, kot ve malzemelerin yalnız bir kez temizlenmesi doğrulanır. Bağımsız incelemedeki düşük kalite doku ölçeği bulgusu başlangıç/medium/low geçişi regresyonuyla düzeltildi. S2 bölgesine kaynak yol merkezi ve yaklaşık araziye dayanan yakın sokak kabul kamerası eklendi. Önceki 2.62 giriş-bağ süreklilik testi yeni taş yüzeyini de kapsar.
+
+Kanonik kayıt `sile-completion-acceptance.json` içindeki `followups.finish263`; kaynak/model kaydı `public/maps/sile/street-finish-visuals.json` ve `/sile.html` üzerindedir. Yaklaşık DSM, eksik kaynak yapıları, önceki kullanıcı reddi ve fiziksel TX15/yeni kullanıcı görsel-uçuş kabulünün yapılmamış olması korunur. Bu çalışma ölçülmüş dijital ikiz veya gerçek bordür envanteri değildir.
+
+670/670 Node 22 ARM64 testi, 11 altyapı testi ve 12 geometrik rota geçti. Altı bölge, stadyum ve yakın sokak WebGL/WebGPU ile kaydedildi. Yeni 180,0078 saniyelik görünür 1280 × 720 medium koşusunda ortalamalar yaklaşık 60 FPS, en düşük %1 değeri 53,33 FPS; gizli sekme süresi sıfırdır. Önceki 900 saniyelik 2.58 kaydı tarihseldir. Eşzamanlı tam testler altında sahne hazırlığı yaklaşık 43–54 saniye sürdü; bu kontrollü yükleme karşılaştırması değildir. İlk composer/GPU işleri 50 ms hedefini hâlâ aşar.

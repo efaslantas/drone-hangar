@@ -1,0 +1,35 @@
+{
+  "version": "2.65",
+  "date": "2026-11-13",
+  "measured": false,
+  "source": "Existing OSM road ribbons, approximate DSM and existing CC0 asphalt scan; procedural stone template",
+  "shoulderWidthM": 0.55,
+  "asphaltTileM": 1.5,
+  "pavingTileM": 1,
+  "newMeshes": 0,
+  "newPhysicalRecords": 0,
+  "full264PhysicsSha256": "8fcd8220a21cfceefcdba074a93af0709b54adf7d8c8d1a265cdb29326453775",
+  "scope": "Existing asphalt triangle planes and coverage only; inset road union controls modeled dust. No new road width,curb height,crack inventory or hazards. Paving channels share deterministic beveled stones and fine grain.",
+  "limits": [
+    "Artist material interpretation; not surveyed road wear or individual paving inventory.",
+    "Float32 partition area comparison permits0.8m² on362496.736m² (2.2ppm).",
+    "New camera180s performance is not manual flight or physical TX15 verification."
+  ],
+  "worldAudit": {
+    "hash": "8fcd8220a21cfceefcdba074a93af0709b54adf7d8c8d1a265cdb29326453775",
+    "roadArea": 362497.10135086573,
+    "vertices": 2532960,
+    "appearance": {
+      "asphaltShoulderWidthM": 0.55,
+      "asphaltShoulderAreaM2": 75202.63378620717,
+      "asphaltWeathered": true,
+      "bandWidthM": 0.26,
+      "stoneAreaM2": 6657.655650977217,
+      "pavingAreaBeforeM2": 89137.596177342,
+      "partitionAreaAfterM2": 89137.59614730257,
+      "oriented": true,
+      "flush": true,
+      "measured": false
+    }
+  }
+}

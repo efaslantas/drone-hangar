@@ -156,5 +156,10 @@
   "districtGroundingVisuals": "district-grounding-visuals.json",
   "districtStreetVisuals": "district-street-visuals.json",
   "streetFinishVisuals": "street-finish-visuals.json",
-  "districtFurnitureVisuals": "district-furniture-visuals.json"
+  "districtFurnitureVisuals": "district-furniture-visuals.json",
+  "streetWeathering265": {
+    "metadata": "/maps/sile/street-weathering-visuals.json",
+    "measured": false,
+    "scope": "Source road union inset55cm material interpretation,metric scanned asphalt and procedural paving microdetail; geometry planes/coverage and full2.64physics retained."
+  }
 }

@@ -1,0 +1,170 @@
+{
+  "status": "complete",
+  "hiddenMs": 0,
+  "backend": "webgl",
+  "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+  "renderSize": [
+    1280,
+    720
+  ],
+  "quality": "medium",
+  "buildMs": 60266.69999998808,
+  "durationSeconds": 180.00899999998813,
+  "scope": "Actual scene + desktop medium shadows1024,AA and composer at fixed1280x720; static regional cameras; not full app/manual or physics flight acceptance",
+  "mainThreadPreparationTasks": [
+    {
+      "start": 59233,
+      "duration": 92
+    },
+    {
+      "start": 59326.90000000596,
+      "duration": 50
+    },
+    {
+      "start": 60583.20000001788,
+      "duration": 695
+    },
+    {
+      "start": 135709.40000000596,
+      "duration": 141
+    },
+    {
+      "start": 150260.80000001192,
+      "duration": 116
+    }
+  ],
+  "regions": [
+    {
+      "id": "S1",
+      "renderer": {
+        "render": {
+          "frame": 5509,
+          "calls": 1,
+          "triangles": 1,
+          "points": 0,
+          "lines": 0
+        },
+        "memory": {
+          "geometries": 63,
+          "textures": 82
+        },
+        "jsHeapUsedBytes": 690127007
+      },
+      "durationSeconds": 26.999600000000036,
+      "frames": 1620,
+      "fps": 60.00088890205773,
+      "low1PercentFps": 56.45964795746083,
+      "maxFrameMs": 17.79999999998836
+    },
+    {
+      "id": "S2",
+      "renderer": {
+        "render": {
+          "frame": 10912,
+          "calls": 1,
+          "triangles": 1,
+          "points": 0,
+          "lines": 0
+        },
+        "memory": {
+          "geometries": 63,
+          "textures": 82
+        },
+        "jsHeapUsedBytes": 691276061
+      },
+      "durationSeconds": 29.99979999999999,
+      "frames": 1800,
+      "fps": 60.00040000266671,
+      "low1PercentFps": 56.33802816899356,
+      "maxFrameMs": 17.800000000046566
+    },
+    {
+      "id": "S3",
+      "renderer": {
+        "render": {
+          "frame": 16315,
+          "calls": 1,
+          "triangles": 1,
+          "points": 0,
+          "lines": 0
+        },
+        "memory": {
+          "geometries": 63,
+          "textures": 82
+        },
+        "jsHeapUsedBytes": 692315017
+      },
+      "durationSeconds": 30.00120000000001,
+      "frames": 1800,
+      "fps": 59.997600095996134,
+      "low1PercentFps": 56.49717514122642,
+      "maxFrameMs": 17.70000000001164
+    },
+    {
+      "id": "S4",
+      "renderer": {
+        "render": {
+          "frame": 21718,
+          "calls": 1,
+          "triangles": 1,
+          "points": 0,
+          "lines": 0
+        },
+        "memory": {
+          "geometries": 63,
+          "textures": 82
+        },
+        "jsHeapUsedBytes": 688768590
+      },
+      "durationSeconds": 30.00009999999998,
+      "frames": 1800,
+      "fps": 59.99980000066671,
+      "low1PercentFps": 56.39097744359668,
+      "maxFrameMs": 17.79999999998836
+    },
+    {
+      "id": "S5",
+      "renderer": {
+        "render": {
+          "frame": 27121,
+          "calls": 1,
+          "triangles": 1,
+          "points": 0,
+          "lines": 0
+        },
+        "memory": {
+          "geometries": 63,
+          "textures": 82
+        },
+        "jsHeapUsedBytes": 689808185
+      },
+      "durationSeconds": 30.000100000000035,
+      "frames": 1800,
+      "fps": 59.999800000666596,
+      "low1PercentFps": 56.47944775644687,
+      "maxFrameMs": 17.79999999998836
+    },
+    {
+      "id": "S6",
+      "renderer": {
+        "render": {
+          "frame": 32527,
+          "calls": 1,
+          "triangles": 1,
+          "points": 0,
+          "lines": 0
+        },
+        "memory": {
+          "geometries": 63,
+          "textures": 82
+        },
+        "jsHeapUsedBytes": 689788435
+      },
+      "durationSeconds": 30.015900000000023,
+      "frames": 1801,
+      "fps": 60.001532521097104,
+      "low1PercentFps": 56.44682115264884,
+      "maxFrameMs": 17.800000000046566
+    }
+  ]
+}

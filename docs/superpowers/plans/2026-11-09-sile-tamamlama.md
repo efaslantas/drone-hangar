@@ -256,3 +256,12 @@ Kullanıcı sokak/kaldırım/bina çevresine devam ve canlı istedi. 2.63 üzeri
 - [x] Main/app-onlyAWS; kaynakSHA/HTTPS/WSS/nativeDISARM0. Önce kapasiteyi ve S3 paketlerini yeniden incele; yalnız SHA/boyutla doğrulanmış indirilebilir Hangar tarcache gerekiyorsa çıkarılır. Container/image/volume/veri/yedek/tenant/nginx korunur. Kaynak/model/insan/TX15sınırları ve kayıt/notes/sahipli scratch kapanışı.
 
 Task18 teslim: v2.64.0-0154e49e3dab canlı;675 Node22 / 11 altyapı / 12 rota, native GL–GPU, 180s görünür ölçüm, HTTPS/WSS ve canlı DISARM0 doğrulandı. 24 direk, 24 saksı, 6 bank; 204 kutu ve 2448 süpürmeli yüzey. Yalnız yeni etiketli kayıtlar çıkarıldığında önceki fizik SHA korunur; belediye envanteri değildir. Önceki900s2.58veinsanreddikorunur,yeni kullanıcı/TX15not-run.
+
+### Task 19: Asfalt kenarı ve parke yüzey ayrıntısı · 2.65
+
+Kullanıcının sokak/kaldırım/bina çevresi gerçekçiliği ve canlı teslim isteği sürer. 2.64 temelinde mevcut yüzey sahibini geliştir: asfaltın son geometrisini 55cm iç kenar bandına kaynak yol şeritlerinin birleşimiyle böl; mevcut üçgen düzlemi/alanı ve tüm fizik kayıtları korunur. Yol ortası ile kenarda düşük kontrastlı temsili toz/aşınma renkleri, yol yönünde metrik UV kullan. Kavşaklar kaynak şerit birleşimini izler, yol çizgisi/çukur/ölçülmemiş engel eklenmez. Mevcut 512px parke şablonunda taş başına sınırlı ton, ince taneler ve derz pahı geliştir; renk/yükseklik/roughness aynı deseni kullanır. Yeni tarama/varlık/mesh veya fizik sahibi gerekmez. Mevcut kalite/fallback/worker/temizleme akışı korunur. Main ve app-only yayın yetkisi sürer, yeni worktree/karar menüsü gerekmez.
+
+- [ ] Eğimli asfalt bandı alan/kot/determinizm/ters yol ve kavşak iç bölge regresyonları RED→GREEN; boş/bozuk olmayan fallback korunur.
+- [ ] Son sahnede metrik malzeme, yeni görünümün genel zemin hazırlığında korunması, tüm 2.64 fizik SHA ve kaynaklar aynı; kaynak temizliği ve kalite geçişi doğrulanır.
+- [ ] Tek fresh review; tam Node22,11infra/12rota; nativeGL/GPU6bölge+3yakınkamera ve yeni180s görünür ölçüm.
+- [ ] Main/push/app-onlyAWS; yeni disk/S3preflight (2.58/2.63 tarcache artık yok), kaynakSHA/HTTPS/WSS/nativeDISARM0. Temsili görünüm/insan/TX15 sınırları, kanıt/notes/sahipli scratch kapanışı.

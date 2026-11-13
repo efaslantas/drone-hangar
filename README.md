@@ -146,3 +146,5 @@ Sahne çözümleme21.5ms,metadata4ms ve fizik verisi kopyalama26.2ms aynı taray
 Şile 2.63: Parke yönleri mevcut yol/bağ ve cephe kenarlarıyla eşlenir; bina diplerinde temsili ton geçişleri vardır. Mevcut yaya yüzeyinden ayrılan 26cm taş görünümlü yol kenarı bandı aynı kotta kalır. Kaynak/fizik/bağlantı geometrisi değişmez. Genel CC0 beton taraması ve malzeme kapsamı ölçülmüş Şile bordürü değildir. Köken/sınırlar `public/maps/sile/street-finish-visuals.json`.
 
 Şile 2.64: Mevcut ön donatılar korunarak arka kıyı sokaklarına 24 temsili aydınlatma, 24 giriş saksısı ve 6 bank eklendi. Kaynak yol/kapı yönleri, fiziksel destek ve tam engel/korunan yüzey kontrolleri kullanılır; yeni katılar eşleşen fizik kutuları taşır. Yerleşim gerçek belediye envanteri değildir. `public/maps/sile/district-furniture-visuals.json` kaynak ve model sınırlarını kaydeder.
+
+Şile 2.65 asfalt kenarı ve parke ayrıntısı: mevcut yol yüzeyinde temsili 55 cm aşınma/toz geçişi, yol yönünde metrik tarama ve derz/tane ayrıntısı. Yol genişliği, zemin ve tüm fizik kayıtları korunur; gerçek yol aşınma envanteri değildir.

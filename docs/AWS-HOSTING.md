@@ -1,6 +1,6 @@
 # Drone Hangar — AWS işletim kaydı
 
-2026-11-02: Kullanıcı Drone simülatörü 2.16 için mevcut Zenth AWS sunucusunu seçti. Canlı adres: https://hangar.18-153-158-209.sslip.io/ . İlk kurulum `v2.16.0-7f5130339846`; güncel sürüm `v2.59.0-01f8df881bcb` (2.59, 2026-11-10).
+2026-11-02: Kullanıcı Drone simülatörü 2.16 için mevcut Zenth AWS sunucusunu seçti. Canlı adres: https://hangar.18-153-158-209.sslip.io/ . İlk kurulum `v2.16.0-7f5130339846`; güncel sürüm `v2.60.0-a8bbda72ee0e` (2.60, 2026-11-13).
 
 ## Yerleşim
 
@@ -225,3 +225,8 @@ v2.58.0-47520f3ee55f ARM64 app-only yayımlandı. Image `sha256:c3323d44340e95be
 ## 2026-11-10 — Şile spor sahaları ve rıhtım 2.59
 
 v2.59.0-01f8df881bcb ARM64 app-only yayımlandı. Image `sha256:dd49a978fedbd8b2449b878a31b4f4ff607e60adacb112f9dfa8be04e8298cce`; archive SHA `5ce9380d4f6ea69c4788f09985d1a1ef2954615918ffd673869f741b740775b2`. 467 paket kaynak SHA eşleşti; çalışan kaynaklar/HTTPS/worker/GPU/yenilenen context/metadata SHA,2istemciWSS,canlıDISARM0AGL0hız doğrulandı.7tenant/nginxaynı;eskiuygulama/veriyedeğikorundu.649/649Node22ARM64,11infra,12geometrikrota;nativeGL/GPU6bölge+stadyum. Bu sürümün yeni180sgörünürperformanskontrolü followups.grounds259.performance içindedir; önceki900s2.58kaydıtarihseldir.5OSMpitchkaydı/temsiliçizgiler,varsayımsal30mkararıhtımbandı;kökenharita/OSM/DSM/RCfixaynı,ölçülmüşkot/tribüneklenmedi. Kullanıcı/TX15kabulünot-run.
+
+
+## 2026-11-13 — Şile arka sıra bina açıklığı2.60
+
+v2.60.0-a8bbda72ee0e ARM64 app-only yayımlandı. Image `sha256:372f7378c7844221a6151428ea6108645fed008855d6f8c284404e45cad24aed`; archive SHA `e98c47437d05bb2a8fd9b36c321da441fe773d4954b680d319956335746adcaf`. 470 paket kaynak SHA,çalışan kaynaklar/HTTPS/WSS/nativeDISARM0 doğrulandı;7tenant/nginxaynı,eskiuygulama/veriyedeğikorundu.655Node22/11infra/12geometrikrota,nativeGL/GPU6bölge+stadyum,yeni180sgörünürdelta.107varsayımsal bina tam ayak izi/DSM3msaçak açıklığı:max16.32m/20mcap,ölçülmüşyükseklikdeğil. Kaynak ayakizi/taban/arazi/RCfixaynı;135core/104giriş/24eskiyükseklikvarsayımıkorundu. Önceki900s2.58tarihseldir;fizikselTX15/yeni kullanıcınot-run.

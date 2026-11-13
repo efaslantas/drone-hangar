@@ -1,6 +1,6 @@
 {
   "date": "2026-11-13",
-  "status": "Verified2.60back-row clearance follow-up; publication and new human acceptance pending",
+  "status": "Published2.60back-row clearance follow-up verified;900s baseline remains2.58, new180sdelta verified; human acceptance pending",
   "inventoryVersion": 1,
   "sourceSnapshotKey": "1147718:d3dd4d94:81685aaa",
   "baseline": "v2.57.0-e89963741523",
@@ -953,7 +953,8 @@
         ],
         "release": "v2.59.0-01f8df881bcb"
       }
-    ]
+    ],
+    "release": "v2.60.0-a8bbda72ee0e"
   },
   "limits": [
     "31mDSM and most building heights remain unmeasured; representative scene, not surveyed digital twin.",
@@ -1116,8 +1117,101 @@
     }
   ],
   "delivery": {
-    "status": "pending",
-    "baseline": "v2.59.0-01f8df881bcb"
+    "status": "published",
+    "release": "v2.60.0-a8bbda72ee0e",
+    "image": {
+      "release": "v2.60.0-a8bbda72ee0e",
+      "imageId": "sha256:372f7378c7844221a6151428ea6108645fed008855d6f8c284404e45cad24aed",
+      "archiveSha256": "e98c47437d05bb2a8fd9b36c321da441fe773d4954b680d319956335746adcaf",
+      "archiveBytes": 144845679,
+      "architecture": "arm64",
+      "sourceFiles": 470
+    },
+    "sourceFiles": 470,
+    "preservedSourceFiles": {
+      "public/maps/sile/map.json": "5564a34bbf1573152f5e1a93d1de4d01895eb4021483d2e03fae761341717a11",
+      "public/maps/sile/source-osm.json": "b860868c8cbc075b2d7b8936aa95d95b452eb244c47d8e03d66bd98f1e87f59a",
+      "public/maps/sile/source-dem.tif": "c1d9b4576412ef8f3e791ee23eff2db1a4c6ac1684b98c92bbafbc3cde380743",
+      "src/rc-setup.js": "1bb07e0d440d54cd2006763b108386b22115651ec1e57ceba6c2d94964814c26",
+      "tests/rc-setup.test.js": "7a038dfcbf536ac3b18c3ac74f146b32007f9aa132cd889da440d8eed4082880"
+    },
+    "changedDerivedData": [
+      "107model-only back-row heights",
+      "building clearance metadata",
+      "current district inventory assumed heights"
+    ],
+    "https": {
+      "release": "v2.60.0-a8bbda72ee0e",
+      "entryAssets": 5,
+      "uniqueIds": 253,
+      "appVersion": "2.60.0",
+      "lazyGpuChunks": [
+        "gfx-webgpu-BPv6_-0D.js"
+      ],
+      "sceneWorkerChunks": [
+        "sile-scene-worker-B31694Yi.js"
+      ],
+      "liveSkyOrderFix": true,
+      "mapAndSourceSha256": "pass"
+    },
+    "websocket": {
+      "clients": 2,
+      "join": "pass",
+      "state": "pass",
+      "leave": "pass"
+    },
+    "remote": {
+      "Status": "Success",
+      "StandardOutputContent": "Running image source hashes: 139 OK\ndrone-hangar | 25.99MiB / 256MiB | 0.81%\n{\"running\": true, \"restarts\": 0, \"readonly\": true, \"user\": \"1000:1000\", \"image\": \"sha256:372f7378c7844221a6151428ea6108645fed008855d6f8c284404e45cad24aed\"}\nSeven tenants/nginx unchanged; old container/data backup retained\nhttps://zenth.finance/ 200\nhttps://api.zenth.finance/health 200\nGelisim TLS origin 200\n",
+      "StandardErrorContent": "nginx: the configuration file /etc/nginx/nginx.conf syntax is ok\nnginx: configuration file /etc/nginx/nginx.conf test is successful\n"
+    },
+    "nativeLive": {
+      "url": "https://hangar.18-153-158-209.sslip.io/?room=hangar&name=pilot",
+      "release": "v2.60.0-a8bbda72ee0e",
+      "verifiedDisarmGroundZero": true,
+      "reference": "REF 4M · ACRO · REAL",
+      "physicalTX15": "not-run",
+      "screenshot": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-260-live.jpg",
+      "dom": "- text: ✓ ✓ ✓ ✓\n- generic: Şile · veri tabanlı taslak\n- link \"© OpenStreetMap contributors · ODbL\":\n  - /url: https://www.openstreetmap.org/copyright\n- text: · Copernicus DEM ·\n- link \"Microsoft / Overture Maps · ODbL\":\n  - /url: https://overturemaps.org/\n- text: ·\n- link \"ESA WorldCover 2021 · CC BY 4.0\":\n  - /url: /sile.html\n- link \"Kaynaklar / yükseklik varsayımları ↗\":\n  - /url: /sile.html\n- generic: 0 km/h\n- generic: 0 m AGL\n- generic: BAT\n- generic: DISARM\n- generic: REF 4M · ACRO · REAL\n- button \"ARM\"\n- button \"CAM\"\n- button \"MOD\"\n- button \"KONTROL\"\n- button \"MENÜ\"",
+      "logs": [
+        {
+          "level": "warn",
+          "message": "MaxListenersExceededWarning: Possible EventEmitter memory leak detected. 11 close listeners added. Use emitter.setMaxListeners() to increase limit",
+          "timestamp": "2026-11-13T11:40:02.050Z",
+          "url": "chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/scripts/contentscript.js"
+        },
+        {
+          "level": "warn",
+          "message": "MaxListenersExceededWarning: Possible EventEmitter memory leak detected. 11 end listeners added. Use emitter.setMaxListeners() to increase limit",
+          "timestamp": "2026-11-13T11:40:02.050Z",
+          "url": "chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/scripts/contentscript.js"
+        },
+        {
+          "level": "warn",
+          "message": "ObjectMultiplex - orphaned data for stream \"app-init-liveness\"",
+          "timestamp": "2026-11-13T11:40:02.070Z",
+          "url": "chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/scripts/contentscript.js"
+        },
+        {
+          "level": "warn",
+          "message": "ObjectMultiplex - orphaned data for stream \"app-init-liveness\"",
+          "timestamp": "2026-11-13T11:40:02.071Z",
+          "url": "chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/scripts/contentscript.js"
+        },
+        {
+          "level": "warn",
+          "message": "ObjectMultiplex - orphaned data for stream \"background-liveness\"",
+          "timestamp": "2026-11-13T11:40:02.071Z",
+          "url": "chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/scripts/contentscript.js"
+        },
+        {
+          "level": "warn",
+          "message": "ObjectMultiplex - orphaned data for stream \"background-liveness\"",
+          "timestamp": "2026-11-13T11:40:02.071Z",
+          "url": "chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/scripts/contentscript.js"
+        }
+      ]
+    }
   },
   "followups": {
     "loading257": {
@@ -2223,7 +2317,7 @@
       }
     },
     "clearance260": {
-      "status": "software-verified; publication pending",
+      "status": "published; user visual/flight acceptance pending",
       "date": "2026-11-13",
       "scope": "107 assumed-height back-row buildings100–350m coastal band; full footprint DSM eaves clearance3m, model cap20m; no surveyed heights/base/footprint/terrain changes",
       "modelAudit": {
@@ -2634,7 +2728,104 @@
           },
           "jsHeapUsedBytes": 482632197
         }
-      ]
+      ],
+      "delivery": {
+        "status": "published",
+        "release": "v2.60.0-a8bbda72ee0e",
+        "image": {
+          "release": "v2.60.0-a8bbda72ee0e",
+          "imageId": "sha256:372f7378c7844221a6151428ea6108645fed008855d6f8c284404e45cad24aed",
+          "archiveSha256": "e98c47437d05bb2a8fd9b36c321da441fe773d4954b680d319956335746adcaf",
+          "archiveBytes": 144845679,
+          "architecture": "arm64",
+          "sourceFiles": 470
+        },
+        "sourceFiles": 470,
+        "preservedSourceFiles": {
+          "public/maps/sile/map.json": "5564a34bbf1573152f5e1a93d1de4d01895eb4021483d2e03fae761341717a11",
+          "public/maps/sile/source-osm.json": "b860868c8cbc075b2d7b8936aa95d95b452eb244c47d8e03d66bd98f1e87f59a",
+          "public/maps/sile/source-dem.tif": "c1d9b4576412ef8f3e791ee23eff2db1a4c6ac1684b98c92bbafbc3cde380743",
+          "src/rc-setup.js": "1bb07e0d440d54cd2006763b108386b22115651ec1e57ceba6c2d94964814c26",
+          "tests/rc-setup.test.js": "7a038dfcbf536ac3b18c3ac74f146b32007f9aa132cd889da440d8eed4082880"
+        },
+        "changedDerivedData": [
+          "107model-only back-row heights",
+          "building clearance metadata",
+          "current district inventory assumed heights"
+        ],
+        "https": {
+          "release": "v2.60.0-a8bbda72ee0e",
+          "entryAssets": 5,
+          "uniqueIds": 253,
+          "appVersion": "2.60.0",
+          "lazyGpuChunks": [
+            "gfx-webgpu-BPv6_-0D.js"
+          ],
+          "sceneWorkerChunks": [
+            "sile-scene-worker-B31694Yi.js"
+          ],
+          "liveSkyOrderFix": true,
+          "mapAndSourceSha256": "pass"
+        },
+        "websocket": {
+          "clients": 2,
+          "join": "pass",
+          "state": "pass",
+          "leave": "pass"
+        },
+        "remote": {
+          "Status": "Success",
+          "StandardOutputContent": "Running image source hashes: 139 OK\ndrone-hangar | 25.99MiB / 256MiB | 0.81%\n{\"running\": true, \"restarts\": 0, \"readonly\": true, \"user\": \"1000:1000\", \"image\": \"sha256:372f7378c7844221a6151428ea6108645fed008855d6f8c284404e45cad24aed\"}\nSeven tenants/nginx unchanged; old container/data backup retained\nhttps://zenth.finance/ 200\nhttps://api.zenth.finance/health 200\nGelisim TLS origin 200\n",
+          "StandardErrorContent": "nginx: the configuration file /etc/nginx/nginx.conf syntax is ok\nnginx: configuration file /etc/nginx/nginx.conf test is successful\n"
+        },
+        "nativeLive": {
+          "url": "https://hangar.18-153-158-209.sslip.io/?room=hangar&name=pilot",
+          "release": "v2.60.0-a8bbda72ee0e",
+          "verifiedDisarmGroundZero": true,
+          "reference": "REF 4M · ACRO · REAL",
+          "physicalTX15": "not-run",
+          "screenshot": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-260-live.jpg",
+          "dom": "- text: ✓ ✓ ✓ ✓\n- generic: Şile · veri tabanlı taslak\n- link \"© OpenStreetMap contributors · ODbL\":\n  - /url: https://www.openstreetmap.org/copyright\n- text: · Copernicus DEM ·\n- link \"Microsoft / Overture Maps · ODbL\":\n  - /url: https://overturemaps.org/\n- text: ·\n- link \"ESA WorldCover 2021 · CC BY 4.0\":\n  - /url: /sile.html\n- link \"Kaynaklar / yükseklik varsayımları ↗\":\n  - /url: /sile.html\n- generic: 0 km/h\n- generic: 0 m AGL\n- generic: BAT\n- generic: DISARM\n- generic: REF 4M · ACRO · REAL\n- button \"ARM\"\n- button \"CAM\"\n- button \"MOD\"\n- button \"KONTROL\"\n- button \"MENÜ\"",
+          "logs": [
+            {
+              "level": "warn",
+              "message": "MaxListenersExceededWarning: Possible EventEmitter memory leak detected. 11 close listeners added. Use emitter.setMaxListeners() to increase limit",
+              "timestamp": "2026-11-13T11:40:02.050Z",
+              "url": "chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/scripts/contentscript.js"
+            },
+            {
+              "level": "warn",
+              "message": "MaxListenersExceededWarning: Possible EventEmitter memory leak detected. 11 end listeners added. Use emitter.setMaxListeners() to increase limit",
+              "timestamp": "2026-11-13T11:40:02.050Z",
+              "url": "chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/scripts/contentscript.js"
+            },
+            {
+              "level": "warn",
+              "message": "ObjectMultiplex - orphaned data for stream \"app-init-liveness\"",
+              "timestamp": "2026-11-13T11:40:02.070Z",
+              "url": "chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/scripts/contentscript.js"
+            },
+            {
+              "level": "warn",
+              "message": "ObjectMultiplex - orphaned data for stream \"app-init-liveness\"",
+              "timestamp": "2026-11-13T11:40:02.071Z",
+              "url": "chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/scripts/contentscript.js"
+            },
+            {
+              "level": "warn",
+              "message": "ObjectMultiplex - orphaned data for stream \"background-liveness\"",
+              "timestamp": "2026-11-13T11:40:02.071Z",
+              "url": "chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/scripts/contentscript.js"
+            },
+            {
+              "level": "warn",
+              "message": "ObjectMultiplex - orphaned data for stream \"background-liveness\"",
+              "timestamp": "2026-11-13T11:40:02.071Z",
+              "url": "chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/scripts/contentscript.js"
+            }
+          ]
+        }
+      }
     }
   }
 }

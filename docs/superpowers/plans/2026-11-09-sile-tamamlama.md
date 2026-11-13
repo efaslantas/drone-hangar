@@ -206,7 +206,9 @@ Task13 teslim: v2.59.0-01f8df881bcb canlı;649Node22/11infra/12rota/nativeGL-GPU
 
 13 Kasım devam isteği. Güncel main/canlı2.59 korunarak aynı plan sürer. Tam ayak izi/DSM üçgenleriyle yapılan680profil denetiminde22saçak arazi altında;100–350m kuşağında107profil3m saçak açıklığının altında. Ön sıra135profilde gömük saçak yok,23düşük açıklık var; mevcut ön sıra giriş/pad/çatı düzeltmeleri bu dar işte korunur.
 
-- [ ] Mevcut kot sahibi `completedSileData` içinde yalnız100–350m kuşağındaki7.5mvarsayımsal yapıların tam ayak izini örnekle. Köşe örnekleriyle kaçan iç DSM zirvesini de kapsa. Üçgen yüzey korunur; kaynak izleri/tabanları/ölçülü veya kat kaynaklı yükseklikler değiştirilmez.
-- [ ] Saçak ile en yüksek yerel arazi arasında3m temsili açıklık sağlayan en küçük gövde yüksekliğini bul; çatı düşümünü hesaba kat.20m üzeri gerekli yorumları ertele; ölçülmüş bina yüksekliği gibi etiketleme.
-- [ ] Kaynak değişmezliği, iç zirve ve aşırı rölyef, mevcut ön sıra ve literal gömük kaynak549925582, görünen çatı/duvar ile süpürülen temas/worker/kalite testleri. Native GL/GPU önce-sonra, uygun performans ve tamNode22; tek freshreview.
-- [ ] Kaynak/model sınırları ve eski insan reddi korunarak main/app-onlyAWS/HTTPS/WSS/nativeDISARM0/kanıt/notes kapanışı. FizikselTX15 ve kullanıcı kabulü kendiliğinden verilmez.
+- [x] Mevcut kot sahibi `completedSileData` içinde yalnız100–350m kuşağındaki7.5mvarsayımsal yapıların tam ayak izini örnekle. Köşe örnekleriyle kaçan iç DSM zirvesini de kapsa. Üçgen yüzey korunur; kaynak izleri/tabanları/ölçülü veya kat kaynaklı yükseklikler değiştirilmez.
+- [x] Saçak ile en yüksek yerel arazi arasında3m temsili açıklık sağlayan en küçük gövde yüksekliğini bul; çatı düşümünü hesaba kat.20m üzeri gerekli yorumları ertele; ölçülmüş bina yüksekliği gibi etiketleme.
+- [x] Kaynak değişmezliği, iç zirve ve aşırı rölyef, mevcut ön sıra ve literal gömük kaynak549925582, görünen çatı/duvar ile süpürülen temas/worker/kalite testleri. Native GL/GPU önce-sonra, uygun performans ve tamNode22; tek freshreview.
+- [x] Kaynak/model sınırları ve eski insan reddi korunarak main/app-onlyAWS/HTTPS/WSS/nativeDISARM0/kanıt/notes kapanışı. FizikselTX15 ve kullanıcı kabulü kendiliğinden verilmez.
+
+Task14 teslim: v2.60.0-a8bbda72ee0e canlı;655Node22/11infra/12rota/nativeGL-GPU/180sgörünürdelta/HTTPS/WSS/liveDISARM0.107varsayımsalprofil,0gömükarka saçak/0arka<3m;ölçülmüşbinaiddiasıyok. Önceki900s2.58veinsanreddikorunur,yeni kullanıcı/TX15not-run.

@@ -1,0 +1,4127 @@
+{
+  "version": "2.62",
+  "date": "2026-11-13",
+  "source": "Existing local OSM road geometry,widths and building footprints; approximate DSM",
+  "measured": false,
+  "sourceRoadCount": 468,
+  "sourceRoadGeometryChanged": false,
+  "sourceBuildingAndTerrainChanged": false,
+  "roadsidePavingWidthAssumptionM": 1.5,
+  "linkWidthAssumptionM": 1.25,
+  "maximumLinkLengthM": 18,
+  "maximumLinkGrade": 0.18,
+  "apronOverlapPolicy": "Start0.7m from facade so the complete1.25m cap fits the existing1.4m apron; full corridor must clear source footprints.",
+  "scope": "350mvisual district roadside masks; guarded100–350m back-row model entrance links; old105corecorridors retained",
+  "notice": "Not a surveyed sidewalk or public access inventory. No new roads or stairs. Water,source buildings/structures/sports/parking/harbour/beach/coast excluded from added links. New roadside paving preserves existing mapped surface owners. One terrain surface partition; no extra elevation.",
+  "stats": {
+    "sourceRoads": 468,
+    "driveRoads": 419,
+    "walkRoads": 49,
+    "entranceLinks": 318,
+    "districtLinks": 213,
+    "districtDeferred": [
+      {
+        "sourceId": 342473974,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 342473975,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 342518981,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 342502281,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 550130684,
+        "reason": "water-building-or-protected-surface"
+      },
+      {
+        "sourceId": 549917820,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 550130662,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 342518983,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 550130817,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 549917824,
+        "reason": "water-building-or-protected-surface"
+      },
+      {
+        "sourceId": 550130663,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 931729692,
+        "reason": "water-building-or-protected-surface"
+      },
+      {
+        "sourceId": 1284813288,
+        "reason": "distance-limit"
+      },
+      {
+        "sourceId": 342518984,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 550116784,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 550135312,
+        "reason": "distance-limit"
+      },
+      {
+        "sourceId": 342473973,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 550116785,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 550130848,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 342502287,
+        "reason": "distance-limit"
+      },
+      {
+        "sourceId": 550130798,
+        "reason": "distance-limit"
+      },
+      {
+        "sourceId": 549917829,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 342473971,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 549917822,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 550130707,
+        "reason": "distance-limit"
+      },
+      {
+        "sourceId": 549917830,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 550135331,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 549917831,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 550130814,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 1105407918,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 550130708,
+        "reason": "distance-limit"
+      },
+      {
+        "sourceId": 550135297,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 549917832,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 550130664,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 342535650,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 549917825,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 549917826,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 550135330,
+        "reason": "distance-limit"
+      },
+      {
+        "sourceId": 550116782,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 550130704,
+        "reason": "distance-limit"
+      },
+      {
+        "sourceId": 549917827,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 1105407919,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 550135341,
+        "reason": "distance-limit"
+      },
+      {
+        "sourceId": 414813771,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 550130820,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 550135325,
+        "reason": "water-building-or-protected-surface"
+      },
+      {
+        "sourceId": 550130811,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 550130846,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 691575244,
+        "reason": "distance-limit"
+      },
+      {
+        "sourceId": 342519289,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 342534014,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 550130849,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 342533815,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 342473972,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 550130665,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 549917834,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 550116783,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 342502290,
+        "reason": "apron-already-reaches-road"
+      },
+      {
+        "sourceId": 550130652,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 342518987,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 549917835,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 550130705,
+        "reason": "water-building-or-protected-surface"
+      },
+      {
+        "sourceId": 342518986,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 549917845,
+        "reason": "distance-limit"
+      },
+      {
+        "sourceId": 342518985,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 550130809,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 549917836,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 342503901,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 342519290,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 550130815,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 550130711,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 691575240,
+        "reason": "water-building-or-protected-surface"
+      },
+      {
+        "sourceId": 550130847,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 549917837,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 550130666,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 342519317,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 550135322,
+        "reason": "water-building-or-protected-surface"
+      },
+      {
+        "sourceId": 549917838,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 342519695,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 549917839,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 550130709,
+        "reason": "distance-limit"
+      },
+      {
+        "sourceId": 550130667,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 342519696,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 550135315,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 691575246,
+        "reason": "distance-limit"
+      },
+      {
+        "sourceId": 550130710,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 342536522,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 550130668,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 342519697,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 550135318,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 549998047,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 550130669,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 550130713,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 342471173,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 342500951,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 549917843,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 549998049,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 549998046,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 342501383,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 550135319,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 342471193,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 549998030,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 691575242,
+        "reason": "water-building-or-protected-surface"
+      },
+      {
+        "sourceId": 549920860,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 550135310,
+        "reason": "distance-limit"
+      },
+      {
+        "sourceId": 342501377,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 342471175,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 549998052,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 342501001,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 549998045,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 342507026,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 414813764,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 549998050,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 549920861,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 342513671,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 342513668,
+        "reason": "water-building-or-protected-surface"
+      },
+      {
+        "sourceId": 549998054,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 549998042,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 549998032,
+        "reason": "distance-limit"
+      },
+      {
+        "sourceId": 342471194,
+        "reason": "distance-limit"
+      },
+      {
+        "sourceId": 550135311,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 691575239,
+        "reason": "water-building-or-protected-surface"
+      },
+      {
+        "sourceId": 549998051,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 691575247,
+        "reason": "water-building-or-protected-surface"
+      },
+      {
+        "sourceId": 342508116,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 342501379,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 342501385,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 549998055,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 342471205,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 549998043,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 342471207,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 342501388,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 342507024,
+        "reason": "distance-limit"
+      },
+      {
+        "sourceId": 816503361,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 414813765,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 342507027,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 342471177,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 342471209,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 549998031,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 549998041,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 549998063,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 816503358,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 549920865,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 342500954,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 549998056,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 816503359,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 549920866,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 342471030,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 342470899,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 549998059,
+        "reason": "distance-limit"
+      },
+      {
+        "sourceId": 549998039,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 549998064,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 549998062,
+        "reason": "distance-limit"
+      },
+      {
+        "sourceId": 549925582,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 342471192,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 550130717,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 816503360,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 342471191,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 342471032,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 342471186,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 549998038,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 549925583,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 549920867,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 342471187,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 549998040,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 342470894,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 549925581,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 342471034,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 426796974,
+        "reason": "distance-limit"
+      },
+      {
+        "sourceId": 549920868,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 342471190,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 342471179,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 342471189,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 342471183,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 549998035,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 549920890,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 342471181,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 549998036,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 342470901,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 342471036,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 550130728,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 342501004,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 342470902,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 342471184,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 550130782,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 931729703,
+        "reason": "water-building-or-protected-surface"
+      },
+      {
+        "sourceId": 342470903,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 549998092,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 342470908,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 549998033,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 550130727,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 342471038,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 549920891,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 342471185,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 426796978,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 549998034,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 549925584,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 342500970,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 342470904,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 342470912,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 549941941,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 550130780,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 342470905,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 342500964,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 550130741,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 342524239,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 550130783,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 550130791,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 549925585,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 550130726,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 342470906,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 342501008,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 342470891,
+        "reason": "distance-limit"
+      },
+      {
+        "sourceId": 342471054,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 342470907,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 549998067,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 550130781,
+        "reason": "distance-limit"
+      },
+      {
+        "sourceId": 549941942,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 342471048,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 549925570,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 549925586,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 549920886,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 549998087,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 342500971,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 550130725,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 342470884,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 550130784,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 342500975,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 342501360,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 342470897,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 342470911,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 549998084,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 549998068,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 550130742,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 549920876,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 549925587,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 549920885,
+        "reason": "distance-limit"
+      },
+      {
+        "sourceId": 1280524171,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 549925569,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 342505453,
+        "reason": "distance-limit"
+      },
+      {
+        "sourceId": 342470910,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 550135313,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 550130771,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 550130723,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 342500968,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 550135314,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 549920902,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 426796985,
+        "reason": "distance-limit"
+      },
+      {
+        "sourceId": 342471046,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 342470883,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 549998029,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 342500973,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 342470890,
+        "reason": "distance-limit"
+      },
+      {
+        "sourceId": 549920887,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 342501014,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 550130722,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 549925568,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 550130770,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 1280524172,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 342519905,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 550130740,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 342505463,
+        "reason": "distance-limit"
+      },
+      {
+        "sourceId": 549998028,
+        "reason": "distance-limit"
+      },
+      {
+        "sourceId": 342505454,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 550130785,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 549941944,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 342505475,
+        "reason": "water-building-or-protected-surface"
+      },
+      {
+        "sourceId": 549925574,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 550130772,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 549998086,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 342501010,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 550130724,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 549998085,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 549998027,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 550130739,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 550130774,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 342471168,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 342501039,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 342470896,
+        "reason": "distance-limit"
+      },
+      {
+        "sourceId": 549925593,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 549925573,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 549920881,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 549920900,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 342505457,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 550130777,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 549998089,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 342501035,
+        "reason": "distance-limit"
+      },
+      {
+        "sourceId": 549925591,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 549920882,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 550130788,
+        "reason": "distance-limit"
+      },
+      {
+        "sourceId": 342505462,
+        "reason": "distance-limit"
+      },
+      {
+        "sourceId": 342501017,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 549941936,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 549998026,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 550130775,
+        "reason": "distance-limit"
+      },
+      {
+        "sourceId": 549920898,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 342505458,
+        "reason": "distance-limit"
+      },
+      {
+        "sourceId": 549925589,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 549925575,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 550130743,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 549920899,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 342505459,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 549998088,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 549920893,
+        "reason": "distance-limit"
+      },
+      {
+        "sourceId": 549925572,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 549920896,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 549925567,
+        "reason": "water-building-or-protected-surface"
+      },
+      {
+        "sourceId": 550130754,
+        "reason": "distance-limit"
+      },
+      {
+        "sourceId": 550130756,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 550130787,
+        "reason": "distance-limit"
+      },
+      {
+        "sourceId": 342501041,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 549920884,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 549998025,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 550130776,
+        "reason": "distance-limit"
+      },
+      {
+        "sourceId": 549998082,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 550130757,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 549925603,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 549998024,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 342501021,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 550130766,
+        "reason": "water-building-or-protected-surface"
+      },
+      {
+        "sourceId": 549925598,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 550130750,
+        "reason": "distance-limit"
+      },
+      {
+        "sourceId": 342500990,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 549925566,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 342505460,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 549920895,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 550130744,
+        "reason": "distance-limit"
+      },
+      {
+        "sourceId": 550130765,
+        "reason": "unsupported-entry"
+      },
+      {
+        "sourceId": 550130747,
+        "reason": "distance-limit"
+      },
+      {
+        "sourceId": 549925565,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 342505461,
+        "reason": "terrain-grade-limit"
+      },
+      {
+        "sourceId": 549998083,
+        "reason": "unsupported-entry"
+      }
+    ],
+    "districtPavingFragments": 6580,
+    "surroundingProfiles": 680,
+    "authored": true
+  },
+  "addedLinks": [
+    {
+      "a": [
+        818.7637094311677,
+        -211.95834272471174
+      ],
+      "b": [
+        814.9172992677094,
+        -205.87713250043558
+      ],
+      "width": 1.25,
+      "sourceId": 550130689,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        862.1452579133843,
+        -189.2721192782255
+      ],
+      "b": [
+        863.5108765611427,
+        -192.37328788060105
+      ],
+      "width": 1.25,
+      "sourceId": 550130697,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        808.6933997725466,
+        -216.0504603031446
+      ],
+      "b": [
+        806.2304713422502,
+        -212.35541042382022
+      ],
+      "width": 1.25,
+      "sourceId": 550130687,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        255.12135780097088,
+        -391.2376832083196
+      ],
+      "b": [
+        263.35,
+        -394.31
+      ],
+      "width": 1.25,
+      "sourceId": 549917819,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        978.3618979127003,
+        -172.48937074245012
+      ],
+      "b": [
+        981.7568488724768,
+        -161.19296396598645
+      ],
+      "width": 1.25,
+      "sourceId": 550130700,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        1108.9395054312238,
+        -289.05603933513436
+      ],
+      "b": [
+        1112.5536103483846,
+        -297.34892249955595
+      ],
+      "width": 1.25,
+      "sourceId": 550130818,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        843.8430544777132,
+        -178.80743549143492
+      ],
+      "b": [
+        842.6553636746615,
+        -177.42337154173651
+      ],
+      "width": 1.25,
+      "sourceId": 550130698,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        750.5740386866042,
+        -247.51925314563786
+      ],
+      "b": [
+        752.6463067276993,
+        -252.22181043966611
+      ],
+      "width": 1.25,
+      "sourceId": 342502284,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        488.7768250125027,
+        -312.37687823532656
+      ],
+      "b": [
+        485.65697919448746,
+        -313.57472196998026
+      ],
+      "width": 1.25,
+      "sourceId": 342473976,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        795.1055499604944,
+        -223.72516118264426
+      ],
+      "b": [
+        793.5227144660118,
+        -221.83311008326933
+      ],
+      "width": 1.25,
+      "sourceId": 550130686,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        783.7790181186347,
+        -234.15700881501067
+      ],
+      "b": [
+        780.6370489580174,
+        -231.45335756439096
+      ],
+      "width": 1.25,
+      "sourceId": 550130685,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        1262.2367804168287,
+        -283.53727795681516
+      ],
+      "b": [
+        1267.565745025679,
+        -278.15363537635994
+      ],
+      "width": 1.25,
+      "sourceId": 550130853,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        491.0939994357654,
+        -302.89060530900537
+      ],
+      "b": [
+        486.6539150971625,
+        -304.46429370175
+      ],
+      "width": 1.25,
+      "sourceId": 342473970,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        1245.8152417856986,
+        -301.2700447991291
+      ],
+      "b": [
+        1248.956134648888,
+        -309.3233501054116
+      ],
+      "width": 1.25,
+      "sourceId": 550130852,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        997.0836189302358,
+        -174.05122420830057
+      ],
+      "b": [
+        1000.2013133208255,
+        -162.79489681050657
+      ],
+      "width": 1.25,
+      "sourceId": 550130701,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        1164.9858215866307,
+        -336.8067282031995
+      ],
+      "b": [
+        1166.4620430218654,
+        -342.45859300488684
+      ],
+      "width": 1.25,
+      "sourceId": 550130823,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        1159.6623059660465,
+        -311.7333928347577
+      ],
+      "b": [
+        1173.8851723490538,
+        -306.8654915139686
+      ],
+      "width": 1.25,
+      "sourceId": 550130822,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        283.7029317723719,
+        -341.529380365892
+      ],
+      "b": [
+        285.1418253177174,
+        -341.4651407924246
+      ],
+      "width": 1.25,
+      "sourceId": 549917821,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        494.24157079425714,
+        -292.02896831453256
+      ],
+      "b": [
+        487.77223572458735,
+        -294.2150627637413
+      ],
+      "width": 1.25,
+      "sourceId": 342473969,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        1952.7756086289994,
+        265.80268455669164
+      ],
+      "b": [
+        1960.455035672607,
+        256.8856132448818
+      ],
+      "width": 1.25,
+      "sourceId": 1105407916,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        1201.5171149583628,
+        -321.59106981053196
+      ],
+      "b": [
+        1205.282675084355,
+        -327.7037507061392
+      ],
+      "width": 1.25,
+      "sourceId": 550130845,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        699.5177397457757,
+        -214.84344013186248
+      ],
+      "b": [
+        698.548958095593,
+        -214.00138940480946
+      ],
+      "width": 1.25,
+      "sourceId": 342502285,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        692.2395190503951,
+        -219.75283138300995
+      ],
+      "b": [
+        694.712896823596,
+        -219.64851642760686
+      ],
+      "width": 1.25,
+      "sourceId": 342518988,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        810.2589199328055,
+        -198.64419299494156
+      ],
+      "b": [
+        814.155585788528,
+        -206.44589537975807
+      ],
+      "width": 1.25,
+      "sourceId": 550135329,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        -1116.9910346006604,
+        611.6988025090697
+      ],
+      "b": [
+        -1112.3475101694064,
+        613.7950171881532
+      ],
+      "width": 1.25,
+      "sourceId": 931729696,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        829.0730327448482,
+        -169.49228744250627
+      ],
+      "b": [
+        832.9813055751588,
+        -168.26616090331683
+      ],
+      "width": 1.25,
+      "sourceId": 550135326,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        1083.6084294022492,
+        -252.59373731123532
+      ],
+      "b": [
+        1073.2412435485069,
+        -256.2411043630073
+      ],
+      "width": 1.25,
+      "sourceId": 550130816,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        799.6666680194513,
+        -210.4505226856699
+      ],
+      "b": [
+        801.7844345030155,
+        -215.6732947667881
+      ],
+      "width": 1.25,
+      "sourceId": 550135328,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        861.7469980365246,
+        -149.03125454658579
+      ],
+      "b": [
+        858.6061938573316,
+        -148.29136558784677
+      ],
+      "width": 1.25,
+      "sourceId": 550130702,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        866.7241317183169,
+        -140.11008489720706
+      ],
+      "b": [
+        862.4433087907379,
+        -140.3950677449886
+      ],
+      "width": 1.25,
+      "sourceId": 550130703,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        707.3445465479593,
+        -208.00081511410013
+      ],
+      "b": [
+        704.3348655169041,
+        -205.4792990578033
+      ],
+      "width": 1.25,
+      "sourceId": 342502288,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        788.8874466838043,
+        -218.55912732406642
+      ],
+      "b": [
+        792.1518802910392,
+        -222.85581455089624
+      ],
+      "width": 1.25,
+      "sourceId": 550135327,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        291.81493322328924,
+        -300.7482884077232
+      ],
+      "b": [
+        293.12512224187043,
+        -301.1585248394993
+      ],
+      "width": 1.25,
+      "sourceId": 549917823,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        1246.9746318675157,
+        -268.2804942102256
+      ],
+      "b": [
+        1252.4223903218997,
+        -262.19572067053383
+      ],
+      "width": 1.25,
+      "sourceId": 550130854,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        1966.7214626426126,
+        278.52865730098597
+      ],
+      "b": [
+        1974.1730471408418,
+        269.8760953191138
+      ],
+      "width": 1.25,
+      "sourceId": 1105407917,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        -1170.1836442780723,
+        625.3599577513531
+      ],
+      "b": [
+        -1175.8279413041864,
+        623.0609001510733
+      ],
+      "width": 1.25,
+      "sourceId": 931729693,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        1142.2405262292555,
+        -276.33455830923725
+      ],
+      "b": [
+        1145.2835084752926,
+        -282.0977478124869
+      ],
+      "width": 1.25,
+      "sourceId": 550130819,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        286.75350254054763,
+        -258.1398463019426
+      ],
+      "b": [
+        293.5528714694184,
+        -259.9478523653285
+      ],
+      "width": 1.25,
+      "sourceId": 549917828,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        287.6097097934351,
+        -351.35725080460367
+      ],
+      "b": [
+        282.7980593927549,
+        -352.62301790949266
+      ],
+      "width": 1.25,
+      "sourceId": 342503825,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        292.4016179563702,
+        -327.29237959888616
+      ],
+      "b": [
+        288.3085059423788,
+        -326.20181877491274
+      ],
+      "width": 1.25,
+      "sourceId": 342534060,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        282.7518732276252,
+        -241.70673155258217
+      ],
+      "b": [
+        290.56021030658775,
+        -239.62765120646392
+      ],
+      "width": 1.25,
+      "sourceId": 549917833,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        -1117.5655226443366,
+        634.650956754525
+      ],
+      "b": [
+        -1112.8688067377964,
+        632.9736956341177
+      ],
+      "width": 1.25,
+      "sourceId": 931729697,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        1032.2039498591428,
+        -177.1861982048877
+      ],
+      "b": [
+        1034.8051041328608,
+        -164.20665253935232
+      ],
+      "width": 1.25,
+      "sourceId": 550130799,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        819.4430258002491,
+        -154.87585845661496
+      ],
+      "b": [
+        820.7351485449924,
+        -153.4460267760696
+      ],
+      "width": 1.25,
+      "sourceId": 550135324,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        1044.1135188804788,
+        -186.52558796804271
+      ],
+      "b": [
+        1051.860280339769,
+        -182.7422165217216
+      ],
+      "width": 1.25,
+      "sourceId": 550130800,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        1212.199645929191,
+        -261.4794076114402
+      ],
+      "b": [
+        1209.6855194009531,
+        -255.2789782164738
+      ],
+      "width": 1.25,
+      "sourceId": 550130851,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        1227.0987707264344,
+        -254.90968249585097
+      ],
+      "b": [
+        1224.704181562815,
+        -249.2989685200048
+      ],
+      "width": 1.25,
+      "sourceId": 550130855,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        1277.2945539980433,
+        -241.68501592864132
+      ],
+      "b": [
+        1286.8262231149788,
+        -241.37434577985113
+      ],
+      "width": 1.25,
+      "sourceId": 550135299,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        295.4309614981102,
+        -293.1116765984751
+      ],
+      "b": [
+        294.97,
+        -291.56
+      ],
+      "width": 1.25,
+      "sourceId": 342501373,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        1262.4345246944333,
+        -221.2664124058309
+      ],
+      "b": [
+        1256.7975033795078,
+        -215.88309161736697
+      ],
+      "width": 1.25,
+      "sourceId": 550135301,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        -1168.5148758878659,
+        642.507639073912
+      ],
+      "b": [
+        -1174.8480341277768,
+        640.1885791526671
+      ],
+      "width": 1.25,
+      "sourceId": 931729694,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        1198.8441013740355,
+        -266.17033364256275
+      ],
+      "b": [
+        1196.670214481481,
+        -260.4633745453458
+      ],
+      "width": 1.25,
+      "sourceId": 550130850,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        814.1214531904155,
+        -147.34360732588766
+      ],
+      "b": [
+        815.5736196955557,
+        -146.98760074372618
+      ],
+      "width": 1.25,
+      "sourceId": 550135323,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        318.5582203114995,
+        -316.2524191214473
+      ],
+      "b": [
+        320.7032573304123,
+        -314.70831461806176
+      ],
+      "width": 1.25,
+      "sourceId": 342534360,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        859.0274945502854,
+        -130.9628502345754
+      ],
+      "b": [
+        865.365515735695,
+        -131.93969664682223
+      ],
+      "width": 1.25,
+      "sourceId": 414813770,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        1120.758179181032,
+        -216.79658431900552
+      ],
+      "b": [
+        1131.0440396536505,
+        -207.9906621164809
+      ],
+      "width": 1.25,
+      "sourceId": 550130813,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        -1118.4715064916727,
+        652.3869251467262
+      ],
+      "b": [
+        -1113.3086801553588,
+        649.1552266710705
+      ],
+      "width": 1.25,
+      "sourceId": 931729698,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        308.8523756166963,
+        -271.51747327248495
+      ],
+      "b": [
+        304,
+        -275.68
+      ],
+      "width": 1.25,
+      "sourceId": 342501381,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        736.5021538616905,
+        -185.5148672387701
+      ],
+      "b": [
+        724.7199288389514,
+        -174.20375280898864
+      ],
+      "width": 1.25,
+      "sourceId": 549998048,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        1059.8060496172873,
+        -184.7990364854222
+      ],
+      "b": [
+        1052.2804852135705,
+        -185.01066627013452
+      ],
+      "width": 1.25,
+      "sourceId": 550130808,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        808.9569340445046,
+        -137.77925480391835
+      ],
+      "b": [
+        810.6168590915252,
+        -137.83324395851687
+      ],
+      "width": 1.25,
+      "sourceId": 550135321,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        814.1023144784335,
+        -134.74433963692076
+      ],
+      "b": [
+        810.1497558840178,
+        -136.969726752947
+      ],
+      "width": 1.25,
+      "sourceId": 414813766,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        864.8010475839862,
+        -112.08906369945667
+      ],
+      "b": [
+        868.9678389436752,
+        -111.39028717049135
+      ],
+      "width": 1.25,
+      "sourceId": 414813769,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        874.0251542466932,
+        -100.64530572973484
+      ],
+      "b": [
+        869.7268457553349,
+        -101.24584253538987
+      ],
+      "width": 1.25,
+      "sourceId": 550130706,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        1001.3219658212269,
+        -125.1372628423865
+      ],
+      "b": [
+        1005.5029408283876,
+        -128.1754585931043
+      ],
+      "width": 1.25,
+      "sourceId": 550130712,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        1113.9190579173392,
+        -199.97671501895044
+      ],
+      "b": [
+        1121.9334977850315,
+        -192.64683049661932
+      ],
+      "width": 1.25,
+      "sourceId": 550130812,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        -1167.0155121228324,
+        660.3763368451478
+      ],
+      "b": [
+        -1173.8462413269249,
+        657.858233088432
+      ],
+      "width": 1.25,
+      "sourceId": 931729695,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        319.04083311708115,
+        -299.0458580927662
+      ],
+      "b": [
+        317.20856510978615,
+        -299.2259800983831
+      ],
+      "width": 1.25,
+      "sourceId": 342501375,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        265.43754655216344,
+        -180.35524157053956
+      ],
+      "b": [
+        267.76195243642854,
+        -178.922164852495
+      ],
+      "width": 1.25,
+      "sourceId": 549917840,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        323.21369989649213,
+        -312.6000189387788
+      ],
+      "b": [
+        320.51508662832936,
+        -314.0453913975052
+      ],
+      "width": 1.25,
+      "sourceId": 342536585,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        262.4353360439986,
+        -171.3300046746469
+      ],
+      "b": [
+        263.4285222551929,
+        -171.22070623145402
+      ],
+      "width": 1.25,
+      "sourceId": 549917841,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        1208.5994809242504,
+        -247.88955947128568
+      ],
+      "b": [
+        1213.8416323235601,
+        -253.6225992298628
+      ],
+      "width": 1.25,
+      "sourceId": 550135305,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        1088.4125402307936,
+        -177.29711098574697
+      ],
+      "b": [
+        1097.9474614535702,
+        -165.29182144052035
+      ],
+      "width": 1.25,
+      "sourceId": 550130810,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        801.8639573350905,
+        -130.69457499531993
+      ],
+      "b": [
+        805.7637602945296,
+        -128.8714253071351
+      ],
+      "width": 1.25,
+      "sourceId": 550135320,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        254.43727494643235,
+        -160.98994844423805
+      ],
+      "b": [
+        257.42041759099766,
+        -160.52402132174862
+      ],
+      "width": 1.25,
+      "sourceId": 549917842,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        288.4170007468359,
+        -214.37168024944052
+      ],
+      "b": [
+        282.75181678237243,
+        -216.39443042559614
+      ],
+      "width": 1.25,
+      "sourceId": 342471171,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        1239.0220817053016,
+        -228.9716939520124
+      ],
+      "b": [
+        1242.9809893083288,
+        -232.74248861362878
+      ],
+      "width": 1.25,
+      "sourceId": 550135303,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        -1119.2186819371884,
+        669.7923863481839
+      ],
+      "b": [
+        -1113.7911907307223,
+        666.9062111832534
+      ],
+      "width": 1.25,
+      "sourceId": 931729699,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        349.2980104247912,
+        -330.19595412693457
+      ],
+      "b": [
+        344.6946570175892,
+        -325.2873699014626
+      ],
+      "width": 1.25,
+      "sourceId": 342534440,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        477.36213971484204,
+        -225.86490180891784
+      ],
+      "b": [
+        473.2267091767423,
+        -233.4041779309876
+      ],
+      "width": 1.25,
+      "sourceId": 342500945,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        324.5061368301989,
+        -244.36651067414522
+      ],
+      "b": [
+        331.68,
+        -233.68
+      ],
+      "width": 1.25,
+      "sourceId": 342501394,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        1185.002994062691,
+        -255.952682161732
+      ],
+      "b": [
+        1190.8452192670231,
+        -262.7819096036082
+      ],
+      "width": 1.25,
+      "sourceId": 550135307,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        -1165.8679013644278,
+        677.3555237913401
+      ],
+      "b": [
+        -1172.8595460114088,
+        675.1268806621648
+      ],
+      "width": 1.25,
+      "sourceId": 931729704,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        483.06127345812604,
+        -213.28393460212467
+      ],
+      "b": [
+        479.20875710607794,
+        -212.01636985866804
+      ],
+      "width": 1.25,
+      "sourceId": 342500948,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        1219.0872324449076,
+        -223.79457423040094
+      ],
+      "b": [
+        1216.2834233846154,
+        -227.96997907692312
+      ],
+      "width": 1.25,
+      "sourceId": 550135304,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        858.5022016990921,
+        -78.66282256677151
+      ],
+      "b": [
+        857.4554179617905,
+        -75.03417844697182
+      ],
+      "width": 1.25,
+      "sourceId": 414813768,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        440.07264211493333,
+        -263.3037730242439
+      ],
+      "b": [
+        443.5605057969244,
+        -266.19425175576333
+      ],
+      "width": 1.25,
+      "sourceId": 342513670,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        961.3363355356173,
+        -85.63388759521057
+      ],
+      "b": [
+        958.485520087986,
+        -90.25941553988483
+      ],
+      "width": 1.25,
+      "sourceId": 550130715,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        1199.4005649635053,
+        -223.20567933079514
+      ],
+      "b": [
+        1203.77051709542,
+        -217.45483777059832
+      ],
+      "width": 1.25,
+      "sourceId": 550135306,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        278.2139903942413,
+        -178.4451101783489
+      ],
+      "b": [
+        270.0385903230217,
+        -182.96461605832945
+      ],
+      "width": 1.25,
+      "sourceId": 342471195,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        876.011011011065,
+        -77.45153842492088
+      ],
+      "b": [
+        870.1672121650978,
+        -78.4703475742216
+      ],
+      "width": 1.25,
+      "sourceId": 550135316,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        1987.385176674793,
+        412.9844988701404
+      ],
+      "b": [
+        1990.7795143753754,
+        418.7624333414348
+      ],
+      "width": 1.25,
+      "sourceId": 1105407920,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        -1120.1457920392045,
+        687.1367529006732
+      ],
+      "b": [
+        -1114.2636146984798,
+        684.2859124726158
+      ],
+      "width": 1.25,
+      "sourceId": 931729700,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        275.5838918556999,
+        -173.18976596634863
+      ],
+      "b": [
+        266.92587232216437,
+        -177.43760154711185
+      ],
+      "width": 1.25,
+      "sourceId": 342471196,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        827.2455221252009,
+        -88.86724761305597
+      ],
+      "b": [
+        825.9834038708982,
+        -84.7372401287284
+      ],
+      "width": 1.25,
+      "sourceId": 414813767,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        271.09797344760165,
+        -167.14346700404275
+      ],
+      "b": [
+        262.9914116129892,
+        -170.44348567757243
+      ],
+      "width": 1.25,
+      "sourceId": 342471198,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        230.35750912338418,
+        -115.30978668618255
+      ],
+      "b": [
+        233.66296054194825,
+        -115.16252879296913
+      ],
+      "width": 1.25,
+      "sourceId": 549920862,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        404.62714201957766,
+        -305.18027803826914
+      ],
+      "b": [
+        401.53913673141244,
+        -313.8755008273103
+      ],
+      "width": 1.25,
+      "sourceId": 816503357,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        265.25194918484215,
+        -155.2618057182139
+      ],
+      "b": [
+        256.4276865236706,
+        -158.7564085046468
+      ],
+      "width": 1.25,
+      "sourceId": 342471201,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        261.25657861693014,
+        -148.67221537152483
+      ],
+      "b": [
+        252.87367210682493,
+        -152.43652818991097
+      ],
+      "width": 1.25,
+      "sourceId": 342471203,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        873.3654816343532,
+        -69.17214960434131
+      ],
+      "b": [
+        868.823722307704,
+        -68.68196547889279
+      ],
+      "width": 1.25,
+      "sourceId": 550135317,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        610.0434310560527,
+        -140.76804961885367
+      ],
+      "b": [
+        606.7665944159395,
+        -136.4583103629077
+      ],
+      "width": 1.25,
+      "sourceId": 342519922,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        -1164.6586554676883,
+        695.0407956915712
+      ],
+      "b": [
+        -1171.8556329489074,
+        692.6784817886123
+      ],
+      "width": 1.25,
+      "sourceId": 931729705,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        225.15600740330623,
+        -104.66196779566295
+      ],
+      "b": [
+        229.1613884009851,
+        -104.81457522364812
+      ],
+      "width": 1.25,
+      "sourceId": 549920863,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        220.17065856837908,
+        -95.32363393501362
+      ],
+      "b": [
+        224.59704954035826,
+        -94.34801305473835
+      ],
+      "width": 1.25,
+      "sourceId": 549920864,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        754.34,
+        -120.35
+      ],
+      "b": [
+        755.9723931310905,
+        -118.3308823789105
+      ],
+      "width": 1.25,
+      "sourceId": 549998053,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        739.8535365054377,
+        -134.22565302474104
+      ],
+      "b": [
+        742.0838625079383,
+        -134.7336982564518
+      ],
+      "width": 1.25,
+      "sourceId": 549998044,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        -1120.3090310237078,
+        704.0843454565606
+      ],
+      "b": [
+        -1114.7319628200412,
+        701.5155838043715
+      ],
+      "width": 1.25,
+      "sourceId": 931729701,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        1199.555022974254,
+        -205.22737891955936
+      ],
+      "b": [
+        1195.4939822519173,
+        -210.50162665976558
+      ],
+      "width": 1.25,
+      "sourceId": 550135309,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        492.549046774492,
+        -190.33680368629481
+      ],
+      "b": [
+        495.6007526986737,
+        -194.18918931391758
+      ],
+      "width": 1.25,
+      "sourceId": 342500957,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        943.268693351364,
+        -58.366347863295886
+      ],
+      "b": [
+        940.5105074113287,
+        -63.42345314981472
+      ],
+      "width": 1.25,
+      "sourceId": 550130716,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        -1165.2952792520114,
+        712.196727088374
+      ],
+      "b": [
+        -1170.877088902281,
+        709.9686800665386
+      ],
+      "width": 1.25,
+      "sourceId": 931729706,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        757.4513153112256,
+        -97.56210820973598
+      ],
+      "b": [
+        753.3150438108145,
+        -95.25657740433553
+      ],
+      "width": 1.25,
+      "sourceId": 549998057,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        363.6544376796509,
+        -223.501947686645
+      ],
+      "b": [
+        365.5301404744668,
+        -223.69882357854874
+      ],
+      "width": 1.25,
+      "sourceId": 342471473,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        858.5047118547313,
+        -48.12269251499793
+      ],
+      "b": [
+        866.3437037554718,
+        -50.57309183861467
+      ],
+      "width": 1.25,
+      "sourceId": 549998071,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        634.4495721938308,
+        -110.91291297550391
+      ],
+      "b": [
+        629.8996510268828,
+        -102.61184087493716
+      ],
+      "width": 1.25,
+      "sourceId": 342519923,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        114.81652537148432,
+        -6.020584112845576
+      ],
+      "b": [
+        118.73845724161393,
+        -3.5188915200931516
+      ],
+      "width": 1.25,
+      "sourceId": 549920888,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        881.5122429542987,
+        -29.94918420694391
+      ],
+      "b": [
+        880.9268524722371,
+        -23.969939856384386
+      ],
+      "width": 1.25,
+      "sourceId": 1280524170,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        758.2271029517814,
+        -87.9342190933875
+      ],
+      "b": [
+        755.4287729511235,
+        -86.77841770073971
+      ],
+      "width": 1.25,
+      "sourceId": 549998058,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        367.92,
+        -242.58499999999998
+      ],
+      "b": [
+        366.13359808676796,
+        -243.0660790089085
+      ],
+      "width": 1.25,
+      "sourceId": 342505756,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        -1120.2524375623886,
+        721.9326932008006
+      ],
+      "b": [
+        -1115.2251277426126,
+        719.6587497637842
+      ],
+      "width": 1.25,
+      "sourceId": 931729702,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        235.63116230488765,
+        -99.32206863896194
+      ],
+      "b": [
+        228.25443528283796,
+        -102.72972387344194
+      ],
+      "width": 1.25,
+      "sourceId": 342470909,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        747.8518458700861,
+        -105.0350657275017
+      ],
+      "b": [
+        750.158763311122,
+        -106.35116861490006
+      ],
+      "width": 1.25,
+      "sourceId": 549998037,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        1175.888094535296,
+        -186.16058141858386
+      ],
+      "b": [
+        1172.9738485130777,
+        -191.57406968270737
+      ],
+      "width": 1.25,
+      "sourceId": 550135308,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        278.41589781722394,
+        -119.41528152278893
+      ],
+      "b": [
+        278.5097247706422,
+        -122.15908256880735
+      ],
+      "width": 1.25,
+      "sourceId": 342470900,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        1112.9518397245665,
+        -128.50085645016512
+      ],
+      "b": [
+        1116.7662670311097,
+        -132.21895983578605
+      ],
+      "width": 1.25,
+      "sourceId": 550130794,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        226.5069064745622,
+        -87.79402835355856
+      ],
+      "b": [
+        222.40786119034036,
+        -89.28502871268296
+      ],
+      "width": 1.25,
+      "sourceId": 342470893,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        226.5069064745622,
+        -87.79402835355856
+      ],
+      "b": [
+        222.40786119034036,
+        -89.28502871268296
+      ],
+      "width": 1.25,
+      "sourceId": 1361785480,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        268.3509975486312,
+        -113.49574677506602
+      ],
+      "b": [
+        268.46114225909974,
+        -116.89587138107491
+      ],
+      "width": 1.25,
+      "sourceId": 342470895,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        763.7367025965108,
+        -73.31753751787238
+      ],
+      "b": [
+        758.9806392159286,
+        -71.5531664018969
+      ],
+      "width": 1.25,
+      "sourceId": 549998060,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        473.7168933693716,
+        -186.39082105559564
+      ],
+      "b": [
+        477.16774829444796,
+        -185.36614630208217
+      ],
+      "width": 1.25,
+      "sourceId": 342500960,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        -173.11934852976307,
+        227.67151988996713
+      ],
+      "b": [
+        -169.03532926829268,
+        237.95553658536585
+      ],
+      "width": 1.25,
+      "sourceId": 549925580,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        86.77360585628185,
+        16.450530995786103
+      ],
+      "b": [
+        88.24496099517074,
+        19.04311136764882
+      ],
+      "width": 1.25,
+      "sourceId": 549920889,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        205.06412619801876,
+        -53.031772657095935
+      ],
+      "b": [
+        207.56668092342207,
+        -51.94840133811625
+      ],
+      "width": 1.25,
+      "sourceId": 549920869,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        201.63918285480082,
+        -42.5970343918453
+      ],
+      "b": [
+        204.33969396898334,
+        -41.67045582998276
+      ],
+      "width": 1.25,
+      "sourceId": 549920870,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        1095.754415341537,
+        -94.9873450657649
+      ],
+      "b": [
+        1087.4382356430447,
+        -82.37887094275811
+      ],
+      "width": 1.25,
+      "sourceId": 550130793,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        763.1471689764207,
+        -65.6899376487031
+      ],
+      "b": [
+        760.8810471157749,
+        -63.40697347448513
+      ],
+      "width": 1.25,
+      "sourceId": 549998061,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        1177.3680838364437,
+        -103.58073758695316
+      ],
+      "b": [
+        1175.5897187324047,
+        -109.46871030733037
+      ],
+      "width": 1.25,
+      "sourceId": 550130790,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        368.0411058613783,
+        -211.6693317047709
+      ],
+      "b": [
+        365.44796574691406,
+        -211.33300323586505
+      ],
+      "width": 1.25,
+      "sourceId": 342471182,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        845.5326394434119,
+        -28.755050441081828
+      ],
+      "b": [
+        859.781418475269,
+        -25.999241059529982
+      ],
+      "width": 1.25,
+      "sourceId": 549998072,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        347.7764660655353,
+        -156.391875578487
+      ],
+      "b": [
+        350.8054254696003,
+        -148.99133954947303
+      ],
+      "width": 1.25,
+      "sourceId": 342471200,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        1025.294464806436,
+        -49.932332049063504
+      ],
+      "b": [
+        1021.3328255490258,
+        -55.11730745437677
+      ],
+      "width": 1.25,
+      "sourceId": 550130769,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        903.259493800054,
+        -19.88899391325852
+      ],
+      "b": [
+        905.8106396768046,
+        -27.697101501053375
+      ],
+      "width": 1.25,
+      "sourceId": 550130721,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        358.9553777736952,
+        -164.26226767389574
+      ],
+      "b": [
+        362.80256870462404,
+        -158.67717588207015
+      ],
+      "width": 1.25,
+      "sourceId": 342471188,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        217.4691991927624,
+        -61.925959505442265
+      ],
+      "b": [
+        212.84614913479905,
+        -67.10635378383868
+      ],
+      "width": 1.25,
+      "sourceId": 342470892,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        199.83254834057993,
+        -34.948556934889126
+      ],
+      "b": [
+        202.1188388282596,
+        -34.611309132682365
+      ],
+      "width": 1.25,
+      "sourceId": 549920871,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        -151.98275035342687,
+        221.64149833057633
+      ],
+      "b": [
+        -150.44306683202862,
+        229.8991935369273
+      ],
+      "width": 1.25,
+      "sourceId": 549925579,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        1163.2849207088864,
+        -58.124524253317496
+      ],
+      "b": [
+        1153.3548470483786,
+        -47.54527135276201
+      ],
+      "width": 1.25,
+      "sourceId": 550130789,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        197.86901880765782,
+        -26.776496628816048
+      ],
+      "b": [
+        199.9795335309921,
+        -26.449404167157205
+      ],
+      "width": 1.25,
+      "sourceId": 549920872,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        1130.4008436864096,
+        -119.07958492228511
+      ],
+      "b": [
+        1132.407180328536,
+        -125.66913401944049
+      ],
+      "width": 1.25,
+      "sourceId": 550130792,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        765.6500171951914,
+        -56.16509357847097
+      ],
+      "b": [
+        762.9694730164334,
+        -54.45483204066858
+      ],
+      "width": 1.25,
+      "sourceId": 549998065,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        756.728137944859,
+        -66.58277417551021
+      ],
+      "b": [
+        759.8229565071576,
+        -67.94253146347052
+      ],
+      "width": 1.25,
+      "sourceId": 549998091,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        876.4081412378957,
+        -19.981371767238674
+      ],
+      "b": [
+        876.1292016422522,
+        -24.897392705785553
+      ],
+      "width": 1.25,
+      "sourceId": 550130718,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        579.097340213596,
+        -84.97662797952825
+      ],
+      "b": [
+        573.6613537065382,
+        -77.51082746555879
+      ],
+      "width": 1.25,
+      "sourceId": 342501007,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        770.3900041808752,
+        -44.41758065961132
+      ],
+      "b": [
+        765.3138861720349,
+        -44.42965951103698
+      ],
+      "width": 1.25,
+      "sourceId": 549998066,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        423.3412184096127,
+        -174.6538078902575
+      ],
+      "b": [
+        432.1291575647812,
+        -169.57170925048757
+      ],
+      "width": 1.25,
+      "sourceId": 342471040,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        196.34395330055173,
+        -18.631131724566483
+      ],
+      "b": [
+        197.79624612256944,
+        -18.072172607141706
+      ],
+      "width": 1.25,
+      "sourceId": 549920873,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        -131.19516752607493,
+        213.49242249646775
+      ],
+      "b": [
+        -130.0931631327554,
+        222.8689127852612
+      ],
+      "width": 1.25,
+      "sourceId": 549925571,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        897.0560604527202,
+        -12.221619048460152
+      ],
+      "b": [
+        894.79,
+        -21.27
+      ],
+      "width": 1.25,
+      "sourceId": 550130720,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        393.4169785007633,
+        -191.06179499926122
+      ],
+      "b": [
+        392.80237768607776,
+        -193.42746068267934
+      ],
+      "width": 1.25,
+      "sourceId": 342471052,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        210.60446386547815,
+        -42.17095096989191
+      ],
+      "b": [
+        205.01965919969368,
+        -43.83177388474059
+      ],
+      "width": 1.25,
+      "sourceId": 342470898,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        194.00725975119926,
+        -9.2580276027017
+      ],
+      "b": [
+        195.2546883033419,
+        -8.286654884318759
+      ],
+      "width": 1.25,
+      "sourceId": 549920874,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        375.77512769772557,
+        -169.1018960957737
+      ],
+      "b": [
+        374.2900822773781,
+        -171.3675803480296
+      ],
+      "width": 1.25,
+      "sourceId": 342471056,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        1154.718956358745,
+        -28.52650500506129
+      ],
+      "b": [
+        1152.7581578815555,
+        -30.523130248943946
+      ],
+      "width": 1.25,
+      "sourceId": 550130779,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        207.00399592188788,
+        -29.511709896196543
+      ],
+      "b": [
+        200.90233873939277,
+        -30.00714850188303
+      ],
+      "width": 1.25,
+      "sourceId": 342505456,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        763.5086607566359,
+        -45.80327986988011
+      ],
+      "b": [
+        764.3938563546568,
+        -48.35048425602666
+      ],
+      "width": 1.25,
+      "sourceId": 549998090,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        -329.6712344608294,
+        434.96502997586407
+      ],
+      "b": [
+        -322.2418821842826,
+        429.48936504626613
+      ],
+      "width": 1.25,
+      "sourceId": 549941940,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        388.37440110394596,
+        -184.77277976428724
+      ],
+      "b": [
+        386.9246341463415,
+        -186.96829268292683
+      ],
+      "width": 1.25,
+      "sourceId": 342471058,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        191.78424532298402,
+        2.2391915813637158
+      ],
+      "b": [
+        192.6808987240059,
+        1.6008713710000357
+      ],
+      "width": 1.25,
+      "sourceId": 549920875,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        205.415242256453,
+        -18.691585322538238
+      ],
+      "b": [
+        199.19819837432075,
+        -23.452806265150627
+      ],
+      "width": 1.25,
+      "sourceId": 342505455,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        858.6153711407193,
+        4.1557143452878105
+      ],
+      "b": [
+        851.0881304162001,
+        2.588116295531248
+      ],
+      "width": 1.25,
+      "sourceId": 550130719,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        412.339341001446,
+        -158.57645900882014
+      ],
+      "b": [
+        420.63964235163,
+        -151.83003042630259
+      ],
+      "width": 1.25,
+      "sourceId": 342471042,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        422.54159515537714,
+        -140.061831729917
+      ],
+      "b": [
+        415.96153268571317,
+        -144.60730719082196
+      ],
+      "width": 1.25,
+      "sourceId": 342500965,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        1142.8428007770603,
+        -11.115539751970612
+      ],
+      "b": [
+        1141.9039262309452,
+        -12.852531702369284
+      ],
+      "width": 1.25,
+      "sourceId": 550130778,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        407.5444295740915,
+        -149.4728759892244
+      ],
+      "b": [
+        415.3806889718708,
+        -143.70989658671033
+      ],
+      "width": 1.25,
+      "sourceId": 342471044,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        774.3772491579198,
+        -7.246069264095729
+      ],
+      "b": [
+        768.3560972479249,
+        -8.223653495672794
+      ],
+      "width": 1.25,
+      "sourceId": 549998069,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        184.64419527996537,
+        25.94550282985859
+      ],
+      "b": [
+        186.72990543806355,
+        25.336823739341362
+      ],
+      "width": 1.25,
+      "sourceId": 549920877,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        -316.65000000000003,
+        471.455
+      ],
+      "b": [
+        -303.75284453308063,
+        467.83433918716463
+      ],
+      "width": 1.25,
+      "sourceId": 549941943,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        584.4053947511384,
+        -67.47637619844491
+      ],
+      "b": [
+        585.7780854690975,
+        -70.74939666536835
+      ],
+      "width": 1.25,
+      "sourceId": 342501012,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        179.98186292280033,
+        36.69572483014726
+      ],
+      "b": [
+        182.11509955389326,
+        37.719036043753974
+      ],
+      "width": 1.25,
+      "sourceId": 549920878,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        773.4726438088452,
+        1.9561730719192312
+      ],
+      "b": [
+        769.0989771103212,
+        2.511688829543557
+      ],
+      "width": 1.25,
+      "sourceId": 549998070,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        347.96465888253766,
+        -70.3166070166971
+      ],
+      "b": [
+        357.3915036682788,
+        -62.92159793580788
+      ],
+      "width": 1.25,
+      "sourceId": 342470885,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        177.2355626056939,
+        42.49185575367496
+      ],
+      "b": [
+        179.41656148991197,
+        43.613969980262326
+      ],
+      "width": 1.25,
+      "sourceId": 549920879,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        1129.0020263903593,
+        -19.93140430093386
+      ],
+      "b": [
+        1141.3154525988011,
+        -11.893417219040355
+      ],
+      "width": 1.25,
+      "sourceId": 550130773,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        334.57548456801914,
+        -51.26328770205571
+      ],
+      "b": [
+        342.6518385250658,
+        -44.00078216979707
+      ],
+      "width": 1.25,
+      "sourceId": 342470886,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        173.47816009572512,
+        49.193715324019614
+      ],
+      "b": [
+        176.58668175977098,
+        49.805094351055715
+      ],
+      "width": 1.25,
+      "sourceId": 549920880,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        324.04206639142103,
+        -40.113774836876416
+      ],
+      "b": [
+        333.0807053191743,
+        -31.720701293230228
+      ],
+      "width": 1.25,
+      "sourceId": 342470888,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        201.03761914653768,
+        20.42200119535271
+      ],
+      "b": [
+        192.65826525272,
+        23.59875774686679
+      ],
+      "width": 1.25,
+      "sourceId": 342505474,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        -312.5462007636126,
+        488.54098325541435
+      ],
+      "b": [
+        -299.7554966441713,
+        484.4379490061938
+      ],
+      "width": 1.25,
+      "sourceId": 549941945,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        526.0150152917095,
+        -62.85490864939779
+      ],
+      "b": [
+        529.7800834686527,
+        -60.48273719757223
+      ],
+      "width": 1.25,
+      "sourceId": 342500977,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        312.1197780858331,
+        -25.0131261597622
+      ],
+      "b": [
+        321.55928453064985,
+        -16.93650023808769
+      ],
+      "width": 1.25,
+      "sourceId": 342505451,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        -182.35068736323186,
+        325.18164332327194
+      ],
+      "b": [
+        -188.6173545961314,
+        319.04475456329936
+      ],
+      "width": 1.25,
+      "sourceId": 549925592,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        199.68,
+        33.86
+      ],
+      "b": [
+        193.52472693133626,
+        35.86019971619418
+      ],
+      "width": 1.25,
+      "sourceId": 342505473,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        -148.04916654839892,
+        287.1649918311149
+      ],
+      "b": [
+        -153.13845088821054,
+        282.39208608970824
+      ],
+      "width": 1.25,
+      "sourceId": 549925590,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        487.0224661367457,
+        -66.77435766036479
+      ],
+      "b": [
+        490.50136171913306,
+        -64.47041114521556
+      ],
+      "width": 1.25,
+      "sourceId": 342500979,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        160.3847776633009,
+        73.58910639555329
+      ],
+      "b": [
+        164.6986955943731,
+        75.48428692295448
+      ],
+      "width": 1.25,
+      "sourceId": 549920883,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        545.0866399680355,
+        -33.48423990911968
+      ],
+      "b": [
+        544.3906768911147,
+        -27.47901213167918
+      ],
+      "width": 1.25,
+      "sourceId": 342501016,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        299.39829613880494,
+        -7.629831820819101
+      ],
+      "b": [
+        308.48587975207687,
+        -0.16877727894827124
+      ],
+      "width": 1.25,
+      "sourceId": 342505452,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        87.21621338342602,
+        123.72759221055063
+      ],
+      "b": [
+        81.92799728675602,
+        129.75997329150417
+      ],
+      "width": 1.25,
+      "sourceId": 549920897,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        1133.135440209831,
+        49.758080125221156
+      ],
+      "b": [
+        1137.646411245171,
+        58.26605768154072
+      ],
+      "width": 1.25,
+      "sourceId": 550130786,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        635.5948193365106,
+        -16.860006409236114
+      ],
+      "b": [
+        644.0430559342343,
+        -15.485032905523907
+      ],
+      "width": 1.25,
+      "sourceId": 342501019,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        199.00838380557366,
+        44.89125498081319
+      ],
+      "b": [
+        193.41812020005116,
+        44.525188973683655
+      ],
+      "width": 1.25,
+      "sourceId": 342505472,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        1052.952092464583,
+        36.20404523338845
+      ],
+      "b": [
+        1040.9787662019341,
+        28.01225884044008
+      ],
+      "width": 1.25,
+      "sourceId": 550130752,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        -350.5572373466,
+        534.2904595439725
+      ],
+      "b": [
+        -355.10851941235984,
+        534.201810450215
+      ],
+      "width": 1.25,
+      "sourceId": 549941946,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        -330.71812940032163,
+        534.26291731275
+      ],
+      "b": [
+        -326.46854228183,
+        537.9342079739804
+      ],
+      "width": 1.25,
+      "sourceId": 549941947,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        -309.2467575069987,
+        520.0203129146491
+      ],
+      "b": [
+        -304.95945936266634,
+        523.9094643326999
+      ],
+      "width": 1.25,
+      "sourceId": 549941948,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        403.8592076048885,
+        -94.09398983010755
+      ],
+      "b": [
+        390.00699571442175,
+        -104.77012155169675
+      ],
+      "width": 1.25,
+      "sourceId": 342501037,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        -287.2072029136284,
+        494.4066990599738
+      ],
+      "b": [
+        -295.68873157993454,
+        496.22180320400304
+      ],
+      "width": 1.25,
+      "sourceId": 549941937,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        143.58769854433714,
+        98.60914254048205
+      ],
+      "b": [
+        147.37953847714166,
+        101.36703432030767
+      ],
+      "width": 1.25,
+      "sourceId": 549920894,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        380.5304160872995,
+        -69.73624663545947
+      ],
+      "b": [
+        369.51821304803514,
+        -78.47553925209417
+      ],
+      "width": 1.25,
+      "sourceId": 550116781,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        197.54842755094558,
+        56.73670619727393
+      ],
+      "b": [
+        191.89489758957026,
+        59.797956284606286
+      ],
+      "width": 1.25,
+      "sourceId": 342505471,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        512.9945120586458,
+        -34.95206208626471
+      ],
+      "b": [
+        516.9541929087538,
+        -35.034469974805724
+      ],
+      "width": 1.25,
+      "sourceId": 342500992,
+      "authored": "district-entrance-link"
+    },
+    {
+      "a": [
+        196.41647057781563,
+        67.00464973712563
+      ],
+      "b": [
+        191.63390550551514,
+        68.90252643962417
+      ],
+      "width": 1.25,
+      "sourceId": 342505470,
+      "authored": "district-entrance-link"
+    }
+  ]
+}

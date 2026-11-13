@@ -1,4 +1,5 @@
 import source from './data/sile-context.json' with {type:'json'};
+import coast from './data/sile-coast.json' with {type:'json'};
 import{surfaceAt,insidePolygon,drapeTerrainTriangles}from './geo-terrain.js';
 import{createSurfacePartition}from './sile-shore.js';
 import{buildingFacade}from './sile-buildings.js';
@@ -14,7 +15,29 @@ export function roadRibbonMasks(roads,extraWidth=0,accept=()=>true){
  }
  for(const points of nodes.values()){const ring=hull(points);if(ring.length>=3)masks.push([ring]);}return masks;
 }
-export function streetLayout(data,profiles){
+function districtExclusions(data){return match(data)?[...source.sports,...source.paved,...source.harbour,...source.beaches,...coast.features].map(f=>f.rings):[];}
+// Model-only access, not an assertion that a surveyed footpath exists. Test
+// every polygon fragment and terrain face so a narrow obstacle cannot fall
+// between fixed centre-line samples.
+export function districtEntranceLinks(data,profiles){
+ const out={paving:[],groundCorridors:[],deferred:[]};if(!profiles.size)return out;
+ const land=createSurfacePartition(data.terrain.land,{spatial:true}),blocked=createSurfacePartition([...data.buildings,...data.structures].map(b=>b.rings).concat(districtExclusions(data)),{spatial:true});
+ for(const p of profiles.values()){
+  const reject=reason=>out.deferred.push({sourceId:p.item.id,reason});
+  if(!Number.isFinite(p.item.entryY)){reject('unsupported-entry');continue;}
+  const entry=buildingFacade(p.item,p,p.eaves).cells.find(c=>c.authoredEntry);if(!entry){reject('unsupported-entry');continue;}
+  const a=[entry.x+entry.nx*.7,entry.z+entry.nz*.7],b=p.entry,dx=b[0]-a[0],dz=b[1]-a[1],length=Math.hypot(dx,dz);
+  if(length<.7||length>18){reject(length<.7?'apron-already-reaches-road':'distance-limit');continue;}
+  const nx=-dz/length*.625,nz=dx/length*.625,r=[[a[0]+nx,a[1]+nz],[b[0]+nx,b[1]+nz],[b[0]-nx,b[1]-nz],[a[0]-nx,a[1]-nz]],faces=[[r[0],r[1],r[2]],[r[0],r[2],r[3]]];
+  if(faces.some(t=>land(t).outside.length||blocked(t).inside.length)){reject('water-building-or-protected-surface');continue;}
+  const draped=drapeTerrainTriangles(data.terrain,faces.flatMap(t=>t.flatMap(([x,z])=>[x,0,z])),0);let steep=!draped.length;
+  for(let i=0;i<draped.length;i+=9){const ux=draped[i+3]-draped[i],uy=draped[i+4]-draped[i+1],uz=draped[i+5]-draped[i+2],vx=draped[i+6]-draped[i],vy=draped[i+7]-draped[i+1],vz=draped[i+8]-draped[i+2],normal=[uy*vz-uz*vy,uz*vx-ux*vz,ux*vy-uy*vx];if(Math.abs(normal[1])<1e-10||Math.hypot(normal[0],normal[2])/Math.abs(normal[1])>.18+1e-8){steep=true;break;}}
+  if(steep){reject('terrain-grade-limit');continue;}
+  out.paving.push([r]);out.groundCorridors.push({a,b,width:1.25,sourceId:p.item.id,authored:'district-entrance-link'});
+ }
+ return out;
+}
+export function streetLayout(data,profiles,{surroundingProfiles=profiles}={}){
  const out={valid:false,asphalt:[],paving:[],coverage:[],groundCorridors:[],stats:{}};if(!match(data)||!profiles.size)return out;out.valid=true;
  const drive=data.roads.filter(r=>!walkKinds.has(r.kind)),walk=data.roads.filter(r=>walkKinds.has(r.kind)),near=[...profiles.values()].map(p=>{const ring=p.item.rings[0];return [Math.min(...ring.map(v=>v[0])),Math.max(...ring.map(v=>v[0])),Math.min(...ring.map(v=>v[1])),Math.max(...ring.map(v=>v[1]))];});
  const close=(road,a,b)=>{if(!['residential','service','living_street','tertiary','secondary'].includes(road.kind))return false;const x=(a[0]+b[0])/2,z=(a[1]+b[1])/2;return near.some(p=>Math.hypot(Math.max(p[0]-x,0,x-p[1]),Math.max(p[2]-z,0,z-p[3]))<=45);};
@@ -25,7 +48,13 @@ export function streetLayout(data,profiles){
   for(let i=0;i<=12&&clear;i++)for(const side of [-1,0,1]){const x=a[0]+dx*i/12+nx*side,z=a[1]+dz*i/12+nz*side,s=surfaceAt({terrain:data.terrain},x,z);if(s.water||s.normal[1]<.9||data.buildings.some(item=>insidePolygon(x,z,item.rings))){clear=false;break;}}
   if(!clear)continue;out.paving.push([[[a[0]+nx,a[1]+nz],[b[0]+nx,b[1]+nz],[b[0]-nx,b[1]-nz],[a[0]-nx,a[1]-nz]]]);out.groundCorridors.push({a,b,width:1.25,sourceId:p.item.id});
  }
- out.coverage=[...out.asphalt,...out.paving];out.stats={sourceRoads:data.roads.length,driveRoads:drive.length,walkRoads:walk.length,entranceLinks:out.groundCorridors.length,authored:true};return out;
+ let districtLinks=0,districtDeferred=[],districtPavingFragments=0;
+ if(surroundingProfiles!==profiles){
+  const extra=new Map([...surroundingProfiles].filter(([id])=>!profiles.has(id))),nearby=[...extra.values()],closeDistrict=(road,a,b)=>['residential','service','living_street','tertiary','secondary'].includes(road.kind)&&nearby.some(p=>Math.hypot(p.center[0]-(a[0]+b[0])/2,p.center[1]-(a[1]+b[1])/2)<=45),expanded=roadRibbonMasks(drive,1.5,closeDistrict),preserve=createSurfacePartition([...out.paving,...districtExclusions(data)],{spatial:true}),land=createSurfacePartition(data.terrain.land,{spatial:true});
+  for(const [r]of expanded)for(let i=1;i<r.length-1;i++)for(const t of preserve([r[0],r[i],r[i+1]]).outside)for(const q of land(t).inside){out.paving.push([q]);districtPavingFragments++;}
+  const extraLinks=districtEntranceLinks(data,extra);out.paving.push(...extraLinks.paving);out.groundCorridors.push(...extraLinks.groundCorridors);districtLinks=extraLinks.groundCorridors.length;districtDeferred=extraLinks.deferred;
+ }
+ out.coverage=[...out.asphalt,...out.paving];out.stats={sourceRoads:data.roads.length,driveRoads:drive.length,walkRoads:walk.length,entranceLinks:out.groundCorridors.length,districtLinks,districtDeferred,districtPavingFragments,surroundingProfiles:surroundingProfiles.size,authored:true};return out;
 }
 function stableSurface(terrain,positions){const raw=drapeTerrainTriangles(terrain,positions,0),out=[];for(let i=0;i<raw.length;i+=9){const t=raw.slice(i,i+9).map(Math.fround),area=(t[3]-t[0])*(t[8]-t[2])-(t[5]-t[2])*(t[6]-t[0]);if(Math.abs(area)>1e-8)out.push(...t);}return out;}
 export function streetSurfaces(data,positions,layout){

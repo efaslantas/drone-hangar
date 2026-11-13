@@ -54,7 +54,7 @@ export function buildSile(scene,data){
  if(!data)throw new Error('Şile verisi önce yüklenmeli.');
  const timings=[];let stamp=performance.now();const mark=name=>{const now=performance.now();timings.push({name,ms:now-stamp});stamp=now;};
  data=completedSileData(data);
- const coastal=coastalBuildings(data),district=data.completionLayer===1?coastalBuildings(data,{maxDistance:350}):coastal,streets=streetLayout(data,coastal);
+ const coastal=coastalBuildings(data),district=data.completionLayer===1?coastalBuildings(data,{maxDistance:350}):coastal,streets=streetLayout(data,coastal,{surroundingProfiles:district});
  const site=castleSite(data),sourceTerrain=site?.terrain||data.terrain,patches=sourceCoastPatches(data,sourceTerrain,{exactSand:true}),sand=streetRemainder(patches.sand,streets),beach=buildBeachApproach(data,sourceTerrain,sand),terrain=beach?{...sourceTerrain,beachSurface:beach.surface}:sourceTerrain,sourceItems=[...data.buildings,...data.structures].map(item=>site&&item===site.source?site.castle:item),play={bounds:{minx:terrain.bounds[0],maxx:terrain.bounds[1],minz:terrain.bounds[2],maxz:terrain.bounds[3]},ceil:Math.max(...terrain.heights)-terrain.datum+160,terrain,prisms:sourceItems.map(prismRecord),boxes:[],spawn:{x:0,z:0},trainingOnly:true};
  if(beach){patches.sand=beach.surface.positions;scene.userData.sileBeachStats=beach.stats;}
  mark('source-partitions');

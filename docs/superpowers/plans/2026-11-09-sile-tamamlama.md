@@ -223,3 +223,12 @@ Kullanıcı sahilde binaların zemine oturmasını/çevresini geliştirmeyi ve c
 - [x] Model/saha sınırları ve eski insan reddi korunarak main/app-only AWS,470+ kaynak SHA/HTTPS/WSS/nativeDISARM0, kayıt/notes/yalnız sahipli scratch kapanışı. Yeni kullanıcı ve fizikselTX15 kabulü yapılmadı kalır.
 
 Task15 teslim: v2.61.0-0303b45cb1b7 canlı;659Node22/11infra/12rota/nativeGL-GPU/180sgörünürdelta/HTTPS/WSS/liveDISARM0.367terrain-fitted doors/178steepentryomissions/49backfoundationcandidates/680apronprofiles;source/roofdimensionsunchanged;no surveyclaim. Önceki900s2.58veinsanreddikorunur,yeni kullanıcı/TX15not-run.
+
+### Task 16: Kıyı yapı çevresi–sokak birleşimleri · 2.62
+
+Kullanıcı sokak/yol birleşimlerini geliştirip canlı yayın istedi. 2.61 main/canlı üzerinden aynı plan sürer. Yol kenarı yakınlık ve giriş bağlantıları hâlâ 135 ön profile göre kuruluyor; mevcut 468 kaynak yol merkez çizgisi ve genişliği korunacak. Yol kenarı 1.5m temsili döşeme yakınlığı 680 görsel profile genişletilir. 367 desteklenen arka kapıdan mevcut en yakın yola, 1.25m genişlik/18m uzunluk sınırında güvenli bağ kurulabilecekler eklenir. Bütün koridor poligonu su/kaynak bina/strüktür/spor/otopark/liman/plaj/korunan kıyı açısından kırpılmadan denetlenir; tam arazi üçgenlerinde en fazla%18 eğim aranır. Dik/örtülü/uzun veya engelli bağlar nedenleriyle ertelenir. Yeni merdiven, ölçülmüş kaldırım veya yeni yol iddiası yok. Eski ön sıra kuralları ve ham harita korunur. Tek yüzey bölüştürmesi, aynı nihai fiziksel arazi ve mevcut obje koridor rezervasyonları kullanılır.
+
+- [ ] Güvenli tam genişlikte arka giriş bağı ve 350m yapı çevresine göre yol kenarı kapsamı; saf testlerde su deliği/dar engel/eğim/mesafe ve kaynak değişmezliği RED→GREEN.
+- [ ] Gerçek sahnede bağ–apron–asfalt birleşimi, tek yüzey kapsamı, nihai temas kotu ve engel rezervasyonu; ham harita/RC ve önceki giriş/çatı davranışı korunur.
+- [ ] Tek freshreview, tamNode22/11infra/12rota; nativeGL/GPU6bölge+stadyum ve yeni görünür180s delta.
+- [ ] Model sınırları/önceki insan reddi korunarak main/app-onlyAWS, kaynakSHA/HTTPS/WSS/nativeDISARM0, kayıtlar/notes ve sahipli scratch kapanışı. Yeni kullanıcı/TX15 kabulü yapılmadı kalır.

@@ -1,13 +1,16 @@
 import * as THREE from 'three';
 import contextSource from './data/sile-context.json' with {type:'json'};
-import {planNeighbourhood,neighbourhoodField,segmentDistance}from './sile-neighbourhood.js';
+import {planNeighbourhood,planDistrictNeighbourhood,neighbourhoodField,segmentDistance}from './sile-neighbourhood.js';
 import {surfaceAt,terrainHeight,insidePolygon}from './geo-terrain.js';
+import{createSurfacePartition}from './sile-shore.js';
 function overlap(a,b){return a.minx<b.maxx&&a.maxx>b.minx&&a.miny<b.maxy&&a.maxy>b.miny&&a.minz<b.maxz&&a.maxz>b.minz;}
-export function addNeighbourhood(scene,data,play,profiles){
+export function addNeighbourhood(scene,data,play,profiles,{surroundingProfiles=profiles}={}){
  const plan=planNeighbourhood(data,play,profiles);if(!plan.valid)return;const geometries={box:new THREE.BoxGeometry(1,1,1),post:new THREE.CylinderGeometry(.5,.5,1,8),leaf:new THREE.IcosahedronGeometry(.5,2)},groups=new Map(),lamps=[];
  // An irregular, mottled crown reads as foliage rather than a smooth ball.
  const leaf=geometries.leaf,lp=leaf.attributes.position,lc=[];for(let i=0;i<lp.count;i++){const x=lp.getX(i),y=lp.getY(i),z=lp.getZ(i),n=Math.sin(x*47+y*31+z*17)*Math.cos(z*39-x*23),f=.9+.08*n;lp.setXYZ(i,x*f,y*f,z*f);const shade=.83+.17*(n+1)/2;lc.push(shade,.9+.1*(n+1)/2,shade*.86);}leaf.setAttribute('color',new THREE.Float32BufferAttribute(lc,3));leaf.computeVertexNormals();for(const g of Object.values(geometries))g.computeBoundingBox();let lampCount=0,planterCount=0,benchCount=0;
- function clear(box){
+ const districtPlan=planDistrictNeighbourhood(data,play,profiles,surroundingProfiles),districtStats={lamps:0,planters:0,benches:0,placements:[],measured:false},protectedSurface=createSurfacePartition([...contextSource.sports,...contextSource.paved,...contextSource.harbour,...contextSource.beaches].map(f=>f.rings).concat((data.supplementalBuildings||[]).filter(b=>b.rings?.length===1&&Array.isArray(b.rings[0])&&b.rings[0].length>=3&&b.rings[0].every(p=>Array.isArray(p)&&p.length===2&&p.every(Number.isFinite))).map(b=>{const xs=b.rings[0].map(p=>p[0]),zs=b.rings[0].map(p=>p[1]),x0=Math.min(...xs),x1=Math.max(...xs),z0=Math.min(...zs),z1=Math.max(...zs);return [[[x0,z0],[x1,z0],[x1,z1],[x0,z1]]];})),{spatial:true});
+ function clear(box,district=false){
+  if(district){const r=[[box.minx,box.minz],[box.maxx,box.minz],[box.maxx,box.maxz],[box.minx,box.maxz]];if([[r[0],r[1],r[2]],[r[0],r[2],r[3]]].some(t=>protectedSurface(t).inside.length))return false;}
   const x=(box.minx+box.maxx)/2,z=(box.minz+box.maxz)/2,r=Math.hypot((box.maxx-box.minx)/2,(box.maxz-box.minz)/2),t=play.terrain;
   if(data.completionLayer===1&&contextSource.sports.some(f=>insidePolygon(x,z,f.rings)))return false;
   if(Math.hypot(x,z)<14+r||box.minx<t.bounds[0]||box.maxx>t.bounds[1]||box.minz<t.bounds[2]||box.maxz>t.bounds[3]||surfaceAt(play,x,z).water)return false;
@@ -22,27 +25,41 @@ export function addNeighbourhood(scene,data,play,profiles){
   const up=sloped?new THREE.Vector3(...owner.normal):new THREE.Vector3(0,1,0),forward=new THREE.Vector3(owner.nx,0,owner.nz);forward.addScaledVector(up,-forward.dot(up)).normalize();const right=new THREE.Vector3().crossVectors(up,forward).normalize(),parent=new THREE.Matrix4().makeBasis(right,up,forward);parent.setPosition(owner.x,owner.y,owner.z);
   const result=parts.map(p=>{const local=new THREE.Matrix4().compose(new THREE.Vector3(...p.xyz),new THREE.Quaternion(),new THREE.Vector3(...p.size)),matrix=parent.clone().multiply(local),b=geometries[p.shape].boundingBox.clone().applyMatrix4(matrix),box={minx:b.min.x-.001,maxx:b.max.x+.001,miny:b.min.y-.001,maxy:b.max.y+.001,minz:b.min.z-.001,maxz:b.max.z+.001};if(owner.authored){box.authored=owner.authored;if(p.support)box.support=true;}return {...p,matrix,box};});
   if(sloped){for(const x of [-.5,.5])for(const z of [-.3,.3]){const foot=new THREE.Vector3(x,0,z).applyMatrix4(parent),delta=foot.y-terrainHeight(play.terrain,foot.x,foot.z);if(delta>.045||delta<-.08)return false;}}
-  if(owner.authored==='coastal-bench'){
+  if(owner.authored==='coastal-bench'||owner.authored==='district-street-bench'){
    // Reject terrain-face bends beneath any of the four actual support feet.
    for(const p of result.filter(p=>p.support))for(const x of [-.5,.5])for(const z of [-.5,.5]){const foot=new THREE.Vector3(x,-.5,z).applyMatrix4(p.matrix),delta=foot.y-terrainHeight(play.terrain,foot.x,foot.z);if(delta>.0005||delta<-.02)return false;}
   }
-  if(result.some(p=>!clear(p.box)))return false;
-  for(const p of result){const key=p.shape+':'+p.paint;if(!groups.has(key))groups.set(key,[]);groups.get(key).push(p);play.boxes.push(p.box);}return true;
+  const district=owner.authored?.startsWith('district-street-');
+  if(district)for(const p of result.filter(p=>p.support))for(const x of[-.5,.5])for(const z of[-.5,.5]){const foot=new THREE.Vector3(x,-.5,z).applyMatrix4(p.matrix),delta=foot.y-terrainHeight(play.terrain,foot.x,foot.z),embed=owner.authored==='district-street-lamp'?.12:.03;if(delta>.001||delta< -embed)return false;}
+  if(result.some(p=>!clear(p.box,district)))return false;
+  for(const p of result){const key=p.shape+':'+p.paint;if(!groups.has(key))groups.set(key,[]);groups.get(key).push(p);const sourceBoxIndex=play.boxes.length;play.boxes.push(p.box);if(district){play.terrainWalls??=[];play.terrainWalls.push(...streetFurnitureContacts(p.box,sourceBoxIndex,'sile-neighbourhood-'+key));}}return true;
  }
- for(const p of plan.lamps){if(lampCount>=56)break;if(lamps.some(q=>Math.hypot(p.x-q.x,p.z-q.z)<15))continue;
-  if(candidate(p,[{shape:'post',paint:'solid',xyz:[0,.04,0],size:[.34,.2,.34],color:0x797b71},{shape:'post',paint:'solid',xyz:[0,2.4,0],size:[.13,4.8,.13],color:0x545d59},{shape:'box',paint:'solid',xyz:[0,4.72,.48],size:[.09,.09,.96],color:0x545d59},{shape:'box',paint:'solid',xyz:[0,4.69,1],size:[.58,.14,.28],color:0x46514e},{shape:'box',paint:'lens',xyz:[0,4.612,1],size:[.48,.015,.2],color:0xd6d9c7}])){lamps.push(p);lampCount++;}
- }
- for(const p of plan.planters){if(planterCount>=64)break;if(candidate(p,[{shape:'box',paint:'solid',xyz:[0,.225,0],size:[1,.45,.6],color:0x8c8675},{shape:'leaf',paint:'solid',xyz:[0,.78,0],size:[.92,.85,.68],color:0x4a643d}],true))planterCount++;}
- const benches=[];for(const p of plan.benches){if(benchCount>=32)break;if(benches.some(q=>Math.hypot(p.x-q.x,p.z-q.z)<18))continue;
-  const parts=[{shape:'box',paint:'solid',xyz:[0,.48,0],size:[2,.09,.64],color:0x8c7960},{shape:'box',paint:'solid',xyz:[0,.78,-.29],size:[2,.45,.085],color:0x8c7960}];
-  for(const x of [-.76,.76])for(const z of [-.22,.22])parts.push({shape:'box',paint:'solid',xyz:[x,.215,z],size:[.12,.45,.12],color:0x515952,support:true});
-  if(candidate({...p,authored:'coastal-bench'},parts,true)){benches.push(p);benchCount++;}
+ const benches=[];
+ for(const [phase,isDistrict]of[[plan,false],[districtPlan,true]]){
+  if(!phase.valid)continue;const limits={lamps:lampCount+(isDistrict?24:56),planters:planterCount+(isDistrict?24:64),benches:benchCount+(isDistrict?12:32)};
+  const placed=(p,kind)=>{if(!isDistrict)return;districtStats[kind]++;districtStats.placements.push({kind,x:p.x,y:p.y,z:p.z,sourceRoadId:p.roadId,sourceBuildingId:p.sourceId,shoreDistance:p.shoreDistance});};
+  for(const p of phase.lamps){if(lampCount>=limits.lamps)break;if(lamps.some(q=>Math.hypot(p.x-q.x,p.z-q.z)<15))continue;
+   if(candidate(isDistrict?{...p,authored:'district-street-lamp'}:p,[{shape:'post',paint:'solid',xyz:[0,.04,0],size:[.34,.2,.34],color:0x797b71,support:true},{shape:'post',paint:'solid',xyz:[0,2.4,0],size:[.13,4.8,.13],color:0x545d59},{shape:'box',paint:'solid',xyz:[0,4.72,.48],size:[.09,.09,.96],color:0x545d59},{shape:'box',paint:'solid',xyz:[0,4.69,1],size:[.58,.14,.28],color:0x46514e},{shape:'box',paint:'lens',xyz:[0,4.612,1],size:[.48,.015,.2],color:0xd6d9c7}])){lamps.push(p);lampCount++;placed(p,'lamps');}
+  }
+  for(const p of phase.planters){if(planterCount>=limits.planters)break;if(candidate(isDistrict?{...p,y:p.y-.012,authored:'district-street-planter'}:p,[{shape:'box',paint:'solid',xyz:[0,.225,0],size:[1,.45,.6],color:0x8c8675,support:true},{shape:'leaf',paint:'solid',xyz:[0,.78,0],size:[.92,.85,.68],color:0x4a643d}],true)){planterCount++;placed(p,'planters');}}
+  for(const p of phase.benches){if(benchCount>=limits.benches)break;if(benches.some(q=>Math.hypot(p.x-q.x,p.z-q.z)<18))continue;
+   const parts=[{shape:'box',paint:'solid',xyz:[0,.48,0],size:[2,.09,.64],color:0x8c7960},{shape:'box',paint:'solid',xyz:[0,.78,-.29],size:[2,.45,.085],color:0x8c7960}];
+   for(const x of[-.76,.76])for(const z of[-.22,.22])parts.push({shape:'box',paint:'solid',xyz:[x,.215,z],size:[.12,.45,.12],color:0x515952,support:true});
+   if(candidate({...p,authored:isDistrict?'district-street-bench':'coastal-bench'},parts,true)){benches.push(p);benchCount++;placed(p,'benches');}
+  }
  }
  const used=new Set();for(const [key,parts]of groups){const [shape,paint]=key.split(':'),g=geometries[shape];used.add(g);const material=new THREE.MeshStandardMaterial({color:0xffffff,vertexColors:shape==='leaf',roughness:paint==='lens'?.45:.94,emissive:paint==='lens'?0x7d806a:0,emissiveIntensity:paint==='lens'?.2:0}),mesh=new THREE.InstancedMesh(g,material,parts.length);mesh.name='sile-neighbourhood-'+key;mesh.userData.neighbourhoodBoxes=parts.map(p=>p.box);parts.forEach((p,i)=>{mesh.setMatrixAt(i,p.matrix);mesh.setColorAt(i,new THREE.Color(p.color));});mesh.instanceMatrix.needsUpdate=true;mesh.instanceColor.needsUpdate=true;mesh.castShadow=true;mesh.receiveShadow=true;mesh.computeBoundingBox();mesh.computeBoundingSphere();scene.add(mesh);}
- for(const g of Object.values(geometries))if(!used.has(g))g.dispose();scene.userData.sileNeighbourhood={data,profiles};scene.userData.sileNeighbourhoodStats={lamps:lampCount,planters:planterCount,benches:benchCount,authored:true};
+ for(const g of Object.values(geometries))if(!used.has(g))g.dispose();scene.userData.sileNeighbourhood={data,profiles};scene.userData.sileNeighbourhoodStats={lamps:lampCount,planters:planterCount,benches:benchCount,authored:true,...(districtPlan.valid?{district:districtStats}:{})};
 }
 export function finishNeighbourhood(scene){
  const state=scene.userData.sileNeighbourhood,ground=scene.getObjectByName('sile-terrain');if(!state||!ground||ground.userData.neighbourhoodTint)return;const field=neighbourhoodField(state.data,state.profiles),p=ground.geometry.attributes.position,c=ground.geometry.attributes.color;if(!c)return;
  for(let i=0;i<p.count;i++){const w=field(p.getX(i),p.getZ(i));c.array[i*3]*=1-.52*w;c.array[i*3+1]*=1+.08*w;c.array[i*3+2]*=1-.55*w;}
  c.needsUpdate=true;ground.userData.neighbourhoodTint=true;
+}
+
+// Use the existing swept triangle owner for new furniture only. These closed
+// faces follow its conservative AABB; legacy contact owners remain unchanged.
+export function streetFurnitureContacts(box,sourceBoxIndex,mesh){
+ const {minx:x0,maxx:x1,miny:y0,maxy:y1,minz:z0,maxz:z1}=box,corners=[[x0,y0,z0],[x1,y0,z0],[x1,y1,z0],[x0,y1,z0],[x0,y0,z1],[x1,y0,z1],[x1,y1,z1],[x0,y1,z1]],faces=[[0,2,1],[0,3,2],[4,5,6],[4,6,7],[0,4,7],[0,7,3],[1,2,6],[1,6,5],[0,1,5],[0,5,4],[3,7,6],[3,6,2]];
+ return faces.map(face=>{const vertices=face.map(i=>corners[i]);return {vertices,contactBounds:[0,1,2].flatMap(k=>[Math.min(...vertices.map(p=>p[k])),Math.max(...vertices.map(p=>p[k]))]),sourceBoxIndex,mesh,authored:'district-street-shell',reason:'sokak donatısına çarptı',landing:false};});
 }

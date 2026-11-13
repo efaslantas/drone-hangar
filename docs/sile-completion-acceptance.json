@@ -1,6 +1,6 @@
 {
   "date": "2026-11-13",
-  "status": "Published2.63street surface follow-up verified;900s baseline remains2.58, new180sdelta verified; human acceptance pending",
+  "status": "Verified2.64street furniture follow-up; publication and new human acceptance pending",
   "inventoryVersion": 1,
   "sourceSnapshotKey": "1147718:d3dd4d94:81685aaa",
   "baseline": "v2.57.0-e89963741523",
@@ -39,10 +39,10 @@
         "appearance": {
           "status": "pass",
           "evidence": [
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-263-S1-sea-webgl.jpg",
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-263-S1-sea-webgpu.jpg",
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-263-S1-land-webgl.jpg",
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-263-S1-land-webgpu.jpg",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-S1-sea-webgl.jpg",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-S1-sea-webgpu.jpg",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-S1-land-webgl.jpg",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-S1-land-webgpu.jpg",
             "Native rendering/software inspection, not individual photographic resemblance or human acceptance."
           ]
         },
@@ -99,10 +99,10 @@
         "appearance": {
           "status": "pass",
           "evidence": [
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-263-S2-sea-webgl.jpg",
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-263-S2-sea-webgpu.jpg",
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-263-S2-land-webgl.jpg",
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-263-S2-land-webgpu.jpg",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-S2-sea-webgl.jpg",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-S2-sea-webgpu.jpg",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-S2-land-webgl.jpg",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-S2-land-webgpu.jpg",
             "Native rendering/software inspection, not individual photographic resemblance or human acceptance."
           ]
         },
@@ -159,10 +159,10 @@
         "appearance": {
           "status": "pass",
           "evidence": [
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-263-S3-sea-webgl.jpg",
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-263-S3-sea-webgpu.jpg",
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-263-S3-land-webgl.jpg",
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-263-S3-land-webgpu.jpg",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-S3-sea-webgl.jpg",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-S3-sea-webgpu.jpg",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-S3-land-webgl.jpg",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-S3-land-webgpu.jpg",
             "Native rendering/software inspection, not individual photographic resemblance or human acceptance."
           ]
         },
@@ -219,10 +219,10 @@
         "appearance": {
           "status": "pass",
           "evidence": [
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-263-S4-sea-webgl.jpg",
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-263-S4-sea-webgpu.jpg",
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-263-S4-land-webgl.jpg",
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-263-S4-land-webgpu.jpg",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-S4-sea-webgl.jpg",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-S4-sea-webgpu.jpg",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-S4-land-webgl.jpg",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-S4-land-webgpu.jpg",
             "Native rendering/software inspection, not individual photographic resemblance or human acceptance."
           ]
         },
@@ -279,10 +279,10 @@
         "appearance": {
           "status": "pass",
           "evidence": [
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-263-S5-sea-webgl.jpg",
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-263-S5-sea-webgpu.jpg",
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-263-S5-land-webgl.jpg",
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-263-S5-land-webgpu.jpg",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-S5-sea-webgl.jpg",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-S5-sea-webgpu.jpg",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-S5-land-webgl.jpg",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-S5-land-webgpu.jpg",
             "Native rendering/software inspection, not individual photographic resemblance or human acceptance."
           ]
         },
@@ -339,10 +339,10 @@
         "appearance": {
           "status": "pass",
           "evidence": [
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-263-S6-sea-webgl.jpg",
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-263-S6-sea-webgpu.jpg",
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-263-S6-land-webgl.jpg",
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-263-S6-land-webgpu.jpg",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-S6-sea-webgl.jpg",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-S6-sea-webgpu.jpg",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-S6-land-webgl.jpg",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-S6-land-webgpu.jpg",
             "Native rendering/software inspection, not individual photographic resemblance or human acceptance."
           ]
         },
@@ -922,7 +922,7 @@
     ],
     "rendererStatsScope": "Actual per-frame renderer counters; not full composer aggregate or VRAM measurement. Separate full-composer frame diagnostics retained.",
     "measuredRelease": "v2.58.0-47520f3ee55f",
-    "historyNotice": "Actual900s2.58baseline; current2.63finish change uses new180scheck in followups.finish263.performance. Never relabel this run as2.63."
+    "historyNotice": "Actual900s2.58baseline; current2.64furniture change uses new180scheck in followups.furniture264.performance. Never relabel this run as2.64."
   },
   "physicalTX15": {
     "status": "not-run",
@@ -930,52 +930,58 @@
   },
   "humanAcceptance": {
     "status": "not-run",
-    "scope": "New2.63user map/flight acceptance pending",
+    "scope": "New2.64user map/flight acceptance pending",
     "previousResults": [
       {
         "status": "not-run",
-        "scope": "New2.62user map/flight acceptance pending",
+        "scope": "New2.63user map/flight acceptance pending",
         "previousResults": [
           {
             "status": "not-run",
-            "scope": "New2.61user map/flight acceptance pending",
+            "scope": "New2.62user map/flight acceptance pending",
             "previousResults": [
               {
                 "status": "not-run",
-                "scope": "New2.60user map/flight acceptance pending",
+                "scope": "New2.61user map/flight acceptance pending",
                 "previousResults": [
                   {
                     "status": "not-run",
-                    "scope": "New2.59user map/flight acceptance pending",
+                    "scope": "New2.60user map/flight acceptance pending",
                     "previousResults": [
                       {
                         "status": "not-run",
-                        "scope": "New2.58 user resemblance and flight acceptance pending",
+                        "scope": "New2.59user map/flight acceptance pending",
                         "previousResults": [
                           {
-                            "status": "fail",
-                            "release": "v2.57.0-e89963741523",
-                            "date": "2026-11-10",
-                            "feedback": "Sahil bölgesi hâlâ boş; tam Şile değil.",
-                            "scope": "User visual feedback; prior automated software acceptance is not visual approval."
+                            "status": "not-run",
+                            "scope": "New2.58 user resemblance and flight acceptance pending",
+                            "previousResults": [
+                              {
+                                "status": "fail",
+                                "release": "v2.57.0-e89963741523",
+                                "date": "2026-11-10",
+                                "feedback": "Sahil bölgesi hâlâ boş; tam Şile değil.",
+                                "scope": "User visual feedback; prior automated software acceptance is not visual approval."
+                              }
+                            ],
+                            "release": "v2.58.0-47520f3ee55f"
                           }
                         ],
-                        "release": "v2.58.0-47520f3ee55f"
+                        "release": "v2.59.0-01f8df881bcb"
                       }
                     ],
-                    "release": "v2.59.0-01f8df881bcb"
+                    "release": "v2.60.0-a8bbda72ee0e"
                   }
                 ],
-                "release": "v2.60.0-a8bbda72ee0e"
+                "release": "v2.61.0-0303b45cb1b7"
               }
             ],
-            "release": "v2.61.0-0303b45cb1b7"
+            "release": "v2.62.0-8e1675aa7a78"
           }
         ],
-        "release": "v2.62.0-8e1675aa7a78"
+        "release": "v2.63.0-c8bb16d845f8"
       }
-    ],
-    "release": "v2.63.0-c8bb16d845f8"
+    ]
   },
   "limits": [
     "31mDSM and most building heights remain unmeasured; representative scene, not surveyed digital twin.",
@@ -985,9 +991,9 @@
     "ESA WorldCover2021v200 categorical land cover is not a current tree inventory. Authored spacing, species, heights, parking paint and420summer umbrella suites are representative.",
     "No new fish-market row placed without reliable footprints or local bare-earth terrain; source missing coastal structures remain open.",
     "Whole-load50ms target remains unmet:362ms first composer/GPU task observed.43.02s load was under concurrent CPU tests and is not a controlled comparison with older10.97s or33.7s captures.",
-    "Full2.62physical world unchanged: terrain/prisms/boxes/corridors/walls SHA verified;318links367doors4pads preserved.",
-    "26cm stone band is a flush material partition;no raised curb or added obstacle.",
-    "Generic concrete scan,band width,weathering andpaverorientation are modeling choices,not surveyed Sile pavement.",
+    "Legacy physical SHA preserved after excludingONLYnewtaggedboxes/sweptshells;318links367doors4pads unchanged.",
+    "New model furniture has matching conservative AABBs and continuous triangle contact;no road/terrain/building dimensions changed.",
+    "Furniture positions,density and styles are source-informed modeling choices,not actual municipal inventory.",
     "Original900s2.58 performance remains historical; this change uses a new180s visible delta. PhysicalTX15/new human acceptance not run."
   ],
   "device": "Apple M4 Mac mini; native Chrome; browser version in performance.userAgent",
@@ -1011,9 +1017,9 @@
   ],
   "verification": {
     "node22Arm64": {
-      "passed": 670,
+      "passed": 675,
       "failed": 0,
-      "durationMs": 240299.730703
+      "durationMs": 250470.788579
     },
     "infrastructure": {
       "passed": 11,
@@ -1023,57 +1029,71 @@
       "passed": 12,
       "failed": 0
     },
-    "review": "Fresh gpt-6-astra high whole-change review P2 stone fallback tile scale fixed RED-to-GREEN;no other findings."
+    "review": "Fresh gpt-6-astra high whole-change review P2 thin-pole swept contact fixed RED-to-GREEN using existing triangle owner;no other findings."
   },
   "screenshots": [
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-263-S1-sea-webgl.jpg",
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-263-S1-sea-webgpu.jpg",
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-263-S1-land-webgl.jpg",
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-263-S1-land-webgpu.jpg",
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-263-S2-sea-webgl.jpg",
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-263-S2-sea-webgpu.jpg",
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-263-S2-land-webgl.jpg",
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-263-S2-land-webgpu.jpg",
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-263-S3-sea-webgl.jpg",
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-263-S3-sea-webgpu.jpg",
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-263-S3-land-webgl.jpg",
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-263-S3-land-webgpu.jpg",
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-263-S4-sea-webgl.jpg",
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-263-S4-sea-webgpu.jpg",
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-263-S4-land-webgl.jpg",
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-263-S4-land-webgpu.jpg",
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-263-S5-sea-webgl.jpg",
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-263-S5-sea-webgpu.jpg",
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-263-S5-land-webgl.jpg",
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-263-S5-land-webgpu.jpg",
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-263-S6-sea-webgl.jpg",
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-263-S6-sea-webgpu.jpg",
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-263-S6-land-webgl.jpg",
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-263-S6-land-webgpu.jpg",
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-263-stadium-webgl.jpg",
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-263-stadium-webgpu.jpg",
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-263-street-webgl.jpg",
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-263-street-webgpu.jpg"
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-S1-sea-webgl.jpg",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-S1-sea-webgpu.jpg",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-S1-land-webgl.jpg",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-S1-land-webgpu.jpg",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-S2-sea-webgl.jpg",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-S2-sea-webgpu.jpg",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-S2-land-webgl.jpg",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-S2-land-webgpu.jpg",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-S3-sea-webgl.jpg",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-S3-sea-webgpu.jpg",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-S3-land-webgl.jpg",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-S3-land-webgpu.jpg",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-S4-sea-webgl.jpg",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-S4-sea-webgpu.jpg",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-S4-land-webgl.jpg",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-S4-land-webgpu.jpg",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-S5-sea-webgl.jpg",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-S5-sea-webgpu.jpg",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-S5-land-webgl.jpg",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-S5-land-webgpu.jpg",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-S6-sea-webgl.jpg",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-S6-sea-webgpu.jpg",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-S6-land-webgl.jpg",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-S6-land-webgpu.jpg",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-stadium-webgl.jpg",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-stadium-webgpu.jpg",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-street-webgl.jpg",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-street-webgpu.jpg",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-neighbourhood-webgl.jpg",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-neighbourhood-webgpu.jpg"
   ],
   "wholeFrameDiagnostics": [
     {
       "loadStages": {
-        "startedAt": 283.30000001192093,
-        "worldReadyAt": 43740.09999999404,
-        "assetsReadyAt": 43772.30000001192
+        "startedAt": 362.5,
+        "worldReadyAt": 52730,
+        "assetsReadyAt": 52765.70000001788
       },
       "longTasks": [
         {
-          "start": 43772.20000001788,
-          "duration": 290
+          "start": 77.40000000596046,
+          "duration": 185
         },
         {
-          "start": 77537.59999999404,
-          "duration": 105
+          "start": 51471.70000001788,
+          "duration": 52
+        },
+        {
+          "start": 52765.60000002384,
+          "duration": 373
+        },
+        {
+          "start": 242126.90000000596,
+          "duration": 60
+        },
+        {
+          "start": 247915.90000000596,
+          "duration": 51
         }
       ],
-      "region": "S6",
-      "camera": "1",
+      "region": "S2",
+      "camera": "3",
       "backend": "webgl",
       "renderSize": [
         1280,
@@ -1082,9 +1102,9 @@
       "quality": "medium",
       "scope": "Single actual whole composer frame, all passes aggregated; not sustained frame-time benchmark",
       "render": {
-        "frame": 103,
-        "calls": 111,
-        "triangles": 2058616,
+        "frame": 109,
+        "calls": 118,
+        "triangles": 2134970,
         "points": 0,
         "lines": 0
       },
@@ -1092,66 +1112,26 @@
         "geometries": 63,
         "textures": 82
       },
-      "jsHeapUsedBytes": 522834142
+      "jsHeapUsedBytes": 524990480
     },
     {
       "loadStages": {
-        "startedAt": 478.39999997615814,
-        "worldReadyAt": 53973.5,
-        "assetsReadyAt": 54006.29999998212
+        "startedAt": 348,
+        "worldReadyAt": 43742.70000001788,
+        "assetsReadyAt": 43775.59999999404
       },
       "longTasks": [
         {
-          "start": 2385.699999988079,
-          "duration": 115
+          "start": 43775.5,
+          "duration": 824
         },
         {
-          "start": 5651.5,
-          "duration": 50
-        },
-        {
-          "start": 5885,
-          "duration": 50
-        },
-        {
-          "start": 6069,
-          "duration": 50
-        },
-        {
-          "start": 10417.09999999404,
-          "duration": 68
-        },
-        {
-          "start": 20417.69999998808,
-          "duration": 51
-        },
-        {
-          "start": 25434.5,
-          "duration": 51
-        },
-        {
-          "start": 29984.19999998808,
-          "duration": 50
-        },
-        {
-          "start": 30319.79999998212,
-          "duration": 66
-        },
-        {
-          "start": 52761.29999998212,
-          "duration": 55
-        },
-        {
-          "start": 54006.19999998808,
-          "duration": 828
-        },
-        {
-          "start": 74253.89999997616,
-          "duration": 737
+          "start": 82968.5,
+          "duration": 582
         }
       ],
-      "region": "S6",
-      "camera": "1",
+      "region": "S2",
+      "camera": "3",
       "backend": "webgpu",
       "renderSize": [
         1280,
@@ -1160,10 +1140,10 @@
       "quality": "medium",
       "scope": "Single actual whole composer frame, all passes aggregated; not sustained frame-time benchmark",
       "render": {
-        "calls": 388,
+        "calls": 345,
         "frameCalls": 17,
-        "drawCalls": 124,
-        "triangles": 2058629,
+        "drawCalls": 131,
+        "triangles": 2134983,
         "points": 0,
         "lines": 0,
         "timestamp": 0
@@ -1172,135 +1152,12 @@
         "geometries": 64,
         "textures": 106
       },
-      "jsHeapUsedBytes": 537160065
+      "jsHeapUsedBytes": 554548501
     }
   ],
   "delivery": {
-    "status": "published",
-    "release": "v2.63.0-c8bb16d845f8",
-    "image": {
-      "release": "v2.63.0-c8bb16d845f8",
-      "imageId": "sha256:891052c48f6f654008c4f16e34e741ec69843237902063ce58a3ef528586ed93",
-      "archiveSha256": "9a761aa96233dd9bbba07028020c32eeeed3df7000a6177ccdfa08f55258481b",
-      "archiveBytes": 144879657,
-      "architecture": "arm64",
-      "sourceFiles": 479
-    },
-    "sourceFiles": 479,
-    "preservedSourceFiles": {
-      "public/maps/sile/map.json": "5564a34bbf1573152f5e1a93d1de4d01895eb4021483d2e03fae761341717a11",
-      "public/maps/sile/source-osm.json": "b860868c8cbc075b2d7b8936aa95d95b452eb244c47d8e03d66bd98f1e87f59a",
-      "public/maps/sile/source-dem.tif": "c1d9b4576412ef8f3e791ee23eff2db1a4c6ac1684b98c92bbafbc3cde380743",
-      "src/rc-setup.js": "1bb07e0d440d54cd2006763b108386b22115651ec1e57ceba6c2d94964814c26",
-      "tests/rc-setup.test.js": "7a038dfcbf536ac3b18c3ac74f146b32007f9aa132cd889da440d8eed4082880"
-    },
-    "changedDerivedData": [
-      "direction-aligned paverUVs",
-      "building-foot weathering",
-      "26cm flush roadside stone material",
-      "close street QA camera",
-      "surface appearance provenance"
-    ],
-    "https": {
-      "release": "v2.63.0-c8bb16d845f8",
-      "entryAssets": 5,
-      "uniqueIds": 253,
-      "appVersion": "2.63.0",
-      "lazyGpuChunks": [
-        "gfx-webgpu-BPv6_-0D.js"
-      ],
-      "sceneWorkerChunks": [
-        "sile-scene-worker-DWJw75A1.js"
-      ],
-      "liveSkyOrderFix": true,
-      "mapAndSourceSha256": "pass"
-    },
-    "websocket": {
-      "clients": 2,
-      "join": "pass",
-      "state": "pass",
-      "leave": "pass"
-    },
-    "remote": {
-      "Status": "Success",
-      "StandardOutputContent": "Running image source hashes: 139 OK\ndrone-hangar | 27.84MiB / 256MiB | 0.49%\n{\"running\": true, \"restarts\": 0, \"readonly\": true, \"user\": \"1000:1000\", \"image\": \"sha256:891052c48f6f654008c4f16e34e741ec69843237902063ce58a3ef528586ed93\"}\nSeven tenants/nginx unchanged; old container/data backup retained\nhttps://zenth.finance/ 200\nhttps://api.zenth.finance/health 200\nGelisim TLS origin 200\n",
-      "StandardErrorContent": "nginx: the configuration file /etc/nginx/nginx.conf syntax is ok\nnginx: configuration file /etc/nginx/nginx.conf test is successful\n"
-    },
-    "nativeLive": {
-      "url": "https://hangar.18-153-158-209.sslip.io/?room=hangar&name=pilot",
-      "release": "v2.63.0-c8bb16d845f8",
-      "verifiedDisarmGroundZero": true,
-      "reference": "REF 4M · ACRO · REAL",
-      "physicalTX15": "not-run",
-      "dom": "- text: ✓ ✓ ✓ ✓\n- generic: Şile · veri tabanlı taslak\n- link \"© OpenStreetMap contributors · ODbL\":\n  - /url: https://www.openstreetmap.org/copyright\n- text: · Copernicus DEM ·\n- link \"Microsoft / Overture Maps · ODbL\":\n  - /url: https://overturemaps.org/\n- text: ·\n- link \"ESA WorldCover 2021 · CC BY 4.0\":\n  - /url: /sile.html\n- link \"Kaynaklar / yükseklik varsayımları ↗\":\n  - /url: /sile.html\n- generic: 0 km/h\n- generic: 0 m AGL\n- generic: BAT\n- generic: DISARM\n- generic: REF 4M · ACRO · REAL\n- button \"ARM\"\n- button \"CAM\"\n- button \"MOD\"\n- button \"KONTROL\"\n- button \"MENÜ\"",
-      "logs": [
-        {
-          "level": "warn",
-          "message": "MaxListenersExceededWarning: Possible EventEmitter memory leak detected. 11 close listeners added. Use emitter.setMaxListeners() to increase limit",
-          "timestamp": "2026-11-13T13:20:22.867Z",
-          "url": "chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/scripts/contentscript.js"
-        },
-        {
-          "level": "warn",
-          "message": "MaxListenersExceededWarning: Possible EventEmitter memory leak detected. 11 end listeners added. Use emitter.setMaxListeners() to increase limit",
-          "timestamp": "2026-11-13T13:20:22.867Z",
-          "url": "chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/scripts/contentscript.js"
-        },
-        {
-          "level": "warn",
-          "message": "ObjectMultiplex - orphaned data for stream \"app-init-liveness\"",
-          "timestamp": "2026-11-13T13:20:22.886Z",
-          "url": "chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/scripts/contentscript.js"
-        },
-        {
-          "level": "warn",
-          "message": "ObjectMultiplex - orphaned data for stream \"app-init-liveness\"",
-          "timestamp": "2026-11-13T13:20:22.886Z",
-          "url": "chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/scripts/contentscript.js"
-        },
-        {
-          "level": "warn",
-          "message": "ObjectMultiplex - orphaned data for stream \"background-liveness\"",
-          "timestamp": "2026-11-13T13:20:22.886Z",
-          "url": "chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/scripts/contentscript.js"
-        },
-        {
-          "level": "warn",
-          "message": "ObjectMultiplex - orphaned data for stream \"background-liveness\"",
-          "timestamp": "2026-11-13T13:20:22.887Z",
-          "url": "chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/scripts/contentscript.js"
-        }
-      ],
-      "screenshot": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-263-live.jpg"
-    },
-    "operationalPreflight": {
-      "reason": "Prior20GiB capacity issue; read-only preflight469MiB before upload",
-      "preflightBeforeUpload": {
-        "removedOnlyS3VerifiedCacheCopies": [
-          {
-            "release": "v2.61.0-0303b45cb1b7",
-            "bytes": 144860337,
-            "sha256": "58e19b0ebad0ac0ec0fa62428c27d401850a8cce45eb7b1f090c9d134c404d4a",
-            "restoreBucket": "zenth-db-backups-283277658470",
-            "restoreKey": "deploy/drone-hangar/v2.61.0-0303b45cb1b7/image.tar.gz"
-          },
-          {
-            "release": "v2.62.0-8e1675aa7a78",
-            "bytes": 144890548,
-            "sha256": "31b524d0ce8ffa6ccd08eac05b7b521a8fee43765bb67ff6930fb141791c1e7c",
-            "restoreBucket": "zenth-db-backups-283277658470",
-            "restoreKey": "deploy/drone-hangar/v2.62.0-8e1675aa7a78/image.tar.gz"
-          }
-        ],
-        "freedBytes": 289750885,
-        "diskFreeBefore": 491061248,
-        "diskFreeAfter": 780820480,
-        "allContainersUnchanged": true,
-        "nginxUnchanged": true
-      },
-      "preserved": "All containers/images/volumes/data/backups/source/S3objects/nginx retained",
-      "stage": "First2.63archive/image/ARM64load and app-only update successful"
-    }
+    "status": "pending",
+    "baseline": "v2.63.0-c8bb16d845f8"
   },
   "followups": {
     "loading257": {
@@ -4770,6 +4627,944 @@
           "stage": "First2.63archive/image/ARM64load and app-only update successful"
         }
       }
+    },
+    "furniture264": {
+      "status": "software-verified; publication pending",
+      "date": "2026-11-13",
+      "scope": "Bounded district street furniture24lamps24planters6benches with204newboxes/2448sweptfaces;legacy terrain/buildings/contacts preserved",
+      "modelAudit": {
+        "lamps": 24,
+        "planters": 24,
+        "benches": 6,
+        "placements": [
+          {
+            "kind": "lamps",
+            "x": 636.7624757905095,
+            "y": 34.626044838227465,
+            "z": -48.75946876899506,
+            "sourceRoadId": 77453262,
+            "shoreDistance": 293.72312954678165
+          },
+          {
+            "kind": "lamps",
+            "x": 1991.0547406407047,
+            "y": 25.643344685030147,
+            "z": 279.4005144415022,
+            "sourceRoadId": 677654787,
+            "shoreDistance": 131.69341904354582
+          },
+          {
+            "kind": "lamps",
+            "x": 558.5607129894005,
+            "y": 18.437009022570138,
+            "z": -209.00561591338197,
+            "sourceRoadId": 183786570,
+            "shoreDistance": 170.4137509695241
+          },
+          {
+            "kind": "lamps",
+            "x": 1201.7628869228145,
+            "y": 43.1688361088792,
+            "z": -157.83795010433536,
+            "sourceRoadId": 371474923,
+            "shoreDistance": 220.73337587559504
+          },
+          {
+            "kind": "lamps",
+            "x": 764.0655912464218,
+            "y": 56.927455097599754,
+            "z": 39.69438963715298,
+            "sourceRoadId": 77453246,
+            "shoreDistance": 343.84259333671116
+          },
+          {
+            "kind": "lamps",
+            "x": -1175.3694619117746,
+            "y": 6.054368532292042,
+            "z": 696.0708762803471,
+            "sourceRoadId": 691575256,
+            "shoreDistance": 209.29486801309451
+          },
+          {
+            "kind": "lamps",
+            "x": 2090.9777817801382,
+            "y": 24.302871714594136,
+            "z": 438.9922651212031,
+            "sourceRoadId": 677654787,
+            "shoreDistance": 132.03583230601845
+          },
+          {
+            "kind": "lamps",
+            "x": 1183.1436668870717,
+            "y": 43.121309550725435,
+            "z": -156.15799497828377,
+            "sourceRoadId": 371474909,
+            "shoreDistance": 238.72379686735115
+          },
+          {
+            "kind": "lamps",
+            "x": 1246.2128196745712,
+            "y": 40.57913530894928,
+            "z": -175.96802726164077,
+            "sourceRoadId": 371474923,
+            "shoreDistance": 178.4517445682717
+          },
+          {
+            "kind": "lamps",
+            "x": 642.6331358431661,
+            "y": 33.49038234513165,
+            "z": -73.54434064968169,
+            "sourceRoadId": 77453262,
+            "shoreDistance": 268.33025240380664
+          },
+          {
+            "kind": "lamps",
+            "x": 1109.8729876431826,
+            "y": 37.42573058511698,
+            "z": -58.06507764127721,
+            "sourceRoadId": 1493324050,
+            "shoreDistance": 286.19249951198395
+          },
+          {
+            "kind": "lamps",
+            "x": -1166.6149745720095,
+            "y": 6.47005858900401,
+            "z": 719.6138391638218,
+            "sourceRoadId": 691575256,
+            "shoreDistance": 232.6113551217486
+          },
+          {
+            "kind": "lamps",
+            "x": 593.6524028451779,
+            "y": 35.63173875586201,
+            "z": -60.74445468204335,
+            "sourceRoadId": 371472130,
+            "shoreDistance": 292.0682206616583
+          },
+          {
+            "kind": "lamps",
+            "x": 1920.526344981799,
+            "y": 17.10662954587639,
+            "z": 315.16078597632657,
+            "sourceRoadId": 1120074949,
+            "shoreDistance": 170.329972330648
+          },
+          {
+            "kind": "lamps",
+            "x": 1029.9978831985202,
+            "y": 44.1020175909663,
+            "z": -68.68771999079937,
+            "sourceRoadId": 1284824992,
+            "shoreDistance": 230.17741048413677
+          },
+          {
+            "kind": "lamps",
+            "x": 858.7031549013079,
+            "y": 58.02112893921514,
+            "z": 48.40381443828855,
+            "sourceRoadId": 371474921,
+            "shoreDistance": 322.26630158129245
+          },
+          {
+            "kind": "lamps",
+            "x": 1301.4235117397425,
+            "y": 9.559804756260949,
+            "z": 28.573908704554455,
+            "sourceRoadId": 677654787,
+            "shoreDistance": 168.29721950981005
+          },
+          {
+            "kind": "lamps",
+            "x": 2043.7186739498172,
+            "y": 25.07669346525214,
+            "z": 391.0469830098551,
+            "sourceRoadId": 690465659,
+            "shoreDistance": 138.1075468877183
+          },
+          {
+            "kind": "lamps",
+            "x": 323.12029031259306,
+            "y": 31.60774856480638,
+            "z": -291.11185870074576,
+            "sourceRoadId": 1493072293,
+            "shoreDistance": 169.76649605511443
+          },
+          {
+            "kind": "lamps",
+            "x": 396.597307685485,
+            "y": 22.952781621219053,
+            "z": -201.4538756984036,
+            "sourceRoadId": 1493072294,
+            "shoreDistance": 261.19014997069183
+          },
+          {
+            "kind": "lamps",
+            "x": 1133.837397035627,
+            "y": 41.7147336988944,
+            "z": -131.709187751137,
+            "sourceRoadId": 371474923,
+            "shoreDistance": 243.91263630575702
+          },
+          {
+            "kind": "lamps",
+            "x": 554.0925412250695,
+            "y": 40.99126179021214,
+            "z": -21.71594042424297,
+            "sourceRoadId": 371472171,
+            "shoreDistance": 342.2908038691285
+          },
+          {
+            "kind": "lamps",
+            "x": 1181.4506243597639,
+            "y": 41.40939438204758,
+            "z": -204.1846570790578,
+            "sourceRoadId": 371474919,
+            "shoreDistance": 214.96325232872087
+          },
+          {
+            "kind": "lamps",
+            "x": 1292.6844755412735,
+            "y": 29.960323989205225,
+            "z": -119.00007006469932,
+            "sourceRoadId": 677654790,
+            "shoreDistance": 125.62913803997539
+          },
+          {
+            "kind": "planters",
+            "x": 796.0060917962554,
+            "y": 50.53851143445363,
+            "z": -185.70460675544825,
+            "sourceBuildingId": 550135330,
+            "shoreDistance": 137.9424487783928
+          },
+          {
+            "kind": "planters",
+            "x": 196.71869727580935,
+            "y": 32.46063068998367,
+            "z": 54.27875020285044,
+            "sourceBuildingId": 342505471,
+            "shoreDistance": 334.4183917736242
+          },
+          {
+            "kind": "planters",
+            "x": 198.48,
+            "y": 33.24505107345853,
+            "z": 31.56,
+            "sourceBuildingId": 342505473,
+            "shoreDistance": 315.2888811867618
+          },
+          {
+            "kind": "planters",
+            "x": 874.5205464910077,
+            "y": 58.95721724497428,
+            "z": -75.32821190399885,
+            "sourceBuildingId": 550135316,
+            "shoreDistance": 197.80133195030092
+          },
+          {
+            "kind": "planters",
+            "x": 284.4408236593555,
+            "y": 34.69928356872642,
+            "z": -243.6758548192057,
+            "sourceBuildingId": 549917833,
+            "shoreDistance": 151.3166950772798
+          },
+          {
+            "kind": "planters",
+            "x": 282.6820315183435,
+            "y": 34.754257733851766,
+            "z": -238.2269403294497,
+            "sourceBuildingId": 549917834,
+            "shoreDistance": 152.85597721271859
+          },
+          {
+            "kind": "planters",
+            "x": 1058.143871937678,
+            "y": 45.982526763997825,
+            "z": -182.8072620600896,
+            "sourceBuildingId": 550130808,
+            "shoreDistance": 158.7883494846661
+          },
+          {
+            "kind": "planters",
+            "x": 875.1220847119164,
+            "y": 58.79081713356539,
+            "z": -79.88871097414305,
+            "sourceBuildingId": 550135316,
+            "shoreDistance": 193.21663678561313
+          },
+          {
+            "kind": "planters",
+            "x": 636.5066314258955,
+            "y": 37.38850447156137,
+            "z": -19.28870950217512,
+            "sourceBuildingId": 342501019,
+            "shoreDistance": 322.89734289732695
+          },
+          {
+            "kind": "planters",
+            "x": -332.3559366856232,
+            "y": 74.28587305662431,
+            "z": 536.2747789621219,
+            "sourceBuildingId": 549941947,
+            "shoreDistance": 345.7256462390502
+          },
+          {
+            "kind": "planters",
+            "x": 199.51225589676116,
+            "y": 33.21940486320502,
+            "z": 22.520397477333592,
+            "sourceBuildingId": 342505474,
+            "shoreDistance": 307.98386742699057
+          },
+          {
+            "kind": "planters",
+            "x": 1161.5422540222082,
+            "y": 30.205159184554827,
+            "z": -313.5210715827808,
+            "sourceBuildingId": 550130822,
+            "shoreDistance": 127.67973159922525
+          },
+          {
+            "kind": "planters",
+            "x": -311.2135999477298,
+            "y": 75.47790036343204,
+            "z": 486.3151856308518,
+            "sourceBuildingId": 549941945,
+            "shoreDistance": 319.4654310303198
+          },
+          {
+            "kind": "planters",
+            "x": 195.36799957494395,
+            "y": 32.31392918784511,
+            "z": 64.63173832787807,
+            "sourceBuildingId": 342505470,
+            "shoreDistance": 342.97184120481523
+          },
+          {
+            "kind": "planters",
+            "x": 287.6297161735836,
+            "y": 34.553672579370954,
+            "z": -255.69807447204494,
+            "sourceBuildingId": 549917828,
+            "shoreDistance": 148.0341399955602
+          },
+          {
+            "kind": "planters",
+            "x": 1043.0367364263932,
+            "y": 46.44117839678621,
+            "z": -188.66526034809155,
+            "sourceBuildingId": 550130800,
+            "shoreDistance": 144.3408912231186
+          },
+          {
+            "kind": "planters",
+            "x": 281.94540581985314,
+            "y": 34.878731018428454,
+            "z": -231.2127177242828,
+            "sourceBuildingId": 549917835,
+            "shoreDistance": 156.34683968183194
+          },
+          {
+            "kind": "planters",
+            "x": 637.0652449723042,
+            "y": 37.56973432078162,
+            "z": -14.722753862249494,
+            "sourceBuildingId": 342501019,
+            "shoreDistance": 327.33774629249143
+          },
+          {
+            "kind": "planters",
+            "x": 1245.2099103311411,
+            "y": 35.52540953331947,
+            "z": -266.37897957734566,
+            "sourceBuildingId": 550130854,
+            "shoreDistance": 137.52947577822397
+          },
+          {
+            "kind": "planters",
+            "x": 286.4056240646787,
+            "y": 36.11366602264944,
+            "z": -212.73327741665665,
+            "sourceBuildingId": 342471171,
+            "shoreDistance": 171.4156747410019
+          },
+          {
+            "kind": "planters",
+            "x": -311.48291848330996,
+            "y": 75.66400545051282,
+            "z": 490.90729489854056,
+            "sourceBuildingId": 549941945,
+            "shoreDistance": 322.9123557944257
+          },
+          {
+            "kind": "planters",
+            "x": 198.48,
+            "y": 33.2656576309995,
+            "z": 36.16,
+            "sourceBuildingId": 342505473,
+            "shoreDistance": 319.2973325914264
+          },
+          {
+            "kind": "planters",
+            "x": 288.2550119036749,
+            "y": 34.47795740912381,
+            "z": -260.25537688135785,
+            "sourceBuildingId": 549917828,
+            "shoreDistance": 146.52188809820592
+          },
+          {
+            "kind": "planters",
+            "x": 195.0699835617695,
+            "y": 32.226957317434255,
+            "z": 69.22207453080391,
+            "sourceBuildingId": 342505470,
+            "shoreDistance": 346.90348586190447
+          },
+          {
+            "kind": "benches",
+            "x": 2050.6199439431757,
+            "y": 25.147858189603042,
+            "z": 388.8993162575937,
+            "sourceRoadId": 690465659,
+            "shoreDistance": 131.40990198919667
+          },
+          {
+            "kind": "benches",
+            "x": 1102.9015598802507,
+            "y": 41.702169578718646,
+            "z": -136.6594954734988,
+            "sourceRoadId": 371474923,
+            "shoreDistance": 223.0268641229337
+          },
+          {
+            "kind": "benches",
+            "x": -1106.4499932974356,
+            "y": 7.867525731503278,
+            "z": 599.2373055714751,
+            "sourceRoadId": 691575259,
+            "shoreDistance": 115.11108945976727
+          },
+          {
+            "kind": "benches",
+            "x": -1109.7104456322627,
+            "y": 9.252358556212107,
+            "z": 719.1930034201044,
+            "sourceRoadId": 691575259,
+            "shoreDistance": 233.18760657069103
+          },
+          {
+            "kind": "benches",
+            "x": 1146.7554211722013,
+            "y": 41.52387631280692,
+            "z": -126.90483831687807,
+            "sourceRoadId": 677654790,
+            "shoreDistance": 255.42102900073905
+          },
+          {
+            "kind": "benches",
+            "x": -1109.058409458965,
+            "y": 9.240199493669758,
+            "z": 695.2018623744335,
+            "sourceRoadId": 691575259,
+            "shoreDistance": 209.45950157608
+          }
+        ],
+        "measured": false
+      },
+      "modelMetadata": "public/maps/sile/district-furniture-visuals.json",
+      "performance": {
+        "status": "complete",
+        "hiddenMs": 0,
+        "backend": "webgl",
+        "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+        "renderSize": [
+          1280,
+          720
+        ],
+        "quality": "medium",
+        "buildMs": 52403.20000001788,
+        "durationSeconds": 180.0097999999762,
+        "scope": "Actual scene + desktop medium shadows1024,AA and composer at fixed1280x720; static regional cameras; not full app/manual or physics flight acceptance",
+        "mainThreadPreparationTasks": [
+          {
+            "start": 77.40000000596046,
+            "duration": 185
+          },
+          {
+            "start": 51471.70000001788,
+            "duration": 52
+          },
+          {
+            "start": 52765.60000002384,
+            "duration": 373
+          },
+          {
+            "start": 242126.90000000596,
+            "duration": 60
+          },
+          {
+            "start": 247915.90000000596,
+            "duration": 51
+          }
+        ],
+        "regions": [
+          {
+            "id": "S1",
+            "renderer": {
+              "render": {
+                "frame": 5512,
+                "calls": 1,
+                "triangles": 1,
+                "points": 0,
+                "lines": 0
+              },
+              "memory": {
+                "geometries": 63,
+                "textures": 82
+              },
+              "jsHeapUsedBytes": 526138390
+            },
+            "durationSeconds": 26.999,
+            "frames": 1620,
+            "fps": 60.002222304529795,
+            "low1PercentFps": 56.38474295187447,
+            "maxFrameMs": 17.800000000046566
+          },
+          {
+            "id": "S2",
+            "renderer": {
+              "render": {
+                "frame": 10915,
+                "calls": 1,
+                "triangles": 1,
+                "points": 0,
+                "lines": 0
+              },
+              "memory": {
+                "geometries": 63,
+                "textures": 82
+              },
+              "jsHeapUsedBytes": 526929332
+            },
+            "durationSeconds": 30.001099999999976,
+            "frames": 1800,
+            "fps": 59.99780008066376,
+            "low1PercentFps": 56.46173149307026,
+            "maxFrameMs": 17.79999999998836
+          },
+          {
+            "id": "S3",
+            "renderer": {
+              "render": {
+                "frame": 16318,
+                "calls": 1,
+                "triangles": 1,
+                "points": 0,
+                "lines": 0
+              },
+              "memory": {
+                "geometries": 63,
+                "textures": 82
+              },
+              "jsHeapUsedBytes": 524302399
+            },
+            "durationSeconds": 30,
+            "frames": 1800,
+            "fps": 60,
+            "low1PercentFps": 56.4440263405209,
+            "maxFrameMs": 17.79999999998836
+          },
+          {
+            "id": "S4",
+            "renderer": {
+              "render": {
+                "frame": 21721,
+                "calls": 1,
+                "triangles": 1,
+                "points": 0,
+                "lines": 0
+              },
+              "memory": {
+                "geometries": 63,
+                "textures": 82
+              },
+              "jsHeapUsedBytes": 525680912
+            },
+            "durationSeconds": 29.999299999999987,
+            "frames": 1800,
+            "fps": 60.001400032667455,
+            "low1PercentFps": 56.46173149307026,
+            "maxFrameMs": 17.79999999998836
+          },
+          {
+            "id": "S5",
+            "renderer": {
+              "render": {
+                "frame": 27124,
+                "calls": 1,
+                "triangles": 1,
+                "points": 0,
+                "lines": 0
+              },
+              "memory": {
+                "geometries": 63,
+                "textures": 82
+              },
+              "jsHeapUsedBytes": 524795375
+            },
+            "durationSeconds": 29.99990000000002,
+            "frames": 1800,
+            "fps": 60.000200000666624,
+            "low1PercentFps": 53.587377195562354,
+            "maxFrameMs": 18.70000000001164
+          },
+          {
+            "id": "S6",
+            "renderer": {
+              "render": {
+                "frame": 32530,
+                "calls": 1,
+                "triangles": 1,
+                "points": 0,
+                "lines": 0
+              },
+              "memory": {
+                "geometries": 63,
+                "textures": 82
+              },
+              "jsHeapUsedBytes": 524658729
+            },
+            "durationSeconds": 30.017400000000023,
+            "frames": 1801,
+            "fps": 59.998534183506855,
+            "low1PercentFps": 53.687482339587454,
+            "maxFrameMs": 18.70000000001164
+          }
+        ]
+      },
+      "verification": {
+        "node22Arm64": {
+          "passed": 675,
+          "failed": 0,
+          "durationMs": 250470.788579
+        },
+        "infrastructure": {
+          "passed": 11,
+          "failed": 0
+        },
+        "routes": {
+          "passed": 12,
+          "failed": 0
+        },
+        "review": "Fresh gpt-6-astra high whole-change review P2 thin-pole swept contact fixed RED-to-GREEN using existing triangle owner;no other findings."
+      },
+      "previousDelivery": {
+        "status": "published",
+        "release": "v2.63.0-c8bb16d845f8",
+        "image": {
+          "release": "v2.63.0-c8bb16d845f8",
+          "imageId": "sha256:891052c48f6f654008c4f16e34e741ec69843237902063ce58a3ef528586ed93",
+          "archiveSha256": "9a761aa96233dd9bbba07028020c32eeeed3df7000a6177ccdfa08f55258481b",
+          "archiveBytes": 144879657,
+          "architecture": "arm64",
+          "sourceFiles": 479
+        },
+        "sourceFiles": 479,
+        "preservedSourceFiles": {
+          "public/maps/sile/map.json": "5564a34bbf1573152f5e1a93d1de4d01895eb4021483d2e03fae761341717a11",
+          "public/maps/sile/source-osm.json": "b860868c8cbc075b2d7b8936aa95d95b452eb244c47d8e03d66bd98f1e87f59a",
+          "public/maps/sile/source-dem.tif": "c1d9b4576412ef8f3e791ee23eff2db1a4c6ac1684b98c92bbafbc3cde380743",
+          "src/rc-setup.js": "1bb07e0d440d54cd2006763b108386b22115651ec1e57ceba6c2d94964814c26",
+          "tests/rc-setup.test.js": "7a038dfcbf536ac3b18c3ac74f146b32007f9aa132cd889da440d8eed4082880"
+        },
+        "changedDerivedData": [
+          "direction-aligned paverUVs",
+          "building-foot weathering",
+          "26cm flush roadside stone material",
+          "close street QA camera",
+          "surface appearance provenance"
+        ],
+        "https": {
+          "release": "v2.63.0-c8bb16d845f8",
+          "entryAssets": 5,
+          "uniqueIds": 253,
+          "appVersion": "2.63.0",
+          "lazyGpuChunks": [
+            "gfx-webgpu-BPv6_-0D.js"
+          ],
+          "sceneWorkerChunks": [
+            "sile-scene-worker-DWJw75A1.js"
+          ],
+          "liveSkyOrderFix": true,
+          "mapAndSourceSha256": "pass"
+        },
+        "websocket": {
+          "clients": 2,
+          "join": "pass",
+          "state": "pass",
+          "leave": "pass"
+        },
+        "remote": {
+          "Status": "Success",
+          "StandardOutputContent": "Running image source hashes: 139 OK\ndrone-hangar | 27.84MiB / 256MiB | 0.49%\n{\"running\": true, \"restarts\": 0, \"readonly\": true, \"user\": \"1000:1000\", \"image\": \"sha256:891052c48f6f654008c4f16e34e741ec69843237902063ce58a3ef528586ed93\"}\nSeven tenants/nginx unchanged; old container/data backup retained\nhttps://zenth.finance/ 200\nhttps://api.zenth.finance/health 200\nGelisim TLS origin 200\n",
+          "StandardErrorContent": "nginx: the configuration file /etc/nginx/nginx.conf syntax is ok\nnginx: configuration file /etc/nginx/nginx.conf test is successful\n"
+        },
+        "nativeLive": {
+          "url": "https://hangar.18-153-158-209.sslip.io/?room=hangar&name=pilot",
+          "release": "v2.63.0-c8bb16d845f8",
+          "verifiedDisarmGroundZero": true,
+          "reference": "REF 4M · ACRO · REAL",
+          "physicalTX15": "not-run",
+          "dom": "- text: ✓ ✓ ✓ ✓\n- generic: Şile · veri tabanlı taslak\n- link \"© OpenStreetMap contributors · ODbL\":\n  - /url: https://www.openstreetmap.org/copyright\n- text: · Copernicus DEM ·\n- link \"Microsoft / Overture Maps · ODbL\":\n  - /url: https://overturemaps.org/\n- text: ·\n- link \"ESA WorldCover 2021 · CC BY 4.0\":\n  - /url: /sile.html\n- link \"Kaynaklar / yükseklik varsayımları ↗\":\n  - /url: /sile.html\n- generic: 0 km/h\n- generic: 0 m AGL\n- generic: BAT\n- generic: DISARM\n- generic: REF 4M · ACRO · REAL\n- button \"ARM\"\n- button \"CAM\"\n- button \"MOD\"\n- button \"KONTROL\"\n- button \"MENÜ\"",
+          "logs": [
+            {
+              "level": "warn",
+              "message": "MaxListenersExceededWarning: Possible EventEmitter memory leak detected. 11 close listeners added. Use emitter.setMaxListeners() to increase limit",
+              "timestamp": "2026-11-13T13:20:22.867Z",
+              "url": "chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/scripts/contentscript.js"
+            },
+            {
+              "level": "warn",
+              "message": "MaxListenersExceededWarning: Possible EventEmitter memory leak detected. 11 end listeners added. Use emitter.setMaxListeners() to increase limit",
+              "timestamp": "2026-11-13T13:20:22.867Z",
+              "url": "chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/scripts/contentscript.js"
+            },
+            {
+              "level": "warn",
+              "message": "ObjectMultiplex - orphaned data for stream \"app-init-liveness\"",
+              "timestamp": "2026-11-13T13:20:22.886Z",
+              "url": "chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/scripts/contentscript.js"
+            },
+            {
+              "level": "warn",
+              "message": "ObjectMultiplex - orphaned data for stream \"app-init-liveness\"",
+              "timestamp": "2026-11-13T13:20:22.886Z",
+              "url": "chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/scripts/contentscript.js"
+            },
+            {
+              "level": "warn",
+              "message": "ObjectMultiplex - orphaned data for stream \"background-liveness\"",
+              "timestamp": "2026-11-13T13:20:22.886Z",
+              "url": "chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/scripts/contentscript.js"
+            },
+            {
+              "level": "warn",
+              "message": "ObjectMultiplex - orphaned data for stream \"background-liveness\"",
+              "timestamp": "2026-11-13T13:20:22.887Z",
+              "url": "chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/scripts/contentscript.js"
+            }
+          ],
+          "screenshot": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-263-live.jpg"
+        },
+        "operationalPreflight": {
+          "reason": "Prior20GiB capacity issue; read-only preflight469MiB before upload",
+          "preflightBeforeUpload": {
+            "removedOnlyS3VerifiedCacheCopies": [
+              {
+                "release": "v2.61.0-0303b45cb1b7",
+                "bytes": 144860337,
+                "sha256": "58e19b0ebad0ac0ec0fa62428c27d401850a8cce45eb7b1f090c9d134c404d4a",
+                "restoreBucket": "zenth-db-backups-283277658470",
+                "restoreKey": "deploy/drone-hangar/v2.61.0-0303b45cb1b7/image.tar.gz"
+              },
+              {
+                "release": "v2.62.0-8e1675aa7a78",
+                "bytes": 144890548,
+                "sha256": "31b524d0ce8ffa6ccd08eac05b7b521a8fee43765bb67ff6930fb141791c1e7c",
+                "restoreBucket": "zenth-db-backups-283277658470",
+                "restoreKey": "deploy/drone-hangar/v2.62.0-8e1675aa7a78/image.tar.gz"
+              }
+            ],
+            "freedBytes": 289750885,
+            "diskFreeBefore": 491061248,
+            "diskFreeAfter": 780820480,
+            "allContainersUnchanged": true,
+            "nginxUnchanged": true
+          },
+          "preserved": "All containers/images/volumes/data/backups/source/S3objects/nginx retained",
+          "stage": "First2.63archive/image/ARM64load and app-only update successful"
+        }
+      },
+      "previousHumanAcceptance": {
+        "status": "not-run",
+        "scope": "New2.63user map/flight acceptance pending",
+        "previousResults": [
+          {
+            "status": "not-run",
+            "scope": "New2.62user map/flight acceptance pending",
+            "previousResults": [
+              {
+                "status": "not-run",
+                "scope": "New2.61user map/flight acceptance pending",
+                "previousResults": [
+                  {
+                    "status": "not-run",
+                    "scope": "New2.60user map/flight acceptance pending",
+                    "previousResults": [
+                      {
+                        "status": "not-run",
+                        "scope": "New2.59user map/flight acceptance pending",
+                        "previousResults": [
+                          {
+                            "status": "not-run",
+                            "scope": "New2.58 user resemblance and flight acceptance pending",
+                            "previousResults": [
+                              {
+                                "status": "fail",
+                                "release": "v2.57.0-e89963741523",
+                                "date": "2026-11-10",
+                                "feedback": "Sahil bölgesi hâlâ boş; tam Şile değil.",
+                                "scope": "User visual feedback; prior automated software acceptance is not visual approval."
+                              }
+                            ],
+                            "release": "v2.58.0-47520f3ee55f"
+                          }
+                        ],
+                        "release": "v2.59.0-01f8df881bcb"
+                      }
+                    ],
+                    "release": "v2.60.0-a8bbda72ee0e"
+                  }
+                ],
+                "release": "v2.61.0-0303b45cb1b7"
+              }
+            ],
+            "release": "v2.62.0-8e1675aa7a78"
+          }
+        ],
+        "release": "v2.63.0-c8bb16d845f8"
+      },
+      "limits": [
+        "Legacy physical SHA preserved after excludingONLYnewtaggedboxes/sweptshells;318links367doors4pads unchanged.",
+        "New model furniture has matching conservative AABBs and continuous triangle contact;no road/terrain/building dimensions changed.",
+        "Furniture positions,density and styles are source-informed modeling choices,not actual municipal inventory.",
+        "Original900s2.58 performance remains historical; this change uses a new180s visible delta. PhysicalTX15/new human acceptance not run."
+      ],
+      "screenshots": [
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-S1-sea-webgl.jpg",
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-S1-sea-webgpu.jpg",
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-S1-land-webgl.jpg",
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-S1-land-webgpu.jpg",
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-S2-sea-webgl.jpg",
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-S2-sea-webgpu.jpg",
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-S2-land-webgl.jpg",
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-S2-land-webgpu.jpg",
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-S3-sea-webgl.jpg",
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-S3-sea-webgpu.jpg",
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-S3-land-webgl.jpg",
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-S3-land-webgpu.jpg",
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-S4-sea-webgl.jpg",
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-S4-sea-webgpu.jpg",
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-S4-land-webgl.jpg",
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-S4-land-webgpu.jpg",
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-S5-sea-webgl.jpg",
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-S5-sea-webgpu.jpg",
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-S5-land-webgl.jpg",
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-S5-land-webgpu.jpg",
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-S6-sea-webgl.jpg",
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-S6-sea-webgpu.jpg",
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-S6-land-webgl.jpg",
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-S6-land-webgpu.jpg",
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-stadium-webgl.jpg",
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-stadium-webgpu.jpg",
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-street-webgl.jpg",
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-street-webgpu.jpg",
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-neighbourhood-webgl.jpg",
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-264-neighbourhood-webgpu.jpg"
+      ],
+      "wholeFrameDiagnostics": [
+        {
+          "loadStages": {
+            "startedAt": 362.5,
+            "worldReadyAt": 52730,
+            "assetsReadyAt": 52765.70000001788
+          },
+          "longTasks": [
+            {
+              "start": 77.40000000596046,
+              "duration": 185
+            },
+            {
+              "start": 51471.70000001788,
+              "duration": 52
+            },
+            {
+              "start": 52765.60000002384,
+              "duration": 373
+            },
+            {
+              "start": 242126.90000000596,
+              "duration": 60
+            },
+            {
+              "start": 247915.90000000596,
+              "duration": 51
+            }
+          ],
+          "region": "S2",
+          "camera": "3",
+          "backend": "webgl",
+          "renderSize": [
+            1280,
+            720
+          ],
+          "quality": "medium",
+          "scope": "Single actual whole composer frame, all passes aggregated; not sustained frame-time benchmark",
+          "render": {
+            "frame": 109,
+            "calls": 118,
+            "triangles": 2134970,
+            "points": 0,
+            "lines": 0
+          },
+          "memory": {
+            "geometries": 63,
+            "textures": 82
+          },
+          "jsHeapUsedBytes": 524990480
+        },
+        {
+          "loadStages": {
+            "startedAt": 348,
+            "worldReadyAt": 43742.70000001788,
+            "assetsReadyAt": 43775.59999999404
+          },
+          "longTasks": [
+            {
+              "start": 43775.5,
+              "duration": 824
+            },
+            {
+              "start": 82968.5,
+              "duration": 582
+            }
+          ],
+          "region": "S2",
+          "camera": "3",
+          "backend": "webgpu",
+          "renderSize": [
+            1280,
+            720
+          ],
+          "quality": "medium",
+          "scope": "Single actual whole composer frame, all passes aggregated; not sustained frame-time benchmark",
+          "render": {
+            "calls": 345,
+            "frameCalls": 17,
+            "drawCalls": 131,
+            "triangles": 2134983,
+            "points": 0,
+            "lines": 0,
+            "timestamp": 0
+          },
+          "memory": {
+            "geometries": 64,
+            "textures": 106
+          },
+          "jsHeapUsedBytes": 554548501
+        }
+      ]
     }
   }
 }

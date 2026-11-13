@@ -1,0 +1,470 @@
+{
+  "version": "2.64",
+  "date": "2026-11-13",
+  "source": "Existing OSM road/entry directions and approximate DSM; existing procedural street furniture models",
+  "measuredInventory": false,
+  "sourceTerrainRoadAndBuildingDimensionsChanged": false,
+  "newPhysicalBoxes": 204,
+  "sourceScope": "Additional phase only100\u2013350m shore distance and outside6m core footprint buffer; original core phase unchanged",
+  "caps": {
+    "lamps": 24,
+    "planters": 24,
+    "benches": 12
+  },
+  "accepted": {
+    "lamps": 24,
+    "planters": 24,
+    "benches": 6,
+    "placements": [
+      {
+        "kind": "lamps",
+        "x": 636.7624757905095,
+        "y": 34.626044838227465,
+        "z": -48.75946876899506,
+        "sourceRoadId": 77453262,
+        "shoreDistance": 293.72312954678165
+      },
+      {
+        "kind": "lamps",
+        "x": 1991.0547406407047,
+        "y": 25.643344685030147,
+        "z": 279.4005144415022,
+        "sourceRoadId": 677654787,
+        "shoreDistance": 131.69341904354582
+      },
+      {
+        "kind": "lamps",
+        "x": 558.5607129894005,
+        "y": 18.437009022570138,
+        "z": -209.00561591338197,
+        "sourceRoadId": 183786570,
+        "shoreDistance": 170.4137509695241
+      },
+      {
+        "kind": "lamps",
+        "x": 1201.7628869228145,
+        "y": 43.1688361088792,
+        "z": -157.83795010433536,
+        "sourceRoadId": 371474923,
+        "shoreDistance": 220.73337587559504
+      },
+      {
+        "kind": "lamps",
+        "x": 764.0655912464218,
+        "y": 56.927455097599754,
+        "z": 39.69438963715298,
+        "sourceRoadId": 77453246,
+        "shoreDistance": 343.84259333671116
+      },
+      {
+        "kind": "lamps",
+        "x": -1175.3694619117746,
+        "y": 6.054368532292042,
+        "z": 696.0708762803471,
+        "sourceRoadId": 691575256,
+        "shoreDistance": 209.29486801309451
+      },
+      {
+        "kind": "lamps",
+        "x": 2090.9777817801382,
+        "y": 24.302871714594136,
+        "z": 438.9922651212031,
+        "sourceRoadId": 677654787,
+        "shoreDistance": 132.03583230601845
+      },
+      {
+        "kind": "lamps",
+        "x": 1183.1436668870717,
+        "y": 43.121309550725435,
+        "z": -156.15799497828377,
+        "sourceRoadId": 371474909,
+        "shoreDistance": 238.72379686735115
+      },
+      {
+        "kind": "lamps",
+        "x": 1246.2128196745712,
+        "y": 40.57913530894928,
+        "z": -175.96802726164077,
+        "sourceRoadId": 371474923,
+        "shoreDistance": 178.4517445682717
+      },
+      {
+        "kind": "lamps",
+        "x": 642.6331358431661,
+        "y": 33.49038234513165,
+        "z": -73.54434064968169,
+        "sourceRoadId": 77453262,
+        "shoreDistance": 268.33025240380664
+      },
+      {
+        "kind": "lamps",
+        "x": 1109.8729876431826,
+        "y": 37.42573058511698,
+        "z": -58.06507764127721,
+        "sourceRoadId": 1493324050,
+        "shoreDistance": 286.19249951198395
+      },
+      {
+        "kind": "lamps",
+        "x": -1166.6149745720095,
+        "y": 6.47005858900401,
+        "z": 719.6138391638218,
+        "sourceRoadId": 691575256,
+        "shoreDistance": 232.6113551217486
+      },
+      {
+        "kind": "lamps",
+        "x": 593.6524028451779,
+        "y": 35.63173875586201,
+        "z": -60.74445468204335,
+        "sourceRoadId": 371472130,
+        "shoreDistance": 292.0682206616583
+      },
+      {
+        "kind": "lamps",
+        "x": 1920.526344981799,
+        "y": 17.10662954587639,
+        "z": 315.16078597632657,
+        "sourceRoadId": 1120074949,
+        "shoreDistance": 170.329972330648
+      },
+      {
+        "kind": "lamps",
+        "x": 1029.9978831985202,
+        "y": 44.1020175909663,
+        "z": -68.68771999079937,
+        "sourceRoadId": 1284824992,
+        "shoreDistance": 230.17741048413677
+      },
+      {
+        "kind": "lamps",
+        "x": 858.7031549013079,
+        "y": 58.02112893921514,
+        "z": 48.40381443828855,
+        "sourceRoadId": 371474921,
+        "shoreDistance": 322.26630158129245
+      },
+      {
+        "kind": "lamps",
+        "x": 1301.4235117397425,
+        "y": 9.559804756260949,
+        "z": 28.573908704554455,
+        "sourceRoadId": 677654787,
+        "shoreDistance": 168.29721950981005
+      },
+      {
+        "kind": "lamps",
+        "x": 2043.7186739498172,
+        "y": 25.07669346525214,
+        "z": 391.0469830098551,
+        "sourceRoadId": 690465659,
+        "shoreDistance": 138.1075468877183
+      },
+      {
+        "kind": "lamps",
+        "x": 323.12029031259306,
+        "y": 31.60774856480638,
+        "z": -291.11185870074576,
+        "sourceRoadId": 1493072293,
+        "shoreDistance": 169.76649605511443
+      },
+      {
+        "kind": "lamps",
+        "x": 396.597307685485,
+        "y": 22.952781621219053,
+        "z": -201.4538756984036,
+        "sourceRoadId": 1493072294,
+        "shoreDistance": 261.19014997069183
+      },
+      {
+        "kind": "lamps",
+        "x": 1133.837397035627,
+        "y": 41.7147336988944,
+        "z": -131.709187751137,
+        "sourceRoadId": 371474923,
+        "shoreDistance": 243.91263630575702
+      },
+      {
+        "kind": "lamps",
+        "x": 554.0925412250695,
+        "y": 40.99126179021214,
+        "z": -21.71594042424297,
+        "sourceRoadId": 371472171,
+        "shoreDistance": 342.2908038691285
+      },
+      {
+        "kind": "lamps",
+        "x": 1181.4506243597639,
+        "y": 41.40939438204758,
+        "z": -204.1846570790578,
+        "sourceRoadId": 371474919,
+        "shoreDistance": 214.96325232872087
+      },
+      {
+        "kind": "lamps",
+        "x": 1292.6844755412735,
+        "y": 29.960323989205225,
+        "z": -119.00007006469932,
+        "sourceRoadId": 677654790,
+        "shoreDistance": 125.62913803997539
+      },
+      {
+        "kind": "planters",
+        "x": 796.0060917962554,
+        "y": 50.53851143445363,
+        "z": -185.70460675544825,
+        "sourceBuildingId": 550135330,
+        "shoreDistance": 137.9424487783928
+      },
+      {
+        "kind": "planters",
+        "x": 196.71869727580935,
+        "y": 32.46063068998367,
+        "z": 54.27875020285044,
+        "sourceBuildingId": 342505471,
+        "shoreDistance": 334.4183917736242
+      },
+      {
+        "kind": "planters",
+        "x": 198.48,
+        "y": 33.24505107345853,
+        "z": 31.56,
+        "sourceBuildingId": 342505473,
+        "shoreDistance": 315.2888811867618
+      },
+      {
+        "kind": "planters",
+        "x": 874.5205464910077,
+        "y": 58.95721724497428,
+        "z": -75.32821190399885,
+        "sourceBuildingId": 550135316,
+        "shoreDistance": 197.80133195030092
+      },
+      {
+        "kind": "planters",
+        "x": 284.4408236593555,
+        "y": 34.69928356872642,
+        "z": -243.6758548192057,
+        "sourceBuildingId": 549917833,
+        "shoreDistance": 151.3166950772798
+      },
+      {
+        "kind": "planters",
+        "x": 282.6820315183435,
+        "y": 34.754257733851766,
+        "z": -238.2269403294497,
+        "sourceBuildingId": 549917834,
+        "shoreDistance": 152.85597721271859
+      },
+      {
+        "kind": "planters",
+        "x": 1058.143871937678,
+        "y": 45.982526763997825,
+        "z": -182.8072620600896,
+        "sourceBuildingId": 550130808,
+        "shoreDistance": 158.7883494846661
+      },
+      {
+        "kind": "planters",
+        "x": 875.1220847119164,
+        "y": 58.79081713356539,
+        "z": -79.88871097414305,
+        "sourceBuildingId": 550135316,
+        "shoreDistance": 193.21663678561313
+      },
+      {
+        "kind": "planters",
+        "x": 636.5066314258955,
+        "y": 37.38850447156137,
+        "z": -19.28870950217512,
+        "sourceBuildingId": 342501019,
+        "shoreDistance": 322.89734289732695
+      },
+      {
+        "kind": "planters",
+        "x": -332.3559366856232,
+        "y": 74.28587305662431,
+        "z": 536.2747789621219,
+        "sourceBuildingId": 549941947,
+        "shoreDistance": 345.7256462390502
+      },
+      {
+        "kind": "planters",
+        "x": 199.51225589676116,
+        "y": 33.21940486320502,
+        "z": 22.520397477333592,
+        "sourceBuildingId": 342505474,
+        "shoreDistance": 307.98386742699057
+      },
+      {
+        "kind": "planters",
+        "x": 1161.5422540222082,
+        "y": 30.205159184554827,
+        "z": -313.5210715827808,
+        "sourceBuildingId": 550130822,
+        "shoreDistance": 127.67973159922525
+      },
+      {
+        "kind": "planters",
+        "x": -311.2135999477298,
+        "y": 75.47790036343204,
+        "z": 486.3151856308518,
+        "sourceBuildingId": 549941945,
+        "shoreDistance": 319.4654310303198
+      },
+      {
+        "kind": "planters",
+        "x": 195.36799957494395,
+        "y": 32.31392918784511,
+        "z": 64.63173832787807,
+        "sourceBuildingId": 342505470,
+        "shoreDistance": 342.97184120481523
+      },
+      {
+        "kind": "planters",
+        "x": 287.6297161735836,
+        "y": 34.553672579370954,
+        "z": -255.69807447204494,
+        "sourceBuildingId": 549917828,
+        "shoreDistance": 148.0341399955602
+      },
+      {
+        "kind": "planters",
+        "x": 1043.0367364263932,
+        "y": 46.44117839678621,
+        "z": -188.66526034809155,
+        "sourceBuildingId": 550130800,
+        "shoreDistance": 144.3408912231186
+      },
+      {
+        "kind": "planters",
+        "x": 281.94540581985314,
+        "y": 34.878731018428454,
+        "z": -231.2127177242828,
+        "sourceBuildingId": 549917835,
+        "shoreDistance": 156.34683968183194
+      },
+      {
+        "kind": "planters",
+        "x": 637.0652449723042,
+        "y": 37.56973432078162,
+        "z": -14.722753862249494,
+        "sourceBuildingId": 342501019,
+        "shoreDistance": 327.33774629249143
+      },
+      {
+        "kind": "planters",
+        "x": 1245.2099103311411,
+        "y": 35.52540953331947,
+        "z": -266.37897957734566,
+        "sourceBuildingId": 550130854,
+        "shoreDistance": 137.52947577822397
+      },
+      {
+        "kind": "planters",
+        "x": 286.4056240646787,
+        "y": 36.11366602264944,
+        "z": -212.73327741665665,
+        "sourceBuildingId": 342471171,
+        "shoreDistance": 171.4156747410019
+      },
+      {
+        "kind": "planters",
+        "x": -311.48291848330996,
+        "y": 75.66400545051282,
+        "z": 490.90729489854056,
+        "sourceBuildingId": 549941945,
+        "shoreDistance": 322.9123557944257
+      },
+      {
+        "kind": "planters",
+        "x": 198.48,
+        "y": 33.2656576309995,
+        "z": 36.16,
+        "sourceBuildingId": 342505473,
+        "shoreDistance": 319.2973325914264
+      },
+      {
+        "kind": "planters",
+        "x": 288.2550119036749,
+        "y": 34.47795740912381,
+        "z": -260.25537688135785,
+        "sourceBuildingId": 549917828,
+        "shoreDistance": 146.52188809820592
+      },
+      {
+        "kind": "planters",
+        "x": 195.0699835617695,
+        "y": 32.226957317434255,
+        "z": 69.22207453080391,
+        "sourceBuildingId": 342505470,
+        "shoreDistance": 346.90348586190447
+      },
+      {
+        "kind": "benches",
+        "x": 2050.6199439431757,
+        "y": 25.147858189603042,
+        "z": 388.8993162575937,
+        "sourceRoadId": 690465659,
+        "shoreDistance": 131.40990198919667
+      },
+      {
+        "kind": "benches",
+        "x": 1102.9015598802507,
+        "y": 41.702169578718646,
+        "z": -136.6594954734988,
+        "sourceRoadId": 371474923,
+        "shoreDistance": 223.0268641229337
+      },
+      {
+        "kind": "benches",
+        "x": -1106.4499932974356,
+        "y": 7.867525731503278,
+        "z": 599.2373055714751,
+        "sourceRoadId": 691575259,
+        "shoreDistance": 115.11108945976727
+      },
+      {
+        "kind": "benches",
+        "x": -1109.7104456322627,
+        "y": 9.252358556212107,
+        "z": 719.1930034201044,
+        "sourceRoadId": 691575259,
+        "shoreDistance": 233.18760657069103
+      },
+      {
+        "kind": "benches",
+        "x": 1146.7554211722013,
+        "y": 41.52387631280692,
+        "z": -126.90483831687807,
+        "sourceRoadId": 677654790,
+        "shoreDistance": 255.42102900073905
+      },
+      {
+        "kind": "benches",
+        "x": -1109.058409458965,
+        "y": 9.240199493669758,
+        "z": 695.2018623744335,
+        "sourceRoadId": 691575259,
+        "shoreDistance": 209.45950157608
+      }
+    ],
+    "measured": false
+  },
+  "supportPolicy": "New visible solids have matching AABBs; support feet checked against physical terrain;lamps slight foundation embed<=12cm,planters<=3cm,bench feet<=2cm;Float32test0.2mm allowance.",
+  "gradePolicy": "Planters <=8%grade,benches<=4%;foot guards can reject additional sites.",
+  "clearancePolicy": "Full protected sports/paved/harbour/beach/supplement candidate bounds,water/coast,source roads/solids,all318entrance corridors and existing props reserved.",
+  "preserved": {
+    "entranceLinks": 318,
+    "backRowDoors": 367,
+    "corePads": 4,
+    "oldPrisms": 1530,
+    "oldBoxes": 14343,
+    "wallTriangles": 100227
+  },
+  "notice": "Locations/density/styles are source-informed modeling choices,not actual municipal lamp/bench/planter inventory. No new streets,grading,grass or tree cover is inferred.",
+  "legacyPhysicsSha256ExcludingNewTaggedBoxesAndShells": "60f7c49bf756bf227095431834bfb94a8dd3f2f5a89490acf77003ecd26254bd",
+  "newSweptContactTriangles": 2448,
+  "collisionPolicy": "New conservative AABBs also own12closed triangles each,handled by existing continuous sphere/triangle contact;legacy collision owners unchanged. Fast-crossing and clear-near-miss tests pass.",
+  "placementCoordinatePolicy": "Placement y is sampled ground height;new planter body origins embed1.2cm. Coordinates are model positions,not a municipal survey."
+}

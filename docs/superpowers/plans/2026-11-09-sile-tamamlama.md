@@ -245,3 +245,12 @@ Kullanıcı sokak/kaldırım/bina çevresine devam ve canlı yayın istedi. Mevc
 - [x] Main/app-onlyAWS; kaynakSHA/HTTPS/WSS/nativeDISARM0. 20GiB sunucuda önce disk kontrolü; gerekirse yalnız SHA/boyut doğrulanmış S3-yedekli eski Hangar paket önbelleği çıkarılır. Container/image/volume/veri/yedek/tenant/nginx korunur. Kaynak/model/TX15/insan kabul sınırları ve notes/kanıt/sahipli scratch kapanışı.
 
 Task17 teslim: v2.63.0-c8bb16d845f8 canlı;670Node22/11infra/12rota/nativeGL-GPU/180sgörünürdelta/HTTPS/WSS/liveDISARM0.26cmflushband/directionalpavers/footweathering;2.62physicalSHAunchanged;no surveyclaim. Önceki900s2.58veinsanreddikorunur,yeni kullanıcı/TX15not-run.
+
+### Task 18: Arka kıyı sokak donatıları · 2.64
+
+Kullanıcı sokak/kaldırım/bina çevresine devam ve canlı istedi. 2.63 üzerinden aynı plan sürer. Mevcut donatı sahipliği 135 ön profile bağlıdır. Eski donatı yerleşimi ve sırası aynen korunarak, 100–350m yapı kuşağındaki arka sokaklara konservatif ek faz uygulanır: en fazla24aydınlatma/24giriş saksısı/12bank. Kaynak yol/kapı yönlerini izleyen temsili donatıdır, gerçek belediye envanteri değildir. Yeni aday merkezi kıyıdan>100m ve eski ön yapıların en az6m uzağında olmalı; su, yol şeridi,318girişkoridoru, kaynak yapı/strüktür, mevcut nesne ve tam korunan spor/otopark/liman/plaj yüzeyleriyle çakışma reddedilir. Destek ayakları son fiziksel yüzeye uyar; saksılar düşük eğimde, banklar%4eğim altında. Yeni görünen katı parçaların eşleşen fizik kutuları bulunur; mevcut mesh/material grupları genişletilir.
+
+- [ ] Saf planda arka kıyı/ön sıra ayrımı, determinizm ve kaynak/fallback korunumu RED→GREEN. Eski donatı fazı/nesneler korunarak sınırlı yeni faz.
+- [ ] Gerçek sahnede yeni nesne destekleri, tam arazi/korunan yüzey/318koridor açıklığı ve görünen AABB–fizik kutusu uyumu; yalnız yeni etiketli kutular ve süpürmeli temas kabukları çıkarıldığında 2.63tamphysicsSHA aynı;367kapı/4teras ve kaynaklar korunur. Mevcut fizik testleri yalnız yeni donatının açık etiketlerini ayırır.
+- [ ] Tek freshreview; tamNode22/11infra/12rota; nativeGL/GPU6bölge+stadyum/yakınsokak ve180sgörünürdelta.
+- [ ] Main/app-onlyAWS; kaynakSHA/HTTPS/WSS/nativeDISARM0. Önce kapasiteyi ve S3 paketlerini yeniden incele; yalnız SHA/boyutla doğrulanmış indirilebilir Hangar tarcache gerekiyorsa çıkarılır. Container/image/volume/veri/yedek/tenant/nginx korunur. Kaynak/model/insan/TX15sınırları ve kayıt/notes/sahipli scratch kapanışı.

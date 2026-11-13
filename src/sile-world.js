@@ -168,7 +168,7 @@ export function buildSile(scene,data){
  addSileHarbour(scene,data,play);
  mark('context-harbour');
  addCoastalBuildings(scene,data,play,district,{balconyProfiles:coastal});
- addNeighbourhood(scene,data,play,coastal);
+ addNeighbourhood(scene,data,play,coastal,{surroundingProfiles:district});
  addBuildingFoundations(scene,play,district);
  mark('coastal-facades-neighbourhood');
  applyBuildingPads(scene,data,play,coastal,streets);

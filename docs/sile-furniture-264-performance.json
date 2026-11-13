@@ -1,0 +1,170 @@
+{
+  "status": "complete",
+  "hiddenMs": 0,
+  "backend": "webgl",
+  "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+  "renderSize": [
+    1280,
+    720
+  ],
+  "quality": "medium",
+  "buildMs": 52403.20000001788,
+  "durationSeconds": 180.0097999999762,
+  "scope": "Actual scene + desktop medium shadows1024,AA and composer at fixed1280x720; static regional cameras; not full app/manual or physics flight acceptance",
+  "mainThreadPreparationTasks": [
+    {
+      "start": 77.40000000596046,
+      "duration": 185
+    },
+    {
+      "start": 51471.70000001788,
+      "duration": 52
+    },
+    {
+      "start": 52765.60000002384,
+      "duration": 373
+    },
+    {
+      "start": 242126.90000000596,
+      "duration": 60
+    },
+    {
+      "start": 247915.90000000596,
+      "duration": 51
+    }
+  ],
+  "regions": [
+    {
+      "id": "S1",
+      "renderer": {
+        "render": {
+          "frame": 5512,
+          "calls": 1,
+          "triangles": 1,
+          "points": 0,
+          "lines": 0
+        },
+        "memory": {
+          "geometries": 63,
+          "textures": 82
+        },
+        "jsHeapUsedBytes": 526138390
+      },
+      "durationSeconds": 26.999,
+      "frames": 1620,
+      "fps": 60.002222304529795,
+      "low1PercentFps": 56.38474295187447,
+      "maxFrameMs": 17.800000000046566
+    },
+    {
+      "id": "S2",
+      "renderer": {
+        "render": {
+          "frame": 10915,
+          "calls": 1,
+          "triangles": 1,
+          "points": 0,
+          "lines": 0
+        },
+        "memory": {
+          "geometries": 63,
+          "textures": 82
+        },
+        "jsHeapUsedBytes": 526929332
+      },
+      "durationSeconds": 30.001099999999976,
+      "frames": 1800,
+      "fps": 59.99780008066376,
+      "low1PercentFps": 56.46173149307026,
+      "maxFrameMs": 17.79999999998836
+    },
+    {
+      "id": "S3",
+      "renderer": {
+        "render": {
+          "frame": 16318,
+          "calls": 1,
+          "triangles": 1,
+          "points": 0,
+          "lines": 0
+        },
+        "memory": {
+          "geometries": 63,
+          "textures": 82
+        },
+        "jsHeapUsedBytes": 524302399
+      },
+      "durationSeconds": 30,
+      "frames": 1800,
+      "fps": 60,
+      "low1PercentFps": 56.4440263405209,
+      "maxFrameMs": 17.79999999998836
+    },
+    {
+      "id": "S4",
+      "renderer": {
+        "render": {
+          "frame": 21721,
+          "calls": 1,
+          "triangles": 1,
+          "points": 0,
+          "lines": 0
+        },
+        "memory": {
+          "geometries": 63,
+          "textures": 82
+        },
+        "jsHeapUsedBytes": 525680912
+      },
+      "durationSeconds": 29.999299999999987,
+      "frames": 1800,
+      "fps": 60.001400032667455,
+      "low1PercentFps": 56.46173149307026,
+      "maxFrameMs": 17.79999999998836
+    },
+    {
+      "id": "S5",
+      "renderer": {
+        "render": {
+          "frame": 27124,
+          "calls": 1,
+          "triangles": 1,
+          "points": 0,
+          "lines": 0
+        },
+        "memory": {
+          "geometries": 63,
+          "textures": 82
+        },
+        "jsHeapUsedBytes": 524795375
+      },
+      "durationSeconds": 29.99990000000002,
+      "frames": 1800,
+      "fps": 60.000200000666624,
+      "low1PercentFps": 53.587377195562354,
+      "maxFrameMs": 18.70000000001164
+    },
+    {
+      "id": "S6",
+      "renderer": {
+        "render": {
+          "frame": 32530,
+          "calls": 1,
+          "triangles": 1,
+          "points": 0,
+          "lines": 0
+        },
+        "memory": {
+          "geometries": 63,
+          "textures": 82
+        },
+        "jsHeapUsedBytes": 524658729
+      },
+      "durationSeconds": 30.017400000000023,
+      "frames": 1801,
+      "fps": 59.998534183506855,
+      "low1PercentFps": 53.687482339587454,
+      "maxFrameMs": 18.70000000001164
+    }
+  ]
+}

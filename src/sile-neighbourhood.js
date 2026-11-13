@@ -61,16 +61,27 @@ export function planNeighbourhood(data,play,profiles){
  for(const road of data.roads){if(!['residential','service','pedestrian','living_street','tertiary'].includes(road.kind))continue;let walked=0,next=6+hash(road.id,1)*18,serial=0;
   for(let i=1;i<road.points.length;i++){const a=road.points[i-1],b=road.points[i],dx=b[0]-a[0],dz=b[1]-a[1],len=Math.hypot(dx,dz);if(len<.01)continue;
    while(next<walked+len){const d=next-walked,id=(road.id^Math.imul(serial++,97))|0,side=hash(id,2)>.5?1:-1,nx=-dz/len*side,nz=dx/len*side,x=a[0]+dx*d/len+nx*(road.width/2+1.7),z=a[1]+dz*d/len+nz*(road.width/2+1.7),s=surfaceAt(play,x,z);
-    if(near(x,z,45).length&&!s.water&&s.normal[1]>.985&&!source.beaches.some(f=>insidePolygon(x,z,f.rings)))plan.lamps.push({x,y:s.height,z,nx:-nx,nz:-nz,id});
+    if(near(x,z,45).length&&!s.water&&s.normal[1]>.985&&!source.beaches.some(f=>insidePolygon(x,z,f.rings)))plan.lamps.push({x,y:s.height,z,nx:-nx,nz:-nz,id,roadId:road.id});
     // Roadside pockets near the selected coastal neighbourhood, not a city inventory.
     const bx=x+dx/len*7+nx*1.8,bz=z+dz/len*7+nz*1.8,bs=surfaceAt(play,bx,bz);
-    if(near(bx,bz,30).length&&!bs.water&&bs.normal[1]>.985&&!source.beaches.some(f=>insidePolygon(bx,bz,f.rings)))plan.benches.push({x:bx,y:bs.height,z:bz,nx:-nx,nz:-nz,normal:bs.normal,id});next+=24;
+    if(near(bx,bz,30).length&&!bs.water&&bs.normal[1]>.985&&!source.beaches.some(f=>insidePolygon(bx,bz,f.rings)))plan.benches.push({x:bx,y:bs.height,z:bz,nx:-nx,nz:-nz,normal:bs.normal,id,roadId:road.id});next+=24;
    }walked+=len;
   }
  }
  for(const p of profiles.values()){
   if(p.commercial)continue;const entry=buildingFacade(p.item,p,p.eaves).cells.find(c=>c.floor===0&&(c.tile===8||c.tile===9));if(!entry)continue;
-  for(const sign of [-1,1]){const offset=entry.width/2+.8,x=entry.x+entry.dx*offset*sign+entry.nx*1.9,z=entry.z+entry.dz*offset*sign+entry.nz*1.9,s=surfaceAt(play,x,z);if(!s.water&&s.normal[1]>.97&&!source.beaches.some(f=>insidePolygon(x,z,f.rings)))plan.planters.push({x,y:s.height,z,nx:entry.nx,nz:entry.nz,normal:s.normal,id:p.item.id^sign});}
+  for(const sign of [-1,1]){const offset=entry.width/2+.8,x=entry.x+entry.dx*offset*sign+entry.nx*1.9,z=entry.z+entry.dz*offset*sign+entry.nz*1.9,s=surfaceAt(play,x,z);if(!s.water&&s.normal[1]>.97&&!source.beaches.some(f=>insidePolygon(x,z,f.rings)))plan.planters.push({x,y:s.height,z,nx:entry.nx,nz:entry.nz,normal:s.normal,id:p.item.id^sign,sourceId:p.item.id});}
  }
  const order=(a,b)=>hash(a.id,7)-hash(b.id,7)||a.x-b.x||a.z-b.z;plan.lamps.sort(order);plan.planters.sort(order);plan.benches.sort(order);return plan;
+}
+
+// Additional model furniture follows the existing road/entry candidates, while
+// keeping the original frontage phase and shoreline owners separate.
+export function planDistrictNeighbourhood(data,play,core,district){
+ const empty={lamps:[],planters:[],benches:[],valid:false};if(data?.completionLayer!==1||!matches(data)||district===core)return empty;
+ const extra=new Map([...district].filter(([id])=>!core.has(id)));if(!extra.size)return empty;
+ const plan=planNeighbourhood(data,play,extra);if(!plan.valid)return empty;const nearCore=profileIndex(core),edges=[];
+ for(const rings of play.terrain.land)for(const r of rings)for(let i=0;i<r.length;i++){const a=r[i],b=r[(i+1)%r.length];if(play.terrain.bounds.some((v,k)=>Math.abs(a[k<2?0:1]-v)<.05&&Math.abs(b[k<2?0:1]-v)<.05))continue;edges.push([a,b]);}
+ for(const key of['lamps','planters','benches'])plan[key]=plan[key].filter(p=>{if(nearCore(p.x,p.z,6).length)return false;const distance=Math.min(...edges.map(([a,b])=>segmentDistance(p.x,p.z,a,b)));if(distance<=100||distance>350)return false;const normal=surfaceAt(play,p.x,p.z).normal[1];if(key==='planters'&&normal<1/Math.sqrt(1+.08**2)||key==='benches'&&normal<1/Math.sqrt(1+.04**2))return false;p.shoreDistance=distance;return true;});
+ return plan;
 }

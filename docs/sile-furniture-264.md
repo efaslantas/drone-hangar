@@ -9,3 +9,5 @@ Yeni 54 donatı, 204 çarpışma kutusu ve hızlı geçişte ince direklerin iç
 Node 22 ARM64 altında 675 test, 11 altyapı testi ve 12 geometrik rota geçti. Regresyonlar ince direğe hızlı yaklaşma, açık yanından geçme, korunan yüzeyler, geçersiz ek bina verisi ve sahne temizliğini kapsar. Sabit kameralarda WebGL/WebGPU kontrolü ve yeni 180 saniyelik görünür performans kaydı ayrı kabul dosyasındadır. Önceki 900 saniyelik kayıt 2.58 sürümüne aittir. Bu sürüm için kullanıcı uçuş kabulü ve fiziksel TX15 testi yapılmadı.
 
 Yerleşim kaydı: `public/maps/sile/district-furniture-visuals.json`. Canlı teslim ve güncel performans kanıtı: `docs/sile-completion-acceptance.json`, `followups.furniture264`.
+
+Canlı teslim: `v2.64.0-0154e49e3dab`. Yeni 180 saniyelik sabit kamera ölçümünde altı bölgede yaklaşık 60 FPS; en düşük %1 kare hızı 53,59 FPS, gizli sekmede geçen süre 0. HTTPS kaynak SHA, iki istemcili WSS ve canlı Şile DISARM / 0 km/h / 0 m AGL kontrolleri geçti. Main uygulama commit’i `163778e`.

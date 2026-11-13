@@ -1,6 +1,6 @@
 # Drone Hangar — AWS işletim kaydı
 
-2026-11-02: Kullanıcı Drone simülatörü 2.16 için mevcut Zenth AWS sunucusunu seçti. Canlı adres: https://hangar.18-153-158-209.sslip.io/ . İlk kurulum `v2.16.0-7f5130339846`; güncel sürüm `v2.63.0-c8bb16d845f8` (2.63, 2026-11-13).
+2026-11-02: Kullanıcı Drone simülatörü 2.16 için mevcut Zenth AWS sunucusunu seçti. Canlı adres: https://hangar.18-153-158-209.sslip.io/ . İlk kurulum `v2.16.0-7f5130339846`; güncel sürüm `v2.64.0-0154e49e3dab` (2.64, 2026-11-13).
 
 ## Yerleşim
 
@@ -249,3 +249,8 @@ Bu yayının ilk yüklemesi sunucu diski dolduğu için durdu; 2.61 çalışmaya
 v2.63.0-c8bb16d845f8 ARM64 app-only yayımlandı. Image `sha256:891052c48f6f654008c4f16e34e741ec69843237902063ce58a3ef528586ed93`; archive SHA `9a761aa96233dd9bbba07028020c32eeeed3df7000a6177ccdfa08f55258481b`. 479 paket kaynak SHA,çalışan kaynaklar/HTTPS/WSS/nativeDISARM0 doğrulandı;7tenant/nginxaynı,eskiuygulama/veriyedeğikorundu.670Node22/11infra/12geometrikrota,nativeGL/GPU6bölge+stadyum,yeni180sgörünürdelta.26cmflushstone/directionalpavers/footweathering,full2.62physicsSHAretained;no measured curb/pavement claim. Kaynak ayakizi/taban/arazi/RCfixaynı;135core/104giriş/24eskiyükseklikvarsayımıkorundu. Önceki900s2.58tarihseldir;fizikselTX15/yeni kullanıcınot-run.
 
 Bu yayında önce disk kontrolü yapıldı (20 GiB kökte 469 MiB boş). Yalnız 2.61 ve 2.62 image.tar.gz önbellekleri, S3 boyut/metadata SHA ve gerçek uzak dosya SHA doğrulamasından sonra kaldırıldı: 289.750.885 byte. Yükleme öncesi boş alan 491.061.248 → 780.820.480 byte oldu. Container/image/volume/veri/yedek/kaynak/S3 nesneleri ve nginx korundu. 2.63 ilk paket yüklemesi başarıyla tamamlandı. Sunucu kapasitesi sınırlı olduğundan sonraki yayın öncesi yeniden kontrol gerekir; ayrıntı `delivery.operationalPreflight` kaydında.
+
+
+## 2026-11-13 — Şile sokak donatıları2.64
+
+v2.64.0-0154e49e3dab ARM64 app-only yayımlandı. Image `sha256:6ca520e7ec72b5a8fa587b7bb630a6b2b85bc317bcb3dd73315d22fb84e9e831`; archive SHA `085d721b6fc2c7dfc161369276b36d877a58b443e385898f587a3d72570a7896`. 482 paket kaynak SHA,çalışan kaynaklar/HTTPS/WSS/nativeDISARM0 doğrulandı;7tenant/nginxaynı,eskiuygulama/veriyedeğikorundu.675Node22/11infra/12geometrikrota,nativeGL/GPU6bölge+stadyum,yeni180sgörünürdelta.24lamps24planters6benches,204boxes2448sweptfaces;legacySHAretained;not municipal inventory. Kaynak ayakizi/taban/arazi/RCfixaynı;135core/104giriş/24eskiyükseklikvarsayımıkorundu. Önceki900s2.58tarihseldir;fizikselTX15/yeni kullanıcınot-run.

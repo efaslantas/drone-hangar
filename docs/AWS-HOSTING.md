@@ -1,6 +1,6 @@
 # Drone Hangar — AWS işletim kaydı
 
-2026-11-02: Kullanıcı Drone simülatörü 2.16 için mevcut Zenth AWS sunucusunu seçti. Canlı adres: https://hangar.18-153-158-209.sslip.io/ . İlk kurulum `v2.16.0-7f5130339846`; güncel sürüm `v2.61.0-0303b45cb1b7` (2.61, 2026-11-13).
+2026-11-02: Kullanıcı Drone simülatörü 2.16 için mevcut Zenth AWS sunucusunu seçti. Canlı adres: https://hangar.18-153-158-209.sslip.io/ . İlk kurulum `v2.16.0-7f5130339846`; güncel sürüm `v2.62.0-8e1675aa7a78` (2.62, 2026-11-13).
 
 ## Yerleşim
 
@@ -235,3 +235,10 @@ v2.60.0-a8bbda72ee0e ARM64 app-only yayımlandı. Image `sha256:372f7378c7844221
 ## 2026-11-13 — Şile bina girişleri ve çevresi2.61
 
 v2.61.0-0303b45cb1b7 ARM64 app-only yayımlandı. Image `sha256:5a3024fdb4a0eddad880015ba0404ff05e2619642801c4dd7133a7c15300d62e`; archive SHA `58e19b0ebad0ac0ec0fa62428c27d401850a8cce45eb7b1f090c9d134c404d4a`. 473 paket kaynak SHA,çalışan kaynaklar/HTTPS/WSS/nativeDISARM0 doğrulandı;7tenant/nginxaynı,eskiuygulama/veriyedeğikorundu.659Node22/11infra/12geometrikrota,nativeGL/GPU6bölge+stadyum,yeni180sgörünürdelta.367modeleddoor/178steepomission/49backfoundationcandidate/680apronprofile;no measured doorway/paving claim. Kaynak ayakizi/taban/arazi/RCfixaynı;135core/104giriş/24eskiyükseklikvarsayımıkorundu. Önceki900s2.58tarihseldir;fizikselTX15/yeni kullanıcınot-run.
+
+
+## 2026-11-13 — Şile sokak ve yol birleşimleri2.62
+
+v2.62.0-8e1675aa7a78 ARM64 app-only yayımlandı. Image `sha256:dcd4d18c4809ed171e64e8fc532d2cd4ed9050911e3f930f7c8a58e67d60976e`; archive SHA `31b524d0ce8ffa6ccd08eac05b7b521a8fee43765bb67ff6930fb141791c1e7c`. 476 paket kaynak SHA,çalışan kaynaklar/HTTPS/WSS/nativeDISARM0 doğrulandı;7tenant/nginxaynı,eskiuygulama/veriyedeğikorundu.664Node22/11infra/12geometrikrota,nativeGL/GPU6bölge+stadyum,yeni180sgörünürdelta.213modelstreetlinks/318total/680roadsideprofiles;no measured sidewalk/access claim. Kaynak ayakizi/taban/arazi/RCfixaynı;135core/104giriş/24eskiyükseklikvarsayımıkorundu. Önceki900s2.58tarihseldir;fizikselTX15/yeni kullanıcınot-run.
+
+Bu yayının ilk yüklemesi sunucu diski dolduğu için durdu; 2.61 çalışmaya devam etti. Yalnız 2.59 ve 2.60 sürümlerinin sunucudaki `image.tar.gz` önbellekleri, S3 boyut/metadata SHA ve gerçek dosya SHA kontrolünden sonra kaldırıldı (289.688.773 byte). S3 nesneleri, bütün container/image/volume kayıtları, kaynaklar, veri ve yedekler korundu. Aynı dondurulmuş 2.62 paketi başarıyla yüklendi. Yükleme sonrası boş alan 464 MiB / 20 GiB; kapasite sınırlı kalır. Ayrıntı kanonik kabulde `delivery.operationalRecovery` içindedir.

@@ -1,6 +1,6 @@
 {
   "date": "2026-11-13",
-  "status": "Verified2.63street surface follow-up; publication and new human acceptance pending",
+  "status": "Published2.63street surface follow-up verified;900s baseline remains2.58, new180sdelta verified; human acceptance pending",
   "inventoryVersion": 1,
   "sourceSnapshotKey": "1147718:d3dd4d94:81685aaa",
   "baseline": "v2.57.0-e89963741523",
@@ -974,7 +974,8 @@
         ],
         "release": "v2.62.0-8e1675aa7a78"
       }
-    ]
+    ],
+    "release": "v2.63.0-c8bb16d845f8"
   },
   "limits": [
     "31mDSM and most building heights remain unmeasured; representative scene, not surveyed digital twin.",
@@ -1175,8 +1176,131 @@
     }
   ],
   "delivery": {
-    "status": "pending",
-    "baseline": "v2.62.0-8e1675aa7a78"
+    "status": "published",
+    "release": "v2.63.0-c8bb16d845f8",
+    "image": {
+      "release": "v2.63.0-c8bb16d845f8",
+      "imageId": "sha256:891052c48f6f654008c4f16e34e741ec69843237902063ce58a3ef528586ed93",
+      "archiveSha256": "9a761aa96233dd9bbba07028020c32eeeed3df7000a6177ccdfa08f55258481b",
+      "archiveBytes": 144879657,
+      "architecture": "arm64",
+      "sourceFiles": 479
+    },
+    "sourceFiles": 479,
+    "preservedSourceFiles": {
+      "public/maps/sile/map.json": "5564a34bbf1573152f5e1a93d1de4d01895eb4021483d2e03fae761341717a11",
+      "public/maps/sile/source-osm.json": "b860868c8cbc075b2d7b8936aa95d95b452eb244c47d8e03d66bd98f1e87f59a",
+      "public/maps/sile/source-dem.tif": "c1d9b4576412ef8f3e791ee23eff2db1a4c6ac1684b98c92bbafbc3cde380743",
+      "src/rc-setup.js": "1bb07e0d440d54cd2006763b108386b22115651ec1e57ceba6c2d94964814c26",
+      "tests/rc-setup.test.js": "7a038dfcbf536ac3b18c3ac74f146b32007f9aa132cd889da440d8eed4082880"
+    },
+    "changedDerivedData": [
+      "direction-aligned paverUVs",
+      "building-foot weathering",
+      "26cm flush roadside stone material",
+      "close street QA camera",
+      "surface appearance provenance"
+    ],
+    "https": {
+      "release": "v2.63.0-c8bb16d845f8",
+      "entryAssets": 5,
+      "uniqueIds": 253,
+      "appVersion": "2.63.0",
+      "lazyGpuChunks": [
+        "gfx-webgpu-BPv6_-0D.js"
+      ],
+      "sceneWorkerChunks": [
+        "sile-scene-worker-DWJw75A1.js"
+      ],
+      "liveSkyOrderFix": true,
+      "mapAndSourceSha256": "pass"
+    },
+    "websocket": {
+      "clients": 2,
+      "join": "pass",
+      "state": "pass",
+      "leave": "pass"
+    },
+    "remote": {
+      "Status": "Success",
+      "StandardOutputContent": "Running image source hashes: 139 OK\ndrone-hangar | 27.84MiB / 256MiB | 0.49%\n{\"running\": true, \"restarts\": 0, \"readonly\": true, \"user\": \"1000:1000\", \"image\": \"sha256:891052c48f6f654008c4f16e34e741ec69843237902063ce58a3ef528586ed93\"}\nSeven tenants/nginx unchanged; old container/data backup retained\nhttps://zenth.finance/ 200\nhttps://api.zenth.finance/health 200\nGelisim TLS origin 200\n",
+      "StandardErrorContent": "nginx: the configuration file /etc/nginx/nginx.conf syntax is ok\nnginx: configuration file /etc/nginx/nginx.conf test is successful\n"
+    },
+    "nativeLive": {
+      "url": "https://hangar.18-153-158-209.sslip.io/?room=hangar&name=pilot",
+      "release": "v2.63.0-c8bb16d845f8",
+      "verifiedDisarmGroundZero": true,
+      "reference": "REF 4M · ACRO · REAL",
+      "physicalTX15": "not-run",
+      "dom": "- text: ✓ ✓ ✓ ✓\n- generic: Şile · veri tabanlı taslak\n- link \"© OpenStreetMap contributors · ODbL\":\n  - /url: https://www.openstreetmap.org/copyright\n- text: · Copernicus DEM ·\n- link \"Microsoft / Overture Maps · ODbL\":\n  - /url: https://overturemaps.org/\n- text: ·\n- link \"ESA WorldCover 2021 · CC BY 4.0\":\n  - /url: /sile.html\n- link \"Kaynaklar / yükseklik varsayımları ↗\":\n  - /url: /sile.html\n- generic: 0 km/h\n- generic: 0 m AGL\n- generic: BAT\n- generic: DISARM\n- generic: REF 4M · ACRO · REAL\n- button \"ARM\"\n- button \"CAM\"\n- button \"MOD\"\n- button \"KONTROL\"\n- button \"MENÜ\"",
+      "logs": [
+        {
+          "level": "warn",
+          "message": "MaxListenersExceededWarning: Possible EventEmitter memory leak detected. 11 close listeners added. Use emitter.setMaxListeners() to increase limit",
+          "timestamp": "2026-11-13T13:20:22.867Z",
+          "url": "chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/scripts/contentscript.js"
+        },
+        {
+          "level": "warn",
+          "message": "MaxListenersExceededWarning: Possible EventEmitter memory leak detected. 11 end listeners added. Use emitter.setMaxListeners() to increase limit",
+          "timestamp": "2026-11-13T13:20:22.867Z",
+          "url": "chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/scripts/contentscript.js"
+        },
+        {
+          "level": "warn",
+          "message": "ObjectMultiplex - orphaned data for stream \"app-init-liveness\"",
+          "timestamp": "2026-11-13T13:20:22.886Z",
+          "url": "chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/scripts/contentscript.js"
+        },
+        {
+          "level": "warn",
+          "message": "ObjectMultiplex - orphaned data for stream \"app-init-liveness\"",
+          "timestamp": "2026-11-13T13:20:22.886Z",
+          "url": "chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/scripts/contentscript.js"
+        },
+        {
+          "level": "warn",
+          "message": "ObjectMultiplex - orphaned data for stream \"background-liveness\"",
+          "timestamp": "2026-11-13T13:20:22.886Z",
+          "url": "chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/scripts/contentscript.js"
+        },
+        {
+          "level": "warn",
+          "message": "ObjectMultiplex - orphaned data for stream \"background-liveness\"",
+          "timestamp": "2026-11-13T13:20:22.887Z",
+          "url": "chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/scripts/contentscript.js"
+        }
+      ],
+      "screenshot": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-263-live.jpg"
+    },
+    "operationalPreflight": {
+      "reason": "Prior20GiB capacity issue; read-only preflight469MiB before upload",
+      "preflightBeforeUpload": {
+        "removedOnlyS3VerifiedCacheCopies": [
+          {
+            "release": "v2.61.0-0303b45cb1b7",
+            "bytes": 144860337,
+            "sha256": "58e19b0ebad0ac0ec0fa62428c27d401850a8cce45eb7b1f090c9d134c404d4a",
+            "restoreBucket": "zenth-db-backups-283277658470",
+            "restoreKey": "deploy/drone-hangar/v2.61.0-0303b45cb1b7/image.tar.gz"
+          },
+          {
+            "release": "v2.62.0-8e1675aa7a78",
+            "bytes": 144890548,
+            "sha256": "31b524d0ce8ffa6ccd08eac05b7b521a8fee43765bb67ff6930fb141791c1e7c",
+            "restoreBucket": "zenth-db-backups-283277658470",
+            "restoreKey": "deploy/drone-hangar/v2.62.0-8e1675aa7a78/image.tar.gz"
+          }
+        ],
+        "freedBytes": 289750885,
+        "diskFreeBefore": 491061248,
+        "diskFreeAfter": 780820480,
+        "allContainersUnchanged": true,
+        "nginxUnchanged": true
+      },
+      "preserved": "All containers/images/volumes/data/backups/source/S3objects/nginx retained",
+      "stage": "First2.63archive/image/ARM64load and app-only update successful"
+    }
   },
   "followups": {
     "loading257": {
@@ -3987,7 +4111,7 @@
       }
     },
     "finish263": {
-      "status": "software-verified; publication pending",
+      "status": "published; user visual/flight acceptance pending",
       "date": "2026-11-13",
       "scope": "Direction-aligned pavers,building-foot weathering and26cm flush stone appearance partition; full2.62physics preserved",
       "modelAudit": {
@@ -4518,7 +4642,134 @@
           },
           "jsHeapUsedBytes": 537160065
         }
-      ]
+      ],
+      "delivery": {
+        "status": "published",
+        "release": "v2.63.0-c8bb16d845f8",
+        "image": {
+          "release": "v2.63.0-c8bb16d845f8",
+          "imageId": "sha256:891052c48f6f654008c4f16e34e741ec69843237902063ce58a3ef528586ed93",
+          "archiveSha256": "9a761aa96233dd9bbba07028020c32eeeed3df7000a6177ccdfa08f55258481b",
+          "archiveBytes": 144879657,
+          "architecture": "arm64",
+          "sourceFiles": 479
+        },
+        "sourceFiles": 479,
+        "preservedSourceFiles": {
+          "public/maps/sile/map.json": "5564a34bbf1573152f5e1a93d1de4d01895eb4021483d2e03fae761341717a11",
+          "public/maps/sile/source-osm.json": "b860868c8cbc075b2d7b8936aa95d95b452eb244c47d8e03d66bd98f1e87f59a",
+          "public/maps/sile/source-dem.tif": "c1d9b4576412ef8f3e791ee23eff2db1a4c6ac1684b98c92bbafbc3cde380743",
+          "src/rc-setup.js": "1bb07e0d440d54cd2006763b108386b22115651ec1e57ceba6c2d94964814c26",
+          "tests/rc-setup.test.js": "7a038dfcbf536ac3b18c3ac74f146b32007f9aa132cd889da440d8eed4082880"
+        },
+        "changedDerivedData": [
+          "direction-aligned paverUVs",
+          "building-foot weathering",
+          "26cm flush roadside stone material",
+          "close street QA camera",
+          "surface appearance provenance"
+        ],
+        "https": {
+          "release": "v2.63.0-c8bb16d845f8",
+          "entryAssets": 5,
+          "uniqueIds": 253,
+          "appVersion": "2.63.0",
+          "lazyGpuChunks": [
+            "gfx-webgpu-BPv6_-0D.js"
+          ],
+          "sceneWorkerChunks": [
+            "sile-scene-worker-DWJw75A1.js"
+          ],
+          "liveSkyOrderFix": true,
+          "mapAndSourceSha256": "pass"
+        },
+        "websocket": {
+          "clients": 2,
+          "join": "pass",
+          "state": "pass",
+          "leave": "pass"
+        },
+        "remote": {
+          "Status": "Success",
+          "StandardOutputContent": "Running image source hashes: 139 OK\ndrone-hangar | 27.84MiB / 256MiB | 0.49%\n{\"running\": true, \"restarts\": 0, \"readonly\": true, \"user\": \"1000:1000\", \"image\": \"sha256:891052c48f6f654008c4f16e34e741ec69843237902063ce58a3ef528586ed93\"}\nSeven tenants/nginx unchanged; old container/data backup retained\nhttps://zenth.finance/ 200\nhttps://api.zenth.finance/health 200\nGelisim TLS origin 200\n",
+          "StandardErrorContent": "nginx: the configuration file /etc/nginx/nginx.conf syntax is ok\nnginx: configuration file /etc/nginx/nginx.conf test is successful\n"
+        },
+        "nativeLive": {
+          "url": "https://hangar.18-153-158-209.sslip.io/?room=hangar&name=pilot",
+          "release": "v2.63.0-c8bb16d845f8",
+          "verifiedDisarmGroundZero": true,
+          "reference": "REF 4M · ACRO · REAL",
+          "physicalTX15": "not-run",
+          "dom": "- text: ✓ ✓ ✓ ✓\n- generic: Şile · veri tabanlı taslak\n- link \"© OpenStreetMap contributors · ODbL\":\n  - /url: https://www.openstreetmap.org/copyright\n- text: · Copernicus DEM ·\n- link \"Microsoft / Overture Maps · ODbL\":\n  - /url: https://overturemaps.org/\n- text: ·\n- link \"ESA WorldCover 2021 · CC BY 4.0\":\n  - /url: /sile.html\n- link \"Kaynaklar / yükseklik varsayımları ↗\":\n  - /url: /sile.html\n- generic: 0 km/h\n- generic: 0 m AGL\n- generic: BAT\n- generic: DISARM\n- generic: REF 4M · ACRO · REAL\n- button \"ARM\"\n- button \"CAM\"\n- button \"MOD\"\n- button \"KONTROL\"\n- button \"MENÜ\"",
+          "logs": [
+            {
+              "level": "warn",
+              "message": "MaxListenersExceededWarning: Possible EventEmitter memory leak detected. 11 close listeners added. Use emitter.setMaxListeners() to increase limit",
+              "timestamp": "2026-11-13T13:20:22.867Z",
+              "url": "chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/scripts/contentscript.js"
+            },
+            {
+              "level": "warn",
+              "message": "MaxListenersExceededWarning: Possible EventEmitter memory leak detected. 11 end listeners added. Use emitter.setMaxListeners() to increase limit",
+              "timestamp": "2026-11-13T13:20:22.867Z",
+              "url": "chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/scripts/contentscript.js"
+            },
+            {
+              "level": "warn",
+              "message": "ObjectMultiplex - orphaned data for stream \"app-init-liveness\"",
+              "timestamp": "2026-11-13T13:20:22.886Z",
+              "url": "chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/scripts/contentscript.js"
+            },
+            {
+              "level": "warn",
+              "message": "ObjectMultiplex - orphaned data for stream \"app-init-liveness\"",
+              "timestamp": "2026-11-13T13:20:22.886Z",
+              "url": "chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/scripts/contentscript.js"
+            },
+            {
+              "level": "warn",
+              "message": "ObjectMultiplex - orphaned data for stream \"background-liveness\"",
+              "timestamp": "2026-11-13T13:20:22.886Z",
+              "url": "chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/scripts/contentscript.js"
+            },
+            {
+              "level": "warn",
+              "message": "ObjectMultiplex - orphaned data for stream \"background-liveness\"",
+              "timestamp": "2026-11-13T13:20:22.887Z",
+              "url": "chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/scripts/contentscript.js"
+            }
+          ],
+          "screenshot": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-263-live.jpg"
+        },
+        "operationalPreflight": {
+          "reason": "Prior20GiB capacity issue; read-only preflight469MiB before upload",
+          "preflightBeforeUpload": {
+            "removedOnlyS3VerifiedCacheCopies": [
+              {
+                "release": "v2.61.0-0303b45cb1b7",
+                "bytes": 144860337,
+                "sha256": "58e19b0ebad0ac0ec0fa62428c27d401850a8cce45eb7b1f090c9d134c404d4a",
+                "restoreBucket": "zenth-db-backups-283277658470",
+                "restoreKey": "deploy/drone-hangar/v2.61.0-0303b45cb1b7/image.tar.gz"
+              },
+              {
+                "release": "v2.62.0-8e1675aa7a78",
+                "bytes": 144890548,
+                "sha256": "31b524d0ce8ffa6ccd08eac05b7b521a8fee43765bb67ff6930fb141791c1e7c",
+                "restoreBucket": "zenth-db-backups-283277658470",
+                "restoreKey": "deploy/drone-hangar/v2.62.0-8e1675aa7a78/image.tar.gz"
+              }
+            ],
+            "freedBytes": 289750885,
+            "diskFreeBefore": 491061248,
+            "diskFreeAfter": 780820480,
+            "allContainersUnchanged": true,
+            "nginxUnchanged": true
+          },
+          "preserved": "All containers/images/volumes/data/backups/source/S3objects/nginx retained",
+          "stage": "First2.63archive/image/ARM64load and app-only update successful"
+        }
+      }
     }
   }
 }

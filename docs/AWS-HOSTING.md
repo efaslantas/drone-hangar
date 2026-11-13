@@ -1,6 +1,6 @@
 # Drone Hangar — AWS işletim kaydı
 
-2026-11-02: Kullanıcı Drone simülatörü 2.16 için mevcut Zenth AWS sunucusunu seçti. Canlı adres: https://hangar.18-153-158-209.sslip.io/ . İlk kurulum `v2.16.0-7f5130339846`; güncel sürüm `v2.62.0-8e1675aa7a78` (2.62, 2026-11-13).
+2026-11-02: Kullanıcı Drone simülatörü 2.16 için mevcut Zenth AWS sunucusunu seçti. Canlı adres: https://hangar.18-153-158-209.sslip.io/ . İlk kurulum `v2.16.0-7f5130339846`; güncel sürüm `v2.63.0-c8bb16d845f8` (2.63, 2026-11-13).
 
 ## Yerleşim
 
@@ -242,3 +242,10 @@ v2.61.0-0303b45cb1b7 ARM64 app-only yayımlandı. Image `sha256:5a3024fdb4a0edda
 v2.62.0-8e1675aa7a78 ARM64 app-only yayımlandı. Image `sha256:dcd4d18c4809ed171e64e8fc532d2cd4ed9050911e3f930f7c8a58e67d60976e`; archive SHA `31b524d0ce8ffa6ccd08eac05b7b521a8fee43765bb67ff6930fb141791c1e7c`. 476 paket kaynak SHA,çalışan kaynaklar/HTTPS/WSS/nativeDISARM0 doğrulandı;7tenant/nginxaynı,eskiuygulama/veriyedeğikorundu.664Node22/11infra/12geometrikrota,nativeGL/GPU6bölge+stadyum,yeni180sgörünürdelta.213modelstreetlinks/318total/680roadsideprofiles;no measured sidewalk/access claim. Kaynak ayakizi/taban/arazi/RCfixaynı;135core/104giriş/24eskiyükseklikvarsayımıkorundu. Önceki900s2.58tarihseldir;fizikselTX15/yeni kullanıcınot-run.
 
 Bu yayının ilk yüklemesi sunucu diski dolduğu için durdu; 2.61 çalışmaya devam etti. Yalnız 2.59 ve 2.60 sürümlerinin sunucudaki `image.tar.gz` önbellekleri, S3 boyut/metadata SHA ve gerçek dosya SHA kontrolünden sonra kaldırıldı (289.688.773 byte). S3 nesneleri, bütün container/image/volume kayıtları, kaynaklar, veri ve yedekler korundu. Aynı dondurulmuş 2.62 paketi başarıyla yüklendi. Yükleme sonrası boş alan 464 MiB / 20 GiB; kapasite sınırlı kalır. Ayrıntı kanonik kabulde `delivery.operationalRecovery` içindedir.
+
+
+## 2026-11-13 — Şile sokak yüzeyleri2.63
+
+v2.63.0-c8bb16d845f8 ARM64 app-only yayımlandı. Image `sha256:891052c48f6f654008c4f16e34e741ec69843237902063ce58a3ef528586ed93`; archive SHA `9a761aa96233dd9bbba07028020c32eeeed3df7000a6177ccdfa08f55258481b`. 479 paket kaynak SHA,çalışan kaynaklar/HTTPS/WSS/nativeDISARM0 doğrulandı;7tenant/nginxaynı,eskiuygulama/veriyedeğikorundu.670Node22/11infra/12geometrikrota,nativeGL/GPU6bölge+stadyum,yeni180sgörünürdelta.26cmflushstone/directionalpavers/footweathering,full2.62physicsSHAretained;no measured curb/pavement claim. Kaynak ayakizi/taban/arazi/RCfixaynı;135core/104giriş/24eskiyükseklikvarsayımıkorundu. Önceki900s2.58tarihseldir;fizikselTX15/yeni kullanıcınot-run.
+
+Bu yayında önce disk kontrolü yapıldı (20 GiB kökte 469 MiB boş). Yalnız 2.61 ve 2.62 image.tar.gz önbellekleri, S3 boyut/metadata SHA ve gerçek uzak dosya SHA doğrulamasından sonra kaldırıldı: 289.750.885 byte. Yükleme öncesi boş alan 491.061.248 → 780.820.480 byte oldu. Container/image/volume/veri/yedek/kaynak/S3 nesneleri ve nginx korundu. 2.63 ilk paket yüklemesi başarıyla tamamlandı. Sunucu kapasitesi sınırlı olduğundan sonraki yayın öncesi yeniden kontrol gerekir; ayrıntı `delivery.operationalPreflight` kaydında.

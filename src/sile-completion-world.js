@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import {landcoverSampler} from './sile-landcover.js';
-import {terrainHeight,drapeTerrainTriangles} from './geo-terrain.js';
+import {terrainHeight,drapeTerrainTriangles,surfaceAt} from './geo-terrain.js';
 import {buildingRoof} from './sile-roofs.js';
 import {refreshCoastalFacades}from './sile-building-view.js';
 import {coastalBuildings} from './sile-buildings.js';
@@ -30,6 +30,19 @@ export function districtBuildingClearance(item,terrain){
  }
  return {...unchanged,deferred:true,maxGroundY,reason:'clearance-convergence-limit',evidence:'assumed'};
 }
+// A door is a visual assumption. Sample its whole narrow threshold strip on
+// the final physical surface, including terrace cuts; omit unsupported doors.
+export function groundedDistrictEntry(item,profile,terrain){
+ const r=item.rings[0];let edge=0,best=Infinity;
+ for(let i=0;i<r.length;i++){const d=segmentDistance(...profile.entry,r[i],r[(i+1)%r.length]);if(d<best){best=d;edge=i;}}
+ const a=r[edge],b=r[(edge+1)%r.length],length=Math.hypot(b[0]-a[0],b[1]-a[1]),dx=(b[0]-a[0])/length,dz=(b[1]-a[1])/length,x=(a[0]+b[0])/2,z=(a[1]+b[1])/2,width=Math.min(3,length*.75),signed=r.reduce((s,a,i)=>{const b=r[(i+1)%r.length];return s+a[0]*b[1]-b[0]*a[1];},0),nx=dz*(signed>0?1:-1),nz=-dx*(signed>0?1:-1);
+ const q=[[-width/2,.008],[width/2,.008],[-width/2,.028],[width/2,.028]].map(([u,v])=>[x+dx*u+nx*v,0,z+dz*u+nz*v]),positions=[0,1,2,1,3,2].flatMap(i=>q[i]),draped=drapeTerrainTriangles(terrain,positions,0),ys=draped.filter((_,i)=>i%3===1);
+ if(!ys.length||!ys.every(Number.isFinite)||q.some(v=>surfaceAt({terrain},v[0],v[2]).water))return {available:false,reason:'doorway-surface'};
+ const entryY=Math.max(...ys),relief=entryY-Math.min(...ys);
+ if(relief>.25+1e-8)return {available:false,reason:'doorway-relief',relief};
+ if(entryY+2.7>profile.eaves+1e-8)return {available:false,reason:'doorway-headroom'};
+ return {available:true,entryY,relief,width,evidence:'assumed'};
+}
 export function completedSileData(data){
  if(data?.completionLayer!==1)return data;
  const profiles=coastalBuildings(data),changes=new Map();
@@ -37,9 +50,12 @@ export function completedSileData(data){
   const out=groundedEntryProfile(item,profile,data.terrain);
   if(out.entryY>item.base+.3)changes.set(item.id,{...item,entryY:out.entryY,height:out.height,heightSource:out.height>item.height?'terrain-clearance-assumption':item.heightSource});
  }
- const districtCorrected=[],districtDeferred=[];
- for(const p of coastalBuildings(data,{maxDistance:350}).values())if(p.distance>100){const out=districtBuildingClearance(p.item,data.terrain);if(out.changed){changes.set(p.item.id,{...p.item,height:out.height,heightSource:'terrain-clearance-assumption'});districtCorrected.push({sourceId:p.item.id,heightM:out.height,sourceHeightM:p.item.height,maxGroundY:out.maxGroundY,minimumEavesClearanceM:3});}else if(out.deferred)districtDeferred.push({sourceId:p.item.id,reason:out.reason});}
- return {...data,buildings:data.buildings.map(item=>changes.get(item.id)||item),completionDerived:{entries:[...changes.values()].filter(b=>Number.isFinite(b.entryY)).length,districtClearance:{corrected:districtCorrected,deferred:districtDeferred,maximumAssumedHeightM:20,measured:false},heightChanges:[...changes.values()].filter(item=>item.height!==data.buildings.find(b=>b.id===item.id).height).map(b=>b.id)}};
+ const districtCorrected=[],districtDeferred=[],districtEntries=[],districtEntryDeferred=[];
+ for(const p of coastalBuildings(data,{maxDistance:350}).values())if(p.distance>100){const out=districtBuildingClearance(p.item,data.terrain);if(out.changed){changes.set(p.item.id,{...p.item,height:out.height,heightSource:'terrain-clearance-assumption'});districtCorrected.push({sourceId:p.item.id,heightM:out.height,sourceHeightM:p.item.height,maxGroundY:out.maxGroundY,minimumEavesClearanceM:3});}else if(out.deferred)districtDeferred.push({sourceId:p.item.id,reason:out.reason});
+ const item=changes.get(p.item.id)||{...p.item},entry=groundedDistrictEntry(item,{...p,eaves:buildingRoof(item)?.eaves??item.base+item.height},data.terrain);item.suppressDefaultEntry=true;
+ if(entry.available){item.entryY=entry.entryY;districtEntries.push({sourceId:item.id,entryY:entry.entryY,reliefM:entry.relief});}else districtEntryDeferred.push({sourceId:item.id,reason:entry.reason});changes.set(item.id,item);
+ }
+ return {...data,buildings:data.buildings.map(item=>changes.get(item.id)||item),completionDerived:{entries:[...changes.values()].filter(b=>profiles.has(b.id)&&Number.isFinite(b.entryY)).length,districtGrounding:{entries:districtEntries,deferred:districtEntryDeferred,maximumDoorReliefM:.25,measured:false},districtClearance:{corrected:districtCorrected,deferred:districtDeferred,maximumAssumedHeightM:20,measured:false},heightChanges:[...changes.values()].filter(item=>item.height!==data.buildings.find(b=>b.id===item.id).height).map(b=>b.id)}};
 }
 const coastIndexes=new WeakMap();
 function coastIndex(terrain){
@@ -72,6 +88,12 @@ export function finishCompletionTerrain(scene,play,data,rockMaterial){
 // after that final grading; roof/body dimensions and source records stay fixed.
 export function alignCompletedEntries(scene,play,profiles,data,visualProfiles=profiles){
  if(data.completionLayer!==1)return;let changed=false;
- for(const {item,...profile}of profiles.values())if(Number.isFinite(item.entryY)){const final=groundedEntryProfile(item,profile,play.terrain).entryY;if(Math.abs(final-item.entryY)>.0001){item.entryY=final;changed=true;}}
+ const entries=[],deferred=[];
+ for(const p of visualProfiles.values()){
+  const item=p.item;
+  if(p.distance>100){const out=groundedDistrictEntry(item,p,play.terrain);if(out.available){if(item.entryY!==out.entryY){item.entryY=out.entryY;changed=true;}entries.push({sourceId:item.id,entryY:out.entryY,reliefM:out.relief});}else{if(Number.isFinite(item.entryY)){delete item.entryY;changed=true;}deferred.push({sourceId:item.id,reason:out.reason});}}
+  else if(Number.isFinite(item.entryY)){const final=groundedEntryProfile(item,p,play.terrain).entryY;if(Math.abs(final-item.entryY)>.0001){item.entryY=final;changed=true;}}
+ }
+ if(data.completionDerived?.districtGrounding)data.completionDerived.districtGrounding={entries,deferred,maximumDoorReliefM:.25,measured:false};
  if(changed)refreshCoastalFacades(scene,visualProfiles);
 }

@@ -152,5 +152,6 @@
     ]
   },
   "sportsAndQuayVisuals": "/maps/sile/sports-quay-visuals.json",
-  "districtBuildingClearance": "/maps/sile/building-clearance-visuals.json"
+  "districtBuildingClearance": "/maps/sile/building-clearance-visuals.json",
+  "districtGroundingVisuals": "district-grounding-visuals.json"
 }

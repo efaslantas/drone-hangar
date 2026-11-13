@@ -67,7 +67,7 @@ export function buildSile(scene,data){
  const groundMat=new THREE.MeshStandardMaterial({map:surfaceTexture('grass',1),roughness:1});
  const street=streetSurfaces(data,soil,streets);
  const harbour=harbourSurfaces(data,coastGround(data,street.ground,{exactSand:true,terrain:sourceTerrain}));
- const aprons=buildingAprons(data,harbour.ground,coastal);
+ const aprons=buildingAprons(data,harbour.ground,district);
  const sports=mappedSportsSurfaces(data,aprons.ground);addSportsGrounds(scene,sports.sports);
  const parking=mappedParkingSurfaces(data,sports.ground);addMappedParking(scene,parking.paved);
  const yard=mappedHarbourYard(data,parking.ground);addHarbourYard(scene,yard.yard,yard);
@@ -169,7 +169,7 @@ export function buildSile(scene,data){
  mark('context-harbour');
  addCoastalBuildings(scene,data,play,district,{balconyProfiles:coastal});
  addNeighbourhood(scene,data,play,coastal);
- addBuildingFoundations(scene,play,coastal);
+ addBuildingFoundations(scene,play,district);
  mark('coastal-facades-neighbourhood');
  applyBuildingPads(scene,data,play,coastal,streets);
  alignCompletedEntries(scene,play,coastal,data,district);

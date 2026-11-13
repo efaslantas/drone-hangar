@@ -1,0 +1,13 @@
+# Şile 2.61 — Bina girişleri ve zemin çevresi
+
+Kıyıdan 100–350 metre arka kuşaktaki 545 görsel profilin girişleri, tam kapı genişliğindeki yaklaşık araziyle karşılaştırıldı. 367 temsili kapı yerleştirilebildi. Eşik boyunca 25 santimetreden fazla rölyef bulunan 178 girişte eski gömük kapı şablonu bastırılır. Bunlara merdiven, gerçek kapı konumu veya bina planı uydurulmaz. 25 santimetre sınırı dekoratif model toleransıdır, ölçülmüş basamak değildir. Kapı yerleştirmesi son fiziksel zemin ve ön sıradaki mevcut teraslar oluşturulduktan sonra tekrar kontrol edilir.
+
+Mevcut konservatif temel eteği arka sıradaki 49 binaya genişletildi. Her etek kaynak ayak izi içinde, değişmeyen duvar tabanı altında kalır; en fazla iki metrelik desteklenen boşluğu kapatır. Görünen eteğin eşleşen fiziksel prizması vardır. Suya taşan veya aşırı boşluklu adaylar mevcut korumalarla dışarıda tutulur.
+
+Mevcut 1,4 metre temsili çevre döşemesi, 135 ön profilden 680 görsel profile genişletildi. Döşeme ikinci bir yüzey olarak zeminin üstüne bindirilmez; aynı arazi üçgenlerinden ayrılır. Kayıtlı yollar, sahil, kum, liman yüzeyleri, spor sahaları ve otoparkların mevcut yüzey sahipleri korunur. Döşeme genişliği ve malzemesi saha envanteri değildir. Bina tabanları, ayak izleri, arazi ve 2.60 çatı boyutları korunur; ön sıranın girişleri ve dört mevcut terası değiştirilmez.
+
+Üç saf regresyon ve bir gerçek sahne testi önce başarısız olup değişiklikle geçti. Gerçek sahnede kapı yüzeylerinin yüklenen cephe köşeleri, genişletilen çevre döşemesinin fiziksel araziyle uyumu ve arka temellerin fiziksel kapsamı doğrulanır. Bağımsız incelemede düzeltme gerektiren bulgu çıkmadı; ayrıca spor/otopark yüzeylerine anlamlı döşeme taşması olmadığı denetlendi.
+
+Kanonik kabul `sile-completion-acceptance.json` içindeki `followups.grounding261` alanındadır. Kaynak/model kaydı `public/maps/sile/district-grounding-visuals.json` ve `/sile.html` üzerindedir. Yaklaşık 31 metre DSM, eksik sahil yapıları ve kaynakta bulunmayan yakın kaya ayrıntıları hâlâ sınırdır. Bu çalışma ölçülmüş dijital ikiz, gerçek bina giriş envanteri veya fiziksel TX15 kabulü değildir. Önceki kullanıcı reddi kabul geçmişinde korunur.
+
+659/659 Node 22 ARM64 testi, 11 altyapı testi ve 12 geometrik rota geçti. Altı bölge ve stadyum WebGL/WebGPU ile kaydedildi. Yeni 180,0058 saniyelik görünür 1280 × 720 medium koşusunda ortalamalar yaklaşık 60 FPS, en düşük %1 değeri 53,43 FPS; gizli sekme süresi sıfırdır. Önceki 2.58 sürümünün 900 saniyelik kaydı tarihseldir. Eşzamanlı test yükü altında GL/GPU sahne hazırlığı yaklaşık 47–51 saniye sürdü; bu kontrollü yükleme karşılaştırması değildir. İlk composer/GPU işleri 50 ms hedefini hâlâ aşar.

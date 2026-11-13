@@ -212,3 +212,12 @@ Task13 teslim: v2.59.0-01f8df881bcb canlı;649Node22/11infra/12rota/nativeGL-GPU
 - [x] Kaynak/model sınırları ve eski insan reddi korunarak main/app-onlyAWS/HTTPS/WSS/nativeDISARM0/kanıt/notes kapanışı. FizikselTX15 ve kullanıcı kabulü kendiliğinden verilmez.
 
 Task14 teslim: v2.60.0-a8bbda72ee0e canlı;655Node22/11infra/12rota/nativeGL-GPU/180sgörünürdelta/HTTPS/WSS/liveDISARM0.107varsayımsalprofil,0gömükarka saçak/0arka<3m;ölçülmüşbinaiddiasıyok. Önceki900s2.58veinsanreddikorunur,yeni kullanıcı/TX15not-run.
+
+### Task 15: Arka sıra girişleri ve bina–zemin çevresi · 2.61
+
+Kullanıcı sahilde binaların zemine oturmasını/çevresini geliştirmeyi ve canlı yayını istedi. Mevcut 2.60 üzerinden devam: 545 arka profilin 444'ünde varsayımsal kapı tabanı yerel zeminden 25 cm'den fazla aşağıdadır; mevcut konservatif temel algoritması arka sırada 49 adayı destekler. Aynı veri/Three.js/modül sahipleri kullanılır. Kaynak ayak izi/taban/arazi ve mevcut 2.60 çatı yükseklikleri korunur. Giriş en yakın yol yönündeki cephede, kapı genişliği boyunca son arazi yüzeyine göre kontrol edilir; 25 cm'den fazla rölyef veya yetersiz saçak açıklığında kapı çizilmez ve neden kaydedilir. Dekoratif eşik toleransı ölçülmüş basamak değildir. Ön sıranın mevcut giriş/pad davranışı aynıdır.
+
+- [ ] Tam kapı genişliğindeki arazi örnekleriyle güvenli arka giriş profili; dik/örtülü girişlerde eski gömük kapı şablonunu bastır. Nihai terrace yüzeyinden sonra tekrar eşleştir; kaynak kayıtlarını değiştirme.
+- [ ] Mevcut temel eteği algoritmasını 350m görsel bölgeye genişlet; kaynak sınırları içindeki küçük boşlukları aynı fiziksel prizmalarla kapat. Mevcut 1.4m döşeme çevresini aynı bölgeye genişlet; araziyi taşımadan tek yüzey bölüştürmesi, yol/su/sahil/kaynak yüzeyler korunur. Gereksiz eşya/merdiven eklenmez.
+- [ ] RED→GREEN saf/gerçek sahne testleri; eski çekirdek/source/temas/worker doğrulaması, tek freshreview, tam Node22/infra/12rota. GL/GPU altı bölge+stadyum karşılaştırması ve yeni görünür180s delta.
+- [ ] Model/saha sınırları ve eski insan reddi korunarak main/app-only AWS,470+ kaynak SHA/HTTPS/WSS/nativeDISARM0, kayıt/notes/yalnız sahipli scratch kapanışı. Yeni kullanıcı ve fizikselTX15 kabulü yapılmadı kalır.

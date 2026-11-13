@@ -1,0 +1,162 @@
+{
+  "status": "complete",
+  "hiddenMs": 0,
+  "backend": "webgl",
+  "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+  "renderSize": [
+    1280,
+    720
+  ],
+  "quality": "medium",
+  "buildMs": 46058.19999998808,
+  "durationSeconds": 180.0029,
+  "scope": "Actual scene + desktop medium shadows1024,AA and composer at fixed1280x720; static regional cameras; not full app/manual or physics flight acceptance",
+  "mainThreadPreparationTasks": [
+    {
+      "start": 46474.5,
+      "duration": 365
+    },
+    {
+      "start": 101313.09999999404,
+      "duration": 165
+    },
+    {
+      "start": 150372.69999998808,
+      "duration": 185
+    }
+  ],
+  "regions": [
+    {
+      "id": "S1",
+      "renderer": {
+        "render": {
+          "frame": 5500,
+          "calls": 1,
+          "triangles": 1,
+          "points": 0,
+          "lines": 0
+        },
+        "memory": {
+          "geometries": 62,
+          "textures": 82
+        },
+        "jsHeapUsedBytes": 429272029
+      },
+      "durationSeconds": 26.999600000000036,
+      "frames": 1620,
+      "fps": 60.00088890205773,
+      "low1PercentFps": 53.44231373778798,
+      "maxFrameMs": 18.800000000017462
+    },
+    {
+      "id": "S2",
+      "renderer": {
+        "render": {
+          "frame": 10903,
+          "calls": 1,
+          "triangles": 1,
+          "points": 0,
+          "lines": 0
+        },
+        "memory": {
+          "geometries": 62,
+          "textures": 82
+        },
+        "jsHeapUsedBytes": 428651961
+      },
+      "durationSeconds": 30.001099999999976,
+      "frames": 1800,
+      "fps": 59.99780008066376,
+      "low1PercentFps": 53.41246290798419,
+      "maxFrameMs": 18.800000000046566
+    },
+    {
+      "id": "S3",
+      "renderer": {
+        "render": {
+          "frame": 16306,
+          "calls": 1,
+          "triangles": 1,
+          "points": 0,
+          "lines": 0
+        },
+        "memory": {
+          "geometries": 62,
+          "textures": 82
+        },
+        "jsHeapUsedBytes": 430960472
+      },
+      "durationSeconds": 29.998099999999976,
+      "frames": 1800,
+      "fps": 60.003800240681954,
+      "low1PercentFps": 53.47593582884372,
+      "maxFrameMs": 18.70000000001164
+    },
+    {
+      "id": "S4",
+      "renderer": {
+        "render": {
+          "frame": 21709,
+          "calls": 1,
+          "triangles": 1,
+          "points": 0,
+          "lines": 0
+        },
+        "memory": {
+          "geometries": 62,
+          "textures": 82
+        },
+        "jsHeapUsedBytes": 429346881
+      },
+      "durationSeconds": 30.00120000000001,
+      "frames": 1800,
+      "fps": 59.997600095996134,
+      "low1PercentFps": 53.47593582884372,
+      "maxFrameMs": 18.70000000001164
+    },
+    {
+      "id": "S5",
+      "renderer": {
+        "render": {
+          "frame": 27112,
+          "calls": 1,
+          "triangles": 1,
+          "points": 0,
+          "lines": 0
+        },
+        "memory": {
+          "geometries": 62,
+          "textures": 82
+        },
+        "jsHeapUsedBytes": 432553328
+      },
+      "durationSeconds": 29.998900000000024,
+      "frames": 1800,
+      "fps": 60.00220008066958,
+      "low1PercentFps": 53.731343283488734,
+      "maxFrameMs": 18.70000000001164
+    },
+    {
+      "id": "S6",
+      "renderer": {
+        "render": {
+          "frame": 32518,
+          "calls": 1,
+          "triangles": 1,
+          "points": 0,
+          "lines": 0
+        },
+        "memory": {
+          "geometries": 62,
+          "textures": 82
+        },
+        "jsHeapUsedBytes": 431257241
+      },
+      "durationSeconds": 30.01670000000001,
+      "frames": 1801,
+      "fps": 59.999933370423776,
+      "low1PercentFps": 53.44585091416159,
+      "maxFrameMs": 18.800000000046566
+    }
+  ]
+}

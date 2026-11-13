@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import {landcoverSampler} from './sile-landcover.js';
-import {terrainHeight} from './geo-terrain.js';
+import {terrainHeight,drapeTerrainTriangles} from './geo-terrain.js';
+import {buildingRoof} from './sile-roofs.js';
 import {refreshCoastalFacades}from './sile-building-view.js';
 import {coastalBuildings} from './sile-buildings.js';
 import {roadFieldIndex,segmentDistance} from './sile-neighbourhood.js';
@@ -11,6 +12,24 @@ export function groundedEntryProfile(item,profile,terrain){
  const a=r[edge],b=r[(edge+1)%r.length],entryY=terrainHeight(terrain,(a[0]+b[0])/2,(a[1]+b[1])/2);
  return {entryY,height:Math.max(item.height,entryY-item.base+4.5),evidence:'assumed'};
 }
+// Back-row houses use an assumed source height. Repair only that model, never
+// surveyed/tag-derived heights or terrain. Interior grid peaks matter as well
+// as footprint corners; keep roof drop within the same existing roof owner.
+export function districtBuildingClearance(item,terrain){
+ const unchanged={height:item.height,changed:false,deferred:false};
+ if(item.heightSource!=='assumed-7.5m'||item.height!==7.5)return {...unchanged,reason:'source-height-preserved'};
+ const r=item.rings?.[0];if(item.rings?.length!==1||!r||r.length<3||!r.every(p=>p.length===2&&p.every(Number.isFinite))||!Number.isFinite(item.base)||!terrain?.heights?.length)return {...unchanged,deferred:true,reason:'invalid-footprint-or-terrain'};
+ const faces=THREE.ShapeUtils.triangulateShape(r.map(p=>new THREE.Vector2(...p)),[]),flat=faces.flatMap(f=>f.flatMap(i=>[r[i][0],0,r[i][1]])),ys=drapeTerrainTriangles(terrain,flat,0).filter((_,i)=>i%3===1);
+ if(!ys.length||!ys.every(Number.isFinite))return {...unchanged,deferred:true,reason:'invalid-footprint-or-terrain'};
+ const maxGroundY=Math.max(...ys),required=maxGroundY+3;let height=item.height;
+ for(let i=0;i<8;i++){
+  const eaves=buildingRoof({...item,height})?.eaves??item.base+height;
+  if(eaves>=required-1e-8)return {height,changed:height>item.height,deferred:false,maxGroundY,eaves,minimumEavesClearanceM:3,evidence:'assumed'};
+  height=Math.ceil((height+required-eaves)*100-1e-9)/100;
+  if(height>20)return {...unchanged,deferred:true,maxGroundY,reason:'terrain-relief-exceeds-model-limit',evidence:'assumed'};
+ }
+ return {...unchanged,deferred:true,maxGroundY,reason:'clearance-convergence-limit',evidence:'assumed'};
+}
 export function completedSileData(data){
  if(data?.completionLayer!==1)return data;
  const profiles=coastalBuildings(data),changes=new Map();
@@ -18,7 +37,9 @@ export function completedSileData(data){
   const out=groundedEntryProfile(item,profile,data.terrain);
   if(out.entryY>item.base+.3)changes.set(item.id,{...item,entryY:out.entryY,height:out.height,heightSource:out.height>item.height?'terrain-clearance-assumption':item.heightSource});
  }
- return {...data,buildings:data.buildings.map(item=>changes.get(item.id)||item),completionDerived:{entries:changes.size,heightChanges:[...changes.values()].filter(item=>item.height!==data.buildings.find(b=>b.id===item.id).height).map(b=>b.id)}};
+ const districtCorrected=[],districtDeferred=[];
+ for(const p of coastalBuildings(data,{maxDistance:350}).values())if(p.distance>100){const out=districtBuildingClearance(p.item,data.terrain);if(out.changed){changes.set(p.item.id,{...p.item,height:out.height,heightSource:'terrain-clearance-assumption'});districtCorrected.push({sourceId:p.item.id,heightM:out.height,sourceHeightM:p.item.height,maxGroundY:out.maxGroundY,minimumEavesClearanceM:3});}else if(out.deferred)districtDeferred.push({sourceId:p.item.id,reason:out.reason});}
+ return {...data,buildings:data.buildings.map(item=>changes.get(item.id)||item),completionDerived:{entries:[...changes.values()].filter(b=>Number.isFinite(b.entryY)).length,districtClearance:{corrected:districtCorrected,deferred:districtDeferred,maximumAssumedHeightM:20,measured:false},heightChanges:[...changes.values()].filter(item=>item.height!==data.buildings.find(b=>b.id===item.id).height).map(b=>b.id)}};
 }
 const coastIndexes=new WeakMap();
 function coastIndex(terrain){

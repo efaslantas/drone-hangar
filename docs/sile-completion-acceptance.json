@@ -1,6 +1,6 @@
 {
-  "date": "2026-11-10",
-  "status": "Published2.59surface follow-up verified;900s baseline remains2.58, new180sdelta verified; human acceptance pending",
+  "date": "2026-11-13",
+  "status": "Verified2.60back-row clearance follow-up; publication and new human acceptance pending",
   "inventoryVersion": 1,
   "sourceSnapshotKey": "1147718:d3dd4d94:81685aaa",
   "baseline": "v2.57.0-e89963741523",
@@ -39,10 +39,10 @@
         "appearance": {
           "status": "pass",
           "evidence": [
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S1-sea-webgl.jpg",
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S1-sea-webgpu.jpg",
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S1-land-webgl.jpg",
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S1-land-webgpu.jpg",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-260-S1-sea-webgl.jpg",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-260-S1-sea-webgpu.jpg",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-260-S1-land-webgl.jpg",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-260-S1-land-webgpu.jpg",
             "Native rendering/software inspection, not individual photographic resemblance or human acceptance."
           ]
         },
@@ -99,10 +99,10 @@
         "appearance": {
           "status": "pass",
           "evidence": [
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S2-sea-webgl.jpg",
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S2-sea-webgpu.jpg",
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S2-land-webgl.jpg",
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S2-land-webgpu.jpg",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-260-S2-sea-webgl.jpg",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-260-S2-sea-webgpu.jpg",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-260-S2-land-webgl.jpg",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-260-S2-land-webgpu.jpg",
             "Native rendering/software inspection, not individual photographic resemblance or human acceptance."
           ]
         },
@@ -159,10 +159,10 @@
         "appearance": {
           "status": "pass",
           "evidence": [
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S3-sea-webgl.jpg",
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S3-sea-webgpu.jpg",
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S3-land-webgl.jpg",
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S3-land-webgpu.jpg",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-260-S3-sea-webgl.jpg",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-260-S3-sea-webgpu.jpg",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-260-S3-land-webgl.jpg",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-260-S3-land-webgpu.jpg",
             "Native rendering/software inspection, not individual photographic resemblance or human acceptance."
           ]
         },
@@ -219,10 +219,10 @@
         "appearance": {
           "status": "pass",
           "evidence": [
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S4-sea-webgl.jpg",
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S4-sea-webgpu.jpg",
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S4-land-webgl.jpg",
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S4-land-webgpu.jpg",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-260-S4-sea-webgl.jpg",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-260-S4-sea-webgpu.jpg",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-260-S4-land-webgl.jpg",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-260-S4-land-webgpu.jpg",
             "Native rendering/software inspection, not individual photographic resemblance or human acceptance."
           ]
         },
@@ -279,10 +279,10 @@
         "appearance": {
           "status": "pass",
           "evidence": [
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S5-sea-webgl.jpg",
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S5-sea-webgpu.jpg",
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S5-land-webgl.jpg",
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S5-land-webgpu.jpg",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-260-S5-sea-webgl.jpg",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-260-S5-sea-webgpu.jpg",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-260-S5-land-webgl.jpg",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-260-S5-land-webgpu.jpg",
             "Native rendering/software inspection, not individual photographic resemblance or human acceptance."
           ]
         },
@@ -339,10 +339,10 @@
         "appearance": {
           "status": "pass",
           "evidence": [
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S6-sea-webgl.jpg",
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S6-sea-webgpu.jpg",
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S6-land-webgl.jpg",
-            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S6-land-webgpu.jpg",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-260-S6-sea-webgl.jpg",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-260-S6-sea-webgpu.jpg",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-260-S6-land-webgl.jpg",
+            "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-260-S6-land-webgpu.jpg",
             "Native rendering/software inspection, not individual photographic resemblance or human acceptance."
           ]
         },
@@ -922,7 +922,7 @@
     ],
     "rendererStatsScope": "Actual per-frame renderer counters; not full composer aggregate or VRAM measurement. Separate full-composer frame diagnostics retained.",
     "measuredRelease": "v2.58.0-47520f3ee55f",
-    "historyNotice": "Actual900s2.58baseline; current2.59surface change uses new180scheck in followups.grounds259.performance. Never relabel this run as2.59."
+    "historyNotice": "Actual900s2.58baseline; current2.60clearance change uses new180scheck in followups.clearance260.performance. Never relabel this run as2.60."
   },
   "physicalTX15": {
     "status": "not-run",
@@ -930,24 +930,30 @@
   },
   "humanAcceptance": {
     "status": "not-run",
-    "scope": "New2.59user map/flight acceptance pending",
+    "scope": "New2.60user map/flight acceptance pending",
     "previousResults": [
       {
         "status": "not-run",
-        "scope": "New2.58 user resemblance and flight acceptance pending",
+        "scope": "New2.59user map/flight acceptance pending",
         "previousResults": [
           {
-            "status": "fail",
-            "release": "v2.57.0-e89963741523",
-            "date": "2026-11-10",
-            "feedback": "Sahil bölgesi hâlâ boş; tam Şile değil.",
-            "scope": "User visual feedback; prior automated software acceptance is not visual approval."
+            "status": "not-run",
+            "scope": "New2.58 user resemblance and flight acceptance pending",
+            "previousResults": [
+              {
+                "status": "fail",
+                "release": "v2.57.0-e89963741523",
+                "date": "2026-11-10",
+                "feedback": "Sahil bölgesi hâlâ boş; tam Şile değil.",
+                "scope": "User visual feedback; prior automated software acceptance is not visual approval."
+              }
+            ],
+            "release": "v2.58.0-47520f3ee55f"
           }
         ],
-        "release": "v2.58.0-47520f3ee55f"
+        "release": "v2.59.0-01f8df881bcb"
       }
-    ],
-    "release": "v2.59.0-01f8df881bcb"
+    ]
   },
   "limits": [
     "31mDSM and most building heights remain unmeasured; representative scene, not surveyed digital twin.",
@@ -957,7 +963,10 @@
     "ESA WorldCover2021v200 categorical land cover is not a current tree inventory. Authored spacing, species, heights, parking paint and420summer umbrella suites are representative.",
     "No new fish-market row placed without reliable footprints or local bare-earth terrain; source missing coastal structures remain open.",
     "Whole-load50ms target remains unmet:362ms first composer/GPU task observed.43.02s load was under concurrent CPU tests and is not a controlled comparison with older10.97s or33.7s captures.",
-    "2.58actual900s performance is historical baseline; new2.59surface change uses180svisible6regioncheck. PhysicalTX15 and newhuman acceptance not run."
+    "Only source assumed7.5m buildings repaired; explicit heights preserved.",
+    "Core135profiles/104entries/24prior height assumptions retained. Back-row door grounding is outside this correction.",
+    "DSM is approximate; corrected skyline heights are modeling choices, not measured building heights.",
+    "Original900s2.58 performance remains historical; this change uses a new180s visible delta. PhysicalTX15/new human acceptance not run."
   ],
   "device": "Apple M4 Mac mini; native Chrome; browser version in performance.userAgent",
   "scopeDecisions": [
@@ -980,257 +989,67 @@
   ],
   "verification": {
     "node22Arm64": {
-      "passed": 649,
+      "passed": 655,
       "failed": 0,
-      "durationMs": 291855.997166
+      "durationMs": 220568.058163
     },
     "infrastructure": {
       "passed": 11,
       "failed": 0
     },
-    "focused": {
-      "passed": 7,
+    "routes": {
+      "passed": 12,
       "failed": 0
     },
-    "compatibility": {
-      "passed": 16,
-      "failed": 0
-    },
-    "review": "Fresh review no actionable findings; native/perf/live remain root verification."
+    "review": "Fresh review P2 exact20m-cap rounding fixed with observed red/green regression; no other findings."
   },
   "screenshots": [
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S1-sea-webgl.jpg",
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S1-sea-webgpu.jpg",
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S1-land-webgl.jpg",
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S1-land-webgpu.jpg",
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S2-sea-webgl.jpg",
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S2-sea-webgpu.jpg",
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S2-land-webgl.jpg",
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S2-land-webgpu.jpg",
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S3-sea-webgl.jpg",
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S3-sea-webgpu.jpg",
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S3-land-webgl.jpg",
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S3-land-webgpu.jpg",
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S4-sea-webgl.jpg",
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S4-sea-webgpu.jpg",
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S4-land-webgl.jpg",
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S4-land-webgpu.jpg",
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S5-sea-webgl.jpg",
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S5-sea-webgpu.jpg",
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S5-land-webgl.jpg",
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S5-land-webgpu.jpg",
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S6-sea-webgl.jpg",
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S6-sea-webgpu.jpg",
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S6-land-webgl.jpg",
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-S6-land-webgpu.jpg",
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-stadium-webgl.jpg",
-    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-stadium-webgpu.jpg"
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-260-S1-sea-webgl.jpg",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-260-S1-sea-webgpu.jpg",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-260-S1-land-webgl.jpg",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-260-S1-land-webgpu.jpg",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-260-S2-sea-webgl.jpg",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-260-S2-sea-webgpu.jpg",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-260-S2-land-webgl.jpg",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-260-S2-land-webgpu.jpg",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-260-S3-sea-webgl.jpg",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-260-S3-sea-webgpu.jpg",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-260-S3-land-webgl.jpg",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-260-S3-land-webgpu.jpg",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-260-S4-sea-webgl.jpg",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-260-S4-sea-webgpu.jpg",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-260-S4-land-webgl.jpg",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-260-S4-land-webgpu.jpg",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-260-S5-sea-webgl.jpg",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-260-S5-sea-webgpu.jpg",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-260-S5-land-webgl.jpg",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-260-S5-land-webgpu.jpg",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-260-S6-sea-webgl.jpg",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-260-S6-sea-webgpu.jpg",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-260-S6-land-webgl.jpg",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-260-S6-land-webgpu.jpg",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-260-stadium-webgl.jpg",
+    "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-260-stadium-webgpu.jpg"
   ],
   "wholeFrameDiagnostics": [
     {
       "loadStages": {
-        "startedAt": 282.2000000178814,
-        "worldReadyAt": 42141.20000001788,
-        "assetsReadyAt": 42167.30000001192
+        "startedAt": 416.40000000596046,
+        "worldReadyAt": 46429.5,
+        "assetsReadyAt": 46474.59999999404
       },
       "longTasks": [
         {
-          "start": 42166.90000000596,
-          "duration": 266
-        }
-      ],
-      "region": "S1",
-      "camera": "0",
-      "backend": "webgl",
-      "renderSize": [
-        1280,
-        720
-      ],
-      "quality": "medium",
-      "scope": "Single actual whole composer frame, all passes aggregated; not sustained frame-time benchmark",
-      "render": {
-        "frame": 46,
-        "calls": 48,
-        "triangles": 1497700,
-        "points": 0,
-        "lines": 0
-      },
-      "memory": {
-        "geometries": 35,
-        "textures": 46
-      },
-      "jsHeapUsedBytes": 428281107
-    },
-    {
-      "loadStages": {
-        "startedAt": 282.2000000178814,
-        "worldReadyAt": 42141.20000001788,
-        "assetsReadyAt": 42167.30000001192
-      },
-      "longTasks": [
-        {
-          "start": 42166.90000000596,
-          "duration": 266
+          "start": 46474.5,
+          "duration": 365
         },
         {
-          "start": 112406.90000000596,
-          "duration": 137
-        }
-      ],
-      "region": "S2",
-      "camera": "0",
-      "backend": "webgl",
-      "renderSize": [
-        1280,
-        720
-      ],
-      "quality": "medium",
-      "scope": "Single actual whole composer frame, all passes aggregated; not sustained frame-time benchmark",
-      "render": {
-        "frame": 55,
-        "calls": 116,
-        "triangles": 1738022,
-        "points": 0,
-        "lines": 0
-      },
-      "memory": {
-        "geometries": 62,
-        "textures": 82
-      },
-      "jsHeapUsedBytes": 430430124
-    },
-    {
-      "loadStages": {
-        "startedAt": 282.2000000178814,
-        "worldReadyAt": 42141.20000001788,
-        "assetsReadyAt": 42167.30000001192
-      },
-      "longTasks": [
-        {
-          "start": 42166.90000000596,
-          "duration": 266
-        },
-        {
-          "start": 112406.90000000596,
-          "duration": 137
-        }
-      ],
-      "region": "S3",
-      "camera": "0",
-      "backend": "webgl",
-      "renderSize": [
-        1280,
-        720
-      ],
-      "quality": "medium",
-      "scope": "Single actual whole composer frame, all passes aggregated; not sustained frame-time benchmark",
-      "render": {
-        "frame": 64,
-        "calls": 126,
-        "triangles": 1794134,
-        "points": 0,
-        "lines": 0
-      },
-      "memory": {
-        "geometries": 62,
-        "textures": 82
-      },
-      "jsHeapUsedBytes": 430081048
-    },
-    {
-      "loadStages": {
-        "startedAt": 282.2000000178814,
-        "worldReadyAt": 42141.20000001788,
-        "assetsReadyAt": 42167.30000001192
-      },
-      "longTasks": [
-        {
-          "start": 42166.90000000596,
-          "duration": 266
-        },
-        {
-          "start": 112406.90000000596,
-          "duration": 137
-        }
-      ],
-      "region": "S4",
-      "camera": "0",
-      "backend": "webgl",
-      "renderSize": [
-        1280,
-        720
-      ],
-      "quality": "medium",
-      "scope": "Single actual whole composer frame, all passes aggregated; not sustained frame-time benchmark",
-      "render": {
-        "frame": 73,
-        "calls": 111,
-        "triangles": 1705594,
-        "points": 0,
-        "lines": 0
-      },
-      "memory": {
-        "geometries": 62,
-        "textures": 82
-      },
-      "jsHeapUsedBytes": 429423152
-    },
-    {
-      "loadStages": {
-        "startedAt": 282.2000000178814,
-        "worldReadyAt": 42141.20000001788,
-        "assetsReadyAt": 42167.30000001192
-      },
-      "longTasks": [
-        {
-          "start": 42166.90000000596,
-          "duration": 266
-        },
-        {
-          "start": 112406.90000000596,
-          "duration": 137
-        }
-      ],
-      "region": "S5",
-      "camera": "0",
-      "backend": "webgl",
-      "renderSize": [
-        1280,
-        720
-      ],
-      "quality": "medium",
-      "scope": "Single actual whole composer frame, all passes aggregated; not sustained frame-time benchmark",
-      "render": {
-        "frame": 82,
-        "calls": 82,
-        "triangles": 1630186,
-        "points": 0,
-        "lines": 0
-      },
-      "memory": {
-        "geometries": 62,
-        "textures": 82
-      },
-      "jsHeapUsedBytes": 430206334
-    },
-    {
-      "loadStages": {
-        "startedAt": 282.2000000178814,
-        "worldReadyAt": 42141.20000001788,
-        "assetsReadyAt": 42167.30000001192
-      },
-      "longTasks": [
-        {
-          "start": 42166.90000000596,
-          "duration": 266
-        },
-        {
-          "start": 112406.90000000596,
-          "duration": 137
+          "start": 101313.09999999404,
+          "duration": 165
         }
       ],
       "region": "S6",
-      "camera": "0",
+      "camera": "1",
       "backend": "webgl",
       "renderSize": [
         1280,
@@ -1239,9 +1058,9 @@
       "quality": "medium",
       "scope": "Single actual whole composer frame, all passes aggregated; not sustained frame-time benchmark",
       "render": {
-        "frame": 91,
-        "calls": 54,
-        "triangles": 1498763,
+        "frame": 97,
+        "calls": 110,
+        "triangles": 1670788,
         "points": 0,
         "lines": 0
       },
@@ -1249,85 +1068,56 @@
         "geometries": 62,
         "textures": 82
       },
-      "jsHeapUsedBytes": 429319985
+      "jsHeapUsedBytes": 430464696
+    },
+    {
+      "loadStages": {
+        "startedAt": 483.7000000178814,
+        "worldReadyAt": 47395.80000001192,
+        "assetsReadyAt": 47431.80000001192
+      },
+      "longTasks": [
+        {
+          "start": 511.59999999403954,
+          "duration": 155
+        },
+        {
+          "start": 47423.90000000596,
+          "duration": 788
+        },
+        {
+          "start": 96157.70000001788,
+          "duration": 714
+        }
+      ],
+      "region": "S6",
+      "camera": "1",
+      "backend": "webgpu",
+      "renderSize": [
+        1280,
+        720
+      ],
+      "quality": "medium",
+      "scope": "Single actual whole composer frame, all passes aggregated; not sustained frame-time benchmark",
+      "render": {
+        "calls": 371,
+        "frameCalls": 17,
+        "drawCalls": 123,
+        "triangles": 1670801,
+        "points": 0,
+        "lines": 0,
+        "timestamp": 0
+      },
+      "memory": {
+        "geometries": 63,
+        "textures": 103
+      },
+      "jsHeapUsedBytes": 482632197
     }
   ],
   "delivery": {
-    "status": "published",
-    "release": "v2.59.0-01f8df881bcb",
-    "image": {
-      "release": "v2.59.0-01f8df881bcb",
-      "imageId": "sha256:dd49a978fedbd8b2449b878a31b4f4ff607e60adacb112f9dfa8be04e8298cce",
-      "archiveSha256": "5ce9380d4f6ea69c4788f09985d1a1ef2954615918ffd673869f741b740775b2",
-      "archiveBytes": 144843094,
-      "architecture": "arm64",
-      "sourceFiles": 467
-    },
-    "sourceFiles": 467,
-    "preservedSourceFiles": {
-      "public/maps/sile/map.json": "5564a34bbf1573152f5e1a93d1de4d01895eb4021483d2e03fae761341717a11",
-      "public/maps/sile/source-osm.json": "b860868c8cbc075b2d7b8936aa95d95b452eb244c47d8e03d66bd98f1e87f59a",
-      "public/maps/sile/source-dem.tif": "c1d9b4576412ef8f3e791ee23eff2db1a4c6ac1684b98c92bbafbc3cde380743",
-      "src/rc-setup.js": "1bb07e0d440d54cd2006763b108386b22115651ec1e57ceba6c2d94964814c26",
-      "tests/rc-setup.test.js": "7a038dfcbf536ac3b18c3ac74f146b32007f9aa132cd889da440d8eed4082880"
-    },
-    "changedDerivedData": [
-      "context sports footprints",
-      "sports and quay visual metadata",
-      "stadium QA camera"
-    ],
-    "https": {
-      "release": "v2.59.0-01f8df881bcb",
-      "entryAssets": 5,
-      "uniqueIds": 253,
-      "appVersion": "2.59.0",
-      "lazyGpuChunks": [
-        "gfx-webgpu-BPv6_-0D.js"
-      ],
-      "sceneWorkerChunks": [
-        "sile-scene-worker-BVKxR1zO.js"
-      ],
-      "liveSkyOrderFix": true,
-      "mapAndSourceSha256": "pass"
-    },
-    "websocket": {
-      "clients": 2,
-      "join": "pass",
-      "state": "pass",
-      "leave": "pass"
-    },
-    "remote": {
-      "Status": "Success",
-      "StandardOutputContent": "Running image source hashes: 139 OK\ndrone-hangar | 23.37MiB / 256MiB | 0.15%\n{\"running\": true, \"restarts\": 0, \"readonly\": true, \"user\": \"1000:1000\", \"image\": \"sha256:dd49a978fedbd8b2449b878a31b4f4ff607e60adacb112f9dfa8be04e8298cce\"}\nSeven tenants/nginx unchanged; old container/data backup retained\nhttps://zenth.finance/ 200\nhttps://api.zenth.finance/health 200\nGelisim TLS origin 200\n",
-      "StandardErrorContent": "nginx: the configuration file /etc/nginx/nginx.conf syntax is ok\nnginx: configuration file /etc/nginx/nginx.conf test is successful\n"
-    },
-    "nativeLive": {
-      "release": "v2.59.0-01f8df881bcb",
-      "state": "- text: ✓ ✓ ✓ ✓\n- generic: Şile · veri tabanlı taslak\n- link \"© OpenStreetMap contributors · ODbL\":\n  - /url: https://www.openstreetmap.org/copyright\n- text: · Copernicus DEM ·\n- link \"Microsoft / Overture Maps · ODbL\":\n  - /url: https://overturemaps.org/\n- text: ·\n- link \"ESA WorldCover 2021 · CC BY 4.0\":\n  - /url: /sile.html\n- link \"Kaynaklar / yükseklik varsayımları ↗\":\n  - /url: /sile.html\n- generic: 0 km/h\n- generic: 0 m AGL\n- generic: BAT\n- generic: DISARM\n- generic: REF 4M · ACRO · REAL\n- button \"ARM\"\n- button \"CAM\"\n- button \"MOD\"\n- button \"KONTROL\"\n- button \"MENÜ\"",
-      "screenshot": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-live.jpg",
-      "errors": [
-        {
-          "level": "error",
-          "message": "Error: A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received",
-          "timestamp": "2026-11-10T07:41:43.589Z",
-          "url": "https://hangar.18-153-158-209.sslip.io/"
-        },
-        {
-          "level": "error",
-          "message": "Error: A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received",
-          "timestamp": "2026-11-10T07:41:43.589Z",
-          "url": "https://hangar.18-153-158-209.sslip.io/"
-        },
-        {
-          "level": "error",
-          "message": "Error: A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received",
-          "timestamp": "2026-11-10T07:41:43.590Z",
-          "url": "https://hangar.18-153-158-209.sslip.io/"
-        }
-      ],
-      "verifiedDisarmGroundZero": true,
-      "scope": "Live new release opens5inchREF4MREALDISARM0speed0AGL; not physicalTX15 or human visual acceptance."
-    }
+    "status": "pending",
+    "baseline": "v2.59.0-01f8df881bcb"
   },
   "followups": {
     "loading257": {
@@ -2431,6 +2221,420 @@
           "scope": "Live new release opens5inchREF4MREALDISARM0speed0AGL; not physicalTX15 or human visual acceptance."
         }
       }
+    },
+    "clearance260": {
+      "status": "software-verified; publication pending",
+      "date": "2026-11-13",
+      "scope": "107 assumed-height back-row buildings100–350m coastal band; full footprint DSM eaves clearance3m, model cap20m; no surveyed heights/base/footprint/terrain changes",
+      "modelAudit": {
+        "total": 680,
+        "backRows": 545,
+        "buried": 0,
+        "under3m": 0,
+        "corrected": 107,
+        "deferred": [],
+        "maximumAssumedHeight": 16.32,
+        "minimumCorrectedClearance": 3.000183365550569,
+        "coreCount": 135,
+        "coreEntries": 104,
+        "sourceUnchanged": true,
+        "measured": false
+      },
+      "modelMetadata": "public/maps/sile/building-clearance-visuals.json",
+      "performance": {
+        "status": "complete",
+        "hiddenMs": 0,
+        "backend": "webgl",
+        "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+        "renderSize": [
+          1280,
+          720
+        ],
+        "quality": "medium",
+        "buildMs": 46058.19999998808,
+        "durationSeconds": 180.0029,
+        "scope": "Actual scene + desktop medium shadows1024,AA and composer at fixed1280x720; static regional cameras; not full app/manual or physics flight acceptance",
+        "mainThreadPreparationTasks": [
+          {
+            "start": 46474.5,
+            "duration": 365
+          },
+          {
+            "start": 101313.09999999404,
+            "duration": 165
+          },
+          {
+            "start": 150372.69999998808,
+            "duration": 185
+          }
+        ],
+        "regions": [
+          {
+            "id": "S1",
+            "renderer": {
+              "render": {
+                "frame": 5500,
+                "calls": 1,
+                "triangles": 1,
+                "points": 0,
+                "lines": 0
+              },
+              "memory": {
+                "geometries": 62,
+                "textures": 82
+              },
+              "jsHeapUsedBytes": 429272029
+            },
+            "durationSeconds": 26.999600000000036,
+            "frames": 1620,
+            "fps": 60.00088890205773,
+            "low1PercentFps": 53.44231373778798,
+            "maxFrameMs": 18.800000000017462
+          },
+          {
+            "id": "S2",
+            "renderer": {
+              "render": {
+                "frame": 10903,
+                "calls": 1,
+                "triangles": 1,
+                "points": 0,
+                "lines": 0
+              },
+              "memory": {
+                "geometries": 62,
+                "textures": 82
+              },
+              "jsHeapUsedBytes": 428651961
+            },
+            "durationSeconds": 30.001099999999976,
+            "frames": 1800,
+            "fps": 59.99780008066376,
+            "low1PercentFps": 53.41246290798419,
+            "maxFrameMs": 18.800000000046566
+          },
+          {
+            "id": "S3",
+            "renderer": {
+              "render": {
+                "frame": 16306,
+                "calls": 1,
+                "triangles": 1,
+                "points": 0,
+                "lines": 0
+              },
+              "memory": {
+                "geometries": 62,
+                "textures": 82
+              },
+              "jsHeapUsedBytes": 430960472
+            },
+            "durationSeconds": 29.998099999999976,
+            "frames": 1800,
+            "fps": 60.003800240681954,
+            "low1PercentFps": 53.47593582884372,
+            "maxFrameMs": 18.70000000001164
+          },
+          {
+            "id": "S4",
+            "renderer": {
+              "render": {
+                "frame": 21709,
+                "calls": 1,
+                "triangles": 1,
+                "points": 0,
+                "lines": 0
+              },
+              "memory": {
+                "geometries": 62,
+                "textures": 82
+              },
+              "jsHeapUsedBytes": 429346881
+            },
+            "durationSeconds": 30.00120000000001,
+            "frames": 1800,
+            "fps": 59.997600095996134,
+            "low1PercentFps": 53.47593582884372,
+            "maxFrameMs": 18.70000000001164
+          },
+          {
+            "id": "S5",
+            "renderer": {
+              "render": {
+                "frame": 27112,
+                "calls": 1,
+                "triangles": 1,
+                "points": 0,
+                "lines": 0
+              },
+              "memory": {
+                "geometries": 62,
+                "textures": 82
+              },
+              "jsHeapUsedBytes": 432553328
+            },
+            "durationSeconds": 29.998900000000024,
+            "frames": 1800,
+            "fps": 60.00220008066958,
+            "low1PercentFps": 53.731343283488734,
+            "maxFrameMs": 18.70000000001164
+          },
+          {
+            "id": "S6",
+            "renderer": {
+              "render": {
+                "frame": 32518,
+                "calls": 1,
+                "triangles": 1,
+                "points": 0,
+                "lines": 0
+              },
+              "memory": {
+                "geometries": 62,
+                "textures": 82
+              },
+              "jsHeapUsedBytes": 431257241
+            },
+            "durationSeconds": 30.01670000000001,
+            "frames": 1801,
+            "fps": 59.999933370423776,
+            "low1PercentFps": 53.44585091416159,
+            "maxFrameMs": 18.800000000046566
+          }
+        ]
+      },
+      "verification": {
+        "node22Arm64": {
+          "passed": 655,
+          "failed": 0,
+          "durationMs": 220568.058163
+        },
+        "infrastructure": {
+          "passed": 11,
+          "failed": 0
+        },
+        "routes": {
+          "passed": 12,
+          "failed": 0
+        },
+        "review": "Fresh review P2 exact20m-cap rounding fixed with observed red/green regression; no other findings."
+      },
+      "previousDelivery": {
+        "status": "published",
+        "release": "v2.59.0-01f8df881bcb",
+        "image": {
+          "release": "v2.59.0-01f8df881bcb",
+          "imageId": "sha256:dd49a978fedbd8b2449b878a31b4f4ff607e60adacb112f9dfa8be04e8298cce",
+          "archiveSha256": "5ce9380d4f6ea69c4788f09985d1a1ef2954615918ffd673869f741b740775b2",
+          "archiveBytes": 144843094,
+          "architecture": "arm64",
+          "sourceFiles": 467
+        },
+        "sourceFiles": 467,
+        "preservedSourceFiles": {
+          "public/maps/sile/map.json": "5564a34bbf1573152f5e1a93d1de4d01895eb4021483d2e03fae761341717a11",
+          "public/maps/sile/source-osm.json": "b860868c8cbc075b2d7b8936aa95d95b452eb244c47d8e03d66bd98f1e87f59a",
+          "public/maps/sile/source-dem.tif": "c1d9b4576412ef8f3e791ee23eff2db1a4c6ac1684b98c92bbafbc3cde380743",
+          "src/rc-setup.js": "1bb07e0d440d54cd2006763b108386b22115651ec1e57ceba6c2d94964814c26",
+          "tests/rc-setup.test.js": "7a038dfcbf536ac3b18c3ac74f146b32007f9aa132cd889da440d8eed4082880"
+        },
+        "changedDerivedData": [
+          "context sports footprints",
+          "sports and quay visual metadata",
+          "stadium QA camera"
+        ],
+        "https": {
+          "release": "v2.59.0-01f8df881bcb",
+          "entryAssets": 5,
+          "uniqueIds": 253,
+          "appVersion": "2.59.0",
+          "lazyGpuChunks": [
+            "gfx-webgpu-BPv6_-0D.js"
+          ],
+          "sceneWorkerChunks": [
+            "sile-scene-worker-BVKxR1zO.js"
+          ],
+          "liveSkyOrderFix": true,
+          "mapAndSourceSha256": "pass"
+        },
+        "websocket": {
+          "clients": 2,
+          "join": "pass",
+          "state": "pass",
+          "leave": "pass"
+        },
+        "remote": {
+          "Status": "Success",
+          "StandardOutputContent": "Running image source hashes: 139 OK\ndrone-hangar | 23.37MiB / 256MiB | 0.15%\n{\"running\": true, \"restarts\": 0, \"readonly\": true, \"user\": \"1000:1000\", \"image\": \"sha256:dd49a978fedbd8b2449b878a31b4f4ff607e60adacb112f9dfa8be04e8298cce\"}\nSeven tenants/nginx unchanged; old container/data backup retained\nhttps://zenth.finance/ 200\nhttps://api.zenth.finance/health 200\nGelisim TLS origin 200\n",
+          "StandardErrorContent": "nginx: the configuration file /etc/nginx/nginx.conf syntax is ok\nnginx: configuration file /etc/nginx/nginx.conf test is successful\n"
+        },
+        "nativeLive": {
+          "release": "v2.59.0-01f8df881bcb",
+          "state": "- text: ✓ ✓ ✓ ✓\n- generic: Şile · veri tabanlı taslak\n- link \"© OpenStreetMap contributors · ODbL\":\n  - /url: https://www.openstreetmap.org/copyright\n- text: · Copernicus DEM ·\n- link \"Microsoft / Overture Maps · ODbL\":\n  - /url: https://overturemaps.org/\n- text: ·\n- link \"ESA WorldCover 2021 · CC BY 4.0\":\n  - /url: /sile.html\n- link \"Kaynaklar / yükseklik varsayımları ↗\":\n  - /url: /sile.html\n- generic: 0 km/h\n- generic: 0 m AGL\n- generic: BAT\n- generic: DISARM\n- generic: REF 4M · ACRO · REAL\n- button \"ARM\"\n- button \"CAM\"\n- button \"MOD\"\n- button \"KONTROL\"\n- button \"MENÜ\"",
+          "screenshot": "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-259-live.jpg",
+          "errors": [
+            {
+              "level": "error",
+              "message": "Error: A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received",
+              "timestamp": "2026-11-10T07:41:43.589Z",
+              "url": "https://hangar.18-153-158-209.sslip.io/"
+            },
+            {
+              "level": "error",
+              "message": "Error: A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received",
+              "timestamp": "2026-11-10T07:41:43.589Z",
+              "url": "https://hangar.18-153-158-209.sslip.io/"
+            },
+            {
+              "level": "error",
+              "message": "Error: A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received",
+              "timestamp": "2026-11-10T07:41:43.590Z",
+              "url": "https://hangar.18-153-158-209.sslip.io/"
+            }
+          ],
+          "verifiedDisarmGroundZero": true,
+          "scope": "Live new release opens5inchREF4MREALDISARM0speed0AGL; not physicalTX15 or human visual acceptance."
+        }
+      },
+      "previousHumanAcceptance": {
+        "status": "not-run",
+        "scope": "New2.59user map/flight acceptance pending",
+        "previousResults": [
+          {
+            "status": "not-run",
+            "scope": "New2.58 user resemblance and flight acceptance pending",
+            "previousResults": [
+              {
+                "status": "fail",
+                "release": "v2.57.0-e89963741523",
+                "date": "2026-11-10",
+                "feedback": "Sahil bölgesi hâlâ boş; tam Şile değil.",
+                "scope": "User visual feedback; prior automated software acceptance is not visual approval."
+              }
+            ],
+            "release": "v2.58.0-47520f3ee55f"
+          }
+        ],
+        "release": "v2.59.0-01f8df881bcb"
+      },
+      "limits": [
+        "Only source assumed7.5m buildings repaired; explicit heights preserved.",
+        "Core135profiles/104entries/24prior height assumptions retained. Back-row door grounding is outside this correction.",
+        "DSM is approximate; corrected skyline heights are modeling choices, not measured building heights.",
+        "Original900s2.58 performance remains historical; this change uses a new180s visible delta. PhysicalTX15/new human acceptance not run."
+      ],
+      "screenshots": [
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-260-S1-sea-webgl.jpg",
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-260-S1-sea-webgpu.jpg",
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-260-S1-land-webgl.jpg",
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-260-S1-land-webgpu.jpg",
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-260-S2-sea-webgl.jpg",
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-260-S2-sea-webgpu.jpg",
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-260-S2-land-webgl.jpg",
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-260-S2-land-webgpu.jpg",
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-260-S3-sea-webgl.jpg",
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-260-S3-sea-webgpu.jpg",
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-260-S3-land-webgl.jpg",
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-260-S3-land-webgpu.jpg",
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-260-S4-sea-webgl.jpg",
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-260-S4-sea-webgpu.jpg",
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-260-S4-land-webgl.jpg",
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-260-S4-land-webgpu.jpg",
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-260-S5-sea-webgl.jpg",
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-260-S5-sea-webgpu.jpg",
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-260-S5-land-webgl.jpg",
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-260-S5-land-webgpu.jpg",
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-260-S6-sea-webgl.jpg",
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-260-S6-sea-webgpu.jpg",
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-260-S6-land-webgl.jpg",
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-260-S6-land-webgpu.jpg",
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-260-stadium-webgl.jpg",
+        "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-260-stadium-webgpu.jpg"
+      ],
+      "wholeFrameDiagnostics": [
+        {
+          "loadStages": {
+            "startedAt": 416.40000000596046,
+            "worldReadyAt": 46429.5,
+            "assetsReadyAt": 46474.59999999404
+          },
+          "longTasks": [
+            {
+              "start": 46474.5,
+              "duration": 365
+            },
+            {
+              "start": 101313.09999999404,
+              "duration": 165
+            }
+          ],
+          "region": "S6",
+          "camera": "1",
+          "backend": "webgl",
+          "renderSize": [
+            1280,
+            720
+          ],
+          "quality": "medium",
+          "scope": "Single actual whole composer frame, all passes aggregated; not sustained frame-time benchmark",
+          "render": {
+            "frame": 97,
+            "calls": 110,
+            "triangles": 1670788,
+            "points": 0,
+            "lines": 0
+          },
+          "memory": {
+            "geometries": 62,
+            "textures": 82
+          },
+          "jsHeapUsedBytes": 430464696
+        },
+        {
+          "loadStages": {
+            "startedAt": 483.7000000178814,
+            "worldReadyAt": 47395.80000001192,
+            "assetsReadyAt": 47431.80000001192
+          },
+          "longTasks": [
+            {
+              "start": 511.59999999403954,
+              "duration": 155
+            },
+            {
+              "start": 47423.90000000596,
+              "duration": 788
+            },
+            {
+              "start": 96157.70000001788,
+              "duration": 714
+            }
+          ],
+          "region": "S6",
+          "camera": "1",
+          "backend": "webgpu",
+          "renderSize": [
+            1280,
+            720
+          ],
+          "quality": "medium",
+          "scope": "Single actual whole composer frame, all passes aggregated; not sustained frame-time benchmark",
+          "render": {
+            "calls": 371,
+            "frameCalls": 17,
+            "drawCalls": 123,
+            "triangles": 1670801,
+            "points": 0,
+            "lines": 0,
+            "timestamp": 0
+          },
+          "memory": {
+            "geometries": 63,
+            "textures": 103
+          },
+          "jsHeapUsedBytes": 482632197
+        }
+      ]
     }
   }
 }

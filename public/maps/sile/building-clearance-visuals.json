@@ -1,0 +1,766 @@
+{
+  "version": "2.60",
+  "date": "2026-11-13",
+  "baseMapSnapshotKey": "1147718:d3dd4d94:81685aaa",
+  "source": "existing OSM footprints / assumed7.5m heights / approximate DSM",
+  "sourceBaseAndFootprintChanged": false,
+  "terrainChanged": false,
+  "measuredBuildingHeights": false,
+  "scope": "100–350m coastal backrows only; core135/104entries/24priorheightassumptions retained",
+  "minimumEavesClearanceM": 3,
+  "maximumAssumedHeightM": 20,
+  "notice": "Full source-footprint heightfield triangles include interior peaks. Model height includes existing roof drop and numerical centimetre rounding, not surveyed height precision. Explicit/tag-derived source heights preserved.",
+  "corrected": [
+    {
+      "sourceId": 342473976,
+      "heightM": 7.66,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 20.431143861001665,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 550130663,
+      "heightM": 7.59,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 22.913131071201594,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 549917821,
+      "heightM": 7.9,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 34.29463405561611,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 342473969,
+      "heightM": 8.29,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 19.774643300114718,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 1284813288,
+      "heightM": 11.24,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 27.573868751904673,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 342473973,
+      "heightM": 8.21,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 22.946138086131796,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 550135341,
+      "heightM": 7.96,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 12.831580534068172,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 550130665,
+      "heightM": 8.02,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 23.767843696208157,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 550116783,
+      "heightM": 7.89,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 20.40458640008255,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 549917845,
+      "heightM": 8.89,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 11.520674858390814,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 549917836,
+      "heightM": 9.61,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 35.3348261435082,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 550130711,
+      "heightM": 9.57,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 60.091887738765685,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 550130666,
+      "heightM": 10.61,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 24.07904949986835,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 550130667,
+      "heightM": 10.22,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 24.213386918922513,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 549998047,
+      "heightM": 7.7,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 42.72460690802034,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 342500951,
+      "heightM": 8.8,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 19.741492038210005,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 342501383,
+      "heightM": 8.72,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 34.59446470935708,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 342508116,
+      "heightM": 9.72,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 18.97697344028133,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 342501379,
+      "heightM": 9.13,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 28.403836304765125,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 342501388,
+      "heightM": 8.23,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 22.38758813751338,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 549920864,
+      "heightM": 10.86,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 35.52473077685345,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 816503358,
+      "heightM": 7.53,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 25.967752871912595,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 549920865,
+      "heightM": 9.69,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 35.24839819397667,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 549920866,
+      "heightM": 11.41,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 35.03122890843544,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 550130716,
+      "heightM": 8.62,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 55.02498420230276,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 549925582,
+      "heightM": 16.32,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 38.66651439165587,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 550130717,
+      "heightM": 9.7,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 52.283996888895246,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 342519923,
+      "heightM": 8.57,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 32.58935576726277,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 549925583,
+      "heightM": 12.27,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 10.486529557226547,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 549920867,
+      "heightM": 9.28,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 34.880436875645934,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 549925581,
+      "heightM": 12.81,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 40.66071980586811,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 342471179,
+      "heightM": 7.79,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 28.798872252553345,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 342471189,
+      "heightM": 8.02,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 31.852630972911435,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 549925580,
+      "heightM": 10.29,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 41.22277828994939,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 549920890,
+      "heightM": 8.7,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 9.762782446904525,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 342471181,
+      "heightM": 8.42,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 28.70227460856835,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 549920870,
+      "heightM": 9.82,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 33.643795672382616,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 342501004,
+      "heightM": 9.78,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 27.338079412163335,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 342471182,
+      "heightM": 8.45,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 28.30942327312981,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 549998033,
+      "heightM": 8.98,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 35.06998559669893,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 550130727,
+      "heightM": 7.8,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 52.606433907444234,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 549920891,
+      "heightM": 14.31,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 19.16306212731942,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 549998034,
+      "heightM": 8.19,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 39.82437285713589,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 549925579,
+      "heightM": 11.61,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 41.14686863998065,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 549925584,
+      "heightM": 10.93,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 44.42092170066775,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 342470904,
+      "heightM": 7.57,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 30.07998326072462,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 549920872,
+      "heightM": 8.99,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 32.45719105966093,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 549941941,
+      "heightM": 8.76,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 69.73189561469408,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 342501007,
+      "heightM": 10.44,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 33.25001223781246,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 549920873,
+      "heightM": 8.72,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 31.739783456505684,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 549925571,
+      "heightM": 11.61,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 42.11306108489476,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 549925585,
+      "heightM": 8.18,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 46.67889082265927,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 550130726,
+      "heightM": 7.92,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 53.11134723903755,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 549920874,
+      "heightM": 11.65,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 31.23478342664744,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 342470907,
+      "heightM": 7.78,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 26.01840563768702,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 549998067,
+      "heightM": 7.66,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 55.74733965395277,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 549941942,
+      "heightM": 12.11,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 71.14053847997172,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 549920875,
+      "heightM": 11.1,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 32.077475179158824,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 342471048,
+      "heightM": 7.58,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 23.360889961102803,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 549925570,
+      "heightM": 13.15,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 41.877367923081245,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 549925586,
+      "heightM": 10.3,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 49.93332543219225,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 549998087,
+      "heightM": 9.21,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 41.6968155429308,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 342500971,
+      "heightM": 7.9,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 24.663822675552442,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 342470884,
+      "heightM": 8.01,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 25.187526412189207,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 342501360,
+      "heightM": 7.63,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 29.064164431582263,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 549998084,
+      "heightM": 7.7,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 37.296502103049725,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 549920876,
+      "heightM": 9.92,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 32.54466666156549,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 549925587,
+      "heightM": 8.61,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 50.09152158900718,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 549920885,
+      "heightM": 10.18,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 23.121782084725805,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 1280524171,
+      "heightM": 10.66,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 44.565344213005524,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 549925569,
+      "heightM": 13.22,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 40.0893953880038,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 550130723,
+      "heightM": 8.33,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 57.28205310857716,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 549920877,
+      "heightM": 9.43,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 32.86065769502164,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 549920902,
+      "heightM": 13.4,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 34.13511398856481,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 342470883,
+      "heightM": 8.06,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 20.38729863053788,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 549925568,
+      "heightM": 12.4,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 38.7163742461191,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 1280524172,
+      "heightM": 9.55,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 53.052990402835626,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 550130740,
+      "heightM": 7.76,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 44.74772757924057,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 549920878,
+      "heightM": 9.49,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 32.66263277248283,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 549941944,
+      "heightM": 12.48,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 74.20657512100138,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 550130739,
+      "heightM": 11.31,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 47.87509670088538,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 550130774,
+      "heightM": 7.78,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 35.2703893931588,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 342471168,
+      "heightM": 10.06,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 38.20475407063133,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 549925593,
+      "heightM": 9.26,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 55.90243981981833,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 549925573,
+      "heightM": 9.34,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 46.44512233735783,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 549920900,
+      "heightM": 9.8,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 36.676487989501375,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 342500977,
+      "heightM": 10.91,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 38.06525407349959,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 549998089,
+      "heightM": 9.84,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 54.53298816798702,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 549925592,
+      "heightM": 8.7,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 55.152428021950215,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 549925591,
+      "heightM": 8.33,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 55.30837991813011,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 549920882,
+      "heightM": 8.3,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 33.84322555023153,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 549925590,
+      "heightM": 7.97,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 55.209160069614896,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 549941936,
+      "heightM": 7.87,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 74.52980197785718,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 549998026,
+      "heightM": 9.17,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 28.927806464891642,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 342500979,
+      "heightM": 7.72,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 31.835816634449436,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 549920883,
+      "heightM": 10.28,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 34.40163436388062,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 549920898,
+      "heightM": 8.89,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 36.6596317251769,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 549925589,
+      "heightM": 8.18,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 54.570584147200606,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 549920897,
+      "heightM": 9.99,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 36.678407762172256,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 549998088,
+      "heightM": 8.73,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 47.67910886693084,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 549925572,
+      "heightM": 9.94,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 46.86477751091545,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 549920896,
+      "heightM": 8.32,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 35.9430279528415,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 549925567,
+      "heightM": 7.98,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 38.99192404158535,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 550130776,
+      "heightM": 7.51,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 30.521376810248064,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 549925603,
+      "heightM": 11.73,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 69.24208408200506,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 549925598,
+      "heightM": 11.46,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 65.46449977997686,
+      "minimumEavesClearanceM": 3
+    },
+    {
+      "sourceId": 342500992,
+      "heightM": 7.59,
+      "sourceHeightM": 7.5,
+      "maxGroundY": 40.59633002051354,
+      "minimumEavesClearanceM": 3
+    }
+  ],
+  "deferred": [],
+  "measured": false
+}

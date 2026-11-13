@@ -151,5 +151,6 @@
       9.254773379930851
     ]
   },
-  "sportsAndQuayVisuals": "/maps/sile/sports-quay-visuals.json"
+  "sportsAndQuayVisuals": "/maps/sile/sports-quay-visuals.json",
+  "districtBuildingClearance": "/maps/sile/building-clearance-visuals.json"
 }

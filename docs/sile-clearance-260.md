@@ -1,0 +1,11 @@
+# Şile 2.60 — Arka sıra bina açıklığı
+
+Kıyıdan 350 metreye kadar mevcut680 OSM görsel profili tam ayak izi ve DSM üçgenleriyle denetlendi.100–350 metre arka sıradaki545profil içinde22saçak arazi altında,107profil ise3metreden düşük açıklıktaydı. Yalnız kaynak yüksekliği varsayımsal7,5metre olan107profilin model yüksekliği düzeltildi. Kaynak ayak izi, taban kotu, arazi ve etiketlerden gelen yükseklikler korunur.
+
+Algoritma ayak izi köşelerinin yanında içerideki DSM zirvelerini kapsar; mevcut çatı geometrisinin saçak düşümünü hesaba katar. En yüksek yerel arazi üzerinde3metre temsili açıklık aranır;20metreyi aşan model yorumları ertelenir. Güncel düzeltmelerin en yükseği16,32metredir ve ertelenen yoktur. Santimetre yuvarlaması sayısal uygulamadır, saha ölçümü hassasiyeti değildir. Son denetimde545arka profilin hiçbir saçağı gömülü veya3metreden düşük açıklıklı değildir. Ön sıra135profil/104giriş/24önceki yükseklik varsayımı korunur. Arka sıra kapılarının zemine oturtulması bu düzeltmenin kapsamı değildir.
+
+Görünen çatı geometrisi ve çarpışma yüzeyi birlikte güncellenir. İç arazi zirvesi, kaynak değişmezliği, aşırı rölyef, yakınsama ve tam20metre sınırı regresyonları doğrulandı. Literal549925582kaynak yapısında gerçek sahne çatısı ile süpürülen temas testi geçti. Bağımsız incelemedeki tam20metre sınırını yanlış erteleme bulgusu RED→GREEN regresyonuyla düzeltildi.
+
+655/655Node22ARM64,11altyapı testi ve12geometrik rota geçti. Altı bölgenin deniz/kara kameraları ile stadyum WebGL/WebGPU görüntüleri kaydedildi. Yeni180,0029saniyelik görünür1280×720medium kayıtta ortalamalar yaklaşık60FPS,en düşük%1değeri53,41FPS;gizli sekme süresi0. Önceki900saniyelik2.58kaydı tarihseldir,2.60ölçümü olarak sunulmaz. Yükleme sırasında eşzamanlı tam testler çalıştığından46saniye hazırlık süresi kontrollü önce/sonra karşılaştırması değildir;ilk büyük GPU/composer işleri ve50msyükleme hedefi hâlâ açık sınırlardır.
+
+Kanonik kabul: `sile-completion-acceptance.json` içindeki `followups.clearance260`. Kaynak/model kaydı: `public/maps/sile/building-clearance-visuals.json` ve `/sile.html`. Yaklaşık31metre DSM ve varsayımsal bina yükseklikleri nedeniyle bu bir ölçülmüş dijital ikiz değildir. FizikselTX15 ve yeni kullanıcı görsel/uçuş kabulü yapılmadı;önceki kullanıcı reddi kabul geçmişinde korunur.

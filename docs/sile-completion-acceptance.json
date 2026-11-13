@@ -1,6 +1,6 @@
 {
   "date": "2026-11-13",
-  "status": "Verified2.61district grounding follow-up; publication and new human acceptance pending",
+  "status": "Published2.61district grounding follow-up verified;900s baseline remains2.58, new180sdelta verified; human acceptance pending",
   "inventoryVersion": 1,
   "sourceSnapshotKey": "1147718:d3dd4d94:81685aaa",
   "baseline": "v2.57.0-e89963741523",
@@ -960,7 +960,8 @@
         ],
         "release": "v2.60.0-a8bbda72ee0e"
       }
-    ]
+    ],
+    "release": "v2.61.0-0303b45cb1b7"
   },
   "limits": [
     "31mDSM and most building heights remain unmeasured; representative scene, not surveyed digital twin.",
@@ -1131,8 +1132,75 @@
     }
   ],
   "delivery": {
-    "status": "pending",
-    "baseline": "v2.60.0-a8bbda72ee0e"
+    "status": "published",
+    "release": "v2.61.0-0303b45cb1b7",
+    "image": {
+      "release": "v2.61.0-0303b45cb1b7",
+      "imageId": "sha256:5a3024fdb4a0eddad880015ba0404ff05e2619642801c4dd7133a7c15300d62e",
+      "archiveSha256": "58e19b0ebad0ac0ec0fa62428c27d401850a8cce45eb7b1f090c9d134c404d4a",
+      "archiveBytes": 144860337,
+      "architecture": "arm64",
+      "sourceFiles": 473
+    },
+    "sourceFiles": 473,
+    "preservedSourceFiles": {
+      "public/maps/sile/map.json": "5564a34bbf1573152f5e1a93d1de4d01895eb4021483d2e03fae761341717a11",
+      "public/maps/sile/source-osm.json": "b860868c8cbc075b2d7b8936aa95d95b452eb244c47d8e03d66bd98f1e87f59a",
+      "public/maps/sile/source-dem.tif": "c1d9b4576412ef8f3e791ee23eff2db1a4c6ac1684b98c92bbafbc3cde380743",
+      "src/rc-setup.js": "1bb07e0d440d54cd2006763b108386b22115651ec1e57ceba6c2d94964814c26",
+      "tests/rc-setup.test.js": "7a038dfcbf536ac3b18c3ac74f146b32007f9aa132cd889da440d8eed4082880"
+    },
+    "changedDerivedData": [
+      "safe ground-fitted district entrances",
+      "conservative district foundation skirts",
+      "1.4m model aprons over680visual profiles",
+      "grounding provenance"
+    ],
+    "https": {
+      "release": "v2.61.0-0303b45cb1b7",
+      "entryAssets": 5,
+      "uniqueIds": 253,
+      "appVersion": "2.61.0",
+      "lazyGpuChunks": [
+        "gfx-webgpu-BPv6_-0D.js"
+      ],
+      "sceneWorkerChunks": [
+        "sile-scene-worker-BqFgjdgJ.js"
+      ],
+      "liveSkyOrderFix": true,
+      "mapAndSourceSha256": "pass"
+    },
+    "websocket": {
+      "clients": 2,
+      "join": "pass",
+      "state": "pass",
+      "leave": "pass"
+    },
+    "remote": {
+      "Status": "Success",
+      "StandardOutputContent": "Running image source hashes: 139 OK\ndrone-hangar | 24.54MiB / 256MiB | 0.02%\n{\"running\": true, \"restarts\": 0, \"readonly\": true, \"user\": \"1000:1000\", \"image\": \"sha256:5a3024fdb4a0eddad880015ba0404ff05e2619642801c4dd7133a7c15300d62e\"}\nSeven tenants/nginx unchanged; old container/data backup retained\nhttps://zenth.finance/ 200\nhttps://api.zenth.finance/health 200\nGelisim TLS origin 200\n",
+      "StandardErrorContent": "nginx: the configuration file /etc/nginx/nginx.conf syntax is ok\nnginx: configuration file /etc/nginx/nginx.conf test is successful\n"
+    },
+    "nativeLive": {
+      "url": "https://hangar.18-153-158-209.sslip.io/",
+      "release": "v2.61.0-0303b45cb1b7",
+      "verifiedDisarmGroundZero": true,
+      "reference": "REF 4M · ACRO · REAL",
+      "physicalTX15": "not-run",
+      "evidence": "Native Chrome DOM observed after clicking Serbest uçuş → Uçuşa başla → Şile. 0 km/h,0 m AGL,DISARM,REF4M ACRO REAL visible. New live screenshot not captured; current26fixed-camera native JPEGs retained separately.",
+      "domObserved": [
+        "Şile · veri tabanlı taslak",
+        "0 km/h",
+        "0 m AGL",
+        "DISARM",
+        "REF 4M · ACRO · REAL",
+        "ARM",
+        "CAM",
+        "MOD",
+        "KONTROL",
+        "MENÜ"
+      ]
+    }
   },
   "followups": {
     "loading257": {
@@ -2749,7 +2817,7 @@
       }
     },
     "grounding261": {
-      "status": "software-verified; publication pending",
+      "status": "published; user visual/flight acceptance pending",
       "date": "2026-11-13",
       "scope": "Back-row safe ground-fitted doors and conservative foundations;1.4m model aprons expanded to350m district; no source/base/terrain/roof dimension changes",
       "modelAudit": {
@@ -3213,7 +3281,78 @@
           },
           "jsHeapUsedBytes": 504672968
         }
-      ]
+      ],
+      "delivery": {
+        "status": "published",
+        "release": "v2.61.0-0303b45cb1b7",
+        "image": {
+          "release": "v2.61.0-0303b45cb1b7",
+          "imageId": "sha256:5a3024fdb4a0eddad880015ba0404ff05e2619642801c4dd7133a7c15300d62e",
+          "archiveSha256": "58e19b0ebad0ac0ec0fa62428c27d401850a8cce45eb7b1f090c9d134c404d4a",
+          "archiveBytes": 144860337,
+          "architecture": "arm64",
+          "sourceFiles": 473
+        },
+        "sourceFiles": 473,
+        "preservedSourceFiles": {
+          "public/maps/sile/map.json": "5564a34bbf1573152f5e1a93d1de4d01895eb4021483d2e03fae761341717a11",
+          "public/maps/sile/source-osm.json": "b860868c8cbc075b2d7b8936aa95d95b452eb244c47d8e03d66bd98f1e87f59a",
+          "public/maps/sile/source-dem.tif": "c1d9b4576412ef8f3e791ee23eff2db1a4c6ac1684b98c92bbafbc3cde380743",
+          "src/rc-setup.js": "1bb07e0d440d54cd2006763b108386b22115651ec1e57ceba6c2d94964814c26",
+          "tests/rc-setup.test.js": "7a038dfcbf536ac3b18c3ac74f146b32007f9aa132cd889da440d8eed4082880"
+        },
+        "changedDerivedData": [
+          "safe ground-fitted district entrances",
+          "conservative district foundation skirts",
+          "1.4m model aprons over680visual profiles",
+          "grounding provenance"
+        ],
+        "https": {
+          "release": "v2.61.0-0303b45cb1b7",
+          "entryAssets": 5,
+          "uniqueIds": 253,
+          "appVersion": "2.61.0",
+          "lazyGpuChunks": [
+            "gfx-webgpu-BPv6_-0D.js"
+          ],
+          "sceneWorkerChunks": [
+            "sile-scene-worker-BqFgjdgJ.js"
+          ],
+          "liveSkyOrderFix": true,
+          "mapAndSourceSha256": "pass"
+        },
+        "websocket": {
+          "clients": 2,
+          "join": "pass",
+          "state": "pass",
+          "leave": "pass"
+        },
+        "remote": {
+          "Status": "Success",
+          "StandardOutputContent": "Running image source hashes: 139 OK\ndrone-hangar | 24.54MiB / 256MiB | 0.02%\n{\"running\": true, \"restarts\": 0, \"readonly\": true, \"user\": \"1000:1000\", \"image\": \"sha256:5a3024fdb4a0eddad880015ba0404ff05e2619642801c4dd7133a7c15300d62e\"}\nSeven tenants/nginx unchanged; old container/data backup retained\nhttps://zenth.finance/ 200\nhttps://api.zenth.finance/health 200\nGelisim TLS origin 200\n",
+          "StandardErrorContent": "nginx: the configuration file /etc/nginx/nginx.conf syntax is ok\nnginx: configuration file /etc/nginx/nginx.conf test is successful\n"
+        },
+        "nativeLive": {
+          "url": "https://hangar.18-153-158-209.sslip.io/",
+          "release": "v2.61.0-0303b45cb1b7",
+          "verifiedDisarmGroundZero": true,
+          "reference": "REF 4M · ACRO · REAL",
+          "physicalTX15": "not-run",
+          "evidence": "Native Chrome DOM observed after clicking Serbest uçuş → Uçuşa başla → Şile. 0 km/h,0 m AGL,DISARM,REF4M ACRO REAL visible. New live screenshot not captured; current26fixed-camera native JPEGs retained separately.",
+          "domObserved": [
+            "Şile · veri tabanlı taslak",
+            "0 km/h",
+            "0 m AGL",
+            "DISARM",
+            "REF 4M · ACRO · REAL",
+            "ARM",
+            "CAM",
+            "MOD",
+            "KONTROL",
+            "MENÜ"
+          ]
+        }
+      }
     }
   }
 }

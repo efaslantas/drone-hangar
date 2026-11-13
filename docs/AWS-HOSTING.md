@@ -1,6 +1,6 @@
 # Drone Hangar — AWS işletim kaydı
 
-2026-11-02: Kullanıcı Drone simülatörü 2.16 için mevcut Zenth AWS sunucusunu seçti. Canlı adres: https://hangar.18-153-158-209.sslip.io/ . İlk kurulum `v2.16.0-7f5130339846`; güncel sürüm `v2.60.0-a8bbda72ee0e` (2.60, 2026-11-13).
+2026-11-02: Kullanıcı Drone simülatörü 2.16 için mevcut Zenth AWS sunucusunu seçti. Canlı adres: https://hangar.18-153-158-209.sslip.io/ . İlk kurulum `v2.16.0-7f5130339846`; güncel sürüm `v2.61.0-0303b45cb1b7` (2.61, 2026-11-13).
 
 ## Yerleşim
 
@@ -230,3 +230,8 @@ v2.59.0-01f8df881bcb ARM64 app-only yayımlandı. Image `sha256:dd49a978fedbd8b2
 ## 2026-11-13 — Şile arka sıra bina açıklığı2.60
 
 v2.60.0-a8bbda72ee0e ARM64 app-only yayımlandı. Image `sha256:372f7378c7844221a6151428ea6108645fed008855d6f8c284404e45cad24aed`; archive SHA `e98c47437d05bb2a8fd9b36c321da441fe773d4954b680d319956335746adcaf`. 470 paket kaynak SHA,çalışan kaynaklar/HTTPS/WSS/nativeDISARM0 doğrulandı;7tenant/nginxaynı,eskiuygulama/veriyedeğikorundu.655Node22/11infra/12geometrikrota,nativeGL/GPU6bölge+stadyum,yeni180sgörünürdelta.107varsayımsal bina tam ayak izi/DSM3msaçak açıklığı:max16.32m/20mcap,ölçülmüşyükseklikdeğil. Kaynak ayakizi/taban/arazi/RCfixaynı;135core/104giriş/24eskiyükseklikvarsayımıkorundu. Önceki900s2.58tarihseldir;fizikselTX15/yeni kullanıcınot-run.
+
+
+## 2026-11-13 — Şile bina girişleri ve çevresi2.61
+
+v2.61.0-0303b45cb1b7 ARM64 app-only yayımlandı. Image `sha256:5a3024fdb4a0eddad880015ba0404ff05e2619642801c4dd7133a7c15300d62e`; archive SHA `58e19b0ebad0ac0ec0fa62428c27d401850a8cce45eb7b1f090c9d134c404d4a`. 473 paket kaynak SHA,çalışan kaynaklar/HTTPS/WSS/nativeDISARM0 doğrulandı;7tenant/nginxaynı,eskiuygulama/veriyedeğikorundu.659Node22/11infra/12geometrikrota,nativeGL/GPU6bölge+stadyum,yeni180sgörünürdelta.367modeleddoor/178steepomission/49backfoundationcandidate/680apronprofile;no measured doorway/paving claim. Kaynak ayakizi/taban/arazi/RCfixaynı;135core/104giriş/24eskiyükseklikvarsayımıkorundu. Önceki900s2.58tarihseldir;fizikselTX15/yeni kullanıcınot-run.

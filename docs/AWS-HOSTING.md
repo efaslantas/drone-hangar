@@ -1,6 +1,6 @@
 # Drone Hangar — AWS işletim kaydı
 
-2026-11-02: Kullanıcı Drone simülatörü 2.16 için mevcut Zenth AWS sunucusunu seçti. Canlı adres: https://hangar.18-153-158-209.sslip.io/ . İlk kurulum `v2.16.0-7f5130339846`; güncel sürüm `v2.66.0-b86bd27a4253` (2.66, 2026-11-14).
+2026-11-02: Kullanıcı Drone simülatörü 2.16 için mevcut Zenth AWS sunucusunu seçti. Canlı adres: https://hangar.18-153-158-209.sslip.io/ . İlk kurulum `v2.16.0-7f5130339846`; güncel sürüm `v2.67.0-e81c8d1281fc` (2.67, 2026-11-14).
 
 ## Yerleşim
 
@@ -268,3 +268,10 @@ v2.65.0-7a57ec1eeba5 ARM64 app-only yayımlandı. Image `sha256:786e9edda9f452fe
 687 Node22 testi, 11 altyapı testi, 12 geometrik rota ve 32 WebGL/WebGPU görünümü doğrulandı. Yeni görünür 180 saniye ölçümü altı bölgede yaklaşık 60 FPS; en düşük yüzde 1 dilimi 49,07 FPS. Önceki 900 saniye ölçümü 2.58'e aittir.
 
 Mevcut 59 temel eteğine 2 metre ölçekli genel beton taraması ve son zemine göre dip tonu eklendi. Temel pozisyonları ve tam fizik kayıtları değişmedi. Malzeme/nem görünümü temsili; fiziksel TX15 ve yeni kullanıcı uçuş kabulü yapılmadı.
+
+
+## 2026-11-14 — Şile mahalle ve sokak konumu 2.67
+
+`v2.67.0-e81c8d1281fc` ARM64 simülatör uygulaması yayımlandı. Image `sha256:2b799020390d86585d0d582ae12adaf7059420b6c8a0fde55b423bb2f8e49b39`; arşiv SHA256 `af426e57fbe00c5aaff2d0166b9ed86dffeec38a67ca3c76e552a8a574498ff3`. 498 paket kaynağı ve çalışan 142 kaynak SHA, HTTPS/WSS, canlı mahalle göstergesi ve dört isimli genel harita doğrulandı. Yedi diğer servis/nginx aynı; eski uygulama/veri yedeği korundu.
+
+4 OSM mahalle sınırı, 166 adlandırılmış yol parçası / 114 farklı yol adı, kuzey-sabit mini harita ve menü genel haritası. Genel gerçekçilik/kapsam incelemesi `docs/sile-navigation-267.md`. 697 Node22 / 11 altyapı testi; masaüstü/mobil/ayrıntılı HUD yerleşimi doğrulandı. Gerçek uygulamada medium1280×720, fullHUD ve açık mini harita ile180.001s / gizli0 / ~60FPS / düşük%1 56.02FPS. Bu tek DISARM başlangıç görünümü, manuel uçuş veya altı bölge testi değildir. Önceki900s2.58 tarihseldir. Binalar/30mDSM hâlâ temsili; yeni kullanıcı/TX15 kabulü yapılmadı.

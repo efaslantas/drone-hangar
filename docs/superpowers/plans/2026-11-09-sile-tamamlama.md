@@ -287,8 +287,10 @@ Task20 teslim: v2.66.0-b86bd27a4253 canlı;687 Node22 / 11 altyapı / 12 rota, n
 
 **Sahipler:** `tools/prepare-sile-navigation.mjs` kaynak ilişki üyelerini kapalı halkalara birleştirir, DTO+public kopya üretir. `src/sile-navigation.js` saf konum sorgusu/etiket yerleşimi; `src/sile-navigation-view.js` DOM/SVG görünüm ve 5Hz güncelleme. `src/main.js` sadece yaşam döngüsü/paint, `index.html`/`src/style.css` görünüm. Var olan `inspectionMapModel` projeksiyonunu paylaş. Kaynaklar lisans/SHA/tarih ile `public/maps/sile/` altında. Genel eksikler mevcut kaynak ve görsellerle `docs/sile-navigation-267.md` içinde dürüstçe değerlendirilir.
 
-- [ ] Kaynak polygon birleştirme/isim doğrulaması, 4 mahalle gerçek merkez testi; tüm mevcut yolların isim kapsamı, boş/kopuk kaynak reddi. Genel harita kapsamı/eksikliği raporlanır.
-- [ ] Saf sorgu RED→GREEN: mahalle sınırı/çukur/deniz ve harita dışı, yakın/on-road/adsız yol ayrımı, sınır kayması ve bozuk koordinat, kuzey/yön ve değişmez kaynak.
-- [ ] Uçuş mini haritası + menü genel haritası; güncel konum/yön ve önemli yer/sokak etiketleri. DOM güvenli metin; diğer haritaya geçiş/tekrar/reset/dispose, RC/touch/menu/minimal HUD uyumu. Masaüstü/mobil ve farklı kaynak konumları gerçek Chrome üzerinde doğrulanır.
-- [ ] Tek fresh review, gerekli düzeltmeler ve uygun tam Node22 / build / altyapı / gerçek UI performans kontrolü; kaynak geometri/RC SHA korunur. Tarihsel 900s 2.58 ölçümü 2.67 diye sunulmaz.
-- [ ] Main commit/push ve app-only AWS; fresh disk/S3 doğrulaması, yalnız yedekli sahipli arşiv cache gerekirse çıkarılır; HTTPS/WSS/canlı arayüz/çalışan kaynak SHA. Kanıt, notes ve sahipli çalışma alanı kapanır. Kullanıcı ve fiziksel TX15 kabulü ayrı kalır.
+- [x] Kaynak polygon birleştirme/isim doğrulaması, 4 mahalle gerçek merkez testi; tüm mevcut yolların isim kapsamı, boş/kopuk kaynak reddi. Genel harita kapsamı/eksikliği raporlanır.
+- [x] Saf sorgu RED→GREEN: mahalle sınırı/çukur/deniz ve harita dışı, yakın/on-road/adsız yol ayrımı, sınır kayması ve bozuk koordinat, kuzey/yön ve değişmez kaynak.
+- [x] Uçuş mini haritası + menü genel haritası; güncel konum/yön ve önemli yer/sokak etiketleri. DOM güvenli metin; diğer haritaya geçiş/tekrar/reset/dispose, RC/touch/menu/minimal HUD uyumu. Masaüstü/mobil ve farklı kaynak konumları gerçek Chrome üzerinde doğrulanır.
+- [x] Tek fresh review, gerekli düzeltmeler ve uygun tam Node22 / build / altyapı / gerçek UI performans kontrolü; kaynak geometri/RC SHA korunur. Tarihsel 900s 2.58 ölçümü 2.67 diye sunulmaz.
+- [x] Main commit/push ve app-only AWS; fresh disk/S3 doğrulaması, yalnız yedekli sahipli arşiv cache gerekirse çıkarılır; HTTPS/WSS/canlı arayüz/çalışan kaynak SHA. Kanıt, notes ve sahipli çalışma alanı kapanır. Kullanıcı ve fiziksel TX15 kabulü ayrı kalır.
+
+Task21 teslim: `v2.67.0-e81c8d1281fc`;697 Node22/11 altyapı, Chrome görünüm/yaşam döngüsü/klavye/mobil/HUD ve gerçek uygulama180s ölçümü,498 paket/142 çalışan SHA,HTTPS/WSS/canlı adlandırılmış harita doğrulandı. Mahalle/sokak kaynağı ve kalan arazi/bina/kapsam eksikleri kaydedildi; tam Şile/saha/TX15 kabulü iddia edilmedi.

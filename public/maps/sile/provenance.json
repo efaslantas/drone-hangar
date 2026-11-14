@@ -161,5 +161,10 @@
     "metadata": "/maps/sile/street-weathering-visuals.json",
     "measured": false,
     "scope": "Source road union inset55cm material interpretation,metric scanned asphalt and procedural paving microdetail; geometry planes/coverage and full2.64physics retained."
+  },
+  "foundationFinish266": {
+    "metadata": "/maps/sile/foundation-finish-visuals.json",
+    "measured": false,
+    "scope": "Existing foundation skirt positions and physics retained; artist2m generic concrete scan and finalterrain contact tone."
   }
 }

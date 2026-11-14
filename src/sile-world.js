@@ -30,7 +30,7 @@ import {harbourSurfaces,harbourLayout,addSileHarbour,harbourMaterial} from './si
 import {coastalBuildings,buildingAprons} from './sile-buildings.js';
 import {addCoastalBuildings} from './sile-building-view.js';
 import {refineNeighbourhoodGround} from './sile-neighbourhood.js';
-import {addBuildingFoundations} from './sile-grounding.js';
+import {addBuildingFoundations,finishFoundationAppearance} from './sile-grounding.js';
 import {addNeighbourhood} from './sile-neighbourhood-view.js';
 import {streetLayout,streetSurfaces,streetRemainder} from './sile-streets.js';
 import {pavingGeometry,streetPavingMaterial,finishStreetAppearance} from './sile-street-view.js';
@@ -173,6 +173,7 @@ export function buildSile(scene,data){
  mark('coastal-facades-neighbourhood');
  applyBuildingPads(scene,data,play,coastal,streets);
  alignCompletedEntries(scene,play,coastal,data,district);
+ finishFoundationAppearance(scene,play);
  finishStreetAppearance(scene,data,play,streets,district);
  mark('building-pads');
  addMooringLinks(scene,data,play);

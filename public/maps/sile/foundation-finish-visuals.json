@@ -1,0 +1,105 @@
+{
+  "version": "2.66",
+  "date": "2026-11-14",
+  "measured": false,
+  "source": "Existing generic CC0 concrete_floor_02 scan and approximate final DSM/pad ground",
+  "tileMetres": 2,
+  "foundationSource": "Existing source footprint/base gap skirts only",
+  "newMeshes": 0,
+  "newPhysicalRecords": 0,
+  "newVertices": 0,
+  "worldAudit": {
+    "positionSha": "60ab3df4e3edbfe78a899f197503a00650655279d4f7f0ab16464b78247e4856",
+    "physicsSha": "8fcd8220a21cfceefcdba074a93af0709b54adf7d8c8d1a265cdb29326453775",
+    "vertices": 804,
+    "foundations": 59,
+    "appearance": {
+      "vertices": 804,
+      "tileMetres": 2,
+      "finalGroundContactTone": true,
+      "positionsUnchanged": true,
+      "measured": false
+    },
+    "candidates": [
+      {
+        "sourceId": 342474199,
+        "gap": 0.3776006867565478,
+        "eye": [
+          499.66720870715244,
+          29.102399313243453,
+          -395.4866683054525
+        ],
+        "target": [
+          506.935,
+          27.75239931324345,
+          -395.90999999999997
+        ]
+      },
+      {
+        "sourceId": 549920895,
+        "gap": 0.31817408498850597,
+        "eye": [
+          123.27970632409813,
+          34.69182591501149,
+          93.41557104933555
+        ],
+        "target": [
+          124.935,
+          33.34182591501149,
+          100.505
+        ]
+      },
+      {
+        "sourceId": 342501373,
+        "gap": 0.21284858238449544,
+        "eye": [
+          289.24440526245996,
+          33.84715141761551,
+          -295.4390188472939
+        ],
+        "target": [
+          296.13,
+          32.497151417615505,
+          -293.075
+        ]
+      },
+      {
+        "sourceId": 549998066,
+        "gap": 0.21135427077492608,
+        "eye": [
+          764.0831294076422,
+          54.12864572922508,
+          -46.39579465075523
+        ],
+        "target": [
+          771.0899999999999,
+          52.778645729225076,
+          -44.42
+        ]
+      },
+      {
+        "sourceId": 550130663,
+        "gap": 0.1738642697819266,
+        "eye": [
+          369.7696582454049,
+          20.15613573021807,
+          -411.0529819478417
+        ],
+        "target": [
+          362.635,
+          18.80613573021807,
+          -409.605
+        ]
+      }
+    ],
+    "maxSharedUvJump": 0
+  },
+  "closeCameraSourceId": 342474199,
+  "limits": [
+    "Not surveyed foundation material,damp or building condition.",
+    "Exact Float32 foundation positions and full2.65physical records retained.",
+    "Contact shade uses final physical terrain after entry/pad alignment; existing large terrain/building mismatches are not reinterpreted.",
+    "New180svisible check is not manual flight or physicalTX15 verification."
+  ],
+  "uvFrame": "One original source-edge direction per emitted triangle; shared Float32 fragment corners retain identical phase."
+}

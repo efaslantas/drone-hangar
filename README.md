@@ -148,3 +148,5 @@ Sahne çözümleme21.5ms,metadata4ms ve fizik verisi kopyalama26.2ms aynı taray
 Şile 2.64: Mevcut ön donatılar korunarak arka kıyı sokaklarına 24 temsili aydınlatma, 24 giriş saksısı ve 6 bank eklendi. Kaynak yol/kapı yönleri, fiziksel destek ve tam engel/korunan yüzey kontrolleri kullanılır; yeni katılar eşleşen fizik kutuları taşır. Yerleşim gerçek belediye envanteri değildir. `public/maps/sile/district-furniture-visuals.json` kaynak ve model sınırlarını kaydeder.
 
 Şile 2.65 asfalt kenarı ve parke ayrıntısı: mevcut yol yüzeyinde temsili 55 cm aşınma/toz geçişi, yol yönünde metrik tarama ve derz/tane ayrıntısı. Yol genişliği, zemin ve tüm fizik kayıtları korunur; gerçek yol aşınma envanteri değildir.
+
+Şile 2.66 temel eteği görünümü: mevcut temel yüzeyinde 2 m genel beton taraması ve son zemin kotuna bağlı temsili dip tonu. Görünen pozisyonlar ve tüm fizik kayıtları korunur; gerçek temel malzemesi veya nem envanteri değildir.

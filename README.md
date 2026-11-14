@@ -150,3 +150,5 @@ Sahne çözümleme21.5ms,metadata4ms ve fizik verisi kopyalama26.2ms aynı taray
 Şile 2.65 asfalt kenarı ve parke ayrıntısı: mevcut yol yüzeyinde temsili 55 cm aşınma/toz geçişi, yol yönünde metrik tarama ve derz/tane ayrıntısı. Yol genişliği, zemin ve tüm fizik kayıtları korunur; gerçek yol aşınma envanteri değildir.
 
 Şile 2.66 temel eteği görünümü: mevcut temel yüzeyinde 2 m genel beton taraması ve son zemin kotuna bağlı temsili dip tonu. Görünen pozisyonlar ve tüm fizik kayıtları korunur; gerçek temel malzemesi veya nem envanteri değildir.
+
+Şile 2.67: kaynaklı mahalle/sokak konumu, kuzey-sabit mini harita ve duraklatma menüsünde adlandırılmış genel harita. 4 OSM mahalle sınırı, 114 farklı yol adı; harita dışı/adsız/yakındaki yol ayrımı. Kapsam ve gerçekçilik değerlendirmesi: `docs/sile-navigation-267.md`.

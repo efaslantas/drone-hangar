@@ -19,7 +19,7 @@ export function inspectionMapModel(data){
   const paths=rings.map(path);return paths.every(Boolean)?[paths.map(p=>p+' Z').join(' ')]:[];
  });
  const roads=(data.roads||[]).map(r=>path(r.points)).filter(Boolean);
- return {viewBox:[0,0,(b[1]-b[0])/metresPerUnit,(b[3]-b[2])/metresPerUnit],metresPerUnit,land,roads,project(p){return p&&Number.isFinite(p.x)&&Number.isFinite(p.z)&&p.x>=b[0]&&p.x<=b[1]&&p.z>=b[2]&&p.z<=b[3]?xy(p.x,p.z):null;}};
+ return {viewBox:[0,0,(b[1]-b[0])/metresPerUnit,(b[3]-b[2])/metresPerUnit],metresPerUnit,land,roads,projectUnbounded(p){return p&&Number.isFinite(p.x)&&Number.isFinite(p.z)?xy(p.x,p.z):null;},project(p){return p&&Number.isFinite(p.x)&&Number.isFinite(p.z)&&p.x>=b[0]&&p.x<=b[1]&&p.z>=b[2]&&p.z<=b[3]?xy(p.x,p.z):null;}};
 }
 
 export function createInspectionNavigation({hud,map,route},session,data){

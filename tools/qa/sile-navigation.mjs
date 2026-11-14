@@ -1,0 +1,7 @@
+import {createSileNavigation} from '/src/sile-navigation-view.js';
+import navigation from '/src/data/sile-navigation.json' with {type:'json'};
+const data=await fetch('/maps/sile/map.json').then(r=>r.json()),hud=document.getElementById('sile-navigation'),overview=document.getElementById('sile-map-overview'),state={x:0,z:0,qw:1,qx:0,qy:0,qz:0};let view;
+const reset=()=>{view?.dispose();view=createSileNavigation({hud,overview},data,navigation);view.paint(state,{force:true});document.getElementById('status').textContent='Hazır · kaynaklı mahalle/sokak haritası';};
+const paint=()=>{view.paint(state,{force:true});document.getElementById('x').value=state.x;document.getElementById('z').value=state.z;};
+for(const p of [{id:'spawn',name:'Başlangıç',point:[0,0]},...navigation.neighbourhoods.map(n=>({id:String(n.id),name:n.name,point:n.labelPoint})),...navigation.landmarks]){if(!p.point)continue;const b=document.createElement('button');b.textContent=p.name;b.dataset.point=p.id;b.onclick=()=>{[state.x,state.z]=p.point;paint();};document.getElementById('places').append(b);}
+document.getElementById('set').onclick=()=>{state.x=Number(document.getElementById('x').value);state.z=Number(document.getElementById('z').value);paint();};document.getElementById('invalid').onclick=()=>{state.x=NaN;view.paint(state,{force:true});};document.getElementById('dispose').onclick=()=>view.dispose();document.getElementById('reset').onclick=reset;reset();

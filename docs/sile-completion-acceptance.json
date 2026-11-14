@@ -1,6 +1,6 @@
 {
   "date": "2026-11-14",
-  "status": "Published2.66foundation surface follow-up verified;900s baseline remains2.58, new180sdelta verified; human acceptance pending",
+  "status": "Verified2.67 location UI/general review; publication and new human acceptance pending",
   "inventoryVersion": 1,
   "sourceSnapshotKey": "1147718:d3dd4d94:81685aaa",
   "baseline": "v2.57.0-e89963741523",
@@ -922,7 +922,7 @@
     ],
     "rendererStatsScope": "Actual per-frame renderer counters; not full composer aggregate or VRAM measurement. Separate full-composer frame diagnostics retained.",
     "measuredRelease": "v2.58.0-47520f3ee55f",
-    "historyNotice": "Actual900s2.58baseline; current2.66foundation surface change uses new180scheck in followups.foundation266.performance. Never relabel this run as2.66."
+    "historyNotice": "Original900s2.58baseline. New2.67actualUI180s stationary/fullHUD in followups.navigation267.performance; never relabel this as900s or sixregion2.67."
   },
   "physicalTX15": {
     "status": "not-run",
@@ -930,73 +930,83 @@
   },
   "humanAcceptance": {
     "status": "not-run",
-    "scope": "New2.66user map/flight acceptance pending",
+    "scope": "New2.67 orientation/visual/userflight acceptance pending",
     "previousResults": [
       {
         "status": "not-run",
-        "scope": "New2.65user map/flight acceptance pending",
+        "scope": "New2.66user map/flight acceptance pending",
         "previousResults": [
           {
             "status": "not-run",
-            "scope": "New2.64user map/flight acceptance pending",
+            "scope": "New2.65user map/flight acceptance pending",
             "previousResults": [
               {
                 "status": "not-run",
-                "scope": "New2.63user map/flight acceptance pending",
+                "scope": "New2.64user map/flight acceptance pending",
                 "previousResults": [
                   {
                     "status": "not-run",
-                    "scope": "New2.62user map/flight acceptance pending",
+                    "scope": "New2.63user map/flight acceptance pending",
                     "previousResults": [
                       {
                         "status": "not-run",
-                        "scope": "New2.61user map/flight acceptance pending",
+                        "scope": "New2.62user map/flight acceptance pending",
                         "previousResults": [
                           {
                             "status": "not-run",
-                            "scope": "New2.60user map/flight acceptance pending",
+                            "scope": "New2.61user map/flight acceptance pending",
                             "previousResults": [
                               {
                                 "status": "not-run",
-                                "scope": "New2.59user map/flight acceptance pending",
+                                "scope": "New2.60user map/flight acceptance pending",
                                 "previousResults": [
                                   {
                                     "status": "not-run",
-                                    "scope": "New2.58 user resemblance and flight acceptance pending",
+                                    "scope": "New2.59user map/flight acceptance pending",
                                     "previousResults": [
                                       {
-                                        "status": "fail",
-                                        "release": "v2.57.0-e89963741523",
-                                        "date": "2026-11-10",
-                                        "feedback": "Sahil bölgesi hâlâ boş; tam Şile değil.",
-                                        "scope": "User visual feedback; prior automated software acceptance is not visual approval."
+                                        "status": "not-run",
+                                        "scope": "New2.58 user resemblance and flight acceptance pending",
+                                        "previousResults": [
+                                          {
+                                            "status": "fail",
+                                            "release": "v2.57.0-e89963741523",
+                                            "date": "2026-11-10",
+                                            "feedback": "Sahil bölgesi hâlâ boş; tam Şile değil.",
+                                            "scope": "User visual feedback; prior automated software acceptance is not visual approval."
+                                          }
+                                        ],
+                                        "release": "v2.58.0-47520f3ee55f"
                                       }
                                     ],
-                                    "release": "v2.58.0-47520f3ee55f"
+                                    "release": "v2.59.0-01f8df881bcb"
                                   }
                                 ],
-                                "release": "v2.59.0-01f8df881bcb"
+                                "release": "v2.60.0-a8bbda72ee0e"
                               }
                             ],
-                            "release": "v2.60.0-a8bbda72ee0e"
+                            "release": "v2.61.0-0303b45cb1b7"
                           }
                         ],
-                        "release": "v2.61.0-0303b45cb1b7"
+                        "release": "v2.62.0-8e1675aa7a78"
                       }
                     ],
-                    "release": "v2.62.0-8e1675aa7a78"
+                    "release": "v2.63.0-c8bb16d845f8"
                   }
                 ],
-                "release": "v2.63.0-c8bb16d845f8"
+                "release": "v2.64.0-0154e49e3dab"
               }
             ],
-            "release": "v2.64.0-0154e49e3dab"
+            "release": "v2.65.0-7a57ec1eeba5"
           }
         ],
-        "release": "v2.65.0-7a57ec1eeba5"
+        "release": "v2.66.0-b86bd27a4253"
       }
     ],
-    "release": "v2.66.0-b86bd27a4253"
+    "previous266VisualFeedback": {
+      "status": "visual-realism-not-accepted",
+      "assessment": "User says map still does not fully resemble Sile; requests general review and visible neighbourhood/street names"
+    }
   },
   "limits": [
     "31mDSM and most building heights remain unmeasured; representative scene, not surveyed digital twin.",
@@ -1038,19 +1048,21 @@
   ],
   "verification": {
     "node22Arm64": {
-      "passed": 687,
+      "passed": 697,
       "failed": 0,
-      "durationMs": 266269.360232
+      "durationMs": 287048.265584
     },
     "infrastructure": {
       "passed": 11,
       "failed": 0
     },
-    "routes": {
+    "geometricRoutes": {
       "passed": 12,
-      "failed": 0
+      "retainedFrom": "2.66",
+      "rerun": false,
+      "reason": "No 3D/physical geometry changes; full697suite also verifies prior physical/position fingerprints"
     },
-    "review": "Fresh gpt-6-astra high review P2 fragmentUV seam fixed RED-to-GREEN using original sourceedge per triangle; actualworld sharedUVjump0,position/fullphysics hashes retained"
+    "review": "Fresh gpt-6-astra high; one P2 motor/navigation overlap fixed RED-to-GREEN; desktop full HUD expanded/collapsed,390x844 and844x390 verified"
   },
   "screenshots": [
     "/Users/efa/.codex/visualizations/2026/10/31/01a192c3-dbf8-7782-a036-f3d10657abd1/sile-266-S1-sea-webgl.jpg",
@@ -1175,100 +1187,8 @@
     }
   ],
   "delivery": {
-    "status": "published",
-    "release": "v2.66.0-b86bd27a4253",
-    "image": {
-      "release": "v2.66.0-b86bd27a4253",
-      "imageId": "sha256:9b47dfa92be9560ebd04de76f04e7a64664d37b4e487408274fed1f28cba5c9e",
-      "archiveSha256": "879d753957187319f4c2e5fdf58b1e4c7ef2b6ef6b5dfaf4698a53a385c14d55",
-      "archiveBytes": 144898881,
-      "architecture": "arm64",
-      "sourceFiles": 488
-    },
-    "sourceFiles": 488,
-    "preservedSourceFiles": {
-      "public/maps/sile/map.json": "5564a34bbf1573152f5e1a93d1de4d01895eb4021483d2e03fae761341717a11",
-      "public/maps/sile/source-osm.json": "b860868c8cbc075b2d7b8936aa95d95b452eb244c47d8e03d66bd98f1e87f59a",
-      "public/maps/sile/source-dem.tif": "c1d9b4576412ef8f3e791ee23eff2db1a4c6ac1684b98c92bbafbc3cde380743",
-      "src/rc-setup.js": "1bb07e0d440d54cd2006763b108386b22115651ec1e57ceba6c2d94964814c26",
-      "tests/rc-setup.test.js": "7a038dfcbf536ac3b18c3ac74f146b32007f9aa132cd889da440d8eed4082880"
-    },
-    "changedDerivedData": [
-      "foundation metric2m UV",
-      "foundation final-ground contact tone",
-      "existing concrete scan",
-      "full2.65physical records retained",
-      "surface provenance metadata"
-    ],
-    "https": {
-      "release": "v2.66.0-b86bd27a4253",
-      "entryAssets": 5,
-      "uniqueIds": 253,
-      "appVersion": "2.66.0",
-      "lazyGpuChunks": [
-        "gfx-webgpu-BPv6_-0D.js"
-      ],
-      "sceneWorkerChunks": [
-        "sile-scene-worker-B9W6Q417.js"
-      ],
-      "liveSkyOrderFix": true,
-      "mapAndSourceSha256": "pass"
-    },
-    "websocket": {
-      "clients": 2,
-      "join": "pass",
-      "state": "pass",
-      "leave": "pass"
-    },
-    "remote": {
-      "Status": "Success",
-      "StandardOutputContent": "Running image source hashes: 139 OK\ndrone-hangar | 26.69MiB / 256MiB | 1.38%\n{\"running\": true, \"restarts\": 0, \"readonly\": true, \"user\": \"1000:1000\", \"image\": \"sha256:9b47dfa92be9560ebd04de76f04e7a64664d37b4e487408274fed1f28cba5c9e\"}\nSeven tenants/nginx unchanged; old container/data backup retained\nhttps://zenth.finance/ 200\nhttps://api.zenth.finance/health 200\nGelisim TLS origin 200\n",
-      "StandardErrorContent": "nginx: the configuration file /etc/nginx/nginx.conf syntax is ok\nnginx: configuration file /etc/nginx/nginx.conf test is successful\n"
-    },
-    "nativeLive": {
-      "url": "https://hangar.18-153-158-209.sslip.io/?room=hangar&name=pilot",
-      "release": "v2.66.0-b86bd27a4253",
-      "verifiedDisarmGroundZero": true,
-      "reference": "REF 4M · ACRO · REAL",
-      "physicalTX15": "not-run",
-      "automation": "Headful installed Chrome via Playwright; CUA tool unavailable after session restart",
-      "pageErrors": [],
-      "dom": "Şile · veri tabanlı taslak\n© OpenStreetMap contributors · ODbL · Copernicus DEM · Microsoft / Overture Maps · ODbL · ESA WorldCover 2021 · CC BY 4.0\nKaynaklar / yükseklik varsayımları ↗\n0 km/h\n0 m AGL\nBAT\nDISARM\nREF 4M · ACRO · REAL\nARM\nCAM\nMOD\nKONTROL\nMENÜ"
-    },
-    "operationalPreflight": {
-      "cacheCleanup": {
-        "Status": "Success",
-        "StandardOutputContent": "{\"removedOnlyS3VerifiedCacheCopies\": [{\"release\": \"v2.56.0-618a82e72259\", \"bytes\": 144649760, \"sha256\": \"6d95112f50143d53d5021ccfdd24eeea081da2f4484e66e7e5fde8ebeb9a4b79\", \"restoreBucket\": \"zenth-db-backups-283277658470\", \"restoreKey\": \"deploy/drone-hangar/v2.56.0-618a82e72259/image.tar.gz\"}, {\"release\": \"v2.65.0-7a57ec1eeba5\", \"bytes\": 144902210, \"sha256\": \"910c92970f0f9d6d8acb69d85b3392d07179973b005d202f70eec8ece83eacd3\", \"restoreBucket\": \"zenth-db-backups-283277658470\", \"restoreKey\": \"deploy/drone-hangar/v2.65.0-7a57ec1eeba5/image.tar.gz\"}], \"freedBytes\": 289551970, \"diskFreeBefore\": 557338624, \"diskFreeAfter\": 846893056, \"allContainersUnchanged\": true, \"nginxUnchanged\": true}\n",
-        "StandardErrorContent": ""
-      },
-      "restorableCaches": [
-        {
-          "release": "v2.56.0-618a82e72259",
-          "bytes": 144649760,
-          "sha256": "6d95112f50143d53d5021ccfdd24eeea081da2f4484e66e7e5fde8ebeb9a4b79",
-          "restoreBucket": "zenth-db-backups-283277658470",
-          "restoreKey": "deploy/drone-hangar/v2.56.0-618a82e72259/image.tar.gz"
-        },
-        {
-          "release": "v2.65.0-7a57ec1eeba5",
-          "bytes": 144902210,
-          "sha256": "910c92970f0f9d6d8acb69d85b3392d07179973b005d202f70eec8ece83eacd3",
-          "restoreBucket": "zenth-db-backups-283277658470",
-          "restoreKey": "deploy/drone-hangar/v2.65.0-7a57ec1eeba5/image.tar.gz"
-        }
-      ],
-      "fullS3Object256": {
-        "release": "v2.56.0-618a82e72259",
-        "s3FullObjectDownloadedAndVerified": true,
-        "bytes": 144649760,
-        "sha256": "6d95112f50143d53d5021ccfdd24eeea081da2f4484e66e7e5fde8ebeb9a4b79"
-      },
-      "freshBeforeStage": {
-        "Status": "Success",
-        "StandardOutputContent": "Filesystem      Size  Used Avail Use% Mounted on\n/dev/nvme0n1p1   20G   20G  859M  96% /\n/home/ec2-user/drone-hangar/releases/v2.16.0-7f5130339846/image.tar.gz 132446155\n/home/ec2-user/drone-hangar/releases/v2.17.0-a8bd5e74aa80/image.tar.gz 141216438\n/home/ec2-user/drone-hangar/releases/v2.18.0-b27b8592b4ad/image.tar.gz 141233275\n/home/ec2-user/drone-hangar/releases/v2.19.0-f442fab3123f/image.tar.gz 141272189\n/home/ec2-user/drone-hangar/releases/v2.20.0-0bbae6d8f741/image.tar.gz 141286398\n/home/ec2-user/drone-hangar/releases/v2.21.0-395ad3ff12e2/image.tar.gz 141312829\n/home/ec2-user/drone-hangar/releases/v2.22.0-f237ea6e62b5/image.tar.gz 141323767\n/home/ec2-user/drone-hangar/releases/v2.23.0-8f66e2a5a84a/image.tar.gz 141323771\n/home/ec2-user/drone-hangar/releases/v2.24.0-9660654a4365/image.tar.gz 141335251\n/home/ec2-user/drone-hangar/releases/v2.25.0-d1dc4cb9b99d/image.tar.gz 141325631\n/home/ec2-user/drone-hangar/releases/v2.26.0-ccad8ed1f2c5/image.tar.gz 141339014\n/home/ec2-user/drone-hangar/releases/v2.27.0-7e2da499e70a/image.tar.gz 141346685\n/home/ec2-user/drone-hangar/releases/v2.28.0-f3cbb587f514/image.tar.gz 141346532\n/home/ec2-user/drone-hangar/releases/v2.29.0-298729911b76/image.tar.gz 141353672\n/home/ec2-user/drone-hangar/releases/v2.30.0-d5fc927a38fd/image.tar.gz 141357626\n/home/ec2-user/drone-hangar/releases/v2.31.0-b2bdbccd35e4/image.tar.gz 141384393\n/home/ec2-user/drone-hangar/releases/v2.32.0-f52f89ea77ff/image.tar.gz 141391856\n/home/ec2-user/drone-hangar/releases/v2.33.0-49b01ebfc1b8/image.tar.gz 141386117\n/home/ec2-user/drone-hangar/releases/v2.34.0-86cadc92fbdd/image.tar.gz 141391522\n/home/ec2-user/drone-hangar/releases/v2.35.0-c37c3a8426e3/image.tar.gz 141392841\n/home/ec2-user/drone-hangar/releases/v2.36.0-0296056ce7e4/image.tar.gz 141397712\n/home/ec2-user/drone-hangar/releases/v2.37.0-89734fb23807/image.tar.gz 141393364\n/home/ec2-user/drone-hangar/releases/v2.38.0-44f8624aaa0d/image.tar.gz 141406839\n/home/ec2-user/drone-hangar/releases/v2.39.0-e8fe147865f3/image.tar.gz 141397045\n/home/ec2-user/drone-hangar/releases/v2.40.0-0e9e5064c761/image.tar.gz 141473386\n/home/ec2-user/drone-hangar/releases/v2.40.0-6b3a5ede6c5a/image.tar.gz 141472971\n/home/ec2-user/drone-hangar/releases/v2.41.0-26faf677f80f/image.tar.gz 141482691\n/home/ec2-user/drone-hangar/releases/v2.42.0-f0d7d412b45f/image.tar.gz 141488991\n/home/ec2-user/drone-hangar/releases/v2.43.0-8d4c747f78ad/image.tar.gz 141571026\n/home/ec2-user/drone-hangar/releases/v2.44.0-9a2633331605/image.tar.gz 141574203\n/home/ec2-user/drone-hangar/releases/v2.45.0-fbd27ca93aaa/image.tar.gz 141589175\n/home/ec2-user/drone-hangar/releases/v2.46.0-16eb380405d8/image.tar.gz 141589143\n/home/ec2-user/drone-hangar/releases/v2.47.0-5f986166dd40/image.tar.gz 141596971\n/home/ec2-user/drone-hangar/releases/v2.48.0-3b732e3f7f0d/image.tar.gz 141595152\n/home/ec2-user/drone-hangar/releases/v2.48.0-b2c6d496aef2/image.tar.gz 141588285\n/home/ec2-user/drone-hangar/releases/v2.49.0-7737887e5d1c/image.tar.gz 141726893\n/home/ec2-user/drone-hangar/releases/v2.50.0-6e7485b9fad3/image.tar.gz 141724444\n/home/ec2-user/drone-hangar/releases/v2.50.0-e90c470d8afd/image.tar.gz 141721197\n/home/ec2-user/drone-hangar/releases/v2.51.0-28f5c63c08a8/image.tar.gz 141723958\n/home/ec2-user/drone-hangar/releases/v2.52.0-738c03deaf55/image.tar.gz 141733594\n/home/ec2-user/drone-hangar/releases/v2.53.0-adbdc325a24c/image.tar.gz 141728607\n/home/ec2-user/drone-hangar/releases/v2.54.0-de2756816913/image.tar.gz 141738025\n/home/ec2-user/drone-hangar/releases/v2.55.0-6f8e573f64c1/image.tar.gz 141744779\nsha256:786e9edda9f452fea92864af6fc775c33c92acdc2bc998ef903118fdb7750635 true\n",
-        "StandardErrorContent": ""
-      }
-    }
+    "status": "pending",
+    "baseline": "v2.66.0-b86bd27a4253"
   },
   "followups": {
     "loading257": {
@@ -7089,6 +7009,294 @@
           }
         }
       }
+    },
+    "navigation267": {
+      "status": "software-verified; publication pending",
+      "date": "2026-11-14",
+      "scope": "General map realism review; sourced neighbourhood/street location; north-up minimap and paused menu overview",
+      "sourceMetadata": "public/maps/sile/navigation.json",
+      "counts": {
+        "roadPieces": 468,
+        "namedRoadPieces": 166,
+        "namedRoadNames": 114,
+        "neighbourhoods": 4,
+        "landmarks": 7
+      },
+      "boundaryTimestamp": "2026-11-14T08:53:36Z",
+      "generalReview": "docs/sile-navigation-267.md",
+      "browserChecks": {
+        "places": [
+          {
+            "id": "8917831",
+            "text": "Balibey Mahallesi\nPembe Sokagi\nHaritayı aç / kapat"
+          },
+          {
+            "id": "8918298",
+            "text": "Hacı Kasım Mahallesi\nYakın: Üsküdar Caddesi · 85 m\nHaritayı aç / kapat"
+          },
+          {
+            "id": "8939333",
+            "text": "Çavuş Mahallesi\nYakın: Üsküdar Caddesi · 13 m\nHaritayı aç / kapat"
+          },
+          {
+            "id": "9064755",
+            "text": "Kumbaba Mahallesi\nYakında adlandırılmış yol yok\nHaritayı aç / kapat"
+          }
+        ],
+        "injection": {
+          "literal": true,
+          "images": 0,
+          "bad": false
+        },
+        "desktopText": "Çavuş Mahallesi\nYakında adlandırılmış yol yok\nHaritayı aç / kapat",
+        "mobile": {
+          "attributionBottom": 197.96875,
+          "navigationTop": 205.96875,
+          "navigationRight": 375,
+          "viewport": 390,
+          "scrollWidth": 390
+        },
+        "switchedMapHidden": true,
+        "spaceOwnership": true,
+        "fullHudNoOverlap": true,
+        "hudOffHidden": true,
+        "pageErrors": []
+      },
+      "performance": {
+        "status": "complete",
+        "durationSeconds": 180.00059999999925,
+        "hiddenMs": 0,
+        "frames": 10800,
+        "fps": 59.999800000666916,
+        "low1PercentFps": 56.01659751037048,
+        "maxFrameMs": 33.19999999999709,
+        "renderSize": [
+          1280,
+          720
+        ],
+        "viewport": [
+          1280,
+          720
+        ],
+        "devicePixelRatio": 1,
+        "quality": "medium",
+        "hud": "full",
+        "minimapOpen": true,
+        "location": "Çavuş Mahallesi\nYakında adlandırılmış yol yok\nHaritayı aç / kapat",
+        "flightStatus": "DISARM",
+        "backend": "webgl",
+        "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+        "scope": "Actual full app renderer + 5Hz named minimap + motor HUD; stationary DISARM spawn. Single view, no manual flight, no six-region or physical TX15 acceptance.",
+        "pageErrors": []
+      },
+      "verification": {
+        "node22Arm64": {
+          "passed": 697,
+          "failed": 0,
+          "durationMs": 287048.265584
+        },
+        "infrastructure": {
+          "passed": 11,
+          "failed": 0
+        },
+        "geometricRoutes": {
+          "passed": 12,
+          "retainedFrom": "2.66",
+          "rerun": false,
+          "reason": "No 3D/physical geometry changes; full697suite also verifies prior physical/position fingerprints"
+        },
+        "review": "Fresh gpt-6-astra high; one P2 motor/navigation overlap fixed RED-to-GREEN; desktop full HUD expanded/collapsed,390x844 and844x390 verified"
+      },
+      "screenshots": [
+        "/Users/efa/.codex/visualizations/2026/11/14/sile-navigation-267/overview-desktop.jpg",
+        "/Users/efa/.codex/visualizations/2026/11/14/sile-navigation-267/flight-desktop.jpg",
+        "/Users/efa/.codex/visualizations/2026/11/14/sile-navigation-267/menu-desktop.jpg",
+        "/Users/efa/.codex/visualizations/2026/11/14/sile-navigation-267/menu-mobile.jpg",
+        "/Users/efa/.codex/visualizations/2026/11/14/sile-navigation-267/flight-mobile.jpg",
+        "/Users/efa/.codex/visualizations/2026/11/14/sile-navigation-267/flight-mobile-open.jpg",
+        "/Users/efa/.codex/visualizations/2026/11/14/sile-navigation-267/flight-full-hud-open.jpg",
+        "/Users/efa/.codex/visualizations/2026/11/14/sile-navigation-267/flight-full-hud-closed.jpg",
+        "/Users/efa/.codex/visualizations/2026/11/14/sile-navigation-267/flight-full-hud-landscape.jpg",
+        "/Users/efa/.codex/visualizations/2026/11/14/sile-navigation-267/flight-full-hud-portrait.jpg",
+        "/Users/efa/.codex/visualizations/2026/11/14/sile-navigation-267/performance-ui.jpg"
+      ],
+      "previousDelivery": {
+        "status": "published",
+        "release": "v2.66.0-b86bd27a4253",
+        "image": {
+          "release": "v2.66.0-b86bd27a4253",
+          "imageId": "sha256:9b47dfa92be9560ebd04de76f04e7a64664d37b4e487408274fed1f28cba5c9e",
+          "archiveSha256": "879d753957187319f4c2e5fdf58b1e4c7ef2b6ef6b5dfaf4698a53a385c14d55",
+          "archiveBytes": 144898881,
+          "architecture": "arm64",
+          "sourceFiles": 488
+        },
+        "sourceFiles": 488,
+        "preservedSourceFiles": {
+          "public/maps/sile/map.json": "5564a34bbf1573152f5e1a93d1de4d01895eb4021483d2e03fae761341717a11",
+          "public/maps/sile/source-osm.json": "b860868c8cbc075b2d7b8936aa95d95b452eb244c47d8e03d66bd98f1e87f59a",
+          "public/maps/sile/source-dem.tif": "c1d9b4576412ef8f3e791ee23eff2db1a4c6ac1684b98c92bbafbc3cde380743",
+          "src/rc-setup.js": "1bb07e0d440d54cd2006763b108386b22115651ec1e57ceba6c2d94964814c26",
+          "tests/rc-setup.test.js": "7a038dfcbf536ac3b18c3ac74f146b32007f9aa132cd889da440d8eed4082880"
+        },
+        "changedDerivedData": [
+          "foundation metric2m UV",
+          "foundation final-ground contact tone",
+          "existing concrete scan",
+          "full2.65physical records retained",
+          "surface provenance metadata"
+        ],
+        "https": {
+          "release": "v2.66.0-b86bd27a4253",
+          "entryAssets": 5,
+          "uniqueIds": 253,
+          "appVersion": "2.66.0",
+          "lazyGpuChunks": [
+            "gfx-webgpu-BPv6_-0D.js"
+          ],
+          "sceneWorkerChunks": [
+            "sile-scene-worker-B9W6Q417.js"
+          ],
+          "liveSkyOrderFix": true,
+          "mapAndSourceSha256": "pass"
+        },
+        "websocket": {
+          "clients": 2,
+          "join": "pass",
+          "state": "pass",
+          "leave": "pass"
+        },
+        "remote": {
+          "Status": "Success",
+          "StandardOutputContent": "Running image source hashes: 139 OK\ndrone-hangar | 26.69MiB / 256MiB | 1.38%\n{\"running\": true, \"restarts\": 0, \"readonly\": true, \"user\": \"1000:1000\", \"image\": \"sha256:9b47dfa92be9560ebd04de76f04e7a64664d37b4e487408274fed1f28cba5c9e\"}\nSeven tenants/nginx unchanged; old container/data backup retained\nhttps://zenth.finance/ 200\nhttps://api.zenth.finance/health 200\nGelisim TLS origin 200\n",
+          "StandardErrorContent": "nginx: the configuration file /etc/nginx/nginx.conf syntax is ok\nnginx: configuration file /etc/nginx/nginx.conf test is successful\n"
+        },
+        "nativeLive": {
+          "url": "https://hangar.18-153-158-209.sslip.io/?room=hangar&name=pilot",
+          "release": "v2.66.0-b86bd27a4253",
+          "verifiedDisarmGroundZero": true,
+          "reference": "REF 4M · ACRO · REAL",
+          "physicalTX15": "not-run",
+          "automation": "Headful installed Chrome via Playwright; CUA tool unavailable after session restart",
+          "pageErrors": [],
+          "dom": "Şile · veri tabanlı taslak\n© OpenStreetMap contributors · ODbL · Copernicus DEM · Microsoft / Overture Maps · ODbL · ESA WorldCover 2021 · CC BY 4.0\nKaynaklar / yükseklik varsayımları ↗\n0 km/h\n0 m AGL\nBAT\nDISARM\nREF 4M · ACRO · REAL\nARM\nCAM\nMOD\nKONTROL\nMENÜ"
+        },
+        "operationalPreflight": {
+          "cacheCleanup": {
+            "Status": "Success",
+            "StandardOutputContent": "{\"removedOnlyS3VerifiedCacheCopies\": [{\"release\": \"v2.56.0-618a82e72259\", \"bytes\": 144649760, \"sha256\": \"6d95112f50143d53d5021ccfdd24eeea081da2f4484e66e7e5fde8ebeb9a4b79\", \"restoreBucket\": \"zenth-db-backups-283277658470\", \"restoreKey\": \"deploy/drone-hangar/v2.56.0-618a82e72259/image.tar.gz\"}, {\"release\": \"v2.65.0-7a57ec1eeba5\", \"bytes\": 144902210, \"sha256\": \"910c92970f0f9d6d8acb69d85b3392d07179973b005d202f70eec8ece83eacd3\", \"restoreBucket\": \"zenth-db-backups-283277658470\", \"restoreKey\": \"deploy/drone-hangar/v2.65.0-7a57ec1eeba5/image.tar.gz\"}], \"freedBytes\": 289551970, \"diskFreeBefore\": 557338624, \"diskFreeAfter\": 846893056, \"allContainersUnchanged\": true, \"nginxUnchanged\": true}\n",
+            "StandardErrorContent": ""
+          },
+          "restorableCaches": [
+            {
+              "release": "v2.56.0-618a82e72259",
+              "bytes": 144649760,
+              "sha256": "6d95112f50143d53d5021ccfdd24eeea081da2f4484e66e7e5fde8ebeb9a4b79",
+              "restoreBucket": "zenth-db-backups-283277658470",
+              "restoreKey": "deploy/drone-hangar/v2.56.0-618a82e72259/image.tar.gz"
+            },
+            {
+              "release": "v2.65.0-7a57ec1eeba5",
+              "bytes": 144902210,
+              "sha256": "910c92970f0f9d6d8acb69d85b3392d07179973b005d202f70eec8ece83eacd3",
+              "restoreBucket": "zenth-db-backups-283277658470",
+              "restoreKey": "deploy/drone-hangar/v2.65.0-7a57ec1eeba5/image.tar.gz"
+            }
+          ],
+          "fullS3Object256": {
+            "release": "v2.56.0-618a82e72259",
+            "s3FullObjectDownloadedAndVerified": true,
+            "bytes": 144649760,
+            "sha256": "6d95112f50143d53d5021ccfdd24eeea081da2f4484e66e7e5fde8ebeb9a4b79"
+          },
+          "freshBeforeStage": {
+            "Status": "Success",
+            "StandardOutputContent": "Filesystem      Size  Used Avail Use% Mounted on\n/dev/nvme0n1p1   20G   20G  859M  96% /\n/home/ec2-user/drone-hangar/releases/v2.16.0-7f5130339846/image.tar.gz 132446155\n/home/ec2-user/drone-hangar/releases/v2.17.0-a8bd5e74aa80/image.tar.gz 141216438\n/home/ec2-user/drone-hangar/releases/v2.18.0-b27b8592b4ad/image.tar.gz 141233275\n/home/ec2-user/drone-hangar/releases/v2.19.0-f442fab3123f/image.tar.gz 141272189\n/home/ec2-user/drone-hangar/releases/v2.20.0-0bbae6d8f741/image.tar.gz 141286398\n/home/ec2-user/drone-hangar/releases/v2.21.0-395ad3ff12e2/image.tar.gz 141312829\n/home/ec2-user/drone-hangar/releases/v2.22.0-f237ea6e62b5/image.tar.gz 141323767\n/home/ec2-user/drone-hangar/releases/v2.23.0-8f66e2a5a84a/image.tar.gz 141323771\n/home/ec2-user/drone-hangar/releases/v2.24.0-9660654a4365/image.tar.gz 141335251\n/home/ec2-user/drone-hangar/releases/v2.25.0-d1dc4cb9b99d/image.tar.gz 141325631\n/home/ec2-user/drone-hangar/releases/v2.26.0-ccad8ed1f2c5/image.tar.gz 141339014\n/home/ec2-user/drone-hangar/releases/v2.27.0-7e2da499e70a/image.tar.gz 141346685\n/home/ec2-user/drone-hangar/releases/v2.28.0-f3cbb587f514/image.tar.gz 141346532\n/home/ec2-user/drone-hangar/releases/v2.29.0-298729911b76/image.tar.gz 141353672\n/home/ec2-user/drone-hangar/releases/v2.30.0-d5fc927a38fd/image.tar.gz 141357626\n/home/ec2-user/drone-hangar/releases/v2.31.0-b2bdbccd35e4/image.tar.gz 141384393\n/home/ec2-user/drone-hangar/releases/v2.32.0-f52f89ea77ff/image.tar.gz 141391856\n/home/ec2-user/drone-hangar/releases/v2.33.0-49b01ebfc1b8/image.tar.gz 141386117\n/home/ec2-user/drone-hangar/releases/v2.34.0-86cadc92fbdd/image.tar.gz 141391522\n/home/ec2-user/drone-hangar/releases/v2.35.0-c37c3a8426e3/image.tar.gz 141392841\n/home/ec2-user/drone-hangar/releases/v2.36.0-0296056ce7e4/image.tar.gz 141397712\n/home/ec2-user/drone-hangar/releases/v2.37.0-89734fb23807/image.tar.gz 141393364\n/home/ec2-user/drone-hangar/releases/v2.38.0-44f8624aaa0d/image.tar.gz 141406839\n/home/ec2-user/drone-hangar/releases/v2.39.0-e8fe147865f3/image.tar.gz 141397045\n/home/ec2-user/drone-hangar/releases/v2.40.0-0e9e5064c761/image.tar.gz 141473386\n/home/ec2-user/drone-hangar/releases/v2.40.0-6b3a5ede6c5a/image.tar.gz 141472971\n/home/ec2-user/drone-hangar/releases/v2.41.0-26faf677f80f/image.tar.gz 141482691\n/home/ec2-user/drone-hangar/releases/v2.42.0-f0d7d412b45f/image.tar.gz 141488991\n/home/ec2-user/drone-hangar/releases/v2.43.0-8d4c747f78ad/image.tar.gz 141571026\n/home/ec2-user/drone-hangar/releases/v2.44.0-9a2633331605/image.tar.gz 141574203\n/home/ec2-user/drone-hangar/releases/v2.45.0-fbd27ca93aaa/image.tar.gz 141589175\n/home/ec2-user/drone-hangar/releases/v2.46.0-16eb380405d8/image.tar.gz 141589143\n/home/ec2-user/drone-hangar/releases/v2.47.0-5f986166dd40/image.tar.gz 141596971\n/home/ec2-user/drone-hangar/releases/v2.48.0-3b732e3f7f0d/image.tar.gz 141595152\n/home/ec2-user/drone-hangar/releases/v2.48.0-b2c6d496aef2/image.tar.gz 141588285\n/home/ec2-user/drone-hangar/releases/v2.49.0-7737887e5d1c/image.tar.gz 141726893\n/home/ec2-user/drone-hangar/releases/v2.50.0-6e7485b9fad3/image.tar.gz 141724444\n/home/ec2-user/drone-hangar/releases/v2.50.0-e90c470d8afd/image.tar.gz 141721197\n/home/ec2-user/drone-hangar/releases/v2.51.0-28f5c63c08a8/image.tar.gz 141723958\n/home/ec2-user/drone-hangar/releases/v2.52.0-738c03deaf55/image.tar.gz 141733594\n/home/ec2-user/drone-hangar/releases/v2.53.0-adbdc325a24c/image.tar.gz 141728607\n/home/ec2-user/drone-hangar/releases/v2.54.0-de2756816913/image.tar.gz 141738025\n/home/ec2-user/drone-hangar/releases/v2.55.0-6f8e573f64c1/image.tar.gz 141744779\nsha256:786e9edda9f452fea92864af6fc775c33c92acdc2bc998ef903118fdb7750635 true\n",
+            "StandardErrorContent": ""
+          }
+        }
+      },
+      "previousHumanAcceptance": {
+        "status": "not-run",
+        "scope": "New2.66user map/flight acceptance pending",
+        "previousResults": [
+          {
+            "status": "not-run",
+            "scope": "New2.65user map/flight acceptance pending",
+            "previousResults": [
+              {
+                "status": "not-run",
+                "scope": "New2.64user map/flight acceptance pending",
+                "previousResults": [
+                  {
+                    "status": "not-run",
+                    "scope": "New2.63user map/flight acceptance pending",
+                    "previousResults": [
+                      {
+                        "status": "not-run",
+                        "scope": "New2.62user map/flight acceptance pending",
+                        "previousResults": [
+                          {
+                            "status": "not-run",
+                            "scope": "New2.61user map/flight acceptance pending",
+                            "previousResults": [
+                              {
+                                "status": "not-run",
+                                "scope": "New2.60user map/flight acceptance pending",
+                                "previousResults": [
+                                  {
+                                    "status": "not-run",
+                                    "scope": "New2.59user map/flight acceptance pending",
+                                    "previousResults": [
+                                      {
+                                        "status": "not-run",
+                                        "scope": "New2.58 user resemblance and flight acceptance pending",
+                                        "previousResults": [
+                                          {
+                                            "status": "fail",
+                                            "release": "v2.57.0-e89963741523",
+                                            "date": "2026-11-10",
+                                            "feedback": "Sahil bölgesi hâlâ boş; tam Şile değil.",
+                                            "scope": "User visual feedback; prior automated software acceptance is not visual approval."
+                                          }
+                                        ],
+                                        "release": "v2.58.0-47520f3ee55f"
+                                      }
+                                    ],
+                                    "release": "v2.59.0-01f8df881bcb"
+                                  }
+                                ],
+                                "release": "v2.60.0-a8bbda72ee0e"
+                              }
+                            ],
+                            "release": "v2.61.0-0303b45cb1b7"
+                          }
+                        ],
+                        "release": "v2.62.0-8e1675aa7a78"
+                      }
+                    ],
+                    "release": "v2.63.0-c8bb16d845f8"
+                  }
+                ],
+                "release": "v2.64.0-0154e49e3dab"
+              }
+            ],
+            "release": "v2.65.0-7a57ec1eeba5"
+          }
+        ],
+        "release": "v2.66.0-b86bd27a4253"
+      },
+      "userFeedbackOn266": {
+        "status": "visual-realism-not-accepted",
+        "assessment": "User says map still does not fully resemble Sile; requests general review and visible neighbourhood/street names"
+      },
+      "limits": [
+        "Area is still an approximately4.5x2km centre/coast cutout,not all Sile district; Kumbaba partial.",
+        "OSM administrative geometry,not an official cadastral survey. 302unnamedroadpieces remain unnamed.",
+        "Buildings,30mDSM,rock/cave detail and materials remain approximate; labels do not complete a digital twin.",
+        "180sactualUI stationaryDISARM with fullHUD/openmap; not sixregions,manualflight or physicalTX15.",
+        "Historical900s performance remains2.58; regional3D image proof from2.66 retained because unchanged geometry."
+      ]
     }
   }
 }

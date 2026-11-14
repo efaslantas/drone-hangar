@@ -12,7 +12,7 @@
     <link rel="manifest" href="/manifest.webmanifest" />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <meta name="app-version" content="2.66.0" /><title>EFA Hangar 2.0 · FPV Simülatörü</title>
+    <meta name="app-version" content="2.67.0" /><title>EFA Hangar 2.0 · FPV Simülatörü</title>
     <meta name="description" content="Drone’unu seç, uçuş alanını keşfet. Serbest uçuş, freestyle ve yarış için FPV simülatörü." />
     <link rel="stylesheet" href="/src/style.css" />
   </head>
@@ -251,6 +251,7 @@
         <canvas id="view"></canvas>
 
         <div id="map-attribution" hidden><b>Şile · veri tabanlı taslak</b><span><a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">© OpenStreetMap contributors · ODbL</a> · Copernicus DEM · <a href="https://overturemaps.org/" target="_blank" rel="noopener">Microsoft / Overture Maps · ODbL</a> · <a href="/sile.html">ESA WorldCover 2021 · CC BY 4.0</a></span><a href="/sile.html" target="_blank" rel="noopener">Kaynaklar / yükseklik varsayımları ↗</a></div>
+        <details id="sile-navigation" data-ui hidden aria-label="Şile konum ve yakın çevre haritası"></details>
         <div id="hud">
           <div class="hud-left">
             <div id="hud-speed">0 km/h</div>
@@ -308,6 +309,7 @@
           <span class="bay-label">UÇUŞ MENÜSÜ</span><h2>Uçuş duraklatıldı.</h2>
           <p id="flight-session" class="flight-session"></p>
           <p>Fizik ve görev zamanı durdu. Başladıktan sonra duraklatılan görevler kişisel antrenman olarak kaydedilir; sıralamaya gönderilmez.</p>
+          <section id="sile-map-overview" hidden aria-label="Şile mahalle ve sokak haritası"></section>
           <section id="inspection-menu" hidden><p>Yerel simülasyon kaydı · geçici kamera 0°. Kaydedilmiş FPV eğimin korunur. Kayıt durdurulunca uçuş durumun korunur.</p><p id="inspection-status"></p><div class="inspection-overview"><div id="inspection-map"></div><ol id="inspection-route" aria-label="İnceleme bölgeleri"></ol></div><label>Bekleyen bölge<select id="inspection-point"></select></label><button type="button" id="inspection-stop">Kaydı durdur</button><button type="button" id="inspection-export">Geçerli JSON indir</button><button type="button" id="inspection-previous">Önceki JSON indir</button><button type="button" id="inspection-replay">Yerel poz tekrarını izle</button></section>
           <label class="tod" id="arcade-guides-control" hidden><input type="checkbox" id="arcade-guides" /> Arcade halkaları ve rota çizgileri</label>
           <button type="button" class="fly" id="flight-resume">Devam Et</button>

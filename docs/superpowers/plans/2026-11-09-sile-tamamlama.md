@@ -278,3 +278,17 @@ Kullanıcının sahil sokak/kaldırım/bina çevresi ve canlı isteği sürer. 2
 - [x] Main/push/app-onlyAWS; freshdisk/S3preflight(2.56/2.65tarcache yok),kaynakSHA/HTTPS/WSS/nativeDISARM0,model/insan/TX15sınırları,kayıt/notes/kanıt/sahipli scratch kapanışı.
 
 Task20 teslim: v2.66.0-b86bd27a4253 canlı;687 Node22 / 11 altyapı / 12 rota, native GL–GPU, 180s görünür ölçüm, HTTPS/WSS ve canlı DISARM0 doğrulandı. Temel eteği2m beton/dip tonu; tümfizik/temelpozisyonSHA korunur; ölçülmüş malzeme/nem değildir. Önceki900s2.58veinsanreddikorunur,yeni kullanıcı/TX15not-run.
+
+### Task 21: Genel Şile incelemesi ve kaynaklı mahalle/sokak yönlendirmesi · 2.67
+
+**Amaç:** Kullanıcı haritanın henüz tam Şile olmadığını belirtti; genel yerleşimi gözden geçir ve uçuşta mahalle/sokak adlarıyla yerini anlaşılır kıl. Önceki soru/worktree opt-out ve main/push/app-only yayın yetkisi sürer. Inline uygula; bir fresh bütün değişiklik incelemesi sonunda yapılır.
+
+**Tasarım / yaklaşım:** Mevcut 468 yol parçasını ve ortak projeksiyonu kullan. Güncel OSM'den dört merkez mahallenin tam sınırlarını, mevcut snapshot'tan gerçek yol adları ve önemli yerleri üret. Uçuşta açılıp kapanabilir kuzey-sabit mini harita + bulunduğun mahalle/yakın sokak/yer/mesafe; duraklatma menüsünde adlandırılmış genel harita. Sadece isim listesi yön bulmaya yetmez; 3D uçuşun üzerine yoğun yüzen etiketler görüşü kapatır. Seçilen 2D harita gerçek yol geometrisini gösterir, fizik/RC/3D geometri sahibini değiştirmez. Mahalle bulunması polygon içindelikle; kayıtsız yol ve harita dışı durumları açıkça yazılır, yakındaki ad asıl sokak olarak uydurulmaz. OSM kaynaklı sınır resmi kadastro ölçümü değildir.
+
+**Sahipler:** `tools/prepare-sile-navigation.mjs` kaynak ilişki üyelerini kapalı halkalara birleştirir, DTO+public kopya üretir. `src/sile-navigation.js` saf konum sorgusu/etiket yerleşimi; `src/sile-navigation-view.js` DOM/SVG görünüm ve 5Hz güncelleme. `src/main.js` sadece yaşam döngüsü/paint, `index.html`/`src/style.css` görünüm. Var olan `inspectionMapModel` projeksiyonunu paylaş. Kaynaklar lisans/SHA/tarih ile `public/maps/sile/` altında. Genel eksikler mevcut kaynak ve görsellerle `docs/sile-navigation-267.md` içinde dürüstçe değerlendirilir.
+
+- [ ] Kaynak polygon birleştirme/isim doğrulaması, 4 mahalle gerçek merkez testi; tüm mevcut yolların isim kapsamı, boş/kopuk kaynak reddi. Genel harita kapsamı/eksikliği raporlanır.
+- [ ] Saf sorgu RED→GREEN: mahalle sınırı/çukur/deniz ve harita dışı, yakın/on-road/adsız yol ayrımı, sınır kayması ve bozuk koordinat, kuzey/yön ve değişmez kaynak.
+- [ ] Uçuş mini haritası + menü genel haritası; güncel konum/yön ve önemli yer/sokak etiketleri. DOM güvenli metin; diğer haritaya geçiş/tekrar/reset/dispose, RC/touch/menu/minimal HUD uyumu. Masaüstü/mobil ve farklı kaynak konumları gerçek Chrome üzerinde doğrulanır.
+- [ ] Tek fresh review, gerekli düzeltmeler ve uygun tam Node22 / build / altyapı / gerçek UI performans kontrolü; kaynak geometri/RC SHA korunur. Tarihsel 900s 2.58 ölçümü 2.67 diye sunulmaz.
+- [ ] Main commit/push ve app-only AWS; fresh disk/S3 doğrulaması, yalnız yedekli sahipli arşiv cache gerekirse çıkarılır; HTTPS/WSS/canlı arayüz/çalışan kaynak SHA. Kanıt, notes ve sahipli çalışma alanı kapanır. Kullanıcı ve fiziksel TX15 kabulü ayrı kalır.

@@ -1,0 +1,65 @@
+{
+  "version": 0.6,
+  "generator": "Overpass API 0.7.62.11 87bfad18",
+  "osm3s": {
+    "timestamp_osm_base": "2026-11-14T08:52:36Z",
+    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  "elements": [
+
+{
+  "type": "node",
+  "id": 4997240609,
+  "lat": 41.1633748,
+  "lon": 29.6075509,
+  "tags": {
+    "name": "Çavuş",
+    "name:ar": "تشافوش",
+    "place": "suburb",
+    "wikidata": "Q6037553",
+    "wikipedia": "tr:Çavuş, Şile"
+  }
+},
+{
+  "type": "node",
+  "id": 4997240610,
+  "lat": 41.1709389,
+  "lon": 29.6303393,
+  "tags": {
+    "name": "Balibey",
+    "name:ar": "باليبي",
+    "place": "suburb",
+    "wikidata": "Q6037466",
+    "wikipedia": "tr:Balibey, Şile"
+  }
+},
+{
+  "type": "node",
+  "id": 4997240611,
+  "lat": 41.1785041,
+  "lon": 29.6095617,
+  "tags": {
+    "alt_name": "Hacı Kasım",
+    "name": "Hacıkasım",
+    "name:ar": "حجي كاسم",
+    "place": "suburb",
+    "wikidata": "Q6033486",
+    "wikipedia": "tr:Hacıkasım, Şile"
+  }
+},
+{
+  "type": "node",
+  "id": 4997240612,
+  "lat": 41.1660337,
+  "lon": 29.5811106,
+  "tags": {
+    "name": "Kumbaba",
+    "name:ar": "كومبابا",
+    "place": "suburb",
+    "wikidata": "Q6034210",
+    "wikipedia": "tr:Kumbaba, Şile"
+  }
+}
+
+  ]
+}

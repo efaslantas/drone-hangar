@@ -1,6 +1,8 @@
 import {SILE_INSPECTION,createInspectionScenario,createInspection,tickInspection,selectInspectionPoint,stopInspection,attachInspectionImage,inspectionReport,inspectionTrace,saveInspectionReport,readInspectionReport} from './sile-inspection.js';
 import {createInspectionView,captureInspectionFrame,inspectionDownloadBlob} from './sile-inspection-view.js';
 import {createInspectionNavigation} from './sile-inspection-navigation.js';
+import {createSileNavigation} from './sile-navigation-view.js';
+import sileNavigationData from './data/sile-navigation.json' with {type:'json'};
 import {groundHeight} from './airframe-contact.js';
 import {createDroneStudio} from './drone-studio.js';
 import {chaseFraming,chaseOffset,fpvNearPlane,cameraClearance} from './airframe-view.js';
@@ -116,7 +118,7 @@ const defaultOp = "free";
 let selectedOp = roomOperation(q0.get("room"), defaultOp, progress).id;
 let run = null;
 let inspection=null,inspectionView=null,inspectionSaved=false,inspectionTerminalMenu=false;
-let inspectionNavigationView=null;
+let inspectionNavigationView=null,sileNavigationView=null;
 let previousInspectionReport=readInspectionReport(browserStorage),inspectionSaveMessage="",lastInspectionReport=null;
 let inspectionCaptures=[];
 let arcadeView = null;
@@ -1292,6 +1294,7 @@ async function startFlightNow(signal) {
   if(!op.inspection)net.join(room, name, selected);
   for(const camera of [fpvCam,chaseCam]){camera.far=play.terrain?6500:(touchUi?260:520);camera.near=play.terrain ? .1 : camera===fpvCam ? .04 : .1;camera.updateProjectionMatrix();}
   document.getElementById('map-attribution').hidden=!play.terrain;
+  sileNavigationView?.dispose();sileNavigationView=selectedMap==='sile'?createSileNavigation({hud:document.getElementById('sile-navigation'),overview:document.getElementById('sile-map-overview')},getSileData(),sileNavigationData):null;
   play.drain = op.drain ?? 1;
   play.wind = windFor(op, selectedMap);
   play.real = op.real ?? !!document.getElementById("real")?.checked;
@@ -1648,6 +1651,7 @@ bindTap(document.getElementById("result-share"), () => shareResult());
 function backHangar() {
   if(replay?.inspection)endReplay();
   finishInspection("leave");inspectionView?.dispose();inspectionView=null;inspection=null;inspectionNavigationView?.dispose();inspectionNavigationView=null;paintInspection();
+  sileNavigationView?.dispose();sileNavigationView=null;
   flying = false;
   document.querySelector(".hangar-inner").scrollTop = 0;
   hangarEl.dataset.screen = "home";
@@ -2151,6 +2155,7 @@ function drawHud(input, spd) {
     document.getElementById('battery-values').textContent=rint&&state.packVoltageV!=null?`${state.packVoltageV.toFixed(2)} V · ${state.packCellV.toFixed(2)} V/hücre · ${(state.currentA||0).toFixed(1)} A\nSOC %${Math.round(state.packSoc*100)} · harcanan ${(state.packUsedMah||0).toFixed(0)} mAh\n${(state.packEnergyWh||0).toFixed(2)} Wh · kayıp ${(state.packLossWh||0).toFixed(3)} Wh`:'';
     document.getElementById('motor-state').textContent=state.rateController?.saturated?'Motor sınırı · tork/collective tahsisi sınırlı':state.rotorThrottle?'Motorlar ayrı hesaplanıyor':'Ortak gaz modeli · Angle / Acro';
   }
+  sileNavigationView?.paint(state);
   const hs = document.getElementById("hud-speed");
   const ha = document.getElementById("hud-alt");
   const hm = document.getElementById("hud-mode");

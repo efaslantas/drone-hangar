@@ -52,3 +52,7 @@ test('non-square source bounds preserve metric aspect and discard invalid featur
  assert.deepEqual(m.viewBox,[0,0,1000,500]);assert.deepEqual(m.project({x:400,z:200}),{x:1000,y:500});
  assert.deepEqual(m.land,[]);assert.deepEqual(m.roads,[]);
 });
+
+test('boundary rendering may project outside coverage without clamping the live position marker',()=>{
+ const m=navigation.inspectionMapModel(source);assert.deepEqual(m.projectUnbounded({x:-120,z:-220}),{x:-100,y:-100});assert.equal(m.project({x:-120,z:-220}),null);assert.equal(m.projectUnbounded({x:NaN,z:0}),null);
+});

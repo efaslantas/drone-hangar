@@ -1,0 +1,27 @@
+{
+  "status": "complete",
+  "durationSeconds": 180.00059999999925,
+  "hiddenMs": 0,
+  "frames": 10800,
+  "fps": 59.999800000666916,
+  "low1PercentFps": 56.01659751037048,
+  "maxFrameMs": 33.19999999999709,
+  "renderSize": [
+    1280,
+    720
+  ],
+  "viewport": [
+    1280,
+    720
+  ],
+  "devicePixelRatio": 1,
+  "quality": "medium",
+  "hud": "full",
+  "minimapOpen": true,
+  "location": "\u00c7avu\u015f Mahallesi\nYak\u0131nda adland\u0131r\u0131lm\u0131\u015f yol yok\nHaritay\u0131 a\u00e7 / kapat",
+  "flightStatus": "DISARM",
+  "backend": "webgl",
+  "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+  "scope": "Actual full app renderer + 5Hz named minimap + motor HUD; stationary DISARM spawn. Single view, no manual flight, no six-region or physical TX15 acceptance.",
+  "pageErrors": []
+}

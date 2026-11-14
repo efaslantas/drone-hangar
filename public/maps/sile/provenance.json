@@ -166,5 +166,15 @@
     "metadata": "/maps/sile/foundation-finish-visuals.json",
     "measured": false,
     "scope": "Existing foundation skirt positions and physics retained; artist2m generic concrete scan and finalterrain contact tone."
+  },
+  "navigation267": {
+    "metadata": "navigation.json",
+    "boundarySnapshot": "source-neighbourhoods.json",
+    "placeSnapshot": "source-places.json",
+    "date": "2026-11-14",
+    "neighbourhoods": 4,
+    "roadNameSource": "existing map.json/source-osm.json; no geometry update",
+    "sourceBoundaryType": "OSM admin_level8; not official cadastral survey",
+    "physicalGeometryChanged": false
   }
 }

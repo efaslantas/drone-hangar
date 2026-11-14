@@ -1,6 +1,6 @@
 # Drone Hangar — AWS işletim kaydı
 
-2026-11-02: Kullanıcı Drone simülatörü 2.16 için mevcut Zenth AWS sunucusunu seçti. Canlı adres: https://hangar.18-153-158-209.sslip.io/ . İlk kurulum `v2.16.0-7f5130339846`; güncel sürüm `v2.65.0-7a57ec1eeba5` (2.65, 2026-11-13).
+2026-11-02: Kullanıcı Drone simülatörü 2.16 için mevcut Zenth AWS sunucusunu seçti. Canlı adres: https://hangar.18-153-158-209.sslip.io/ . İlk kurulum `v2.16.0-7f5130339846`; güncel sürüm `v2.66.0-b86bd27a4253` (2.66, 2026-11-14).
 
 ## Yerleşim
 
@@ -259,3 +259,12 @@ v2.64.0-0154e49e3dab ARM64 app-only yayımlandı. Image `sha256:6ca520e7ec72b5a8
 ## 2026-11-13 — Şile asfalt ve parke yüzeyleri2.65
 
 v2.65.0-7a57ec1eeba5 ARM64 app-only yayımlandı. Image `sha256:786e9edda9f452fea92864af6fc775c33c92acdc2bc998ef903118fdb7750635`; archive SHA `910c92970f0f9d6d8acb69d85b3392d07179973b005d202f70eec8ece83eacd3`. 485 paket kaynak SHA,çalışan kaynaklar/HTTPS/WSS/nativeDISARM0 doğrulandı;7tenant/nginxaynı,eskiuygulama/veriyedeğikorundu.682Node22/11infra/12geometrikrota,nativeGL/GPU6bölge+stadyum,yeni180sgörünürdelta.Asphalt shoulder/paver microdetail;full2.64physicsSHAretained;not survey. Kaynak ayakizi/taban/arazi/RCfixaynı;135core/104giriş/24eskiyükseklikvarsayımıkorundu. Önceki900s2.58tarihseldir;fizikselTX15/yeni kullanıcınot-run.
+
+
+## 2026-11-14 — Şile bina temel yüzeyleri 2.66
+
+`v2.66.0-b86bd27a4253` ARM64 olarak yalnız simülatör uygulamasına yayımlandı. Image `sha256:9b47dfa92be9560ebd04de76f04e7a64664d37b4e487408274fed1f28cba5c9e`; arşiv SHA256 `879d753957187319f4c2e5fdf58b1e4c7ef2b6ef6b5dfaf4698a53a385c14d55`. 488 paket kaynak dosyası ve çalışan kaynakların SHA değerleri, HTTPS/WSS ve canlı DISARM / 0 m AGL açılışı doğrulandı. Diğer yedi servis ve nginx aynı kaldı; önceki uygulama ve veri yedeği korundu.
+
+687 Node22 testi, 11 altyapı testi, 12 geometrik rota ve 32 WebGL/WebGPU görünümü doğrulandı. Yeni görünür 180 saniye ölçümü altı bölgede yaklaşık 60 FPS; en düşük yüzde 1 dilimi 49,07 FPS. Önceki 900 saniye ölçümü 2.58'e aittir.
+
+Mevcut 59 temel eteğine 2 metre ölçekli genel beton taraması ve son zemine göre dip tonu eklendi. Temel pozisyonları ve tam fizik kayıtları değişmedi. Malzeme/nem görünümü temsili; fiziksel TX15 ve yeni kullanıcı uçuş kabulü yapılmadı.

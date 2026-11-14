@@ -272,7 +272,9 @@ Task19 teslim: v2.65.0-7a57ec1eeba5 canlı;682 Node22 / 11 altyapı / 12 rota, n
 
 Kullanıcının sahil sokak/kaldırım/bina çevresi ve canlı isteği sürer. 2.65 üzerinde mevcut temel eteği sahibini tamamla: tek renk temel yüzeyine mevcut genel CC0 beton taramasını 2m metrik UV ile uygula, final fiziksel araziye göre düşük kontrastlı dip kir tonu ver. Fiziksel zemin/temel ve görünen pozisyon dizisi aynen kalır; yeni çıkıntı, mesh, basamak veya çarpışma kaydı yoktur. Yön UV'si yüzey sarımından bağımsız, ton dünya deniz seviyesinden değil son arazi kotundan türetilir. Kapı/platform hizalamasından sonra ve genel zemin hazırlığından önce uygula; tarama/low fallback/worker/resource owner korunur. Tarama temsili genel betondur, gerçek Şile temel malzemesi veya nem ölçümü değildir. Önceki main/push/app-only yetki ve açıklama/worktree opt-out sürer.
 
-- [ ] Saf geometride pozisyon/kot/alan ve metre UV, ters sarım kararlılığı, eğimli zemine bağlı sınırlı dip tonu RED→GREEN; boş sahne fallback korunur.
-- [ ] Gerçek son dünyada tam2.65physicsSHA ve temel pozisyonSHA aynı, UV/ton/material/kalite/worker/temizleme denetlenir. Kaynak dosyalar korunur.
-- [ ] Tek fresh review; tamNode22/11infra/12rota; nativeGL/GPU6bölge+yakınkameralar ve yeni180s görünür ölçüm.
-- [ ] Main/push/app-onlyAWS; freshdisk/S3preflight(2.56/2.65tarcache yok),kaynakSHA/HTTPS/WSS/nativeDISARM0,model/insan/TX15sınırları,kayıt/notes/kanıt/sahipli scratch kapanışı.
+- [x] Saf geometride pozisyon/kot/alan ve metre UV, ters sarım kararlılığı, eğimli zemine bağlı sınırlı dip tonu RED→GREEN; boş sahne fallback korunur.
+- [x] Gerçek son dünyada tam2.65physicsSHA ve temel pozisyonSHA aynı, UV/ton/material/kalite/worker/temizleme denetlenir. Kaynak dosyalar korunur.
+- [x] Tek fresh review; tamNode22/11infra/12rota; nativeGL/GPU6bölge+yakınkameralar ve yeni180s görünür ölçüm.
+- [x] Main/push/app-onlyAWS; freshdisk/S3preflight(2.56/2.65tarcache yok),kaynakSHA/HTTPS/WSS/nativeDISARM0,model/insan/TX15sınırları,kayıt/notes/kanıt/sahipli scratch kapanışı.
+
+Task20 teslim: v2.66.0-b86bd27a4253 canlı;687 Node22 / 11 altyapı / 12 rota, native GL–GPU, 180s görünür ölçüm, HTTPS/WSS ve canlı DISARM0 doğrulandı. Temel eteği2m beton/dip tonu; tümfizik/temelpozisyonSHA korunur; ölçülmüş malzeme/nem değildir. Önceki900s2.58veinsanreddikorunur,yeni kullanıcı/TX15not-run.

@@ -152,3 +152,5 @@ Sahne çözümleme21.5ms,metadata4ms ve fizik verisi kopyalama26.2ms aynı taray
 Şile 2.66 temel eteği görünümü: mevcut temel yüzeyinde 2 m genel beton taraması ve son zemin kotuna bağlı temsili dip tonu. Görünen pozisyonlar ve tüm fizik kayıtları korunur; gerçek temel malzemesi veya nem envanteri değildir.
 
 Şile 2.67: kaynaklı mahalle/sokak konumu, kuzey-sabit mini harita ve duraklatma menüsünde adlandırılmış genel harita. 4 OSM mahalle sınırı, 114 farklı yol adı; harita dışı/adsız/yakındaki yol ayrımı. Kapsam ve gerçekçilik değerlendirmesi: `docs/sile-navigation-267.md`.
+
+Şile 2.68: Hüseyin Keçici Merkez Camii kaynak ayak izinde kubbe/tek minare ve kemerli taş cepheyle çizilir; aynı görünür yüzeylere temas edilir ve konum haritasında gerçek adı görünür. Boyutlar ve minare köşesi fotoğrafa dayalı varsayımdır; ölçülmüş yapı veya tam Şile iddiası değildir. Kaynaklar ve güncel doğrulama sınırları: `docs/sile-central-mosque-268.md`.

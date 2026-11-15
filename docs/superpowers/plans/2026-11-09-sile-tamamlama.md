@@ -294,3 +294,13 @@ Task20 teslim: v2.66.0-b86bd27a4253 canlı;687 Node22 / 11 altyapı / 12 rota, n
 - [x] Main commit/push ve app-only AWS; fresh disk/S3 doğrulaması, yalnız yedekli sahipli arşiv cache gerekirse çıkarılır; HTTPS/WSS/canlı arayüz/çalışan kaynak SHA. Kanıt, notes ve sahipli çalışma alanı kapanır. Kullanıcı ve fiziksel TX15 kabulü ayrı kalır.
 
 Task21 teslim: `v2.67.0-e81c8d1281fc`;697 Node22/11 altyapı, Chrome görünüm/yaşam döngüsü/klavye/mobil/HUD ve gerçek uygulama180s ölçümü,498 paket/142 çalışan SHA,HTTPS/WSS/canlı adlandırılmış harita doğrulandı. Mahalle/sokak kaynağı ve kalan arazi/bina/kapsam eksikleri kaydedildi; tam Şile/saha/TX15 kabulü iddia edilmedi.
+
+### Task 22: Merkez caminin ayırt edilebilir silüeti · 2.68
+
+Kullanıcı gerçekçilik geliştirmesine devam edilmesini istedi. Kaynaklı Hüseyin Keçici Camii (OSM342519904) sıradan tahmini7.5m bina/çatı olarak duruyor. Fotoğrafta görülen tek şerefeli minare, ana/alt kubbeler, taş cephe ve kemerli pencerelerle bu tek önemli yapı tanınabilir hale getirilir. Kaynak: yapım firmasının proje/fotoğrafları ve Darwinek2008Commons fotoğrafı; bina izi/projeksiyon OSM. Fotoğraflarda ölçü yok: gövde/kubbe/minare boyutu ve minarenin bina izi içindeki yerleşimi varsayım olarak açık kalır. Başka cami veya yanlış etiketli BİM kendiliğinden modellenmez. Önceki main/push/app-only yetki, soru/worktree opt-out sürer.
+
+- [ ] Sourceid/şekil/son-sahne kapısı; ham veriyi değiştirmeyen plan. Fotoğrafa dayalı profil ve kemerli taş/kurşun rasterı test edilerek üretilir; tek yapı, kontrollü üçgen/malzeme bütçesi.
+- [ ] Son dünyada yalnız bu yapının genel bina çizimini/çarpışmasını değiştir. İz değişmez; gövde/kubbe/minare görünür Float32 yüzeylerinden temaslar. Yakın/yüksek hızlı temas, çatı inişi, minare çevresinde boşluk ve diğer geometri/RC değişmezliği denetlenir.
+- [ ] Konum haritasına kaynak adıyla işaret; sayı/varsayımlar metadata ve kaynak sayfasında. Ham OSM/DSM ve mevcut mahalle/sokak katmanı korunur.
+- [ ] Bir fresh bütün değişiklik incelemesi, anlamlı testler/tam Node22/build; kaynak fotoğrafı ve gerçek yerel Chrome ile profil/şehir/çatı/minare kontrolü. Performans koşulu açık, eski900s yeniden etiketlenmez.
+- [ ] Main/push/app-only AWS, fresh kapasite ve yalnız S3/remoteSHA doğrulanmış tarcache temizliği gerekirse; çalışanSHA/HTTPS/WSS/canlı görünüm. Not/kanıt/sahipli scratch kapanır; tam Şile/ölçülmüş yapı/TX15 kabulü iddia edilmez.

@@ -176,5 +176,11 @@
     "roadNameSource": "existing map.json/source-osm.json; no geometry update",
     "sourceBoundaryType": "OSM admin_level8; not official cadastral survey",
     "physicalGeometryChanged": false
+  },
+  "centralMosque268": {
+    "metadata": "central-mosque.json",
+    "measured": false,
+    "sourceId": 342519904,
+    "scope": "Existing OSM footprint retained; photo-informed dome/minaret geometry with matching visible Float32 collision surfaces; all heights and minaret corner are authored assumptions."
   }
 }

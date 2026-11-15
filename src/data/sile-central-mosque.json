@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "sourceId": 342519904,
+  "name": "Hüseyin Keçici Şile Merkez Camii",
+  "projection": {
+    "lat": 41.1744067,
+    "lon": 29.6125216,
+    "metresLat": 111057.28055917022,
+    "metresLon": 83913.01638061111,
+    "offsetX": -438.0811564219137,
+    "offsetZ": -82.8005069779328
+  },
+  "measured": false,
+  "bodyHeightM": 11.2,
+  "mainDrumTopM": 16.2,
+  "mainDomeRadiusM": 6.4,
+  "minaretHeightM": 32,
+  "minaretBalconyM": 24,
+  "heightSource": "photo-informed-assumption; no measured dimensions",
+  "placementSource": "source footprint; minaret corner placement is inferred, not surveyed",
+  "references": [
+    {
+      "url": "https://www.camiiyapi.com/huseyin-kecici-sile-merkez-cami",
+      "role": "construction project and exterior photographs",
+      "retrieved": "2026-11-15"
+    },
+    {
+      "url": "https://www.camiiyapi.com/uploads/2026/09/huseyin-kecici-sile-merkez-cami-a136.webp",
+      "role": "observed primary exterior image; no texture copied"
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:H%C3%BCseyin_Ke%C3%A7ici_Mosque,_%C5%9Eile.jpg",
+      "author": "Darwinek",
+      "captured": "2008-11-15",
+      "license": "CC-BY-SA-3.0",
+      "role": "historical exterior reference; no texture copied"
+    },
+    {
+      "url": "https://www.openstreetmap.org/way/342519904",
+      "role": "building footprint and name"
+    }
+  ],
+  "limits": [
+    "Photo interpretation, not an architectural survey or engineering model.",
+    "Only the identified source building is replaced; no automatic mosque styling from tags.",
+    "Old7.5m was a default height assumption; new body/dome/minaret heights are also assumptions.",
+    "No entrance/interior is claimed; windows are authored surface patterns."
+  ]
+}

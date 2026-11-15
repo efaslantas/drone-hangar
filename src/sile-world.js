@@ -1,3 +1,4 @@
+import {mosqueSite,addCompletedMosque} from './sile-central-mosque.js';
 import {addCompletedLighthouse} from './sile-lighthouse.js';
 import {completedSileData,finishCompletionTerrain,alignCompletedEntries} from './sile-completion-world.js';
 import {addSupplementalBuildings} from './sile-building-supplement.js';
@@ -55,7 +56,7 @@ export function buildSile(scene,data){
  const timings=[];let stamp=performance.now();const mark=name=>{const now=performance.now();timings.push({name,ms:now-stamp});stamp=now;};
  data=completedSileData(data);
  const coastal=coastalBuildings(data),district=data.completionLayer===1?coastalBuildings(data,{maxDistance:350}):coastal,streets=streetLayout(data,coastal,{surroundingProfiles:district});
- const site=castleSite(data),sourceTerrain=site?.terrain||data.terrain,patches=sourceCoastPatches(data,sourceTerrain,{exactSand:true}),sand=streetRemainder(patches.sand,streets),beach=buildBeachApproach(data,sourceTerrain,sand),terrain=beach?{...sourceTerrain,beachSurface:beach.surface}:sourceTerrain,sourceItems=[...data.buildings,...data.structures].map(item=>site&&item===site.source?site.castle:item),play={bounds:{minx:terrain.bounds[0],maxx:terrain.bounds[1],minz:terrain.bounds[2],maxz:terrain.bounds[3]},ceil:Math.max(...terrain.heights)-terrain.datum+160,terrain,prisms:sourceItems.map(prismRecord),boxes:[],spawn:{x:0,z:0},trainingOnly:true};
+ const mosque=mosqueSite(data),site=castleSite(data),sourceTerrain=site?.terrain||data.terrain,patches=sourceCoastPatches(data,sourceTerrain,{exactSand:true}),sand=streetRemainder(patches.sand,streets),beach=buildBeachApproach(data,sourceTerrain,sand),terrain=beach?{...sourceTerrain,beachSurface:beach.surface}:sourceTerrain,sourceItems=[...data.buildings,...data.structures].map(item=>site&&item===site.source?site.castle:item),play={bounds:{minx:terrain.bounds[0],maxx:terrain.bounds[1],minz:terrain.bounds[2],maxz:terrain.bounds[3]},ceil:Math.max(...terrain.heights)-terrain.datum+160,terrain,prisms:sourceItems.map(prismRecord),boxes:[],spawn:{x:0,z:0},trainingOnly:true};
  if(beach){patches.sand=beach.surface.positions;scene.userData.sileBeachStats=beach.stats;}
  mark('source-partitions');
  const rockFinish=coastalRockMaterials({shoreline:true});
@@ -111,7 +112,7 @@ export function buildSile(scene,data){
  const batches=Array.from({length:8},()=>[]),materials=buildingMaterials();
  let gabled=0;
  for(const [itemIndex,item]of sourceItems.entries()){
-  if(site&&item===site.castle||data.completionLayer===1&&item.landmark==='lighthouse')continue;
+  if(site&&item===site.castle||data.completionLayer===1&&item.landmark==='lighthouse'||mosque&&item===mosque.item)continue;
   const roof=buildingRoof(item),wallHeight=roof?roof.eaves-item.base:item.height;
   const g=new THREE.ExtrudeGeometry(shapeFor(item.rings),{depth:wallHeight,bevelEnabled:false,steps:1});g.rotateX(-Math.PI/2);g.translate(0,item.base,0);
   const wallIndex=item.kind||item.landmark==='castle'?6:item.landmark==='lighthouse'?7:1+(item.id%5);
@@ -185,6 +186,7 @@ export function buildSile(scene,data){
  addFacadeDepth(scene,data,play,coastal);
  addSupplementalBuildings(scene,play,data);
  addCompletedLighthouse(scene,play,data);
+ addCompletedMosque(scene,play,data,mosque);
  mark('architectural-supplement-lighthouse');
  finishCompletionTerrain(scene,play,data,rockFinish.dry);
  prepareTerrainWallIndex(play.terrainWalls);

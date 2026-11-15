@@ -2780,6 +2780,16 @@
       "source": "https://www.openstreetmap.org/node/6514783517"
     },
     {
+      "id": "way/342519904",
+      "name": "Hüseyin Keçici Şile Merkez Camii",
+      "point": [
+        167.60936550293138,
+        116.82401545040453
+      ],
+      "kind": "mosque",
+      "source": "https://www.openstreetmap.org/way/342519904"
+    },
+    {
       "id": "way/468573622",
       "name": "Şile Limanı",
       "point": [
@@ -2815,7 +2825,7 @@
     "namedRoadPieces": 166,
     "namedRoadNames": 114,
     "neighbourhoods": 4,
-    "landmarks": 7
+    "landmarks": 8
   },
   "boundaryTimestamp": "2026-11-14T08:53:36Z",
   "placeTimestamp": "2026-11-14T08:52:36Z",

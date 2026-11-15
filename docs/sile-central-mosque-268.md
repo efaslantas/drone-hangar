@@ -11,3 +11,5 @@ Görünen Float32 üçgenleri yüzey temasının da kaynağıdır. Genel çatı 
 2.67 gerçek tam-dünya karşılaştırmasında bu yapının tek gövde prizması ve 14 eski çatı üçgeni dışında bütün fizik kayıtları aynı kaldı. Yerlerine 11.132 görünür kabuk üçgeni geldi; diğer fizik kayıtlarının SHA256’sı `81b68a783ce0ddfe72da5af371d6f52353f441721a0905b95e79bd452854ce80`. Temel eteklerinin konum SHA256’sı `60ab3df4e3edbfe78a899f197503a00650655279d4f7f0ab16464b78247e4856` olarak korunur.
 
 Bu ekleme bütün Şile’yi birebir yapmaz. 30 m DSM, temsili konut cepheleri, eksik kaynak ayrıntıları ve kullanıcı görsel/uçuş kabulü sınırları sürer. Önceki performans ölçümleri yeni sürümün ölçümü olarak sunulmaz. Yeni doğrulama ve dağıtım kanıtları `docs/sile-completion-acceptance.json` içindeki `followups.centralMosque268` bölümünde tutulur.
+
+Yayın: `v2.68.0-21a89f2f1dfa`. 703 Node22/11altyapı/build ve fresh kod incelemesi geçti;502 paket/144 çalışan kaynak SHA,HTTPS/WSS doğrulandı. Yerel gerçek Chrome sahne görünümü incelendi. Yeni FPS ve canlı tarayıcı kontrolü CUA zaman aşımı nedeniyle tamamlanamadı; manuel uçuş/TX15 kabulü yapılmadı.

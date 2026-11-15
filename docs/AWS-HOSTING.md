@@ -1,6 +1,6 @@
 # Drone Hangar — AWS işletim kaydı
 
-2026-11-02: Kullanıcı Drone simülatörü 2.16 için mevcut Zenth AWS sunucusunu seçti. Canlı adres: https://hangar.18-153-158-209.sslip.io/ . İlk kurulum `v2.16.0-7f5130339846`; güncel sürüm `v2.67.0-e81c8d1281fc` (2.67, 2026-11-14).
+2026-11-02: Kullanıcı Drone simülatörü 2.16 için mevcut Zenth AWS sunucusunu seçti. Canlı adres: https://hangar.18-153-158-209.sslip.io/ . İlk kurulum `v2.16.0-7f5130339846`; güncel sürüm `v2.68.0-21a89f2f1dfa` (2.68, 2026-11-15).
 
 ## Yerleşim
 
@@ -275,3 +275,10 @@ Mevcut 59 temel eteğine 2 metre ölçekli genel beton taraması ve son zemine g
 `v2.67.0-e81c8d1281fc` ARM64 simülatör uygulaması yayımlandı. Image `sha256:2b799020390d86585d0d582ae12adaf7059420b6c8a0fde55b423bb2f8e49b39`; arşiv SHA256 `af426e57fbe00c5aaff2d0166b9ed86dffeec38a67ca3c76e552a8a574498ff3`. 498 paket kaynağı ve çalışan 142 kaynak SHA, HTTPS/WSS, canlı mahalle göstergesi ve dört isimli genel harita doğrulandı. Yedi diğer servis/nginx aynı; eski uygulama/veri yedeği korundu.
 
 4 OSM mahalle sınırı, 166 adlandırılmış yol parçası / 114 farklı yol adı, kuzey-sabit mini harita ve menü genel haritası. Genel gerçekçilik/kapsam incelemesi `docs/sile-navigation-267.md`. 697 Node22 / 11 altyapı testi; masaüstü/mobil/ayrıntılı HUD yerleşimi doğrulandı. Gerçek uygulamada medium1280×720, fullHUD ve açık mini harita ile180.001s / gizli0 / ~60FPS / düşük%1 56.02FPS. Bu tek DISARM başlangıç görünümü, manuel uçuş veya altı bölge testi değildir. Önceki900s2.58 tarihseldir. Binalar/30mDSM hâlâ temsili; yeni kullanıcı/TX15 kabulü yapılmadı.
+
+
+## 2026-11-15 — Şile Merkez Camii 2.68
+
+`v2.68.0-21a89f2f1dfa` app-only ARM64 yayımlandı. Image `sha256:5788acccf786688a1b390aed38ee25face1958a4577f4da30aa7a2d7fa1b68d5`, arşiv SHA256 `3cb0162de035444478649e81313e82428891a43375a38335d62842ecc44ffb02`, 144992008byte.502 paket/144 çalışan kaynak SHA,HTTPS/WSS,18parçaSHA/compositeHEAD ve remote fullarchiveSHA doğrulandı.703Node22/11altyapı/build/fresh inceleme geçti. Yedi diğer tenant/nginx değişmedi; eski uygulama/veri yedeği korundu. İlk fresh914MiB / ikinci aşama661MiB kapasite kaydedildi. Yalnız kullanılmayan ilk2.68 adayının S3metadata+remoteSHA doğrulanmış144991618byte tar kopyası çıkarıldı; images/receipts/data/S3 korundu, serbest alan569954304byte oldu.
+
+Kaynak way342519904 ayak izinde kubbe/tek minare/kemerli taş cephe; yüksekliği ve minare köşesi varsayım. Yerel nativeChrome medium1280x720 sahne görseli doğrulandı. CUA zaman aşımı nedeniyle yeni180sFPS sonucu ve canlı tarayıcı görünümü doğrulanamadı. Eski900s2.58/180s2.67 ölçümleri tarihsel; yeni sürüm diye sunulmaz. Manuel uçuş ve fizikselTX15 kabulü yok. Kayıt: `followups.centralMosque268`.
